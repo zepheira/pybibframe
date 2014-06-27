@@ -363,7 +363,7 @@ def record_handler(relsink, idbase, limiting=None, plugins=None, ids=None, postp
                     last_chunk = chunk
             if last_chunk: out.write(last_chunk[:-1])
             if postprocess: postprocess(rec)
-            if limiting is not None:
+            if limiting[1] is not None:
                 limiting[0] += 1
                 if limiting[0] >= limiting[1]:
                     break
