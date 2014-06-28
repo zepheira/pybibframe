@@ -5,7 +5,6 @@ Notice however, possible security vulnerabilities:
 https://docs.python.org/3/library/xml.html#xml-vulnerabilities
 '''
 
-import json
 import logging
 
 from xml import sax
@@ -14,6 +13,7 @@ from xml import sax
 
 #from bibframe.contrib.xmlutil import normalize_text_filter
 from bibframe.reader.marc import LEADER, CONTROLFIELD, DATAFIELD
+from bibframe import g_services
 
 import rdflib
 
@@ -100,32 +100,21 @@ def parse_marcxml(inp, sink):
     #upstream, the parser, downstream, the next handler in the chain
     parser.setContentHandler(handler)
     parser.parse(inp)
+    return
 
 
-def bfconvert(inputs=None, base=None, out=None, limit=None, rdfttl=None, config=None, verbose=False, mods=None):
+def bfconvert(inputs=None, base=None, out=None, limit=None, rdfttl=None, config=None, verbose=False, logger=logging):
     '''
     inputs - One or more MARC/XML files to be parsed and converted to BIBFRAME RDF
     out - file where raw Versa JSON dump output should be written (default: write to stdout)
-    rdfttl - file where RDF Turtle output should be written
-    config - file containing config in JSON format
+    rdfttl - stream to where RDF Turtle output should be written
+    config - configuration information
     stats - file where statistics output should be written in JSON format
     limit - Limit the number of records processed to this number. If omitted, all records will be processed.
     base - Base IRI to be used for creating resources.
-    mod - Python module to be imported in order to register plugins.
     verbose - If true show additional messages and information (default: False)
+    logger - logging object for messages
     '''
-    if config is None:
-        config = {}
-    else:
-        config = json.load(config)
-    logger = logging.getLogger('marc2bfrdf')
-    if verbose:
-        logger.setLevel(logging.DEBUG)
-
-    for mod in mods or []:
-        __import__(mod, globals(), locals(), [])
-    from bibframe import g_services
-
     #if stats:
     #    register_service(statsgen.statshandler)
 

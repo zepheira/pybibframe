@@ -128,7 +128,8 @@ def handle_collection(recs, relsink, idbase, ids=None, logger=logging):
 @coroutine
 def record_handler(relsink, idbase, limiting=None, plugins=None, ids=None, postprocess=None, out=None, logger=logging, **kwargs):
     '''
-    limiting - a mutable pair of [count, limit] used to control the number of records processed
+    idbase - base IRI used for IDs of generated resources
+    limiting - mutable pair of [count, limit] used to control the number of records processed
     '''
     plugins = plugins or []
     if ids is None: ids = idgen(idbase)
@@ -206,6 +207,7 @@ def record_handler(relsink, idbase, limiting=None, plugins=None, ids=None, postp
             #for service in g_services: service.send(NEW_RECORD, relsink, workid, instanceid)
 
             params['transforms'] = [] # set()
+            params['fields_used'] = []
             for row in rec:
                 code = None
 
@@ -218,6 +220,7 @@ def record_handler(relsink, idbase, limiting=None, plugins=None, ids=None, postp
                         params['field008'] = field008 = val
                     params['transforms'].append((code, key))
                     relsink.add(I(instanceid), I(iri.absolutize(key, BFZ)), val)
+                    params['fields_used'].append((code,))
                 elif row[0] == DATAFIELD:
                     code, xmlattrs, subfields = row[1].strip(), row[2], row[3]
                     key = 'tag-' + code
@@ -225,6 +228,7 @@ def record_handler(relsink, idbase, limiting=None, plugins=None, ids=None, postp
                     handled = False
                     subfields = dict(( (sf[0].strip(), sf[1]) for sf in subfields ))
                     params['subfields'] = subfields
+                    params['fields_used'].append(tuple([code] + list(subfields.keys())))
 
                     if subfields:
                         lookup = code

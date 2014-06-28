@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 import sys
+import json
+import logging
 import argparse
 
 from bibframe.reader.marcxml import bfconvert
@@ -8,7 +10,25 @@ from bibframe.reader.marcxml import bfconvert
 
 #PREFIXES = {u'ma': 'http://www.loc.gov/MARC21/slim', u'me': 'http://www.loc.gov/METS/'}
 
-#XXX: This refusal of rdflib to serialize without NS bindings set is really f@cking annoying [...to be fair seems not a problem for turtle output
+def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, config=None, verbose=False, mods=None):
+    '''
+    Basically takes parameters typical for command line invocation and adapts them for use in the API
+
+    '''
+    if config is None:
+        config = {}
+    else:
+        config = json.load(config)
+
+    logger = logging.getLogger('marc2bf')
+    if verbose:
+        logger.setLevel(logging.DEBUG)
+
+    for mod in mods or []:
+        __import__(mod, globals(), locals(), [])
+
+    bfconvert(inputs=inputs, base=base, out=out, limit=limit, rdfttl=rdfttl, config=config, verbose=verbose, logger=logger)
+    return
 
 
 if __name__ == '__main__':
@@ -37,7 +57,7 @@ if __name__ == '__main__':
     #
     args = parser.parse_args()
 
-    bfconvert(inputs=args.inputs, base=args.base, out=args.out, limit=args.limit, rdfttl=args.rdfttl, config=args.config, verbose=args.verbose, mods=args.mod)
+    run(inputs=args.inputs, base=args.base, out=args.out, limit=args.limit, rdfttl=args.rdfttl, config=args.config, verbose=args.verbose, mods=args.mod)
     for f in args.inputs: f.close()
     args.out.close()
 
