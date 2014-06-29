@@ -26,6 +26,17 @@ If you want an RDF/Turtle representation of this file you can do:
 
     marc2bf -o resources.versa.json -r resources.ttl records.mrx
 
+You can get the source from standard input:
+
+    curl http://lccn.loc.gov/2006013175/marcxml | marc2bf -c /Users/uche/dev/zepheira/pybibframe-plus/test/resource/config1.json --mod=bibframe.zextra -o /tmp/marc2bf.versa.json
+
+<!--
+	See also Das Innere des Glaspalastes in London from one of Eric Miller's favorite examples
+    curl http://lccn.loc.gov/2012659481/marcxml | marc2bf -c /Users/uche/dev/zepheira/pybibframe-plus/test/resource/config1.json --mod=bibframe.zextra -o /tmp/marc2bf.versa.json
+-->
+
+(Pulling a record from the Web, in particular Library of Congress Online Catalog / LCCN Permalink)
+
 You can process more than one MARC/XML file at a time by listing them on the command line:
 
     marc2bf records1.mrx records2.mrx records3.mrx

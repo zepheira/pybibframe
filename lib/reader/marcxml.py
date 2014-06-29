@@ -103,13 +103,12 @@ def parse_marcxml(inp, sink):
     return
 
 
-def bfconvert(inputs=None, base=None, out=None, limit=None, rdfttl=None, config=None, verbose=False, logger=logging):
+def bfconvert(inputs, base=None, out=None, limit=None, rdfttl=None, config=None, verbose=False, logger=logging):
     '''
-    inputs - One or more MARC/XML files to be parsed and converted to BIBFRAME RDF
+    inputs - List of MARC/XML files to be parsed and converted to BIBFRAME RDF (Note: want to allow singular input strings)
     out - file where raw Versa JSON dump output should be written (default: write to stdout)
     rdfttl - stream to where RDF Turtle output should be written
     config - configuration information
-    stats - file where statistics output should be written in JSON format
     limit - Limit the number of records processed to this number. If omitted, all records will be processed.
     base - Base IRI to be used for creating resources.
     verbose - If true show additional messages and information (default: False)
@@ -118,6 +117,9 @@ def bfconvert(inputs=None, base=None, out=None, limit=None, rdfttl=None, config=
     #if stats:
     #    register_service(statsgen.statshandler)
 
+    if hasattr(inputs, 'read') and hasattr(inputs, 'close'):
+        #It's a file type?
+        inputs = [inputs]
     if limit is not None:
         try:
             limit = int(limit)
