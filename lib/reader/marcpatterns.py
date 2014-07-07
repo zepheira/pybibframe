@@ -7,6 +7,9 @@ Declarations used to elucidate MARC model
 
 #Full MARC field list: http://www.loc.gov/marc/bibliographic/ecbdlist.html
 
+#This line must be included
+from bibframe.reader.util import *
+
 MATERIALIZE = {
 '100': ('creator', {'marcrType': 'Person'}),
 '110': ('creator', {'marcrType': 'Organization'}),
@@ -45,6 +48,13 @@ MATERIALIZE = {
 MATERIALIZE_VIA_ANNOTATION = {
 #'852': ('institution', {'marcrType': 'Organization'}, {'marcrType': 'Holdings'}),
 '852': ('institution', 'Holdings', {'holderType': 'Organization'},),
+}
+
+
+#A refinement is a relationship from one mapping to another in order to refine
+#
+REFINEMENTS = {
+'700a': ('700e', normalizeparse, action.replace)
 }
 
 

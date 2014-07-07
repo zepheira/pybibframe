@@ -1,4 +1,4 @@
-amara3-iri==3.0.0a1
+amara3-iri>=3.0.0a2
 pymarc
 nose
 rdflib
