@@ -1,0 +1,6 @@
+{
+    "plugins": [
+        {"id": "https://github.com/uogbuji/pybibframe#linkreport",
+        "output-file": "/tmp/linkreport.html"}
+    ]
+}
