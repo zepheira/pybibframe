@@ -18,10 +18,19 @@ MATERIALIZE = {
 '730': ('uniformTitle', {'marcrType': 'Title'}),
 '830': ('uniformTitle', {'marcrType': 'Title'}),
 
-'260a': ('place', {'marcrType': 'Place'}),
-'260b': ('provider', {'marcrType': 'Organization'}),
-'260e': ('place', {'marcrType': 'Place'}),
-'260f': ('provider', {'marcrType': 'Organization'}),
+'260': ('publication', {'marcrType': 'ProviderEvent'}),
+'264': ('publication', {'marcrType': 'ProviderEvent'}),
+'264-x3': ('manufacture', {'marcrType': 'ProviderEvent'}),
+'264-x2': ('distribution', {'marcrType': 'ProviderEvent'}),
+'264-x1': ('publication', {'marcrType': 'ProviderEvent'}),
+'264-x0': ('production', {'marcrType': 'ProviderEvent'}),
+
+'260a': ('providerAgent', {'marcrType': 'Place'}),
+'260b': ('providerAgent', {'marcrType': 'Agent'}),
+'260e': ('providerAgent', {'marcrType': 'Place'}),
+'260f': ('providerAgent', {'marcrType': 'Agent'}),
+'264a': ('providerAgent', {'marcrType': 'Place'}),
+'264b': ('providerAgent', {'marcrType': 'Agent'}),
 
 '300': ('physicalDescription', {'marcrType': 'Measurement'}),
 
@@ -110,14 +119,8 @@ FIELD_RENAMINGS = {
 '255b': 'cartographicMathematicalDataProjectionStatement',
 '255c': 'cartographicMathematicalDataCoordinateStatement',
 '256a': 'computerFilecharacteristics',
-'260a': 'label',
-'260b': 'label',
-'260c': 'copyrightDate',
-'260e': 'place',
-'260f': 'label',
-'260g': 'date',
-'264a': 'providerPlace',
-'264b': 'providerName',
+'260c': 'providerDate',
+'260g': 'providerDate',
 '264c': 'providerDate', 
 '300a': 'extent',
 '300b': 'physicalDesc',
@@ -269,7 +272,6 @@ WORK_FIELDS = set([
 '100',
 '110',
 '111',
-'111',
 '130',
 '210',
 '222',
@@ -352,9 +354,20 @@ INSTANCE_FIELDS = set([
 '856',
 ])
 
-
 ANNOTATIONS_FIELDS = set([
 '852h',
+])
+
+PROVIDER_EVENT_FIELDS = set([
+'260a',
+'260b',
+'260c',
+'260e',
+'260f',
+'260g',
+'264a',
+'264b',
+'264c',
 ])
 
 #HOLDINGS_FIELDS = set([
