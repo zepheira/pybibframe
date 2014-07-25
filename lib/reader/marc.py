@@ -370,10 +370,10 @@ def record_handler(loop, relsink, idbase, limiting=None, plugins=None, ids=None,
             if last_chunk: out.write(last_chunk[:-1])
             #FIXME: Postprocessing should probably be a task too
             if postprocess: postprocess(rec)
-            if limiting[1] is not None:
-                limiting[0] += 1
-                if limiting[0] >= limiting[1]:
-                    break
+            #limiting--running count of records processed versus the max number, if any
+            limiting[0] += 1
+            if limiting[1] is not None and limiting[0] >= limiting[1]:
+                break
     except GeneratorExit:
         logger.debug('Completed processing {0} record{1}.'.format(limiting[0], '' if limiting[0] == 1 else 's'))
         out.write(']')
