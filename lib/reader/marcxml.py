@@ -88,6 +88,7 @@ class marcxmlhandler(sax.ContentHandler):
     def endDocument(self):
         self._sink.close()
 
+#PYTHONASYNCIODEBUG = 1
 
 def bfconvert(inputs, base=None, out=None, limit=None, rdfttl=None, config=None, verbose=False, logger=logging):
     '''

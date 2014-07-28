@@ -200,7 +200,6 @@ def record_handler(loop, relsink, idbase, limiting=None, plugins=None, ids=None,
             relsink.add(I(workid), TYPE_REL, I(iri.absolutize('Work', BFZ)))
             instanceid = next(ids)
             #logger.debug((workid, instanceid))
-            #params = {'workid': workid, 'model': relsink}
             params = {'workid': workid}
 
             relsink.add(I(instanceid), TYPE_REL, I(iri.absolutize('Instance', BFZ)))
@@ -289,7 +288,6 @@ def record_handler(loop, relsink, idbase, limiting=None, plugins=None, ids=None,
                                     params['transforms'].append((lookup, field_name))
                                     relsink.add(I(subject), I(iri.absolutize(field_name, BFZ)), v)
 
-                    #print >> sys.stderr, lookup, key
                     #if val:
                     #    subject = instanceid if code in INSTANCE_FIELDS else workid
                     #    relsink.add(I(subject), I(iri.absolutize(key, BFZ)), val)
@@ -329,7 +327,6 @@ def record_handler(loop, relsink, idbase, limiting=None, plugins=None, ids=None,
             subscript = ord('a')
             newid = None
             for subix, (inum, itype) in enumerate(isbn_list(isbns)):
-                #print >> sys.stderr, subix, inum, itype
                 newid = next(ids)
                 duplicate_statements(relsink, instanceid, newid)
                 relsink.add(I(newid), I(iri.absolutize('isbn', BFZ)), inum)
@@ -354,7 +351,14 @@ def record_handler(loop, relsink, idbase, limiting=None, plugins=None, ids=None,
 
             for plugin in plugins:
                 #Each plug-in is a task
-                task = asyncio.Task(plugin[BF_MARCREC_TASK](loop, relsink, params), loop=loop)
+                #task = asyncio.Task(plugin[BF_MARCREC_TASK](loop, relsink, params), loop=loop)
+                yield from plugin[BF_MARCREC_TASK](loop, relsink, params)
+                logger.debug("Pending tasks: %s" % asyncio.Task.all_tasks(loop))
+                #FIXME: This blocks and thus serializes the plugin operation, rather than the desired coop scheduling approach
+                #For some reason seting to async task then immediately deferring to next task via yield from sleep leads to the "yield from wasn't used with future" error (Not much clue at: https://codereview.appspot.com/7396044/)
+                #yield from asyncio.Task(asyncio.sleep(0.01), loop=loop)
+                #yield from asyncio.async(asyncio.sleep(0.01))
+                #yield from asyncio.sleep(0.01) #Basically yield to next task
 
             if not first_record: out.write(',\n')
             first_record = False
