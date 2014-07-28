@@ -12,7 +12,8 @@ import string
 import itertools
 import asyncio
 
-from datachef.ids import simple_hashstring
+#from datachef.ids import simple_hashstring
+from bibframe.contrib.datachefids import simple_hashstring
 
 #from amara.lib import U
 from amara3 import iri
