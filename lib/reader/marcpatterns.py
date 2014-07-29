@@ -12,11 +12,11 @@ MATERIALIZE = {
 '110': ('creator', {'marcrType': 'Organization'}),
 '111': ('creator', {'marcrType': 'Meeting'}),
 
-'130': ('uniformTitle', {'marcrType': 'Title'}),
-'240a': ('uniformTitle', {'marcrType': 'Title'}),
-'243a': ('uniformTitle', {'marcrType': 'Title'}),
-'730': ('uniformTitle', {'marcrType': 'Title'}),
-'830': ('uniformTitle', {'marcrType': 'Title'}),
+'130': ('uniformMemberOf', {'marcrType': 'Collection'}),
+'240a': ('uniformMemberOf', {'marcrType': 'Collection'}),
+'243a': ('uniformMemberOf', {'marcrType': 'Collection'}),
+'730': ('uniformMemberOf', {'marcrType': 'Collection'}),
+'830': ('uniformMemberOf', {'marcrType': 'Collection'}),
 
 '260': ('publication', {'marcrType': 'ProviderEvent'}),
 '264': ('publication', {'marcrType': 'ProviderEvent'}),
@@ -32,7 +32,7 @@ MATERIALIZE = {
 '264a': ('providerAgent', {'marcrType': 'Place'}),
 '264b': ('providerAgent', {'marcrType': 'Agent'}),
 
-'300': ('physicalDescription', {'marcrType': 'Measurement'}),
+#'300': ('physicalDescription', {'marcrType': 'Measurement'}),
 
 '600': ('subject', {'marcrType': 'Person'}),
 '610': ('subject', {'marcrType': 'Organization'}),
@@ -41,7 +41,7 @@ MATERIALIZE = {
 '630': ('uniformTitle', {'marcrType': 'Title'}),
 '650': ('subject', {'marcrType': 'Topic'}),
 '651': ('subject', {'marcrType': 'Geographic'}),
-#'655': ('genre', {'marcrType': 'Genre'}),
+'655': ('genre', {'marcrType': 'Genre'}),
 
 '700': ('contributor', {'marcrType': 'Person'}),
 '710': ('contributor', {'marcrType': 'Organization'}),
@@ -50,12 +50,10 @@ MATERIALIZE = {
 '740': ('contributor', {'marcrType': 'Person'}),
 }
 
-
 MATERIALIZE_VIA_ANNOTATION = {
 #'852': ('institution', {'marcrType': 'Organization'}, {'marcrType': 'Holdings'}),
-'852': ('institution', 'Holdings', {'holderType': 'Organization'},),
+'852': ('institution', 'HeldItem', {'holderType': 'Library'},),
 }
-
 
 FIELD_RENAMINGS = {
 # where do we put LDR info, e.g. LDR 07 / 19 positions = mode of issuance
@@ -76,7 +74,7 @@ FIELD_RENAMINGS = {
 '050a': 'lcCallNumber',
 '050b': 'lcItemNumber',
 '0503': 'material',
-'060a': 'bfp:nlmCallNumber.',
+'060a': 'bfp:nlmCallNumber',
 '060b': 'bfp:nlmItemNumber',
 '061a': 'bfp:nlmCopyStatement',
 '070a': 'bfp:nalCallNumber.',
@@ -92,9 +90,11 @@ FIELD_RENAMINGS = {
 '111a': 'label',
 '111d': 'date',
 '130a': 'label',
-'240a': 'label',
+'130a': 'title',
+'130n': 'workSection', 
+'240a': 'title',
 '730a': 'label',
-'830a': 'label',
+'830a': 'title',
 '130l': 'language',
 '041a': 'language',
 '210a': 'abbreviatedTitle',
@@ -122,8 +122,10 @@ FIELD_RENAMINGS = {
 '260c': 'providerDate',
 '260g': 'providerDate',
 '264c': 'providerDate', 
+'260a': 'providerPlace',
+'260b': 'providerAgent',
 '300a': 'extent',
-'300b': 'physicalDesc',
+'300b': 'otherPhysicalDetails',
 '300c': 'dimensions',
 '300e': 'accompanyingMaterial',
 '300f': 'typeOfunit',
@@ -169,12 +171,12 @@ FIELD_RENAMINGS = {
 '506u': 'uriNote',
 '507a': 'representativeFractionOfScale',
 '507b': 'remainderOfScale',
-'508a': 'productionCredit',
+'508a': 'creditsNote',
 '510a': 'citationSource', 
 '510b': 'citationCoverage',
 '510c': 'citationLocationWithinSource',
 '510u': 'citationUri',
-'511a': 'participantOrPerformer',
+'511a': 'performerNote',
 '513a': 'typeOfReport',
 '513b': 'periodCoveredn',
 '514a': 'dataQuality',
@@ -196,11 +198,11 @@ FIELD_RENAMINGS = {
 '526a': 'studyProgramName',
 '526b': 'interestLevel',
 '526c': 'readingLevel',
-'530a': 'additionalPhysicalform',
+'530a': 'additionalPhysicalForm',
 '533a': 'reproductionNote',
 '534a': 'originalVersionNote',
-'535a': 'locationOforiginals/Duplicates',
-'536a': 'fundinIInformation',
+'535a': 'locationOfOriginalsDuplicates',
+'536a': 'fundingInformation',
 '538a': 'systemDetails',
 '540a': 'termsGoverningUse',
 '541a': 'immediateSourceOfAcquisition',
@@ -237,11 +239,12 @@ FIELD_RENAMINGS = {
 '650x': 'generalSubdivision',
 '650y': 'chronologicalSubdivision',
 '650z': 'geographicSubdivision',
-'651a': 'label',
 '651v': 'formSubdivision',
 '651x': 'generalSubdivision',
 '651y': 'chronologicalSubdivision',
 '651z': 'geographicSubdivision',
+'655a': 'label',
+'6552': 'source', #Note: use this to trigger link authority lookup
 '700a': 'label',
 '700b': 'numeration',
 '700c': 'titles',
@@ -251,8 +254,8 @@ FIELD_RENAMINGS = {
 '711a': 'label',
 '711d': 'date',
 '880a': 'title',
-#'852a': 'institution',
-'852a': 'label',
+'852a': 'location',
+'852b': 'subLocation',
 '852h': 'callNumber', #Need to verify this one, since it seems to contradict the rest of the 852 pattern
 '852n': 'code',
 '852u': 'link',
@@ -278,7 +281,6 @@ WORK_FIELDS = set([
 '240',
 '243',
 '245',
-'245',
 '246',
 '264',
 '247',
@@ -291,7 +293,6 @@ WORK_FIELDS = set([
 '500',
 '502',
 '504',
-'508',
 '510',
 '511',
 '513',
@@ -342,11 +343,14 @@ INSTANCE_FIELDS = set([
 '337',
 '338',
 '351',
+'505',
 '506',
 '507',
+'508',
 '515',
 '516',
 '525',
+'530',
 '538',
 '561',
 '850',
@@ -355,7 +359,12 @@ INSTANCE_FIELDS = set([
 ])
 
 ANNOTATIONS_FIELDS = set([
+'852a',
+'852b',
 '852h',
+'852n',
+'852u',
+'852e',
 ])
 
 PROVIDER_EVENT_FIELDS = set([
@@ -370,7 +379,7 @@ PROVIDER_EVENT_FIELDS = set([
 '264c',
 ])
 
-#HOLDINGS_FIELDS = set([
-#'852',
-#])
+HOLDINGS_FIELDS = set([
+'852',
+])
 

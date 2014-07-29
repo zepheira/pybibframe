@@ -14,34 +14,34 @@ def process_leader(leader):
     [('resourceType', 'Collection'), ('resourceType', 'mixed materials'), ('resourceType', 'Collection')]
     """
     broad_06 = dict(
-        a="Text",
-        c="Text",
-        d="Text",
-        e="Image",
-        f="Image",
-        g="Image",
-        i="Sound",
-        j="Sound",
-        k="Image",
+        a="LanguageMaterial",
+        c="LanguageMaterial",
+        d="LanguageMaterial",
+        e="StillImage",
+        f="StillImage",
+        g="MovingImage",
+        i="Audio",
+        j="Audio",
+        k="StillImage",
         m="Software",
         p="Collection",
-        t="Text")
+        t="LanguageMaterial")
     
     detailed_06 = dict(
-        a="language material",
-        c="printed music",
-        d="manuscript music",
-        e="cartographic material",
-        f="manuscript cartographic material",
-        g="projected medium",
-        i="nonmusical sound recording",
-        j="musical sound recording",
-        k="2-dimensional nonprojectable graphic",
-        m="computer file",
-        o="kit",
-        p="mixed materials",
-        r="3-dimensional artifact or naturally occurring object",
-        t="manuscript language material")
+        a="LanguageMaterial",
+        c="NotatedMusic",
+        d="Manuscript+NotatedMusic",
+        e="Cartography",
+        f="Manuscript+Cartography",
+        g="MovingImage",
+        i="Nonmusical+Sounds",
+        j="Musical",
+        k="StillImage",
+        m="Multimedia",
+        o="Kit",
+        p="Multimedia",
+        r="ThreeDimensionalObject",
+        t="LanguageMaterial+Manuscript")
     
     _06 = leader[6]
     if _06 in broad_06.keys():
