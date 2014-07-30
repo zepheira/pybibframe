@@ -20,6 +20,7 @@ MATERIALIZE = {
 
 '260': ('publication', {'marcrType': 'ProviderEvent'}),
 '264': ('publication', {'marcrType': 'ProviderEvent'}),
+
 '264-x3': ('manufacture', {'marcrType': 'ProviderEvent'}),
 '264-x2': ('distribution', {'marcrType': 'ProviderEvent'}),
 '264-x1': ('publication', {'marcrType': 'ProviderEvent'}),
@@ -51,7 +52,6 @@ MATERIALIZE = {
 }
 
 MATERIALIZE_VIA_ANNOTATION = {
-#'852': ('institution', {'marcrType': 'Organization'}, {'marcrType': 'Holdings'}),
 '852': ('institution', 'HeldItem', {'holderType': 'Library'},),
 }
 
@@ -256,7 +256,7 @@ FIELD_RENAMINGS = {
 '880a': 'title',
 '852a': 'location',
 '852b': 'subLocation',
-'852h': 'callNumber', #Need to verify this one, since it seems to contradict the rest of the 852 pattern
+'852h': 'callNumber', 
 '852n': 'code',
 '852u': 'link',
 '852e': 'streetAddress',
