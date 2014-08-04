@@ -1,0 +1,1784 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+<record>
+  <leader>02355cgm a22004934a 4500</leader>
+  <controlfield tag="001">10979137</controlfield>
+  <controlfield tag="005">20120126150445.0</controlfield>
+  <controlfield tag="008">030705s2003    nju248            vleng d</controlfield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)ocm52557329</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">NMC</subfield>
+    <subfield code="c">NMC</subfield>
+    <subfield code="d">OCLCQ</subfield>
+    <subfield code="d">DGW</subfield>
+  </datafield>
+  <datafield tag="028" ind1="4" ind2="1">
+    <subfield code="a">FFH 7624-FFH 7627</subfield>
+    <subfield code="b">Films for the Humanities and Sciences</subfield>
+  </datafield>
+  <datafield tag="028" ind1="4" ind2="1">
+    <subfield code="a">FFH 8283</subfield>
+    <subfield code="b">Films for the Humanities and Sciences</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)52557329</subfield>
+  </datafield>
+  <datafield tag="050" ind1=" " ind2="4">
+    <subfield code="a">CB351</subfield>
+    <subfield code="b">.M415 2003</subfield>
+  </datafield>
+  <datafield tag="092" ind1=" " ind2=" ">
+    <subfield code="a">940.1</subfield>
+    <subfield code="b">M468</subfield>
+  </datafield>
+  <datafield tag="049" ind1=" " ind2=" ">
+    <subfield code="a">DGWW</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="4">
+    <subfield code="a">The Medieval mind</subfield>
+    <subfield code="h">[videorecording] /</subfield>
+    <subfield code="c">BBC Education &amp; Training.</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">Princeton, N.J. :</subfield>
+    <subfield code="b">Films for the Humanities &amp; Sciences,</subfield>
+    <subfield code="c">c2003.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">5 videodiscs (248 min.) :</subfield>
+    <subfield code="b">sd., col. ;</subfield>
+    <subfield code="c">4 3/4 in.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Originally broadcast in 1995 as the BBC series: A strange landscape : the illumination of the Middle Ages.</subfield>
+  </datafield>
+  <datafield tag="505" ind1="0" ind2=" ">
+    <subfield code="a">[Pt. 1.] The jeweled city : the cathedral of Chartres (50 min.) -- [pt. 2.] The saint and the scholar : portrait of Abelard (49 min.) -- [pt. 3.] The fires of faith : dissidents and the church (50 min.) -- [pt. 4.] The circles of light : the Divine comedy (49 min.) -- [pt. 5.] Frederick II : the last emperor (50 min.).</subfield>
+  </datafield>
+  <datafield tag="508" ind1=" " ind2=" ">
+    <subfield code="a">Producer and director, Derek Towers.</subfield>
+  </datafield>
+  <datafield tag="511" ind1=" " ind2=" ">
+    <subfield code="a">Narrator, Christopher Frayling.</subfield>
+  </datafield>
+  <datafield tag="538" ind1=" " ind2=" ">
+    <subfield code="a">DVD.</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">This five-part series helps belie the notion of the Dark Ages by examining the complex worldview of the medieval mind through its religious personages, institutions, and poetry.</subfield>
+  </datafield>
+  <datafield tag="530" ind1=" " ind2=" ">
+    <subfield code="a">Also available online.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Civilization, Medieval.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Middle Ages.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Religious thought</subfield>
+    <subfield code="y">Middle Ages, 600-1500.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Theology, Doctrinal</subfield>
+    <subfield code="x">History</subfield>
+    <subfield code="y">Middle Ages, 600-1500.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Philosophy, Medieval.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Frayling, Christopoher.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Towers, Derek.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">Films for the Humanities (Firm)</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">BBC Education &amp; Training.</subfield>
+  </datafield>
+  <datafield tag="740" ind1="0" ind2="2">
+    <subfield code="a">Jeweled city : the cathedral of Chartres.</subfield>
+  </datafield>
+  <datafield tag="740" ind1="0" ind2="2">
+    <subfield code="a">Saint and the scholar : portrait of Abelard.</subfield>
+  </datafield>
+  <datafield tag="740" ind1="0" ind2="2">
+    <subfield code="a">Fires of faith : dissidents and the church.</subfield>
+  </datafield>
+  <datafield tag="740" ind1="0" ind2="2">
+    <subfield code="a">Circles of light : the Divine comedy.</subfield>
+  </datafield>
+  <datafield tag="740" ind1="0" ind2="2">
+    <subfield code="a">Frederick II : the last emperor.</subfield>
+  </datafield>
+  <datafield tag="740" ind1="0" ind2="2">
+    <subfield code="a">Strange landscape : the illumination of the Middle Ages.</subfield>
+  </datafield>
+  <datafield tag="994" ind1=" " ind2=" ">
+    <subfield code="a">C0</subfield>
+    <subfield code="b">DGW</subfield>
+  </datafield>
+  <datafield tag="996" ind1=" " ind2=" ">
+    <subfield code="a">New title added 2012-01-13</subfield>
+  </datafield>
+  <datafield tag="998" ind1=" " ind2=" ">
+    <subfield code="c">CC ; gwsfwatson 2012-01-13</subfield>
+  </datafield>
+</record>
+<record>
+  <leader>01714cgm a2200337Ma 4500</leader>
+  <controlfield tag="001">11370073</controlfield>
+  <controlfield tag="005">20120309103852.0</controlfield>
+  <controlfield tag="007">vd cvuuzu</controlfield>
+  <controlfield tag="008">120131p20122011ne 049            vueng d</controlfield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">EYM</subfield>
+    <subfield code="c">EYM</subfield>
+  </datafield>
+  <datafield tag="028" ind1="4" ind2="2">
+    <subfield code="a"></subfield>
+    <subfield code="b">Films for the Humanities &amp; Sciences</subfield>
+  </datafield>
+  <datafield tag="041" ind1="1" ind2=" ">
+    <subfield code="a">chi</subfield>
+    <subfield code="j">eng</subfield>
+  </datafield>
+  <datafield tag="049" ind1=" " ind2=" ">
+    <subfield code="a">DGWW</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="4">
+    <subfield code="a">The Chinese bubble</subfield>
+    <subfield code="h">[videorecording] :</subfield>
+    <subfield code="b">predictions and perspectives /</subfield>
+    <subfield code="c">director &amp; research, Floris-Jan van Luyn.</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">Netherlands :</subfield>
+    <subfield code="b">backlight.vpro.nl ;</subfield>
+    <subfield code="a">New York, NY :</subfield>
+    <subfield code="b">Films Media Group [distributor],</subfield>
+    <subfield code="c">c2012.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">1 online resource (50 min.).</subfield>
+  </datafield>
+  <datafield tag="546" ind1=" " ind2=" ">
+    <subfield code="a">Mandarin Chinese; portions with English subtitles.</subfield>
+  </datafield>
+  <datafield tag="540" ind1=" " ind2=" ">
+    <subfield code="a">U. Michigan Public Performance Rights obtained</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">The biggest real estate developer in the world is - unsurprisingly - Chinese. Property tycoon Feng Lun is convinced opportunities are equal for all in China. Other nuanced views come from a taxi driver, a car salesman, and construction worker, as well as from Dr. Wang Jianmao of the China Europe International Business School and Shanghai-based economist Dr. Andy Xie. The Chinese Bubble shows how class differences motivate a country to move forward in uncertain times. It unravels the delicate dynamics of Chinese growth and reveals the sacrifices of the people who are making it happen.</subfield>
+  </datafield>
+  <datafield tag="600" ind1="1" ind2="0">
+    <subfield code="a">Lun, Feng.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Real estate development</subfield>
+    <subfield code="z">China.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Businesspeople</subfield>
+    <subfield code="z">China.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Entrepreneurship</subfield>
+    <subfield code="z">China.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Documentary films.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Luyn, Floris-Jan van.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Lun, Feng.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Jianmao, Wang.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Xie, Andy,</subfield>
+    <subfield code="d">1962-</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">VPRO Backlight (Firm)</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">Films Media Group.</subfield>
+  </datafield>
+  <datafield tag="994" ind1=" " ind2=" ">
+    <subfield code="a">C0</subfield>
+    <subfield code="b">DGW</subfield>
+  </datafield>
+</record>
+<record>
+  <leader>04587cgm a2200853Ia 4500</leader>
+  <controlfield tag="001">11587162</controlfield>
+  <controlfield tag="005">20130215180140.0</controlfield>
+  <controlfield tag="007">vd cvaizu</controlfield>
+  <controlfield tag="008">120430s2005    cc 094            vlchi d</controlfield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)ocn279263196</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">CLU</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">CLU</subfield>
+    <subfield code="d">CLU</subfield>
+    <subfield code="d">SINLB</subfield>
+    <subfield code="d">OCLCA</subfield>
+    <subfield code="d">OCLCQ</subfield>
+    <subfield code="d">ZCU</subfield>
+    <subfield code="d">OCLCQ</subfield>
+    <subfield code="d">DGW</subfield>
+  </datafield>
+  <datafield tag="066" ind1=" " ind2=" ">
+    <subfield code="c">$1</subfield>
+  </datafield>
+  <datafield tag="019" ind1=" " ind2=" ">
+    <subfield code="a">85855655</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">7880008446</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9787880008449</subfield>
+  </datafield>
+  <datafield tag="024" ind1="0" ind2=" ">
+    <subfield code="a">CNA020502180</subfield>
+    <subfield code="d">V.J9</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)279263196</subfield>
+    <subfield code="z">(OCoLC)85855655</subfield>
+  </datafield>
+  <datafield tag="041" ind1="0" ind2=" ">
+    <subfield code="a">chi</subfield>
+    <subfield code="j">chi</subfield>
+    <subfield code="j">eng</subfield>
+  </datafield>
+  <datafield tag="043" ind1=" " ind2=" ">
+    <subfield code="a">a-cc---</subfield>
+  </datafield>
+  <datafield tag="050" ind1="1" ind2="4">
+    <subfield code="a">PN1997.2</subfield>
+    <subfield code="b">.Z484 2005</subfield>
+  </datafield>
+  <datafield tag="082" ind1="0" ind2="4">
+    <subfield code="a">791.4372</subfield>
+    <subfield code="2">22</subfield>
+  </datafield>
+  <datafield tag="049" ind1=" " ind2=" ">
+    <subfield code="a">DGWW</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="0">
+    <subfield code="6">880-01</subfield>
+    <subfield code="a">Zhu fu</subfield>
+    <subfield code="h">[videorecording] /</subfield>
+    <subfield code="c">Beijing dian ying zhi pian chang ; yuan zhu Lu Xun ; bian ju Xia Yan ; dao yan Sang Hu.</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="6">880-02</subfield>
+    <subfield code="a">[Beijing Shi] :</subfield>
+    <subfield code="b">Zhong ying yin xiang chu ban she ;</subfield>
+    <subfield code="a">[Guangzhou Shi] :</subfield>
+    <subfield code="b">Guangzhou qiao jia ren wen hua chuan bo you xian gong si zong jing xiao,</subfield>
+    <subfield code="c">[2005]</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="6">880-03</subfield>
+    <subfield code="a">1 videodisc (94 min.) :</subfield>
+    <subfield code="b">sd., col. ;</subfield>
+    <subfield code="c">4 3/4 in.</subfield>
+  </datafield>
+  <datafield tag="490" ind1="0" ind2=" ">
+    <subfield code="6">880-04</subfield>
+    <subfield code="a">Han yu =</subfield>
+    <subfield code="a">Chinese, Follow me</subfield>
+  </datafield>
+  <datafield tag="490" ind1="1" ind2=" ">
+    <subfield code="6">880-05</subfield>
+    <subfield code="a">Zhongguo jing dian dian ying =</subfield>
+    <subfield code="a">Chinese movies</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Title and credits from container.</subfield>
+  </datafield>
+  <datafield tag="538" ind1=" " ind2=" ">
+    <subfield code="a">DVD-5 ; MPEG-2 ; NTSC.</subfield>
+  </datafield>
+  <datafield tag="546" ind1=" " ind2=" ">
+    <subfield code="a">In Chinese (Mandarin) with Chinese and English subtitles.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Originally produced as a motion picture.</subfield>
+  </datafield>
+  <datafield tag="511" ind1="1" ind2=" ">
+    <subfield code="6">880-06</subfield>
+    <subfield code="a">Bai Yang, Wei Heling.</subfield>
+  </datafield>
+  <datafield tag="508" ind1=" " ind2=" ">
+    <subfield code="6">880-07</subfield>
+    <subfield code="a">She ying, Qian Jiang ; zuo qu, Liu Ruceng.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Feature films</subfield>
+    <subfield code="z">China.</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="0">
+    <subfield code="a">China</subfield>
+    <subfield code="x">History</subfield>
+    <subfield code="y">20th century</subfield>
+    <subfield code="v">Drama.</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Feature films.</subfield>
+    <subfield code="2">lcgft</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Fiction films.</subfield>
+    <subfield code="2">lcgft</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Film adaptations.</subfield>
+    <subfield code="2">lcgft</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="6">880-08</subfield>
+    <subfield code="a">Xia, Yan,</subfield>
+    <subfield code="d">1900-1995.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="6">880-09</subfield>
+    <subfield code="a">Sang, Hu.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="6">880-10</subfield>
+    <subfield code="a">Bai, Yang,</subfield>
+    <subfield code="d">1920-1996.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="6">880-11</subfield>
+    <subfield code="a">Wei, Heling,</subfield>
+    <subfield code="d">1907-1979.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="6">880-12</subfield>
+    <subfield code="a">Lu, Xun,</subfield>
+    <subfield code="d">1881-1936.</subfield>
+    <subfield code="t">Zhu fu.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="6">880-13</subfield>
+    <subfield code="a">Beijing dian ying zhi pian chang.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="6">880-14</subfield>
+    <subfield code="a">Zhong ying yin xiang chu ban she.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="6">880-15</subfield>
+    <subfield code="a">Guangzhou qiao jia ren wen hua chuan bo you xian gong si.</subfield>
+  </datafield>
+  <datafield tag="830" ind1=" " ind2="0">
+    <subfield code="6">880-16</subfield>
+    <subfield code="a">Zhongguo jing dian dian ying.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="0" ind2="0">
+    <subfield code="6">245-01/$1</subfield>
+    <subfield code="a">祝福</subfield>
+    <subfield code="h">[videorecording] /</subfield>
+    <subfield code="c">北京电影制片厂 ; 原著鲁迅 ; 编剧夏衍 ; 导演桑弧.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+    <subfield code="6">260-02/$1</subfield>
+    <subfield code="a">[北京市] :</subfield>
+    <subfield code="b">中影音像出版社 ;</subfield>
+    <subfield code="a">[广州市] :</subfield>
+    <subfield code="b">广州俏佳人文化传播有限公司总经销,</subfield>
+    <subfield code="c">[2005]</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+    <subfield code="6">300-03/$1</subfield>
+    <subfield code="a">1录像光碟 (94分钟) :</subfield>
+    <subfield code="b">有声 彩色 ;</subfield>
+    <subfield code="c">4 3/4吋.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="0" ind2=" ">
+    <subfield code="6">490-04/$1</subfield>
+    <subfield code="a">汉语 =</subfield>
+    <subfield code="a">Chinese, Follow me</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2=" ">
+    <subfield code="6">490-05/$1</subfield>
+    <subfield code="a">中国经典电影 =</subfield>
+    <subfield code="a">Chinese movies</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+    <subfield code="6">500-00/$1</subfield>
+    <subfield code="a">&quot;DE1514&quot;--碟面.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+    <subfield code="6">500-00/$1</subfield>
+    <subfield code="a">原著, 鲁迅.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+    <subfield code="6">500-00/$1</subfield>
+    <subfield code="a">&quot;名著故事影片&quot;--外盒.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+    <subfield code="6">500-00/$1</subfield>
+    <subfield code="a">原以电影形式于1956年发行.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+    <subfield code="6">538-00/$1</subfield>
+    <subfield code="a">数码录像光碟(DVD); NTSC; all regions.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2=" ">
+    <subfield code="6">511-06/$1</subfield>
+    <subfield code="a">白杨, 魏鹤龄.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+    <subfield code="6">508-07/$1</subfield>
+    <subfield code="a">摄影, 钱江 ; 作曲, 刘如曾.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="8" ind2=" ">
+    <subfield code="6">521-00/$1</subfield>
+    <subfield code="a">新加坡电影检查局 : PG 级.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+    <subfield code="6">520-00/$1</subfield>
+    <subfield code="a">辛亥革命前, 早寡的祥林嫂听说婆婆要把她卖掉, 连夜跑到鲁镇来到鲁四老爷家帮佣, 因不惜力气得到太太欢心. 不料又被婆婆把她抢走与贺老六成了亲. 贺老六忠厚善良, 为凑钱还债累病而死, 儿子也被狼吃掉, 于是祥林嫂又回到鲁四老爷家. 她怕死后阎王分尸, 把一年工钱拿去捐了土地庙门坎, 当她在祝福晚上兴冲冲端出供品时, 鲁家大加责骂并把她赶走. 在一个祝福之夜她死在了漫天风雪中.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+    <subfield code="6">586-00/$1</subfield>
+    <subfield code="a">&quot;卡罗维发利第十届国际电影节特别奖&quot;--外盒.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2=" ">
+    <subfield code="6">700-08/$1</subfield>
+    <subfield code="a">夏衍,</subfield>
+    <subfield code="d">1900-</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2=" ">
+    <subfield code="6">700-09/$1</subfield>
+    <subfield code="a">桑弧.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2=" ">
+    <subfield code="6">700-10/$1</subfield>
+    <subfield code="a">白杨,</subfield>
+    <subfield code="d">1920-1996.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2=" ">
+    <subfield code="6">700-11/$1</subfield>
+    <subfield code="a">魏鹤龄,</subfield>
+    <subfield code="d">1907-1979.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2=" ">
+    <subfield code="6">700-12/$1</subfield>
+    <subfield code="a">鲁迅,</subfield>
+    <subfield code="d">1881-1936.</subfield>
+    <subfield code="t">祝福.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="2" ind2=" ">
+    <subfield code="6">710-13/$1</subfield>
+    <subfield code="a">北京电影制片厂.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="2" ind2=" ">
+    <subfield code="6">710-14/$1</subfield>
+    <subfield code="a">中影音像出版社.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="2" ind2=" ">
+    <subfield code="6">710-15/$1</subfield>
+    <subfield code="a">广州俏佳人文化传播有限公司.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2="0">
+    <subfield code="6">830-16/$1</subfield>
+    <subfield code="a">中国经典电影.</subfield>
+  </datafield>
+  <datafield tag="994" ind1=" " ind2=" ">
+    <subfield code="a">C0</subfield>
+    <subfield code="b">DGW</subfield>
+  </datafield>
+  <datafield tag="996" ind1=" " ind2=" ">
+    <subfield code="a">New title added 2012-10-08</subfield>
+  </datafield>
+  <datafield tag="998" ind1=" " ind2=" ">
+    <subfield code="c">CC ;  20 ; GIFT ; None of the above     ;</subfield>
+  </datafield>
+</record>
+<record>
+  <leader>02467cam a2200505 a 4500</leader>
+  <controlfield tag="001">11587962</controlfield>
+  <controlfield tag="005">20130919132407.0</controlfield>
+  <controlfield tag="008">120501s2011    mauabc   b    000 1 eng  </controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">  2011013150</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)ocn709670260</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">11587962</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">DLC</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="d">YDX</subfield>
+    <subfield code="d">BTCTA</subfield>
+    <subfield code="d">YDXCP</subfield>
+    <subfield code="d">IAD</subfield>
+    <subfield code="d">UKMGB</subfield>
+    <subfield code="d">CDX</subfield>
+    <subfield code="d">BWX</subfield>
+    <subfield code="d">ZCU</subfield>
+    <subfield code="d">COO</subfield>
+    <subfield code="d">BDX</subfield>
+    <subfield code="d">COH</subfield>
+    <subfield code="d">IAK</subfield>
+    <subfield code="d">LMR</subfield>
+    <subfield code="d">DGW</subfield>
+  </datafield>
+  <datafield tag="016" ind1="7" ind2=" ">
+    <subfield code="a">015855865</subfield>
+    <subfield code="2">Uk</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9780674049741 (hbk. : alk. paper)</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">0674049748</subfield>
+  </datafield>
+  <datafield tag="024" ind1="8" ind2=" ">
+    <subfield code="a">99948423561</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)709670260</subfield>
+  </datafield>
+  <datafield tag="043" ind1=" " ind2=" ">
+    <subfield code="a">e-uk-en</subfield>
+  </datafield>
+  <datafield tag="050" ind1="0" ind2="0">
+    <subfield code="a">PR4034</subfield>
+    <subfield code="b">.P4 2011b</subfield>
+  </datafield>
+  <datafield tag="082" ind1="0" ind2="0">
+    <subfield code="a">823/.7</subfield>
+    <subfield code="2">22</subfield>
+  </datafield>
+  <datafield tag="049" ind1=" " ind2=" ">
+    <subfield code="a">DGWW</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">Austen, Jane,</subfield>
+    <subfield code="d">1775-1817.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n79032879</subfield>
+    <subfield code="0">(LoC)n79032879</subfield>
+    <subfield code="0">http://viaf.org/viaf/102333412</subfield>
+    <subfield code="0">(viaf)102333412</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">Persuasion :</subfield>
+    <subfield code="b">an annotated edition /</subfield>
+    <subfield code="c">Jane Austen ; edited by Robert Morrison.</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">Cambridge, Mass. :</subfield>
+    <subfield code="b">Belknap Press of Harvard University Press,</subfield>
+    <subfield code="c">c2011.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">xi, 341 p. :</subfield>
+    <subfield code="b">ill. (chiefly col.), col. maps, ports. ;</subfield>
+    <subfield code="c">25 cm.</subfield>
+  </datafield>
+  <datafield tag="504" ind1=" " ind2=" ">
+    <subfield code="a">Includes bibliographical references ( p. [333]-334)</subfield>
+  </datafield>
+  <datafield tag="505" ind1="0" ind2=" ">
+    <subfield code="a">Note on the text -- Introduction -- Persuasion : an annotated edition.  Volume one (Chapters 1-12) ; Volume two (Chapters 1-12) -- Appendixes: The original ending of Persuasion ; &quot;Biographical notice of the author,&quot; / by Henry Austen ; Emendations and corrections to the 1818 text of Persuasion.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Young women</subfield>
+    <subfield code="z">England</subfield>
+    <subfield code="v">Fiction.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/subjects/sh2008124372</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Motherless families</subfield>
+    <subfield code="v">Fiction.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/subjects/sh9900597</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/subjects/sh85048050</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Rejection (Psychology)</subfield>
+    <subfield code="v">Fiction.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/subjects/sh85112479</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Ship captains</subfield>
+    <subfield code="v">Fiction.</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="0">
+    <subfield code="a">England</subfield>
+    <subfield code="x">Social life and customs</subfield>
+    <subfield code="y">19th century</subfield>
+    <subfield code="v">Fiction.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/subjects/sh2008114941</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Regency fiction.</subfield>
+    <subfield code="2">gsafd</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Love stories.</subfield>
+    <subfield code="2">gsafd</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Morrison, Robert,</subfield>
+    <subfield code="d">1961-</subfield>
+    <subfield code="0">http://viaf.org/viaf/54383065</subfield>
+  </datafield>
+  <datafield tag="938" ind1=" " ind2=" ">
+    <subfield code="a">Baker and Taylor</subfield>
+    <subfield code="b">BTCP</subfield>
+    <subfield code="n">BK0009710731</subfield>
+  </datafield>
+  <datafield tag="938" ind1=" " ind2=" ">
+    <subfield code="a">YBP Library Services</subfield>
+    <subfield code="b">YANK</subfield>
+    <subfield code="n">6948455</subfield>
+  </datafield>
+  <datafield tag="938" ind1=" " ind2=" ">
+    <subfield code="a">Coutts Information Services</subfield>
+    <subfield code="b">COUT</subfield>
+    <subfield code="n">17610134</subfield>
+  </datafield>
+  <datafield tag="938" ind1=" " ind2=" ">
+    <subfield code="a">Blackwell Book Service</subfield>
+    <subfield code="b">BBUS</subfield>
+    <subfield code="n">6948455</subfield>
+  </datafield>
+  <datafield tag="938" ind1=" " ind2=" ">
+    <subfield code="a">Brodart</subfield>
+    <subfield code="b">BROD</subfield>
+    <subfield code="n">13110675</subfield>
+    <subfield code="c">$35.00</subfield>
+  </datafield>
+  <datafield tag="949" ind1=" " ind2=" ">
+    <subfield code="b">32882020429281</subfield>
+  </datafield>
+  <datafield tag="981" ind1=" " ind2=" ">
+    <subfield code="a">Firm</subfield>
+    <subfield code="b">ENGLNOYES</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="b">29.05</subfield>
+    <subfield code="g">1</subfield>
+  </datafield>
+  <datafield tag="961" ind1=" " ind2=" ">
+    <subfield code="a">New title added</subfield>
+  </datafield>
+  <datafield tag="994" ind1=" " ind2=" ">
+    <subfield code="a">92</subfield>
+    <subfield code="b">DGW</subfield>
+  </datafield>
+</record>
+<record>
+  <leader>02756cgm a2200493Ma 4500</leader>
+  <controlfield tag="001">11595451</controlfield>
+  <controlfield tag="005">20120504144954.0</controlfield>
+  <controlfield tag="006">m        c        </controlfield>
+  <controlfield tag="007">cr cna||||||||</controlfield>
+  <controlfield tag="007">vz cza|||</controlfield>
+  <controlfield tag="008">110207s2006    nyu034        o   vleng d</controlfield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)ocn709668928</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">CNCGM</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">CNCGM</subfield>
+    <subfield code="d">FBM</subfield>
+    <subfield code="d">TUU</subfield>
+    <subfield code="d">OCLCQ</subfield>
+  </datafield>
+  <datafield tag="028" ind1="4" ind2="0">
+    <subfield code="a">33031</subfield>
+    <subfield code="b">Films Media Group</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)709668928</subfield>
+  </datafield>
+  <datafield tag="049" ind1=" " ind2=" ">
+    <subfield code="a">DGWW</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="0">
+    <subfield code="a">Wearing hijab</subfield>
+    <subfield code="h">[electronic resource] :</subfield>
+    <subfield code="b">uncovering the Myths of Islam in the United States /</subfield>
+    <subfield code="c">Watson, Mary Ann, Ph. D.</subfield>
+  </datafield>
+  <datafield tag="246" ind1="3" ind2=" ">
+    <subfield code="a">Uncovering the Myths of Islam in the United States</subfield>
+  </datafield>
+  <datafield tag="260" ind1="3" ind2=" ">
+    <subfield code="a">New York, N.Y. :</subfield>
+    <subfield code="b">Films Media Group,</subfield>
+    <subfield code="c">[2006], c2003.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">1 streaming video file (34 min.) :</subfield>
+    <subfield code="b">sd., col., digital file +</subfield>
+    <subfield code="e">instructional materials (online)</subfield>
+  </datafield>
+  <datafield tag="490" ind1="1" ind2=" ">
+    <subfield code="a">Films on Demand</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Films on Demand is distributed by Films Media Group for Films for the Humanities &amp; Sciences, Cambridge Educational, Meridian Education, and Shopware.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Encoded with permission for digital streaming by Films Media Group on Jan. 11, 2006.</subfield>
+  </datafield>
+  <datafield tag="506" ind1=" " ind2=" ">
+    <subfield code="a">Access requires authentication through Films on Demand.</subfield>
+  </datafield>
+  <datafield tag="521" ind1="2" ind2=" ">
+    <subfield code="a">9 &amp; up.</subfield>
+  </datafield>
+  <datafield tag="538" ind1=" " ind2=" ">
+    <subfield code="a">Mode of access: Internet.</subfield>
+  </datafield>
+  <datafield tag="538" ind1=" " ind2=" ">
+    <subfield code="a">System requirements: FOD playback platform.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Title from distributor&apos;s description.</subfield>
+  </datafield>
+  <datafield tag="505" ind1="0" ind2=" ">
+    <subfield code="a">Diversity Within Muslim Communities in America (4:31) -- Common Misconceptions About Muslim Women (3:25) -- Hijab: A Personal Decision: (3:21) -- Wearing Hijab: Subservience or Liberation? (3:03) -- American Women Who Convert to Islam (4:57) -- Arranged Marriages: A Muslim Tradition (6:37) -- Women Practicing Islam in America (5:30).</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">In America, there are many misconceptions about Islam, particularly concerning its distinctive veil known as hijab. But how do Muslim women in this country who wear hijab feel about it? In this program, six Muslim women from six different ethnic backgrounds discuss their relation to this traditional garment, as well as what it means in a more general way to practice Islam in the U.S. Interviews with spouses and family members also shed light on the spiritual and cultural dimensions of this practice.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Women</subfield>
+    <subfield code="x">Sexual behavior.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Sex role.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Racism</subfield>
+    <subfield code="x">Study and teaching.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Race discrimination.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Islam.</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="4">
+    <subfield code="a">Videorecording.</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Educational films.</subfield>
+    <subfield code="2">lcgft</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Internet videos.</subfield>
+    <subfield code="2">lcgft</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Watson, Mary Ann, Ph. D.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">Films for the Humanities &amp; Sciences (Firm)</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">Films Media Group.</subfield>
+  </datafield>
+  <datafield tag="776" ind1="0" ind2="8">
+    <subfield code="i">Original produced:</subfield>
+    <subfield code="a">Watson, Mary Ann, Ph. D.</subfield>
+    <subfield code="d">2003</subfield>
+    <subfield code="z">9780736589253</subfield>
+  </datafield>
+  <datafield tag="830" ind1=" " ind2="0">
+    <subfield code="a">Films on Demand.</subfield>
+  </datafield>
+  <datafield tag="994" ind1=" " ind2=" ">
+    <subfield code="a">C0</subfield>
+    <subfield code="b">DGW</subfield>
+  </datafield>
+</record>
+<record>
+  <leader>03066cgm a2200445Ma 4500</leader>
+  <controlfield tag="001">11595452</controlfield>
+  <controlfield tag="005">20120504145011.0</controlfield>
+  <controlfield tag="006">m        c        </controlfield>
+  <controlfield tag="007">cr cna||||||||</controlfield>
+  <controlfield tag="007">vz cza|||</controlfield>
+  <controlfield tag="008">101228s2010    nyu057        o   vleng d</controlfield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)ocn741359649</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">FBM</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">FBM</subfield>
+    <subfield code="d">OCLCQ</subfield>
+    <subfield code="d">TUU</subfield>
+    <subfield code="d">OCLCQ</subfield>
+  </datafield>
+  <datafield tag="028" ind1="4" ind2="0">
+    <subfield code="a">40768</subfield>
+    <subfield code="b">Films Media Group</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)741359649</subfield>
+  </datafield>
+  <datafield tag="043" ind1=" " ind2=" ">
+    <subfield code="a">aw-----</subfield>
+  </datafield>
+  <datafield tag="049" ind1=" " ind2=" ">
+    <subfield code="a">DGWW</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="0">
+    <subfield code="a">Inside Mecca</subfield>
+    <subfield code="h">[electronic resource] /</subfield>
+    <subfield code="c">National Geographic Television &amp; Film.</subfield>
+  </datafield>
+  <datafield tag="260" ind1="3" ind2=" ">
+    <subfield code="a">New York, N.Y. :</subfield>
+    <subfield code="b">Films Media Group,</subfield>
+    <subfield code="c">[2010], c2003.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">1 streaming video file (57 min.) :</subfield>
+    <subfield code="b">sd., col., digital file.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Films on Demand is distributed by Films Media Group for Films for the Humanities &amp; Sciences, Cambridge Educational, Meridian Education, and Shopware.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Encoded with permission for digital streaming by Films Media Group on May 21, 2010.</subfield>
+  </datafield>
+  <datafield tag="505" ind1="0" ind2=" ">
+    <subfield code="a">Hajj: Spiritual Journey of a Lifetime (2:44) -- Hajj Season at Mecca (3:09) -- American Muslim (1:35) -- South African Muslim/ Malaysian Muslim (2:43) -- Requirements of Islamic Law (2:53) -- Father Abraham (1:35) -- Prophet Mohammed (2:03) -- Malaysian Government: Organized Journey to Mecca (2:33) -- Rituals of Hajj (2:26) -- Rituals at the Ka&apos;ba (2:53) -- Charity and Celebration (2:39) -- Call to Worship (1:47) -- Pilgrim Accommodations (3:22) -- Human Nature Emerges (2:13) -- Plain of Arafat (2:16) -- Hajj: Judgment Day (3:28) -- Mercy and Absolution (2:06) -- Prayerful Night (2:02) -- Ritual: Stoning the Devil (2:17) -- Festive Atmosphere (2:22) -- Feast of the Sacrifice (1:34) -- Concluding the Hajj (4:03).</subfield>
+  </datafield>
+  <datafield tag="506" ind1=" " ind2=" ">
+    <subfield code="a">Access requires authentication through Films on Demand.</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">Each year millions of travelers flock to Mecca, undertaking the Haj, or pilgrimage, required of all devout Muslims. Few people outside of Islam, however, have seen this ancient and sacred city. This program offers an unprecedented look at the birthplace of Mohammed and the rituals that bring together the followers of the world&apos;s fastest-growing religion. Photographer Reza Deghati, himself a Muslim, gained unparalleled access to the &quot;Sacred Territory&quot; of the Haj last year and brought back still images of the event never before seen by most Westerners. Now he ushers viewers back to Mecca to capture the exclusive story of the city&apos;s traditions and holy places.</subfield>
+  </datafield>
+  <datafield tag="521" ind1="2" ind2=" ">
+    <subfield code="a">10 &amp; up.</subfield>
+  </datafield>
+  <datafield tag="538" ind1=" " ind2=" ">
+    <subfield code="a">Mode of access: Internet.</subfield>
+  </datafield>
+  <datafield tag="538" ind1=" " ind2=" ">
+    <subfield code="a">System requirements: FOD playback platform.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Title from distributor&apos;s description.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Islam.</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="0">
+    <subfield code="a">Middle East</subfield>
+    <subfield code="x">History.</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="0">
+    <subfield code="a">Middle East.</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="4">
+    <subfield code="a">Videorecording.</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Educational films.</subfield>
+    <subfield code="2">lcgft</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Internet videos.</subfield>
+    <subfield code="2">lcgft</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">Films for the Humanities &amp; Sciences (Firm)</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">Films Media Group.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">National Geographic Television &amp; Film.</subfield>
+  </datafield>
+  <datafield tag="776" ind1="0" ind2="8">
+    <subfield code="i">Originally produced:</subfield>
+    <subfield code="d">National Geographic Television &amp; Film, 2010</subfield>
+    <subfield code="z">9781616164720</subfield>
+  </datafield>
+  <datafield tag="994" ind1=" " ind2=" ">
+    <subfield code="a">C0</subfield>
+    <subfield code="b">DGW</subfield>
+  </datafield>
+</record>
+<record>
+  <leader>04229cgm a2200853 a 4500</leader>
+  <controlfield tag="001">11841663</controlfield>
+  <controlfield tag="005">20120817171933.0</controlfield>
+  <controlfield tag="007">vd cvaizq</controlfield>
+  <controlfield tag="008">031202s2003    cau--- e          vleng d</controlfield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)ocm53816173</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">TEFMT</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">TEFMT</subfield>
+    <subfield code="d">JBL</subfield>
+    <subfield code="d">JED</subfield>
+    <subfield code="d">OCLCQ</subfield>
+    <subfield code="d">LEO</subfield>
+    <subfield code="d">FVC</subfield>
+    <subfield code="d">RCS</subfield>
+    <subfield code="d">BTCTA</subfield>
+    <subfield code="d">OCLCQ</subfield>
+    <subfield code="d">OCLCG</subfield>
+    <subfield code="d">OCLCA</subfield>
+    <subfield code="d">ZQM</subfield>
+    <subfield code="d">WCM</subfield>
+    <subfield code="d">TXSCH</subfield>
+    <subfield code="d">OCLCA</subfield>
+    <subfield code="d">OCLCQ</subfield>
+    <subfield code="d">WIQ</subfield>
+    <subfield code="d">DGW</subfield>
+  </datafield>
+  <datafield tag="019" ind1=" " ind2=" ">
+    <subfield code="a">178825617</subfield>
+    <subfield code="a">760020198</subfield>
+  </datafield>
+  <datafield tag="024" ind1="1" ind2="0">
+    <subfield code="a">024543098232</subfield>
+    <subfield code="d">00</subfield>
+  </datafield>
+  <datafield tag="024" ind1="1" ind2="0">
+    <subfield code="a">024543098478</subfield>
+    <subfield code="d">00</subfield>
+  </datafield>
+  <datafield tag="028" ind1="4" ind2="2">
+    <subfield code="a">2009823</subfield>
+    <subfield code="b">20th Century Fox</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)53816173</subfield>
+    <subfield code="z">(OCoLC)178825617</subfield>
+    <subfield code="z">(OCoLC)760020198</subfield>
+  </datafield>
+  <datafield tag="037" ind1=" " ind2=" ">
+    <subfield code="b">Midwest Tapes</subfield>
+    <subfield code="n">http://www.midwesttapes.com</subfield>
+  </datafield>
+  <datafield tag="041" ind1="1" ind2=" ">
+    <subfield code="a">eng</subfield>
+    <subfield code="a">spa</subfield>
+    <subfield code="j">eng</subfield>
+    <subfield code="j">spa</subfield>
+    <subfield code="h">eng</subfield>
+  </datafield>
+  <datafield tag="050" ind1=" " ind2="4">
+    <subfield code="a">PN1997</subfield>
+    <subfield code="b">.A43 2003</subfield>
+  </datafield>
+  <datafield tag="082" ind1="0" ind2="4">
+    <subfield code="a">791.43/75</subfield>
+    <subfield code="2">22</subfield>
+  </datafield>
+  <datafield tag="049" ind1=" " ind2=" ">
+    <subfield code="a">DGWW</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="0">
+    <subfield code="a">Alien quadrilogy</subfield>
+    <subfield code="h">[videorecording].</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">[United States] :</subfield>
+    <subfield code="b">20th Century Fox,</subfield>
+    <subfield code="c">[2003]</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">9 videodiscs (ca. 3000 min.) :</subfield>
+    <subfield code="b">sd., col. ;</subfield>
+    <subfield code="c">4 3/4 in.</subfield>
+  </datafield>
+  <datafield tag="538" ind1=" " ind2=" ">
+    <subfield code="a">DVD, region 1, widescreen presentation; DTS, THX certified, dual layer.</subfield>
+  </datafield>
+  <datafield tag="546" ind1=" " ind2=" ">
+    <subfield code="a">English or Spanish dialogue, English or Spanish subtitles; closed-captioned.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Title from container.</subfield>
+  </datafield>
+  <datafield tag="511" ind1="1" ind2=" ">
+    <subfield code="a">Sigourney Weaver, Tom Skerritt, John Hurt, Yaphet Kotto, Lance Henriksen, Bill Paxton, Veronica Cartwright, Winona Ryder, Ron Perlman, Paul Reiser, Ian Holm, Harry Dean Stanton.</subfield>
+  </datafield>
+  <datafield tag="521" ind1="8" ind2=" ">
+    <subfield code="a">MPAA rating: R.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Includes 2-disc versions of: Alien, Aliens, Alien 3, and Alien Resurrection, plus a bonus disc loaded with special features. Includes the original theatrical versions and the extended cuts of each Alien film.</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">The complete story of Lieutenant Ellen Ripley&apos;s recurring battles with members of a parasitical extraterrestrial species.</subfield>
+  </datafield>
+  <datafield tag="505" ind1="0" ind2=" ">
+    <subfield code="a">Discs 1-2. Alien (directed by Ridley Scott, screenplay by Dan O&apos;Bannon, music by Jerry Goldsmith; 1979) -- Discs 3-4. Aliens (directed by James Cameron, screenplay by James Cameron, music by James Horner; 1986) -- Discs 5-6. Alien 3 (directed by David Fincher, screenplay by David Giler, Walter Hill, Larry Ferguson, music by Elliot Goldenthal; 1992) -- Discs 7-8. Alien resurrection (directed by Jean-Pierre Jeunet, screenplay by Joss Whedon, music by John Frizzell; 1997) -- Disc 9. Alien quadrilogy bonus disc.</subfield>
+  </datafield>
+  <datafield tag="508" ind1=" " ind2=" ">
+    <subfield code="a">Director of photography, Derek Vanlint (Alien), Adrian Biddle (Aliens), Alex Thomson (Alien3), Darius Khondji (Alien resurrection) ; edited by Terry Rawlings (Alien, Alien3), Ray Lovejoy (Aliens), Herve Schneid (Alien resurrection) ; music by Jerry Goldsmith (Alien), James Horner (Aliens), Elliot Goldenthal (Alien3), John Frizzell (Alien resurrection).</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Human-alien encounters</subfield>
+    <subfield code="v">Drama.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Life on other planets</subfield>
+    <subfield code="v">Drama.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Vida en otros planetas</subfield>
+    <subfield code="v">Teatro.</subfield>
+    <subfield code="2">bidex</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Science fiction films.</subfield>
+    <subfield code="2">lcgft</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Horror films.</subfield>
+    <subfield code="2">lcgft</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Feature films.</subfield>
+    <subfield code="2">lcgft</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Fiction films.</subfield>
+    <subfield code="2">lcgft</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Video recordings for the hearing impaired.</subfield>
+    <subfield code="2">lcgft</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Scott, Ridley.</subfield>
+    <subfield code="4">drt</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">O&apos;Bannon, Dan.</subfield>
+    <subfield code="4">aus</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Goldsmith, Jerry.</subfield>
+    <subfield code="4">cmp</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Cameron, James,</subfield>
+    <subfield code="d">1954-</subfield>
+    <subfield code="4">aus</subfield>
+    <subfield code="4">drt</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Horner, James.</subfield>
+    <subfield code="4">cmp</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Fincher, David.</subfield>
+    <subfield code="4">drt</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Giler, David.</subfield>
+    <subfield code="4">aus</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Hill, Walter,</subfield>
+    <subfield code="d">1942-</subfield>
+    <subfield code="4">aus</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Ferguson, Larry.</subfield>
+    <subfield code="4">aus</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Goldenthal, Elliot.</subfield>
+    <subfield code="4">cmp</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Jeunet, Jean-Pierre,</subfield>
+    <subfield code="d">1955-</subfield>
+    <subfield code="4">drt</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Whedon, Joss,</subfield>
+    <subfield code="d">1964-</subfield>
+    <subfield code="4">aus</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Frizzell, John,</subfield>
+    <subfield code="d">1966-</subfield>
+    <subfield code="4">cmp</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Weaver, Sigourney,</subfield>
+    <subfield code="d">1949-</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Skerritt, Tom.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Hurt, John,</subfield>
+    <subfield code="d">1940-</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Kotto, Yaphet,</subfield>
+    <subfield code="d">1937-</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Henriksen, Lance,</subfield>
+    <subfield code="d">1940-</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Paxton, Bill.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Cartwright, Veronica.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Ryder, Winona,</subfield>
+    <subfield code="d">1971-</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Perlman, Ron,</subfield>
+    <subfield code="d">1950-</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Reiser, Paul.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Holm, Ian,</subfield>
+    <subfield code="d">1931-</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Stanton, Harry Dean,</subfield>
+    <subfield code="d">1926-</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">Twentieth Century Fox Home Entertainment, Inc.</subfield>
+  </datafield>
+  <datafield tag="740" ind1="0" ind2="2">
+    <subfield code="a">Alien.</subfield>
+  </datafield>
+  <datafield tag="740" ind1="0" ind2="2">
+    <subfield code="a">Aliens.</subfield>
+  </datafield>
+  <datafield tag="740" ind1="0" ind2="2">
+    <subfield code="a">Alien 3.</subfield>
+  </datafield>
+  <datafield tag="740" ind1="0" ind2="2">
+    <subfield code="a">Alien resurrection.</subfield>
+  </datafield>
+  <datafield tag="994" ind1=" " ind2=" ">
+    <subfield code="a">C0</subfield>
+    <subfield code="b">DGW</subfield>
+  </datafield>
+  <datafield tag="996" ind1=" " ind2=" ">
+    <subfield code="a">New title added 2012-08-17</subfield>
+  </datafield>
+  <datafield tag="998" ind1=" " ind2=" ">
+    <subfield code="c">CCE1 ; gwsfwatson 2012-08-17</subfield>
+  </datafield>
+</record>
+<record>
+  <leader>01731cgm a2200421Ii 4500</leader>
+  <controlfield tag="001">11857943</controlfield>
+  <controlfield tag="005">20121002174352.0</controlfield>
+  <controlfield tag="008">090428s2007    gw 079            vzger d</controlfield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)ocn811644756</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">DGW</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="e">rda</subfield>
+    <subfield code="c">DGW</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)811644756</subfield>
+  </datafield>
+  <datafield tag="090" ind1=" " ind2=" ">
+    <subfield code="a">PT2621 .A23</subfield>
+    <subfield code="b">D677 2007</subfield>
+  </datafield>
+  <datafield tag="049" ind1=" " ind2=" ">
+    <subfield code="a">DGWW</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="0">
+    <subfield code="a">Erich Kästners Das doppelte Lottchen /</subfield>
+    <subfield code="c">after the novel of Erich Kästner. Script: Rolf Dieckmann. Animation: Stefan Herrmann. Music: JP Genkel. A film by Michael Schaack. Director: Toby Genkel.</subfield>
+  </datafield>
+  <datafield tag="246" ind1="3" ind2=" ">
+    <subfield code="a">Doppelte Lottchen</subfield>
+  </datafield>
+  <datafield tag="264" ind1="3" ind2="1">
+    <subfield code="a">[Hamburg] :</subfield>
+    <subfield code="b">Warner Brothers Entertainment.</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="4">
+    <subfield code="c">©2007</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">DVD-Video (Regionalcode 2, 79 Min.) :</subfield>
+    <subfield code="b">color, Dolby digital ;</subfield>
+    <subfield code="c">12 cm</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">two-dimensional moving image</subfield>
+    <subfield code="b">tdi</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+    <subfield code="a">video</subfield>
+    <subfield code="b">v</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+    <subfield code="a">videodisc</subfield>
+    <subfield code="b">vd</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Specials: Wie macht man eigentlich einen Zeichentrickfilm?; Lottes lustiges Film-Quiz; Luises lustiges Film-Puzzle; Trailer. - Trickfilm. Deutschland. 2007.</subfield>
+  </datafield>
+  <datafield tag="511" ind1="0" ind2=" ">
+    <subfield code="a">Voices: Céline Vogt, Carin C. Tietze... [et al.].</subfield>
+  </datafield>
+  <datafield tag="538" ind1=" " ind2=" ">
+    <subfield code="a">DVD ; Region 2 ; PAL.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Twins</subfield>
+    <subfield code="v">Drama.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Foreign films.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Kästner, Erich,</subfield>
+    <subfield code="d">1899-1974</subfield>
+    <subfield code="e">author</subfield>
+    <subfield code="t">Doppelte Lottchen.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Dieckmann, Rolf, screenwriter.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Herrmann, Stefan,</subfield>
+    <subfield code="e">animator.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Genkel, J. P.,</subfield>
+    <subfield code="e">composer.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Genkel, Toby,</subfield>
+    <subfield code="e">film director.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Schaack, Michael,</subfield>
+    <subfield code="e">film producer.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">Warner Bros. Entertainment.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">Trickocompany  Filmproduktion.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">Warner Home Video Germany.</subfield>
+  </datafield>
+  <datafield tag="994" ind1=" " ind2=" ">
+    <subfield code="a">C0</subfield>
+    <subfield code="b">DGW</subfield>
+  </datafield>
+  <datafield tag="996" ind1=" " ind2=" ">
+    <subfield code="a">New title added 2012-10-02</subfield>
+  </datafield>
+  <datafield tag="998" ind1=" " ind2=" ">
+    <subfield code="c">CCE1  gwsfwatson 2012-10-02</subfield>
+  </datafield>
+</record>
+<record>
+  <leader>04673cgm a2200673Ma 4500</leader>
+  <controlfield tag="001">11859826</controlfield>
+  <controlfield tag="005">20120905125050.0</controlfield>
+  <controlfield tag="007">vd cvaizq</controlfield>
+  <controlfield tag="008">070104s2007    cau646 g          vleng d</controlfield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)ocn799319441</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">UAH</subfield>
+    <subfield code="c">UAH</subfield>
+    <subfield code="d">OCLCO</subfield>
+    <subfield code="d">DGW</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">1419845349</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9781419845345</subfield>
+  </datafield>
+  <datafield tag="024" ind1="1" ind2=" ">
+    <subfield code="a">794051278623</subfield>
+  </datafield>
+  <datafield tag="028" ind1="4" ind2="2">
+    <subfield code="a">E2786</subfield>
+    <subfield code="b">Warner Home Video</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)799319441</subfield>
+  </datafield>
+  <datafield tag="037" ind1=" " ind2=" ">
+    <subfield code="b">Midwest Tape</subfield>
+    <subfield code="n">http://www.midwesttapes.com</subfield>
+  </datafield>
+  <datafield tag="043" ind1=" " ind2=" ">
+    <subfield code="a">e-uk-en</subfield>
+  </datafield>
+  <datafield tag="050" ind1="1" ind2="4">
+    <subfield code="a">PN1992.77</subfield>
+    <subfield code="b">.D63867 2007</subfield>
+  </datafield>
+  <datafield tag="082" ind1="0" ind2="4">
+    <subfield code="a">791.45/75</subfield>
+    <subfield code="2">22</subfield>
+  </datafield>
+  <datafield tag="049" ind1=" " ind2=" ">
+    <subfield code="a">DGWW</subfield>
+  </datafield>
+  <datafield tag="130" ind1="0" ind2=" ">
+    <subfield code="a">Doctor Who (Television program : 2005- ).</subfield>
+    <subfield code="n">Season 2</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">Doctor Who. Season 2</subfield>
+    <subfield code="h">[videorecording] /</subfield>
+    <subfield code="c">BBC Wales ; produced by Phil Collinson.</subfield>
+  </datafield>
+  <datafield tag="246" ind1="3" ind2=" ">
+    <subfield code="a">Dr. Who</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">Burbank, CA :</subfield>
+    <subfield code="b">Distributed in the USA and Canada by Warner Home Video,</subfield>
+    <subfield code="c">[2007]</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">6 videodiscs (ca. 646 min.) :</subfield>
+    <subfield code="b">sd., col. ;</subfield>
+    <subfield code="c">4 3/4 in.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Title and season information from container.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Originally broadcast on television 2005-2006.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">&quot;With thanks to the Canadian Broadcasting Corporation&quot;--Credits.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Distributed under licence from 2 Entertain Ltd &amp; BBC Worldwide/BBC Video.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Special features: Disc 1: &quot;Children in need&quot; special; In-vision commentary on &quot;The Christmas invasion;&quot; audio commentary on &quot;New Earth;&quot; deleted scenes; Billie Piper&apos;s video diaries; outtakes ; Disc 2: In-vision commentary on &quot;The girl in the fireplace;&quot; audio commentary on &quot;Tooth and claw&quot; and &quot;School reunion&quot; ; Disc 3: In-vision commentary on &quot;The age of steel;&quot; audio commentary on &quot;Rise of the Cybermen&quot; and &quot;The idiot&apos;s lantern&quot; ; Disc 4: In-vision commentary on &quot;The impossible planet;&quot; audio commentary on &quot;The satan pit&quot; and &quot;Love &amp; monsters&quot; ; Disc 5: In-vision commentary on &quot;Doomsday;&quot; audio commentary on &quot;Fear her and &quot;Army of ghosts&quot; ; Disc 6: &apos;Doctor Who&apos; confidential: behind-the-scenes featurette; 13 X cutdowns; David&apos;s video diaries.</subfield>
+  </datafield>
+  <datafield tag="505" ind1="0" ind2=" ">
+    <subfield code="a">Disc 1. The Christmas invasion / written by Russell T. Davies ; directed by James Hawes -- New Earth / written by Russel T. Davies ; directed by James Hawes. Disc 2. Tooth and claw / written by Russel T. Davies ; directed by Euros Lyn -- School reunion / written by Toby Whithouse ; directed by James Hawes -- The girl in the fireplace / written by Steven Moffat ; directed by Euros Lyn. Disc 3. Rise of the Cybermen / written by Tom MacRae ; directed by Graeme Harper -- The age of steel / written by Tom MacRae ; directed by Graeme Harper -- The idiot&apos;s lantern / written by Mark Gatiss ; directed by Euros Lyn. Disc 4. The impossible planet / written by Matt Jones ; directed by James Strong -- The Satan pit / written by Matt Jones ; directed by James Strong -- Love &amp; monsters / written by Russell T. Davies ; directed by Don Zeff. Disc 5. Fear her / written by Matthew Graham ; directed by Euros Lyn -- Army of ghosts / written by Russell T. Davies ; directed by Graeme Harper -- Doomsday / written by Russell T. Davis ; directed by Graeme Harper. Disc 6. Doctor Who confidential / produced by Adam Page ; produced/directed by Geoff Evans.</subfield>
+  </datafield>
+  <datafield tag="508" ind1=" " ind2=" ">
+    <subfield code="a">Executive producer, Russell T. Davies, Julie Gardner ; music, Murray Gold ; Confidential narrator, Mark Gatiss.</subfield>
+  </datafield>
+  <datafield tag="511" ind1="1" ind2=" ">
+    <subfield code="a">David Tennant, Billie Piper, Camille Coduri, Noel Clarke, Nicholas Briggs.</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">David Tennant steps into the role of the Doctor, now in his tenth incarnation. The second series is full of more thrills, more laughs, more heartbreak and some terrifying new aliens and old acquaintances.</subfield>
+  </datafield>
+  <datafield tag="538" ind1=" " ind2=" ">
+    <subfield code="a">DVD, region 1, widescreen (16:9, enhanced) presentation; Dolby Digital 5.1 surround, DVD-9, NTSC.</subfield>
+  </datafield>
+  <datafield tag="546" ind1=" " ind2=" ">
+    <subfield code="a">Subtitled for the deaf and hard of hearing.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Doctor Who (Fictitious character)</subfield>
+    <subfield code="v">Drama.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Human-alien encounters</subfield>
+    <subfield code="z">England</subfield>
+    <subfield code="z">London</subfield>
+    <subfield code="v">Drama.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Private security services</subfield>
+    <subfield code="z">England</subfield>
+    <subfield code="z">London</subfield>
+    <subfield code="v">Drama.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Enemies</subfield>
+    <subfield code="v">Drama.</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="0">
+    <subfield code="a">London (England)</subfield>
+    <subfield code="v">Drama.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Collinson, Phil.</subfield>
+    <subfield code="4">pro</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Davies, Russell T.</subfield>
+    <subfield code="4">aus</subfield>
+    <subfield code="4">pro</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Harper, Graeme.</subfield>
+    <subfield code="4">drt</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Lyn, Euros.</subfield>
+    <subfield code="4">drt</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Tennant, David,</subfield>
+    <subfield code="d">1971-</subfield>
+    <subfield code="4">act</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Piper, Billie,</subfield>
+    <subfield code="d">1982-</subfield>
+    <subfield code="4">act</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Coduri, Camille.</subfield>
+    <subfield code="4">act</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Clarke, Noel,</subfield>
+    <subfield code="d">1975-</subfield>
+    <subfield code="4">act</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Page, Adam.</subfield>
+    <subfield code="4">pro</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Evans, Geoff.</subfield>
+    <subfield code="4">pro</subfield>
+    <subfield code="4">drt</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Gatiss, Mark.</subfield>
+    <subfield code="4">nrt</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">BBC Wales.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">Canadian Broadcasting Corporation.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">Warner Home Video (Firm)</subfield>
+  </datafield>
+  <datafield tag="994" ind1=" " ind2=" ">
+    <subfield code="a">C0</subfield>
+    <subfield code="b">DGW</subfield>
+  </datafield>
+  <datafield tag="996" ind1=" " ind2=" ">
+    <subfield code="a">New title added 2012-09-05</subfield>
+  </datafield>
+  <datafield tag="998" ind1=" " ind2=" ">
+    <subfield code="c">CCE1  gwsfwatson 2012-09-05</subfield>
+  </datafield>
+</record>
+<record>
+  <leader>02149cgm a2200529Ia 4500</leader>
+  <controlfield tag="001">11859865</controlfield>
+  <controlfield tag="005">20121002164841.0</controlfield>
+  <controlfield tag="007">vd |vaizq</controlfield>
+  <controlfield tag="008">040624p20041988nyu083            vleng d</controlfield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)ocm55732611</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">SXQ</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">SXQ</subfield>
+    <subfield code="d">OCLCQ</subfield>
+    <subfield code="d">WCM</subfield>
+    <subfield code="d">OCLCA</subfield>
+    <subfield code="d">OCLCQ</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)55732611</subfield>
+  </datafield>
+  <datafield tag="043" ind1=" " ind2=" ">
+    <subfield code="a">n-us-mi</subfield>
+    <subfield code="a">n-us---</subfield>
+  </datafield>
+  <datafield tag="050" ind1=" " ind2="4">
+    <subfield code="a">HT1521</subfield>
+    <subfield code="b">.W4 2004</subfield>
+  </datafield>
+  <datafield tag="049" ind1=" " ind2=" ">
+    <subfield code="a">DGWW</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="0">
+    <subfield code="a">Who Killed Vincent Chin?</subfield>
+    <subfield code="h">[videorecording] /</subfield>
+    <subfield code="c">a production of Film News Now Foundation &amp; WTVS Detroit ; producer, Renee Tajima ; director, Christine Choy.</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">New York :</subfield>
+    <subfield code="b">Filmakers Library,</subfield>
+    <subfield code="c">[2004]</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">1 videodisc (83 min.) :</subfield>
+    <subfield code="b">sd., col. ;</subfield>
+    <subfield code="c">4 3/4 in.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">This disc is a recorded DVD and may fail to play on some DVD equipment.</subfield>
+  </datafield>
+  <datafield tag="511" ind1="0" ind2=" ">
+    <subfield code="a">Persons interviewed: Ronald Ebens, Michael Nitz, Lily F. Chin, et al.</subfield>
+  </datafield>
+  <datafield tag="508" ind1=" " ind2=" ">
+    <subfield code="a">Editor, Holly Fisher ; cinematography, Christine Choy, et al.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Originally produced as a documentary motion picture in 1988.</subfield>
+  </datafield>
+  <datafield tag="521" ind1=" " ind2=" ">
+    <subfield code="a">Adult.</subfield>
+  </datafield>
+  <datafield tag="530" ind1=" " ind2=" ">
+    <subfield code="a">Also available online.</subfield>
+  </datafield>
+  <datafield tag="538" ind1=" " ind2=" ">
+    <subfield code="a">Recorded DVD.</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">Documentary on racism in working-class America focuses on the murder of Vincent Chin, a Chinese-American, in a Detroit bar. Interweaves the murder with social concerns and questions about justice.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Racism</subfield>
+    <subfield code="z">Michigan</subfield>
+    <subfield code="z">Detroit.</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="0">
+    <subfield code="a">United States</subfield>
+    <subfield code="x">Race relations</subfield>
+    <subfield code="y">20th century.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Chinese Americans</subfield>
+    <subfield code="x">Civil rights.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Civil rights</subfield>
+    <subfield code="z">United States.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Violent crimes</subfield>
+    <subfield code="z">Michigan</subfield>
+    <subfield code="z">Detroit.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Crime</subfield>
+    <subfield code="z">United States.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Criminals</subfield>
+    <subfield code="z">United States.</subfield>
+  </datafield>
+  <datafield tag="600" ind1="1" ind2="0">
+    <subfield code="a">Chin, Vincent,</subfield>
+    <subfield code="d">d. 1982.</subfield>
+  </datafield>
+  <datafield tag="600" ind1="1" ind2="0">
+    <subfield code="a">Ebens, Ronald.</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Documentary films.</subfield>
+    <subfield code="2">lcgft</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Nonfiction films.</subfield>
+    <subfield code="2">lcgft</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Choy, Christine.</subfield>
+    <subfield code="4">drt</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Tajima-Pena, Renee.</subfield>
+    <subfield code="4">pro</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Fisher, Holly.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Nitz, Michael.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Chin, Lily F.</subfield>
+    <subfield code="4">ive</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Ebens, Ronald.</subfield>
+    <subfield code="4">ive</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">Filmakers Library, inc.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">WTVS-TV (Television station : Detroit, Mich.)</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">Film News Now Foundation.</subfield>
+  </datafield>
+  <datafield tag="994" ind1=" " ind2=" ">
+    <subfield code="a">C0</subfield>
+    <subfield code="b">DGW</subfield>
+  </datafield>
+</record>
+<record>
+  <leader>01360cgs a2200385 a 4500</leader>
+  <controlfield tag="001">11859866</controlfield>
+  <controlfield tag="005">20120830131527.0</controlfield>
+  <controlfield tag="006">sqr         0    0</controlfield>
+  <controlfield tag="007">vd cvaizu</controlfield>
+  <controlfield tag="008">060126c20059999cau--- g          vceng c</controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">  2006234436</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)ocm63174111</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">HLS</subfield>
+    <subfield code="c">HLS</subfield>
+    <subfield code="d">HLS</subfield>
+    <subfield code="d">OCLCQ</subfield>
+    <subfield code="d">NYP</subfield>
+    <subfield code="d">OCLCQ</subfield>
+    <subfield code="d">WAU</subfield>
+    <subfield code="d">INU</subfield>
+    <subfield code="d">DGW</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)63174111</subfield>
+  </datafield>
+  <datafield tag="042" ind1=" " ind2=" ">
+    <subfield code="a">lcd</subfield>
+  </datafield>
+  <datafield tag="050" ind1="1" ind2="4">
+    <subfield code="a">PN1994</subfield>
+    <subfield code="b">.W56 2005</subfield>
+  </datafield>
+  <datafield tag="049" ind1=" " ind2=" ">
+    <subfield code="a">DGWW</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="0">
+    <subfield code="a">Wholphin</subfield>
+    <subfield code="h">[videorecording].</subfield>
+  </datafield>
+  <datafield tag="246" ind1="1" ind2=" ">
+    <subfield code="i">Subtitle on DVD case:</subfield>
+    <subfield code="a">DVD magazine of rare and unseen short films</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">[San Francisco] :</subfield>
+    <subfield code="b">McSweeney&apos;s,</subfield>
+    <subfield code="c">2005-</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">videodiscs :</subfield>
+    <subfield code="b">col., sd. ;</subfield>
+    <subfield code="c">4 3/4 in. +</subfield>
+    <subfield code="e">booklets.</subfield>
+  </datafield>
+  <datafield tag="310" ind1=" " ind2=" ">
+    <subfield code="a">Quarterly</subfield>
+  </datafield>
+  <datafield tag="362" ind1="0" ind2=" ">
+    <subfield code="a">No. 1-</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Title from disc label.</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">Each issue is a collection of live and animated short films and documentaries.</subfield>
+  </datafield>
+  <datafield tag="525" ind1=" " ind2=" ">
+    <subfield code="a">Some issues accompanied by &quot;bonus&quot; disc.</subfield>
+  </datafield>
+  <datafield tag="538" ind1=" " ind2=" ">
+    <subfield code="a">DVD, region 1.</subfield>
+  </datafield>
+  <datafield tag="546" ind1=" " ind2=" ">
+    <subfield code="a">Chiefly in English with occasional contributions in other languages; accompanying booklets are in English.</subfield>
+  </datafield>
+  <datafield tag="588" ind1=" " ind2=" ">
+    <subfield code="a">Latest issue consulted: No. 13, c2011.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Short films</subfield>
+    <subfield code="v">Periodicals.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Animated films</subfield>
+    <subfield code="v">Periodicals.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Documentary films</subfield>
+    <subfield code="v">Periodicals.</subfield>
+  </datafield>
+  <datafield tag="994" ind1=" " ind2=" ">
+    <subfield code="a">C0</subfield>
+    <subfield code="b">DGW</subfield>
+  </datafield>
+  <datafield tag="996" ind1=" " ind2=" ">
+    <subfield code="a">New title added 2012-08-30</subfield>
+  </datafield>
+  <datafield tag="998" ind1=" " ind2=" ">
+    <subfield code="c">CCE1  gwsfwatson 2012-08-30</subfield>
+  </datafield>
+</record>
+</collection>
