@@ -10,17 +10,20 @@ import time
 import logging
 import string
 import itertools
+import asyncio
 
-from datachef.ids import simple_hashstring
+#from datachef.ids import simple_hashstring
+from bibframe.contrib.datachefids import simple_hashstring
 
 #from amara.lib import U
 from amara3 import iri
 #from amara import namespaces
-from amara3.util import coroutine
+#from amara3.util import coroutine
 
 from versa import I, VERSA_BASEIRI
 
 from bibframe import BFZ, BFLC, g_services
+from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_FINAL_TASK
 from bibframe.isbnplus import isbn_list
 from bibframe.reader.marcpatterns import MATERIALIZE, MATERIALIZE_VIA_ANNOTATION, FIELD_RENAMINGS, INSTANCE_FIELDS, ANNOTATIONS_FIELDS
 from bibframe.reader.marcextra import process_leader, process_008
@@ -101,7 +104,6 @@ def instancegen(isbns):
     instance_ids = []
     subscript = ord('a')
     for subix, (inum, itype) in enumerate(isbn_list(isbns)):
-        #print >> sys.stderr, subix, inum, itype
         subitem = instance_item.copy()
         subitem['isbn'] = inum
         subitem['id'] = base_instance_id + (unichr(subscript + subix) if subix else '')
@@ -125,12 +127,14 @@ def handle_collection(recs, relsink, idbase, ids=None, logger=logging):
     return
 
 
-@coroutine
-def record_handler(relsink, idbase, limiting=None, plugins=None, ids=None, postprocess=None, out=None, logger=logging, **kwargs):
+@asyncio.coroutine
+def record_handler(loop, relsink, idbase, limiting=None, plugins=None, ids=None, postprocess=None, out=None, logger=logging, **kwargs):
     '''
     idbase - base IRI used for IDs of generated resources
     limiting - mutable pair of [count, limit] used to control the number of records processed
     '''
+    _final_tasks = set() #Tasks for the event loop contributing to the MARC processing
+    
     plugins = plugins or []
     if ids is None: ids = idgen(idbase)
     #FIXME: Use thread local storage rather than function attributes
@@ -197,7 +201,7 @@ def record_handler(relsink, idbase, limiting=None, plugins=None, ids=None, postp
             relsink.add(I(workid), TYPE_REL, I(iri.absolutize('Work', BFZ)))
             instanceid = next(ids)
             #logger.debug((workid, instanceid))
-            params = {'workid': workid, 'model': relsink}
+            params = {'workid': workid}
 
             relsink.add(I(instanceid), TYPE_REL, I(iri.absolutize('Instance', BFZ)))
             #relsink.add((instanceid, iri.absolutize('leader', PROPBASE), leader))
@@ -285,7 +289,6 @@ def record_handler(relsink, idbase, limiting=None, plugins=None, ids=None, postp
                                     params['transforms'].append((lookup, field_name))
                                     relsink.add(I(subject), I(iri.absolutize(field_name, BFZ)), v)
 
-                    #print >> sys.stderr, lookup, key
                     #if val:
                     #    subject = instanceid if code in INSTANCE_FIELDS else workid
                     #    relsink.add(I(subject), I(iri.absolutize(key, BFZ)), val)
@@ -325,7 +328,6 @@ def record_handler(relsink, idbase, limiting=None, plugins=None, ids=None, postp
             subscript = ord('a')
             newid = None
             for subix, (inum, itype) in enumerate(isbn_list(isbns)):
-                #print >> sys.stderr, subix, inum, itype
                 newid = next(ids)
                 duplicate_statements(relsink, instanceid, newid)
                 relsink.add(I(newid), I(iri.absolutize('isbn', BFZ)), inum)
@@ -349,10 +351,15 @@ def record_handler(relsink, idbase, limiting=None, plugins=None, ids=None, postp
             logger.debug('+')
 
             for plugin in plugins:
-                plugin.send(params)
-
-            #Can't really use this because it include outer []
-            #jsondump(relsink, out)
+                #Each plug-in is a task
+                #task = asyncio.Task(plugin[BF_MARCREC_TASK](loop, relsink, params), loop=loop)
+                yield from plugin[BF_MARCREC_TASK](loop, relsink, params)
+                logger.debug("Pending tasks: %s" % asyncio.Task.all_tasks(loop))
+                #FIXME: This blocks and thus serializes the plugin operation, rather than the desired coop scheduling approach
+                #For some reason seting to async task then immediately deferring to next task via yield from sleep leads to the "yield from wasn't used with future" error (Not much clue at: https://codereview.appspot.com/7396044/)
+                #yield from asyncio.Task(asyncio.sleep(0.01), loop=loop)
+                #yield from asyncio.async(asyncio.sleep(0.01))
+                #yield from asyncio.sleep(0.01) #Basically yield to next task
 
             if not first_record: out.write(',\n')
             first_record = False
@@ -366,14 +373,32 @@ def record_handler(relsink, idbase, limiting=None, plugins=None, ids=None, postp
                     out.write(last_chunk)
                     last_chunk = chunk
             if last_chunk: out.write(last_chunk[:-1])
+            #FIXME: Postprocessing should probably be a task too
             if postprocess: postprocess(rec)
-            if limiting[1] is not None:
-                limiting[0] += 1
-                if limiting[0] >= limiting[1]:
-                    break
-        logger.debug('Completed processing {0} record{1}.'.format(limiting[0], '' if limiting[0] == 1 else 's'))
+            #limiting--running count of records processed versus the max number, if any
+            limiting[0] += 1
+            if limiting[1] is not None and limiting[0] >= limiting[1]:
+                break
     except GeneratorExit:
+        logger.debug('Completed processing {0} record{1}.'.format(limiting[0], '' if limiting[0] == 1 else 's'))
         out.write(']')
+
+        for plugin in plugins:
+            #Each plug-in is a task
+            task = asyncio.Task(plugin[BF_FINAL_TASK](loop), loop=loop)
+            _final_tasks.add(task)
+            def task_done(task):
+                #print('Task done: ', task)
+                _final_tasks.remove(task)
+                if len(_final_tasks) == 0:
+                    #print("_final_tasks is empty, stopping loop.")
+                    #loop = asyncio.get_event_loop()
+                    loop.stop()
+            #Once all the plug-in tasks are done, all the work is done
+            task.add_done_callback(task_done)
+        #print('DONE')
+        #raise
+
     return
 
 

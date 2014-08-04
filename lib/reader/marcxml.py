@@ -5,6 +5,8 @@ Notice however, possible security vulnerabilities:
 https://docs.python.org/3/library/xml.html#xml-vulnerabilities
 '''
 
+import asyncio
+import collections
 import logging
 
 from xml import sax
@@ -14,6 +16,7 @@ from xml import sax
 #from bibframe.contrib.xmlutil import normalize_text_filter
 from bibframe.reader.marc import LEADER, CONTROLFIELD, DATAFIELD
 from bibframe import g_services
+from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_FINAL_TASK
 
 import rdflib
 
@@ -37,6 +40,7 @@ MARCXML_NS = "http://www.loc.gov/MARC21/slim"
 class marcxmlhandler(sax.ContentHandler):
     def __init__(self, sink, *args, **kwargs):
         self._sink = sink
+        next(self._sink) #Start the coroutine running
         self._getcontent = False
         sax.ContentHandler.__init__(self, *args, **kwargs)
 
@@ -81,27 +85,10 @@ class marcxmlhandler(sax.ContentHandler):
                 self._getcontent = False
         return
 
+    def endDocument(self):
+        self._sink.close()
 
-def parse_marcxml(inp, sink):
-    '''
-    Parse a MARC/XML document and yield each record's data
-    '''
-    parser = sax.make_parser()
-    #parser.setContentHandler(marcxmlhandler(receive_recs()))
-    parser.setFeature(sax.handler.feature_namespaces, 1)
-
-    #downstream_handler = marcxmlhandler(receive_recs())
-    #upstream, the parser, downstream, the next handler in the chain
-    #parser.setContentHandler(downstream_handler)
-    #normparser = normalize_text_filter(parser)
-    #normparser.parse(inp)
-
-    handler = marcxmlhandler(sink)
-    #upstream, the parser, downstream, the next handler in the chain
-    parser.setContentHandler(handler)
-    parser.parse(inp)
-    return
-
+#PYTHONASYNCIODEBUG = 1
 
 def bfconvert(inputs, base=None, out=None, limit=None, rdfttl=None, config=None, verbose=False, logger=logging):
     '''
@@ -139,25 +126,37 @@ def bfconvert(inputs, base=None, out=None, limit=None, rdfttl=None, config=None,
         if rdfttl is not None: rdf.process(m, g, logger=logger)
         m.create_space()
 
+    #Set up event loop
+    loop = asyncio.get_event_loop()
+
     #Initialize auxiliary services (i.e. plugins)
     plugins = []
     for pc in config.get(u'plugins', []):
         try:
-            plugins.append(g_services[pc[u'id']](
-                config=pc,
-                logger=logger,
-            )
-            )
+            pinfo = g_services[pc[u'id']]
+            plugins.append(pinfo)
+            pinfo[BF_INIT_TASK](pinfo, config=pc)
         except KeyError:
             raise Exception(u'Unknown plugin {0}'.format(pc[u'id']))
 
     limiting = [0, limit]
+    #logger=logger,
+    
     for inf in inputs:
-        sink = marc.record_handler(m, idbase=base, limiting=limiting, plugins=plugins, ids=ids, postprocess=postprocess, out=out, logger=logger)
-        parse_marcxml(inf, sink)
+        sink = marc.record_handler(loop, m, idbase=base, limiting=limiting, plugins=plugins, ids=ids, postprocess=postprocess, out=out, logger=logger)
+        parser = sax.make_parser()
+        #parser.setContentHandler(marcxmlhandler(receive_recs()))
+        parser.setContentHandler(marcxmlhandler(sink))
+        parser.setFeature(sax.handler.feature_namespaces, 1)
+        @asyncio.coroutine
+        #Wrap the parse operation to make it a task in the event loop
+        def wrap_task():
+            parser.parse(inf)
+            yield
+        asyncio.Task(wrap_task())
+        #parse_marcxml(inf, sink)
+        loop.run_forever()
 
     if rdfttl is not None: rdfttl.write(g.serialize(format="turtle"))
-    for plugin in plugins:
-        plugin.close()
     return
 
