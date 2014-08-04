@@ -22,6 +22,8 @@ Reads MARC/XML from the file records.mrx and outputs a Versa representation of t
 
     marc2bf -o resources.versa.json records.mrx
 
+The Versa representation is the primary format for ongoing, pipeline processing.
+
 If you want an RDF/Turtle representation of this file you can do:
 
     marc2bf -o resources.versa.json -r resources.ttl records.mrx
@@ -47,7 +49,7 @@ Or by using wildcards:
 
 PyBibframe is highly extensible, and you can specify plug-ins from the command line. You need to specify the Python module from which the plugins can be imported and a configuration file specifying how the plugins are to be used. For example, to use the `linkreport` plugin that comes with PyBibframe you can do:
 
-    marc2bfrdf -c config1.json --mod=bibframe.plugin records.mrx
+    marc2bf -c config1.json --mod=bibframe.plugin records.mrx
 
 Where the contents of config1.json might be:
 
