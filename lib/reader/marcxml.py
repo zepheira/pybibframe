@@ -121,9 +121,11 @@ def bfconvert(inputs, base=None, out=None, limit=None, rdfttl=None, config=None,
     g.bind('bfd', BFDNS)
     g.bind('v', VNS)
 
+    extant_resources = None
+    #extant_resources = set()
     def postprocess(rec):
         #No need to bother with Versa -> RDF translation if we were not asked to generate Turtle
-        if rdfttl is not None: rdf.process(m, g, logger=logger)
+        if rdfttl is not None: rdf.process(m, g, to_ignore=extant_resources, logger=logger)
         m.create_space()
 
     #Set up event loop

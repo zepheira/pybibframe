@@ -6,8 +6,8 @@ import os
 import logging
 import itertools
 
-#from rdflib import Graph, Literal, BNode, Namespace, RDF, URIRef
-from rdflib import URIRef, Literal
+#from rdflib import Graph, BNode, Namespace
+from rdflib import URIRef, Literal, RDF
 
 #from datachef.ids import simple_hashstring
 
@@ -28,12 +28,13 @@ def prep(stmt):
     '''
     s, p, o = stmt[:3]
     s = URIRef(s)
-    p = URIRef(p)
+    #Translate v:type to rdf:type
+    p = RDF.type if p == TYPE_REL else URIRef(p)
     o = URIRef(o) if isinstance(o, I) else Literal(o)
     return s, p, o
 
 
-def process(source, target, logger=logging):
+def process(source, target, to_ignore=None, logger=logging):
     '''
     Take an in-memory BIBFRAME model and convert it into an rdflib graph
 
@@ -41,6 +42,7 @@ def process(source, target, logger=logging):
     #Hoover up everything with a type
     for stmt in source.match(None, TYPE_REL, None):
         rid = stmt[ORIGIN]
-        [ target.add(prep(stmt)) for stmt in source.match(rid) ]
+        if not (to_ignore and rid in to_ignore):
+            [ target.add(prep(stmt)) for stmt in source.match(rid) ]
 
     return
