@@ -169,6 +169,8 @@ def bfconvert(inputs, base=None, out=None, limit=None, rdfttl=None, config=None,
         #parse_marcxml(inf, sink)
         loop.run_forever()
 
-    if rdfttl is not None: rdfttl.write(g.serialize(format="turtle"))
+    if rdfttl is not None:
+        logger.debug('Converting to RDF.')
+        rdfttl.write(g.serialize(format="turtle"))
     return
 

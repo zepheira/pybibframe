@@ -360,6 +360,7 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
         logger.debug('Completed processing {0} record{1}.'.format(limiting[0], '' if limiting[0] == 1 else 's'))
         out.write(']')
 
+        if not plugins: loop.stop()
         for plugin in plugins:
             #Each plug-in is a task
             task = asyncio.Task(plugin[BF_FINAL_TASK](loop), loop=loop)
