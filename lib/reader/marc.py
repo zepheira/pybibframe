@@ -13,7 +13,7 @@ import itertools
 import asyncio
 
 #from datachef.ids import simple_hashstring
-from bibframe.contrib.datachefids import simple_hashstring
+from bibframe.contrib.datachefids import idgen
 
 #from amara.lib import U
 from amara3 import iri
@@ -21,6 +21,7 @@ from amara3 import iri
 #from amara3.util import coroutine
 
 from versa import I, VERSA_BASEIRI
+from versa.util import simple_lookup
 
 from bibframe import BFZ, BFLC, g_services
 from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_FINAL_TASK
@@ -44,8 +45,6 @@ NON_ISBN_CHARS = re.compile('\D')
 
 NEW_RECORD = 'http://bibfra.me/purl/versa/' + 'newrecord'
 
-LABEL_REL = I(iri.absolutize('label', BFZ))
-
 def invert_dict(d):
     #http://code.activestate.com/recipes/252143-invert-a-dictionary-one-liner/#c3
     #See also: http://pypi.python.org/pypi/bidict
@@ -56,44 +55,8 @@ def invert_dict(d):
         keys.append(k)
     return inv
 
-#One of the records gives us:
-
-#http://hdl.loc.gov/loc.mss/eadmss.ms009216
-
-#Which links for METS download to:
-
-#http://hdl.loc.gov/loc.mss/eadmss.ms009216.4
-
-#Which redirects to:
-
-#http://findingaids.loc.gov/mastermets/mss/2009/ms009216.xml
-
-#PREFIXES = {'ma': 'http://www.loc.gov/MARC21/slim', 'me': 'http://www.loc.gov/METS/'}
 
 TYPE_REL = I(iri.absolutize('type', VERSA_BASEIRI))
-
-
-def idgen(idbase):
-    '''
-    Generate a IRI
-    '''
-    #Simple tumbler for now, possibly switch to random number, with some sort of sequence override for unit testing
-    ix = 0
-    while True:
-        yield iri.absolutize(str(ix), idbase) if idbase else str(ix)
-        ix += 1
-
-
-def hashid(idbase, key):
-    '''
-    Generate an IRI as a hash of given information
-    '''
-    h = simple_hashstring(key)
-    return iri.absolutize(h, idbase) if idbase else str(h)
-
-
-#iri.absolutize('label', PROPBASE),
-#{"@context": "http://copia.ogbuji.net#_metadata"}
 
 
 def instancegen(isbns):
@@ -117,36 +80,46 @@ T_prior_materializedids = set()
 
 RESOURCE_TYPE = 'marcrType'
 
-def handle_collection(recs, relsink, idbase, ids=None, logger=logging):
-    '''
+def marc_lookup(rec, fieldspec):
+    result = []
+    target_code, target_sf = fieldspec.split('$')
+    for row in rec:
+        if row[0] == DATAFIELD:
+            rowtype, code, xmlattrs, subfields = row
+            if code == target_code:
+                result.append(subfields.get(target_sf))
+    return result
 
-    '''
-    if ids is None: ids = idgen(idbase)
-    for rec in recs:
-        process_record(rec, relsink, idbase, ids, logger)
-    return
+
+def record_hash_key(rec):
+    title_info = ''.join(marc_lookup(rec, '130$a')) + ''.join(marc_lookup(rec, '240$a')) + ''.join(marc_lookup(rec, '830$a'))
+    creator_info = ''.join(marc_lookup(rec, '100$a')) + ''.join(marc_lookup(rec, '110$a')) + ''.join(marc_lookup(rec, '111$a'))
+    subject_info = ''.join(marc_lookup(rec, '600$a')) + ''.join(marc_lookup(rec, '610$a')) + ''.join(marc_lookup(rec, '611$a'))
+    return title_info + creator_info + subject_info
 
 
 @asyncio.coroutine
-def record_handler(loop, relsink, idbase, limiting=None, plugins=None, ids=None, postprocess=None, out=None, logger=logging, **kwargs):
+def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, plugins=None, ids=None, postprocess=None, out=None, logger=logging, **kwargs):
     '''
-    idbase - base IRI used for IDs of generated resources
+    loop - asyncio event loop
+    entbase - base IRI used for IDs of generated entity resources
     limiting - mutable pair of [count, limit] used to control the number of records processed
     '''
     _final_tasks = set() #Tasks for the event loop contributing to the MARC processing
     
     plugins = plugins or []
-    if ids is None: ids = idgen(idbase)
+    if ids is None: ids = idgen(entbase)
     #FIXME: Use thread local storage rather than function attributes
 
     #A few code modularization functions pulled into local context as closures
     def process_materialization(lookup, subfields, code=None):
-        materializedid = hashid(idbase, tuple(subfields.items()))
+        materializedid = ids.send(repr(tuple(subfields.items())))
+        if entbase: materializedid = I(iri.absolutize(materializedid, entbase))
         #The extra_props are parameters inherent to a particular MARC field/subfield for purposes of linked data representation
         if code is None: code = lookup
         (subst, extra_props) = MATERIALIZE[lookup]
         if RESOURCE_TYPE in extra_props:
-            relsink.add(I(materializedid), TYPE_REL, I(iri.absolutize(extra_props[RESOURCE_TYPE], BFZ)))
+            relsink.add(I(materializedid), TYPE_REL, I(iri.absolutize(extra_props[RESOURCE_TYPE], vocabbase)))
         #logger.debug((lookup, subfields, extra_props))
 
         if materializedid not in T_prior_materializedids:
@@ -159,11 +132,10 @@ def record_handler(loop, relsink, idbase, limiting=None, plugins=None, ids=None,
                     fieldname = FIELD_RENAMINGS[code + k]
                     if len(k) == 1: params['transforms'].append((code + k, fieldname)) #Only if proper MARC subfield
                     #params['transforms'].append((code + k, FIELD_RENAMINGS.get(sflookup, sflookup)))
-                relsink.add(I(materializedid), iri.absolutize(fieldname, BFZ), v)
+                relsink.add(I(materializedid), iri.absolutize(fieldname, vocabbase), v)
             T_prior_materializedids.add(materializedid)
 
         return materializedid, subst
-
 
     #FIXME: test correct MARC transforms info for annotations
     def process_annotation(anntype, subfields, extra_annotation_props):
@@ -179,12 +151,13 @@ def record_handler(loop, relsink, idbase, limiting=None, plugins=None, ids=None,
         #objectid = next(idg)
         #object_props.update(object_subfields)
 
-        annotationid = next(ids)
-        relsink.add(I(annotationid), TYPE_REL, I(iri.absolutize(anntype, BFZ)))
+        annotationid = ids.send(repr((code,) + tuple(subfields.items())))
+        if entbase: annotationid = I(iri.absolutize(annotationid, entbase))
+        relsink.add(I(annotationid), TYPE_REL, I(iri.absolutize(anntype, vocabbase)))
         for k, v in itertools.chain(annotation_subfields.items(), extra_annotation_props.items()):
-            relsink.add(I(annotationid), I(iri.absolutize(k, BFZ)), v)
+            relsink.add(I(annotationid), I(iri.absolutize(k, vocabbase)), v)
 
-        #Return enough info to generate the main subject/object relationship. The annotation is taken care of at this point
+        #Return enough info to generate the main origin/object relationship. The annotation is taken care of at this point
         return annotationid, object_subfields
 
     #Start the process of writing out the JSON representation of the resulting Versa
@@ -193,20 +166,21 @@ def record_handler(loop, relsink, idbase, limiting=None, plugins=None, ids=None,
     try:
         while True:
             rec = yield
-            #for plugin in plugins:
-            #    plugin.send(dict(rec=rec))
             leader = None
-            #Add work item record
-            workid = next(ids)
-            relsink.add(I(workid), TYPE_REL, I(iri.absolutize('Work', BFZ)))
-            instanceid = next(ids)
+            #Add work item record, with actual hash resource IDs based on default or plugged-in algo
+            #FIXME: No plug-in support yet
+            workid = ids.send('Work' + record_hash_key(rec))
+            if entbase: workid = I(iri.absolutize(workid, entbase))
+            relsink.add(I(workid), TYPE_REL, I(iri.absolutize('Work', vocabbase)))
+            instanceid = ids.send('Instance' + record_hash_key(rec))
+            if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
             #logger.debug((workid, instanceid))
             params = {'workid': workid}
 
-            relsink.add(I(instanceid), TYPE_REL, I(iri.absolutize('Instance', BFZ)))
+            relsink.add(I(instanceid), TYPE_REL, I(iri.absolutize('Instance', vocabbase)))
             #relsink.add((instanceid, iri.absolutize('leader', PROPBASE), leader))
             #Instances are added below
-            #relsink.add(I(workid), I(iri.absolutize('hasInstance', BFZ)), I(instanceid))
+            #relsink.add(I(workid), I(iri.absolutize('hasInstance', vocabbase)), I(instanceid))
 
             #for service in g_services: service.send(NEW_RECORD, relsink, workid, instanceid)
 
@@ -218,19 +192,18 @@ def record_handler(loop, relsink, idbase, limiting=None, plugins=None, ids=None,
                 if row[0] == LEADER:
                     params['leader'] = leader = row[1]
                 elif row[0] == CONTROLFIELD:
-                    code, val = row[1].strip(), row[2]
+                    code, val = row[1], row[2]
                     key = 'tag-' + code
                     if code == '008':
                         params['field008'] = field008 = val
                     params['transforms'].append((code, key))
-                    relsink.add(I(instanceid), I(iri.absolutize(key, BFZ)), val)
+                    relsink.add(I(instanceid), I(iri.absolutize(key, vocabbase)), val)
                     params['fields_used'].append((code,))
                 elif row[0] == DATAFIELD:
-                    code, xmlattrs, subfields = row[1].strip(), row[2], row[3]
+                    code, xmlattrs, subfields = row[1], row[2], row[3]
                     key = 'tag-' + code
 
                     handled = False
-                    subfields = dict(( (sf[0].strip(), sf[1]) for sf in subfields ))
                     params['subfields'] = subfields
                     params['fields_used'].append(tuple([code] + list(subfields.keys())))
 
@@ -240,9 +213,9 @@ def record_handler(loop, relsink, idbase, limiting=None, plugins=None, ids=None,
 
                         if code in MATERIALIZE:
                             materializedid, subst = process_materialization(code, subfields)
-                            subject = instanceid if code in INSTANCE_FIELDS else workid
+                            origin = instanceid if code in INSTANCE_FIELDS else workid
                             params['transforms'].append((code, subst))
-                            relsink.add(I(subject), I(iri.absolutize(subst, BFZ)), I(materializedid))
+                            relsink.add(I(origin), I(iri.absolutize(subst, vocabbase)), I(materializedid))
                             logger.debug('.')
                             handled = True
 
@@ -251,14 +224,16 @@ def record_handler(loop, relsink, idbase, limiting=None, plugins=None, ids=None,
                             (subst, anntype, extra_annotation_props) = MATERIALIZE_VIA_ANNOTATION[code]
                             annotationid, object_subfields = process_annotation(anntype, subfields, extra_annotation_props)
 
-                            subject = instanceid if code in INSTANCE_FIELDS else workid
-                            objectid = next(ids)
+                            origin = instanceid if code in INSTANCE_FIELDS else workid
+                            objectid = ids.send(repr((code,) + tuple(subfields.items())))
+                            if entbase: objectid = I(iri.absolutize(objectid, entbase))
+
                             params['transforms'].append((code, subst))
-                            relsink.add(I(subject), I(iri.absolutize(subst, BFZ)), I(objectid), {I(iri.absolutize('annotation', BFZ)): I(annotationid)})
+                            relsink.add(I(origin), I(iri.absolutize(subst, vocabbase)), I(objectid), {I(iri.absolutize('annotation', vocabbase)): I(annotationid)})
 
                             for k, v in itertools.chain((('marccode', code),), object_subfields.items()):
                             #for k, v in itertools.chain(('marccode', code), object_subfields.items(), extra_object_props.items()):
-                                relsink.add(I(objectid), I(iri.absolutize(k, BFZ)), v)
+                                relsink.add(I(objectid), I(iri.absolutize(k, vocabbase)), v)
 
                             logger.debug('.')
                             handled = True
@@ -270,9 +245,9 @@ def record_handler(loop, relsink, idbase, limiting=None, plugins=None, ids=None,
                                 if lookup in MATERIALIZE:
                                     #XXX At first glance you'd think you can always derive code from lookup (e.g. lookup[:3] but what if e.g. someone trims the left zero fill on the codes in the serialization?
                                     materializedid, subst = process_materialization(lookup, subfields, code=code)
-                                    subject = instanceid if code in INSTANCE_FIELDS else workid
+                                    origin = instanceid if code in INSTANCE_FIELDS else workid
                                     params['transforms'].append((lookup, subst))
-                                    relsink.add(I(subject), I(iri.absolutize(subst, BFZ)), I(materializedid))
+                                    relsink.add(I(origin), I(iri.absolutize(subst, vocabbase)), I(materializedid))
 
                                     #Is the MARC code part of the hash computation for the materiaalized object ID? Surely not!
                                     #materializedid = hashid((code,) + tuple(subfields.items()))
@@ -284,14 +259,14 @@ def record_handler(loop, relsink, idbase, limiting=None, plugins=None, ids=None,
                                     if lookup in FIELD_RENAMINGS:
                                         field_name = FIELD_RENAMINGS[lookup]
                                     #Handle the simple field_name substitution of a label name for a MARC code
-                                    subject = instanceid if code in INSTANCE_FIELDS else workid
-                                    #logger.debug(repr(I(iri.absolutize(field_name, BFZ))))
+                                    origin = instanceid if code in INSTANCE_FIELDS else workid
+                                    #logger.debug(repr(I(iri.absolutize(field_name, vocabbase))))
                                     params['transforms'].append((lookup, field_name))
-                                    relsink.add(I(subject), I(iri.absolutize(field_name, BFZ)), v)
+                                    relsink.add(I(origin), I(iri.absolutize(field_name, vocabbase)), v)
 
                     #if val:
-                    #    subject = instanceid if code in INSTANCE_FIELDS else workid
-                    #    relsink.add(I(subject), I(iri.absolutize(key, BFZ)), val)
+                    #    origin = instanceid if code in INSTANCE_FIELDS else workid
+                    #    relsink.add(I(origin), I(iri.absolutize(key, vocabbase)), val)
 
                 params['code'] = code
 
@@ -309,7 +284,7 @@ def record_handler(loop, relsink, idbase, limiting=None, plugins=None, ids=None,
                 special_properties[k] = list(v)
                 for item in v:
                 #logger.debug(v)
-                    relsink.add(I(instanceid), I(iri.absolutize(k, BFZ)), item)
+                    relsink.add(I(instanceid), I(iri.absolutize(k, vocabbase)), item)
 
 
             #reduce lists of just one item
@@ -321,27 +296,29 @@ def record_handler(loop, relsink, idbase, limiting=None, plugins=None, ids=None,
 
             #Handle ISBNs re: https://foundry.zepheira.com/issues/1976
             ISBN_FIELD = 'tag-020'
-            isbn_stmts = relsink.match(subj=instanceid, pred=iri.absolutize(ISBN_FIELD, BFZ))
-            isbns = [ s[2] for s in isbn_stmts ]
+            isbn_links = relsink.match(subj=instanceid, pred=iri.absolutize(ISBN_FIELD, vocabbase))
+            isbns = [ s[2] for s in isbn_links ]
             logger.debug('ISBNS: {0}'.format(list(isbn_list(isbns))))
             other_instance_ids = []
             subscript = ord('a')
             newid = None
             for subix, (inum, itype) in enumerate(isbn_list(isbns)):
-                newid = next(ids)
+                newid = ids.send(instanceid + inum)
+                if entbase: newid = I(iri.absolutize(newid, entbase))
+
                 duplicate_statements(relsink, instanceid, newid)
-                relsink.add(I(newid), I(iri.absolutize('isbn', BFZ)), inum)
+                relsink.add(I(newid), I(iri.absolutize('isbn', vocabbase)), inum)
                 #subitem['id'] = instanceid + (unichr(subscript + subix) if subix else '')
-                if itype: relsink.add(I(newid), I(iri.absolutize('isbnType', BFZ)), itype)
+                if itype: relsink.add(I(newid), I(iri.absolutize('isbnType', vocabbase)), itype)
                 other_instance_ids.append(newid)
 
             if not other_instance_ids:
                 #Make sure it's created as an instance even if it has no ISBN
-                relsink.add(I(workid), I(iri.absolutize('hasInstance', BFZ)), I(instanceid))
+                relsink.add(I(workid), I(iri.absolutize('hasInstance', vocabbase)), I(instanceid))
                 params.setdefault('instanceids', []).append(instanceid)
 
             for iid in other_instance_ids:
-                relsink.add(I(workid), I(iri.absolutize('hasInstance', BFZ)), I(iid))
+                relsink.add(I(workid), I(iri.absolutize('hasInstance', vocabbase)), I(iid))
                 params.setdefault('instanceids', []).append(iid)
 
             #if newid is None: #No ISBN specified
@@ -366,7 +343,7 @@ def record_handler(loop, relsink, idbase, limiting=None, plugins=None, ids=None,
             last_chunk = None
             #Using iterencode avoids building a big JSON string in memory, or having to resort to file pointer seeking
             #Then again builds a big list in memory, so still working on opt here
-            for chunk in json.JSONEncoder().iterencode([ stmt for stmt in relsink ]):
+            for chunk in json.JSONEncoder().iterencode([ link for link in relsink ]):
                 if last_chunk is None:
                     last_chunk = chunk[1:]
                 else:
@@ -402,9 +379,36 @@ def record_handler(loop, relsink, idbase, limiting=None, plugins=None, ids=None,
     return
 
 
-def duplicate_statements(model, oldsubject, newsubject):
-    for stmt in model.match(oldsubject):
-        s, p, o, a = stmt
-        model.add(I(newsubject), p, o, a)
+def duplicate_statements(model, oldorigin, neworigin):
+    '''
+    Take links with a given origin, and create duplicate links with the same information but a new origin
+
+    :param model: Versa model to be updated
+    :param oldres: resource IRI to be duplicated
+    :param newres: origin resource IRI for duplication
+    :return: None
+    '''
+    for link in model.match(oldorigin):
+        o, r, t, a = link
+        model.add(I(neworigin), r, t, a)
+    return
+
+
+def replace_entity_resource(model, oldres, newres):
+    '''
+    Replace one entity in the model with another with the same links
+
+    :param model: Versa model to be updated
+    :param oldres: old/former resource IRI to be replaced
+    :param newres: new/replacement resource IRI
+    :return: None
+    '''
+    oldrids = set()
+    for rid, link in model:
+        if link[ORIGIN] == oldres or link[TARGET] == oldres or oldres in link[ATTRIBUTES].values():
+            oldrids.add(rid)
+            new_link = (newres if o == oldres else o, r, newres if t == oldres else t, dict((k, newres if v == oldres else v) for k, v in a.items()))
+            model.add(*new_link)
+    model.delete(oldrids)
     return
 

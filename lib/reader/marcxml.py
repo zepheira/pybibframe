@@ -56,13 +56,13 @@ class marcxmlhandler(sax.ContentHandler):
                 self._record.append(self._chardata_dest)
                 self._getcontent = True
             elif local == u'controlfield':
-                self._chardata_dest = [CONTROLFIELD, attributes[None, u'tag'], u'']
+                self._chardata_dest = [CONTROLFIELD, attributes[None, u'tag'].strip(), u'']
                 self._record.append(self._chardata_dest)
                 self._getcontent = True
             elif local == u'datafield':
-                self._record.append([DATAFIELD, attributes[None, u'tag'], attributes.copy(), []])
+                self._record.append([DATAFIELD, attributes[None, u'tag'].strip(), dict((k, v.strip()) for (k, v) in attributes.items()), []])
             elif local == u'subfield':
-                self._chardata_dest = [attributes[None, u'code'], u'']
+                self._chardata_dest = [attributes[None, u'code'].strip(), u'']
                 self._record[-1][3].append(self._chardata_dest)
                 self._getcontent = True
         return
@@ -79,8 +79,12 @@ class marcxmlhandler(sax.ContentHandler):
                     self._sink.send(self._record)
                 except StopIteration:
                     #Handler coroutine has declined to process more records. Perhaps it's hit a limit
-                    #FIXME would be nice to throw some sort of signal to setp parse. Or...we should maybe rearchitect the event architecture (easier when we've evolved beyond SAX) :)
+                    #FIXME would be nice to throw some sort of signal to stop parse. Or...we can wait until we've evolved beyond SAX to enhance the event architecture
                     pass
+            elif local == u'datafield':
+                #Convert list of pairs to disct
+                self._record[-1][3] = dict(( (sf[0], sf[1]) for sf in self._record[-1][3] ))
+                self._getcontent = False
             elif local in (u'leader', u'controlfield', u'subfield'):
                 self._getcontent = False
         return
@@ -120,6 +124,8 @@ def bfconvert(inputs, base=None, out=None, limit=None, rdfttl=None, config=None,
     g.bind('bfc', BFCNS)
     g.bind('bfd', BFDNS)
     g.bind('v', VNS)
+    if base:
+        g.bind('ent', base)
 
     extant_resources = None
     #extant_resources = set()
@@ -130,6 +136,10 @@ def bfconvert(inputs, base=None, out=None, limit=None, rdfttl=None, config=None,
 
     #Set up event loop
     loop = asyncio.get_event_loop()
+
+    #Allow configuration of a separate base URI for vocab items (classes & properties)
+    #XXX: Is this the best way to do this, or rather via a post-processing plug-in
+    vb = config.get(u'vocab-base-uri', BFZ)
 
     #Initialize auxiliary services (i.e. plugins)
     plugins = []
@@ -145,7 +155,7 @@ def bfconvert(inputs, base=None, out=None, limit=None, rdfttl=None, config=None,
     #logger=logger,
     
     for inf in inputs:
-        sink = marc.record_handler(loop, m, idbase=base, limiting=limiting, plugins=plugins, ids=ids, postprocess=postprocess, out=out, logger=logger)
+        sink = marc.record_handler(loop, m, entbase=base, vocabbase=vb, limiting=limiting, plugins=plugins, ids=ids, postprocess=postprocess, out=out, logger=logger)
         parser = sax.make_parser()
         #parser.setContentHandler(marcxmlhandler(receive_recs()))
         parser.setContentHandler(marcxmlhandler(sink))

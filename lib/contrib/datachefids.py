@@ -5,11 +5,15 @@
 >>> simple_hashstring("The quick brown fox jumps over the lazy dog")
 B7x7vEvj
 '''
+
 import re
 import base64
 import struct
 
 import mmh3
+
+from amara3 import iri
+from amara3.util import coroutine
 
 SLUGCHARS = r'a-zA-Z0-9\-\_'
 OMIT_FROM_SLUG_PAT = re.compile('[^%s]'%SLUGCHARS)
@@ -62,22 +66,53 @@ def create_slug(title, plain_len=None):
     return NORMALIZE_UNDERSCORES_PAT.sub('_', pass1)
 
 
-#http://stackoverflow.com/questions/5574042/string-slugification-in-python
-## {{{ http://code.activestate.com/recipes/577257/ (r2)
-_slugify_strip_re = re.compile(r'[^\w\s-]')
-_slugify_hyphenate_re = re.compile(r'[-\s]+')
-def _slugify(value):
+# Based loosely on http://stackoverflow.com/questions/5574042/string-slugification-in-python
+# & http://code.activestate.com/recipes/577257/
+_CHANGEME_RE = re.compile(r'[^\w\-_]')
+#_SLUGIFY_HYPHENATE_RE = re.compile(r'[-\s]+')
+def slugify(value, hyphenate=True, lower=True):
     """
     Normalizes string, converts to lowercase, removes non-alpha characters,
     and converts spaces to hyphens.
-    
-    From Django's "django/template/defaultfilters.py".
     """
     import unicodedata
-    if not isinstance(value, unicode):
-        value = unicode(value)
-    value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore')
-    value = unicode(_slugify_strip_re.sub('', value).strip().lower())
-    return _slugify_hyphenate_re.sub('-', value)
-## end of http://code.activestate.com/recipes/577257/ }}}
+    value = unicodedata.normalize('NFKD', value).strip()
+    replacement = '-' if hyphenate else ''
+    if lower: value = value.lower()
+    return _CHANGEME_RE.sub(replacement, value)
+
+
+#from datachef.ids import simple_hashstring
+@coroutine
+def idgen(idbase, tint=None):
+    '''
+    Generate an IRI as a hash of given information, or just make one up if None given
+    idbase -- Base URI for generating links
+    tint -- String that affects the sequence of IDs generated if sent None
+
+    >>> from datachef.ids import idgen
+    >>> g = idgen(None)
+    >>> next(g) #Or g.send(None)
+    'RtW-3skq'
+    >>> next(g)
+    'e4r-u_tx'
+    >>> g.send('spam')
+    'ThKLPHvp'
+    >>> next(g)
+    'YbGlkNf9'
+    >>> g.send('spam')
+    'ThKLPHvp'
+    >>> g.send('eggs')
+    'HeBrpNON'
+    '''
+    #Simple tumbler for now, possibly switch to random number, with some sort of sequence override for unit testing
+    counter = -1
+    to_hash = None
+    while True:
+        if to_hash is None:
+            to_hash = str(counter)
+            if tint: to_hash += tint
+        to_hash = iri.absolutize(to_hash, idbase) if idbase else to_hash
+        to_hash = yield simple_hashstring(to_hash)
+        counter += 1
 
