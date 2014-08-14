@@ -87,15 +87,17 @@ def marc_lookup(rec, fieldspec):
         if row[0] == DATAFIELD:
             rowtype, code, xmlattrs, subfields = row
             if code == target_code:
-                result.append(subfields.get(target_sf))
+                result.append(subfields.get(target_sf, ''))
     return result
 
 
+#FIXME: Rather than making so many passes over the record via marc_lookup, set up multi-lookup for single pass
 def record_hash_key(rec):
-    title_info = ''.join(marc_lookup(rec, '130$a')) + ''.join(marc_lookup(rec, '240$a')) + ''.join(marc_lookup(rec, '830$a'))
-    creator_info = ''.join(marc_lookup(rec, '100$a')) + ''.join(marc_lookup(rec, '110$a')) + ''.join(marc_lookup(rec, '111$a'))
-    subject_info = ''.join(marc_lookup(rec, '600$a')) + ''.join(marc_lookup(rec, '610$a')) + ''.join(marc_lookup(rec, '611$a'))
-    return title_info + creator_info + subject_info
+    title_info = ''.join(marc_lookup(rec, '130$a')) + ''.join(marc_lookup(rec, '240$a')) + ''.join(marc_lookup(rec, '240$b')) + ''.join(marc_lookup(rec, '240$c')) + ''.join(marc_lookup(rec, '240$h')) + ''.join(marc_lookup(rec, '830$a'))
+    creator_info = ''.join(marc_lookup(rec, '100$a')) + ''.join(marc_lookup(rec, '100$d')) + ''.join(marc_lookup(rec, '100$q')) + ''.join(marc_lookup(rec, '110$a')) + ''.join(marc_lookup(rec, '110$c')) + ''.join(marc_lookup(rec, '110$d')) + ''.join(marc_lookup(rec, '111$a')) + ''.join(marc_lookup(rec, '110$c')) + ''.join(marc_lookup(rec, '110$d'))
+    contributor_info = ''.join(marc_lookup(rec, '700$a')) + ''.join(marc_lookup(rec, '700$d')) + ''.join(marc_lookup(rec, '710$a')) + ''.join(marc_lookup(rec, '710$b')) + ''.join(marc_lookup(rec, '710$d'))
+    subject_info = ''.join(marc_lookup(rec, '600$a')) + ''.join(marc_lookup(rec, '610$a')) + ''.join(marc_lookup(rec, '611$a')) + ''.join(marc_lookup(rec, '650$a')) + ''.join(marc_lookup(rec, '650$x')) + ''.join(marc_lookup(rec, '651$a')) + ''.join(marc_lookup(rec, '615$a')) + ''.join(marc_lookup(rec, '690$a'))
+    return title_info + creator_info + contributor_info + subject_info
 
 
 @asyncio.coroutine
@@ -169,7 +171,11 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
             leader = None
             #Add work item record, with actual hash resource IDs based on default or plugged-in algo
             #FIXME: No plug-in support yet
-            workid = ids.send('Work' + record_hash_key(rec))
+            workhash = record_hash_key(rec)
+            workid = ids.send('Work' + workhash)
+            logger.debug('Uniform title from 240$a: {0}'.format(marc_lookup(rec, '240$a')))
+            logger.debug('Work hash result: {0} from \'{1}\''.format(workid, 'Work' + workhash))
+
             if entbase: workid = I(iri.absolutize(workid, entbase))
             relsink.add(I(workid), TYPE_REL, I(iri.absolutize('Work', vocabbase)))
             instanceid = ids.send('Instance' + record_hash_key(rec))

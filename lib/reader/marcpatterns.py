@@ -87,7 +87,7 @@ FIELD_RENAMINGS = {
 '060a': 'nlmCallNumber',
 '060b': 'nlmItemNumber',
 '061a': 'nlmCopyStatement',
-'070a': 'nalCallNumber.',
+'070a': 'nalCallNumber',
 '070b': 'nalItemNumber', 
 '071a': 'nalCopyStatement',
 '082a': 'deweyNumber',
