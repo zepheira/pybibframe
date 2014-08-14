@@ -108,6 +108,7 @@ def bfconvert(inputs, base=None, out=None, limit=None, rdfttl=None, config=None,
     #if stats:
     #    register_service(statsgen.statshandler)
 
+    config = config or {}
     if hasattr(inputs, 'read') and hasattr(inputs, 'close'):
         #It's a file type?
         inputs = [inputs]

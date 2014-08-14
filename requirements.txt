@@ -1,6 +1,14 @@
 amara3-iri==3.0.0a2
 pymarc
-nose
 rdflib
 mmh3
+pytest
 versa
+
+#From Versa pyreqs.txt
+amara3-xml==3.0.0a2
+Markdown
+nose
+nose-testconfig
+jinja2
+

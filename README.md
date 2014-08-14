@@ -78,7 +78,7 @@ The `bibframe.reader.marcxml.bfconvert` method can be used from APIs etc to run 
 Some open-source tools for working with BIBFRAME (see http://bibframe.org)
 
 
-Note: very useful to have around yaz-marcdump
+Note: very useful to have around yaz-marcdump (which e.g. you can use to conver other MARC formats to MARC/XML)
 
 Download from http://ftp.indexdata.com/pub/yaz/ , unpack then do:
 
