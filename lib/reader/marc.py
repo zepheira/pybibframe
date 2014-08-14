@@ -80,24 +80,29 @@ T_prior_materializedids = set()
 
 RESOURCE_TYPE = 'marcrType'
 
-def marc_lookup(rec, fieldspec):
+def marc_lookup(rec, fieldspecs):
     result = []
-    target_code, target_sf = fieldspec.split('$')
+    lookup_helper = dict(( f.split('$') for f in fieldspecs ))
+    #dict((target_code, target_sf = fieldspec.split('$')
     for row in rec:
         if row[0] == DATAFIELD:
             rowtype, code, xmlattrs, subfields = row
-            if code == target_code:
-                result.append(subfields.get(target_sf, ''))
+            if code in lookup_helper:
+                result.append(subfields.get(lookup_helper[code], ''))
     return result
+
+
+RECORD_HASH_KEY_FIELDS = [
+    '130$a', '240$a', '240$b', '240$c', '240$h', '245$a', '246$a', '246$i', '830$a', #Title info
+    '100$a', '100$d', '100$q', '110$a', '110$c', '110$d', '111$a', '110$c', '110$d', #Creator info
+    '700$a', '700$d', '710$a', '710$b', '710$d', #Contributor info
+    '600$a', '610$a', '611$a', '650$a', '650$x', '651$a', '615$a', '690$a' #Subject info
+]
 
 
 #FIXME: Rather than making so many passes over the record via marc_lookup, set up multi-lookup for single pass
 def record_hash_key(rec):
-    title_info = ''.join(marc_lookup(rec, '130$a')) + ''.join(marc_lookup(rec, '240$a')) + ''.join(marc_lookup(rec, '240$b')) + ''.join(marc_lookup(rec, '240$c')) + ''.join(marc_lookup(rec, '240$h')) + ''.join(marc_lookup(rec, '830$a'))
-    creator_info = ''.join(marc_lookup(rec, '100$a')) + ''.join(marc_lookup(rec, '100$d')) + ''.join(marc_lookup(rec, '100$q')) + ''.join(marc_lookup(rec, '110$a')) + ''.join(marc_lookup(rec, '110$c')) + ''.join(marc_lookup(rec, '110$d')) + ''.join(marc_lookup(rec, '111$a')) + ''.join(marc_lookup(rec, '110$c')) + ''.join(marc_lookup(rec, '110$d'))
-    contributor_info = ''.join(marc_lookup(rec, '700$a')) + ''.join(marc_lookup(rec, '700$d')) + ''.join(marc_lookup(rec, '710$a')) + ''.join(marc_lookup(rec, '710$b')) + ''.join(marc_lookup(rec, '710$d'))
-    subject_info = ''.join(marc_lookup(rec, '600$a')) + ''.join(marc_lookup(rec, '610$a')) + ''.join(marc_lookup(rec, '611$a')) + ''.join(marc_lookup(rec, '650$a')) + ''.join(marc_lookup(rec, '650$x')) + ''.join(marc_lookup(rec, '651$a')) + ''.join(marc_lookup(rec, '615$a')) + ''.join(marc_lookup(rec, '690$a'))
-    return title_info + creator_info + contributor_info + subject_info
+    return ''.join(marc_lookup(rec, RECORD_HASH_KEY_FIELDS))
 
 
 @asyncio.coroutine
@@ -172,13 +177,13 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
             #Add work item record, with actual hash resource IDs based on default or plugged-in algo
             #FIXME: No plug-in support yet
             workhash = record_hash_key(rec)
-            workid = ids.send('Work' + workhash)
-            logger.debug('Uniform title from 240$a: {0}'.format(marc_lookup(rec, '240$a')))
+            workid = ids.send('Work:' + workhash)
+            logger.debug('Uniform title from 245$a: {0}'.format(marc_lookup(rec, ['245$a'])))
             logger.debug('Work hash result: {0} from \'{1}\''.format(workid, 'Work' + workhash))
 
             if entbase: workid = I(iri.absolutize(workid, entbase))
             relsink.add(I(workid), TYPE_REL, I(iri.absolutize('Work', vocabbase)))
-            instanceid = ids.send('Instance' + record_hash_key(rec))
+            instanceid = ids.send('Instance:' + record_hash_key(rec))
             if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
             #logger.debug((workid, instanceid))
             params = {'workid': workid}
