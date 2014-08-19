@@ -50,8 +50,6 @@ MATERIALIZE = {
 '700': ('contributor', {'marcrType': 'Person'}),
 '710': ('contributor', {'marcrType': 'Organization'}),
 '711': ('contributor', {'marcrType': 'Meeting'}),
-
-'740': ('contributor', {'marcrType': 'Person'}),
 }
 
 MATERIALIZE_VIA_ANNOTATION = {
@@ -71,7 +69,7 @@ FIELD_RENAMINGS = {
 #Don't do a simple field renaming of ISBN because
 '017a': 'legalDeposit',
 '019a': 'localControlNumber',
-#'020a': 'isbn',
+'020a': 'isbn',
 '022a': 'issn',
 '024a': 'otherControlNumber',
 '025a': 'lcOverseasAcq',
@@ -103,6 +101,7 @@ FIELD_RENAMINGS = {
 '130a': 'title',
 '130n': 'workSection', 
 '240a': 'title',
+'240a': 'label',
 '730a': 'label',
 '830a': 'title',
 '130l': 'language',
