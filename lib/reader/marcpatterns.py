@@ -262,7 +262,6 @@ FIELD_RENAMINGS = {
 '710d': 'date',
 '711a': 'label',
 '711d': 'date',
-'880a': 'title',
 '852a': 'location',
 '852b': 'subLocation',
 '852h': 'callNumber', 
