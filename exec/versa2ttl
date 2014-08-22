@@ -1,0 +1,70 @@
+#!/usr/bin/env python
+'''
+python -m bibframe.zextra.augment -v -c /tmp/webcache -o /tmp/auglcout.json /tmp/lcout.json
+
+'''
+
+import time
+import sys
+import logging
+import argparse
+import itertools
+
+import rdflib
+
+from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
+from versa.util import simple_lookup, jsonload, jsondump
+from versa import util
+from versa.driver import memory
+
+from bibframe import BFZ, BFLC, register_service
+from bibframe.writer import rdf
+
+BFNS = rdflib.Namespace(BFZ)
+BFCNS = rdflib.Namespace(BFZ + 'cftag/')
+BFDNS = rdflib.Namespace(BFZ + 'dftag/')
+VNS = rdflib.Namespace(VERSA_BASEIRI)
+
+
+def run(inputs, out, entbase=None, verbose=False):
+    logger = logging.getLogger('versa2ttl')
+    if verbose:
+        logger.setLevel(logging.DEBUG)
+
+    model = memory.connection()
+    g = rdflib.Graph()
+    g.bind('bf', BFNS)
+    g.bind('bfc', BFCNS)
+    g.bind('bfd', BFDNS)
+    g.bind('v', VNS)
+    if entbase:
+        g.bind('ent', entbase)
+
+    for inf in inputs:
+        jsonload(model, inf)
+
+    rdf.process(model, g, logger=logger)
+    rdfttl.write(g.serialize(format="turtle"))
+    return
+
+
+if __name__ == '__main__':
+    #versa2ttl bf.json bf.ttl
+    #parser = argparse.ArgumentParser(prog="bootstrap", add_help=False)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('inputs', type=argparse.FileType('r'), metavar='FILES', nargs='+',
+                        help='One or more Versa model dumps with BIBFRAME content to be augmented')
+    parser.add_argument('out', type=argparse.FileType('w'), metavar='FILE', nargs=1,
+        help='file where RDF/Turtle output should be written '
+             '(default: write to stdout)')
+    parser.add_argument('-v', '--verbose', action='store_true',
+        help='whether to show additional messages and information')
+    parser.add_argument('-b', '--base', metavar="IRI", #dest="base",
+        help='Base IRI to be used for creating resources.')
+    #
+    args = parser.parse_args()
+
+    run(args.inputs, args.out[0], entbase=args.base, verbose=args.verbose)
+    for f in args.inputs: f.close()
+    args.out[0].close()
+

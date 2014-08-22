@@ -18,7 +18,7 @@ setup(
     url = 'http://zepheira.com/',
     package_dir={'bibframe': 'lib'},
     packages = ['bibframe', 'bibframe.reader', 'bibframe.writer', 'bibframe.contrib', 'bibframe.plugin'],
-    scripts=['exec/marc2bf', 'exec/marcbin2xml'],
+    scripts=['exec/marc2bf', 'exec/versa2ttl', 'exec/marcbin2xml'],
     classifiers = [ # From http://pypi.python.org/pypi?%3Aaction=list_classifiers
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",

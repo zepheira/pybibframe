@@ -105,14 +105,13 @@ def idgen(idbase, tint=None):
     >>> g.send('eggs')
     'HeBrpNON'
     '''
-    #Simple tumbler for now, possibly switch to random number, with some sort of sequence override for unit testing
     counter = -1
     to_hash = None
     while True:
         if to_hash is None:
             to_hash = str(counter)
             if tint: to_hash += tint
-        to_hash = iri.absolutize(to_hash, idbase) if idbase else to_hash
-        to_hash = yield simple_hashstring(to_hash)
+        to_hash = simple_hashstring(to_hash)
+        to_hash = yield iri.absolutize(to_hash, idbase) if idbase else to_hash
         counter += 1
 

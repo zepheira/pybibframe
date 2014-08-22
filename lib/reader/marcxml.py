@@ -60,7 +60,7 @@ class marcxmlhandler(sax.ContentHandler):
                 self._record.append(self._chardata_dest)
                 self._getcontent = True
             elif local == u'datafield':
-                self._record.append([DATAFIELD, attributes[None, u'tag'].strip(), dict((k, v.strip()) for (k, v) in attributes.items()), []])
+                self._record.append([DATAFIELD, attributes[None, u'tag'].strip(), dict((k[1], v.strip()) for (k, v) in attributes.items()), []])
             elif local == u'subfield':
                 self._chardata_dest = [attributes[None, u'code'].strip(), u'']
                 self._record[-1][3].append(self._chardata_dest)

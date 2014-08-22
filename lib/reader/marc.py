@@ -22,11 +22,13 @@ from amara3 import iri
 
 from versa import I, VERSA_BASEIRI
 from versa.util import simple_lookup
+from versa.pipeline import *
 
+from bibframe.reader.util import initialize
 from bibframe import BFZ, BFLC, g_services
 from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_FINAL_TASK
 from bibframe.isbnplus import isbn_list
-from bibframe.reader.marcpatterns import MATERIALIZE, MATERIALIZE_VIA_ANNOTATION, FIELD_RENAMINGS, INSTANCE_FIELDS, ANNOTATIONS_FIELDS
+from bibframe.reader.marcpatterns import TRANSFORMS
 from bibframe.reader.marcextra import process_leader, process_008
 
 LEADER = 0
@@ -59,26 +61,62 @@ def invert_dict(d):
 TYPE_REL = I(iri.absolutize('type', VERSA_BASEIRI))
 
 
-def instancegen(isbns):
+def isbn_instancegen(params):
     '''
     Default handling of the idea of splitting a MARC record with FRBR Work info as well as instances signalled by ISBNs
+
+
     '''
-    base_instance_id = instance_item['id']
-    instance_ids = []
+    #Handle ISBNs re: https://foundry.zepheira.com/issues/1976
+    entbase = params['entbase']
+    model = params['model']
+    vocabbase = params['vocabbase']
+    logger = params['logger']
+    ids = params['ids']
+    rec = params['rec']
+    existing_ids = params['existing_ids']
+    workid = params['workid']
+
+    isbns = marc_lookup(rec, ['020$a'])
+    logger.debug('Raw ISBNS:\t{0}'.format(isbns))
+
+    normalized_isbns = list(isbn_list(isbns))
+
     subscript = ord('a')
-    for subix, (inum, itype) in enumerate(isbn_list(isbns)):
-        subitem = instance_item.copy()
-        subitem['isbn'] = inum
-        subitem['id'] = base_instance_id + (unichr(subscript + subix) if subix else '')
-        if itype: subitem['isbnType'] = itype
-        instance_ids.append(subitem['id'])
-        new_instances.append(subitem)
+    instance_ids = []
+    logger.debug('Normalized ISBN:\t{0}'.format(normalized_isbns))
+    if normalized_isbns:
+        for subix, (inum, itype) in enumerate(normalized_isbns):
+            instanceid = ids.send(['Instance', workid, inum])
+            if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
+
+            model.add(I(instanceid), I(iri.absolutize('isbn', vocabbase)), inum)
+            #subitem['id'] = instanceid + (unichr(subscript + subix) if subix else '')
+            if itype: model.add(I(instanceid), I(iri.absolutize('isbnType', vocabbase)), itype)
+            instance_ids.append(instanceid)
+    else:
+        instanceid = ids.send(['Instance', workid])
+        if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
+        model.add(I(instanceid), TYPE_REL, I(iri.absolutize('Instance', vocabbase)))
+        existing_ids.add(instanceid)
+        instance_ids.append(instanceid)
+
+    for instanceid in instance_ids:
+        model.add(I(workid), I(iri.absolutize('hasInstance', vocabbase)), instanceid)
+        model.add(I(instanceid), TYPE_REL, I(iri.absolutize('Instance', vocabbase)))
+
+    return instance_ids
 
 
-#FIXME: Stuff to be made thread local
-T_prior_materializedids = set()
+def instance_postprocess(params):
+    instanceids = params['instance_ids']
+    model = params['model']
+    if len(instanceids) > 1:
+        base_instance_id = instanceids[0]
+        for instanceid in instanceids[1:]:
+            duplicate_statements(model, base_instance_id, instanceid)
+    return
 
-RESOURCE_TYPE = 'marcrType'
 
 def marc_lookup(rec, fieldspecs):
     result = []
@@ -100,7 +138,6 @@ RECORD_HASH_KEY_FIELDS = [
 ]
 
 
-#FIXME: Rather than making so many passes over the record via marc_lookup, set up multi-lookup for single pass
 def record_hash_key(rec):
     return ''.join(marc_lookup(rec, RECORD_HASH_KEY_FIELDS))
 
@@ -116,57 +153,13 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
     
     plugins = plugins or []
     if ids is None: ids = idgen(entbase)
-    #FIXME: Use thread local storage rather than function attributes
+    logger.debug('GRIPPO: {0}'.format(repr(entbase)))
 
-    #A few code modularization functions pulled into local context as closures
-    def process_materialization(lookup, subfields, code=None):
-        materializedid = ids.send(repr(tuple(subfields.items())))
-        if entbase: materializedid = I(iri.absolutize(materializedid, entbase))
-        #The extra_props are parameters inherent to a particular MARC field/subfield for purposes of linked data representation
-        if code is None: code = lookup
-        (subst, extra_props) = MATERIALIZE[lookup]
-        if RESOURCE_TYPE in extra_props:
-            relsink.add(I(materializedid), TYPE_REL, I(iri.absolutize(extra_props[RESOURCE_TYPE], vocabbase)))
-        #logger.debug((lookup, subfields, extra_props))
+    #FIXME: For now always generate instances from ISBNs, but consider working this through th plugins system
+    instancegen = isbn_instancegen
 
-        if materializedid not in T_prior_materializedids:
-            #Just bundle in the subfields as they are, to avoid throwing out data. They can be otherwise used or just stripped later on
-            #for k, v in itertools.chain((('marccode', code),), subfields.items(), extra_props.items()):
-            for k, v in itertools.chain(subfields.items(), extra_props.items()):
-                if k == RESOURCE_TYPE: continue
-                fieldname = 'subfield-' + k
-                if code + k in FIELD_RENAMINGS:
-                    fieldname = FIELD_RENAMINGS[code + k]
-                    if len(k) == 1: params['transforms'].append((code + k, fieldname)) #Only if proper MARC subfield
-                    #params['transforms'].append((code + k, FIELD_RENAMINGS.get(sflookup, sflookup)))
-                relsink.add(I(materializedid), iri.absolutize(fieldname, vocabbase), v)
-            T_prior_materializedids.add(materializedid)
-
-        return materializedid, subst
-
-    #FIXME: test correct MARC transforms info for annotations
-    def process_annotation(anntype, subfields, extra_annotation_props):
-        #Separate annotation subfields from object subfields
-        object_subfields = subfields.copy()
-        annotation_subfields = {}
-        for k, v in subfields.items():
-            if code + k in ANNOTATIONS_FIELDS:
-                annotation_subfields[k] = v
-                del object_subfields[k]
-            params['transforms'].append((code + k, code + k))
-
-        #objectid = next(idg)
-        #object_props.update(object_subfields)
-
-        annotationid = ids.send(repr((code,) + tuple(subfields.items())))
-        if entbase: annotationid = I(iri.absolutize(annotationid, entbase))
-        relsink.add(I(annotationid), TYPE_REL, I(iri.absolutize(anntype, vocabbase)))
-        for k, v in itertools.chain(annotation_subfields.items(), extra_annotation_props.items()):
-            relsink.add(I(annotationid), I(iri.absolutize(k, vocabbase)), v)
-
-        #Return enough info to generate the main origin/object relationship. The annotation is taken care of at this point
-        return annotationid, object_subfields
-
+    existing_ids = set()
+    initialize(hashidgen=ids, existing_ids=existing_ids)
     #Start the process of writing out the JSON representation of the resulting Versa
     out.write('[')
     first_record = True
@@ -178,23 +171,21 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
             #FIXME: No plug-in support yet
             workhash = record_hash_key(rec)
             workid = ids.send('Work:' + workhash)
+            existing_ids.add(workid)
             logger.debug('Uniform title from 245$a: {0}'.format(marc_lookup(rec, ['245$a'])))
             logger.debug('Work hash result: {0} from \'{1}\''.format(workid, 'Work' + workhash))
 
             if entbase: workid = I(iri.absolutize(workid, entbase))
             relsink.add(I(workid), TYPE_REL, I(iri.absolutize('Work', vocabbase)))
-            instanceid = ids.send('Instance:' + record_hash_key(rec))
-            if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
-            #logger.debug((workid, instanceid))
-            params = {'workid': workid}
 
-            relsink.add(I(instanceid), TYPE_REL, I(iri.absolutize('Instance', vocabbase)))
-            #relsink.add((instanceid, iri.absolutize('leader', PROPBASE), leader))
-            #Instances are added below
-            #relsink.add(I(workid), I(iri.absolutize('hasInstance', vocabbase)), I(instanceid))
+            params = {'workid': workid, 'rec': rec, 'logger': logger, 'model': relsink, 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids, 'existing_ids': existing_ids}
 
-            #for service in g_services: service.send(NEW_RECORD, relsink, workid, instanceid)
+            #Figure out instances
+            instanceids = instancegen(params)
+            if instanceids:
+                instanceid = instanceids[0]
 
+            params['instance_ids'] = instanceids
             params['transforms'] = [] # set()
             params['fields_used'] = []
             for row in rec:
@@ -212,72 +203,51 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
                     params['fields_used'].append((code,))
                 elif row[0] == DATAFIELD:
                     code, xmlattrs, subfields = row[1], row[2], row[3]
+                    #xmlattribs include are indicators
+                    indicators = ((xmlattrs.get('ind1') or ' ')[0].replace(' ', '#'), (xmlattrs.get('ind2') or ' ')[0].replace(' ', '#'))
                     key = 'tag-' + code
 
                     handled = False
                     params['subfields'] = subfields
+                    params['indicators'] = indicators
                     params['fields_used'].append(tuple([code] + list(subfields.keys())))
 
-                    if subfields:
+                    #Build Versa processing context
+
+                    to_process = []
+                    #logger.debug(repr(indicators))
+                    if indicators == ('#', '#'):
+                        #No indicators set
+                        for k, v in subfields.items():
+                            lookup = '{0}${1}'.format(code, k)
+                            if lookup in TRANSFORMS: to_process.append((TRANSFORMS[lookup], v))
+
                         lookup = code
-                        #See if any of the field codes represents a reference to an object which can be materialized
+                        if lookup in TRANSFORMS: to_process.append((TRANSFORMS[lookup], ''))
+                    else:
+                        #One or other indicators is set, so let's check the transforms against those
+                        lookup = '{0}-{1}{2}'.format(*((code,) + indicators))
+                        if lookup in TRANSFORMS: to_process.append((TRANSFORMS[lookup], ''))
 
-                        if code in MATERIALIZE:
-                            materializedid, subst = process_materialization(code, subfields)
-                            origin = instanceid if code in INSTANCE_FIELDS else workid
-                            params['transforms'].append((code, subst))
-                            relsink.add(I(origin), I(iri.absolutize(subst, vocabbase)), I(materializedid))
-                            logger.debug('.')
-                            handled = True
+                        for k, v in subfields.items():
+                            lookup = '{0}${1}'.format(code, k)
+                            if lookup in TRANSFORMS: to_process.append((TRANSFORMS[lookup], v))
 
-                        if code in MATERIALIZE_VIA_ANNOTATION:
-                            #FIXME: code comments for extra_object_props & extra_annotation_props
-                            (subst, anntype, extra_annotation_props) = MATERIALIZE_VIA_ANNOTATION[code]
-                            annotationid, object_subfields = process_annotation(anntype, subfields, extra_annotation_props)
+                    #Apply all the handlers that were found
+                    for func, val in to_process:
+                        ctx = context(workid, [(workid, code, val, subfields)], relsink, base=vocabbase)
+                        new_stmts = func(ctx, workid, instanceid)
+                        #FIXME: Use add
+                        for s in new_stmts: relsink.add(*s)
+                        #logger.debug('.')
 
-                            origin = instanceid if code in INSTANCE_FIELDS else workid
-                            objectid = ids.send(repr((code,) + tuple(subfields.items())))
-                            if entbase: objectid = I(iri.absolutize(objectid, entbase))
-
-                            params['transforms'].append((code, subst))
-                            relsink.add(I(origin), I(iri.absolutize(subst, vocabbase)), I(objectid), {I(iri.absolutize('annotation', vocabbase)): I(annotationid)})
-
-                            for k, v in itertools.chain((('marccode', code),), object_subfields.items()):
-                            #for k, v in itertools.chain(('marccode', code), object_subfields.items(), extra_object_props.items()):
-                                relsink.add(I(objectid), I(iri.absolutize(k, vocabbase)), v)
-
-                            logger.debug('.')
-                            handled = True
-
-                        #See if any of the field+subfield codes represents a reference to an object which can be materialized
-                        if not handled:
-                            for k, v in subfields.items():
-                                lookup = code + k
-                                if lookup in MATERIALIZE:
-                                    #XXX At first glance you'd think you can always derive code from lookup (e.g. lookup[:3] but what if e.g. someone trims the left zero fill on the codes in the serialization?
-                                    materializedid, subst = process_materialization(lookup, subfields, code=code)
-                                    origin = instanceid if code in INSTANCE_FIELDS else workid
-                                    params['transforms'].append((lookup, subst))
-                                    relsink.add(I(origin), I(iri.absolutize(subst, vocabbase)), I(materializedid))
-
-                                    #Is the MARC code part of the hash computation for the materiaalized object ID? Surely not!
-                                    #materializedid = hashid((code,) + tuple(subfields.items()))
-                                    logger.debug('.')
-                                    handled = True
-
-                                else:
-                                    field_name = 'tag-' + lookup
-                                    if lookup in FIELD_RENAMINGS:
-                                        field_name = FIELD_RENAMINGS[lookup]
-                                    #Handle the simple field_name substitution of a label name for a MARC code
-                                    origin = instanceid if code in INSTANCE_FIELDS else workid
-                                    #logger.debug(repr(I(iri.absolutize(field_name, vocabbase))))
-                                    params['transforms'].append((lookup, field_name))
-                                    relsink.add(I(origin), I(iri.absolutize(field_name, vocabbase)), v)
-
-                    #if val:
-                    #    origin = instanceid if code in INSTANCE_FIELDS else workid
-                    #    relsink.add(I(origin), I(iri.absolutize(key, vocabbase)), val)
+                    if not to_process:
+                        #Nothing else has handled this data field; go to the fallback
+                        fallback_rel_base = 'tag-' + code
+                        for k, v in subfields.items():
+                            fallback_rel = fallback_rel_base + k
+                            #params['transforms'].append((code, fallback_rel))
+                            relsink.add(I(workid), I(iri.absolutize(fallback_rel, vocabbase)), v)
 
                 params['code'] = code
 
@@ -297,45 +267,8 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
                 #logger.debug(v)
                     relsink.add(I(instanceid), I(iri.absolutize(k, vocabbase)), item)
 
+            instance_postprocess(params)
 
-            #reduce lists of just one item
-            #for k, v in work_item.items():
-            #    if type(v) is list and len(v) == 1:
-            #        work_item[k] = v[0]
-            #work_sink.send(work_item)
-
-
-            #Handle ISBNs re: https://foundry.zepheira.com/issues/1976
-            ISBN_FIELD = 'tag-020'
-            isbn_links = relsink.match(subj=instanceid, pred=iri.absolutize(ISBN_FIELD, vocabbase))
-            isbns = [ s[2] for s in isbn_links ]
-            logger.debug('ISBNS: {0}'.format(list(isbn_list(isbns))))
-            other_instance_ids = []
-            subscript = ord('a')
-            newid = None
-            for subix, (inum, itype) in enumerate(isbn_list(isbns)):
-                newid = ids.send(instanceid + inum)
-                if entbase: newid = I(iri.absolutize(newid, entbase))
-
-                duplicate_statements(relsink, instanceid, newid)
-                relsink.add(I(newid), I(iri.absolutize('isbn', vocabbase)), inum)
-                #subitem['id'] = instanceid + (unichr(subscript + subix) if subix else '')
-                if itype: relsink.add(I(newid), I(iri.absolutize('isbnType', vocabbase)), itype)
-                other_instance_ids.append(newid)
-
-            if not other_instance_ids:
-                #Make sure it's created as an instance even if it has no ISBN
-                relsink.add(I(workid), I(iri.absolutize('hasInstance', vocabbase)), I(instanceid))
-                params.setdefault('instanceids', []).append(instanceid)
-
-            for iid in other_instance_ids:
-                relsink.add(I(workid), I(iri.absolutize('hasInstance', vocabbase)), I(iid))
-                params.setdefault('instanceids', []).append(iid)
-
-            #if newid is None: #No ISBN specified
-            #    send_instance(ninst)
-
-            #ix += 1
             logger.debug('+')
 
             for plugin in plugins:

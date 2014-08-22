@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 '''
+Warning: has proven quite unreliable because of limitations of pymarc
 marcbin2xml -o /tmp/foo.marc.xml foo.mrc
 '''
 
@@ -8,6 +9,7 @@ import sys
 import itertools
 import logging
 import argparse
+import warnings
 
 from pymarc import MARCReader #pip install pymarc #http://pypi.python.org/pypi/pymarc/
 from pymarc.marcxml import record_to_xml
@@ -42,6 +44,7 @@ def run(inputs=None, limit=None, out=None, verbose=False):
 
 if __name__ == '__main__':
     #parser = argparse.ArgumentParser(prog="bootstrap", add_help=False)
+    warnings.warn('This command has proven quite unreliable because of limitations of pymarc. Recommended: use yaz_marcdump instead.')
     parser = argparse.ArgumentParser()
     parser.add_argument('inputs', type=argparse.FileType('r'), metavar='inputs', nargs='+',
                         help='One or more MARC21 binary files to be parsed and converted to MARC/XML')

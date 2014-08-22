@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <marc:record>
+    <marc:leader>01572cam a22003977i 4500</marc:leader>
+    <marc:controlfield tag="001">1603036</marc:controlfield>
+    <marc:controlfield tag="005">20130909145050.0</marc:controlfield>
+    <marc:controlfield tag="008">130118s2012    ru ac         000 0 rus  </marc:controlfield>
+    <marc:datafield tag="020" ind1=" " ind2=" ">
+      <marc:subfield code="a">9785904301880</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="9">101603036</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">DNLM</marc:subfield>
+      <marc:subfield code="b">eng</marc:subfield>
+      <marc:subfield code="c">DNLM</marc:subfield>
+      <marc:subfield code="e">rda</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="041" ind1="0" ind2="9">
+      <marc:subfield code="a">rus</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="044" ind1=" " ind2=" ">
+      <marc:subfield code="9">Russia (Federation)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="060" ind1="0" ind2="0">
+      <marc:subfield code="a">2013 B-503</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="060" ind1="1" ind2="0">
+      <marc:subfield code="a">WX 27 GR9</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="066" ind1=" " ind2=" ">
+      <marc:subfield code="c">(N</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="0" ind2="0">
+      <marc:subfield code="6">880-01</marc:subfield>
+      <marc:subfield code="a">305 let pervomu gosudarstvennomu lechebnomu uchrezhdenii︠u︡ Rossii :</marc:subfield>
+      <marc:subfield code="b">1707--2012 /</marc:subfield>
+      <marc:subfield code="c">vypuskai︠u︡shchiĭ redaktor, A.V. Kharevin.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="0" ind2="0">
+      <marc:subfield code="6">245-01/(N</marc:subfield>
+      <marc:subfield code="a">305 лет первому государственному лечебному учреждению России :</marc:subfield>
+      <marc:subfield code="b">1707--2012 /</marc:subfield>
+      <marc:subfield code="c">выпускающий редактор, A.В. Харевин.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="264" ind1=" " ind2="1">
+      <marc:subfield code="6">880-02</marc:subfield>
+      <marc:subfield code="a">Moskva :</marc:subfield>
+      <marc:subfield code="b">Ėko-Press,</marc:subfield>
+      <marc:subfield code="c">[2012]</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1=" " ind2="1">
+      <marc:subfield code="6">264-02/(N</marc:subfield>
+      <marc:subfield code="a">Москва :</marc:subfield>
+      <marc:subfield code="b">Эко-Пресс,</marc:subfield>
+      <marc:subfield code="c">[2012]</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">121 pages :</marc:subfield>
+      <marc:subfield code="b">illustrations, portraits</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="336" ind1=" " ind2=" ">
+      <marc:subfield code="a">text</marc:subfield>
+      <marc:subfield code="b">txt</marc:subfield>
+      <marc:subfield code="2">rdacontent</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="337" ind1=" " ind2=" ">
+      <marc:subfield code="a">unmediated</marc:subfield>
+      <marc:subfield code="b">n</marc:subfield>
+      <marc:subfield code="2">rdamedia</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="338" ind1=" " ind2=" ">
+      <marc:subfield code="a">volume</marc:subfield>
+      <marc:subfield code="b">nc</marc:subfield>
+      <marc:subfield code="2">rdacarrier</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="610" ind1="2" ind2="2">
+      <marc:subfield code="6">880-03</marc:subfield>
+      <marc:subfield code="a">Glavnyĭ voennyĭ gospital' (Moscow, R.S.F.S.R.)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="2" ind2="4">
+      <marc:subfield code="6">610-03/(N</marc:subfield>
+      <marc:subfield code="a">Главный военный госпиталь (Мосcоw, Р.С.Ф.С.Р.)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1="1" ind2="2">
+      <marc:subfield code="a">Hospitals, Military</marc:subfield>
+      <marc:subfield code="x">history</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1="1" ind2="2">
+      <marc:subfield code="a">Military Medicine</marc:subfield>
+      <marc:subfield code="x">history</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="651" ind1=" " ind2="2">
+      <marc:subfield code="a">Russia</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="6">880-04</marc:subfield>
+      <marc:subfield code="a">Kharevin, A. V.,</marc:subfield>
+      <marc:subfield code="e">editor.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2=" ">
+      <marc:subfield code="6">700-04/(N</marc:subfield>
+      <marc:subfield code="a">Харевин, A. В.,</marc:subfield>
+      <marc:subfield code="e">editor.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="992" ind1=" " ind2=" ">
+      <marc:subfield code="p">P6</marc:subfield>
+      <marc:subfield code="e">EL</marc:subfield>
+      <marc:subfield code="a">20130226</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="993" ind1=" " ind2=" ">
+      <marc:subfield code="a">KXP</marc:subfield>
+      <marc:subfield code="b">20130711</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="994" ind1=" " ind2=" ">
+      <marc:subfield code="a">CDN</marc:subfield>
+      <marc:subfield code="b">20130904</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="995" ind1=" " ind2=" ">
+      <marc:subfield code="a">AUTH</marc:subfield>
+      <marc:subfield code="b">20130909</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="999" ind1=" " ind2=" ">
+      <marc:subfield code="a">AUTH</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+</marc:collection>
