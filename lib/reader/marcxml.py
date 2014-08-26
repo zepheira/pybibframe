@@ -166,9 +166,14 @@ def bfconvert(inputs, base=None, out=None, limit=None, rdfttl=None, config=None,
         def wrap_task():
             parser.parse(inf)
             yield
-        asyncio.Task(wrap_task())
+        task = asyncio.Task(wrap_task())
         #parse_marcxml(inf, sink)
-        loop.run_forever()
+        try:
+            loop.run_until_complete(task)
+        except Exception as ex:
+            raise ex
+        finally:
+            loop.close()
 
     if rdfttl is not None:
         logger.debug('Converting to RDF.')
