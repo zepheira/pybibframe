@@ -28,7 +28,7 @@ from bibframe.reader.util import initialize
 from bibframe import BFZ, BFLC, g_services
 from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_FINAL_TASK
 from bibframe.isbnplus import isbn_list
-from bibframe.reader.marcpatterns import TRANSFORMS
+from bibframe.reader.marcpatterns import TRANSFORMS, bfcontext
 from bibframe.reader.marcextra import process_leader, process_008
 
 LEADER = 0
@@ -109,7 +109,7 @@ def isbn_instancegen(params):
 
 
 def instance_postprocess(params):
-    instanceids = params['instance_ids']
+    instanceids = params['instanceids']
     model = params['model']
     if len(instanceids) > 1:
         base_instance_id = instanceids[0]
@@ -185,7 +185,7 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
             if instanceids:
                 instanceid = instanceids[0]
 
-            params['instance_ids'] = instanceids
+            params['instanceids'] = instanceids
             params['transforms'] = [] # set()
             params['fields_used'] = []
             for row in rec:
@@ -212,8 +212,6 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
                     params['indicators'] = indicators
                     params['fields_used'].append(tuple([code] + list(subfields.keys())))
 
-                    #Build Versa processing context
-
                     to_process = []
                     #logger.debug(repr(indicators))
                     if indicators == ('#', '#'):
@@ -235,7 +233,8 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
 
                     #Apply all the handlers that were found
                     for func, val in to_process:
-                        ctx = context(workid, [(workid, code, val, subfields)], relsink, base=vocabbase)
+                        #Build Versa processing context
+                        ctx = bfcontext(workid, code, [(workid, code, val, subfields)], relsink, base=vocabbase, hashidgen=ids, existing_ids=existing_ids)
                         new_stmts = func(ctx, workid, instanceid)
                         #FIXME: Use add
                         for s in new_stmts: relsink.add(*s)

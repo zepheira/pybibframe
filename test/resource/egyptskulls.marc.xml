@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+<marc:record>
+    <marc:leader>01703cam a2200457 a 4500</marc:leader>
+    <marc:controlfield tag="001">1481333</marc:controlfield>
+    <marc:controlfield tag="005">20081122072417.0</marc:controlfield>
+    <marc:controlfield tag="008">080703s2008    enka     b    000 0 eng d</marc:controlfield>
+    <marc:datafield tag="015" ind1=" " ind2=" ">
+        <marc:subfield code="a">GBA884764</marc:subfield>
+        <marc:subfield code="2">bnb</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="016" ind1="7" ind2=" ">
+        <marc:subfield code="a">014654524</marc:subfield>
+        <marc:subfield code="2">Uk</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="020" ind1=" " ind2=" ">
+        <marc:subfield code="a">9781407302829</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="020" ind1=" " ind2=" ">
+        <marc:subfield code="a">1407302825</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+        <marc:subfield code="9">101481333</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+        <marc:subfield code="a">SUC</marc:subfield>
+        <marc:subfield code="c">SUC</marc:subfield>
+        <marc:subfield code="d">UKM</marc:subfield>
+        <marc:subfield code="d">YDXCP</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="041" ind1="0" ind2="9">
+        <marc:subfield code="a">eng</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="042" ind1=" " ind2=" ">
+        <marc:subfield code="a">nlmcopyc</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="043" ind1=" " ind2=" ">
+        <marc:subfield code="a">f-ua---</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="044" ind1=" " ind2=" ">
+        <marc:subfield code="9">England</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="050" ind1=" " ind2="4">
+        <marc:subfield code="a">RK281</marc:subfield>
+        <marc:subfield code="b">.M55 2008</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="060" ind1="0" ind2="0">
+        <marc:subfield code="a">2008 L-006</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="060" ind1="1" ind2="0">
+        <marc:subfield code="a">WU 11 HE3</marc:subfield>
+        <marc:subfield code="b">M648a 2008</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="082" ind1="0" ind2="4">
+        <marc:subfield code="a">614.59960932</marc:subfield>
+        <marc:subfield code="2">22</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+        <marc:subfield code="a">Miller, Judith.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="3">
+        <marc:subfield code="a">An appraisal of the skulls and dentition of ancient Egyptians :</marc:subfield>
+        <marc:subfield code="b">highlighting the pathology and speculating on the influence of diet and environment /</marc:subfield>
+        <marc:subfield code="c">Judith Miller.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+        <marc:subfield code="a">Oxford :</marc:subfield>
+        <marc:subfield code="b">Archaeopress,</marc:subfield>
+        <marc:subfield code="c">2008.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+        <marc:subfield code="a">143 p. :</marc:subfield>
+        <marc:subfield code="b">ill. ;</marc:subfield>
+        <marc:subfield code="c">30 cm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="490" ind1="1" ind2=" ">
+        <marc:subfield code="a">BAR international series ;</marc:subfield>
+        <marc:subfield code="v">1794</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="504" ind1=" " ind2=" ">
+        <marc:subfield code="a">Includes bibliographical references (p. 137-143).</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="0" ind2=" ">
+        <marc:subfield code="a">The medical papyri -- Geography, climate and diet in ancient Egypt and the consequential medical conditions -- The title of dentist in ancient egyptian history and conflicting evidence of the practice of restorative dentistry -- Previous dental examinations of ancient skeletal and mummified material -- Materials and methods -- Results -- Discussion .</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1="1" ind2="2">
+        <marc:subfield code="a">Tooth Diseases</marc:subfield>
+        <marc:subfield code="x">history</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1="2" ind2="2">
+        <marc:subfield code="a">Dentition</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1="2" ind2="2">
+        <marc:subfield code="a">Diet</marc:subfield>
+        <marc:subfield code="x">history</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1="2" ind2="2">
+        <marc:subfield code="a">History, Ancient</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1="2" ind2="2">
+        <marc:subfield code="a">Skull</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="651" ind1=" " ind2="2">
+        <marc:subfield code="a">Egypt</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="830" ind1=" " ind2="0">
+        <marc:subfield code="a">BAR international series ;</marc:subfield>
+        <marc:subfield code="v">1794.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="992" ind1=" " ind2=" ">
+        <marc:subfield code="p">P3</marc:subfield>
+        <marc:subfield code="e">EF</marc:subfield>
+        <marc:subfield code="a">20081001</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="993" ind1=" " ind2=" ">
+        <marc:subfield code="a">KJD</marc:subfield>
+        <marc:subfield code="b">20081007</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="994" ind1=" " ind2=" ">
+        <marc:subfield code="a">CDN</marc:subfield>
+        <marc:subfield code="b">20081010</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="995" ind1=" " ind2=" ">
+        <marc:subfield code="a">AUTH</marc:subfield>
+        <marc:subfield code="b">20081031</marc:subfield>
+        <marc:subfield code="c">REV</marc:subfield>
+        <marc:subfield code="d">20081121</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="999" ind1=" " ind2=" ">
+        <marc:subfield code="a">AUTH</marc:subfield>
+    </marc:datafield>
+</marc:record>
+</marc:collection>
+

@@ -1,6 +1,9 @@
 {
     "plugins": [
         {"id": "https://github.com/uogbuji/pybibframe#linkreport",
-        "output-file": "/tmp/linkreport.html"}
+        "output-file": "/tmp/linkreport.html"},
+        {"id": "https://github.com/uogbuji/pybibframe#labelizer",
+        "lookup": {"Work": "title", "Instance": "title", "Agent": "name", "Person": "name", "Organization": "name", "Place": "name", "Collection": "name", "Meeting": "name", "Topic": "name", "Geographic": "name", "Genre": "name"}
+        }
     ]
 }

@@ -3,9 +3,31 @@ from enum import Enum #https://docs.python.org/3.4/library/enum.html
 from versa.pipeline import *
 from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 
-def normalizeparse(text_in):
-    return slugify(text_in, False)
-    #return datachef.slugify(value)
+from bibframe.contrib.datachefids import slugify
+
+#FIXME: Make proper use of subclassing (implementation derivation)
+class bfcontext(context):
+    def __init__(self, origin, rel, linkset, linkspace, base=None, hashidgen=None, existing_ids=None, logger=None):
+        self.origin = origin
+        self.rel = rel
+        self.linkset = linkset
+        self.linkspace = linkspace
+        self.base = base
+        self.hashidgen = hashidgen
+        self.existing_ids = existing_ids
+        self.logger = logger
+        return
+
+    def copy(self, origin=None, rel=None, linkset=None, linkspace=None, base=None, hashidgen=None, existing_ids=None, logger=None):
+        origin = origin if origin else self.origin
+        rel = rel if rel else self.rel
+        linkset = linkset if linkset else self.linkset
+        linkspace = linkspace if linkspace else self.linkspace
+        base = base if base else self.base
+        logger = logger if logger else self.logger
+        hashidgen = hashidgen if hashidgen else self.hashidgen
+        existing_ids = existing_ids if existing_ids else self.existing_ids
+        return bfcontext(origin, rel, linkset, linkspace, base=base, logger=logger, hashidgen=hashidgen, existing_ids=existing_ids)
 
 
 class action(Enum):
@@ -48,22 +70,31 @@ class base_transformer(object):
         '''
         mr_properties = mr_properties or {}
         def _materialize(ctx, workid, iid):
+            _typ = typ(ctx) if callable(typ) else typ
+            _rel = rel(ctx) if callable(rel) else rel
+            rels = _rel if isinstance(_rel, list) else [_rel]
             new_o = {origin_class.work: workid, origin_class.instance: iid}[self._use_origin]
             newlinkset = []
             #Just work with the first provided statement, for now
             (o, r, t, a) = ctx.linkset[0]
             if unique is not None:
-                objid = self._hashidgen.send([typ] + unique(ctx))
+                objid = self._hashidgen.send([_typ] + unique(ctx))
             else:
                 objid = next(self._hashidgen)
-            newlinkset.append((I(new_o), I(iri.absolutize(rel, ctx.base)), I(objid), {}))
+            for _rel in rels:
+                newlinkset.append((I(new_o), I(iri.absolutize(_rel, ctx.base)), I(objid), {}))
             if objid not in self._existing_ids:
-                if typ: newlinkset.append((I(objid), VTYPE_REL, I(iri.absolutize(typ, ctx.base)), {}))
+                if _typ: newlinkset.append((I(objid), VTYPE_REL, I(iri.absolutize(_typ, ctx.base)), {}))
+                #FIXME: Should we be using Python Nones to mark blanks, or should Versa define some sort of null resource?
                 for k, v in mr_properties.items():
-                    if callable(v):
-                        v = v(ctx)
-                    if v is not None:
-                        newlinkset.append((I(objid), I(iri.absolutize(k, ctx.base)), v, {}))
+                    k = k(ctx) if callable(k) else k
+                    newctx = ctx.copy(origin=I(objid), rel=k)
+                    #newctx = ctx.copy(origin=I(objid), rel=rels[0], linkset=[(I(objid), I(iri.absolutize(_rel, ctx.base)), None, {})])
+                    v = v(newctx) if callable(v) else v
+                    if isinstance(v, list):
+                        newlinkset.extend(v)
+                    elif None not in (k, v):
+                        newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), v, {}))
                 self._existing_ids.add(objid)
             return newlinkset
         return _materialize
@@ -97,10 +128,102 @@ def subfield(key):
     return _subfield
 
 
-fromwork = base_transformer(origin_class.work)
-frominstance = base_transformer(origin_class.instance)
+def values(*rels):
+    '''
+    Action function generator to multiplex a relationship at processing time
+
+    :param rels: List of relationships to establish
+    :return: Versa action function to do the actual work
+    '''
+    def _values(ctx):
+        '''
+        Versa action function Utility to specify a list of relationships
+
+        :param ctx: Versa context used in processing (e.g. includes the prototype link
+        :return: Tuple of key/value tuples from the attributes; suitable for hashing
+        '''
+        computed_rels = [ rel(ctx) if callable(rel) else rel for rel in rels ]
+        return computed_rels
+    return _values
+
+
+def normalizeparse(text_in):
+    '''
+    Action function generator to multiplex a relationship at processing time
+
+    :param rels: List of relationships to establish
+    :return: Versa action function to do the actual work
+    '''
+    def _normalizeparse(ctx):
+        '''
+        Versa action function Utility to specify a list of relationships
+
+        :param ctx: Versa context used in processing (e.g. includes the prototype link
+        :return: Tuple of key/value tuples from the attributes; suitable for hashing
+        '''
+        text_in = text_in(ctx) if callable(text_in) else text_in
+        return slugify(text_in, False)
+    return _normalizeparse
+
+
+def ifexists(test, value):
+    '''
+    Action function generator to multiplex a relationship at processing time
+
+    :param rels: List of relationships to establish
+    :return: Versa action function to do the actual work
+    '''
+    def _ifexists(ctx):
+        '''
+        Versa action function Utility to specify a list of relationships
+
+        :param ctx: Versa context used in processing (e.g. includes the prototype link
+        :return: Tuple of key/value tuples from the attributes; suitable for hashing
+        '''
+        _test = test(ctx) if callable(test) else test
+        _value = value(ctx) if callable(value) else value
+        return _value if _test else None
+    return _ifexists
+
+
+def materialize(typ, unique=None, mr_properties=None):
+    '''
+    Create a new resource related to the origin
+    '''
+    mr_properties = mr_properties or {}
+    def _materialize(ctx):
+        _typ = typ(ctx) if callable(typ) else typ
+        #rels = [ link[RELATIONSHIP] for link in ctx.linkset ]
+        newlinkset = []
+        #Just work with the first provided statement, for now
+        (o, r, t, a) = ctx.linkset[0]
+        if unique is not None:
+            objid = ctx.hashidgen.send([_typ, unique(ctx)])
+        else:
+            objid = next(self._hashidgen)
+        #for rel in rels:
+        newlinkset.append((I(ctx.origin), I(iri.absolutize(ctx.rel, ctx.base)), I(objid), {}))
+        if objid not in ctx.existing_ids:
+            if _typ: newlinkset.append((I(objid), VTYPE_REL, I(iri.absolutize(_typ, ctx.base)), {}))
+            #FIXME: Should we be using Python Nones to mark blanks, or should Versa define some sort of null resource?
+            for k, v in mr_properties.items():
+                k = k(ctx) if callable(k) else k
+                newctx = ctx.copy(origin=I(objid), rel=k)
+                #newctx = ctx.copy(origin=I(objid), rel=rels[0], linkset=[(I(objid), I(iri.absolutize(rel, ctx.base)), None, {})])
+                v = v(newctx) if callable(v) else v
+                if isinstance(v, list):
+                    newlinkset.extend(v)
+                elif None not in (k, v):
+                    newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), v, {}))
+            ctx.existing_ids.add(objid)
+        return newlinkset
+    return _materialize
+
+
+onwork = base_transformer(origin_class.work)
+oninstance = base_transformer(origin_class.instance)
 
 def initialize(hashidgen=None, existing_ids=None):
-    fromwork.initialize(hashidgen, existing_ids)
-    frominstance.initialize(hashidgen, existing_ids)
+    onwork.initialize(hashidgen, existing_ids)
+    oninstance.initialize(hashidgen, existing_ids)
 
