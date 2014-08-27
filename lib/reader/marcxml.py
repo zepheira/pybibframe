@@ -94,7 +94,7 @@ class marcxmlhandler(sax.ContentHandler):
 
 #PYTHONASYNCIODEBUG = 1
 
-def bfconvert(inputs, base=None, out=None, limit=None, rdfttl=None, config=None, verbose=False, logger=logging):
+def bfconvert(inputs, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, config=None, verbose=False, logger=logging):
     '''
     inputs - List of MARC/XML files to be parsed and converted to BIBFRAME RDF (Note: want to allow singular input strings)
     out - file where raw Versa JSON dump output should be written (default: write to stdout)
@@ -132,7 +132,7 @@ def bfconvert(inputs, base=None, out=None, limit=None, rdfttl=None, config=None,
     #extant_resources = set()
     def postprocess(rec):
         #No need to bother with Versa -> RDF translation if we were not asked to generate Turtle
-        if rdfttl is not None: rdf.process(m, g, to_ignore=extant_resources, logger=logger)
+        if any((rdfttl, rdfxml)): rdf.process(m, g, to_ignore=extant_resources, logger=logger)
         m.create_space()
 
     #Set up event loop
@@ -173,5 +173,9 @@ def bfconvert(inputs, base=None, out=None, limit=None, rdfttl=None, config=None,
     if rdfttl is not None:
         logger.debug('Converting to RDF.')
         rdfttl.write(g.serialize(format="turtle"))
+
+    if rdfxml is not None:
+        logger.debug('Converting to RDF.')
+        rdfxml.write(g.serialize(format="pretty-xml"))
     return
 

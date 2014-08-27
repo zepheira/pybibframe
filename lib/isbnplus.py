@@ -32,7 +32,7 @@ def canonicalize_isbns(isbns):
         elif len(isbn) == 13: #ISBN-13 with check digit
             c14ned = isbn[:-1]
         else:
-            import sys; print >> sys.stderr, 'BAD ISBN:', isbn
+            import sys; print('BAD ISBN:', isbn, file=sys.stderr)
             isbn = None
         if isbn:
             canonicalized[isbn] = c14ned
@@ -43,6 +43,9 @@ def isbn_list(isbns):
     isbn_tags = {}
     for isbn in isbns:
         parts = isbn.split(None, 1)
+        if not parts:
+            import sys; print('Blank', file=sys.stderr)
+            continue
         #Remove any cruft from ISBNs. Leave just the digits
         cleaned_isbn = NON_ISBN_CHARS.subn(u'', parts[0])[0]
         if len(parts) == 1:

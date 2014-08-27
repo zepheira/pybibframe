@@ -1,7 +1,5 @@
 # pybibframe
 
-<!-- Once on PyPI can simplify to: pip install pybibframe -->
-
 Requires Python 3.4 or more recent. To install dependencies:
 
     pip install -r requirements.txt

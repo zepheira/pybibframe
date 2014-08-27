@@ -10,7 +10,7 @@ from bibframe.reader.marcxml import bfconvert
 
 #PREFIXES = {u'ma': 'http://www.loc.gov/MARC21/slim', u'me': 'http://www.loc.gov/METS/'}
 
-def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, config=None, verbose=False, mods=None):
+def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, config=None, verbose=False, mods=None):
     '''
     Basically takes parameters typical for command line invocation and adapts them for use in the API
 
@@ -24,8 +24,9 @@ def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, config=None, 
     if verbose:
         logger.setLevel(logging.DEBUG)
 
-    for mod in mods or []:
-        __import__(mod, globals(), locals(), [])
+    if mods:
+        for mod in mods[0].split(','):
+            __import__(mod, globals(), locals(), [])
 
     bfconvert(inputs=inputs, base=base, out=out, limit=limit, rdfttl=rdfttl, config=config, verbose=verbose, logger=logger)
     return
@@ -40,8 +41,10 @@ if __name__ == '__main__':
     parser.add_argument('-o', '--out', type=argparse.FileType('w'), default=sys.stdout,
         help='file where raw Versa JSON dump output should be written '
              '(default: write to stdout)')
-    parser.add_argument('-r', '--rdfttl', type=argparse.FileType('wb'),
+    parser.add_argument('--rdfttl', type=argparse.FileType('wb'),
         help='file where RDF Turtle output should be written')
+    parser.add_argument('--rdfxml', type=argparse.FileType('wb'),
+        help='file where RDF XML output should be written')
     parser.add_argument('-c', '--config', type=argparse.FileType('r'),
         help='file containing config in JSON format')
     #parser.add_argument('-s', '--stats', type=argparse.FileType('w'),
@@ -57,7 +60,9 @@ if __name__ == '__main__':
     #
     args = parser.parse_args()
 
-    run(inputs=args.inputs or sys.stdin, base=args.base, out=args.out, limit=args.limit, rdfttl=args.rdfttl, config=args.config, verbose=args.verbose, mods=args.mod)
+    run(inputs=args.inputs or sys.stdin, base=args.base, out=args.out, limit=args.limit, rdfttl=args.rdfttl, rdfxml=args.rdfxml, config=args.config, verbose=args.verbose, mods=args.mod)
     for f in args.inputs: f.close()
+    if args.rdfttl: args.rdfttl.close()
+    if args.rdfxml: args.rdfxml.close()
     args.out.close()
 

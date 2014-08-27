@@ -63,7 +63,6 @@ class labelizer(object):
         #Get the configured vocabulary base IRI
         vocabbase = params['vocabbase']
         for cls, prop in self._config['lookup'].items():
-            print((cls, prop))
             for link in model.match(None, TYPE_REL, I(iri.absolutize(cls, vocabbase))):
                 #simple_lookup() is a little helper for getting a property from a resource
                 val = simple_lookup(model, link[ORIGIN], I(iri.absolutize(prop, vocabbase)))
