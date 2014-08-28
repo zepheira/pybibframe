@@ -24,9 +24,8 @@ def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, 
     if verbose:
         logger.setLevel(logging.DEBUG)
 
-    if mods:
-        for mod in mods[0].split(','):
-            __import__(mod, globals(), locals(), [])
+    for mod in mods:
+        __import__(mod, globals(), locals(), [])
 
     bfconvert(inputs=inputs, base=base, out=out, limit=limit, rdfttl=rdfttl, rdfxml=rdfxml, config=config, verbose=verbose, logger=logger)
     return
@@ -53,12 +52,13 @@ if __name__ == '__main__':
         help='Limit the number of records processed to this number. If omitted, all records will be processed.')
     parser.add_argument('-b', '--base', metavar="IRI", #dest="base",
         help='Base IRI to be used for creating resources.')
-    parser.add_argument('--mod', metavar="PYMODULE", nargs='*',
-        help='Python module to be imported in order to register plugins.')
+    parser.add_argument('--mod', metavar="PYMODULE", nargs="*", action='append',
+        help='Python module to be imported in order to register plugins (can be specified multiple times.')
     parser.add_argument('-v', '--verbose', action='store_true',
         help='whether to show additional messages and information')
     #
     args = parser.parse_args()
+    args.mod = [i for items in args.mod for i in items]
 
     run(inputs=args.inputs or sys.stdin, base=args.base, out=args.out, limit=args.limit, rdfttl=args.rdfttl, rdfxml=args.rdfxml, config=args.config, verbose=args.verbose, mods=args.mod)
     for f in args.inputs: f.close()

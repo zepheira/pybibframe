@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><record xmlns="http://www.loc.gov/MARC21/slim" xmlns:cinclude="http://apache.org/cocoon/include/1.0" xmlns:zs="http://www.loc.gov/zing/srw/">
+  <leader>01087cam a2200289 a 4500</leader>
+  <controlfield tag="001">547530</controlfield>
+  <controlfield tag="005">20120215121458.0</controlfield>
+  <controlfield tag="008">880323t19881982nyua          000 1 eng  </controlfield>
+  <datafield tag="906" ind1=" " ind2=" ">
+    <subfield code="a">7</subfield>
+    <subfield code="b">cbc</subfield>
+    <subfield code="c">orignew</subfield>
+    <subfield code="d">1</subfield>
+    <subfield code="e">ocip</subfield>
+    <subfield code="f">19</subfield>
+    <subfield code="g">y-gencatlg</subfield>
+  </datafield>
+  <datafield tag="955" ind1=" " ind2=" ">
+    <subfield code="a">CIP VER lh03 09-20-96 to SL</subfield>
+  </datafield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">   88009938 </subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">0452261341</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="9">(DLC)   88009938</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">DLC</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="d">DLC</subfield>
+    <subfield code="d">OCoLC</subfield>
+    <subfield code="d">DLC</subfield>
+  </datafield>
+  <datafield tag="050" ind1="0" ind2="0">
+    <subfield code="a">PS3561.I483</subfield>
+    <subfield code="b">G86 1988</subfield>
+  </datafield>
+  <datafield tag="082" ind1="0" ind2="0">
+    <subfield code="a">813/.54</subfield>
+    <subfield code="2">19</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">King, Stephen,</subfield>
+    <subfield code="d">1947-</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="4">
+    <subfield code="a">The gunslinger /</subfield>
+    <subfield code="c">by Stephen King ; illustrated by Michael Whelan.</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">New York, NY :</subfield>
+    <subfield code="b">New American Library,</subfield>
+    <subfield code="c">1988, c1982.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">224 p. :</subfield>
+    <subfield code="b">ill. (some col.) ;</subfield>
+    <subfield code="c">23 cm.</subfield>
+  </datafield>
+  <datafield tag="490" ind1="1" ind2=" ">
+    <subfield code="a">The Dark tower ;</subfield>
+    <subfield code="v">1</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">"A Plume book."</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Roland (Fictitious character : King)</subfield>
+    <subfield code="v">Fiction.</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Fantasy fiction.</subfield>
+    <subfield code="2">gsafd</subfield>
+  </datafield>
+  <datafield tag="800" ind1="1" ind2=" ">
+    <subfield code="a">King, Stephen,</subfield>
+    <subfield code="d">1947-</subfield>
+    <subfield code="t">Dark tower ;</subfield>
+    <subfield code="v">1.</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="2">
+    <subfield code="3">Contributor biographical information</subfield>
+    <subfield code="u">http://www.loc.gov/catdir/enhancements/fy1206/88009938-b.html</subfield>
+  </datafield>
+  <datafield tag="991" ind1=" " ind2=" ">
+    <subfield code="b">c-GenColl</subfield>
+    <subfield code="h">PS3561.I483</subfield>
+    <subfield code="i">G86 1988</subfield>
+    <subfield code="p">00035919508</subfield>
+    <subfield code="t">Copy 1</subfield>
+    <subfield code="w">BOOKS</subfield>
+  </datafield>
+</record>
