@@ -214,22 +214,16 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
 
                     to_process = []
                     #logger.debug(repr(indicators))
-                    if indicators == ('#', '#'):
-                        #No indicators set
-                        for k, v in subfields.items():
-                            lookup = '{0}${1}'.format(code, k)
-                            if lookup in TRANSFORMS: to_process.append((TRANSFORMS[lookup], v))
-
-                        lookup = code
-                        if lookup in TRANSFORMS: to_process.append((TRANSFORMS[lookup], ''))
-                    else:
-                        #One or other indicators is set, so let's check the transforms against those
+                    if indicators != ('#', '#'):
+                        #One or other indicator is set, so let's check the transforms against those
                         lookup = '{0}-{1}{2}'.format(*((code,) + indicators))
-                        if lookup in TRANSFORMS: to_process.append((TRANSFORMS[lookup], ''))
+                    for k, v in subfields.items():
+                        lookup = '{0}${1}'.format(code, k)
+                        if lookup in TRANSFORMS: to_process.append((TRANSFORMS[lookup], v))
 
-                        for k, v in subfields.items():
-                            lookup = '{0}${1}'.format(code, k)
-                            if lookup in TRANSFORMS: to_process.append((TRANSFORMS[lookup], v))
+                    if code in TRANSFORMS: to_process.append((TRANSFORMS[code], ''))
+                    #if code == '100':
+                    #    logger.debug(to_process)
 
                     #Apply all the handlers that were found
                     for func, val in to_process:

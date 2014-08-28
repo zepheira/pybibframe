@@ -207,8 +207,8 @@ TRANSFORMS = {
     '710': onwork.materialize('Organization', 'contributor', unique=all_subfields, mr_properties={'name': subfield('a'), 'date': subfield('d')}),
     '711': onwork.materialize('Meeting', 'contributor', unique=all_subfields, mr_properties={'name': subfield('a'), 'date': subfield('d')}),
 
-    '730': onwork.materialize('Collection', 'creator', unique=all_subfields, mr_properties={'name': subfield('a')}),
-    '830': onwork.materialize('Collection', 'creator', unique=all_subfields, mr_properties={'title': subfield('a')}),
+    '730': onwork.materialize('Collection', 'uniformMemberOf', unique=all_subfields, mr_properties={'name': subfield('a')}),
+    '830': onwork.materialize('Collection', 'uniformMemberOf', unique=all_subfields, mr_properties={'title': subfield('a')}),
 
     #HeldItem is a refinement of Annotation
     '852': oninstance.materialize('HeldItem', 'institution', unique=all_subfields, mr_properties={'holderType': 'Library', 'location': subfield('a'), 'subLocation': subfield('b'), 'callNumber': subfield('h'), 'code': subfield('n'), 'link': subfield('u'), 'streetAddress': subfield('e')}),

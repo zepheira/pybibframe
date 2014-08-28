@@ -1,8 +1,8 @@
 {
     "plugins": [
-        {"id": "https://github.com/uogbuji/pybibframe#linkreport",
+        {"id": "https://github.com/zepheira/pybibframe#linkreport",
         "output-file": "/tmp/linkreport.html"},
-        {"id": "https://github.com/uogbuji/pybibframe#labelizer",
+        {"id": "https://github.com/zepheira/pybibframe#labelizer",
         "lookup": {"Work": "title", "Instance": "title", "Agent": "name", "Person": "name", "Organization": "name", "Place": "name", "Collection": "name", "Meeting": "name", "Topic": "name", "Geographic": "name", "Genre": "name"}
         }
     ]

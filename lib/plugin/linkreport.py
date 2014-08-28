@@ -1,14 +1,16 @@
 '''
-cat config.js
+Sample config JSON stanza:
 
 {
     "plugins": [
-        {"id": "https://github.com/uogbuji/pybibframe#linkreport",
+        {"id": "https://github.com/zepheira/pybibframe#linkreport",
         "output-file": "/tmp/linkreport.html"}
     ]
 }
 
-marc2bf -c test/resource/democonfig.json --mod=bibframe.plugin test/resource/princeton-holdings1.xml
+Already built into demo config:
+
+marc2bf -c test/resource/democonfig.json --mod=bibframe.plugin test/resource/gunslinger.marc.xml
 
 '''
 
@@ -37,7 +39,7 @@ BFHOST = 'bibfra.me'
 #One convenient way to organize the Plug-in is as a class
 #In this case we want to create a separate instance for each full processing event loop
 class linkreport(object):
-    PLUGIN_ID = 'https://github.com/uogbuji/pybibframe#linkreport'
+    PLUGIN_ID = 'https://github.com/zepheira/pybibframe#linkreport'
     def __init__(self, pinfo, config=None):
         #print ('BF_INIT_TASK', linkreport.PLUGIN_ID)
         self._config = config or {}

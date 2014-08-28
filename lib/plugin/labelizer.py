@@ -1,15 +1,17 @@
 '''
-cat config.js
+Sample config JSON stanza:
 
 {
     "plugins": [
-        {"id": "https://github.com/uogbuji/pybibframe#labelizer",
+        {"id": "https://github.com/zepheira/pybibframe#labelizer",
         "lookup": {"Work": "title", "Instance": "title", "Agent": "name", "Person": "name", "Organization": "name", "Place": "name", "Collection": "name", "Meeting": "name", "Topic": "name", "Geographic": "name", "Genre": "name"}
         }
     ]
 }
 
-marc2bf -c test/resource/democonfig.json --mod=bibframe.plugin test/resource/pervomu.marc.xml
+Already built into demo config:
+
+marc2bf -c test/resource/democonfig.json --mod=bibframe.plugin test/resource/gunslinger.marc.xml
 
 '''
 
@@ -35,7 +37,7 @@ TYPE_REL = I(iri.absolutize('type', VERSA_BASEIRI))
 #One convenient way to organize the Plug-in is as a class
 #In this case we want to create a separate instance for each full processing event loop
 class labelizer(object):
-    PLUGIN_ID = 'https://github.com/uogbuji/pybibframe#labelizer'
+    PLUGIN_ID = 'https://github.com/zepheira/pybibframe#labelizer'
     def __init__(self, pinfo, config=None):
         #print ('BF_INIT_TASK', linkreport.PLUGIN_ID)
         self._config = config or {}
