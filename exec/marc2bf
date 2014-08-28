@@ -28,7 +28,7 @@ def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, 
         for mod in mods[0].split(','):
             __import__(mod, globals(), locals(), [])
 
-    bfconvert(inputs=inputs, base=base, out=out, limit=limit, rdfttl=rdfttl, config=config, verbose=verbose, logger=logger)
+    bfconvert(inputs=inputs, base=base, out=out, limit=limit, rdfttl=rdfttl, rdfxml=rdfxml, config=config, verbose=verbose, logger=logger)
     return
 
 

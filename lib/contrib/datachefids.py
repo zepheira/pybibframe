@@ -82,6 +82,8 @@ def slugify(value, hyphenate=True, lower=True):
     return _CHANGEME_RE.sub(replacement, value)
 
 
+FROM_EMPTY_HASH = 'AAAAAAAA'
+
 #from datachef.ids import simple_hashstring
 @coroutine
 def idgen(idbase, tint=None):
@@ -104,6 +106,8 @@ def idgen(idbase, tint=None):
     'ThKLPHvp'
     >>> g.send('eggs')
     'HeBrpNON'
+    >>> g.send('')
+    'AAAAAAAA'
     '''
     counter = -1
     to_hash = None

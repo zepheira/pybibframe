@@ -13,7 +13,7 @@ import itertools
 import asyncio
 
 #from datachef.ids import simple_hashstring
-from bibframe.contrib.datachefids import idgen
+from bibframe.contrib.datachefids import idgen, FROM_EMPTY_HASH
 
 #from amara.lib import U
 from amara3 import iri

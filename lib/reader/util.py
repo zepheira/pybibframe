@@ -3,7 +3,8 @@ from enum import Enum #https://docs.python.org/3.4/library/enum.html
 from versa.pipeline import *
 from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 
-from bibframe.contrib.datachefids import slugify
+from bibframe.contrib.datachefids import slugify, idgen, FROM_EMPTY_HASH
+
 
 #FIXME: Make proper use of subclassing (implementation derivation)
 class bfcontext(context):
@@ -82,7 +83,10 @@ class base_transformer(object):
             else:
                 objid = next(self._hashidgen)
             for _rel in rels:
-                newlinkset.append((I(new_o), I(iri.absolutize(_rel, ctx.base)), I(objid), {}))
+                if _rel:
+                    #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
+                    if _rel.isdigit(): _rel = '_' + _rel
+                    newlinkset.append((I(new_o), I(iri.absolutize(_rel, ctx.base)), I(objid), {}))
             if objid not in self._existing_ids:
                 if _typ: newlinkset.append((I(objid), VTYPE_REL, I(iri.absolutize(_typ, ctx.base)), {}))
                 #FIXME: Should we be using Python Nones to mark blanks, or should Versa define some sort of null resource?
@@ -93,7 +97,9 @@ class base_transformer(object):
                     v = v(newctx) if callable(v) else v
                     if isinstance(v, list):
                         newlinkset.extend(v)
-                    elif None not in (k, v):
+                    elif k and v is not None:
+                        #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
+                        if k.isdigit(): k = '_' + k
                         newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), v, {}))
                 self._existing_ids.add(objid)
             return newlinkset
@@ -161,8 +167,8 @@ def normalizeparse(text_in):
         :param ctx: Versa context used in processing (e.g. includes the prototype link
         :return: Tuple of key/value tuples from the attributes; suitable for hashing
         '''
-        text_in = text_in(ctx) if callable(text_in) else text_in
-        return slugify(text_in, False)
+        _text_in = text_in(ctx) if callable(text_in) else text_in
+        return slugify(_text_in, False) if _text_in else ''
     return _normalizeparse
 
 
@@ -202,7 +208,10 @@ def materialize(typ, unique=None, mr_properties=None):
         else:
             objid = next(self._hashidgen)
         #for rel in rels:
-        newlinkset.append((I(ctx.origin), I(iri.absolutize(ctx.rel, ctx.base)), I(objid), {}))
+        if ctx.rel:
+            #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
+            rel = '_' + ctx.rel if ctx.rel.isdigit() else ctx.rel
+            newlinkset.append((I(ctx.origin), I(iri.absolutize(rel, ctx.base)), I(objid), {}))
         if objid not in ctx.existing_ids:
             if _typ: newlinkset.append((I(objid), VTYPE_REL, I(iri.absolutize(_typ, ctx.base)), {}))
             #FIXME: Should we be using Python Nones to mark blanks, or should Versa define some sort of null resource?
@@ -213,7 +222,9 @@ def materialize(typ, unique=None, mr_properties=None):
                 v = v(newctx) if callable(v) else v
                 if isinstance(v, list):
                     newlinkset.extend(v)
-                elif None not in (k, v):
+                elif k and v is not None:
+                    #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
+                    if k.isdigit(): k = '_' + k
                     newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), v, {}))
             ctx.existing_ids.add(objid)
         return newlinkset
