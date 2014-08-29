@@ -53,17 +53,17 @@ TRANSFORMS = {
     '100': onwork.materialize('Person', 
                               values('creator', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
-                              mr_properties={'name': subfield('a'), 'numeration': subfield('b'), 'titles': subfield('c'), 'date': subfield('d')} ),
+                              mr_properties={'name': subfield('a'), 'numeration': subfield('b'), 'titles': subfield('c'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
     '110': onwork.materialize('Organization', 
                               values('creator', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
-                              mr_properties={'name': subfield('a'), 'date': subfield('d')}),
+                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
     '111': onwork.materialize('Meeting', 
                               values('creator', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
-                              mr_properties={'name': subfield('a'), 'date': subfield('d')}),
+                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
     '210$a': oninstance.rename(rel='abbreviatedTitle'),
     '222$a': oninstance.rename(rel='keyTitle'),
@@ -245,17 +245,17 @@ TRANSFORMS = {
     '600': onwork.materialize('Person', 
                               'subject', 
                               unique=all_subfields,
-                              mr_properties={'name': subfield('a'), 'date': subfield('d')}),
+                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
     '610': onwork.materialize('Organization', 
                               'subject', 
                               unique=all_subfields, 
-                              mr_properties={'name': subfield('a'), 'date': subfield('d')}),
+                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
     '611': onwork.materialize('Meeting', 
                               'subject', 
                               unique=all_subfields, 
-                              mr_properties={'name': subfield('a'), 'date': subfield('d')}),
+                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
     #'610$d': onwork.rename(rel='date'),  #Note: there has been discussion about removing this, but we are not sure we get reliable ID.LOC lookups without it.  If it is removed, update augment.py
 
@@ -267,17 +267,17 @@ TRANSFORMS = {
     '650': onwork.materialize('Topic', 
                               'subject', 
                               unique=all_subfields, 
-                              mr_properties={'name': subfield('a'), 'locationOfEvent': subfield('c'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z')}),
+                              mr_properties={'name': subfield('a'), 'locationOfEvent': subfield('c'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z'), 'hasAuthorityLink': subfield('0')}),
 
     '651': onwork.materialize('Place', 
                               'subject', 
                               unique=all_subfields, 
-                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z')}),
+                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z'), 'hasAuthorityLink': subfield('0')}),
 
     '655': onwork.materialize('Genre', 
                               'genre', 
                               unique=all_subfields, 
-                              mr_properties={'name': subfield('a'), 'source': subfield('2')}),
+                              mr_properties={'name': subfield('a'), 'source': subfield('2'), 'hasAuthorityLink': subfield('0')}),
 
     # Fields 700,710,711,etc. have a contributor + role (if specified) relationship to a new Agent object (only created as a new object if all subfields are unique)
     # generate hash values only from the properties specific to Agents 
@@ -285,17 +285,17 @@ TRANSFORMS = {
     '700': onwork.materialize('Person', 
                               values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
-                              mr_properties={'name': subfield('a'), 'numeration': subfield('b'), 'titles': subfield('c'), 'date': subfield('d')}),
+                              mr_properties={'name': subfield('a'), 'numeration': subfield('b'), 'titles': subfield('c'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
     '710': onwork.materialize('Organization', 
                               values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
-                              mr_properties={'name': subfield('a'), 'date': subfield('d')}),
+                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
     '711': onwork.materialize('Meeting', 
                               values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
                               unique=values(subfield('a'), subfield('c'), subfield('d'), subfield('e'), subfield('q'), subfield('u')), 
-                              mr_properties={'name': subfield('a'), 'date': subfield('d')}),
+                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
     '730': onwork.materialize('Collection', 'uniformMemberOf', unique=all_subfields, mr_properties={'name': subfield('a')}),
     '830': onwork.materialize('Collection', 'uniformMemberOf', unique=all_subfields, mr_properties={'title': subfield('a')}),
