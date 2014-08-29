@@ -269,7 +269,7 @@ TRANSFORMS = {
                               unique=all_subfields, 
                               mr_properties={'name': subfield('a'), 'locationOfEvent': subfield('c'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z')}),
 
-    '651': onwork.materialize('Geographic', 
+    '651': onwork.materialize('Place', 
                               'subject', 
                               unique=all_subfields, 
                               mr_properties={'name': subfield('a'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z')}),
