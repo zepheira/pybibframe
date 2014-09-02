@@ -79,7 +79,7 @@ TRANSFORMS = {
                                 mr_properties={'name': subfield('a')}),
 
     '245$a': onwork.rename(rel='title'),
-    '245$b': onwork.rename(rel='subTitle'),
+    '245$b': onwork.rename(rel='subtitle'),
     '245$c': onwork.rename(rel='titleStatement'),
     '245$f': onwork.rename(rel='inclusiveDates'),
     '245$h': onwork.rename(rel='medium'),
