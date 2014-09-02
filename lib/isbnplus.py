@@ -2,7 +2,7 @@
 '''
 
 import re
-import itertools
+import logging
 
 NON_ISBN_CHARS = re.compile(u'\D')
 
@@ -19,7 +19,7 @@ def invert_dict(d):
 
 #TODO: Also split on multiple 260 fields
 
-def canonicalize_isbns(isbns):
+def canonicalize_isbns(isbns, logger=logging):
     #http://www.hahnlibrary.net/libraries/isbncalc.html
     canonicalized = {}
     for isbn in isbns:
@@ -32,19 +32,19 @@ def canonicalize_isbns(isbns):
         elif len(isbn) == 13: #ISBN-13 with check digit
             c14ned = isbn[:-1]
         else:
-            import sys; print('BAD ISBN:', isbn, file=sys.stderr)
+            logger.debug('BAD ISBN: {0}'.format(isbn))
             isbn = None
         if isbn:
             canonicalized[isbn] = c14ned
     return canonicalized
 
 
-def isbn_list(isbns):
+def isbn_list(isbns, logger=logging):
     isbn_tags = {}
     for isbn in isbns:
         parts = isbn.split(None, 1)
         if not parts:
-            import sys; print('Blank', file=sys.stderr)
+            logger.debug('Blank ISBN')
             continue
         #Remove any cruft from ISBNs. Leave just the digits
         cleaned_isbn = NON_ISBN_CHARS.subn(u'', parts[0])[0]
@@ -53,11 +53,10 @@ def isbn_list(isbns):
             isbn_tags[cleaned_isbn] = None
         else:
             isbn_tags[cleaned_isbn] = parts[1]
-    c14ned = canonicalize_isbns(isbn_tags.keys())
+    c14ned = canonicalize_isbns(isbn_tags.keys(), logger=logger)
     for c14nisbn, variants in invert_dict(c14ned).items():
         #We'll use the heuristic that the longest ISBN number is the best
         variants.sort(key=len, reverse=True) # sort by descending length
         yield variants[0], isbn_tags[variants[0]]
     return
-
 
