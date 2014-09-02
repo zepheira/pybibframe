@@ -38,14 +38,17 @@ if __name__ == '__main__':
     parser.add_argument('inputs', type=argparse.FileType('r'), metavar='inputs', nargs='*',
                         help='One or more MARC/XML files to be parsed and converted to BIBFRAME RDF. If omitted use stdin')
     parser.add_argument('-o', '--out', type=argparse.FileType('w'), default=sys.stdout,
-        help='file where raw Versa JSON dump output should be written '
+        help='File where raw Versa JSON output should be written'
+             '(default: write to stdout)')
+    parser.add_argument('-p', '--postout', metavar="IRI",
+        help='HTTP endpoint for pushing or posting raw Versa JSON output'
              '(default: write to stdout)')
     parser.add_argument('--rdfttl', type=argparse.FileType('wb'),
-        help='file where RDF Turtle output should be written')
+        help='File where RDF Turtle output should be written')
     parser.add_argument('--rdfxml', type=argparse.FileType('wb'),
-        help='file where RDF XML output should be written')
+        help='File where RDF XML output should be written')
     parser.add_argument('-c', '--config', type=argparse.FileType('r'),
-        help='file containing config in JSON format')
+        help='File containing config in JSON format')
     #parser.add_argument('-s', '--stats', type=argparse.FileType('w'),
     #    help='file where statistics output should be written in JSOn format')
     parser.add_argument('-l', '--limit', metavar="NUMBER",
@@ -55,10 +58,10 @@ if __name__ == '__main__':
     parser.add_argument('--mod', metavar="PYMODULE", nargs="*", action='append',
         help='Python module to be imported in order to register plugins (can be specified multiple times.')
     parser.add_argument('-v', '--verbose', action='store_true',
-        help='whether to show additional messages and information')
+        help='Whether to show additional messages and information')
     #
     args = parser.parse_args()
-    args.mod = [i for items in args.mod for i in items]
+    args.mod = [i for items in args.mod or [] for i in items]
 
     run(inputs=args.inputs or sys.stdin, base=args.base, out=args.out, limit=args.limit, rdfttl=args.rdfttl, rdfxml=args.rdfxml, config=args.config, verbose=args.verbose, mods=args.mod)
     for f in args.inputs: f.close()
