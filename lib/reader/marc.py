@@ -153,7 +153,6 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
     
     plugins = plugins or []
     if ids is None: ids = idgen(entbase)
-    logger.debug('GRIPPO: {0}'.format(repr(entbase)))
 
     #FIXME: For now always generate instances from ISBNs, but consider working this through th plugins system
     instancegen = isbn_instancegen
@@ -297,7 +296,7 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
         logger.debug('Completed processing {0} record{1}.'.format(limiting[0], '' if limiting[0] == 1 else 's'))
         out.write(']')
 
-        if not plugins: loop.stop()
+        #if not plugins: loop.stop()
         for plugin in plugins:
             #Each plug-in is a task
             task = asyncio.Task(plugin[BF_FINAL_TASK](loop), loop=loop)
@@ -305,10 +304,11 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
             def task_done(task):
                 #print('Task done: ', task)
                 _final_tasks.remove(task)
-                if len(_final_tasks) == 0:
+                #logger.debug((plugins))
+                #if plugins and len(_final_tasks) == 0:
                     #print("_final_tasks is empty, stopping loop.")
                     #loop = asyncio.get_event_loop()
-                    loop.stop()
+                #    loop.stop()
             #Once all the plug-in tasks are done, all the work is done
             task.add_done_callback(task_done)
         #print('DONE')
