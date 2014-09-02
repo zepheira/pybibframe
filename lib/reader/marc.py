@@ -80,7 +80,7 @@ def isbn_instancegen(params):
     isbns = marc_lookup(rec, ['020$a'])
     logger.debug('Raw ISBNS:\t{0}'.format(isbns))
 
-    normalized_isbns = list(isbn_list(isbns))
+    normalized_isbns = list(isbn_list(isbns, logger=logger))
 
     subscript = ord('a')
     instance_ids = []
