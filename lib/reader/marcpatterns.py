@@ -47,22 +47,40 @@ TRANSFORMS = {
     '071$a': onwork.rename(rel='nalCopyStatement'),
     '082$a': onwork.rename(rel='deweyNumber'),
 
-    #Field 100 has a creator relationship to a new Agent object (only created as a new object if all subfields are unique)
-    '100': onwork.materialize('Agent', 'creator', unique=all_subfields, mr_properties={'name': subfield('a'), 'numeration': subfield('b'), 'titles': subfield('c'), 'date': subfield('d')}),
-    '110': onwork.materialize('Organization', 'creator', unique=all_subfields, mr_properties={'name': subfield('a'), 'date': subfield('d')}),
-    '111': onwork.materialize('Meeting', 'creator', unique=all_subfields, mr_properties={'name': subfield('a'), 'date': subfield('d')}),
+    # Fields 100,110,111,etc. have a creator + role (if available) relationship to a new Agent object (only created as a new object if all subfields are unique)
+    # generate hash values only from the properties specific to Agents 
 
-    '130': onwork.materialize('Collection', 'creator', unique=all_subfields, mr_properties={'title': subfield('a'), 'workSection': subfield('n'), 'language': subfield('l')}),
+    '100': onwork.materialize('Person', 
+                              values('creator', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
+                              unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
+                              mr_properties={'name': subfield('a'), 'numeration': subfield('b'), 'titles': subfield('c'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+
+    '110': onwork.materialize('Organization', 
+                              values('creator', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
+                              unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
+                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+
+    '111': onwork.materialize('Meeting', 
+                              values('creator', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
+                              unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
+                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
     '210$a': oninstance.rename(rel='abbreviatedTitle'),
     '222$a': oninstance.rename(rel='keyTitle'),
 
-    '240$a': onwork.materialize('Collection', 'creator', unique=all_subfields, mr_properties={'name': subfield('a'), 'legalDate': subfield('d'), 'medium': subfield('h'), 'musicMedium': subfield('m'), 'musicKey': subfield('r')}),
-    '243$a': onwork.materialize('Collection', 'creator', unique=all_subfields, mr_properties={'name': subfield('a')}),
+    '240$a': onwork.materialize('Collection', 
+                                'uniformMemberOf', 
+                                unique=all_subfields, 
+                                mr_properties={'name': subfield('a'), 'legalDate': subfield('d'), 'medium': subfield('h'), 'musicMedium': subfield('m'), 'musicKey': subfield('r')}),
+
+    '243$a': onwork.materialize('Collection', 
+                                'uniformMemberOf', 
+                                unique=all_subfields, 
+                                mr_properties={'name': subfield('a')}),
 
     '245$a': onwork.rename(rel='title'),
-    '245$b': onwork.rename(rel='subtitle'),
-    '245$c': onwork.rename(rel='statement'),
+    '245$b': onwork.rename(rel='subTitle'),
+    '245$c': onwork.rename(rel='titleStatement'),
     '245$f': onwork.rename(rel='inclusiveDates'),
     '245$h': onwork.rename(rel='medium'),
     '245$k': onwork.rename(rel='formDesignation'),
@@ -76,26 +94,54 @@ TRANSFORMS = {
     '255$b': oninstance.rename(rel='cartographicMathematicalDataProjectionStatement'),
     '255$c': oninstance.rename(rel='cartographicMathematicalDataCoordinateStatement'),
     '256$a': oninstance.rename(rel='computerFilecharacteristics'),
-#    '260$a': oninstance.rename(rel='providerPlace'),
-#    '260$b': oninstance.rename(rel='providerAgent'),
-#    '260$c': oninstance.rename(rel='providerDate'),
-#    '260$g': oninstance.rename(rel='providerDate'),
-#    '264$c': onwork.rename(rel='providerDate'),
 
-    '260': oninstance.materialize('ProviderEvent', 'publication', unique=all_subfields, mr_properties={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), mr_properties={'name': subfield('a')}), ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=subfield('b'), mr_properties={'name': subfield('b')}), 'date': subfield('d')}),
-    '264': oninstance.materialize('ProviderEvent', 'publication', unique=all_subfields, mr_properties={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), mr_properties={'name': subfield('a')}), ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=subfield('b'), mr_properties={'name': subfield('b')}), 'date': subfield('d')}),
+    # Provider materialization 
+
+    '260': oninstance.materialize('ProviderEvent', 
+                                  'publication', 
+                                  unique=all_subfields, 
+                                  mr_properties={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), mr_properties={'name': subfield('a')}), 
+                                                 ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=subfield('b'), mr_properties={'name': subfield('b')}), 
+                                                 'providerDate': subfield('c')}),
+
+    '264': oninstance.materialize('ProviderEvent', 
+                                  'publication', 
+                                  unique=all_subfields, 
+                                  mr_properties={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), mr_properties={'name': subfield('a')}), 
+                                                 ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=subfield('b'), mr_properties={'name': subfield('b')}), 
+                                                 'providerDate': subfield('c')}),
+
     #Ind1 is blank ('#') ind2 is 3
-    '264-#3': oninstance.materialize('ProviderEvent', 'manufacture', unique=all_subfields, mr_properties={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), mr_properties={'name': subfield('a')}), ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=subfield('b'), mr_properties={'name': subfield('b')}), 'date': subfield('d')}),
-    '264-#2': oninstance.materialize('ProviderEvent', 'distribution', unique=all_subfields, mr_properties={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), mr_properties={'name': subfield('a')}), ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=subfield('b'), mr_properties={'name': subfield('b')}), 'date': subfield('d')}),
-    '264-#1': oninstance.materialize('ProviderEvent', 'publication', unique=all_subfields, mr_properties={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), mr_properties={'name': subfield('a')}), ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=subfield('b'), mr_properties={'name': subfield('b')}), 'date': subfield('d')}),
-    '264-#0': oninstance.materialize('ProviderEvent', 'production', unique=all_subfields, mr_properties={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), mr_properties={'name': subfield('a')}), ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=subfield('b'), mr_properties={'name': subfield('b')}), 'date': subfield('d')}),
 
-    #'260$e': oninstance.materialize('Place', 'providerAgent', unique=all_subfields, mr_properties={'name': subfield('a')}),
-    #'260$f': oninstance.materialize('Agent', 'providerAgent', unique=all_subfields, mr_properties={'name': subfield('a')}),
-    #'264$a': onwork.materialize('Place', 'providerAgent', unique=all_subfields, mr_properties={'name': subfield('a')}),
-    #'264$b': onwork.materialize('Agent', 'providerAgent', unique=all_subfields, mr_properties={'name': subfield('a')}),
+    '264$c-#4': oninstance.rename(rel='copyrightDate'),
 
-    #'300': onwork.materialize('Measurement', 'physicalDescription', unique=all_subfields, mr_properties={'name': subfield('a')}),
+    '264-#3': oninstance.materialize('ProviderEvent', 
+                                     'manufacture', 
+                                     unique=all_subfields, 
+                                     mr_properties={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), mr_properties={'name': subfield('a')}), 
+                                                    ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=subfield('b'), mr_properties={'name': subfield('b')}), 
+                                                    'providerDate': subfield('c')}),
+
+    '264-#2': oninstance.materialize('ProviderEvent', 
+                                     'distribution', 
+                                     unique=all_subfields, 
+                                     mr_properties={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), mr_properties={'name': subfield('a')}), 
+                                                    ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=subfield('b'), mr_properties={'name': subfield('b')}), 
+                                                    'providerDate': subfield('c')}),
+
+    '264-#1': oninstance.materialize('ProviderEvent', 
+                                     'publication', 
+                                     unique=all_subfields, 
+                                     mr_properties={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), mr_properties={'name': subfield('a')}), 
+                                                    ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=subfield('b'), mr_properties={'name': subfield('b')}), 
+                                                    'providerDate': subfield('c')}),
+
+    '264-#0': oninstance.materialize('ProviderEvent', 
+                                     'production', 
+                                     unique=all_subfields, 
+                                     mr_properties={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), mr_properties={'name': subfield('a')}), 
+                                                    ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=subfield('b'), mr_properties={'name': subfield('b')}), 
+                                                    'providerDate': subfield('c')}),
 
     '300$a': oninstance.rename(rel='extent'),
     '300$b': oninstance.rename(rel='otherPhysicalDetails'),
@@ -192,20 +238,64 @@ TRANSFORMS = {
     '561$a': oninstance.rename(rel='ownership'),
     '583$a': onwork.rename(rel='action'),
 
-    '600': onwork.materialize('Person', 'subject', unique=all_subfields, mr_properties={'name': subfield('a'), 'date': subfield('d')}),
-    '610': onwork.materialize('Organization', 'subject', unique=all_subfields, mr_properties={'name': subfield('a'), 'date': subfield('d')}),
-    '611': onwork.materialize('Meeting', 'subject', unique=all_subfields, mr_properties={'name': subfield('a'), 'date': subfield('d')}),
+    # subjects
+    # generate hash values only from all properties specific to Subjects
+    
+    
+    '600': onwork.materialize('Person', 
+                              'subject', 
+                              unique=all_subfields,
+                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+
+    '610': onwork.materialize('Organization', 
+                              'subject', 
+                              unique=all_subfields, 
+                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+
+    '611': onwork.materialize('Meeting', 
+                              'subject', 
+                              unique=all_subfields, 
+                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
     #'610$d': onwork.rename(rel='date'),  #Note: there has been discussion about removing this, but we are not sure we get reliable ID.LOC lookups without it.  If it is removed, update augment.py
 
-    '630': onwork.materialize('Title', 'uniformTitle', unique=all_subfields, mr_properties={'uniformTitle': subfield('a'), 'language': subfield('l'), 'medium': subfield('h'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z')}),
-    '650': onwork.materialize('Topic', 'subject', unique=all_subfields, mr_properties={'name': subfield('a'), 'locationOfEvent': subfield('c'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z')}),
-    '651': onwork.materialize('Geographic', 'subject', unique=all_subfields, mr_properties={'name': subfield('a'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z')}),
-    '655': onwork.materialize('Genre', 'genre', unique=all_subfields, mr_properties={'name': subfield('a'), 'source': subfield('2')}),
+    '630': onwork.materialize('Title', 
+                              'uniformTitle', 
+                              unique=all_subfields,
+                              mr_properties={'uniformTitle': subfield('a'), 'language': subfield('l'), 'medium': subfield('h'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z')}),
 
-    '700': onwork.materialize('Person', values('contributor', normalizeparse(subfield('e'))), unique=all_subfields, mr_properties={'name': subfield('a'), 'numeration': subfield('b'), 'titles': subfield('c'), 'date': subfield('d')}),
-    '710': onwork.materialize('Organization', 'contributor', unique=all_subfields, mr_properties={'name': subfield('a'), 'date': subfield('d')}),
-    '711': onwork.materialize('Meeting', 'contributor', unique=all_subfields, mr_properties={'name': subfield('a'), 'date': subfield('d')}),
+    '650': onwork.materialize('Topic', 
+                              'subject', 
+                              unique=all_subfields, 
+                              mr_properties={'name': subfield('a'), 'locationOfEvent': subfield('c'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z'), 'hasAuthorityLink': subfield('0')}),
+
+    '651': onwork.materialize('Place', 
+                              'subject', 
+                              unique=all_subfields, 
+                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z'), 'hasAuthorityLink': subfield('0')}),
+
+    '655': onwork.materialize('Genre', 
+                              'genre', 
+                              unique=all_subfields, 
+                              mr_properties={'name': subfield('a'), 'source': subfield('2'), 'hasAuthorityLink': subfield('0')}),
+
+    # Fields 700,710,711,etc. have a contributor + role (if specified) relationship to a new Agent object (only created as a new object if all subfields are unique)
+    # generate hash values only from the properties specific to Agents 
+
+    '700': onwork.materialize('Person', 
+                              values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
+                              unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
+                              mr_properties={'name': subfield('a'), 'numeration': subfield('b'), 'titles': subfield('c'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+
+    '710': onwork.materialize('Organization', 
+                              values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
+                              unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
+                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+
+    '711': onwork.materialize('Meeting', 
+                              values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
+                              unique=values(subfield('a'), subfield('c'), subfield('d'), subfield('e'), subfield('q'), subfield('u')), 
+                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
     '730': onwork.materialize('Collection', 'uniformMemberOf', unique=all_subfields, mr_properties={'name': subfield('a')}),
     '830': onwork.materialize('Collection', 'uniformMemberOf', unique=all_subfields, mr_properties={'title': subfield('a')}),

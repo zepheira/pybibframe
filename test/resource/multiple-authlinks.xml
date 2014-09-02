@@ -1,0 +1,180 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+<record>
+  <leader>02467cam a2200505 a 4500</leader>
+  <controlfield tag="001">11587962</controlfield>
+  <controlfield tag="005">20130919132407.0</controlfield>
+  <controlfield tag="008">120501s2011    mauabc   b    000 1 eng  </controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">  2011013150</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)ocn709670260</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">11587962</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">DLC</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="d">YDX</subfield>
+    <subfield code="d">BTCTA</subfield>
+    <subfield code="d">YDXCP</subfield>
+    <subfield code="d">IAD</subfield>
+    <subfield code="d">UKMGB</subfield>
+    <subfield code="d">CDX</subfield>
+    <subfield code="d">BWX</subfield>
+    <subfield code="d">ZCU</subfield>
+    <subfield code="d">COO</subfield>
+    <subfield code="d">BDX</subfield>
+    <subfield code="d">COH</subfield>
+    <subfield code="d">IAK</subfield>
+    <subfield code="d">LMR</subfield>
+    <subfield code="d">DGW</subfield>
+  </datafield>
+  <datafield tag="016" ind1="7" ind2=" ">
+    <subfield code="a">015855865</subfield>
+    <subfield code="2">Uk</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9780674049741 (hbk. : alk. paper)</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">0674049748</subfield>
+  </datafield>
+  <datafield tag="024" ind1="8" ind2=" ">
+    <subfield code="a">99948423561</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)709670260</subfield>
+  </datafield>
+  <datafield tag="043" ind1=" " ind2=" ">
+    <subfield code="a">e-uk-en</subfield>
+  </datafield>
+  <datafield tag="050" ind1="0" ind2="0">
+    <subfield code="a">PR4034</subfield>
+    <subfield code="b">.P4 2011b</subfield>
+  </datafield>
+  <datafield tag="082" ind1="0" ind2="0">
+    <subfield code="a">823/.7</subfield>
+    <subfield code="2">22</subfield>
+  </datafield>
+  <datafield tag="049" ind1=" " ind2=" ">
+    <subfield code="a">DGWW</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">Austen, Jane,</subfield>
+    <subfield code="d">1775-1817.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n79032879</subfield>
+    <subfield code="0">(LoC)n79032879</subfield>
+    <subfield code="0">http://viaf.org/viaf/102333412</subfield>
+    <subfield code="0">(viaf)102333412</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">Persuasion :</subfield>
+    <subfield code="b">an annotated edition /</subfield>
+    <subfield code="c">Jane Austen ; edited by Robert Morrison.</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">Cambridge, Mass. :</subfield>
+    <subfield code="b">Belknap Press of Harvard University Press,</subfield>
+    <subfield code="c">c2011.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">xi, 341 p. :</subfield>
+    <subfield code="b">ill. (chiefly col.), col. maps, ports. ;</subfield>
+    <subfield code="c">25 cm.</subfield>
+  </datafield>
+  <datafield tag="504" ind1=" " ind2=" ">
+    <subfield code="a">Includes bibliographical references ( p. [333]-334)</subfield>
+  </datafield>
+  <datafield tag="505" ind1="0" ind2=" ">
+    <subfield code="a">Note on the text -- Introduction -- Persuasion : an annotated edition.  Volume one (Chapters 1-12) ; Volume two (Chapters 1-12) -- Appendixes: The original ending of Persuasion ; &quot;Biographical notice of the author,&quot; / by Henry Austen ; Emendations and corrections to the 1818 text of Persuasion.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Young women</subfield>
+    <subfield code="z">England</subfield>
+    <subfield code="v">Fiction.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/subjects/sh2008124372</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Motherless families</subfield>
+    <subfield code="v">Fiction.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/subjects/sh9900597</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/subjects/sh85048050</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Rejection (Psychology)</subfield>
+    <subfield code="v">Fiction.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/subjects/sh85112479</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Ship captains</subfield>
+    <subfield code="v">Fiction.</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="0">
+    <subfield code="a">England</subfield>
+    <subfield code="x">Social life and customs</subfield>
+    <subfield code="y">19th century</subfield>
+    <subfield code="v">Fiction.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/subjects/sh2008114941</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Regency fiction.</subfield>
+    <subfield code="2">gsafd</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Love stories.</subfield>
+    <subfield code="2">gsafd</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Morrison, Robert,</subfield>
+    <subfield code="d">1961-</subfield>
+    <subfield code="0">http://viaf.org/viaf/54383065</subfield>
+  </datafield>
+  <datafield tag="938" ind1=" " ind2=" ">
+    <subfield code="a">Baker and Taylor</subfield>
+    <subfield code="b">BTCP</subfield>
+    <subfield code="n">BK0009710731</subfield>
+  </datafield>
+  <datafield tag="938" ind1=" " ind2=" ">
+    <subfield code="a">YBP Library Services</subfield>
+    <subfield code="b">YANK</subfield>
+    <subfield code="n">6948455</subfield>
+  </datafield>
+  <datafield tag="938" ind1=" " ind2=" ">
+    <subfield code="a">Coutts Information Services</subfield>
+    <subfield code="b">COUT</subfield>
+    <subfield code="n">17610134</subfield>
+  </datafield>
+  <datafield tag="938" ind1=" " ind2=" ">
+    <subfield code="a">Blackwell Book Service</subfield>
+    <subfield code="b">BBUS</subfield>
+    <subfield code="n">6948455</subfield>
+  </datafield>
+  <datafield tag="938" ind1=" " ind2=" ">
+    <subfield code="a">Brodart</subfield>
+    <subfield code="b">BROD</subfield>
+    <subfield code="n">13110675</subfield>
+    <subfield code="c">$35.00</subfield>
+  </datafield>
+  <datafield tag="949" ind1=" " ind2=" ">
+    <subfield code="b">32882020429281</subfield>
+  </datafield>
+  <datafield tag="981" ind1=" " ind2=" ">
+    <subfield code="a">Firm</subfield>
+    <subfield code="b">ENGLNOYES</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="b">29.05</subfield>
+    <subfield code="g">1</subfield>
+  </datafield>
+  <datafield tag="961" ind1=" " ind2=" ">
+    <subfield code="a">New title added</subfield>
+  </datafield>
+  <datafield tag="994" ind1=" " ind2=" ">
+    <subfield code="a">92</subfield>
+    <subfield code="b">DGW</subfield>
+  </datafield>
+</record>
+</collection>
