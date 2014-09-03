@@ -101,6 +101,10 @@ class base_transformer(object):
                         #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
                         if k.isdigit(): k = '_' + k
                         newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), v, {}))
+                #To avoid losing info include subfields which come via Versa attributes
+                for k, v in ctx.linkset[0][ATTRIBUTES].items():
+                    for valitems in v:
+                        newlinkset.append((I(objid), I(iri.absolutize('sf-' + k, ctx.base)), valitems, {}))
                 self._existing_ids.add(objid)
             return newlinkset
         return _materialize
@@ -234,7 +238,8 @@ def materialize(typ, unique=None, mr_properties=None):
                     newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), v, {}))
             #To avoid losing info include subfields which come via Versa attributes
             for k, v in ctx.linkset[0][ATTRIBUTES].items():
-                newlinkset.append((I(objid), I(iri.absolutize('sf-' + k, ctx.base)), v, {}))
+                for valitems in v:
+                    newlinkset.append((I(objid), I(iri.absolutize('sf-' + k, ctx.base)), valitems, {}))
             ctx.existing_ids.add(objid)
         return newlinkset
     return _materialize

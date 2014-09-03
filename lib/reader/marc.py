@@ -219,7 +219,8 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
                         lookup = '{0}-{1}{2}'.format(*((code,) + indicators))
                     for k, v in subfields.items():
                         lookup = '{0}${1}'.format(code, k)
-                        if lookup in TRANSFORMS: to_process.append((TRANSFORMS[lookup], v))
+                        for valitems in v:
+                            if lookup in TRANSFORMS: to_process.append((TRANSFORMS[lookup], valitems))
 
                     if code in TRANSFORMS: to_process.append((TRANSFORMS[code], ''))
                     #if code == '100':
