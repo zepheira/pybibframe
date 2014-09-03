@@ -113,7 +113,13 @@ def all_subfields(ctx):
     :param ctx: Versa context used in processing (e.g. includes the prototype link
     :return: Tuple of key/value tuples from the attributes; suitable for hashing
     '''
-    return sorted(list(ctx.linkset[0][ATTRIBUTES].items()))
+    #result = [ valitem for keys, values in ctx.linkset[0][ATTRIBUTES].items() for valitem in values ]
+    #print(result)
+    #for valitem in ctx.linkset[0][ATTRIBUTES].items():
+    #    result.extend(valitem)
+        #sorted(functools.reduce(lambda a, b: a.extend(b), ))
+    #ctx.logger('GRIPPO' + repr(sorted(functools.reduce(lambda a, b: a.extend(b), ctx.linkset[0][ATTRIBUTES].items()))))
+    return sorted(ctx.linkset[0][ATTRIBUTES].items())
 
 
 def subfield(key):
@@ -130,7 +136,7 @@ def subfield(key):
         :param ctx: Versa context used in processing (e.g. includes the prototype link
         :return: Tuple of key/value tuples from the attributes; suitable for hashing
         '''
-        return ctx.linkset[0][ATTRIBUTES].get(key)
+        return ctx.linkset[0][ATTRIBUTES].get(key, [None])[0]
     return _subfield
 
 

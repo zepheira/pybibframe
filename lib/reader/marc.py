@@ -102,7 +102,7 @@ def isbn_instancegen(params):
         instance_ids.append(instanceid)
 
     for instanceid in instance_ids:
-        model.add(I(workid), I(iri.absolutize('hasInstance', vocabbase)), instanceid)
+        model.add(instanceid, I(iri.absolutize('instantiates', vocabbase)), I(workid))
         model.add(I(instanceid), TYPE_REL, I(iri.absolutize('Instance', vocabbase)))
 
     return instance_ids
@@ -126,12 +126,13 @@ def marc_lookup(rec, fieldspecs):
         if row[0] == DATAFIELD:
             rowtype, code, xmlattrs, subfields = row
             if code in lookup_helper:
-                result.append(subfields.get(lookup_helper[code], ''))
+                result.extend(subfields.get(lookup_helper[code], ''))
     return result
 
 
 RECORD_HASH_KEY_FIELDS = [
     '130$a', '240$a', '240$b', '240$c', '240$h', '245$a', '246$a', '246$i', '830$a', #Title info
+    #'130$a', '240$a', '240$b', '240$c', '240$h', '245$a', '246$a', '246$i', '250$a', '250$b', '830$a', #Title info
     '100$a', '100$d', '100$q', '110$a', '110$c', '110$d', '111$a', '110$c', '110$d', #Creator info
     '700$a', '700$d', '710$a', '710$b', '710$d', #Contributor info
     '600$a', '610$a', '611$a', '650$a', '650$x', '651$a', '615$a', '690$a' #Subject info
@@ -160,7 +161,7 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
     existing_ids = set()
     initialize(hashidgen=ids, existing_ids=existing_ids)
     #Start the process of writing out the JSON representation of the resulting Versa
-    out.write('[')
+    if out: out.write('[')
     first_record = True
     try:
         while True:
@@ -239,7 +240,8 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
                         for k, v in subfields.items():
                             fallback_rel = fallback_rel_base + k
                             #params['transforms'].append((code, fallback_rel))
-                            relsink.add(I(workid), I(iri.absolutize(fallback_rel, vocabbase)), v)
+                            for valitem in v:
+                                relsink.add(I(workid), I(iri.absolutize(fallback_rel, vocabbase)), valitem)
 
                 params['code'] = code
 
@@ -274,18 +276,20 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
                 #yield from asyncio.async(asyncio.sleep(0.01))
                 #yield from asyncio.sleep(0.01) #Basically yield to next task
 
-            if not first_record: out.write(',\n')
-            first_record = False
-            last_chunk = None
-            #Using iterencode avoids building a big JSON string in memory, or having to resort to file pointer seeking
-            #Then again builds a big list in memory, so still working on opt here
-            for chunk in json.JSONEncoder().iterencode([ link for link in relsink ]):
-                if last_chunk is None:
-                    last_chunk = chunk[1:]
-                else:
-                    out.write(last_chunk)
-                    last_chunk = chunk
-            if last_chunk: out.write(last_chunk[:-1])
+            #Can we somehow move this to passed-in postprocessing?
+            if out and not first_record: out.write(',\n')
+            if out:
+                first_record = False
+                last_chunk = None
+                #Using iterencode avoids building a big JSON string in memory, or having to resort to file pointer seeking
+                #Then again builds a big list in memory, so still working on opt here
+                for chunk in json.JSONEncoder().iterencode([ link for link in relsink ]):
+                    if last_chunk is None:
+                        last_chunk = chunk[1:]
+                    else:
+                        out.write(last_chunk)
+                        last_chunk = chunk
+                if last_chunk: out.write(last_chunk[:-1])
             #FIXME: Postprocessing should probably be a task too
             if postprocess: postprocess(rec)
             #limiting--running count of records processed versus the max number, if any
@@ -294,7 +298,7 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
                 break
     except GeneratorExit:
         logger.debug('Completed processing {0} record{1}.'.format(limiting[0], '' if limiting[0] == 1 else 's'))
-        out.write(']')
+        if out: out.write(']')
 
         #if not plugins: loop.stop()
         for plugin in plugins:

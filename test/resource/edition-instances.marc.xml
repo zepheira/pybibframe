@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <marc:record>
+    <marc:leader>01489cam a22004694a 4500</marc:leader>
+    <marc:controlfield tag="001">1160659</marc:controlfield>
+    <marc:controlfield tag="005">20061021052348.0</marc:controlfield>
+    <marc:controlfield tag="008">020422s2002    ilua     b    000 0 eng  </marc:controlfield>
+    <marc:datafield tag="010" ind1=" " ind2=" ">
+      <marc:subfield code="a">  2002068569</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="020" ind1=" " ind2=" ">
+      <marc:subfield code="a">9781567931907 (alk. paper)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="020" ind1=" " ind2=" ">
+      <marc:subfield code="a">1567931901 (alk. paper)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="9">101160659</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">DLC</marc:subfield>
+      <marc:subfield code="c">DLC</marc:subfield>
+      <marc:subfield code="d">C#P</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="041" ind1="0" ind2="9">
+      <marc:subfield code="a">eng</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="042" ind1=" " ind2=" ">
+      <marc:subfield code="a">pcc</marc:subfield>
+      <marc:subfield code="a">nlmcopyc</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="044" ind1=" " ind2=" ">
+      <marc:subfield code="9">United States</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="049" ind1=" " ind2=" ">
+      <marc:subfield code="a">NLMM</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="050" ind1="0" ind2="0">
+      <marc:subfield code="a">R727</marc:subfield>
+      <marc:subfield code="b">.F684 2002</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="060" ind1="0" ind2="0">
+      <marc:subfield code="a">2002 N-448</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="060" ind1="1" ind2="0">
+      <marc:subfield code="a">W 84.1</marc:subfield>
+      <marc:subfield code="b">F761a 2002</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="082" ind1="0" ind2="0">
+      <marc:subfield code="a">362.1/068</marc:subfield>
+      <marc:subfield code="2">21</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="a">Fottler, Myron D.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="a">Achieving service excellence :</marc:subfield>
+      <marc:subfield code="b">strategies for healthcare /</marc:subfield>
+      <marc:subfield code="c">Myron D. Fottler, Robert C. Ford, Cherrill P. Heaton.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">Chicago :</marc:subfield>
+      <marc:subfield code="b">Health Administration Press,</marc:subfield>
+      <marc:subfield code="c">c2002.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">xxiv, 422 p. :</marc:subfield>
+      <marc:subfield code="b">ill. ;</marc:subfield>
+      <marc:subfield code="c">23 cm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="490" ind1="1" ind2=" ">
+      <marc:subfield code="a">ACHE management series</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="504" ind1=" " ind2=" ">
+      <marc:subfield code="a">Includes bibliographical references.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1="1" ind2="2">
+      <marc:subfield code="a">Quality Assurance, Health Care</marc:subfield>
+      <marc:subfield code="x">methods</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1="1" ind2="2">
+      <marc:subfield code="a">Health Services Administration</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1="2" ind2="2">
+      <marc:subfield code="a">Patient Satisfaction</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1="2" ind2="2">
+      <marc:subfield code="a">Clinical Competence</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1="2" ind2="2">
+      <marc:subfield code="a">Primary Health Care</marc:subfield>
+      <marc:subfield code="x">methods</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1="2" ind2="2">
+      <marc:subfield code="a">Efficiency, Organizational</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Ford, Robert C.</marc:subfield>
+      <marc:subfield code="q">(Robert Clayton),</marc:subfield>
+      <marc:subfield code="d">1945-</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Heaton, Cherrill P.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="830" ind1=" " ind2="0">
+      <marc:subfield code="a">Management series (Ann Arbor, Mich.)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="986" ind1=" " ind2=" ">
+      <marc:subfield code="a">PQT20021129</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="992" ind1=" " ind2=" ">
+      <marc:subfield code="p">P3</marc:subfield>
+      <marc:subfield code="e">E4</marc:subfield>
+      <marc:subfield code="a">20021129</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="993" ind1=" " ind2=" ">
+      <marc:subfield code="a">KEC</marc:subfield>
+      <marc:subfield code="b">20021212</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="994" ind1=" " ind2=" ">
+      <marc:subfield code="a">CDN</marc:subfield>
+      <marc:subfield code="b">20030108</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="995" ind1=" " ind2=" ">
+      <marc:subfield code="a">AUTH</marc:subfield>
+      <marc:subfield code="b">20030204</marc:subfield>
+      <marc:subfield code="c">REV</marc:subfield>
+      <marc:subfield code="d">20061020</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="999" ind1=" " ind2=" ">
+      <marc:subfield code="a">AUTH</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+  <marc:record>
+    <marc:leader>01486cam a2200469 a 4500</marc:leader>
+    <marc:controlfield tag="001">1532384</marc:controlfield>
+    <marc:controlfield tag="005">20100716105236.0</marc:controlfield>
+    <marc:controlfield tag="008">091005s2010    ilua     b    001 0 eng  </marc:controlfield>
+    <marc:datafield tag="010" ind1=" " ind2=" ">
+      <marc:subfield code="a">  2009037788</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="9">101532384</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">DLC</marc:subfield>
+      <marc:subfield code="c">DLC</marc:subfield>
+      <marc:subfield code="d">YDX</marc:subfield>
+      <marc:subfield code="d">YDXCP</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="041" ind1="0" ind2="9">
+      <marc:subfield code="a">eng</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="042" ind1=" " ind2=" ">
+      <marc:subfield code="a">nlmcopyc</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="044" ind1=" " ind2=" ">
+      <marc:subfield code="9">United States</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="020" ind1=" " ind2=" ">
+      <marc:subfield code="a">9781567933277 (alk. paper)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="020" ind1=" " ind2=" ">
+      <marc:subfield code="a">1567933270 (alk. paper)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="050" ind1="0" ind2="0">
+      <marc:subfield code="a">R727</marc:subfield>
+      <marc:subfield code="b">.F684 2010</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="082" ind1="0" ind2="0">
+      <marc:subfield code="a">362.1068</marc:subfield>
+      <marc:subfield code="2">22</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="060" ind1="0" ind2="0">
+      <marc:subfield code="a">2010 F-449</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="060" ind1="1" ind2="0">
+      <marc:subfield code="a">W 84.1</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="a">Fottler, Myron D.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="a">Achieving service excellence :</marc:subfield>
+      <marc:subfield code="b">strategies for healthcare /</marc:subfield>
+      <marc:subfield code="c">Myron D. Fottler, Robert C. Ford, Cherrill P. Heaton.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="250" ind1=" " ind2=" ">
+      <marc:subfield code="a">2nd ed.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">Chicago :</marc:subfield>
+      <marc:subfield code="b">Health Administration Press,</marc:subfield>
+      <marc:subfield code="c">c2010.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">xv, 440 p. :</marc:subfield>
+      <marc:subfield code="b">ill. ;</marc:subfield>
+      <marc:subfield code="c">26 cm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="490" ind1="1" ind2=" ">
+      <marc:subfield code="a">ACHE management series</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="504" ind1=" " ind2=" ">
+      <marc:subfield code="a">Includes bibliographical references (p. 411-429) and index.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1="1" ind2="2">
+      <marc:subfield code="a">Quality Assurance, Health Care</marc:subfield>
+      <marc:subfield code="x">methods</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1="1" ind2="2">
+      <marc:subfield code="a">Health Services Administration</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1="2" ind2="2">
+      <marc:subfield code="a">Patient Satisfaction</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1="2" ind2="2">
+      <marc:subfield code="a">Clinical Competence</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1="2" ind2="2">
+      <marc:subfield code="a">Primary Health Care</marc:subfield>
+      <marc:subfield code="x">methods</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1="2" ind2="2">
+      <marc:subfield code="a">Efficiency, Organizational</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Ford, Robert C.</marc:subfield>
+      <marc:subfield code="q">(Robert Clayton),</marc:subfield>
+      <marc:subfield code="d">1945-</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Heaton, Cherrill P.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="830" ind1=" " ind2="0">
+      <marc:subfield code="a">Management series (Ann Arbor, Mich.)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="986" ind1=" " ind2=" ">
+      <marc:subfield code="a">lg20100603</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="992" ind1=" " ind2=" ">
+      <marc:subfield code="p">P3</marc:subfield>
+      <marc:subfield code="e">EF</marc:subfield>
+      <marc:subfield code="a">20100603</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="993" ind1=" " ind2=" ">
+      <marc:subfield code="a">TXT</marc:subfield>
+      <marc:subfield code="b">20100708</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="994" ind1=" " ind2=" ">
+      <marc:subfield code="a">CDN</marc:subfield>
+      <marc:subfield code="b">20100715</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="995" ind1=" " ind2=" ">
+      <marc:subfield code="a">AUTH</marc:subfield>
+      <marc:subfield code="b">20100715</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="999" ind1=" " ind2=" ">
+      <marc:subfield code="a">AUTH</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+</marc:collection>

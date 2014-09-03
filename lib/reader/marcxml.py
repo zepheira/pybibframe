@@ -8,6 +8,7 @@ https://docs.python.org/3/library/xml.html#xml-vulnerabilities
 import asyncio
 import collections
 import logging
+from collections import defaultdict
 
 from xml import sax
 #from xml.sax.handler import ContentHandler
@@ -82,8 +83,12 @@ class marcxmlhandler(sax.ContentHandler):
                     #FIXME would be nice to throw some sort of signal to stop parse. Or...we can wait until we've evolved beyond SAX to enhance the event architecture
                     pass
             elif local == u'datafield':
-                #Convert list of pairs to disct
-                self._record[-1][3] = dict(( (sf[0], sf[1]) for sf in self._record[-1][3] ))
+                #Convert list of pairs of subfield codes/values to dict of lists (since there can be multiple of each subfields)
+                sfdict = defaultdict(list)
+                [ sfdict[sf[0]].append(sf[1]) for sf in self._record[-1][3] ]
+                #{ sfdict[sf[0]].append(sf[1]) for sf in self._record[-1][3] }
+                self._record[-1][3] = sfdict
+
                 self._getcontent = False
             elif local in (u'leader', u'controlfield', u'subfield'):
                 self._getcontent = False
@@ -94,7 +99,7 @@ class marcxmlhandler(sax.ContentHandler):
 
 #PYTHONASYNCIODEBUG = 1
 
-def bfconvert(inputs, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, config=None, verbose=False, logger=logging):
+def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=None, rdfxml=None, config=None, verbose=False, logger=logging):
     '''
     inputs - List of MARC/XML files to be parsed and converted to BIBFRAME RDF (Note: want to allow singular input strings)
     out - file where raw Versa JSON dump output should be written (default: write to stdout)
@@ -118,22 +123,22 @@ def bfconvert(inputs, base=None, out=None, limit=None, rdfttl=None, rdfxml=None,
         except ValueError:
             logger.debug('Limit must be a number, not "{0}". Ignoring.'.format(limit))
 
-    ids = marc.idgen(base)
-    m = memory.connection()
+    ids = marc.idgen(entbase)
+    if not model: model = memory.connection()
     g = rdflib.Graph()
     g.bind('bf', BFNS)
     g.bind('bfc', BFCNS)
     g.bind('bfd', BFDNS)
     g.bind('v', VNS)
-    if base:
-        g.bind('ent', base)
+    if entbase:
+        g.bind('ent', entbase)
 
     extant_resources = None
     #extant_resources = set()
     def postprocess(rec):
         #No need to bother with Versa -> RDF translation if we were not asked to generate Turtle
-        if any((rdfttl, rdfxml)): rdf.process(m, g, to_ignore=extant_resources, logger=logger)
-        m.create_space()
+        if any((rdfttl, rdfxml)): rdf.process(model, g, to_ignore=extant_resources, logger=logger)
+        model.create_space()
 
     #Set up event loop
     loop = asyncio.get_event_loop()
@@ -156,7 +161,7 @@ def bfconvert(inputs, base=None, out=None, limit=None, rdfttl=None, rdfxml=None,
     #logger=logger,
     
     for inf in inputs:
-        sink = marc.record_handler(loop, m, entbase=base, vocabbase=vb, limiting=limiting, plugins=plugins, ids=ids, postprocess=postprocess, out=out, logger=logger)
+        sink = marc.record_handler(loop, model, entbase=entbase, vocabbase=vb, limiting=limiting, plugins=plugins, ids=ids, postprocess=postprocess, out=out, logger=logger)
         parser = sax.make_parser()
         #parser.setContentHandler(marcxmlhandler(receive_recs()))
         parser.setContentHandler(marcxmlhandler(sink))
