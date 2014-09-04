@@ -68,15 +68,15 @@ TRANSFORMS = {
     '210$a': oninstance.rename(rel='abbreviatedTitle'),
     '222$a': oninstance.rename(rel='keyTitle'),
 
-    '240$a': onwork.materialize('Collection', 
-                                'uniformMemberOf', 
-                                unique=all_subfields, 
-                                mr_properties={'name': subfield('a'), 'legalDate': subfield('d'), 'medium': subfield('h'), 'musicMedium': subfield('m'), 'musicKey': subfield('r')}),
-
-    '243$a': onwork.materialize('Collection', 
-                                'uniformMemberOf', 
-                                unique=all_subfields, 
-                                mr_properties={'name': subfield('a')}),
+    '240': onwork.materialize('Collection', 
+                              'memberOf', 
+                              unique=values(subfield('a'), subfield('h'), subfield('k'), subfield('l'), subfield('m'), subfield('s')), 
+                              mr_properties={'title': subfield('a'), 'legalDate': subfield('d'), 'medium': subfield('h'), 'musicMedium': subfield('m'), 'musicKey': subfield('r')}),
+    
+    '243': onwork.materialize('Collection', 
+                              'memberOf', 
+                              unique=values(subfield('a'), subfield('h'), subfield('k'), subfield('l'), subfield('m'), subfield('s')), 
+                              mr_properties={'title': subfield('a'), 'legalDate': subfield('d'), 'medium': subfield('h'), 'musicMedium': subfield('m'), 'musicKey': subfield('r')}),
 
     '245$a': onwork.rename(rel='title'),
     '245$b': onwork.rename(rel='subtitle'),
@@ -297,8 +297,10 @@ TRANSFORMS = {
                               unique=values(subfield('a'), subfield('c'), subfield('d'), subfield('e'), subfield('q'), subfield('u')), 
                               mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
-    '730': onwork.materialize('Collection', 'uniformMemberOf', unique=all_subfields, mr_properties={'name': subfield('a')}),
-    '830': onwork.materialize('Collection', 'uniformMemberOf', unique=all_subfields, mr_properties={'title': subfield('a')}),
+    '830': onwork.materialize('Series', 
+                              'memberOf', 
+                              unique=values(subfield('a')), 
+                              mr_properties={'title': subfield('a'), 'subtitle': subfield('k'), 'volume': subfield('v'), 'number': subfield('n'), 'part': subfield('p'), }),
 
     #HeldItem is a refinement of Annotation
     '852': oninstance.materialize('HeldItem', 'institution', unique=all_subfields, mr_properties={'holderType': 'Library', 'location': subfield('a'), 'subLocation': subfield('b'), 'callNumber': subfield('h'), 'code': subfield('n'), 'link': subfield('u'), 'streetAddress': subfield('e')}),
