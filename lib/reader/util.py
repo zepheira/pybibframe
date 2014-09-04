@@ -95,12 +95,20 @@ class base_transformer(object):
                     newctx = ctx.copy(origin=I(objid), rel=k)
                     #newctx = ctx.copy(origin=I(objid), rel=rels[0], linkset=[(I(objid), I(iri.absolutize(_rel, ctx.base)), None, {})])
                     v = v(newctx) if callable(v) else v
-                    if isinstance(v, list):
+                    #Pipeline functions can return lists of replacement statements or lists of scalar values
+                    #Or of course a single scalar value or None
+                    if isinstance(v, list) and isinstance(v[0], tuple):
+                        #It's a list of replacement statements
                         newlinkset.extend(v)
+                    #If k or v come from pipeline functions as None it signals to skip generating anything for this subfield
                     elif k and v is not None:
                         #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
                         if k.isdigit(): k = '_' + k
-                        newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), v, {}))
+                        if isinstance(v, list):
+                            for valitems in v:
+                                newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), valitems, {}))
+                        else:
+                            newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), v, {}))
                 #To avoid losing info include subfields which come via Versa attributes
                 for k, v in ctx.linkset[0][ATTRIBUTES].items():
                     for valitems in v:
@@ -140,7 +148,7 @@ def subfield(key):
         :param ctx: Versa context used in processing (e.g. includes the prototype link
         :return: Tuple of key/value tuples from the attributes; suitable for hashing
         '''
-        return ctx.linkset[0][ATTRIBUTES].get(key, [None])[0]
+        return ctx.linkset[0][ATTRIBUTES].get(key, [None])
     return _subfield
 
 
@@ -177,7 +185,9 @@ def normalizeparse(text_in):
         :param ctx: Versa context used in processing (e.g. includes the prototype link
         :return: Tuple of key/value tuples from the attributes; suitable for hashing
         '''
+        #If we get a list arg, take the first
         _text_in = text_in(ctx) if callable(text_in) else text_in
+        if isinstance(_text_in, list): _text_in = _text_in[0]
         return slugify(_text_in, False) if _text_in else ''
     return _normalizeparse
 
@@ -230,12 +240,20 @@ def materialize(typ, unique=None, mr_properties=None):
                 newctx = ctx.copy(origin=I(objid), rel=k)
                 #newctx = ctx.copy(origin=I(objid), rel=rels[0], linkset=[(I(objid), I(iri.absolutize(rel, ctx.base)), None, {})])
                 v = v(newctx) if callable(v) else v
-                if isinstance(v, list):
+                #Pipeline functions can return lists of replacement statements or lists of scalar values
+                #Or of course a single scalar value or None
+                if isinstance(v, list) and isinstance(v[0], tuple):
+                    #It's a list of replacement statements
                     newlinkset.extend(v)
+                #If k or v come from pipeline functions as None it signals to skip generating anything for this subfield
                 elif k and v is not None:
                     #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
                     if k.isdigit(): k = '_' + k
-                    newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), v, {}))
+                    if isinstance(v, list):
+                        for valitems in v:
+                            newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), valitems, {}))
+                    else:
+                        newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), v, {}))
             #To avoid losing info include subfields which come via Versa attributes
             for k, v in ctx.linkset[0][ATTRIBUTES].items():
                 for valitems in v:
