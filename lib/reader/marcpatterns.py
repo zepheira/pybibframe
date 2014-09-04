@@ -71,12 +71,12 @@ TRANSFORMS = {
     '240': onwork.materialize('Collection', 
                               'memberOf', 
                               unique=values(subfield('a'), subfield('h'), subfield('k'), subfield('l'), subfield('m'), subfield('s')), 
-                              mr_properties={'name': subfield('a'), 'legalDate': subfield('d'), 'medium': subfield('h'), 'musicMedium': subfield('m'), 'musicKey': subfield('r')}),
+                              mr_properties={'title': subfield('a'), 'legalDate': subfield('d'), 'medium': subfield('h'), 'musicMedium': subfield('m'), 'musicKey': subfield('r')}),
     
     '243': onwork.materialize('Collection', 
                               'memberOf', 
                               unique=values(subfield('a'), subfield('h'), subfield('k'), subfield('l'), subfield('m'), subfield('s')), 
-                              mr_properties={'name': subfield('a'), 'legalDate': subfield('d'), 'medium': subfield('h'), 'musicMedium': subfield('m'), 'musicKey': subfield('r')}),
+                              mr_properties={'title': subfield('a'), 'legalDate': subfield('d'), 'medium': subfield('h'), 'musicMedium': subfield('m'), 'musicKey': subfield('r')}),
 
     '245$a': onwork.rename(rel='title'),
     '245$b': onwork.rename(rel='subtitle'),
