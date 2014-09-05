@@ -24,7 +24,11 @@ The Versa representation is the primary format for ongoing, pipeline processing.
 
 If you want an RDF/Turtle representation of this file you can do:
 
-    marc2bf -o resources.versa.json -r resources.ttl records.mrx
+    marc2bf -o resources.versa.json --rdfttl resources.ttl records.mrx
+    
+If you want an RDF/XML representation of this file you can do:
+
+    marc2bf -o resources.versa.json --rdfxml resources.rdf records.mrx
 
 You can get the source from standard input:
 
