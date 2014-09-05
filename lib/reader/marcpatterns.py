@@ -171,6 +171,26 @@ TRANSFORMS = {
     '351$c': oninstance.rename(rel='hierarchy'),
     '351$3': oninstance.rename(rel='materialsSpec'),
 
+# let's make some music! 
+
+    '382$a': onwork.materialize('Medium', 
+                                'performanceMedium', 
+                                unique=values(subfield('a')), 
+                                mr_properties={'name': subfield('a')},
+
+    '382$b': onwork.materialize('Medium', 
+                                'featuredMedium', 
+                                unique=values(subfield('b')), 
+                                mr_properties={'name': subfield('b')},
+
+    '382$p': onwork.materialize('Medium', 
+                                'alternativeMedium', 
+                                unique=values(subfield('f')), 
+                                mr_properties={'name': subfield('f')},
+
+    '382$n': onwork.rename(rel='numberOfPerformers'),
+    '382$v': onwork.rename(rel='mediumNote'),
+
     '490$a': onwork.rename(rel='seriesStatement'),
     '490$v': onwork.rename(rel='seriesVolume'),
 
