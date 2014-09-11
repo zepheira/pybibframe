@@ -111,7 +111,8 @@ class base_transformer(object):
                         if k.isdigit(): k = '_' + k
                         if isinstance(v, list):
                             for valitems in v:
-                                newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), valitems, {}))
+                                if valitems:
+                                    newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), valitems, {}))
                         else:
                             newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), v, {}))
                 #To avoid losing info include subfields which come via Versa attributes
@@ -256,7 +257,8 @@ def materialize(typ, unique=None, mr_properties=None):
                     if k.isdigit(): k = '_' + k
                     if isinstance(v, list):
                         for valitems in v:
-                            newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), valitems, {}))
+                            if valitems:
+                                newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), valitems, {}))
                     else:
                         newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), v, {}))
             #To avoid losing info include subfields which come via Versa attributes
