@@ -326,6 +326,6 @@ TRANSFORMS = {
     '852': oninstance.materialize('HeldItem', 'institution', unique=all_subfields, mr_properties={'holderType': 'Library', 'location': subfield('a'), 'subLocation': subfield('b'), 'callNumber': subfield('h'), 'code': subfield('n'), 'link': subfield('u'), 'streetAddress': subfield('e')}),
 
     '880$a': onwork.rename(rel='title'),
-    '856$u': oninstance.rename(rel='link'),
+    '856$u': oninstance.rename(rel='link', res=True),
 }
 
