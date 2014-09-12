@@ -188,7 +188,7 @@ TRANSFORMS = {
                                 unique=values(subfield('f')), 
                                 mr_properties={'name': subfield('f')}),
 
-    '382$n': onwork.rename(rel='numberOfPerformers'),
+    '382$s': onwork.rename(rel='numberOfPerformers'),
     '382$v': onwork.rename(rel='mediumNote'),
 
     '490$a': onwork.rename(rel='seriesStatement'),
@@ -327,5 +327,23 @@ TRANSFORMS = {
 
     '880$a': onwork.rename(rel='title'),
     '856$u': oninstance.rename(rel='link', res=True),
+
+
+
+    # RBMS partial profile (flesh this out and separate into a specialized marcpatterns.py file)
+
+    '790': oninstance.materialize('Person', 
+                              values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
+                              unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
+                              mr_properties={'name': subfield('a'), 'numeration': subfield('b'), 'titles': subfield('c'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+    
+    '793': onwork.materialize('Collection', 
+                              'memberOf', 
+                              unique=values(subfield('a'), subfield('h'), subfield('k'), subfield('l'), subfield('m'), subfield('s')), 
+                              mr_properties={'title': subfield('a'), 'legalDate': subfield('d'), 'medium': subfield('h'), 'musicMedium': subfield('m'), 'musicKey': subfield('r')}),
+
+    '590$a': oninstance.rename(rel='note'),
+
+
 }
 
