@@ -58,7 +58,7 @@ TRANSFORMS = {
     '110': onwork.materialize('Organization', 
                               values('creator', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
-                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+                              mr_properties={'name': subfield('a'), 'subordinateUnit': subfield('b'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
     '111': onwork.materialize('Meeting', 
                               values('creator', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
@@ -166,7 +166,7 @@ TRANSFORMS = {
     '340$c': oninstance.rename(rel='materialsApplied'),
     '340$d': oninstance.rename(rel='recordingTechnique'),
     '340$e': oninstance.rename(rel='physicalSupport'),
-    '351$a': oninstance.rename(rel='orgazationMethod'),
+    '351$a': oninstance.rename(rel='organizationMethod'),
     '351$b': oninstance.rename(rel='arrangement'),
     '351$c': oninstance.rename(rel='hierarchy'),
     '351$3': oninstance.rename(rel='materialsSpec'),
@@ -270,12 +270,12 @@ TRANSFORMS = {
     '610': onwork.materialize('Organization', 
                               'subject', 
                               unique=all_subfields, 
-                              mr_properties={'name': subfield('a'), 'subordinateUnit': subfield('b'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+                              mr_properties={'name': subfield('a'), 'subordinateUnit': subfield('b'), 'locationOfEvent': subfield('c'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z'), 'hasAuthorityLink': subfield('0')}),
 
     '611': onwork.materialize('Meeting', 
                               'subject', 
                               unique=all_subfields, 
-                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+                              mr_properties={'name': subfield('a'), 'locationOfEvent': subfield('c'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z'), 'hasAuthorityLink': subfield('0')}),
 
     #'610$d': onwork.rename(rel='date'),  #Note: there has been discussion about removing this, but we are not sure we get reliable ID.LOC lookups without it.  If it is removed, update augment.py
 
@@ -310,7 +310,7 @@ TRANSFORMS = {
     '710': onwork.materialize('Organization', 
                               values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
-                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+                              mr_properties={'name': subfield('a'), 'subordinateUnit': subfield('b'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
     '711': onwork.materialize('Meeting', 
                               values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
