@@ -265,12 +265,12 @@ TRANSFORMS = {
     '600': onwork.materialize('Person', 
                               'subject', 
                               unique=all_subfields,
-                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+                              mr_properties={'name': subfield('a'), 'numeration': subfield('b'), 'locationOfEvent': subfield('c'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z'), 'hasAuthorityLink': subfield('0')}),
 
     '610': onwork.materialize('Organization', 
                               'subject', 
                               unique=all_subfields, 
-                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+                              mr_properties={'name': subfield('a'), 'subordinateUnit': subfield('b'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
     '611': onwork.materialize('Meeting', 
                               'subject', 
@@ -329,7 +329,6 @@ TRANSFORMS = {
     '856$u': oninstance.rename(rel='link', res=True),
 
 
-
     # RBMS partial profile (flesh this out and separate into a specialized marcpatterns.py file)
 
     '790': oninstance.materialize('Person', 
@@ -343,7 +342,6 @@ TRANSFORMS = {
                               mr_properties={'title': subfield('a'), 'legalDate': subfield('d'), 'medium': subfield('h'), 'musicMedium': subfield('m'), 'musicKey': subfield('r')}),
 
     '590$a': oninstance.rename(rel='note'),
-
 
 }
 
