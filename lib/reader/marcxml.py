@@ -124,7 +124,7 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
             logger.debug('Limit must be a number, not "{0}". Ignoring.'.format(limit))
 
     ids = marc.idgen(entbase)
-    if not model: model = memory.connection()
+    if not model: model = memory.connection(logger=logger)
     g = rdflib.Graph()
     g.bind('bf', BFNS)
     g.bind('bfc', BFCNS)
