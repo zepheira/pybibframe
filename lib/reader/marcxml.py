@@ -48,22 +48,22 @@ class marcxmlhandler(sax.ContentHandler):
     def startElementNS(self, name, qname, attributes):
         (ns, local) = name
         if ns == MARCXML_NS:
-            #if local == u'collection':
+            #if local == 'collection':
             #    return
-            if local == u'record':
+            if local == 'record':
                 self._record = []
-            elif local == u'leader':
-                self._chardata_dest = [LEADER, u'']
+            elif local == 'leader':
+                self._chardata_dest = [LEADER, '']
                 self._record.append(self._chardata_dest)
                 self._getcontent = True
-            elif local == u'controlfield':
-                self._chardata_dest = [CONTROLFIELD, attributes[None, u'tag'].strip(), u'']
+            elif local == 'controlfield':
+                self._chardata_dest = [CONTROLFIELD, attributes[None, 'tag'].strip(), '']
                 self._record.append(self._chardata_dest)
                 self._getcontent = True
-            elif local == u'datafield':
-                self._record.append([DATAFIELD, attributes[None, u'tag'].strip(), dict((k[1], v.strip()) for (k, v) in attributes.items()), []])
-            elif local == u'subfield':
-                self._chardata_dest = [attributes[None, u'code'].strip(), u'']
+            elif local == 'datafield':
+                self._record.append([DATAFIELD, attributes[None, 'tag'].strip(), dict((k[1], v.strip()) for (k, v) in attributes.items()), []])
+            elif local == 'subfield':
+                self._chardata_dest = [attributes[None, 'code'].strip(), '']
                 self._record[-1][3].append(self._chardata_dest)
                 self._getcontent = True
         return
@@ -75,14 +75,14 @@ class marcxmlhandler(sax.ContentHandler):
     def endElementNS(self, name, qname):
         (ns, local) = name
         if ns == MARCXML_NS:
-            if local == u'record':
+            if local == 'record':
                 try:
                     self._sink.send(self._record)
                 except StopIteration:
                     #Handler coroutine has declined to process more records. Perhaps it's hit a limit
                     #FIXME would be nice to throw some sort of signal to stop parse. Or...we can wait until we've evolved beyond SAX to enhance the event architecture
                     pass
-            elif local == u'datafield':
+            elif local == 'datafield':
                 #Convert list of pairs of subfield codes/values to dict of lists (since there can be multiple of each subfields)
                 sfdict = defaultdict(list)
                 [ sfdict[sf[0]].append(sf[1]) for sf in self._record[-1][3] ]
@@ -90,7 +90,7 @@ class marcxmlhandler(sax.ContentHandler):
                 self._record[-1][3] = sfdict
 
                 self._getcontent = False
-            elif local in (u'leader', u'controlfield', u'subfield'):
+            elif local in ('leader', 'controlfield', 'subfield'):
                 self._getcontent = False
         return
 
@@ -145,17 +145,17 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
 
     #Allow configuration of a separate base URI for vocab items (classes & properties)
     #XXX: Is this the best way to do this, or rather via a post-processing plug-in
-    vb = config.get(u'vocab-base-uri', BFZ)
+    vb = config.get('vocab-base-uri', BFZ)
 
     #Initialize auxiliary services (i.e. plugins)
     plugins = []
-    for pc in config.get(u'plugins', []):
+    for pc in config.get('plugins', []):
         try:
-            pinfo = g_services[pc[u'id']]
+            pinfo = g_services[pc['id']]
             plugins.append(pinfo)
             pinfo[BF_INIT_TASK](pinfo, config=pc)
         except KeyError:
-            raise Exception(u'Unknown plugin {0}'.format(pc[u'id']))
+            raise Exception('Unknown plugin {0}'.format(pc['id']))
 
     limiting = [0, limit]
     #logger=logger,
