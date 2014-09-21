@@ -58,7 +58,7 @@ TRANSFORMS = {
     '110': onwork.materialize('Organization', 
                               values('creator', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
-                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+                              mr_properties={'name': subfield('a'), 'subordinateUnit': subfield('b'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
     '111': onwork.materialize('Meeting', 
                               values('creator', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
@@ -166,7 +166,7 @@ TRANSFORMS = {
     '340$c': oninstance.rename(rel='materialsApplied'),
     '340$d': oninstance.rename(rel='recordingTechnique'),
     '340$e': oninstance.rename(rel='physicalSupport'),
-    '351$a': oninstance.rename(rel='orgazationMethod'),
+    '351$a': oninstance.rename(rel='organizationMethod'),
     '351$b': oninstance.rename(rel='arrangement'),
     '351$c': oninstance.rename(rel='hierarchy'),
     '351$3': oninstance.rename(rel='materialsSpec'),
@@ -188,7 +188,7 @@ TRANSFORMS = {
                                 unique=values(subfield('f')), 
                                 mr_properties={'name': subfield('f')}),
 
-    '382$n': onwork.rename(rel='numberOfPerformers'),
+    '382$s': onwork.rename(rel='numberOfPerformers'),
     '382$v': onwork.rename(rel='mediumNote'),
 
     '490$a': onwork.rename(rel='seriesStatement'),
@@ -265,17 +265,17 @@ TRANSFORMS = {
     '600': onwork.materialize('Person', 
                               'subject', 
                               unique=all_subfields,
-                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+                              mr_properties={'name': subfield('a'), 'numeration': subfield('b'), 'locationOfEvent': subfield('c'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z'), 'hasAuthorityLink': subfield('0')}),
 
     '610': onwork.materialize('Organization', 
                               'subject', 
                               unique=all_subfields, 
-                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+                              mr_properties={'name': subfield('a'), 'subordinateUnit': subfield('b'), 'locationOfEvent': subfield('c'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z'), 'hasAuthorityLink': subfield('0')}),
 
     '611': onwork.materialize('Meeting', 
                               'subject', 
                               unique=all_subfields, 
-                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+                              mr_properties={'name': subfield('a'), 'locationOfEvent': subfield('c'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z'), 'hasAuthorityLink': subfield('0')}),
 
     #'610$d': onwork.rename(rel='date'),  #Note: there has been discussion about removing this, but we are not sure we get reliable ID.LOC lookups without it.  If it is removed, update augment.py
 
@@ -310,7 +310,7 @@ TRANSFORMS = {
     '710': onwork.materialize('Organization', 
                               values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
-                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+                              mr_properties={'name': subfield('a'), 'subordinateUnit': subfield('b'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
     '711': onwork.materialize('Meeting', 
                               values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
@@ -326,6 +326,22 @@ TRANSFORMS = {
     '852': oninstance.materialize('HeldItem', 'institution', unique=all_subfields, mr_properties={'holderType': 'Library', 'location': subfield('a'), 'subLocation': subfield('b'), 'callNumber': subfield('h'), 'code': subfield('n'), 'link': subfield('u'), 'streetAddress': subfield('e')}),
 
     '880$a': onwork.rename(rel='title'),
-    '856$u': oninstance.rename(rel='link'),
+    '856$u': oninstance.rename(rel='link', res=True),
+
+
+    # RBMS partial profile (flesh this out and separate into a specialized marcpatterns.py file)
+
+    '790': oninstance.materialize('Person', 
+                              values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
+                              unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
+                              mr_properties={'name': subfield('a'), 'numeration': subfield('b'), 'titles': subfield('c'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+    
+    '793': onwork.materialize('Collection', 
+                              'memberOf', 
+                              unique=values(subfield('a'), subfield('h'), subfield('k'), subfield('l'), subfield('m'), subfield('s')), 
+                              mr_properties={'title': subfield('a'), 'legalDate': subfield('d'), 'medium': subfield('h'), 'musicMedium': subfield('m'), 'musicKey': subfield('r')}),
+
+    '590$a': oninstance.rename(rel='note'),
+
 }
 

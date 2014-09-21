@@ -52,7 +52,7 @@ class base_transformer(object):
 
     #Functions that take a prototype link set and generate a transformed link set
 
-    def rename(self, rel=None):
+    def rename(self, rel=None, res=False):
         '''
         Update the label of the relationship to be added to the link space
         '''
@@ -61,6 +61,11 @@ class base_transformer(object):
             newlinkset = []
             #Just work with the first provided statement, for now
             (o, r, t, a) = ctx.linkset[0]
+            if res:
+                try:
+                    t = I(t)
+                except ValueError:
+                    return []
             newlinkset.append((I(new_o), I(iri.absolutize(rel, ctx.base)), t, {}))
             return newlinkset
         return _rename
@@ -106,7 +111,8 @@ class base_transformer(object):
                         if k.isdigit(): k = '_' + k
                         if isinstance(v, list):
                             for valitems in v:
-                                newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), valitems, {}))
+                                if valitems:
+                                    newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), valitems, {}))
                         else:
                             newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), v, {}))
                 #To avoid losing info include subfields which come via Versa attributes
@@ -251,7 +257,8 @@ def materialize(typ, unique=None, mr_properties=None):
                     if k.isdigit(): k = '_' + k
                     if isinstance(v, list):
                         for valitems in v:
-                            newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), valitems, {}))
+                            if valitems:
+                                newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), valitems, {}))
                     else:
                         newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), v, {}))
             #To avoid losing info include subfields which come via Versa attributes
@@ -261,6 +268,16 @@ def materialize(typ, unique=None, mr_properties=None):
             ctx.existing_ids.add(objid)
         return newlinkset
     return _materialize
+
+
+def res(arg):
+    '''
+    Convert the argument into an IRI ref
+    '''
+    def _res(ctx):
+        _arg = arg(ctx) if callable(arg) else arg
+        return I(arg)
+    return _res
 
 
 onwork = base_transformer(origin_class.work)
