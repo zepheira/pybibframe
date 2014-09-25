@@ -87,3 +87,4 @@ Download from http://ftp.indexdata.com/pub/yaz/ , unpack then do:
 $ ./configure --prefix=$HOME/.local
 $ make && make install
 
+[MarcEdit](http://marcedit.reeset.net/) can also convert to MARC/XML. Just install, select "MARC Tools" from the menu, choose your input file, specify an output file, and specify the conversion you need to perform, e.g. "MARC21->MARC21XML" for MARC to MARC/XML. Note the availability of the UTF-8 output option too.
