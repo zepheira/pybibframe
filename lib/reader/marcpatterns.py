@@ -78,7 +78,7 @@ TRANSFORMS = {
                               unique=values(subfield('a'), subfield('h'), subfield('k'), subfield('l'), subfield('m'), subfield('s')), 
                               mr_properties={'title': subfield('a'), 'legalDate': subfield('d'), 'medium': subfield('h'), 'musicMedium': subfield('m'), 'musicKey': subfield('r')}),
 
-    '245$a': onwork.rename(rel='title'),
+    '245$a': (onwork.rename(rel='title'), oninstance.rename(rel='title')),
     '245$b': onwork.rename(rel='subtitle'),
     '245$c': onwork.rename(rel='titleStatement'),
     '245$f': onwork.rename(rel='inclusiveDates'),

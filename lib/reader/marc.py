@@ -227,13 +227,15 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
                     #    logger.debug(to_process)
 
                     #Apply all the handlers that were found
-                    for func, val in to_process:
+                    for funcinfo, val in to_process:
+                        #Support multiple actions per lookup
+                        funcs = funcinfo if isinstance(funcinfo, tuple) else (funcinfo,)
                         #Build Versa processing context
-                        ctx = bfcontext(workid, code, [(workid, code, val, subfields)], relsink, base=vocabbase, hashidgen=ids, existing_ids=existing_ids)
-                        new_stmts = func(ctx, workid, instanceid)
-                        #FIXME: Use add
-                        for s in new_stmts: relsink.add(*s)
-                        #logger.debug('.')
+                        for func in funcs:
+                            ctx = bfcontext(workid, code, [(workid, code, val, subfields)], relsink, base=vocabbase, hashidgen=ids, existing_ids=existing_ids)
+                            new_stmts = func(ctx, workid, instanceid)
+                            #XXX: Use add_many?
+                            for s in new_stmts: relsink.add(*s)
 
                     if not to_process:
                         #Nothing else has handled this data field; go to the fallback

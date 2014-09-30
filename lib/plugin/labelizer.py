@@ -27,7 +27,11 @@ from amara3 import iri
 
 from bibframe import BFZ, BFLC, g_services, BF_INIT_TASK, BF_MARCREC_TASK, BF_FINAL_TASK
 
-TYPE_REL = I(iri.absolutize('type', VERSA_BASEIRI))
+RDF_NAMESPACE = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+RDFS_NAMESPACE = 'http://www.w3.org/2000/01/rdf-schema#'
+
+VTYPE_REL = I(iri.absolutize('type', VERSA_BASEIRI))
+RDFS_LABEL = RDFS_NAMESPACE + 'label'
 
 #A plug-in is a series of callables, each of which handles a phase of
 #Process
@@ -65,11 +69,11 @@ class labelizer(object):
         #Get the configured vocabulary base IRI
         vocabbase = params['vocabbase']
         for cls, prop in self._config['lookup'].items():
-            for link in model.match(None, TYPE_REL, I(iri.absolutize(cls, vocabbase))):
+            for link in model.match(None, VTYPE_REL, I(iri.absolutize(cls, vocabbase))):
                 #simple_lookup() is a little helper for getting a property from a resource
                 val = simple_lookup(model, link[ORIGIN], I(iri.absolutize(prop, vocabbase)))
                 if val:
-                    model.add(link[ORIGIN], I(iri.absolutize('label', vocabbase)), val)
+                    model.add(link[ORIGIN], I(RDFS_LABEL), val)
         return
 
     @asyncio.coroutine

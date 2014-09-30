@@ -129,7 +129,7 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
     g.bind('bf', BFNS)
     g.bind('bfc', BFCNS)
     g.bind('bfd', BFDNS)
-    g.bind('v', VNS)
+    #g.bind('v', VNS)
     if entbase:
         g.bind('ent', entbase)
 
