@@ -84,7 +84,7 @@ TRANSFORMS = {
     '245$b': (onwork.rename(rel='titleRemainder'), oninstance.rename(rel='titleRemainder')),
     '245$c': (onwork.rename(rel='titleStatement'), oninstance.rename(rel='titleStatement')),
     '245$n': (onwork.rename(rel='titleNumber'), oninstance.rename(rel='titleNumber')),
-    '245$P': (onwork.rename(rel='titleName'), oninstance.rename(rel='titleName')),
+    '245$p': (onwork.rename(rel='titleName'), oninstance.rename(rel='titleName')),
 
     '245$f': onwork.rename(rel='inclusiveDates'),
     '245$h': onwork.rename(rel='medium'),
