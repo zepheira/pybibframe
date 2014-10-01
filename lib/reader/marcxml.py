@@ -28,6 +28,8 @@ from versa.driver import memory
 from bibframe import BFZ, BFLC, register_service
 from bibframe.reader import marc
 from bibframe.writer import rdf
+from bibframe.reader.marcpatterns import TRANSFORMS
+from bibframe.reader.util import AVAILABLE_TRANSFORMS
 
 BFNS = rdflib.Namespace(BFZ)
 BFCNS = rdflib.Namespace(BFZ + 'cftag/')
@@ -147,6 +149,17 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
     #XXX: Is this the best way to do this, or rather via a post-processing plug-in
     vb = config.get('vocab-base-uri', BFZ)
 
+    transform_iris = config.get('transforms', {})
+    if transform_iris:
+        transforms = {}
+        for tiri in transform_iris:
+            try:
+                transforms.update(AVAILABLE_TRANSFORMS[tiri])
+            except KeyError:
+                raise Exception('Unknown transforms set {0}'.format(tiri))
+    else:
+        transforms = TRANSFORMS
+
     #Initialize auxiliary services (i.e. plugins)
     plugins = []
     for pc in config.get('plugins', []):
@@ -161,7 +174,7 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
     #logger=logger,
     
     for inf in inputs:
-        sink = marc.record_handler(loop, model, entbase=entbase, vocabbase=vb, limiting=limiting, plugins=plugins, ids=ids, postprocess=postprocess, out=out, logger=logger)
+        sink = marc.record_handler(loop, model, entbase=entbase, vocabbase=vb, limiting=limiting, plugins=plugins, ids=ids, postprocess=postprocess, out=out, logger=logger, transforms=transforms)
         parser = sax.make_parser()
         #parser.setContentHandler(marcxmlhandler(receive_recs()))
         parser.setContentHandler(marcxmlhandler(sink))

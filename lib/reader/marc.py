@@ -144,7 +144,8 @@ def record_hash_key(rec):
 
 
 @asyncio.coroutine
-def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, plugins=None, ids=None, postprocess=None, out=None, logger=logging, **kwargs):
+def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, plugins=None,
+                   ids=None, postprocess=None, out=None, logger=logging, transforms=TRANSFORMS, **kwargs):
     '''
     loop - asyncio event loop
     entbase - base IRI used for IDs of generated entity resources
@@ -220,9 +221,9 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
                     for k, v in subfields.items():
                         lookup = '{0}${1}'.format(code, k)
                         for valitems in v:
-                            if lookup in TRANSFORMS: to_process.append((TRANSFORMS[lookup], valitems))
+                            if lookup in transforms: to_process.append((transforms[lookup], valitems))
 
-                    if code in TRANSFORMS: to_process.append((TRANSFORMS[code], ''))
+                    if code in transforms: to_process.append((transforms[code], ''))
                     #if code == '100':
                     #    logger.debug(to_process)
 

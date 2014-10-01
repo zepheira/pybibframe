@@ -18,7 +18,7 @@ from bibframe.reader.util import *
 # where do we put LDR info, e.g. LDR 07 / 19 positions = mode of issuance
 #Don't do a simple field renaming of ISBN because
 
-TRANSFORMS = {
+BFLITE_TRANSFORMS = {
     #Link to the 010a value, naming the relationship 'lccn'
     '010$a': onwork.rename(rel='lccn'),
     '017$a': onwork.rename(rel='legalDeposit'),
@@ -332,26 +332,20 @@ TRANSFORMS = {
                               unique=values(subfield('a')), 
                               mr_properties={'title': subfield('a'), 'subtitle': subfield('k'), 'volume': subfield('v'), 'number': subfield('n'), 'part': subfield('p'), }),
 
-    #HeldItem is a refinement of Annotation
-    '852': oninstance.materialize('HeldItem', 'institution', unique=all_subfields, mr_properties={'holderType': 'Library', 'location': subfield('a'), 'subLocation': subfield('b'), 'callNumber': subfield('h'), 'code': subfield('n'), 'link': subfield('u'), 'streetAddress': subfield('e')}),
-
     '880$a': onwork.rename(rel='title'),
     '856$u': oninstance.rename(rel='link', res=True),
+    }
 
+register_transforms("https://bibfra.me/tool/pybibframe/transforms#bflite", BFLITE_TRANSFORMS)
 
-    # RBMS partial profile (flesh this out and separate into a specialized marcpatterns.py file)
-
-    '790': oninstance.materialize('Person', 
-                              values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
-                              unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
-                              mr_properties={'name': subfield('a'), 'numeration': subfield('b'), 'titles': subfield('c'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
-    
-    '793': onwork.materialize('Collection', 
-                              'memberOf', 
-                              unique=values(subfield('a'), subfield('h'), subfield('k'), subfield('l'), subfield('m'), subfield('s')), 
-                              mr_properties={'title': subfield('a'), 'legalDate': subfield('d'), 'medium': subfield('h'), 'musicMedium': subfield('m'), 'musicKey': subfield('r')}),
-
-    '590$a': oninstance.rename(rel='note'),
-
+MARC_TRANSFORMS = {
+    #HeldItem is a refinement of Annotation
+    '852': oninstance.materialize('HeldItem', 'institution', unique=all_subfields, mr_properties={'holderType': 'Library', 'location': subfield('a'), 'subLocation': subfield('b'), 'callNumber': subfield('h'), 'code': subfield('n'), 'link': subfield('u'), 'streetAddress': subfield('e')}),
 }
+
+register_transforms("https://bibfra.me/tool/pybibframe/transforms#marc", MARC_TRANSFORMS)
+
+TRANSFORMS = {}
+TRANSFORMS.update(BFLITE_TRANSFORMS)
+TRANSFORMS.update(MARC_TRANSFORMS)
 

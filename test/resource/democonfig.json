@@ -1,4 +1,8 @@
 {
+    "transforms": [
+        "https://bibfra.me/tool/pybibframe/transforms#bflite",
+        "https://bibfra.me/tool/pybibframe/transforms#marc"
+    ],
     "plugins": [
         {"id": "https://github.com/zepheira/pybibframe#linkreport",
         "output-file": "/tmp/linkreport.html"},

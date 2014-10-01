@@ -287,3 +287,7 @@ def initialize(hashidgen=None, existing_ids=None):
     onwork.initialize(hashidgen, existing_ids)
     oninstance.initialize(hashidgen, existing_ids)
 
+AVAILABLE_TRANSFORMS = {}
+
+def register_transforms(iri, tdict):
+    AVAILABLE_TRANSFORMS[iri] = tdict
