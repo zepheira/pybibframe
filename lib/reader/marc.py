@@ -122,14 +122,15 @@ def marc_lookup(rec, fieldspecs):
     lookup_helper = defaultdict(list)
     for f in fieldspecs:
         k, v = f.split('$')
-        lookup_helper[k] = v
+        lookup_helper[k].append(v)
     #dict((  for f in fieldspecs ))
     #dict((target_code, target_sf = fieldspec.split('$')
     for row in rec:
         if row[0] == DATAFIELD:
             rowtype, code, xmlattrs, subfields = row
+            #print(code, ''.join(subfields.keys()), end='|')
             if code in lookup_helper:
-                result.extend([ subfields.get(sf, '') for sf in lookup_helper[code] ])
+                result.extend([ subfields.get(sf, []) for sf in lookup_helper[code] ])
     result = list(itertools.chain.from_iterable(result))
     return result
 
