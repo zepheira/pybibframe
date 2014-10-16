@@ -128,12 +128,6 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
     ids = marc.idgen(entbase)
     if not model: model = memory.connection(logger=logger)
     g = rdflib.Graph()
-    g.bind('bf', BFNS)
-    g.bind('bfc', BFCNS)
-    g.bind('bfd', BFDNS)
-    #g.bind('v', VNS)
-    if entbase:
-        g.bind('ent', entbase)
 
     extant_resources = None
     #extant_resources = set()
@@ -192,6 +186,15 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
             raise ex
         finally:
             loop.close()
+
+    if vb == BFZ:
+        g.bind('bf', BFNS)
+        g.bind('bfc', BFCNS)
+        g.bind('bfd', BFDNS)
+    else:
+        g.bind('vb', rdflib.Namespace(vb))
+    if entbase:
+        g.bind('ent', entbase)
 
     if rdfttl is not None:
         logger.debug('Converting to RDF.')

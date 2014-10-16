@@ -35,7 +35,7 @@ def prep(stmt):
     '''
     s, p, o = stmt[:3]
     s = URIRef(s)
-    #Translate v:type to rdf:type
+    #Translate v:type to rdf:type etc.
     if p in PROP_MAP:
         p = PROP_MAP[p]
     else:
