@@ -345,6 +345,7 @@ MARC_TRANSFORMS = {
 
 register_transforms("https://bibfra.me/tool/pybibframe/transforms#marc", MARC_TRANSFORMS)
 
+#XXX This might instead be a job for collections.ChainMap
 TRANSFORMS = {}
 TRANSFORMS.update(BFLITE_TRANSFORMS)
 TRANSFORMS.update(MARC_TRANSFORMS)

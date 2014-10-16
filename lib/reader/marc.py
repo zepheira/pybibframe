@@ -6,11 +6,10 @@ marc2bfrdf -v -o /tmp/ph1.ttl -s /tmp/ph1.stats.js -b http://example.org test/re
 import re
 import os
 import json
-import time
 import logging
-import string
 import itertools
 import asyncio
+from collections import defaultdict
 
 #from datachef.ids import simple_hashstring
 from bibframe.contrib.datachefids import idgen, FROM_EMPTY_HASH
@@ -120,13 +119,18 @@ def instance_postprocess(params):
 
 def marc_lookup(rec, fieldspecs):
     result = []
-    lookup_helper = dict(( f.split('$') for f in fieldspecs ))
+    lookup_helper = defaultdict(list)
+    for f in fieldspecs:
+        k, v = f.split('$')
+        lookup_helper[k] = v
+    #dict((  for f in fieldspecs ))
     #dict((target_code, target_sf = fieldspec.split('$')
     for row in rec:
         if row[0] == DATAFIELD:
             rowtype, code, xmlattrs, subfields = row
             if code in lookup_helper:
-                result.extend(subfields.get(lookup_helper[code], ''))
+                result.extend([ subfields.get(sf, '') for sf in lookup_helper[code] ])
+    result = list(itertools.chain.from_iterable(result))
     return result
 
 
