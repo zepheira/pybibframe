@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <marc:record>
+    <marc:leader>01323ccm a2200361Ii 4500</marc:leader>
+    <marc:controlfield tag="001">ocn851512832</marc:controlfield>
+    <marc:controlfield tag="003">OCoLC</marc:controlfield>
+    <marc:controlfield tag="005">20141006104704.0</marc:controlfield>
+    <marc:controlfield tag="008">130702t199u1976nyuopc         n    eng d</marc:controlfield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">IXA</marc:subfield>
+      <marc:subfield code="b">eng</marc:subfield>
+      <marc:subfield code="e">rda</marc:subfield>
+      <marc:subfield code="c">IXA</marc:subfield>
+      <marc:subfield code="d">OCLCO</marc:subfield>
+      <marc:subfield code="d">OCLCF</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="028" ind1="2" ind2="2">
+      <marc:subfield code="a">EL 2404</marc:subfield>
+      <marc:subfield code="b">Rock Valley Music Co.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)851512832</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="045" ind1="0" ind2=" ">
+      <marc:subfield code="b">d1971</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="050" ind1=" " ind2="4">
+      <marc:subfield code="a">M1503.H707</marc:subfield>
+      <marc:subfield code="b">S8 1990z</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="049" ind1=" " ind2=" ">
+      <marc:subfield code="a">JHPA</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="a">Hoiby, Lee,</marc:subfield>
+      <marc:subfield code="e">composer.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="240" ind1="1" ind2="0">
+      <marc:subfield code="a">Summer and smoke.</marc:subfield>
+      <marc:subfield code="s">Vocal score</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="a">Summer and smoke :</marc:subfield>
+      <marc:subfield code="b">opera in two acts /</marc:subfield>
+      <marc:subfield code="c">music by Lee Hoiby ; libretto by Lanford Wilson, based on the play by Tennessee Williams.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="250" ind1=" " ind2=" ">
+      <marc:subfield code="a">Vocal score.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="264" ind1=" " ind2="1">
+      <marc:subfield code="a">Long Eddy, N.Y. :</marc:subfield>
+      <marc:subfield code="b">Rock Valley Music Co.,</marc:subfield>
+      <marc:subfield code="c">[between 1990 and 1999?]</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="264" ind1=" " ind2="4">
+      <marc:subfield code="c">©1976</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">1 score (iv, 332 pages) ;</marc:subfield>
+      <marc:subfield code="c">31 cm</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="336" ind1=" " ind2=" ">
+      <marc:subfield code="a">notated music</marc:subfield>
+      <marc:subfield code="b">ntm</marc:subfield>
+      <marc:subfield code="2">rdacontent</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="337" ind1=" " ind2=" ">
+      <marc:subfield code="a">unmediated</marc:subfield>
+      <marc:subfield code="b">n</marc:subfield>
+      <marc:subfield code="2">rdamedia</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="338" ind1=" " ind2=" ">
+      <marc:subfield code="a">volume</marc:subfield>
+      <marc:subfield code="b">nc</marc:subfield>
+      <marc:subfield code="2">rdacarrier</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">"Op. 27"--Caption.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="546" ind1=" " ind2=" ">
+      <marc:subfield code="b">Staff notation</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Reprinted from Belwin Mills edition.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Operas</marc:subfield>
+      <marc:subfield code="v">Vocal scores with piano.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="7">
+      <marc:subfield code="a">Operas</marc:subfield>
+      <marc:subfield code="x">Vocal scores with piano.</marc:subfield>
+      <marc:subfield code="2">fast</marc:subfield>
+      <marc:subfield code="0">(OCoLC)fst01046236</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Wilson, Lanford,</marc:subfield>
+      <marc:subfield code="d">1937-2011,</marc:subfield>
+      <marc:subfield code="e">librettist.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="i">Libretto based on (work):</marc:subfield>
+      <marc:subfield code="a">Williams, Tennessee,</marc:subfield>
+      <marc:subfield code="d">1911-1983.</marc:subfield>
+      <marc:subfield code="t">Summer and smoke.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="994" ind1=" " ind2=" ">
+      <marc:subfield code="a">C0</marc:subfield>
+      <marc:subfield code="b">JHP</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+</marc:collection>
