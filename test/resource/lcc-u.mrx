@@ -1,0 +1,140 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+<record>
+  <leader>01758cam a2200409 a 4500</leader>
+  <controlfield tag="001">14346109</controlfield>
+  <controlfield tag="005">20070521142302.0</controlfield>
+  <controlfield tag="008">060419s2007    nju           000 0aeng  </controlfield>
+  <datafield tag="906" ind1=" " ind2=" ">
+    <subfield code="a">7</subfield>
+    <subfield code="b">cbc</subfield>
+    <subfield code="c">orignew</subfield>
+    <subfield code="d">1</subfield>
+    <subfield code="e">ecip</subfield>
+    <subfield code="f">20</subfield>
+    <subfield code="g">y-gencatlg</subfield>
+  </datafield>
+  <datafield tag="925" ind1="0" ind2=" ">
+    <subfield code="a">acquire</subfield>
+    <subfield code="b">2 shelf copies</subfield>
+    <subfield code="x">policy default</subfield>
+  </datafield>
+  <datafield tag="955" ind1=" " ind2=" ">
+    <subfield code="a">lk52 2006-04-19</subfield>
+    <subfield code="c">lk52 2006-04-19;</subfield>
+    <subfield code="c">lk52 2006-04-19 to subj.</subfield>
+    <subfield code="d">lk29 2006-04-24 telework</subfield>
+    <subfield code="e">lk13 2006-05-02 to Dewey (telework)</subfield>
+    <subfield code="a">aa28 2006-05-02</subfield>
+    <subfield code="a">ps04 2007-05-17 2 copies rec&apos;d., to CIP ver.</subfield>
+    <subfield code="f">lk18 2007-05-21 Z-CipVer</subfield>
+    <subfield code="g">lk18 2007-05-21 to BCCD</subfield>
+    <subfield code="a">lk18 2007-03-21 c. 2 added</subfield>
+  </datafield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">  2006013175</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">159221486X (hard cover : alk. paper)</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9781592214860 (hard cover : alk. paper)</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">1592214878 (pbk. : alk. paper)</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9781592214877 (pbk. : alk. paper)</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)ocm68192319</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)68192319</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">DLC</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="d">YDX</subfield>
+    <subfield code="d">BTCTA</subfield>
+    <subfield code="d">YDXCP</subfield>
+    <subfield code="d">DLC</subfield>
+  </datafield>
+  <datafield tag="043" ind1=" " ind2=" ">
+    <subfield code="a">n-us---</subfield>
+    <subfield code="a">f------</subfield>
+    <subfield code="a">e------</subfield>
+  </datafield>
+  <datafield tag="050" ind1="0" ind2="0">
+    <subfield code="a">E184.N55</subfield>
+    <subfield code="b">O37 2007</subfield>
+  </datafield>
+  <datafield tag="082" ind1="0" ind2="0">
+    <subfield code="a">973/.0496690092</subfield>
+    <subfield code="a">B</subfield>
+    <subfield code="2">22</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">Ogbuji, Linus T.</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">Seeing the world in black &amp; white /</subfield>
+    <subfield code="c">Linus T. Ogbuji.</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">Trenton NJ :</subfield>
+    <subfield code="b">Africa World Press,</subfield>
+    <subfield code="c">c2007.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">x, 239 p. ;</subfield>
+    <subfield code="c">22 cm.</subfield>
+  </datafield>
+  <datafield tag="600" ind1="1" ind2="0">
+    <subfield code="a">Ogbuji, Linus T.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Nigerian Americans</subfield>
+    <subfield code="v">Biography.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">College teachers</subfield>
+    <subfield code="z">United States</subfield>
+    <subfield code="v">Biography.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Scientists</subfield>
+    <subfield code="z">United States</subfield>
+    <subfield code="v">Biography.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Igbo (African people)</subfield>
+    <subfield code="v">Biography.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Nigeria</subfield>
+    <subfield code="v">Biography.</subfield>
+  </datafield>
+  <datafield tag="600" ind1="1" ind2="0">
+    <subfield code="a">Ogbuji, Linus T.</subfield>
+    <subfield code="x">Travel</subfield>
+    <subfield code="z">Africa.</subfield>
+  </datafield>
+  <datafield tag="600" ind1="1" ind2="0">
+    <subfield code="a">Ogbuji, Linus T.</subfield>
+    <subfield code="x">Travel</subfield>
+    <subfield code="z">Europe.</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="0">
+    <subfield code="a">Africa</subfield>
+    <subfield code="x">Description and travel.</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="0">
+    <subfield code="a">Europe</subfield>
+    <subfield code="x">Description and travel.</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="3">Table of contents only</subfield>
+    <subfield code="u">http://www.loc.gov/catdir/toc/ecip0612/2006013175.html</subfield>
+  </datafield>
+</record>
+</collection>
