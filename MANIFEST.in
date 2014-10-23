@@ -1,0 +1,4 @@
+include LICENSE README.md
+recursive-include test *.py *.xml *.mrx *.json *.md
+recursive-include doc *.md
+
