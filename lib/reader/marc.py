@@ -219,6 +219,7 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
                     params['fields_used'].append(tuple([code] + list(subfields.keys())))
 
                     to_process = []
+                    params['dropped_codes'] = {}
                     #logger.debug(repr(indicators))
                     if indicators != ('#', '#'):
                         #One or other indicator is set, so let's check the transforms against those
@@ -226,13 +227,19 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
                     for k, v in subfields.items():
                         lookup = '{0}${1}'.format(code, k)
                         for valitems in v:
-                            if lookup in transforms: to_process.append((transforms[lookup], valitems))
+                            if lookup in transforms:
+                                to_process.append((transforms[lookup], valitems))
+                            else:
+                                if not code in transforms: # don't report on subfields for which a code-transform exists
+                                    params['dropped_codes'].setdefault(lookup,0)
+                                    params['dropped_codes'][lookup] += 1
 
                     if code in transforms:
                         to_process.append((transforms[code], ''))
                     else:
-                        params.setdefault('dropped_codes',{}).setdefault(code,0)
-                        params['dropped_codes'][code] += 1
+                        if not subfields: # don't count as dropped if subfields were processed
+                            params['dropped_codes'].setdefault(code,0)
+                            params['dropped_codes'][code] += 1
 
                     #if code == '100':
                     #    logger.debug(to_process)
