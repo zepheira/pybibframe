@@ -177,14 +177,16 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
             #FIXME: No plug-in support yet
             workhash = record_hash_key(rec)
             workid = ids.send('Work:' + workhash)
+            folded = workid in existing_ids
             existing_ids.add(workid)
             logger.debug('Uniform title from 245$a: {0}'.format(marc_lookup(rec, ['245$a'])))
             logger.debug('Work hash result: {0} from \'{1}\''.format(workid, 'Work' + workhash))
+            logger.debug('Folded?: {0}'.format(folded))
 
             if entbase: workid = I(iri.absolutize(workid, entbase))
             relsink.add(I(workid), TYPE_REL, I(iri.absolutize('Work', vocabbase)))
 
-            params = {'workid': workid, 'rec': rec, 'logger': logger, 'model': relsink, 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids, 'existing_ids': existing_ids}
+            params = {'workid': workid, 'rec': rec, 'logger': logger, 'model': relsink, 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids, 'existing_ids': existing_ids, 'folded': folded}
 
             #Figure out instances
             instanceids = instancegen(params)
