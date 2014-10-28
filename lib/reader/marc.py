@@ -196,6 +196,7 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
             params['instanceids'] = instanceids
             params['transforms'] = [] # set()
             params['fields_used'] = []
+            params['dropped_codes'] = {}
             for row in rec:
                 code = None
 
@@ -221,7 +222,6 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
                     params['fields_used'].append(tuple([code] + list(subfields.keys())))
 
                     to_process = []
-                    params['dropped_codes'] = {}
                     #logger.debug(repr(indicators))
                     if indicators != ('#', '#'):
                         #One or other indicator is set, so let's check the transforms against those
@@ -242,6 +242,8 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
                         if not subfields: # don't count as dropped if subfields were processed
                             params['dropped_codes'].setdefault(code,0)
                             params['dropped_codes'][code] += 1
+
+                    print("pybib dropped_codes = "+repr(params['dropped_codes']))
 
                     #if code == '100':
                     #    logger.debug(to_process)
