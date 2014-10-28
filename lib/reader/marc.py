@@ -243,8 +243,6 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
                             params['dropped_codes'].setdefault(code,0)
                             params['dropped_codes'][code] += 1
 
-                    print("pybib dropped_codes = "+repr(params['dropped_codes']))
-
                     #if code == '100':
                     #    logger.debug(to_process)
 
