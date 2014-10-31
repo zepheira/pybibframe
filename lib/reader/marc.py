@@ -177,14 +177,16 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
             #FIXME: No plug-in support yet
             workhash = record_hash_key(rec)
             workid = ids.send('Work:' + workhash)
+            folded = workid in existing_ids
             existing_ids.add(workid)
             logger.debug('Uniform title from 245$a: {0}'.format(marc_lookup(rec, ['245$a'])))
             logger.debug('Work hash result: {0} from \'{1}\''.format(workid, 'Work' + workhash))
+            logger.debug('Folded?: {0}'.format(folded))
 
             if entbase: workid = I(iri.absolutize(workid, entbase))
             relsink.add(I(workid), TYPE_REL, I(iri.absolutize('Work', vocabbase)))
 
-            params = {'workid': workid, 'rec': rec, 'logger': logger, 'model': relsink, 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids, 'existing_ids': existing_ids}
+            params = {'workid': workid, 'rec': rec, 'logger': logger, 'model': relsink, 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids, 'existing_ids': existing_ids, 'folded': folded}
 
             #Figure out instances
             instanceids = instancegen(params)
@@ -194,6 +196,7 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
             params['instanceids'] = instanceids
             params['transforms'] = [] # set()
             params['fields_used'] = []
+            params['dropped_codes'] = {}
             for row in rec:
                 code = None
 
@@ -226,13 +229,19 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
                     for k, v in subfields.items():
                         lookup = '{0}${1}'.format(code, k)
                         for valitems in v:
-                            if lookup in transforms: to_process.append((transforms[lookup], valitems))
+                            if lookup in transforms:
+                                to_process.append((transforms[lookup], valitems))
+                            else:
+                                if not code in transforms: # don't report on subfields for which a code-transform exists
+                                    params['dropped_codes'].setdefault(lookup,0)
+                                    params['dropped_codes'][lookup] += 1
 
                     if code in transforms:
                         to_process.append((transforms[code], ''))
                     else:
-                        params.setdefault('dropped_codes',{}).setdefault(code,0)
-                        params['dropped_codes'][code] += 1
+                        if not subfields: # don't count as dropped if subfields were processed
+                            params['dropped_codes'].setdefault(code,0)
+                            params['dropped_codes'][code] += 1
 
                     #if code == '100':
                     #    logger.debug(to_process)
