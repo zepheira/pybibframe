@@ -317,15 +317,22 @@ BFLITE_TRANSFORMS = {
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
                               mr_properties={'name': subfield('a'), 'numeration': subfield('b'), 'titles': subfield('c'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
+    #If there is a $t recognize a person, else recognize a work
+    '700': ifexists(subfield('t'),
+                onwork.materialize('Work', 
+                    values('relatedTo', normalizeparse(subfield('i'))),
+                    unique=values(subfield('t')), 
+                    mr_properties={ifexists(subfield('a'), 'creator'): materialize('Person', unique=subfield('a'), mr_properties={'name': subfield('a'), 'date': subfield('d')}),
+                                    'title': subfield('t'),
+                                    'language': subfield('l')}),
+                onwork.materialize('Person', 
+                    values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
+                    unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
+                    mr_properties={'name': subfield('a'), 'numeration': subfield('b'), 'titles': subfield('c'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')})
+                ),
+
     # 700$t - when MARC 700 are relationships not contributors
     
-    '700$t': onwork.materialize('Work', 
-                                values('relatedTo', normalizeparse(subfield('i'))),
-                                unique=values(subfield('t')), 
-                                mr_properties={ifexists(subfield('a'), 'creator'): materialize('Person', unique=subfield('a'), mr_properties={'name': subfield('a'), 'date': subfield('d')}),
-                                               'title': subfield('t'),
-                                               'language': subfield('l')}),
-
     '710': onwork.materialize('Organization', 
                               values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 

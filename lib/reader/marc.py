@@ -23,7 +23,7 @@ from versa import I, VERSA_BASEIRI
 from versa.util import simple_lookup
 from versa.pipeline import *
 
-from bibframe.reader.util import initialize
+from bibframe.reader.util import initialize, WORKID, IID
 from bibframe import BFZ, BFLC, g_services
 from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_FINAL_TASK
 from bibframe.isbnplus import isbn_list
@@ -252,8 +252,10 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
                         funcs = funcinfo if isinstance(funcinfo, tuple) else (funcinfo,)
                         #Build Versa processing context
                         for func in funcs:
-                            ctx = bfcontext(workid, code, [(workid, code, val, subfields)], relsink, base=vocabbase, hashidgen=ids, existing_ids=existing_ids)
-                            new_stmts, folded = func(ctx, workid, instanceid)
+                            extras = dict(); extras[WORKID], extras[IID] = workid, instanceid
+                            ctx = bfcontext(workid, code, [(workid, code, val, subfields)], relsink,
+                                            extras=extras, base=vocabbase, hashidgen=ids, existing_ids=existing_ids)
+                            new_stmts, folded = func(ctx)
                             if folded: params['folded'].append(folded)
                             #XXX: Use add_many?
                             for s in new_stmts: relsink.add(*s)

@@ -4,11 +4,15 @@ from versa.pipeline import *
 from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 
 from bibframe.contrib.datachefids import slugify, idgen, FROM_EMPTY_HASH
+from bibframe import BFZ
 
+PYBF_BASE = '"https://bibfra.me/tool/pybibframe/transforms#'
+WORKID = PYBF_BASE + 'workid'
+IID = PYBF_BASE + 'iid'
 
 #FIXME: Make proper use of subclassing (implementation derivation)
 class bfcontext(context):
-    def __init__(self, origin, rel, linkset, linkspace, base=None, hashidgen=None, existing_ids=None, logger=None):
+    def __init__(self, origin, rel, linkset, linkspace, extras=None, base=None, hashidgen=None, existing_ids=None, logger=None):
         self.origin = origin
         self.rel = rel
         self.linkset = linkset
@@ -17,18 +21,20 @@ class bfcontext(context):
         self.hashidgen = hashidgen
         self.existing_ids = existing_ids
         self.logger = logger
+        self.extras = extras or {}
         return
 
-    def copy(self, origin=None, rel=None, linkset=None, linkspace=None, base=None, hashidgen=None, existing_ids=None, logger=None):
+    def copy(self, origin=None, rel=None, linkset=None, linkspace=None, extras=None, base=None, hashidgen=None, existing_ids=None, logger=None):
         origin = origin if origin else self.origin
         rel = rel if rel else self.rel
         linkset = linkset if linkset else self.linkset
         linkspace = linkspace if linkspace else self.linkspace
         base = base if base else self.base
+        extras = extras if extras else self.extras
         logger = logger if logger else self.logger
         hashidgen = hashidgen if hashidgen else self.hashidgen
         existing_ids = existing_ids if existing_ids else self.existing_ids
-        return bfcontext(origin, rel, linkset, linkspace, base=base, logger=logger, hashidgen=hashidgen, existing_ids=existing_ids)
+        return bfcontext(origin, rel, linkset, linkspace, extras=extras, base=base, logger=logger, hashidgen=hashidgen, existing_ids=existing_ids)
 
 
 class action(Enum):
@@ -56,7 +62,8 @@ class base_transformer(object):
         '''
         Update the label of the relationship to be added to the link space
         '''
-        def _rename(ctx, workid, iid):
+        def _rename(ctx):
+            workid, iid = ctx.extras[WORKID], ctx.extras[IID]
             new_o = {origin_class.work: workid, origin_class.instance: iid}[self._use_origin]
             newlinkset = []
             #Just work with the first provided statement, for now
@@ -75,7 +82,8 @@ class base_transformer(object):
         Create a new resource related to the origin
         '''
         mr_properties = mr_properties or {}
-        def _materialize(ctx, workid, iid):
+        def _materialize(ctx):
+            workid, iid = ctx.extras[WORKID], ctx.extras[IID]
             _typ = typ(ctx) if callable(typ) else typ
             _rel = rel(ctx) if callable(rel) else rel
             rels = _rel if isinstance(_rel, list) else [_rel]
@@ -200,7 +208,7 @@ def normalizeparse(text_in):
     return _normalizeparse
 
 
-def ifexists(test, value):
+def ifexists(test, value, alt=None):
     '''
     Action function generator to multiplex a relationship at processing time
 
@@ -216,7 +224,8 @@ def ifexists(test, value):
         '''
         _test = test(ctx) if callable(test) else test
         _value = value(ctx) if callable(value) else value
-        return _value if _test else None
+        _alt = alt(ctx) if callable(value) else alt
+        return _value if _test else alt
     return _ifexists
 
 
