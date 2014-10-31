@@ -177,11 +177,11 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
             #FIXME: No plug-in support yet
             workhash = record_hash_key(rec)
             workid = ids.send('Work:' + workhash)
-            folded = workid in existing_ids
+            folded = [workid] if workid in existing_ids else []
             existing_ids.add(workid)
             logger.debug('Uniform title from 245$a: {0}'.format(marc_lookup(rec, ['245$a'])))
             logger.debug('Work hash result: {0} from \'{1}\''.format(workid, 'Work' + workhash))
-            logger.debug('Folded?: {0}'.format(folded))
+
 
             if entbase: workid = I(iri.absolutize(workid, entbase))
             relsink.add(I(workid), TYPE_REL, I(iri.absolutize('Work', vocabbase)))
@@ -253,7 +253,8 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
                         #Build Versa processing context
                         for func in funcs:
                             ctx = bfcontext(workid, code, [(workid, code, val, subfields)], relsink, base=vocabbase, hashidgen=ids, existing_ids=existing_ids)
-                            new_stmts = func(ctx, workid, instanceid)
+                            new_stmts, folded = func(ctx, workid, instanceid)
+                            if folded: params['folded'].append(folded)
                             #XXX: Use add_many?
                             for s in new_stmts: relsink.add(*s)
 

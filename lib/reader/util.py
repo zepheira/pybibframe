@@ -67,7 +67,7 @@ class base_transformer(object):
                 except ValueError:
                     return []
             newlinkset.append((I(new_o), I(iri.absolutize(rel, ctx.base)), t, {}))
-            return newlinkset
+            return newlinkset, []
         return _rename
 
     def materialize(self, typ, rel, unique=None, mr_properties=None):
@@ -92,7 +92,8 @@ class base_transformer(object):
                     #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
                     if _rel.isdigit(): _rel = '_' + _rel
                     newlinkset.append((I(new_o), I(iri.absolutize(_rel, ctx.base)), I(objid), {}))
-            if objid not in self._existing_ids:
+            folded = objid in self._existing_ids
+            if not folded:
                 if _typ: newlinkset.append((I(objid), VTYPE_REL, I(iri.absolutize(_typ, ctx.base)), {}))
                 #FIXME: Should we be using Python Nones to mark blanks, or should Versa define some sort of null resource?
                 for k, v in mr_properties.items():
@@ -120,7 +121,8 @@ class base_transformer(object):
                     for valitems in v:
                         newlinkset.append((I(objid), I(iri.absolutize('sf-' + k, ctx.base)), valitems, {}))
                 self._existing_ids.add(objid)
-            return newlinkset
+
+            return newlinkset, objid if folded else []
         return _materialize
 
 
@@ -238,7 +240,8 @@ def materialize(typ, unique=None, mr_properties=None):
             #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
             rel = '_' + ctx.rel if ctx.rel.isdigit() else ctx.rel
             newlinkset.append((I(ctx.origin), I(iri.absolutize(rel, ctx.base)), I(objid), {}))
-        if objid not in ctx.existing_ids:
+        folded = objid in ctx.existing_ids
+        if not folded:
             if _typ: newlinkset.append((I(objid), VTYPE_REL, I(iri.absolutize(_typ, ctx.base)), {}))
             #FIXME: Should we be using Python Nones to mark blanks, or should Versa define some sort of null resource?
             for k, v in mr_properties.items():
@@ -266,7 +269,8 @@ def materialize(typ, unique=None, mr_properties=None):
                 for valitems in v:
                     newlinkset.append((I(objid), I(iri.absolutize('sf-' + k, ctx.base)), valitems, {}))
             ctx.existing_ids.add(objid)
-        return newlinkset
+
+        return newlinkset, objid if folded else []
     return _materialize
 
 
