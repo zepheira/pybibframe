@@ -101,7 +101,7 @@ class marcxmlhandler(sax.ContentHandler):
 
 #PYTHONASYNCIODEBUG = 1
 
-def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=None, rdfxml=None, config=None, verbose=False, logger=logging):
+def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=None, rdfxml=None, config=None, verbose=False, logger=logging, loop=None):
     '''
     inputs - List of MARC/XML files to be parsed and converted to BIBFRAME RDF (Note: want to allow singular input strings)
     out - file where raw Versa JSON dump output should be written (default: write to stdout)
@@ -110,6 +110,7 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
     limit - Limit the number of records processed to this number. If omitted, all records will be processed.
     base - Base IRI to be used for creating resources.
     verbose - If true show additional messages and information (default: False)
+    loop - optional asyncio event loop to use
     logger - logging object for messages
     '''
     #if stats:
@@ -136,8 +137,9 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
         if any((rdfttl, rdfxml)): rdf.process(model, g, to_ignore=extant_resources, logger=logger)
         model.create_space()
 
-    #Set up event loop
-    loop = asyncio.get_event_loop()
+    #Set up event loop if not provided
+    if not loop:
+        loop = asyncio.get_event_loop()
 
     #Allow configuration of a separate base URI for vocab items (classes & properties)
     #XXX: Is this the best way to do this, or rather via a post-processing plug-in
@@ -178,7 +180,7 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
         def wrap_task():
             parser.parse(inf)
             yield
-        task = asyncio.Task(wrap_task())
+        task = asyncio.async(wrap_task(), loop=loop)
         #parse_marcxml(inf, sink)
         try:
             loop.run_until_complete(task)
