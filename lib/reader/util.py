@@ -224,8 +224,8 @@ def ifexists(test, value, alt=None):
         '''
         _test = test(ctx) if callable(test) else test
         _value = value(ctx) if callable(value) else value
-        _alt = alt(ctx) if callable(value) else alt
-        return _value if _test else alt
+        _alt = alt(ctx) if callable(alt) else alt
+        return _value if _test else _alt
     return _ifexists
 
 
