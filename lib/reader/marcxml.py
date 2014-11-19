@@ -104,14 +104,16 @@ class marcxmlhandler(sax.ContentHandler):
 def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=None, rdfxml=None, config=None, verbose=False, logger=logging, loop=None):
     '''
     inputs - List of MARC/XML files to be parsed and converted to BIBFRAME RDF (Note: want to allow singular input strings)
+    entbase - Base IRI to be used for creating resources.
+    model - model instance for internal use
     out - file where raw Versa JSON dump output should be written (default: write to stdout)
-    rdfttl - stream to where RDF Turtle output should be written
-    config - configuration information
     limit - Limit the number of records processed to this number. If omitted, all records will be processed.
-    base - Base IRI to be used for creating resources.
+    rdfttl - stream to where RDF Turtle output should be written
+    rdfxml - stream to where RDF/XML output should be written
+    config - configuration information
     verbose - If true show additional messages and information (default: False)
-    loop - optional asyncio event loop to use
     logger - logging object for messages
+    loop - optional asyncio event loop to use
     '''
     #if stats:
     #    register_service(statsgen.statshandler)
@@ -127,7 +129,7 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
             logger.debug('Limit must be a number, not "{0}". Ignoring.'.format(limit))
 
     ids = marc.idgen(entbase)
-    if not model: model = memory.connection(logger=logger)
+    if model is None: model = memory.connection(logger=logger)
     g = rdflib.Graph()
 
     extant_resources = None
