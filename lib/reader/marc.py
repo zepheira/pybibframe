@@ -21,6 +21,7 @@ from amara3 import iri
 
 from versa import I, VERSA_BASEIRI
 from versa.util import simple_lookup
+from versa.driver import memory
 from versa.pipeline import *
 
 from bibframe.reader.util import initialize, WORKID, IID
@@ -68,7 +69,7 @@ def isbn_instancegen(params):
     '''
     #Handle ISBNs re: https://foundry.zepheira.com/issues/1976
     entbase = params['entbase']
-    model = params['model']
+    model = params['output_model']
     vocabbase = params['vocabbase']
     logger = params['logger']
     ids = params['ids']
@@ -109,7 +110,7 @@ def isbn_instancegen(params):
 
 def instance_postprocess(params):
     instanceids = params['instanceids']
-    model = params['model']
+    model = params['output_model']
     if len(instanceids) > 1:
         base_instance_id = instanceids[0]
         for instanceid in instanceids[1:]:
@@ -149,10 +150,11 @@ def record_hash_key(rec):
 
 
 @asyncio.coroutine
-def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, plugins=None,
+def record_handler(loop, model, entbase=None, vocabbase=BFZ, limiting=None, plugins=None,
                    ids=None, postprocess=None, out=None, logger=logging, transforms=TRANSFORMS, **kwargs):
     '''
     loop - asyncio event loop
+    model - the Versa model for the record
     entbase - base IRI used for IDs of generated entity resources
     limiting - mutable pair of [count, limit] used to control the number of records processed
     '''
@@ -177,16 +179,18 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
             #FIXME: No plug-in support yet
             workhash = record_hash_key(rec)
             workid = ids.send('Work:' + workhash)
-            folded = [workid] if workid in existing_ids else []
+            is_folded = workid in existing_ids
             existing_ids.add(workid)
             logger.debug('Uniform title from 245$a: {0}'.format(marc_lookup(rec, ['245$a'])))
             logger.debug('Work hash result: {0} from \'{1}\''.format(workid, 'Work' + workhash))
 
-
             if entbase: workid = I(iri.absolutize(workid, entbase))
-            relsink.add(I(workid), TYPE_REL, I(iri.absolutize('Work', vocabbase)))
+            folded = [workid] if is_folded else []
+            model.add(I(workid), TYPE_REL, I(iri.absolutize('Work', vocabbase)))
 
-            params = {'workid': workid, 'rec': rec, 'logger': logger, 'model': relsink, 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids, 'existing_ids': existing_ids, 'folded': folded}
+            input_model = memory.connection()
+
+            params = {'workid': workid, 'rec': rec, 'logger': logger, 'input_model': input_model, 'output_model': model, 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids, 'existing_ids': existing_ids, 'folded': folded}
 
             #Figure out instances
             instanceids = instancegen(params)
@@ -208,7 +212,7 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
                     if code == '008':
                         params['field008'] = field008 = val
                     params['transforms'].append((code, key))
-                    relsink.add(I(instanceid), I(iri.absolutize(key, vocabbase)), val)
+                    input_model.add(I(instanceid), I(iri.absolutize(key, vocabbase)), val)
                     params['fields_used'].append((code,))
                 elif row[0] == DATAFIELD:
                     code, xmlattrs, subfields = row[1], row[2], row[3]
@@ -252,13 +256,13 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
                         funcs = funcinfo if isinstance(funcinfo, tuple) else (funcinfo,)
                         #Build Versa processing context
                         for func in funcs:
-                            extras = dict(); extras[WORKID], extras[IID] = workid, instanceid
-                            ctx = bfcontext(workid, code, [(workid, code, val, subfields)], relsink,
-                                            extras=extras, base=vocabbase, hashidgen=ids, existing_ids=existing_ids)
-                            new_stmts, folded = func(ctx)
-                            if folded: params['folded'].append(folded)
-                            #XXX: Use add_many?
-                            for s in new_stmts: relsink.add(*s)
+                            extras = dict(folded=[]);
+                            extras[WORKID], extras[IID] = workid, instanceid
+                            ctx = bfcontext((workid, code, val, subfields), input_model, model, extras=extras, base=vocabbase, hashidgen=ids, existing_ids=existing_ids)
+
+                            func(ctx)
+
+                            params['folded'].extend(extras['folded'])
 
                     if not to_process:
                         #Nothing else has handled this data field; go to the fallback
@@ -267,9 +271,10 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
                             fallback_rel = fallback_rel_base + k
                             #params['transforms'].append((code, fallback_rel))
                             for valitem in v:
-                                relsink.add(I(workid), I(iri.absolutize(fallback_rel, vocabbase)), valitem)
+                                model.add(I(workid), I(iri.absolutize(fallback_rel, vocabbase)), valitem)
 
                 params['code'] = code
+
 
             special_properties = {}
             for k, v in process_leader(leader):
@@ -285,7 +290,7 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
                 special_properties[k] = list(v)
                 for item in v:
                 #logger.debug(v)
-                    relsink.add(I(instanceid), I(iri.absolutize(k, vocabbase)), item)
+                    model.add(I(instanceid), I(iri.absolutize(k, vocabbase)), item)
 
             instance_postprocess(params)
 
@@ -294,7 +299,7 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
             for plugin in plugins:
                 #Each plug-in is a task
                 #task = asyncio.Task(plugin[BF_MARCREC_TASK](loop, relsink, params), loop=loop)
-                yield from plugin[BF_MARCREC_TASK](loop, relsink, params)
+                yield from plugin[BF_MARCREC_TASK](loop, model, params)
                 logger.debug("Pending tasks: %s" % asyncio.Task.all_tasks(loop))
                 #FIXME: This blocks and thus serializes the plugin operation, rather than the desired coop scheduling approach
                 #For some reason seting to async task then immediately deferring to next task via yield from sleep leads to the "yield from wasn't used with future" error (Not much clue at: https://codereview.appspot.com/7396044/)
@@ -309,7 +314,7 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
                 last_chunk = None
                 #Using iterencode avoids building a big JSON string in memory, or having to resort to file pointer seeking
                 #Then again builds a big list in memory, so still working on opt here
-                for chunk in json.JSONEncoder().iterencode([ link for link in relsink ]):
+                for chunk in json.JSONEncoder().iterencode([ link for link in model ]):
                     if last_chunk is None:
                         last_chunk = chunk[1:]
                     else:

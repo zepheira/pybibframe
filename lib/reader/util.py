@@ -12,29 +12,28 @@ IID = PYBF_BASE + 'iid'
 
 #FIXME: Make proper use of subclassing (implementation derivation)
 class bfcontext(context):
-    def __init__(self, origin, rel, linkset, linkspace, extras=None, base=None, hashidgen=None, existing_ids=None, logger=None):
-        self.origin = origin
-        self.rel = rel
-        self.linkset = linkset
-        self.linkspace = linkspace
+    def __init__(self, current_link, input_model, output_model, base=None, extras=None, hashidgen=None, existing_ids=None, logger=None):
+        self.current_link = current_link
+        self.input_model = input_model
+        self.output_model = output_model
         self.base = base
+        self.extras = extras or {}
         self.hashidgen = hashidgen
         self.existing_ids = existing_ids
         self.logger = logger
-        self.extras = extras or {}
+
         return
 
-    def copy(self, origin=None, rel=None, linkset=None, linkspace=None, extras=None, base=None, hashidgen=None, existing_ids=None, logger=None):
-        origin = origin if origin else self.origin
-        rel = rel if rel else self.rel
-        linkset = linkset if linkset else self.linkset
-        linkspace = linkspace if linkspace else self.linkspace
+    def copy(self, current_link=None, input_model=None, output_model=None, base=None, extras=None, hashidgen=None, existing_ids=None, logger=None):
+        current_link = current_link if current_link else self.current_link
+        input_model = input_model if input_model else self.input_model
+        output_model = output_model if output_model else self.output_model
         base = base if base else self.base
         extras = extras if extras else self.extras
-        logger = logger if logger else self.logger
         hashidgen = hashidgen if hashidgen else self.hashidgen
         existing_ids = existing_ids if existing_ids else self.existing_ids
-        return bfcontext(origin, rel, linkset, linkspace, extras=extras, base=base, logger=logger, hashidgen=hashidgen, existing_ids=existing_ids)
+        logger = logger if logger else self.logger
+        return bfcontext(current_link, input_model, output_model, base=base, extras=extras, hashidgen=hashidgen, existing_ids=existing_ids, logger=logger)
 
 
 class action(Enum):
@@ -65,16 +64,15 @@ class base_transformer(object):
         def _rename(ctx):
             workid, iid = ctx.extras[WORKID], ctx.extras[IID]
             new_o = {origin_class.work: workid, origin_class.instance: iid}[self._use_origin]
-            newlinkset = []
             #Just work with the first provided statement, for now
-            (o, r, t, a) = ctx.linkset[0]
+            (o, r, t, a) = ctx.current_link
             if res:
                 try:
                     t = I(t)
                 except ValueError:
                     return []
-            newlinkset.append((I(new_o), I(iri.absolutize(rel, ctx.base)), t, {}))
-            return newlinkset, []
+            ctx.output_model.add(I(new_o), I(iri.absolutize(rel, ctx.base)), t, {})
+            return
         return _rename
 
     def materialize(self, typ, rel, unique=None, mr_properties=None):
@@ -88,9 +86,8 @@ class base_transformer(object):
             _rel = rel(ctx) if callable(rel) else rel
             rels = _rel if isinstance(_rel, list) else [_rel]
             new_o = {origin_class.work: workid, origin_class.instance: iid}[self._use_origin]
-            newlinkset = []
             #Just work with the first provided statement, for now
-            (o, r, t, a) = ctx.linkset[0]
+            (o, r, t, a) = ctx.current_link
             if unique is not None:
                 objid = self._hashidgen.send([_typ] + unique(ctx))
             else:
@@ -99,21 +96,22 @@ class base_transformer(object):
                 if _rel:
                     #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
                     if _rel.isdigit(): _rel = '_' + _rel
-                    newlinkset.append((I(new_o), I(iri.absolutize(_rel, ctx.base)), I(objid), {}))
+                    ctx.output_model.add(I(new_o), I(iri.absolutize(_rel, ctx.base)), I(objid), {})
             folded = objid in self._existing_ids
             if not folded:
-                if _typ: newlinkset.append((I(objid), VTYPE_REL, I(iri.absolutize(_typ, ctx.base)), {}))
+                if _typ: ctx.output_model.add(I(objid), VTYPE_REL, I(iri.absolutize(_typ, ctx.base)), {})
                 #FIXME: Should we be using Python Nones to mark blanks, or should Versa define some sort of null resource?
                 for k, v in mr_properties.items():
                     k = k(ctx) if callable(k) else k
-                    newctx = ctx.copy(origin=I(objid), rel=k)
+                    new_current_link = (I(objid), k, ctx.current_link[TARGET], ctx.current_link[ATTRIBUTES])
+                    newctx = ctx.copy(current_link=new_current_link)
                     #newctx = ctx.copy(origin=I(objid), rel=rels[0], linkset=[(I(objid), I(iri.absolutize(_rel, ctx.base)), None, {})])
                     v = v(newctx) if callable(v) else v
                     #Pipeline functions can return lists of replacement statements or lists of scalar values
                     #Or of course a single scalar value or None
                     if isinstance(v, list) and isinstance(v[0], tuple):
                         #It's a list of replacement statements
-                        newlinkset.extend(v)
+                        ctx.output_model.add_many(v)
                     #If k or v come from pipeline functions as None it signals to skip generating anything for this subfield
                     elif k and v is not None:
                         #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
@@ -121,16 +119,15 @@ class base_transformer(object):
                         if isinstance(v, list):
                             for valitems in v:
                                 if valitems:
-                                    newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), valitems, {}))
+                                    ctx.output_model.add(I(objid), I(iri.absolutize(k, newctx.base)), valitems, {})
                         else:
-                            newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), v, {}))
+                            ctx.output_model.add(I(objid), I(iri.absolutize(k, newctx.base)), v, {})
                 #To avoid losing info include subfields which come via Versa attributes
-                for k, v in ctx.linkset[0][ATTRIBUTES].items():
+                for k, v in ctx.current_link[ATTRIBUTES].items():
                     for valitems in v:
-                        newlinkset.append((I(objid), I(iri.absolutize('sf-' + k, ctx.base)), valitems, {}))
+                        ctx.output_model.add(I(objid), I(iri.absolutize('sf-' + k, ctx.base)), valitems, {})
                 self._existing_ids.add(objid)
 
-            return newlinkset, objid if folded else []
         return _materialize
 
 
@@ -147,7 +144,7 @@ def all_subfields(ctx):
     #    result.extend(valitem)
         #sorted(functools.reduce(lambda a, b: a.extend(b), ))
     #ctx.logger('GRIPPO' + repr(sorted(functools.reduce(lambda a, b: a.extend(b), ctx.linkset[0][ATTRIBUTES].items()))))
-    return sorted(ctx.linkset[0][ATTRIBUTES].items())
+    return sorted(ctx.current_link[ATTRIBUTES].items())
 
 
 def subfield(key):
@@ -164,7 +161,7 @@ def subfield(key):
         :param ctx: Versa context used in processing (e.g. includes the prototype link
         :return: Tuple of key/value tuples from the attributes; suitable for hashing
         '''
-        return ctx.linkset[0][ATTRIBUTES].get(key, [None])
+        return ctx.current_link[ATTRIBUTES].get(key, [None])
     return _subfield
 
 
@@ -237,32 +234,32 @@ def materialize(typ, unique=None, mr_properties=None):
     def _materialize(ctx):
         _typ = typ(ctx) if callable(typ) else typ
         #rels = [ link[RELATIONSHIP] for link in ctx.linkset ]
-        newlinkset = []
         #Just work with the first provided statement, for now
-        (o, r, t, a) = ctx.linkset[0]
+        (o, rel, t, a) = ctx.current_link
         if unique is not None:
             objid = ctx.hashidgen.send([_typ, unique(ctx)])
         else:
             objid = next(self._hashidgen)
         #for rel in rels:
-        if ctx.rel:
+        if rel:
             #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
-            rel = '_' + ctx.rel if ctx.rel.isdigit() else ctx.rel
-            newlinkset.append((I(ctx.origin), I(iri.absolutize(rel, ctx.base)), I(objid), {}))
+            rel = '_' + rel if rel.isdigit() else rel
+            ctx.output_model.add(I(o), I(iri.absolutize(rel, ctx.base)), I(objid), {})
         folded = objid in ctx.existing_ids
         if not folded:
-            if _typ: newlinkset.append((I(objid), VTYPE_REL, I(iri.absolutize(_typ, ctx.base)), {}))
+            if _typ: ctx.output_model.add(I(objid), VTYPE_REL, I(iri.absolutize(_typ, ctx.base)), {})
             #FIXME: Should we be using Python Nones to mark blanks, or should Versa define some sort of null resource?
             for k, v in mr_properties.items():
                 k = k(ctx) if callable(k) else k
-                newctx = ctx.copy(origin=I(objid), rel=k)
+                new_current_link = (I(objid), k, ctx.current_link[TARGET], ctx.current_link[ATTRIBUTES])
+                newctx = ctx.copy(current_link=new_current_link)
                 #newctx = ctx.copy(origin=I(objid), rel=rels[0], linkset=[(I(objid), I(iri.absolutize(rel, ctx.base)), None, {})])
                 v = v(newctx) if callable(v) else v
                 #Pipeline functions can return lists of replacement statements or lists of scalar values
                 #Or of course a single scalar value or None
                 if isinstance(v, list) and isinstance(v[0], tuple):
                     #It's a list of replacement statements
-                    newlinkset.extend(v)
+                    ctx.output_model.add_many(v)
                 #If k or v come from pipeline functions as None it signals to skip generating anything for this subfield
                 elif k and v is not None:
                     #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
@@ -270,16 +267,15 @@ def materialize(typ, unique=None, mr_properties=None):
                     if isinstance(v, list):
                         for valitems in v:
                             if valitems:
-                                newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), valitems, {}))
+                                ctx.output_model.add(I(objid), I(iri.absolutize(k, newctx.base)), valitems, {})
                     else:
-                        newlinkset.append((I(objid), I(iri.absolutize(k, newctx.base)), v, {}))
+                        ctx.output_model.add(I(objid), I(iri.absolutize(k, newctx.base)), v, {})
             #To avoid losing info include subfields which come via Versa attributes
-            for k, v in ctx.linkset[0][ATTRIBUTES].items():
+            for k, v in ctx.current_link[ATTRIBUTES].items():
                 for valitems in v:
-                    newlinkset.append((I(objid), I(iri.absolutize('sf-' + k, ctx.base)), valitems, {}))
+                    ctx.output_model.add(I(objid), I(iri.absolutize('sf-' + k, ctx.base)), valitems, {})
             ctx.existing_ids.add(objid)
 
-        return newlinkset, objid if folded else []
     return _materialize
 
 
