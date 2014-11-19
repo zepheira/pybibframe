@@ -74,53 +74,15 @@ class base_transformer(object):
         Create a new resource related to the origin
         '''
         mr_properties = mr_properties or {}
-        def _materialize(ctx):
+        def derive_origin(ctx):
+            '''
+            Given a pipeline transform context, derive an origin for generated Versa links
+            from whether we're meant to deal with work or instance rules
+            '''
             workid, iid = ctx.extras[WORKID], ctx.extras[IID]
-            _typ = typ(ctx) if callable(typ) else typ
-            _rel = rel(ctx) if callable(rel) else rel
-            rels = _rel if isinstance(_rel, list) else [_rel]
-            new_o = {origin_class.work: workid, origin_class.instance: iid}[self._use_origin]
-            #Just work with the first provided statement, for now
-            (o, r, t, a) = ctx.current_link
-            computed_unique = unique(ctx) if unique else None
-            objid = ctx.idgen(_typ, unique=unique(ctx), existing_ids=ctx.existing_ids)
-            for _rel in rels:
-                if _rel:
-                    #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
-                    if _rel.isdigit(): _rel = '_' + _rel
-                    ctx.output_model.add(I(new_o), I(iri.absolutize(_rel, ctx.base)), I(objid), {})
-            folded = objid in ctx.existing_ids
-            if not folded:
-                if _typ: ctx.output_model.add(I(objid), VTYPE_REL, I(iri.absolutize(_typ, ctx.base)), {})
-                #FIXME: Should we be using Python Nones to mark blanks, or should Versa define some sort of null resource?
-                for k, v in mr_properties.items():
-                    k = k(ctx) if callable(k) else k
-                    new_current_link = (I(objid), k, ctx.current_link[TARGET], ctx.current_link[ATTRIBUTES])
-                    newctx = ctx.copy(current_link=new_current_link)
-                    #newctx = ctx.copy(origin=I(objid), rel=rels[0], linkset=[(I(objid), I(iri.absolutize(_rel, ctx.base)), None, {})])
-                    v = v(newctx) if callable(v) else v
-                    #Pipeline functions can return lists of replacement statements or lists of scalar values
-                    #Or of course a single scalar value or None
-                    if isinstance(v, list) and isinstance(v[0], tuple):
-                        #It's a list of replacement statements
-                        ctx.output_model.add_many(v)
-                    #If k or v come from pipeline functions as None it signals to skip generating anything for this subfield
-                    elif k and v is not None:
-                        #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
-                        if k.isdigit(): k = '_' + k
-                        if isinstance(v, list):
-                            for valitems in v:
-                                if valitems:
-                                    ctx.output_model.add(I(objid), I(iri.absolutize(k, newctx.base)), valitems, {})
-                        else:
-                            ctx.output_model.add(I(objid), I(iri.absolutize(k, newctx.base)), v, {})
-                #To avoid losing info include subfields which come via Versa attributes
-                for k, v in ctx.current_link[ATTRIBUTES].items():
-                    for valitems in v:
-                        ctx.output_model.add(I(objid), I(iri.absolutize('sf-' + k, ctx.base)), valitems, {})
-                ctx.existing_ids.add(objid)
-
-        return _materialize
+            return {origin_class.work: workid, origin_class.instance: iid}[self._use_origin]
+        #Now delegate to the actual materialize funtion to do the work
+        return materialize(typ, rel, derive_origin=derive_origin, unique=unique, mr_properties=mr_properties)
 
 
 def all_subfields(ctx):
@@ -218,23 +180,26 @@ def ifexists(test, value, alt=None):
     return _ifexists
 
 
-def materialize(typ, unique=None, mr_properties=None):
+def materialize(typ, rel=None, derive_origin=None, unique=None, mr_properties=None):
     '''
     Create a new resource related to the origin
     '''
     mr_properties = mr_properties or {}
     def _materialize(ctx):
         _typ = typ(ctx) if callable(typ) else typ
-        #rels = [ link[RELATIONSHIP] for link in ctx.linkset ]
-        #Just work with the first provided statement, for now
-        (o, rel, t, a) = ctx.current_link
+        _rel = rel(ctx) if callable(rel) else rel
+        #Conversions to make sure we end up with a list of relationships out of it all
+        rels = _rel if isinstance(_rel, list) else ([_rel] if rel else [])
+        (o, r, t, a) = ctx.current_link
+        if derive_origin:
+            #Have been given enough info to derive the origin from context. Ignore origin in current link
+            o = derive_origin(ctx)
         computed_unique = unique(ctx) if unique else None
         objid = ctx.idgen(_typ, unique=unique(ctx), existing_ids=ctx.existing_ids)
-        #for rel in rels:
-        if rel:
+        for curr_rel in rels:
             #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
-            rel = '_' + rel if rel.isdigit() else rel
-            ctx.output_model.add(I(o), I(iri.absolutize(rel, ctx.base)), I(objid), {})
+            r = '_' + r if curr_rel.isdigit() else r
+            ctx.output_model.add(I(o), I(iri.absolutize(curr_rel, ctx.base)), I(objid), {})
         folded = objid in ctx.existing_ids
         if not folded:
             if _typ: ctx.output_model.add(I(objid), VTYPE_REL, I(iri.absolutize(_typ, ctx.base)), {})
@@ -243,7 +208,6 @@ def materialize(typ, unique=None, mr_properties=None):
                 k = k(ctx) if callable(k) else k
                 new_current_link = (I(objid), k, ctx.current_link[TARGET], ctx.current_link[ATTRIBUTES])
                 newctx = ctx.copy(current_link=new_current_link)
-                #newctx = ctx.copy(origin=I(objid), rel=rels[0], linkset=[(I(objid), I(iri.absolutize(rel, ctx.base)), None, {})])
                 v = v(newctx) if callable(v) else v
                 #Pipeline functions can return lists of replacement statements or lists of scalar values
                 #Or of course a single scalar value or None
