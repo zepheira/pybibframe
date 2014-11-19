@@ -12,27 +12,27 @@ IID = PYBF_BASE + 'iid'
 
 #FIXME: Make proper use of subclassing (implementation derivation)
 class bfcontext(context):
-    def __init__(self, current_link, input_model, output_model, base=None, extras=None, hashidgen=None, existing_ids=None, logger=None):
+    def __init__(self, current_link, input_model, output_model, base=None, extras=None, idgen=None, existing_ids=None, logger=None):
         self.current_link = current_link
         self.input_model = input_model
         self.output_model = output_model
         self.base = base
         self.extras = extras or {}
-        self.hashidgen = hashidgen
+        self.idgen = idgen
         self.existing_ids = existing_ids
         self.logger = logger
         return
 
-    def copy(self, current_link=None, input_model=None, output_model=None, base=None, extras=None, hashidgen=None, existing_ids=None, logger=None):
+    def copy(self, current_link=None, input_model=None, output_model=None, base=None, extras=None, idgen=None, existing_ids=None, logger=None):
         current_link = current_link if current_link else self.current_link
         input_model = input_model if input_model else self.input_model
         output_model = output_model if output_model else self.output_model
         base = base if base else self.base
         extras = extras if extras else self.extras
-        hashidgen = hashidgen if hashidgen else self.hashidgen
+        idgen = idgen if idgen else self.idgen
         existing_ids = existing_ids if existing_ids else self.existing_ids
         logger = logger if logger else self.logger
-        return bfcontext(current_link, input_model, output_model, base=base, extras=extras, hashidgen=hashidgen, existing_ids=existing_ids, logger=logger)
+        return bfcontext(current_link, input_model, output_model, base=base, extras=extras, idgen=idgen, existing_ids=existing_ids, logger=logger)
 
 
 class action(Enum):
@@ -47,11 +47,6 @@ class origin_class(Enum):
 class base_transformer(object):
     def __init__(self, use_origin):
         self._use_origin = use_origin
-        return
-
-    def initialize(self, idgen, existing_ids):
-        self._idgen = idgen
-        self._existing_ids = existing_ids
         return
 
     #Functions that take a prototype link set and generate a transformed link set
@@ -94,7 +89,7 @@ class base_transformer(object):
                     #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
                     if _rel.isdigit(): _rel = '_' + _rel
                     ctx.output_model.add(I(new_o), I(iri.absolutize(_rel, ctx.base)), I(objid), {})
-            folded = objid in self._existing_ids
+            folded = objid in ctx.existing_ids
             if not folded:
                 if _typ: ctx.output_model.add(I(objid), VTYPE_REL, I(iri.absolutize(_typ, ctx.base)), {})
                 #FIXME: Should we be using Python Nones to mark blanks, or should Versa define some sort of null resource?
@@ -123,7 +118,7 @@ class base_transformer(object):
                 for k, v in ctx.current_link[ATTRIBUTES].items():
                     for valitems in v:
                         ctx.output_model.add(I(objid), I(iri.absolutize('sf-' + k, ctx.base)), valitems, {})
-                self._existing_ids.add(objid)
+                ctx.existing_ids.add(objid)
 
         return _materialize
 
@@ -286,10 +281,6 @@ def res(arg):
 
 onwork = base_transformer(origin_class.work)
 oninstance = base_transformer(origin_class.instance)
-
-def initialize(idgen=None, existing_ids=None):
-    onwork.initialize(idgen, existing_ids)
-    oninstance.initialize(idgen, existing_ids)
 
 AVAILABLE_TRANSFORMS = {}
 

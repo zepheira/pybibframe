@@ -24,7 +24,7 @@ from versa.util import simple_lookup
 from versa.driver import memory
 from versa.pipeline import *
 
-from bibframe.reader.util import initialize, WORKID, IID
+from bibframe.reader.util import WORKID, IID
 from bibframe import BFZ, BFLC, g_services
 from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
 from bibframe.isbnplus import isbn_list
@@ -169,7 +169,6 @@ def record_handler(loop, model, entbase=None, vocabbase=BFZ, limiting=None, plug
     instancegen = isbn_instancegen
 
     existing_ids = set()
-    initialize(idgen=ids, existing_ids=existing_ids)
     #Start the process of writing out the JSON representation of the resulting Versa
     if out: out.write('[')
     first_record = True
