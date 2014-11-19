@@ -25,7 +25,7 @@ from versa.pipeline import *
 
 from bibframe.reader.util import initialize, WORKID, IID
 from bibframe import BFZ, BFLC, g_services
-from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_FINAL_TASK
+from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
 from bibframe.isbnplus import isbn_list
 from bibframe.reader.marcpatterns import TRANSFORMS, bfcontext
 from bibframe.reader.marcextra import process_leader, process_008
@@ -71,11 +71,11 @@ def isbn_instancegen(params):
     model = params['model']
     vocabbase = params['vocabbase']
     logger = params['logger']
-    ids = params['ids']
+    materialize_entity = params['materialize_entity']
     rec = params['rec']
     existing_ids = params['existing_ids']
     workid = params['workid']
-
+    
     isbns = marc_lookup(rec, ['020$a'])
     logger.debug('Raw ISBNS:\t{0}'.format(isbns))
 
@@ -86,7 +86,9 @@ def isbn_instancegen(params):
     logger.debug('Normalized ISBN:\t{0}'.format(normalized_isbns))
     if normalized_isbns:
         for subix, (inum, itype) in enumerate(normalized_isbns):
-            instanceid = ids.send(['Instance', workid, inum])
+            #XXX Do we use vocabbase? Probably since if they are substituting a new vocab base, we assume they're substituting semantics entirely
+            instanceid = materialize_entity(iri.absolutize('Instance', vocabbase), instantiates=workid, isbn=inum, existing_ids=existing_ids)
+            #ids.send(['', ])
             if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
 
             model.add(I(instanceid), I(iri.absolutize('isbn', vocabbase)), inum)
@@ -94,7 +96,7 @@ def isbn_instancegen(params):
             if itype: model.add(I(instanceid), I(iri.absolutize('isbnType', vocabbase)), itype)
             instance_ids.append(instanceid)
     else:
-        instanceid = ids.send(['Instance', workid])
+        instanceid = materialize_entity(iri.absolutize('Instance', vocabbase), instantiates=workid, existing_ids=existing_ids)
         if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
         model.add(I(instanceid), TYPE_REL, I(iri.absolutize('Instance', vocabbase)))
         existing_ids.add(instanceid)
@@ -165,10 +167,37 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
     instancegen = isbn_instancegen
 
     existing_ids = set()
-    initialize(hashidgen=ids, existing_ids=existing_ids)
+    initialize(idgen=ids, existing_ids=existing_ids)
     #Start the process of writing out the JSON representation of the resulting Versa
     if out: out.write('[')
     first_record = True
+
+    def materialize_entity(etype, vocabbase=vocabbase, existing_ids=existing_ids, unique=None, **data):
+        '''
+        Routine for creating a BIBFRAME resource. Takes the resource type and a data mapping
+        according to the resource type. Implements the Libhub Resource Hash Convention
+        As a convenience, if a vocabulary base is provided, concatenate it to etype and the data keys
+        '''
+        params = {}
+        etype = vocabbase + etype
+        data_full = { vocabbase + k: v for (k, v) in data.items() }
+        plaintext = json.dumps([etype, data_full])
+        if data_full or unique:
+            #We only have a type; no other distinguishing data. Generate a random hash
+            if unique is None:
+                eid = ids.send(plaintext)
+            else:
+                eid = ids.send([plaintext, unique])
+        else:
+            eid = next(ids)
+        params['materialized_id'] = eid
+        params['first_seen'] = eid in existing_ids
+        for plugin in plugins:
+            #Not using yield from
+            for p in plugin[BF_MATRES_TASK](loop, relsink, params): pass
+            #logger.debug("Pending tasks: %s" % asyncio.Task.all_tasks(loop))
+        return eid
+
     try:
         while True:
             rec = yield
@@ -176,7 +205,7 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
             #Add work item record, with actual hash resource IDs based on default or plugged-in algo
             #FIXME: No plug-in support yet
             workhash = record_hash_key(rec)
-            workid = ids.send('Work:' + workhash)
+            workid = materialize_entity(iri.absolutize('Work', vocabbase), hash=workhash, existing_ids=existing_ids)
             folded = [workid] if workid in existing_ids else []
             existing_ids.add(workid)
             logger.debug('Uniform title from 245$a: {0}'.format(marc_lookup(rec, ['245$a'])))
@@ -189,6 +218,7 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
             params = {'workid': workid, 'rec': rec, 'logger': logger, 'model': relsink, 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids, 'existing_ids': existing_ids, 'folded': folded}
 
             #Figure out instances
+            params['materialize_entity'] = materialize_entity
             instanceids = instancegen(params)
             if instanceids:
                 instanceid = instanceids[0]
@@ -254,7 +284,7 @@ def record_handler(loop, relsink, entbase=None, vocabbase=BFZ, limiting=None, pl
                         for func in funcs:
                             extras = dict(); extras[WORKID], extras[IID] = workid, instanceid
                             ctx = bfcontext(workid, code, [(workid, code, val, subfields)], relsink,
-                                            extras=extras, base=vocabbase, hashidgen=ids, existing_ids=existing_ids)
+                                            extras=extras, base=vocabbase, idgen=materialize_entity, existing_ids=existing_ids)
                             new_stmts, folded = func(ctx)
                             if folded: params['folded'].append(folded)
                             #XXX: Use add_many?

@@ -1,12 +1,12 @@
 {
     "transforms": [
-        "https://bibfra.me/tool/pybibframe/transforms#bflite",
-        "https://bibfra.me/tool/pybibframe/transforms#marc"
+        "http://bibfra.me/tool/pybibframe/transforms#bflite",
+        "http://bibfra.me/tool/pybibframe/transforms#marc"
     ],
     "plugins": [
-        {"id": "https://github.com/zepheira/pybibframe#linkreport",
+        {"id": "http://bibfra.me/tool/pybibframe#linkreport",
         "output-file": "/tmp/linkreport.html"},
-        {"id": "https://github.com/zepheira/pybibframe#labelizer",
+        {"id": "http://bibfra.me/tool/pybibframe#labelizer",
         "lookup": {"Work": "title", "Instance": "title", "Agent": "name", "Person": "name", "Organization": "name", "Place": "name",
             "Collection": "name", "Meeting": "name", "Topic": "name", "Geographic": "name", "Genre": "name",
             "Series": "title"}

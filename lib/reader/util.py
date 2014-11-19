@@ -6,25 +6,25 @@ from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 from bibframe.contrib.datachefids import slugify, idgen, FROM_EMPTY_HASH
 from bibframe import BFZ
 
-PYBF_BASE = '"https://bibfra.me/tool/pybibframe/transforms#'
+PYBF_BASE = '"http://bibfra.me/tool/pybibframe/transforms#'
 WORKID = PYBF_BASE + 'workid'
 IID = PYBF_BASE + 'iid'
 
 #FIXME: Make proper use of subclassing (implementation derivation)
 class bfcontext(context):
-    def __init__(self, origin, rel, linkset, linkspace, extras=None, base=None, hashidgen=None, existing_ids=None, logger=None):
+    def __init__(self, origin, rel, linkset, linkspace, extras=None, base=None, idgen=None, existing_ids=None, logger=None):
         self.origin = origin
         self.rel = rel
         self.linkset = linkset
         self.linkspace = linkspace
         self.base = base
-        self.hashidgen = hashidgen
+        self.idgen = idgen
         self.existing_ids = existing_ids
         self.logger = logger
         self.extras = extras or {}
         return
 
-    def copy(self, origin=None, rel=None, linkset=None, linkspace=None, extras=None, base=None, hashidgen=None, existing_ids=None, logger=None):
+    def copy(self, origin=None, rel=None, linkset=None, linkspace=None, extras=None, base=None, idgen=None, existing_ids=None, logger=None):
         origin = origin if origin else self.origin
         rel = rel if rel else self.rel
         linkset = linkset if linkset else self.linkset
@@ -32,9 +32,9 @@ class bfcontext(context):
         base = base if base else self.base
         extras = extras if extras else self.extras
         logger = logger if logger else self.logger
-        hashidgen = hashidgen if hashidgen else self.hashidgen
+        idgen = idgen if idgen else self.idgen
         existing_ids = existing_ids if existing_ids else self.existing_ids
-        return bfcontext(origin, rel, linkset, linkspace, extras=extras, base=base, logger=logger, hashidgen=hashidgen, existing_ids=existing_ids)
+        return bfcontext(origin, rel, linkset, linkspace, extras=extras, base=base, logger=logger, idgen=idgen, existing_ids=existing_ids)
 
 
 class action(Enum):
@@ -51,8 +51,8 @@ class base_transformer(object):
         self._use_origin = use_origin
         return
 
-    def initialize(self, hashidgen, existing_ids):
-        self._hashidgen = hashidgen
+    def initialize(self, idgen, existing_ids):
+        self._idgen = idgen
         self._existing_ids = existing_ids
         return
 
@@ -91,10 +91,8 @@ class base_transformer(object):
             newlinkset = []
             #Just work with the first provided statement, for now
             (o, r, t, a) = ctx.linkset[0]
-            if unique is not None:
-                objid = self._hashidgen.send([_typ] + unique(ctx))
-            else:
-                objid = next(self._hashidgen)
+            computed_unique = unique(ctx) if unique else None
+            objid = ctx.idgen(_typ, unique=unique(ctx), existing_ids=ctx.existing_ids)
             for _rel in rels:
                 if _rel:
                     #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
@@ -240,10 +238,9 @@ def materialize(typ, unique=None, mr_properties=None):
         newlinkset = []
         #Just work with the first provided statement, for now
         (o, r, t, a) = ctx.linkset[0]
-        if unique is not None:
-            objid = ctx.hashidgen.send([_typ, unique(ctx)])
-        else:
-            objid = next(self._hashidgen)
+        computed_unique = unique(ctx) if unique else None
+        objid = ctx.idgen(_typ, unique=unique(ctx), existing_ids=ctx.existing_ids)
+        #objid = ctx.idgen(iri.absolutize('Instance', vocabbase), instantiates=workid, isbn=inum, existing_ids=existing_ids)
         #for rel in rels:
         if ctx.rel:
             #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
@@ -296,9 +293,9 @@ def res(arg):
 onwork = base_transformer(origin_class.work)
 oninstance = base_transformer(origin_class.instance)
 
-def initialize(hashidgen=None, existing_ids=None):
-    onwork.initialize(hashidgen, existing_ids)
-    oninstance.initialize(hashidgen, existing_ids)
+def initialize(idgen=None, existing_ids=None):
+    onwork.initialize(idgen, existing_ids)
+    oninstance.initialize(idgen, existing_ids)
 
 AVAILABLE_TRANSFORMS = {}
 

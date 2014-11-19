@@ -3,7 +3,7 @@ Sample config JSON stanza:
 
 {
     "plugins": [
-        {"id": "https://github.com/zepheira/pybibframe#labelizer",
+        {"id": "http://bibfra.me/tool/pybibframe#labelizer",
         "lookup": {"Work": "title", "Instance": "title", "Agent": "name", "Person": "name", "Organization": "name", "Place": "name", "Collection": "name", "Meeting": "name", "Topic": "name", "Geographic": "name", "Genre": "name"}
         }
     ]
@@ -41,13 +41,14 @@ RDFS_LABEL = RDFS_NAMESPACE + 'label'
 #One convenient way to organize the Plug-in is as a class
 #In this case we want to create a separate instance for each full processing event loop
 class labelizer(object):
-    PLUGIN_ID = 'https://github.com/zepheira/pybibframe#labelizer'
+    PLUGIN_ID = 'http://bibfra.me/tool/pybibframe#labelizer'
     def __init__(self, pinfo, config=None):
         #print ('BF_INIT_TASK', linkreport.PLUGIN_ID)
         self._config = config or {}
         #If you need state maintained throughout a full processing loop, you can use instance attributes
         #Now set up the other plug-in phases
         pinfo[BF_MARCREC_TASK] = self.handle_record_links
+        pinfo[BF_MATRES_TASK] = self.handle_materialized_resource
         pinfo[BF_FINAL_TASK] = self.finalize
         return
 
@@ -74,6 +75,22 @@ class labelizer(object):
                 val = simple_lookup(model, link[ORIGIN], I(iri.absolutize(prop, vocabbase)))
                 if val:
                     model.add(link[ORIGIN], I(RDFS_LABEL), val)
+        return
+
+    @asyncio.coroutine
+    def handle_materialized_resource(self, loop, model, params):
+        '''
+        Task coroutine of the main event loop for MARC conversion, called whenever a new resource is materialized
+        In this case generate the report of links encountered in the MARC/XML
+        
+        loop - async processing loop
+        
+        You can set the value of params['renamed_materialized_id'] to rename the resource
+        '''
+        eid = params['materialized_id']
+        first_seen = params['first_seen']
+        logger = params['logger']
+        logger.debug('Materialized resource with ID {0}{1}'.format(eid, ' (first encounter)' if first_seen else ''))
         return
 
     @asyncio.coroutine

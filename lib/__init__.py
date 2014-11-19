@@ -9,9 +9,10 @@ BFLC = I('http://bibframe.org/vocab/')
 #Maps URL to callable
 g_services = {}
 
-BF_INIT_TASK = 'https://github.com/uogbuji/pybibframe#task.init'
-BF_MARCREC_TASK = 'https://github.com/uogbuji/pybibframe#task.marcrec'
-BF_FINAL_TASK = 'https://github.com/uogbuji/pybibframe#task.final'
+BF_INIT_TASK = 'http://bibfra.me/tool/pybibframe#task.init'
+BF_MARCREC_TASK = 'http://bibfra.me/tool/pybibframe#task.marcrec'
+BF_MATRES_TASK = 'http://bibfra.me/tool/pybibframe#task.materialize-resource'
+BF_FINAL_TASK = 'http://bibfra.me/tool/pybibframe#task.final'
 
 #def register_service(coro, iri=None):
 #    iri = iri or coro.iri

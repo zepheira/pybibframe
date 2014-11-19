@@ -371,14 +371,14 @@ BFLITE_TRANSFORMS = {
     '856$u': oninstance.rename(rel='link', res=True),
     }
 
-register_transforms("https://bibfra.me/tool/pybibframe/transforms#bflite", BFLITE_TRANSFORMS)
+register_transforms("http://bibfra.me/tool/pybibframe/transforms#bflite", BFLITE_TRANSFORMS)
 
 MARC_TRANSFORMS = {
     #HeldItem is a refinement of Annotation
     '852': oninstance.materialize('HeldItem', 'institution', unique=all_subfields, mr_properties={'holderType': 'Library', 'location': subfield('a'), 'subLocation': subfield('b'), 'callNumber': subfield('h'), 'code': subfield('n'), 'link': subfield('u'), 'streetAddress': subfield('e')}),
 }
 
-register_transforms("https://bibfra.me/tool/pybibframe/transforms#marc", MARC_TRANSFORMS)
+register_transforms("http://bibfra.me/tool/pybibframe/transforms#marc", MARC_TRANSFORMS)
 
 #XXX This might instead be a job for collections.ChainMap
 TRANSFORMS = {}
