@@ -212,9 +212,14 @@ def record_handler(loop, model, entbase=None, vocabbase=BFZ, limiting=None, plug
             logger.debug('Uniform title from 245$a: {0}'.format(marc_lookup(rec, ['245$a'])))
             logger.debug('Work hash result: {0} from \'{1}\''.format(workid, 'Work' + workhash))
 
-            if entbase: workid = I(iri.absolutize(workid, entbase))
+            if entbase:
+                workid = I(iri.absolutize(workid, entbase))
+            else:
+                workid = I(workid)
+
             folded = [workid] if is_folded else []
-            model.add(I(workid), TYPE_REL, I(iri.absolutize('Work', vocabbase)))
+
+            model.add(workid, TYPE_REL, I(iri.absolutize('Work', vocabbase)))
 
             input_model = memory.connection()
 
