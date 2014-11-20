@@ -294,6 +294,8 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
                 for valitems in v:
                     ctx.output_model.add(I(objid), I(iri.absolutize('sf-' + k, ctx.base)), valitems, {})
             ctx.existing_ids.add(objid)
+        else:
+            ctx.extras['folded'].append(I(objid))
 
     return _materialize
 
