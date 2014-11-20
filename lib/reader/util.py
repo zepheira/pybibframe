@@ -274,8 +274,7 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
                 v = v(newctx) if callable(v) else v
                 #Pipeline functions can return lists of replacement statements or lists of scalar values
                 #Or of course a single scalar value or None
-                if isinstance(v, list):
-                    if v and isinstance(v[0], tuple):
+                if isinstance(v, list) and isinstance(v[0], tuple):
                         #It's a list of replacement statements
                         ctx.output_model.add_many(v)
                 #If k or v come from pipeline functions as None it signals to skip generating anything for this subfield
