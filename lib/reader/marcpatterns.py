@@ -13,7 +13,7 @@ from bibframe.reader.util import *
 #from bibframe.reader.marcpatterns import *
 #sorted([ (m, MATERIALIZE[m]) for m in MATERIALIZE if [ wf for wf in WORK_FIELDS if m[:2] == wf[:2]] ])
 
-#    '100': onwork.materialize('Agent', 'creator', unique=all_subfields, mr_properties={'a': 'label'}),
+#    '100': onwork.materialize('Agent', 'creator', unique=all_subfields, links={'a': 'label'}),
 
 # where do we put LDR info, e.g. LDR 07 / 19 positions = mode of issuance
 #Don't do a simple field renaming of ISBN because
@@ -53,17 +53,17 @@ BFLITE_TRANSFORMS = {
     '100': onwork.materialize('Person', 
                               values('creator', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
-                              mr_properties={'name': subfield('a'), 'numeration': subfield('b'), 'titles': subfield('c'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+                              links={'name': subfield('a'), 'numeration': subfield('b'), 'titles': subfield('c'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
     '110': onwork.materialize('Organization', 
                               values('creator', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
-                              mr_properties={'name': subfield('a'), 'subordinateUnit': subfield('b'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+                              links={'name': subfield('a'), 'subordinateUnit': subfield('b'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
     '111': onwork.materialize('Meeting', 
                               values('creator', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
-                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+                              links={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
     '210$a': oninstance.rename(rel='abbreviatedTitle'),
     '222$a': oninstance.rename(rel='keyTitle'),
@@ -71,12 +71,12 @@ BFLITE_TRANSFORMS = {
     '240': onwork.materialize('Collection', 
                               'memberOf', 
                               unique=values(subfield('a'), subfield('h'), subfield('k'), subfield('l'), subfield('m'), subfield('s')), 
-                              mr_properties={'title': subfield('a'), 'legalDate': subfield('d'), 'medium': subfield('h'), 'musicMedium': subfield('m'), 'musicKey': subfield('r')}),
+                              links={'title': subfield('a'), 'legalDate': subfield('d'), 'medium': subfield('h'), 'musicMedium': subfield('m'), 'musicKey': subfield('r')}),
     
     '243': onwork.materialize('Collection', 
                               'memberOf', 
                               unique=values(subfield('a'), subfield('h'), subfield('k'), subfield('l'), subfield('m'), subfield('s')), 
-                              mr_properties={'title': subfield('a'), 'legalDate': subfield('d'), 'medium': subfield('h'), 'musicMedium': subfield('m'), 'musicKey': subfield('r')}),
+                              links={'title': subfield('a'), 'legalDate': subfield('d'), 'medium': subfield('h'), 'musicMedium': subfield('m'), 'musicKey': subfield('r')}),
 
     # Title(s) - replicate across both Work and Instance(s) 
 
@@ -102,18 +102,30 @@ BFLITE_TRANSFORMS = {
 
     # Provider materialization 
 
+    #'260': oninstance.materialize('ProviderEvent', 
+    #                              'publication', 
+    #                              unique=all_subfields, 
+    #                              links={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), links={'name': subfield('a')}), 
+    #                                             ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=target(), links={'name': subfield('b')}), 
+    #                                             'providerDate': subfield('c')}),
+
     '260': oninstance.materialize('ProviderEvent', 
                                   'publication', 
                                   unique=all_subfields, 
-                                  mr_properties={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), mr_properties={'name': subfield('a')}), 
-                                                 ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=subfield('b'), mr_properties={'name': subfield('b')}), 
-                                                 'providerDate': subfield('c')}),
+                                  links={
+                                      ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), links={'name': subfield('a')}),
+                                      foreach(target=subfield('b')): materialize('Agent', 'providerAgent', unique=target(), links={'name': target()}),
+                                      'providerDate': subfield('c')
+                                  },
+#foreach(create_link(target=materialize('Agent', unique=target(), links={'name': subfield('b')})), rel='providerAgent', target=subfield('b'))
+                                      #foreach(rel='providerAgent', target=subfield('b'))
+                                  ),
 
     '264': oninstance.materialize('ProviderEvent', 
                                   'publication', 
                                   unique=all_subfields, 
-                                  mr_properties={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), mr_properties={'name': subfield('a')}), 
-                                                 ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=subfield('b'), mr_properties={'name': subfield('b')}), 
+                                  links={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), links={'name': subfield('a')}), 
+                                                 ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=subfield('b'), links={'name': subfield('b')}), 
                                                  'providerDate': subfield('c')}),
 
     #Ind1 is blank ('#') ind2 is 3
@@ -123,29 +135,29 @@ BFLITE_TRANSFORMS = {
     '264-#3': oninstance.materialize('ProviderEvent', 
                                      'manufacture', 
                                      unique=all_subfields, 
-                                     mr_properties={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), mr_properties={'name': subfield('a')}), 
-                                                    ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=subfield('b'), mr_properties={'name': subfield('b')}), 
+                                     links={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), links={'name': subfield('a')}), 
+                                                    ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=subfield('b'), links={'name': subfield('b')}), 
                                                     'providerDate': subfield('c')}),
 
     '264-#2': oninstance.materialize('ProviderEvent', 
                                      'distribution', 
                                      unique=all_subfields, 
-                                     mr_properties={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), mr_properties={'name': subfield('a')}), 
-                                                    ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=subfield('b'), mr_properties={'name': subfield('b')}), 
+                                     links={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), links={'name': subfield('a')}), 
+                                                    ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=subfield('b'), links={'name': subfield('b')}), 
                                                     'providerDate': subfield('c')}),
 
     '264-#1': oninstance.materialize('ProviderEvent', 
                                      'publication', 
                                      unique=all_subfields, 
-                                     mr_properties={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), mr_properties={'name': subfield('a')}), 
-                                                    ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=subfield('b'), mr_properties={'name': subfield('b')}), 
+                                     links={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), links={'name': subfield('a')}), 
+                                                    ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=subfield('b'), links={'name': subfield('b')}), 
                                                     'providerDate': subfield('c')}),
 
     '264-#0': oninstance.materialize('ProviderEvent', 
                                      'production', 
                                      unique=all_subfields, 
-                                     mr_properties={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), mr_properties={'name': subfield('a')}), 
-                                                    ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=subfield('b'), mr_properties={'name': subfield('b')}), 
+                                     links={ifexists(subfield('a'), 'providerPlace'): materialize('Place', unique=subfield('a'), links={'name': subfield('a')}), 
+                                                    ifexists(subfield('b'), 'providerAgent'): materialize('Agent', unique=subfield('b'), links={'name': subfield('b')}), 
                                                     'providerDate': subfield('c')}),
 
     '300$a': oninstance.rename(rel='extent'),
@@ -181,17 +193,17 @@ BFLITE_TRANSFORMS = {
 #    '382$a': onwork.materialize('Medium', 
 #                                'performanceMedium', 
 #                                unique=values(subfield('a')), 
-#                                mr_properties={'name': subfield('a')}),
+#                                links={'name': subfield('a')}),
 #
 #    '382$b': onwork.materialize('Medium', 
 #                                'featuredMedium', 
 #                                unique=values(subfield('b')), 
-#                                mr_properties={'name': subfield('b')}),
+#                                links={'name': subfield('b')}),
 #
 #    '382$p': onwork.materialize('Medium', 
 #                                'alternativeMedium', 
 #                                unique=values(subfield('f')), 
-#                                mr_properties={'name': subfield('f')}),
+#                                links={'name': subfield('f')}),
 #
 
     '382$a': onwork.rename(rel='performanceMedium'),
@@ -275,39 +287,39 @@ BFLITE_TRANSFORMS = {
     '600': onwork.materialize('Person', 
                               'subject', 
                               unique=all_subfields,
-                              mr_properties={'name': subfield('a'), 'numeration': subfield('b'), 'locationOfEvent': subfield('c'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z'), 'hasAuthorityLink': subfield('0')}),
+                              links={'name': subfield('a'), 'numeration': subfield('b'), 'locationOfEvent': subfield('c'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z'), 'hasAuthorityLink': subfield('0')}),
 
     '610': onwork.materialize('Organization', 
                               'subject', 
                               unique=all_subfields, 
-                              mr_properties={'name': subfield('a'), 'subordinateUnit': subfield('b'), 'locationOfEvent': subfield('c'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z'), 'hasAuthorityLink': subfield('0')}),
+                              links={'name': subfield('a'), 'subordinateUnit': subfield('b'), 'locationOfEvent': subfield('c'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z'), 'hasAuthorityLink': subfield('0')}),
 
     '611': onwork.materialize('Meeting', 
                               'subject', 
                               unique=all_subfields, 
-                              mr_properties={'name': subfield('a'), 'locationOfEvent': subfield('c'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z'), 'hasAuthorityLink': subfield('0')}),
+                              links={'name': subfield('a'), 'locationOfEvent': subfield('c'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z'), 'hasAuthorityLink': subfield('0')}),
 
     #'610$d': onwork.rename(rel='date'),  #Note: there has been discussion about removing this, but we are not sure we get reliable ID.LOC lookups without it.  If it is removed, update augment.py
 
     '630': onwork.materialize('Title', 
                               'uniformTitle', 
                               unique=all_subfields,
-                              mr_properties={'uniformTitle': subfield('a'), 'language': subfield('l'), 'medium': subfield('h'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z')}),
+                              links={'uniformTitle': subfield('a'), 'language': subfield('l'), 'medium': subfield('h'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z')}),
 
     '650': onwork.materialize('Topic', 
                               'subject', 
                               unique=all_subfields, 
-                              mr_properties={'name': subfield('a'), 'locationOfEvent': subfield('c'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z'), 'hasAuthorityLink': subfield('0')}),
+                              links={'name': subfield('a'), 'locationOfEvent': subfield('c'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z'), 'hasAuthorityLink': subfield('0')}),
 
     '651': onwork.materialize('Place', 
                               'subject', 
                               unique=all_subfields, 
-                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z'), 'hasAuthorityLink': subfield('0')}),
+                              links={'name': subfield('a'), 'date': subfield('d'), 'formSubdivision': subfield('v'), 'generalSubdivision': subfield('x'), 'chronologicalSubdivision': subfield('y'), 'geographicSubdivision': subfield('z'), 'hasAuthorityLink': subfield('0')}),
 
     '655': onwork.materialize('Genre', 
                               'genre', 
                               unique=all_subfields, 
-                              mr_properties={'name': subfield('a'), 'source': subfield('2'), 'hasAuthorityLink': subfield('0')}),
+                              links={'name': subfield('a'), 'source': subfield('2'), 'hasAuthorityLink': subfield('0')}),
 
     # Fields 700,710,711,etc. have a contributor + role (if specified) relationship to a new Agent object (only created as a new object if all subfields are unique)
     # generate hash values only from the properties specific to Agents 
@@ -315,20 +327,20 @@ BFLITE_TRANSFORMS = {
     '700': onwork.materialize('Person', 
                               values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
-                              mr_properties={'name': subfield('a'), 'numeration': subfield('b'), 'titles': subfield('c'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+                              links={'name': subfield('a'), 'numeration': subfield('b'), 'titles': subfield('c'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
     #If there is a $t recognize a person, else recognize a work
     '700': ifexists(subfield('t'),
                 onwork.materialize('Work', 
                     values('relatedTo', normalizeparse(subfield('i'))),
                     unique=values(subfield('t')), 
-                    mr_properties={ifexists(subfield('a'), 'creator'): materialize('Person', unique=subfield('a'), mr_properties={'name': subfield('a'), 'date': subfield('d')}),
+                    links={ifexists(subfield('a'), 'creator'): materialize('Person', unique=subfield('a'), links={'name': subfield('a'), 'date': subfield('d')}),
                                     'title': subfield('t'),
                                     'language': subfield('l')}),
                 onwork.materialize('Person', 
                     values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
                     unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
-                    mr_properties={'name': subfield('a'), 'numeration': subfield('b'), 'titles': subfield('c'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')})
+                    links={'name': subfield('a'), 'numeration': subfield('b'), 'titles': subfield('c'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')})
                 ),
 
     # 700$t - when MARC 700 are relationships not contributors
@@ -336,28 +348,28 @@ BFLITE_TRANSFORMS = {
     '710': onwork.materialize('Organization', 
                               values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
-                              mr_properties={'name': subfield('a'), 'subordinateUnit': subfield('b'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+                              links={'name': subfield('a'), 'subordinateUnit': subfield('b'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
     # 710$t - when MARC 700 are relationships not contributors
 
     '710$t': onwork.materialize('Work', 
                                 values('relatedTo', normalizeparse(subfield('i'))),
                                 unique=values(subfield('t')), 
-                                mr_properties={ifexists(subfield('a'), 'creator'): materialize('Organization', unique=subfield('a'), mr_properties={'name': subfield('a'), 'date': subfield('d')}),
+                                links={ifexists(subfield('a'), 'creator'): materialize('Organization', unique=subfield('a'), links={'name': subfield('a'), 'date': subfield('d')}),
                                                'title': subfield('t'),
                                                'language': subfield('l')}),
 
     '711': onwork.materialize('Meeting', 
                               values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
                               unique=values(subfield('a'), subfield('c'), subfield('d'), subfield('e'), subfield('q'), subfield('u')), 
-                              mr_properties={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+                              links={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
     # 711$t - when MARC 711 are relationships not contributors
 
     '711$t': onwork.materialize('Work', 
                                 values('relatedTo', normalizeparse(subfield('i'))),
                                 unique=values(subfield('t')), 
-                                mr_properties={ifexists(subfield('a'), 'creator'): materialize('Meeting', unique=subfield('a'), mr_properties={'name': subfield('a'), 'date': subfield('d')}),
+                                links={ifexists(subfield('a'), 'creator'): materialize('Meeting', unique=subfield('a'), links={'name': subfield('a'), 'date': subfield('d')}),
                                                'title': subfield('t'),
                                                'language': subfield('l')}),
 
@@ -365,7 +377,7 @@ BFLITE_TRANSFORMS = {
     '830': onwork.materialize('Series', 
                               'memberOf', 
                               unique=values(subfield('a')), 
-                              mr_properties={'title': subfield('a'), 'subtitle': subfield('k'), 'volume': subfield('v'), 'number': subfield('n'), 'part': subfield('p'), }),
+                              links={'title': subfield('a'), 'subtitle': subfield('k'), 'volume': subfield('v'), 'number': subfield('n'), 'part': subfield('p'), }),
 
     '880$a': onwork.rename(rel='title'),
     '856$u': oninstance.rename(rel='link', res=True),
@@ -375,7 +387,7 @@ register_transforms("http://bibfra.me/tool/pybibframe/transforms#bflite", BFLITE
 
 MARC_TRANSFORMS = {
     #HeldItem is a refinement of Annotation
-    '852': oninstance.materialize('HeldItem', 'institution', unique=all_subfields, mr_properties={'holderType': 'Library', 'location': subfield('a'), 'subLocation': subfield('b'), 'callNumber': subfield('h'), 'code': subfield('n'), 'link': subfield('u'), 'streetAddress': subfield('e')}),
+    '852': oninstance.materialize('HeldItem', 'institution', unique=all_subfields, links={'holderType': 'Library', 'location': subfield('a'), 'subLocation': subfield('b'), 'callNumber': subfield('h'), 'code': subfield('n'), 'link': subfield('u'), 'streetAddress': subfield('e')}),
 }
 
 register_transforms("http://bibfra.me/tool/pybibframe/transforms#marc", MARC_TRANSFORMS)
