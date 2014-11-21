@@ -197,10 +197,10 @@ def ifexists(test, value, alt=None):
         :return: Value computed according to the test expression result
         '''
         _test = test(ctx) if callable(test) else test
-        #XXX Note: this is why ifexists should not be run on functions which operate on side effect (i.e. updating ctx.output_model. It's evaluated regardless of the test result)
-        _value = value(ctx) if callable(value) else value
-        _alt = alt(ctx) if callable(alt) else alt
-        return _value if _test else _alt
+        if _test:
+            return value(ctx) if callable(value) else value
+        else:
+            return alt(ctx) if callable(alt) else alt
     return _ifexists
 
 
@@ -275,16 +275,14 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
                         continue
 
                 #import traceback; traceback.print_stack() #For looking up the call stack e.g. to debug nested materialize
-                new_current_link = (I(objid), k, ctx.current_link[TARGET], ctx.current_link[ATTRIBUTES])
-                newctx = ctx.copy(current_link=new_current_link)
-                v = v(newctx) if callable(v) else v
-
-                #Pipeline functions can return lists of replacement statements or lists of scalar values
-                #Or of course a single scalar value or None
-                if isinstance(v, list) and v and isinstance(v[0], tuple):
-                    #FIXME: Primarily designed for implementation of nested materialize, but that case now directly adds the statement to ctx.output_model, so this is otiose
-                    #It's a list of replacement statements
-                    ctx.output_model.add_many(v)
+                #Check that the links key is not None, which is a signal not to
+                #generate the item. For example if the key is an ifexists and the
+                #test expression result is False, it will come back as None,
+                #and we don't want to run the v function
+                if k:
+                    new_current_link = (I(objid), k, ctx.current_link[TARGET], ctx.current_link[ATTRIBUTES])
+                    newctx = ctx.copy(current_link=new_current_link)
+                    v = v(newctx) if callable(v) else v
 
                 #If k or v come from pipeline functions as None it signals to skip generating anything else for this link item
                 elif k and v is not None:
