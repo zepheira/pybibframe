@@ -285,16 +285,16 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
                     v = v(newctx) if callable(v) else v
 
                 #If k or v come from pipeline functions as None it signals to skip generating anything else for this link item
-                elif k and v is not None:
-                    v = v(newctx) if callable(v) else v
-                    #FIXME: Fix properly, by slugifying & making sure slugify handles all-numeric case
-                    if k.isdigit(): k = '_' + k
-                    if isinstance(v, list):
-                        for valitems in v:
-                            if valitems:
-                                ctx.output_model.add(I(objid), I(iri.absolutize(k, newctx.base)), valitems, {})
-                    else:
-                        ctx.output_model.add(I(objid), I(iri.absolutize(k, newctx.base)), v, {})
+                    if v is not None:
+                        v = v(newctx) if callable(v) else v
+                        #FIXME: Fix properly, by slugifying & making sure slugify handles all-numeric case
+                        if k.isdigit(): k = '_' + k
+                        if isinstance(v, list):
+                            for valitems in v:
+                                if valitems:
+                                    ctx.output_model.add(I(objid), I(iri.absolutize(k, newctx.base)), valitems, {})
+                        else:
+                            ctx.output_model.add(I(objid), I(iri.absolutize(k, newctx.base)), v, {})
             #To avoid losing info include subfields which come via Versa attributes
             for k, v in ctx.current_link[ATTRIBUTES].items():
                 for valitems in v:
