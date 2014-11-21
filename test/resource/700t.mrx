@@ -1,0 +1,298 @@
+<!-- A single record from GW_bf_test10.mrx -->
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+<record>
+  <leader>04587cgm a2200853Ia 4500</leader>
+  <controlfield tag="001">11587162</controlfield>
+  <controlfield tag="005">20130215180140.0</controlfield>
+  <controlfield tag="007">vd cvaizu</controlfield>
+  <controlfield tag="008">120430s2005    cc 094            vlchi d</controlfield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)ocn279263196</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">CLU</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">CLU</subfield>
+    <subfield code="d">CLU</subfield>
+    <subfield code="d">SINLB</subfield>
+    <subfield code="d">OCLCA</subfield>
+    <subfield code="d">OCLCQ</subfield>
+    <subfield code="d">ZCU</subfield>
+    <subfield code="d">OCLCQ</subfield>
+    <subfield code="d">DGW</subfield>
+  </datafield>
+  <datafield tag="066" ind1=" " ind2=" ">
+    <subfield code="c">$1</subfield>
+  </datafield>
+  <datafield tag="019" ind1=" " ind2=" ">
+    <subfield code="a">85855655</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">7880008446</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9787880008449</subfield>
+  </datafield>
+  <datafield tag="024" ind1="0" ind2=" ">
+    <subfield code="a">CNA020502180</subfield>
+    <subfield code="d">V.J9</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)279263196</subfield>
+    <subfield code="z">(OCoLC)85855655</subfield>
+  </datafield>
+  <datafield tag="041" ind1="0" ind2=" ">
+    <subfield code="a">chi</subfield>
+    <subfield code="j">chi</subfield>
+    <subfield code="j">eng</subfield>
+  </datafield>
+  <datafield tag="043" ind1=" " ind2=" ">
+    <subfield code="a">a-cc---</subfield>
+  </datafield>
+  <datafield tag="050" ind1="1" ind2="4">
+    <subfield code="a">PN1997.2</subfield>
+    <subfield code="b">.Z484 2005</subfield>
+  </datafield>
+  <datafield tag="082" ind1="0" ind2="4">
+    <subfield code="a">791.4372</subfield>
+    <subfield code="2">22</subfield>
+  </datafield>
+  <datafield tag="049" ind1=" " ind2=" ">
+    <subfield code="a">DGWW</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="0">
+    <subfield code="6">880-01</subfield>
+    <subfield code="a">Zhu fu</subfield>
+    <subfield code="h">[videorecording] /</subfield>
+    <subfield code="c">Beijing dian ying zhi pian chang ; yuan zhu Lu Xun ; bian ju Xia Yan ; dao yan Sang Hu.</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="6">880-02</subfield>
+    <subfield code="a">[Beijing Shi] :</subfield>
+    <subfield code="b">Zhong ying yin xiang chu ban she ;</subfield>
+    <subfield code="a">[Guangzhou Shi] :</subfield>
+    <subfield code="b">Guangzhou qiao jia ren wen hua chuan bo you xian gong si zong jing xiao,</subfield>
+    <subfield code="c">[2005]</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="6">880-03</subfield>
+    <subfield code="a">1 videodisc (94 min.) :</subfield>
+    <subfield code="b">sd., col. ;</subfield>
+    <subfield code="c">4 3/4 in.</subfield>
+  </datafield>
+  <datafield tag="490" ind1="0" ind2=" ">
+    <subfield code="6">880-04</subfield>
+    <subfield code="a">Han yu =</subfield>
+    <subfield code="a">Chinese, Follow me</subfield>
+  </datafield>
+  <datafield tag="490" ind1="1" ind2=" ">
+    <subfield code="6">880-05</subfield>
+    <subfield code="a">Zhongguo jing dian dian ying =</subfield>
+    <subfield code="a">Chinese movies</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Title and credits from container.</subfield>
+  </datafield>
+  <datafield tag="538" ind1=" " ind2=" ">
+    <subfield code="a">DVD-5 ; MPEG-2 ; NTSC.</subfield>
+  </datafield>
+  <datafield tag="546" ind1=" " ind2=" ">
+    <subfield code="a">In Chinese (Mandarin) with Chinese and English subtitles.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Originally produced as a motion picture.</subfield>
+  </datafield>
+  <datafield tag="511" ind1="1" ind2=" ">
+    <subfield code="6">880-06</subfield>
+    <subfield code="a">Bai Yang, Wei Heling.</subfield>
+  </datafield>
+  <datafield tag="508" ind1=" " ind2=" ">
+    <subfield code="6">880-07</subfield>
+    <subfield code="a">She ying, Qian Jiang ; zuo qu, Liu Ruceng.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Feature films</subfield>
+    <subfield code="z">China.</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="0">
+    <subfield code="a">China</subfield>
+    <subfield code="x">History</subfield>
+    <subfield code="y">20th century</subfield>
+    <subfield code="v">Drama.</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Feature films.</subfield>
+    <subfield code="2">lcgft</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Fiction films.</subfield>
+    <subfield code="2">lcgft</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Film adaptations.</subfield>
+    <subfield code="2">lcgft</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="6">880-08</subfield>
+    <subfield code="a">Xia, Yan,</subfield>
+    <subfield code="d">1900-1995.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="6">880-09</subfield>
+    <subfield code="a">Sang, Hu.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="6">880-10</subfield>
+    <subfield code="a">Bai, Yang,</subfield>
+    <subfield code="d">1920-1996.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="6">880-11</subfield>
+    <subfield code="a">Wei, Heling,</subfield>
+    <subfield code="d">1907-1979.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="6">880-12</subfield>
+    <subfield code="a">Lu, Xun,</subfield>
+    <subfield code="d">1881-1936.</subfield>
+    <subfield code="t">Zhu fu.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="6">880-13</subfield>
+    <subfield code="a">Beijing dian ying zhi pian chang.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="6">880-14</subfield>
+    <subfield code="a">Zhong ying yin xiang chu ban she.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="6">880-15</subfield>
+    <subfield code="a">Guangzhou qiao jia ren wen hua chuan bo you xian gong si.</subfield>
+  </datafield>
+  <datafield tag="830" ind1=" " ind2="0">
+    <subfield code="6">880-16</subfield>
+    <subfield code="a">Zhongguo jing dian dian ying.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="0" ind2="0">
+    <subfield code="6">245-01/$1</subfield>
+    <subfield code="a">祝福</subfield>
+    <subfield code="h">[videorecording] /</subfield>
+    <subfield code="c">北京电影制片厂 ; 原著鲁迅 ; 编剧夏衍 ; 导演桑弧.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+    <subfield code="6">260-02/$1</subfield>
+    <subfield code="a">[北京市] :</subfield>
+    <subfield code="b">中影音像出版社 ;</subfield>
+    <subfield code="a">[广州市] :</subfield>
+    <subfield code="b">广州俏佳人文化传播有限公司总经销,</subfield>
+    <subfield code="c">[2005]</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+    <subfield code="6">300-03/$1</subfield>
+    <subfield code="a">1录像光碟 (94分钟) :</subfield>
+    <subfield code="b">有声 彩色 ;</subfield>
+    <subfield code="c">4 3/4吋.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="0" ind2=" ">
+    <subfield code="6">490-04/$1</subfield>
+    <subfield code="a">汉语 =</subfield>
+    <subfield code="a">Chinese, Follow me</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2=" ">
+    <subfield code="6">490-05/$1</subfield>
+    <subfield code="a">中国经典电影 =</subfield>
+    <subfield code="a">Chinese movies</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+    <subfield code="6">500-00/$1</subfield>
+    <subfield code="a">&quot;DE1514&quot;--碟面.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+    <subfield code="6">500-00/$1</subfield>
+    <subfield code="a">原著, 鲁迅.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+    <subfield code="6">500-00/$1</subfield>
+    <subfield code="a">&quot;名著故事影片&quot;--外盒.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+    <subfield code="6">500-00/$1</subfield>
+    <subfield code="a">原以电影形式于1956年发行.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+    <subfield code="6">538-00/$1</subfield>
+    <subfield code="a">数码录像光碟(DVD); NTSC; all regions.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2=" ">
+    <subfield code="6">511-06/$1</subfield>
+    <subfield code="a">白杨, 魏鹤龄.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+    <subfield code="6">508-07/$1</subfield>
+    <subfield code="a">摄影, 钱江 ; 作曲, 刘如曾.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="8" ind2=" ">
+    <subfield code="6">521-00/$1</subfield>
+    <subfield code="a">新加坡电影检查局 : PG 级.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+    <subfield code="6">520-00/$1</subfield>
+    <subfield code="a">辛亥革命前, 早寡的祥林嫂听说婆婆要把她卖掉, 连夜跑到鲁镇来到鲁四老爷家帮佣, 因不惜力气得到太太欢心. 不料又被婆婆把她抢走与贺老六成了亲. 贺老六忠厚善良, 为凑钱还债累病而死, 儿子也被狼吃掉, 于是祥林嫂又回到鲁四老爷家. 她怕死后阎王分尸, 把一年工钱拿去捐了土地庙门坎, 当她在祝福晚上兴冲冲端出供品时, 鲁家大加责骂并把她赶走. 在一个祝福之夜她死在了漫天风雪中.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+    <subfield code="6">586-00/$1</subfield>
+    <subfield code="a">&quot;卡罗维发利第十届国际电影节特别奖&quot;--外盒.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2=" ">
+    <subfield code="6">700-08/$1</subfield>
+    <subfield code="a">夏衍,</subfield>
+    <subfield code="d">1900-</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2=" ">
+    <subfield code="6">700-09/$1</subfield>
+    <subfield code="a">桑弧.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2=" ">
+    <subfield code="6">700-10/$1</subfield>
+    <subfield code="a">白杨,</subfield>
+    <subfield code="d">1920-1996.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2=" ">
+    <subfield code="6">700-11/$1</subfield>
+    <subfield code="a">魏鹤龄,</subfield>
+    <subfield code="d">1907-1979.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2=" ">
+    <subfield code="6">700-12/$1</subfield>
+    <subfield code="a">鲁迅,</subfield>
+    <subfield code="d">1881-1936.</subfield>
+    <subfield code="t">祝福.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="2" ind2=" ">
+    <subfield code="6">710-13/$1</subfield>
+    <subfield code="a">北京电影制片厂.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="2" ind2=" ">
+    <subfield code="6">710-14/$1</subfield>
+    <subfield code="a">中影音像出版社.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="2" ind2=" ">
+    <subfield code="6">710-15/$1</subfield>
+    <subfield code="a">广州俏佳人文化传播有限公司.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2="0">
+    <subfield code="6">830-16/$1</subfield>
+    <subfield code="a">中国经典电影.</subfield>
+  </datafield>
+  <datafield tag="994" ind1=" " ind2=" ">
+    <subfield code="a">C0</subfield>
+    <subfield code="b">DGW</subfield>
+  </datafield>
+  <datafield tag="996" ind1=" " ind2=" ">
+    <subfield code="a">New title added 2012-10-08</subfield>
+  </datafield>
+  <datafield tag="998" ind1=" " ind2=" ">
+    <subfield code="c">CC ;  20 ; GIFT ; None of the above     ;</subfield>
+  </datafield>
+</record>
+</collection>

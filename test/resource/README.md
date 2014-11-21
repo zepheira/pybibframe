@@ -2,7 +2,9 @@
 
 Thanks to alumni of Zepheira's BIBFRAME training <http://zepheira.com/solutions/library/training/> for the following:
 
-George Washington University Libraries (GW_bf_test10.mrx)
+George Washington University Libraries (GW_bf_test10.mrx), a single record from which is 700t.mrx
+
+stanford_rda_parens.mrx is from https://foundry.zepheira.com/topics/380
 
 ----
 

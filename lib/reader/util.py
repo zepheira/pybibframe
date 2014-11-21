@@ -1,3 +1,4 @@
+import re
 from itertools import product
 from enum import Enum #https://docs.python.org/3.4/library/enum.html
 
@@ -6,6 +7,8 @@ from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 
 from bibframe.contrib.datachefids import slugify, idgen, FROM_EMPTY_HASH
 from bibframe import BFZ
+
+RDA_PARENS_PAT = re.compile('\\(.*\\)')
 
 PYBF_BASE = '"http://bibfra.me/tool/pybibframe/transforms#'
 WORKID = PYBF_BASE + 'workid'
@@ -177,7 +180,8 @@ def normalizeparse(text_in):
         #If we get a list arg, take the first
         _text_in = text_in(ctx) if callable(text_in) else text_in
         if isinstance(_text_in, list) and _text_in: _text_in = _text_in[0]
-        return slugify(_text_in, False) if _text_in else ''
+        #Take into account RDA-isms such as $iContainer of (expression) by stripping the parens https://foundry.zepheira.com/topics/380
+        return slugify(RDA_PARENS_PAT.subn('', _text_in)[0], False) if _text_in else ''
     return _normalizeparse
 
 
