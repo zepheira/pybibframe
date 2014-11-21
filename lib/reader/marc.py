@@ -196,7 +196,7 @@ def record_handler(loop, model, entbase=None, vocabbase=BFZ, limiting=None, plug
         for plugin in plugins:
             #Not using yield from
             if BF_MATRES_TASK in plugin:
-                for p in plugin[BF_MATRES_TASK](loop, relsink, params): pass
+                for p in plugin[BF_MATRES_TASK](loop, model, params): pass
             #logger.debug("Pending tasks: %s" % asyncio.Task.all_tasks(loop))
         return eid
 
