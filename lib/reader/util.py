@@ -129,12 +129,14 @@ def subfield(key):
     '''
     def _subfield(ctx):
         '''
-        Versa action function Utility to return a hash from all subfields mentioned in the MARC prototype link
+        Versa action function Utility to look up a MARC subfield at processing time based on the given prototype linkset
 
         :param ctx: Versa context used in processing (e.g. includes the prototype link
         :return: Tuple of key/value tuples from the attributes; suitable for hashing
         '''
-        return ctx.current_link[ATTRIBUTES].get(key, [None])
+        return ctx.current_link[ATTRIBUTES].get(key)
+        #Why the blazes would this ever return [None] rather than None?!
+        #return ctx.current_link[ATTRIBUTES].get(key, [None])
     return _subfield
 
 
@@ -174,7 +176,7 @@ def normalizeparse(text_in):
         '''
         #If we get a list arg, take the first
         _text_in = text_in(ctx) if callable(text_in) else text_in
-        if isinstance(_text_in, list): _text_in = _text_in[0]
+        if isinstance(_text_in, list) and _text_in: _text_in = _text_in[0]
         return slugify(_text_in, False) if _text_in else ''
     return _normalizeparse
 
@@ -195,6 +197,7 @@ def ifexists(test, value, alt=None):
         :return: Value computed according to the test expression result
         '''
         _test = test(ctx) if callable(test) else test
+        #XXX Note: this is why ifexists should not be run on functions which operate on side effect (i.e. updating ctx.output_model. It's evaluated regardless of the test result)
         _value = value(ctx) if callable(value) else value
         _alt = alt(ctx) if callable(alt) else alt
         return _value if _test else _alt
@@ -243,8 +246,10 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
         _typ = typ(ctx) if callable(typ) else typ
         _rel = rel(ctx) if callable(rel) else rel
         #Conversions to make sure we end up with a list of relationships out of it all
-        rels = _rel if isinstance(_rel, list) else ([_rel] if rel else [])
         (o, r, t, a) = ctx.current_link
+        if _rel is None:
+            _rel = [r]
+        rels = _rel if isinstance(_rel, list) else ([_rel] if rel else [])
         if derive_origin:
             #Have been given enough info to derive the origin from context. Ignore origin in current link
             o = derive_origin(ctx)
@@ -269,18 +274,22 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
                             v(newctx)
                         continue
 
+                #import traceback; traceback.print_stack() #For looking up the call stack e.g. to debug nested materialize
                 new_current_link = (I(objid), k, ctx.current_link[TARGET], ctx.current_link[ATTRIBUTES])
                 newctx = ctx.copy(current_link=new_current_link)
                 v = v(newctx) if callable(v) else v
+
                 #Pipeline functions can return lists of replacement statements or lists of scalar values
                 #Or of course a single scalar value or None
-                if isinstance(v, list) and isinstance(v[0], tuple):
-                        #It's a list of replacement statements
-                        ctx.output_model.add_many(v)
-                #If k or v come from pipeline functions as None it signals to skip generating anything for this subfield
+                if isinstance(v, list) and v and isinstance(v[0], tuple):
+                    #FIXME: Primarily designed for implementation of nested materialize, but that case now directly adds the statement to ctx.output_model, so this is otiose
+                    #It's a list of replacement statements
+                    ctx.output_model.add_many(v)
+
+                #If k or v come from pipeline functions as None it signals to skip generating anything else for this link item
                 elif k and v is not None:
                     v = v(newctx) if callable(v) else v
-                    #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
+                    #FIXME: Fix properly, by slugifying & making sure slugify handles all-numeric case
                     if k.isdigit(): k = '_' + k
                     if isinstance(v, list):
                         for valitems in v:
