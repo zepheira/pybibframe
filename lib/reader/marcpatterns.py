@@ -324,19 +324,21 @@ BFLITE_TRANSFORMS = {
     # Fields 700,710,711,etc. have a contributor + role (if specified) relationship to a new Agent object (only created as a new object if all subfields are unique)
     # generate hash values only from the properties specific to Agents 
 
-    '700': onwork.materialize('Person', 
-                              values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
-                              unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
-                              links={'name': subfield('a'), 'numeration': subfield('b'), 'titles': subfield('c'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+    #'700': onwork.materialize('Person', 
+    #                          values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
+    #                          unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
+    #                          links={'name': subfield('a'), 'numeration': subfield('b'), 'titles': subfield('c'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
-    #If there is a $t recognize a person, else recognize a work
+    #If there is a $t recognize a work, else recognize a person
     '700': ifexists(subfield('t'),
                 onwork.materialize('Work', 
                     values('relatedTo', normalizeparse(subfield('i'))),
-                    unique=values(subfield('t')), 
-                    links={ifexists(subfield('a'), 'creator'): materialize('Person', unique=subfield('a'), links={'name': subfield('a'), 'date': subfield('d')}),
-                            'title': subfield('t'),
-                            'language': subfield('l')}),
+                    unique=values(subfield('t'), subfield('l')), 
+                    links={'language': subfield('l'),
+                           ifexists(subfield('a'), 'creator'): materialize('Person', 
+                                                                           unique=values(subfield('a')), 
+                                                                           links={'name': subfield('a'), 'date': subfield('d')}), 'title': subfield('t'), 'language': subfield('l')}
+                                   ),                   
                 onwork.materialize('Person', 
                     values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
                     unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
