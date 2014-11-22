@@ -90,6 +90,7 @@ BFLITE_TRANSFORMS = {
     '245$h': onwork.rename(rel='medium'),
     '245$k': onwork.rename(rel='formDesignation'),
     '246$a': onwork.rename(rel='titleVariation'),
+    '246$b': onwork.rename(rel='titleVariationRemainder'),
     '246$f': onwork.rename(rel='titleVariationDate'),
     '247$a': onwork.rename(rel='formerTitle'),
     '250$a': oninstance.rename(rel='edition'),
@@ -322,14 +323,9 @@ BFLITE_TRANSFORMS = {
                               links={'name': subfield('a'), 'source': subfield('2'), 'hasAuthorityLink': subfield('0')}),
 
     # Fields 700,710,711,etc. have a contributor + role (if specified) relationship to a new Agent object (only created as a new object if all subfields are unique)
-    # generate hash values only from the properties specific to Agents 
+    # Generate hash values only from the properties specific to Agents 
+    # If there is a 700$t however this is an indication that there is a new Work. And yes, we're building a touring complete micro-language to address such patterns.
 
-    #'700': onwork.materialize('Person', 
-    #                          values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
-    #                          unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
-    #                          links={'name': subfield('a'), 'numeration': subfield('b'), 'titles': subfield('c'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
-
-    #If there is a $t recognize a work, else recognize a person
     '700': ifexists(subfield('t'),
                 onwork.materialize('Work', 
                     values('relatedTo', normalizeparse(subfield('i'))),
@@ -345,36 +341,39 @@ BFLITE_TRANSFORMS = {
                     links={'name': subfield('a'), 'numeration': subfield('b'), 'titles': subfield('c'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')})
                 ),
 
-    # 700$t - when MARC 700 are relationships not contributors
-    
-    '710': onwork.materialize('Organization', 
-                              values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
-                              unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
-                              links={'name': subfield('a'), 'subordinateUnit': subfield('b'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
 
-    # 710$t - when MARC 700 are relationships not contributors
+    '710': ifexists(subfield('t'),
+                onwork.materialize('Work', 
+                    values('relatedTo', normalizeparse(subfield('i'))),
+                    unique=values(subfield('t'), subfield('l')), 
+                    links={'language': subfield('l'),
+                           ifexists(subfield('a'), 'creator'): materialize('Organization', 
+                                                                           unique=values(subfield('a')), 
+                                                                           links={'name': subfield('a'), 'date': subfield('d')}), 'title': subfield('t'), 'language': subfield('l')}
+                                   ),                   
+                onwork.materialize('Organization', 
+                    values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
+                    unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
+                    links={'name': subfield('a'), 'subordinateUnit': subfield('b'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')})
+                ),
 
-    '710$t': onwork.materialize('Work', 
-                                values('relatedTo', normalizeparse(subfield('i'))),
-                                unique=values(subfield('t')), 
-                                links={ifexists(subfield('a'), 'creator'): materialize('Organization', unique=subfield('a'), links={'name': subfield('a'), 'date': subfield('d')}),
-                                               'title': subfield('t'),
-                                               'language': subfield('l')}),
 
-    '711': onwork.materialize('Meeting', 
-                              values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
-                              unique=values(subfield('a'), subfield('c'), subfield('d'), subfield('e'), subfield('q'), subfield('u')), 
-                              links={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')}),
+    '711': ifexists(subfield('t'),
+                onwork.materialize('Work', 
+                    values('relatedTo', normalizeparse(subfield('i'))),
+                    unique=values(subfield('t'), subfield('l')), 
+                    links={'language': subfield('l'),
+                           ifexists(subfield('a'), 'creator'): materialize('Meeting', 
+                                                                           unique=values(subfield('a')), 
+                                                                           links={'name': subfield('a'), 'date': subfield('d')}), 'title': subfield('t'), 'language': subfield('l')}
+                                   ),                   
+                onwork.materialize('Meeting', 
+                    values('contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
+                    unique=values(subfield('a'), subfield('c'), subfield('d'), subfield('e'), subfield('q'), subfield('u')), 
+                    links={'name': subfield('a'), 'date': subfield('d'), 'hasAuthorityLink': subfield('0')})
+                ),
 
-    # 711$t - when MARC 711 are relationships not contributors
-
-    '711$t': onwork.materialize('Work', 
-                                values('relatedTo', normalizeparse(subfield('i'))),
-                                unique=values(subfield('t')), 
-                                links={ifexists(subfield('a'), 'creator'): materialize('Meeting', unique=subfield('a'), links={'name': subfield('a'), 'date': subfield('d')}),
-                                               'title': subfield('t'),
-                                               'language': subfield('l')}),
-
+    # Series
 
     '830': onwork.materialize('Series', 
                               'memberOf', 
