@@ -317,10 +317,10 @@ BFLITE_TRANSFORMS = {
                               unique=all_subfields, 
                               links={BL+'name': subfield('a'), RDA+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), RDA+'formSubdivision': subfield('v'), RDA+'generalSubdivision': subfield('x'), RDA+'chronologicalSubdivision': subfield('y'), RDA+'geographicSubdivision': subfield('z'), BL+'authorityLink': subfield('0')}),
 \
-    '630': onwork.materialize(BL+'Collection', 
-                              BL+'memberOf', 
+    '630': onwork.materialize(RDA+'Title', 
+                              BL+'subject', 
                               unique=all_subfields,
-                              links={BL+'title': subfield('a'), BL+'language': subfield('l'), BL+'medium': subfield('h'), RDA+'formSubdivision': subfield('v'), RDA+'generalSubdivision': subfield('x'), RDA+'chronologicalSubdivision': subfield('y'), RDA+'geographicSubdivision': subfield('z')}),
+                              links={BL+'name': subfield('a'), BL+'language': subfield('l'), BL+'medium': subfield('h'), RDA+'nameOfPart': subfield('p'), RDA+'formSubdivision': subfield('v'), RDA+'generalSubdivision': subfield('x'), RDA+'chronologicalSubdivision': subfield('y'), RDA+'geographicSubdivision': subfield('z')}),
 
     '650': onwork.materialize(BL+'Topic', 
                               BL+'subject', 
