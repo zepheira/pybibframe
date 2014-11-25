@@ -27,8 +27,6 @@ RDA = 'http://bibfra.me/vocab/'
 RBMS = 'http://bibfra.me/vocab/'
 AV = 'http://bibfra.me/vocab/'
 
-LOC = 'http://bibfra.me/vocab/local-extensions/'
-
 BFLITE_TRANSFORMS = {
     #Link to the 010a value, naming the relationship 'lccn'
     '010$a': onwork.rename(rel=RDA+'lccn'),
@@ -82,12 +80,12 @@ BFLITE_TRANSFORMS = {
     '240': onwork.materialize(BL+'Collection', 
                               BL+'memberOf', 
                               unique=values(subfield('a'), subfield('h'), subfield('k'), subfield('l'), subfield('m'), subfield('s')), 
-                              links={BL+'title': subfield('a'), RDA+'legalDate': subfield('d'), RDA+'medium': subfield('h'), RDA+'musicMedium': subfield('m'), RDA+'musicKey': subfield('r')}),
+                              links={BL+'title': subfield('a'), RDA+'legalDate': subfield('d'), BL+'medium': subfield('h'), AV+'musicMedium': subfield('m'), AV+'musicKey': subfield('r')}),
     
     '243': onwork.materialize(BL+'Collection', 
                               BL+'memberOf', 
                               unique=values(subfield('a'), subfield('h'), subfield('k'), subfield('l'), subfield('m'), subfield('s')), 
-                              links={BL+'title': subfield('a'), RDA+'legalDate': subfield('d'), BL+'medium': subfield('h'), RDA+'musicMedium': subfield('m'), RDA+'musicKey': subfield('r')}),
+                              links={BL+'title': subfield('a'), RDA+'legalDate': subfield('d'), BL+'medium': subfield('h'), AV+'musicMedium': subfield('m'), AV+'musicKey': subfield('r')}),
 
     # Title(s) - replicate across both Work and Instance(s) 
 
@@ -345,7 +343,7 @@ BFLITE_TRANSFORMS = {
 
     '700': ifexists(subfield('t'),
                     onwork.materialize(BL+'Work', 
-                                       values(BL+'related', relator_property(subfield('i'), prefix=LOC)),
+                                       values(BL+'related', relator_property(subfield('i'), prefix=REL)),
                                        unique=values(subfield('t'), subfield('l')), 
                                        links={BL+'language': subfield('l'),
                                               ifexists(subfield('a'), BL+'creator'): materialize(BL+'Person', 
@@ -354,7 +352,7 @@ BFLITE_TRANSFORMS = {
                                               BL+'title': subfield('t'), BL+'language': subfield('l')}
                                    ),                   
                     onwork.materialize(BL+'Person', 
-                                       values(BL+'contributor', relator_property(subfield('e'), prefix=LOC), relator_property(subfield('4'), prefix=LOC)), 
+                                       values(BL+'contributor', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)), 
                                        unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
                                        links={BL+'name': subfield('a'), RDA+'numeration': subfield('b'), RDA+'titles': subfield('c'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0')})
                     ),
@@ -362,7 +360,7 @@ BFLITE_TRANSFORMS = {
 
     '710': ifexists(subfield('t'),
                     onwork.materialize(BL+'Work', 
-                                       values(BL+ 'related', relator_property(subfield('i'), prefix=LOC)),
+                                       values(BL+ 'related', relator_property(subfield('i'), prefix=REL)),
                                        unique=values(subfield('t'), subfield('l')), 
                                        links={BL+'language': subfield('l'),
                                               ifexists(subfield('a'), BL+'creator'): materialize(BL+'Organization', 
@@ -371,7 +369,7 @@ BFLITE_TRANSFORMS = {
                                               BL+'title': subfield('t'), BL+'language': subfield('l')}
                                        ),                   
                     onwork.materialize(BL+'Organization', 
-                                       values(BL+'contributor', relator_property(subfield('e'), prefix=LOC), relator_property(subfield('4'), prefix=LOC)), 
+                                       values(BL+'contributor', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)), 
                                        unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
                                        links={BL+'name': subfield('a'), RDA+'subordinateUnit': subfield('b'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0')})
                     ),
@@ -379,7 +377,7 @@ BFLITE_TRANSFORMS = {
     
     '711': ifexists(subfield('t'),
                     onwork.materialize(BL+'Work', 
-                                       values(BL+'related', relator_property(subfield('i'), prefix=LOC)),
+                                       values(BL+'related', relator_property(subfield('i'), prefix=REL)),
                                        unique=values(subfield('t'), subfield('l')), 
                                        links={BL+'language': subfield('l'),
                                               ifexists(subfield('a'), BL+'creator'): materialize(BL+'Meeting', 
@@ -388,7 +386,7 @@ BFLITE_TRANSFORMS = {
                                               BL+'title': subfield('t'), BL+'language': subfield('l')}
                                        ),                   
                     onwork.materialize(BL+'Meeting', 
-                                       values(BL+'contributor', relator_property(subfield('e'), prefix=LOC), relator_property(subfield('4'), prefix=LOC)), 
+                                       values(BL+'contributor', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)), 
                                        unique=values(subfield('a'), subfield('c'), subfield('d'), subfield('e'), subfield('q'), subfield('u')), 
                                        links={BL+'name': subfield('a'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0')})
                     ),
