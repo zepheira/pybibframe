@@ -304,8 +304,6 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
                 for valitems in v:
                     ctx.output_model.add(I(objid), I(iri.absolutize('sf-' + k, ctx.base)), valitems, {})
             ctx.existing_ids.add(objid)
-        else:
-            ctx.extras['folded'].append(I(objid))
 
     return _materialize
 
@@ -318,6 +316,19 @@ def res(arg):
         _arg = arg(ctx) if callable(arg) else arg
         return I(arg)
     return _res
+
+def compose(*funcs):
+    '''
+    Compose an ordered list of functions. Args of a,b,c,d evaluates as a(b(c(d(ctx))))
+    '''
+    def _compose(ctx):
+        # last func gets context, rest get result of previous func
+        _result = funcs[-1](ctx)
+        for f in reversed(funcs[:-1]):
+            _result = f(_result)
+
+        return _result
+    return _compose
 
 
 onwork = base_transformer(origin_class.work)
