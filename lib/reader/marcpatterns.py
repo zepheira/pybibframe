@@ -18,14 +18,14 @@ from bibframe.reader.util import *
 # where do we put LDR info, e.g. LDR 07 / 19 positions = mode of issuance
 #Don't do a simple field renaming of ISBN because
 
-# Partitioning namespaces (to be filled out shortly) 
+# Partitioning namespaces
 
-BL = 'http://bibfra.me/vocab/'
-BA = 'http://bibfra.me/vocab/'
-REL = 'http://bibfra.me/vocab/'
-RDA = 'http://bibfra.me/vocab/'
-RBMS = 'http://bibfra.me/vocab/'
-AV = 'http://bibfra.me/vocab/'
+BL = 'http://bibfra.me/vocab/lite/'
+BA = 'http://bibfra.me/vocab/annotation/'
+REL = 'http://bibfra.me/vocab/relation/'
+RDA = 'http://bibfra.me/vocab/rda/'
+RBMS = 'http://bibfra.me/vocab/rbms/'
+AV = 'http://bibfra.me/vocab/audiovisual/'
 
 BFLITE_TRANSFORMS = {
     #Link to the 010a value, naming the relationship 'lccn'
@@ -60,17 +60,17 @@ BFLITE_TRANSFORMS = {
     # generate hash values only from the properties specific to Agents 
 
     '100': onwork.materialize(BL+'Person', 
-                              values(BL+'creator', relator_property(subfield('e'), prefix=LOC), relator_property(subfield('4'), prefix=LOC)), 
+                              values(BL+'creator', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
                               links={BL+'name': subfield('a'), RDA+'numeration': subfield('b'), RDA+'titles': subfield('c'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0')}),
 
     '110': onwork.materialize(BL+'Organization', 
-                              values(BL+'creator', relator_property(subfield('e'), prefix=LOC), relator_property(subfield('4'), prefix=LOC)), 
+                              values(BL+'creator', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
                               links={BL+'name': subfield('a'), RDA+'subordinateUnit': subfield('b'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0')}),
 
     '111': onwork.materialize(BL+'Meeting', 
-                              values(BL+'creator', relator_property(subfield('e'), prefix=LOC), relator_property(subfield('4'), prefix=LOC)), 
+                              values(BL+'creator', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
                               links={BL+'name': subfield('a'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0')}),
 

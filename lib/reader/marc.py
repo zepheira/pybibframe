@@ -47,6 +47,8 @@ NON_ISBN_CHARS = re.compile('\D')
 
 NEW_RECORD = 'http://bibfra.me/purl/versa/' + 'newrecord'
 
+BL = 'http://bibfra.me/vocab/lite/'
+
 def invert_dict(d):
     #http://code.activestate.com/recipes/252143-invert-a-dictionary-one-liner/#c3
     #See also: http://pypi.python.org/pypi/bidict
@@ -152,7 +154,7 @@ def record_hash_key(rec):
 
 
 @asyncio.coroutine
-def record_handler(loop, model, entbase=None, vocabbase=BFZ, limiting=None, plugins=None,
+def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugins=None,
                    ids=None, postprocess=None, out=None, logger=logging, transforms=TRANSFORMS, **kwargs):
     '''
     loop - asyncio event loop
