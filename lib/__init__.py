@@ -2,7 +2,8 @@
 
 from versa import I
 
-BFZ = I('http://bibfra.me/vocab/')
+# use BFZ namespace to scope MARC tags that don't match transformation recipes 
+BFZ = I('http://bibfra.me/vocab/marc/')
 BFLC = I('http://bibframe.org/vocab/')
 
 #A way to register services to specialize bibframe.py processing

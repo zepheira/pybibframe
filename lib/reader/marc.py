@@ -47,6 +47,8 @@ NON_ISBN_CHARS = re.compile('\D')
 
 NEW_RECORD = 'http://bibfra.me/purl/versa/' + 'newrecord'
 
+# Namespaces 
+
 BL = 'http://bibfra.me/vocab/lite/'
 ISBNNS = 'http://bibfra.me/vocab/rda/'
 
@@ -211,7 +213,7 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
             #Add work item record, with actual hash resource IDs based on default or plugged-in algo
             #FIXME: No plug-in support yet
             workhash = record_hash_key(rec)
-            workid = materialize_entity(iri.absolutize('Work', vocabbase), hash=workhash, existing_ids=existing_ids)
+            workid = materialize_entity(iri.absolutize('Work', BL), hash=workhash, existing_ids=existing_ids)
             is_folded = workid in existing_ids
             existing_ids.add(workid)
             logger.debug('Uniform title from 245$a: {0}'.format(marc_lookup(rec, ['245$a'])))
@@ -224,7 +226,7 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
 
             folded = [workid] if is_folded else []
 
-            model.add(workid, TYPE_REL, I(iri.absolutize('Work', vocabbase)))
+            model.add(workid, TYPE_REL, I(iri.absolutize('Work', BL)))
 
             input_model = memory.connection()
 
@@ -330,7 +332,7 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
                 special_properties[k] = list(v)
                 for item in v:
                 #logger.debug(v)
-                    model.add(I(instanceid), I(iri.absolutize(k, vocabbase)), item)
+                    model.add(I(instanceid), I(iri.absolutize(k, BL)), item)
 
             instance_postprocess(params)
 

@@ -132,7 +132,7 @@ BFLITE_TRANSFORMS = {
                                   ),
 
     '264': oninstance.materialize(BL+'ProviderEvent', 
-                                  BL+'publication', 
+                                  RDA+'publication', 
                                   unique=all_subfields, 
                                   links={ifexists(subfield('a'), BL+'providerPlace'): materialize(BL+'Place', unique=subfield('a'), 
                                                                                                   links={BL+'name': subfield('a')}), 

@@ -2,6 +2,10 @@
 Treatment of certain special MARC fields, leader and 008
 '''
 
+# Namespaces 
+
+BL = 'http://bibfra.me/vocab/lite/'
+
 #TODO: Also split on multiple 260 fields
 
 def process_leader(leader):
