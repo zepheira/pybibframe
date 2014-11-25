@@ -179,9 +179,9 @@ BFLITE_TRANSFORMS = {
                                                     ifexists(subfield('b'), BL+'providerAgent'): materialize(BL+'Agent', unique=subfield('b'), 
                                                                                                              links={BL+'name': subfield('b')}), BL+'providerDate': subfield('c')}),
 
-    '300$a': oninstance.rename(rel=RDA+'extent'),
+    '300$a': oninstance.rename(rel=BL+'extent'),
     '300$b': oninstance.rename(rel=RDA+'otherPhysicalDetails'),
-    '300$c': oninstance.rename(rel=RDA+'dimensions'),
+    '300$c': oninstance.rename(rel=BL+'dimensions'),
     '300$e': oninstance.rename(rel=RDA+'accompanyingMaterial'),
     '300$f': oninstance.rename(rel=RDA+'typeOfunit'),
     '300$g': oninstance.rename(rel=RDA+'size'),
@@ -225,12 +225,12 @@ BFLITE_TRANSFORMS = {
 #                                links={'name': subfield('f')}),
 #
 
-    '382$a': onwork.rename(rel=RDA+'performanceMedium'),
-    '382$b': onwork.rename(rel=RDA+'featuredMedium'),
-    '382$p': onwork.rename(rel=RDA+'alternativeMedium'),
+    '382$a': onwork.rename(rel=AV+'performanceMedium'),
+    '382$b': onwork.rename(rel=AV+'featuredMedium'),
+    '382$p': onwork.rename(rel=AV+'alternativeMedium'),
 
-    '382$s': onwork.rename(rel=RDA+'numberOfPerformers'),
-    '382$v': onwork.rename(rel=RDA+'mediumNote'),
+    '382$s': onwork.rename(rel=AV+'numberOfPerformers'),
+    '382$v': onwork.rename(rel=AV+'mediumNote'),
 
     '490$a': onwork.rename(rel=RDA+'seriesStatement'),
     '490$v': onwork.rename(rel=RDA+'seriesVolume'),

@@ -48,6 +48,7 @@ NON_ISBN_CHARS = re.compile('\D')
 NEW_RECORD = 'http://bibfra.me/purl/versa/' + 'newrecord'
 
 BL = 'http://bibfra.me/vocab/lite/'
+ISBNNS = 'http://bibfra.me/vocab/rda/'
 
 def invert_dict(d):
     #http://code.activestate.com/recipes/252143-invert-a-dictionary-one-liner/#c3
@@ -94,9 +95,10 @@ def isbn_instancegen(params):
             #ids.send(['', ])
             if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
 
-            model.add(I(instanceid), I(iri.absolutize('isbn', vocabbase)), inum)
+            # model.add(I(instanceid), I(iri.absolutize('isbn', vocabbase)), inum)
+            model.add(I(instanceid), I(iri.absolutize('isbn', ISBNNS)), inum)
             #subitem['id'] = instanceid + (unichr(subscript + subix) if subix else '')
-            if itype: model.add(I(instanceid), I(iri.absolutize('isbnType', vocabbase)), itype)
+            if itype: model.add(I(instanceid), I(iri.absolutize('isbnType', ISBNNS)), itype)
             instance_ids.append(instanceid)
     else:
         instanceid = materialize_entity(iri.absolutize('Instance', vocabbase), instantiates=workid, existing_ids=existing_ids)
@@ -226,7 +228,8 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
 
             input_model = memory.connection()
 
-            params = {'workid': workid, 'rec': rec, 'logger': logger, 'input_model': input_model, 'output_model': model, 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids, 'existing_ids': existing_ids, 'folded': folded}
+            #params = {'workid': workid, 'rec': rec, 'logger': logger, 'input_model': input_model, 'output_model': model, 'entbase': entbase, 'vocabbase': vocabase, 'ids': ids, 'existing_ids': existing_ids, 'folded': folded}
+            params = {'workid': workid, 'rec': rec, 'logger': logger, 'input_model': input_model, 'output_model': model, 'entbase': entbase, 'vocabbase': BL, 'ids': ids, 'existing_ids': existing_ids, 'folded': folded}
 
             #Figure out instances
             params['materialize_entity'] = materialize_entity
