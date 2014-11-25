@@ -163,14 +163,14 @@ def values(*rels):
     return _values
 
 
-def normalizeparse(text_in):
+def relator_property(text_in, prefix=None):
     '''
     Action function generator to take some text and compute a relationship slug therefrom
 
-    :param text_in: Source text for the relationship to be created
+    :param text_in: Source text for the relationship to be created, e.g. a MARC relator
     :return: Versa action function to do the actual work
     '''
-    def _normalizeparse(ctx):
+    def _relator_property(ctx):
         '''
         Versa action function Utility to specify a list of relationships
 
@@ -181,8 +181,8 @@ def normalizeparse(text_in):
         _text_in = text_in(ctx) if callable(text_in) else text_in
         if isinstance(_text_in, list) and _text_in: _text_in = _text_in[0]
         #Take into account RDA-isms such as $iContainer of (expression) by stripping the parens https://foundry.zepheira.com/topics/380
-        return slugify(RDA_PARENS_PAT.subn('', _text_in)[0], False) if _text_in else ''
-    return _normalizeparse
+        return ((prefix or '') + slugify(RDA_PARENS_PAT.subn('', _text_in)[0], False)) if _text_in else ''
+    return _relator_property
 
 
 def ifexists(test, value, alt=None):

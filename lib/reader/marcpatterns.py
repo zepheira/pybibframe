@@ -27,6 +27,8 @@ RDA = 'http://bibfra.me/vocab/'
 RBMS = 'http://bibfra.me/vocab/'
 AV = 'http://bibfra.me/vocab/'
 
+LOC = 'http://bibfra.me/vocab/local-extensions/'
+
 BFLITE_TRANSFORMS = {
     #Link to the 010a value, naming the relationship 'lccn'
     '010$a': onwork.rename(rel=RDA+'lccn'),
@@ -60,17 +62,17 @@ BFLITE_TRANSFORMS = {
     # generate hash values only from the properties specific to Agents 
 
     '100': onwork.materialize(BL+'Person', 
-                              values(BL+'creator', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
+                              values(BL+'creator', relator_property(subfield('e'), prefix=LOC), relator_property(subfield('4'), prefix=LOC)), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
                               links={BL+'name': subfield('a'), RDA+'numeration': subfield('b'), RDA+'titles': subfield('c'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0')}),
 
     '110': onwork.materialize(BL+'Organization', 
-                              values(BL+'creator', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
+                              values(BL+'creator', relator_property(subfield('e'), prefix=LOC), relator_property(subfield('4'), prefix=LOC)), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
                               links={BL+'name': subfield('a'), RDA+'subordinateUnit': subfield('b'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0')}),
 
     '111': onwork.materialize(BL+'Meeting', 
-                              values(BL+'creator', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
+                              values(BL+'creator', relator_property(subfield('e'), prefix=LOC), relator_property(subfield('4'), prefix=LOC)), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
                               links={BL+'name': subfield('a'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0')}),
 
@@ -343,7 +345,7 @@ BFLITE_TRANSFORMS = {
 
     '700': ifexists(subfield('t'),
                     onwork.materialize(BL+'Work', 
-                                       values(BL+'related', normalizeparse(subfield('i'))),
+                                       values(BL+'related', relator_property(subfield('i'), prefix=LOC)),
                                        unique=values(subfield('t'), subfield('l')), 
                                        links={BL+'language': subfield('l'),
                                               ifexists(subfield('a'), BL+'creator'): materialize(BL+'Person', 
@@ -352,7 +354,7 @@ BFLITE_TRANSFORMS = {
                                               BL+'title': subfield('t'), BL+'language': subfield('l')}
                                    ),                   
                     onwork.materialize(BL+'Person', 
-                                       values(BL+'contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
+                                       values(BL+'contributor', relator_property(subfield('e'), prefix=LOC), relator_property(subfield('4'), prefix=LOC)), 
                                        unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
                                        links={BL+'name': subfield('a'), RDA+'numeration': subfield('b'), RDA+'titles': subfield('c'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0')})
                     ),
@@ -360,7 +362,7 @@ BFLITE_TRANSFORMS = {
 
     '710': ifexists(subfield('t'),
                     onwork.materialize(BL+'Work', 
-                                       values(BL+ 'related', normalizeparse(subfield('i'))),
+                                       values(BL+ 'related', relator_property(subfield('i'), prefix=LOC)),
                                        unique=values(subfield('t'), subfield('l')), 
                                        links={BL+'language': subfield('l'),
                                               ifexists(subfield('a'), BL+'creator'): materialize(BL+'Organization', 
@@ -369,7 +371,7 @@ BFLITE_TRANSFORMS = {
                                               BL+'title': subfield('t'), BL+'language': subfield('l')}
                                        ),                   
                     onwork.materialize(BL+'Organization', 
-                                       values(BL+'contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
+                                       values(BL+'contributor', relator_property(subfield('e'), prefix=LOC), relator_property(subfield('4'), prefix=LOC)), 
                                        unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
                                        links={BL+'name': subfield('a'), RDA+'subordinateUnit': subfield('b'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0')})
                     ),
@@ -377,7 +379,7 @@ BFLITE_TRANSFORMS = {
     
     '711': ifexists(subfield('t'),
                     onwork.materialize(BL+'Work', 
-                                       values(BL+'related', normalizeparse(subfield('i'))),
+                                       values(BL+'related', relator_property(subfield('i'), prefix=LOC)),
                                        unique=values(subfield('t'), subfield('l')), 
                                        links={BL+'language': subfield('l'),
                                               ifexists(subfield('a'), BL+'creator'): materialize(BL+'Meeting', 
@@ -386,7 +388,7 @@ BFLITE_TRANSFORMS = {
                                               BL+'title': subfield('t'), BL+'language': subfield('l')}
                                        ),                   
                     onwork.materialize(BL+'Meeting', 
-                                       values(BL+'contributor', normalizeparse(subfield('e')), normalizeparse(subfield('4'))), 
+                                       values(BL+'contributor', relator_property(subfield('e'), prefix=LOC), relator_property(subfield('4'), prefix=LOC)), 
                                        unique=values(subfield('a'), subfield('c'), subfield('d'), subfield('e'), subfield('q'), subfield('u')), 
                                        links={BL+'name': subfield('a'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0')})
                     ),
