@@ -1,184 +1,194 @@
 '''
-Treatment of certain special MARC fields, leader and 008
+Treatment of certain special MARC fields, leader, 006, 007, 008, etc.
 '''
 
-# Namespaces 
+from versa import I, VERSA_BASEIRI
+from bibframe import BL, BA, REL, RDA, RBMS, AV
 
 BL = 'http://bibfra.me/vocab/lite/'
 
 #TODO: Also split on multiple 260 fields
 
-def process_leader(leader):
-    """
-    http://www.loc.gov/marc/marc2dc.html#ldr06conversionrules
-    http://www.loc.gov/marc/bibliographic/bdleader.html
+VTYPE = VERSA_BASEIRI+'type'
+DEFAULT_VOCAB_ITEMS = [BL, BA, REL, RDA, RBMS, AV, VTYPE]
 
-    >>> from btframework.marc import process_leader
-    >>> list(process_leader('03495cpcaa2200673 a 4500'))
-    [('resourceType', 'Collection'), ('resourceType', 'mixed materials'), ('resourceType', 'Collection')]
-    """
-    broad_06 = dict(
-        a="LanguageMaterial",
-        c="LanguageMaterial",
-        d="LanguageMaterial",
-        e="StillImage",
-        f="StillImage",
-        g="MovingImage",
-        i="Audio",
-        j="Audio",
-        k="StillImage",
-        m="Software",
-        p="Collection",
-        t="LanguageMaterial")
+class transforms(object):
+    def __init__(self, vocab=None):
+        DEFAULT_VOCAB = { i:i for i in DEFAULT_VOCAB_ITEMS }
+        vocab = vocab or {}
+        #Use any provided, overriden vocab items, or just the defaults
+        self._vocab = { i: vocab.get(i, i) for i in DEFAULT_VOCAB_ITEMS }
+        return
+
+    def process_leader(self, leader):
+        """
+        http://www.loc.gov/marc/marc2dc.html#ldr06conversionrules
+        http://www.loc.gov/marc/bibliographic/bdleader.html
+
+        >>> from btframework.marc import transforms
+        >>> list(transforms.process_leader('03495cpcaa2200673 a 4500'))
+        [('http://bibfra.me/purl/versa/type', 'Collection'), ('http://bibfra.me/purl/versa/type', 'mixed materials'), ('http://bibfra.me/purl/versa/type', 'Collection')]
+        """
+        broad_06 = dict(
+            a=I(self._vocab[BA]+"LanguageMaterial"),
+            c=I("LanguageMaterial"),
+            d=I("LanguageMaterial"),
+            e=I("StillImage"),
+            f=I("StillImage"),
+            g=I("MovingImage"),
+            i=I("Audio"),
+            j=I("Audio"),
+            k=I("StillImage"),
+            m=I("Software"),
+            p=I("Collection"),
+            t=I("LanguageMaterial"))
     
-    detailed_06 = dict(
-        a="LanguageMaterial",
-        c="NotatedMusic",
-        d="Manuscript+NotatedMusic",
-        e="Cartography",
-        f="Manuscript+Cartography",
-        g="MovingImage",
-        i="Nonmusical+Sounds",
-        j="Musical",
-        k="StillImage",
-        m="Multimedia",
-        o="Kit",
-        p="Multimedia",
-        r="ThreeDimensionalObject",
-        t="LanguageMaterial+Manuscript")
+        detailed_06 = dict(
+            a=I("LanguageMaterial"),
+            c=I("NotatedMusic"),
+            d=(I("Manuscript"), I("NotatedMusic")),
+            e=I("Cartography"),
+            f=(I("Manuscript"), I("Cartography")),
+            g=I("MovingImage"),
+            i=(I("Nonmusical"), I("Sounds")),
+            j=I("Musical"),
+            k=I("StillImage"),
+            m=I("Multimedia"),
+            o=I("Kit"),
+            p=I("Multimedia"),
+            r=I("ThreeDimensionalObject"),
+            t=(I("LanguageMaterial"), I("Manuscript")))
     
-    _06 = leader[6]
-    if _06 in broad_06.keys():
-        yield 'resourceType', broad_06[_06]
-    if _06 in detailed_06.keys():
-        yield 'resourceType', detailed_06[_06]
-    if leader[7] in ('c', 's'):
-        yield 'resourceType', 'Collection'
+        _06 = leader[6]
+        if _06 in broad_06.keys():
+            yield None, self._vocab[VTYPE], broad_06[_06]
+        if _06 in detailed_06.keys():
+            yield None, self._vocab[VTYPE], detailed_06[_06]
+        if leader[7] in ('c', 's'):
+            yield None, self._vocab[VTYPE], 'Collection'
 
 
-def process_008(info):
-    """
-    http://www.loc.gov/marc/umb/um07to10.html#part9
+    def process_008(self, info):
+        """
+        http://www.loc.gov/marc/umb/um07to10.html#part9
 
-    >>> from btframework.marc import process_008
-    >>> list(process_008('790726||||||||||||                 eng  '))
-    [('date', '1979-07-26')]
-    """
-    audiences = {
-        'a':'preschool',
-        'b':'primary',
-        'c':'pre-adolescent',
-        'd':'adolescent',
-        'e':'adult',
-        'f':'specialized',
-        'g':'general',
-        'j':'juvenile'}
+        >>> from btframework.marc import process_008
+        >>> list(process_008('790726||||||||||||                 eng  '))
+        [('date', '1979-07-26')]
+        """
+        audiences = {
+            'a': I("preschool"),
+            'b': I("primary"),
+            'c': I("pre-adolescent"),
+            'd': I("adolescent"),
+            'e': I("adult"),
+            'f': I("specialized"),
+            'g': I("general"),
+            'j': I("juvenile")}
 
-    media = {
-        'a':'microfilm',
-        'b':'microfiche',
-        'c':'microopaque',
-        'd':'large print',
-        'f':'braille',
-        'r':'regular print reproduction',
-        's':'electronic'
-        }
+        media = {
+            'a': I("microfilm"),
+            'b': I("microfiche"),
+            'c': I("microopaque"),
+            'd': I("large-print"),
+            'f': I("braille"),
+            'r': I("regular-print-reproduction"),
+            's': I("electronic")
+            }
 
-    types = {
-        "a":"abstracts/summaries",
-        "b":"bibliographies (is one or contains one)",
-        "c":"catalogs",
-        "d":"dictionaries",
-        "e":"encyclopedias",
-        "f":"handbooks",
-        "g":"legal articles",
-        "i":"indexes",
-        "j":"patent document",
-        "k":"discographies",
-        "l":"legislation",
-        "m":"theses",
-        "n":"surveys of literature",
-        "o":"reviews",
-        "p":"programmed texts",
-        "q":"filmographies",
-        "r":"directories",
-        "s":"statistics",
-        "t":"technical reports",
-        "u":"standards/specifications",
-        "v":"legal cases and notes",
-        "w":"law reports and digests",
-        "z":"treaties"}
+        types = {
+            "a": I("abstracts+summaries"),
+            "b": I("bibliography"), #"bibliographies (is one or contains one)"
+            "c": I("catalogs"),
+            "d": I("dictionaries"),
+            "e": I("encyclopedias"),
+            "f": I("handbooks"),
+            "g": I("legal-articles"),
+            "i": I("indexes"),
+            "j": I("patent-document"),
+            "k": I("discographies"),
+            "l": I("legislation"),
+            "m": I("theses"),
+            "n": I("surveys-of-literature"),
+            "o": I("reviews"),
+            "p": I("programmed-texts"),
+            "q": I("filmographies"),
+            "r": I("directories"),
+            "s": I("statistics"),
+            "t": I("technical-reports"),
+            "u": I("standards+specifications"),
+            "v": I("legal-cases-and-notes"),
+            "w": I("law-reports-and-digests"),
+            "z": I("treaties")}
     
-    govt_publication = {
-        "i":"international or intergovernmental publication",
-        "f":"federal/national government publication",
-        "a":"publication of autonomous or semi-autonomous component of government",
-        "s":"government publication of a state, province, territory, dependency, etc.",
-        "m":"multistate government publication",
-        "c": "publication from multiple local governments",
-        "l": "local government publication",
-        "z":"other type of government publication",
-        "o":"government publication -- level undetermined",
-        "u":"unknown if item is government publication"}
+        govt_publication = {
+            "i": I("international-or-intergovernmental-publication"),
+            "f": I("federal/national-government-publication"),
+            "a": I("publication-of-autonomous-or-semi-autonomous-component-of-government"),
+            "s": I("government-publication-of-a-state,-province,-territory,-dependency,-etc."),
+            "m": I("multistate-government-publication"),
+            "c": I("publication-from-multiple-local-governments"),
+            "l": I("local-government-publication"),
+            "z": I("other-type-of-government-publication"),
+            "o": I("government-publication-level-undetermined"),
+            "u": I("unknown-if-item-is-government-publication")}
 
-    genres = {
-        "0":"not fiction",
-        "1":"fiction",
-        "c":"comic strips",
-        "d":"dramas",
-        "e":"essays",
-        "f":"novels",
-        "h":"humor, satires, etc.",
-        "i":"letters",
-        "j":"short stories",
-        "m":"mixed forms",
-        "p":"poetry",
-        "s":"speeches"}
+        genres = {
+            "0": I("non-fiction"),
+            "1": I("fiction"),
+            "c": I("comic-strips"),
+            "d": I("dramas"),
+            "e": I("essays"),
+            "f": I("novels"),
+            "h": I("humor-satires-etc."),
+            "i": I("letters"),
+            "j": I("short-stories"),
+            "m": I("mixed-forms"),
+            "p": I("poetry"),
+            "s": I("speeches")}
 
-    biographical = dict(
-        a="autobiography",
-        b='individual biography',
-        c='collective biography',
-        d='contains biographical information')
+        biographical = dict(
+            a=I("autobiography"),
+            b=I('individual-biography'),
+            c=I('collective-biography'),
+            d=I('contains-biographical-information'))
     
-    #info = field008
-    #ARE YOU FRIGGING KIDDING ME?! NON-Y2K SAFE?!
-    year = info[0:2]
-    try:
-        century = '19' if int(year) > 30 else '20' #I guess we can give an 18 year berth before this breaks ;)
-        # remove date_008 from data export at this time
-        # yield 'date_008', '{}{}-{}-{}'.format(century, year, info[2:4], info[4:6])
-    except ValueError:
-        pass
-        #Completely Invalid date
-    for i, field in enumerate(info):
+        #info = field008
+        #ARE YOU FRIGGING KIDDING ME?! NON-Y2K SAFE?!
+        year = info[0:2]
         try:
-            if i < 23 or field in ('#',  ' ', '|'):
-                continue
-            elif i == 23:
-                yield 'medium', media[info[23]]
-            elif i >= 24 and i <= 27:
-                yield 'resourceType', types[info[i]]
-            elif i == 28:
-                yield 'resourceType', govt_publication[info[28]]
-            elif i == 29 and field == '1':
-                yield 'resourceType', 'conference publication'
-            elif i == 30 and field == '1':
-                yield 'resourceType', 'festschrift'
-            elif i == 33:
-                if field != 'u': #unknown
-                        yield 'resourceType', genres[info[33]]
-            elif i == 34:
-                try:
-                    yield 'resourceType', biographical[info[34]]
-                except KeyError :
-                    # logging.warn('something')
-                    pass
-            else:
-                continue
-        except KeyError:
-            # ':('
+            century = '19' if int(year) > 30 else '20' #I guess we can give an 18 year berth before this breaks ;)
+            # remove date_008 from data export at this time
+            # yield 'date_008', '{}{}-{}-{}'.format(century, year, info[2:4], info[4:6])
+        except ValueError:
+            #Completely Invalid date
             pass
-
-#TODO languages
+        for i, field in enumerate(info):
+            try:
+                if i < 23 or field in ('#', ' ', '|'):
+                    continue
+                elif i == 23:
+                    yield None, 'medium', media[info[23]]
+                elif i >= 24 and i <= 27:
+                    yield None, self._vocab[VTYPE], types[info[i]]
+                elif i == 28:
+                    yield None, self._vocab[VTYPE], govt_publication[info[28]]
+                elif i == 29 and field == '1':
+                    yield None, self._vocab[VTYPE], 'conference-publication'
+                elif i == 30 and field == '1':
+                    yield None, self._vocab[VTYPE], 'festschrift'
+                elif i == 33:
+                    if field != 'u': #unknown
+                            yield None, self._vocab[VTYPE], genres[info[33]]
+                elif i == 34:
+                    try:
+                        yield None, self._vocab[VTYPE], biographical[info[34]]
+                    except KeyError :
+                        # logging.warn('something')
+                        pass
+                else:
+                    continue
+            except KeyError:
+                # ':('
+                pass
 

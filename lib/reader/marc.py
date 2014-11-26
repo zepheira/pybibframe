@@ -29,7 +29,7 @@ from bibframe import BFZ, BFLC, g_services
 from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
 from bibframe.isbnplus import isbn_list
 from bibframe.reader.marcpatterns import TRANSFORMS, bfcontext
-from bibframe.reader.marcextra import process_leader, process_008
+from bibframe.reader.marcextra import transforms as extra_transforms
 
 LEADER = 0
 CONTROLFIELD = 1
@@ -159,7 +159,7 @@ def record_hash_key(rec):
 
 @asyncio.coroutine
 def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugins=None,
-                   ids=None, postprocess=None, out=None, logger=logging, transforms=TRANSFORMS, **kwargs):
+                   ids=None, postprocess=None, out=None, logger=logging, transforms=TRANSFORMS, extra_transforms=extra_transforms(), **kwargs):
     '''
     loop - asyncio event loop
     model - the Versa model for the record
@@ -318,21 +318,12 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
                 params['code'] = code
 
 
-            special_properties = {}
-            for k, v in process_leader(leader):
-                special_properties.setdefault(k, set()).add(v)
-
-            for k, v in process_008(field008):
-                special_properties.setdefault(k, set()).add(v)
-            params['special_properties'] = special_properties
-
-            #We get some repeated values out of leader & 008 processing, and we want to
-            #Remove dupes so we did so by working with sets then converting to lists
-            for k, v in special_properties.items():
-                special_properties[k] = list(v)
+            for origin, k, v in itertools.chain(
+                        extra_transforms.process_leader(leader),
+                        extra_transforms.process_008(field008)):
+                v = v if isinstance(v, tuple) else (v,)
                 for item in v:
-                #logger.debug(v)
-                    model.add(I(instanceid), I(iri.absolutize(k, BL)), item)
+                    model.add(origin or I(instanceid), k, item)
 
             instance_postprocess(params)
 

@@ -7,7 +7,8 @@ Declarations used to elucidate MARC model
 
 #Full MARC field list: http://www.loc.gov/marc/bibliographic/ecbdlist.html
 
-#This line must be included
+#These two lines are required at the top
+from bibframe import BL, BA, REL, RDA, RBMS, AV
 from bibframe.reader.util import *
 
 #from bibframe.reader.marcpatterns import *
@@ -19,13 +20,6 @@ from bibframe.reader.util import *
 #Don't do a simple field renaming of ISBN because
 
 # Partitioning namespaces
-
-BL = 'http://bibfra.me/vocab/lite/'
-BA = 'http://bibfra.me/vocab/annotation/'
-REL = 'http://bibfra.me/vocab/relation/'
-RDA = 'http://bibfra.me/vocab/rda/'
-RBMS = 'http://bibfra.me/vocab/rbms/'
-AV = 'http://bibfra.me/vocab/audiovisual/'
 
 BFLITE_TRANSFORMS = {
     #Link to the 010a value, naming the relationship 'lccn'
