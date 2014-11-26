@@ -10,7 +10,7 @@ from bibframe.reader.marcxml import bfconvert
 
 #PREFIXES = {u'ma': 'http://www.loc.gov/MARC21/slim', u'me': 'http://www.loc.gov/METS/'}
 
-def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, config=None, verbose=False, mods=None):
+def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, config=None, verbose=False, mods=None, canonical=False):
     '''
     Basically takes parameters typical for command line invocation and adapts them for use in the API
 
@@ -27,7 +27,7 @@ def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, 
     for mod in mods:
         __import__(mod, globals(), locals(), [])
 
-    bfconvert(inputs=inputs, entbase=base, out=out, limit=limit, rdfttl=rdfttl, rdfxml=rdfxml, config=config, verbose=verbose, logger=logger)
+    bfconvert(inputs=inputs, entbase=base, out=out, limit=limit, rdfttl=rdfttl, rdfxml=rdfxml, config=config, verbose=verbose, canonical=canonical, logger=logger)
     return
 
 
@@ -59,11 +59,13 @@ if __name__ == '__main__':
         help='Python module to be imported in order to register plugins (can be specified multiple times.')
     parser.add_argument('-v', '--verbose', action='store_true',
         help='Whether to show additional messages and information')
+    parser.add_argument('--canonical', action='store_true',
+        help='Whether to use Versa\'s canonical form for output. Warning: memory inefficient')
     #
     args = parser.parse_args()
     args.mod = [i for items in args.mod or [] for i in items]
 
-    run(inputs=args.inputs or sys.stdin, base=args.base, out=args.out, limit=args.limit, rdfttl=args.rdfttl, rdfxml=args.rdfxml, config=args.config, verbose=args.verbose, mods=args.mod)
+    run(inputs=args.inputs or sys.stdin, base=args.base, out=args.out, limit=args.limit, rdfttl=args.rdfttl, rdfxml=args.rdfxml, config=args.config, verbose=args.verbose, mods=args.mod, canonical=args.canonical)
     for f in args.inputs: f.close()
     if args.rdfttl: args.rdfttl.close()
     if args.rdfxml: args.rdfxml.close()

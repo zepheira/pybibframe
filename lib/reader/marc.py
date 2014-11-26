@@ -159,7 +159,7 @@ def record_hash_key(rec):
 
 @asyncio.coroutine
 def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugins=None,
-                   ids=None, postprocess=None, out=None, logger=logging, transforms=TRANSFORMS, extra_transforms=extra_transforms(), **kwargs):
+                   ids=None, postprocess=None, out=None, logger=logging, transforms=TRANSFORMS, extra_transforms=extra_transforms(), canonical=False, **kwargs):
     '''
     loop - asyncio event loop
     model - the Versa model for the record
@@ -177,6 +177,7 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
     existing_ids = set()
     #Start the process of writing out the JSON representation of the resulting Versa
     if out: out.write('[')
+    if canonical: canonical_models = [] # contains Versa model representations for later sorted output
     first_record = True
 
     def materialize_entity(etype, vocabbase=vocabbase, existing_ids=existing_ids, unique=None, **data):
@@ -341,19 +342,22 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
                 #yield from asyncio.sleep(0.01) #Basically yield to next task
 
             #Can we somehow move this to passed-in postprocessing?
-            if out and not first_record: out.write(',\n')
+            if out and not canonical and not first_record: out.write(',\n')
             if out:
-                first_record = False
-                last_chunk = None
-                #Using iterencode avoids building a big JSON string in memory, or having to resort to file pointer seeking
-                #Then again builds a big list in memory, so still working on opt here
-                for chunk in json.JSONEncoder().iterencode([ link for link in model ]):
-                    if last_chunk is None:
-                        last_chunk = chunk[1:]
-                    else:
-                        out.write(last_chunk)
-                        last_chunk = chunk
-                if last_chunk: out.write(last_chunk[:-1])
+                if not canonical:
+                    first_record = False
+                    last_chunk = None
+                    #Using iterencode avoids building a big JSON string in memory, or having to resort to file pointer seeking
+                    #Then again builds a big list in memory, so still working on opt here
+                    for chunk in json.JSONEncoder().iterencode([ link for link in model ]):
+                        if last_chunk is None:
+                            last_chunk = chunk[1:]
+                        else:
+                            out.write(last_chunk)
+                            last_chunk = chunk
+                    if last_chunk: out.write(last_chunk[:-1])
+                else:
+                    canonical_models.append(repr(model))
             #FIXME: Postprocessing should probably be a task too
             if postprocess: postprocess(rec)
             #limiting--running count of records processed versus the max number, if any
@@ -362,6 +366,8 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
                 break
     except GeneratorExit:
         logger.debug('Completed processing {0} record{1}.'.format(limiting[0], '' if limiting[0] == 1 else 's'))
+        if canonical:
+            out.write(','.join(sorted(canonical_models))) # expensive
         if out: out.write(']')
 
         #if not plugins: loop.stop()

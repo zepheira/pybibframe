@@ -101,7 +101,7 @@ class marcxmlhandler(sax.ContentHandler):
 
 #PYTHONASYNCIODEBUG = 1
 
-def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=None, rdfxml=None, config=None, verbose=False, logger=logging, loop=None):
+def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=None, rdfxml=None, config=None, verbose=False, logger=logging, loop=None, canonical=False):
     '''
     inputs - List of MARC/XML files to be parsed and converted to BIBFRAME RDF (Note: want to allow singular input strings)
     entbase - Base IRI to be used for creating resources.
@@ -114,6 +114,7 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
     verbose - If true show additional messages and information (default: False)
     logger - logging object for messages
     loop - optional asyncio event loop to use
+    canonical - output Versa's canonical form?
     '''
     #if stats:
     #    register_service(statsgen.statshandler)
@@ -172,7 +173,7 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
     #logger=logger,
     
     for inf in inputs:
-        sink = marc.record_handler(loop, model, entbase=entbase, vocabbase=vb, limiting=limiting, plugins=plugins, ids=ids, postprocess=postprocess, out=out, logger=logger, transforms=transforms)
+        sink = marc.record_handler(loop, model, entbase=entbase, vocabbase=vb, limiting=limiting, plugins=plugins, ids=ids, postprocess=postprocess, out=out, logger=logger, transforms=transforms,canonical=canonical)
         parser = sax.make_parser()
         #parser.setContentHandler(marcxmlhandler(receive_recs()))
         parser.setContentHandler(marcxmlhandler(sink))
