@@ -132,12 +132,15 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
     ids = marc.idgen(entbase)
     if model is None: model = memory.connection(logger=logger)
     g = rdflib.Graph()
+    if canonical: global_model = memory.connection()
 
     extant_resources = None
     #extant_resources = set()
     def postprocess(rec):
         #No need to bother with Versa -> RDF translation if we were not asked to generate Turtle
         if any((rdfttl, rdfxml)): rdf.process(model, g, to_ignore=extant_resources, logger=logger)
+        if canonical: global_model.add_many([(o,r,t,a,rid) for (rid,(o,r,t,a)) in model])
+
         model.create_space()
 
     #Set up event loop if not provided
@@ -191,6 +194,9 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
             raise ex
         finally:
             loop.close()
+
+    if canonical:
+        out.write(repr(global_model))
 
     if vb == BFZ:
         g.bind('bf', BFNS)

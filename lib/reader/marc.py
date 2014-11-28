@@ -21,6 +21,7 @@ from amara3 import iri
 
 from versa import I, VERSA_BASEIRI
 from versa.util import simple_lookup
+
 from versa.driver import memory
 from versa.pipeline import *
 
@@ -176,8 +177,7 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
 
     existing_ids = set()
     #Start the process of writing out the JSON representation of the resulting Versa
-    if out: out.write('[')
-    if canonical: canonical_models = [] # contains Versa model representations for later sorted output
+    if out and not canonical: out.write('[')
     first_record = True
 
     def materialize_entity(etype, vocabbase=vocabbase, existing_ids=existing_ids, unique=None, **data):
@@ -190,6 +190,7 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
         etype = vocabbase + etype
         data_full = { vocabbase + k: v for (k, v) in data.items() }
         plaintext = json.dumps([etype, data_full])
+
         if data_full or unique:
             #We only have a type; no other distinguishing data. Generate a random hash
             if unique is None:
@@ -356,8 +357,6 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
                             out.write(last_chunk)
                             last_chunk = chunk
                     if last_chunk: out.write(last_chunk[:-1])
-                else:
-                    canonical_models.append(repr(model))
             #FIXME: Postprocessing should probably be a task too
             if postprocess: postprocess(rec)
             #limiting--running count of records processed versus the max number, if any
@@ -366,9 +365,7 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
                 break
     except GeneratorExit:
         logger.debug('Completed processing {0} record{1}.'.format(limiting[0], '' if limiting[0] == 1 else 's'))
-        if canonical:
-            out.write(','.join(sorted(canonical_models))) # expensive
-        if out: out.write(']')
+        if out and not canonical: out.write(']')
 
         #if not plugins: loop.stop()
         for plugin in plugins:
