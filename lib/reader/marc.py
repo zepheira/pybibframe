@@ -9,7 +9,7 @@ import json
 import logging
 import itertools
 import asyncio
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 
 #from datachef.ids import simple_hashstring
 from bibframe.contrib.datachefids import idgen, FROM_EMPTY_HASH
@@ -20,7 +20,7 @@ from amara3 import iri
 #from amara3.util import coroutine
 
 from versa import I, VERSA_BASEIRI
-from versa.util import simple_lookup
+from versa.util import simple_lookup, OrderedJsonEncoder
 
 from versa.driver import memory
 from versa.pipeline import *
@@ -189,7 +189,9 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
         params = {}
         etype = vocabbase + etype
         data_full = { vocabbase + k: v for (k, v) in data.items() }
-        plaintext = json.dumps([etype, data_full])
+        # nobody likes non-deterministic ids! ordering matters to hash()
+        data_full = OrderedDict(sorted(data_full.items(), key=lambda x: x[0]))
+        plaintext = json.dumps([etype, data_full],cls=OrderedJsonEncoder)
 
         if data_full or unique:
             #We only have a type; no other distinguishing data. Generate a random hash
