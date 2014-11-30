@@ -103,6 +103,7 @@ def isbn_instancegen(params):
             model.add(I(instanceid), I(iri.absolutize('isbn', ISBNNS)), inum)
             #subitem['id'] = instanceid + (unichr(subscript + subix) if subix else '')
             if itype: model.add(I(instanceid), I(iri.absolutize('isbnType', ISBNNS)), itype)
+            existing_ids.add(instanceid)
             instance_ids.append(instanceid)
     else:
         instanceid = materialize_entity(iri.absolutize('Instance', vocabbase), instantiates=workid, existing_ids=existing_ids)
