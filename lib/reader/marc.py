@@ -111,9 +111,8 @@ def isbn_instancegen(params):
         existing_ids.add(instanceid)
         instance_ids.append(instanceid)
 
-    for instanceid in instance_ids:
-        model.add(instanceid, I(iri.absolutize('instantiates', vocabbase)), I(workid))
-        model.add(I(instanceid), TYPE_REL, I(iri.absolutize('Instance', vocabbase)))
+    model.add(instance_ids[0], I(iri.absolutize('instantiates', vocabbase)), I(workid))
+    model.add(I(instance_ids[0]), TYPE_REL, I(iri.absolutize('Instance', vocabbase)))
 
     return instance_ids
 

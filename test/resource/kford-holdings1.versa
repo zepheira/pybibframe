@@ -602,12 +602,6 @@
     [
         "MR6lZAgr",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {}
-    ],
-    [
-        "MR6lZAgr",
-        "http://bibfra.me/purl/versa/type",
         "non-fiction",
         {}
     ],
@@ -621,12 +615,6 @@
         "MR6lZAgr",
         "http://bibfra.me/vocab/lite/extent",
         "xxv, 397 p. ;",
-        {}
-    ],
-    [
-        "MR6lZAgr",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "L7hULWXT",
         {}
     ],
     [

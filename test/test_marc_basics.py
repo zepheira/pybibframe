@@ -61,7 +61,7 @@ class BasicTest(unittest.TestCase):
             indoc.write(repr(m))
         with open('me-'+name,'w') as indoc:
             indoc.write(repr(m_expected))
-        assert m==m_expected
+        assert m==m_expected, "Discrepancy found in {0}".format(name)
 
     def test_simple_verify2(self):
         self.test_simple_verify(name='egyptskulls')
