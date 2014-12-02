@@ -323,12 +323,16 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
                 params['code'] = code
 
 
+            extra_stmts = set() # prevent duplicate statements
             for origin, k, v in itertools.chain(
                         extra_transforms.process_leader(leader),
                         extra_transforms.process_008(field008)):
                 v = v if isinstance(v, tuple) else (v,)
                 for item in v:
-                    model.add(origin or I(instanceid), k, item)
+                    o = origin or I(instanceid)
+                    if (o,k,item) not in extra_stmts:
+                        model.add(o, k, item)
+                        extra_stmts.add((o,k,item))
 
             instance_postprocess(params)
 
