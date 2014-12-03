@@ -25,9 +25,10 @@ class transforms(object):
         http://www.loc.gov/marc/marc2dc.html#ldr06conversionrules
         http://www.loc.gov/marc/bibliographic/bdleader.html
 
-        >>> from btframework.marc import transforms
-        >>> list(transforms.process_leader('03495cpcaa2200673 a 4500'))
-        [('http://bibfra.me/purl/versa/type', 'Collection'), ('http://bibfra.me/purl/versa/type', 'mixed materials'), ('http://bibfra.me/purl/versa/type', 'Collection')]
+        >>> from bibframe.reader.marcextra import transforms
+        >>> t = transforms()
+        >>> list(t.process_leader('03495cpcaa2200673 a 4500'))
+        [(None, 'http://bibfra.me/purl/versa/type', I('Collection')), (None, 'http://bibfra.me/purl/versa/type', I('Multimedia')), (None, 'http://bibfra.me/purl/versa/type', I('Collection'))]
         """
         broad_06 = dict(
             a=I(self._vocab[BA]+"LanguageMaterial"),
@@ -65,16 +66,17 @@ class transforms(object):
         if _06 in detailed_06.keys():
             yield None, self._vocab[VTYPE], detailed_06[_06]
         if leader[7] in ('c', 's'):
-            yield None, self._vocab[VTYPE], 'Collection'
+            yield None, self._vocab[VTYPE], I("Collection")
 
 
     def process_008(self, info):
         """
         http://www.loc.gov/marc/umb/um07to10.html#part9
 
-        >>> from btframework.marc import process_008
-        >>> list(process_008('790726||||||||||||                 eng  '))
-        [('date', '1979-07-26')]
+        #>>> from bibframe.reader.marcextra import transforms
+        #>>> t = transforms()
+        #>>> list(t.process_008('790726||||||||||||                 eng  '))
+        #[('date', '1979-07-26')]
         """
         audiences = {
             'a': I("preschool"),

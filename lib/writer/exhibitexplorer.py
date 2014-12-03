@@ -10,14 +10,13 @@ import itertools
 
 from amara3 import iri
 
-from versa import SUBJECT, RELATIONSHIP, VALUE
+from versa import SUBJECT, RELATIONSHIP, VALUE, I, VERSA_BASEIRI
+from bibframe import BFZ, BFLC, BL
 
-BFV = 'http://bibframe.org/vocab/'
+WORKCLASS = iri.absolutize('Work', BL)
+INSTANCECLASS = iri.absolutize('Instance', BL)
 
-WORKCLASS = iri.absolutize('Work', BFV)
-INSTANCECLASS = iri.absolutize('Instance', BFV)
-
-TYPE_REL = I(iri.absolutize('type', BFZ))
+TYPE_REL = I(iri.absolutize('type', VERSA_BASEIRI))
 
 def process(source, work_sink, instance_sink, objects_sink, annotations_sink, logger=logging):
     '''

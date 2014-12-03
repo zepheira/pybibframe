@@ -3,7 +3,7 @@
 '''
 >>> from datachef.ids import simple_hashstring
 >>> simple_hashstring("The quick brown fox jumps over the lazy dog")
-B7x7vEvj
+'B7x7vEvj'
 '''
 
 import re
@@ -32,7 +32,7 @@ def simple_hashstring(obj, bits=48):
 
     >>> from datachef.ids import simple_hashstring
     >>> simple_hashstring("The quick brown fox jumps over the lazy dog")
-    B7x7vEvj
+    'B7x7vEvj'
     '''
     #Useful discussion of techniques here: http://stackoverflow.com/questions/1303021/shortest-hash-in-python-to-name-cache-files
 
@@ -57,9 +57,9 @@ def create_slug(title, plain_len=None):
 
     >>> from datachef.ids import create_slug
     >>> create_slug(u"The  quick brown fox jumps over the lazy dog")
-    u'the_quick_brown_fox_jumps_over_the_lazy_dog'
+    'the_quick_brown_fox_jumps_over_the_lazy_dog'
     >>> create_slug(u"The  quick brown fox jumps over the lazy dog", 20)
-    u'the_quick_brown_fox'
+    'the_quick_brown_fox'
     '''
     if plain_len: title = title[:plain_len]
     pass1 = OMIT_FROM_SLUG_PAT.sub('_', title).lower()
