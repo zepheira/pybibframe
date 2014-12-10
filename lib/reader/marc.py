@@ -325,8 +325,8 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
 
             extra_stmts = set() # prevent duplicate statements
             for origin, k, v in itertools.chain(
-                        extra_transforms.process_leader(leader),
-                        extra_transforms.process_008(field008)):
+                        extra_transforms.process_leader(leader, workid, instanceid),
+                        extra_transforms.process_008(field008, workid, instanceid)):
                 v = v if isinstance(v, tuple) else (v,)
                 for item in v:
                     o = origin or I(instanceid)
@@ -377,7 +377,9 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
         #if not plugins: loop.stop()
         for plugin in plugins:
             #Each plug-in is a task
-            task = asyncio.Task(plugin[BF_FINAL_TASK](loop), loop=loop)
+            func = plugin.get(BF_FINAL_TASK)
+            if not func: continue
+            task = asyncio.Task(func(loop), loop=loop)
             _final_tasks.add(task)
             def task_done(task):
                 #print('Task done: ', task)

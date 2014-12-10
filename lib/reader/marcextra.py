@@ -20,7 +20,7 @@ class transforms(object):
         self._vocab = { i: vocab.get(i, i) for i in DEFAULT_VOCAB_ITEMS }
         return
 
-    def process_leader(self, leader):
+    def process_leader(self, leader, work, instance):
         """
         http://www.loc.gov/marc/marc2dc.html#ldr06conversionrules
         http://www.loc.gov/marc/bibliographic/bdleader.html
@@ -69,7 +69,7 @@ class transforms(object):
             yield None, self._vocab[VTYPE], I("Collection")
 
 
-    def process_008(self, info):
+    def process_008(self, info, work, instance):
         """
         http://www.loc.gov/marc/umb/um07to10.html#part9
 
