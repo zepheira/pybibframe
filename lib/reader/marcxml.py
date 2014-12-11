@@ -14,14 +14,12 @@ from xml import sax
 #from xml.sax.handler import ContentHandler
 #from xml.sax.saxutils import XMLGenerator
 
-#from bibframe.contrib.xmlutil import normalize_text_filter
-from bibframe.reader.marc import LEADER, CONTROLFIELD, DATAFIELD
 from bibframe import g_services
 from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_FINAL_TASK
 
 import rdflib
 
-from versa import I, VERSA_BASEIRI
+from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 from versa import util
 from versa.driver import memory
 
@@ -36,8 +34,7 @@ BFCNS = rdflib.Namespace(BFZ + 'cftag/')
 BFDNS = rdflib.Namespace(BFZ + 'dftag/')
 VNS = rdflib.Namespace(VERSA_BASEIRI)
 
-
-MARCXML_NS = "http://www.loc.gov/MARC21/slim"
+MARCXML_NS = marc.MARCXML_NS
 
 #Subclass from ContentHandler in order to gain default behaviors
 class marcxmlhandler(sax.ContentHandler):
@@ -45,54 +42,67 @@ class marcxmlhandler(sax.ContentHandler):
         self._sink = sink
         next(self._sink) #Start the coroutine running
         self._getcontent = False
+        #self._record_id = ''
+        #self._link_iri = None
+        #self._marc_attributes = None
+        #self._subfield = None
         sax.ContentHandler.__init__(self, *args, **kwargs)
+        return
 
     def startElementNS(self, name, qname, attributes):
         (ns, local) = name
         if ns == MARCXML_NS:
-            #if local == 'collection':
-            #    return
+            #ignore the 'collection' element
             if local == 'record':
-                self._record = []
+                #XXX: Entity base IRI needed?
+                self._record_id = 'record-{0}:{1}'.format(self._locator.getLineNumber(), self._locator.getColumnNumber())
+                #Versa model with a representation of the record
+                self._record_model = memory.connection()#logger=logger)
             elif local == 'leader':
-                self._chardata_dest = [LEADER, '']
-                self._record.append(self._chardata_dest)
+                self._chardata_dest = ''
+                self._link_iri = MARCXML_NS + '/leader'
+                self._marc_attributes = {}
                 self._getcontent = True
             elif local == 'controlfield':
-                self._chardata_dest = [CONTROLFIELD, attributes[None, 'tag'].strip(), '']
-                self._record.append(self._chardata_dest)
+                self._chardata_dest = ''
+                self._link_iri = MARCXML_NS + '/control/' + attributes[None, 'tag'].strip()
+                #Control tags have neither indicators nor subfields
+                self._marc_attributes = {'tag': attributes[None, 'tag'].strip()}
                 self._getcontent = True
             elif local == 'datafield':
-                self._record.append([DATAFIELD, attributes[None, 'tag'].strip(), dict((k[1], v.strip()) for (k, v) in attributes.items()), []])
+                self._link_iri = MARCXML_NS + '/data/' + attributes[None, 'tag'].strip()
+                self._marc_attributes = {k[1]: v.strip() for (k, v) in attributes.items()}
             elif local == 'subfield':
-                self._chardata_dest = [attributes[None, 'code'].strip(), '']
-                self._record[-1][3].append(self._chardata_dest)
+                self._chardata_dest = ''
+                self._subfield = attributes[None, 'code'].strip()
                 self._getcontent = True
         return
 
     def characters(self, data):
         if self._getcontent:
-            self._chardata_dest[-1] += data
+            self._chardata_dest += data
 
     def endElementNS(self, name, qname):
         (ns, local) = name
         if ns == MARCXML_NS:
             if local == 'record':
                 try:
-                    self._sink.send(self._record)
+                    self._sink.send(self._record_model)
                 except StopIteration:
                     #Handler coroutine has declined to process more records. Perhaps it's hit a limit
                     #FIXME would be nice to throw some sort of signal to stop parse. Or...we can wait until we've evolved beyond SAX to enhance the event architecture
                     pass
             elif local == 'datafield':
                 #Convert list of pairs of subfield codes/values to dict of lists (since there can be multiple of each subfields)
-                sfdict = defaultdict(list)
-                [ sfdict[sf[0]].append(sf[1]) for sf in self._record[-1][3] ]
-                #{ sfdict[sf[0]].append(sf[1]) for sf in self._record[-1][3] }
-                self._record[-1][3] = sfdict
-
+                #sfdict = defaultdict(list)
+                #[ sfdict[sf[0]].append(sf[1]) for sf in self._record[-1][3] ]
+                #self._record[-1][3] = sfdict
+                self._record_model.add(self._record_id, self._link_iri, '', self._marc_attributes)
                 self._getcontent = False
-            elif local in ('leader', 'controlfield', 'subfield'):
+            elif local == 'subfield':
+                self._marc_attributes.setdefault(self._subfield, []).append(self._chardata_dest)
+            elif local in ('leader', 'controlfield'):
+                self._record_model.add(self._record_id, self._link_iri, self._chardata_dest, self._marc_attributes)
                 self._getcontent = False
         return
 
@@ -136,7 +146,7 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
 
     extant_resources = None
     #extant_resources = set()
-    def postprocess(rec):
+    def postprocess():
         #No need to bother with Versa -> RDF translation if we were not asked to generate Turtle
         if any((rdfttl, rdfxml)): rdf.process(model, g, to_ignore=extant_resources, logger=logger)
         if canonical: global_model.add_many([(o,r,t,a,rid) for (rid,(o,r,t,a)) in model])

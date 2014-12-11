@@ -19,9 +19,8 @@ from amara3 import iri
 #from amara import namespaces
 #from amara3.util import coroutine
 
-from versa import I, VERSA_BASEIRI
+from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 from versa.util import simple_lookup, OrderedJsonEncoder
-
 from versa.driver import memory
 from versa.pipeline import *
 
@@ -32,17 +31,8 @@ from bibframe.isbnplus import isbn_list
 from bibframe.reader.marcpatterns import TRANSFORMS, bfcontext
 from bibframe.reader.marcextra import transforms as extra_transforms
 
-LEADER = 0
-CONTROLFIELD = 1
-DATAFIELD = 2
 
-#canonicalize_isbns
-#from btframework.augment import lucky_viaf_template, lucky_idlc_template, DEFAULT_AUGMENTATIONS
-
-FALINKFIELD = '856'
-#CATLINKFIELD = '010a'
-CATLINKFIELD = 'LCCN'
-CACHEDIR = os.path.expanduser('~/tmp')
+MARCXML_NS = "http://www.loc.gov/MARC21/slim"
 
 NON_ISBN_CHARS = re.compile('\D')
 
@@ -52,6 +42,8 @@ NEW_RECORD = 'http://bibfra.me/purl/versa/' + 'newrecord'
 
 BL = 'http://bibfra.me/vocab/lite/'
 ISBNNS = 'http://bibfra.me/vocab/rda/'
+
+TYPE_REL = I(iri.absolutize('type', VERSA_BASEIRI))
 
 def invert_dict(d):
     #http://code.activestate.com/recipes/252143-invert-a-dictionary-one-liner/#c3
@@ -64,7 +56,22 @@ def invert_dict(d):
     return inv
 
 
-TYPE_REL = I(iri.absolutize('type', VERSA_BASEIRI))
+def marc_lookup(model, codes):
+    #Note: should preserve code order in order to maintain integrity when used for hash input
+    if isinstance(codes, str):
+        codes = [codes]
+    for code in codes:
+        tag, sf = code.split('$') if '$' in code else (code, None)
+        #Check for data field
+        links = model.match(None, MARCXML_NS + '/data/' + tag)
+        for link in links:
+            for result in link[ATTRIBUTES].get(sf, []):
+                yield (code, result)
+
+        #Check for control field
+        links = model.match(None, MARCXML_NS + '/control/' + tag)
+        for link in links:
+            yield code, link[TARGET]
 
 
 def isbn_instancegen(params):
@@ -75,15 +82,15 @@ def isbn_instancegen(params):
     '''
     #Handle ISBNs re: https://foundry.zepheira.com/issues/1976
     entbase = params['entbase']
-    model = params['output_model']
+    output_model = params['output_model']
+    input_model = params['input_model']
     vocabbase = params['vocabbase']
     logger = params['logger']
     materialize_entity = params['materialize_entity']
-    rec = params['rec']
     existing_ids = params['existing_ids']
     workid = params['workid']
     
-    isbns = marc_lookup(rec, ['020$a'])
+    isbns = list(( val for code, val in marc_lookup(input_model, '020$a')))
     logger.debug('Raw ISBNS:\t{0}'.format(isbns))
 
     # sorted to remove non-determinism which interferes with canonicalization
@@ -99,21 +106,21 @@ def isbn_instancegen(params):
             #ids.send(['', ])
             if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
 
-            # model.add(I(instanceid), I(iri.absolutize('isbn', vocabbase)), inum)
-            model.add(I(instanceid), I(iri.absolutize('isbn', ISBNNS)), inum)
+            # output_model.add(I(instanceid), I(iri.absolutize('isbn', vocabbase)), inum)
+            output_model.add(I(instanceid), I(iri.absolutize('isbn', ISBNNS)), inum)
             #subitem['id'] = instanceid + (unichr(subscript + subix) if subix else '')
-            if itype: model.add(I(instanceid), I(iri.absolutize('isbnType', ISBNNS)), itype)
+            if itype: output_model.add(I(instanceid), I(iri.absolutize('isbnType', ISBNNS)), itype)
             existing_ids.add(instanceid)
             instance_ids.append(instanceid)
     else:
         instanceid = materialize_entity(iri.absolutize('Instance', vocabbase), instantiates=workid, existing_ids=existing_ids)
         if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
-        model.add(I(instanceid), TYPE_REL, I(iri.absolutize('Instance', vocabbase)))
+        output_model.add(I(instanceid), TYPE_REL, I(iri.absolutize('Instance', vocabbase)))
         existing_ids.add(instanceid)
         instance_ids.append(instanceid)
 
-    model.add(instance_ids[0], I(iri.absolutize('instantiates', vocabbase)), I(workid))
-    model.add(I(instance_ids[0]), TYPE_REL, I(iri.absolutize('Instance', vocabbase)))
+    output_model.add(instance_ids[0], I(iri.absolutize('instantiates', vocabbase)), I(workid))
+    output_model.add(I(instance_ids[0]), TYPE_REL, I(iri.absolutize('Instance', vocabbase)))
 
     return instance_ids
 
@@ -128,24 +135,6 @@ def instance_postprocess(params):
     return
 
 
-def marc_lookup(rec, fieldspecs):
-    result = []
-    lookup_helper = defaultdict(list)
-    for f in fieldspecs:
-        k, v = f.split('$')
-        lookup_helper[k].append(v)
-    #dict((  for f in fieldspecs ))
-    #dict((target_code, target_sf = fieldspec.split('$')
-    for row in rec:
-        if row[0] == DATAFIELD:
-            rowtype, code, xmlattrs, subfields = row
-            #print(code, ''.join(subfields.keys()), end='|')
-            if code in lookup_helper:
-                result.extend([ subfields.get(sf, []) for sf in lookup_helper[code] ])
-    result = list(itertools.chain.from_iterable(result))
-    return result
-
-
 RECORD_HASH_KEY_FIELDS = [
     '130$a', '240$a', '240$b', '240$c', '240$h', '245$a', '245$b', '245$n', '245$p', '246$a', '246$i', '246$n', '246$p', '830$a', #Title info
     '250$a', '250$b', #Edition
@@ -155,8 +144,9 @@ RECORD_HASH_KEY_FIELDS = [
 ]
 
 
-def record_hash_key(rec):
-    return ''.join(marc_lookup(rec, RECORD_HASH_KEY_FIELDS))
+def record_hash_key(model):
+    #Creating the hash with a delimeter between input fields just makes even slighter the collision risk
+    return '|'.join(( val for code, val in marc_lookup(model, RECORD_HASH_KEY_FIELDS)))
 
 
 @asyncio.coroutine
@@ -183,7 +173,7 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
 
     def materialize_entity(etype, vocabbase=vocabbase, existing_ids=existing_ids, unique=None, **data):
         '''
-        Routine for creating a BIBFRAME resource. Takes the resource type and a data mapping
+        Routine for creating a BIBFRAME resource. Takes the entity (resource) type and a data mapping
         according to the resource type. Implements the Libhub Resource Hash Convention
         As a convenience, if a vocabulary base is provided, concatenate it to etype and the data keys
         '''
@@ -213,15 +203,16 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
 
     try:
         while True:
-            rec = yield
+            input_model = yield
             leader = None
             #Add work item record, with actual hash resource IDs based on default or plugged-in algo
             #FIXME: No plug-in support yet
-            workhash = record_hash_key(rec)
+            workhash = record_hash_key(input_model)
             workid = materialize_entity(iri.absolutize('Work', BL), hash=workhash, existing_ids=existing_ids)
             is_folded = workid in existing_ids
             existing_ids.add(workid)
-            logger.debug('Uniform title from 245$a: {0}'.format(marc_lookup(rec, ['245$a'])))
+            dumb_title = list(marc_lookup(input_model, '245$a')) or '[NO 245$a TITLE]'
+            logger.debug('Uniform title from 245$a: {0}'.format(dumb_title[0]))
             logger.debug('Work hash result: {0} from \'{1}\''.format(workid, 'Work' + workhash))
 
             if entbase:
@@ -233,10 +224,8 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
 
             model.add(workid, TYPE_REL, I(iri.absolutize('Work', BL)))
 
-            input_model = memory.connection()
-
             #params = {'workid': workid, 'rec': rec, 'logger': logger, 'input_model': input_model, 'output_model': model, 'entbase': entbase, 'vocabbase': vocabase, 'ids': ids, 'existing_ids': existing_ids, 'folded': folded}
-            params = {'workid': workid, 'rec': rec, 'logger': logger, 'input_model': input_model, 'output_model': model, 'entbase': entbase, 'vocabbase': BL, 'ids': ids, 'existing_ids': existing_ids, 'folded': folded}
+            params = {'workid': workid, 'input_model': input_model, 'logger': logger, 'input_model': input_model, 'output_model': model, 'entbase': entbase, 'vocabbase': BL, 'ids': ids, 'existing_ids': existing_ids, 'folded': folded}
 
             #Figure out instances
             params['materialize_entity'] = materialize_entity
@@ -248,54 +237,51 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
             params['transforms'] = [] # set()
             params['fields_used'] = []
             params['dropped_codes'] = {}
-            for row in rec:
-                code = None
-
-                if row[0] == LEADER:
-                    params['leader'] = leader = row[1]
-                elif row[0] == CONTROLFIELD:
-                    code, val = row[1], row[2]
-                    key = 'tag-' + code
-                    if code == '008':
+            #Defensive coding against missing leader or 008
+            field008 = leader = None
+            for lid, marc_link in input_model:
+                origin, taglink, val, attribs = marc_link
+                if taglink == MARCXML_NS + '/leader':
+                    params['leader'] = leader = val
+                    continue
+                #Sort out attributes
+                params['indicators'] = indicators = { k: v for k, v in attribs.items() if k.startswith('ind') }
+                params['subfields'] = subfields = { k: v for k, v in attribs.items() if k[:3] not in ('tag', 'ind') }
+                params['code'] = tag = attribs['tag']
+                if taglink.startswith(MARCXML_NS + '/control'):
+                    key = 'tag-' + tag
+                    if tag == '008':
                         params['field008'] = field008 = val
-                    params['transforms'].append((code, key))
-                    input_model.add(I(instanceid), I(iri.absolutize(key, vocabbase)), val)
-                    params['fields_used'].append((code,))
-                elif row[0] == DATAFIELD:
-                    code, xmlattrs, subfields = row[1], row[2], row[3]
-                    #xmlattribs include are indicators
-                    indicators = ((xmlattrs.get('ind1') or ' ')[0].replace(' ', '#'), (xmlattrs.get('ind2') or ' ')[0].replace(' ', '#'))
-                    key = 'tag-' + code
+                    params['transforms'].append((tag, key))
+                    params['fields_used'].append((tag,))
+                elif taglink.startswith(MARCXML_NS + '/data'):
+                    indicator_list = ((attribs.get('ind1') or ' ')[0].replace(' ', '#'), (attribs.get('ind2') or ' ')[0].replace(' ', '#'))
+                    key = 'tag-' + tag
+                    #logger.debug('indicators: ', repr(indicators))
+                    #indicator_list = (indicators['ind1'], indicators['ind2'])
+                    params['fields_used'].append(tuple([tag] + list(subfields.keys())))
 
-                    handled = False
-                    params['subfields'] = subfields
-                    params['indicators'] = indicators
-                    params['fields_used'].append(tuple([code] + list(subfields.keys())))
-
+                    #This is where we check each incoming MARC link to see if it matches a transform into an output link (e.g. renaming 020 to 'isbn')
                     to_process = []
-                    #logger.debug(repr(indicators))
-                    if indicators != ('#', '#'):
+                    if indicator_list != ('#', '#'):
                         #One or other indicator is set, so let's check the transforms against those
-                        lookup = '{0}-{1}{2}'.format(*((code,) + indicators))
+                        lookup = '{0}-{1}{2}'.format(*((tag,) + indicator_list))
                     for k, v in subfields.items():
-                        lookup = '{0}${1}'.format(code, k)
+                        lookup = '{0}${1}'.format(tag, k)
                         for valitems in v:
                             if lookup in transforms:
                                 to_process.append((transforms[lookup], valitems))
                             else:
-                                if not code in transforms: # don't report on subfields for which a code-transform exists
+                                if not tag in transforms: # don't report on subfields for which a code-transform exists
                                     params['dropped_codes'].setdefault(lookup,0)
                                     params['dropped_codes'][lookup] += 1
 
-                    if code in transforms:
-                        to_process.append((transforms[code], ''))
+                    if tag in transforms:
+                        to_process.append((transforms[tag], ''))
                     else:
                         if not subfields: # don't count as dropped if subfields were processed
-                            params['dropped_codes'].setdefault(code,0)
-                            params['dropped_codes'][code] += 1
-
-                    #if code == '100':
-                    #    logger.debug(to_process)
+                            params['dropped_codes'].setdefault(tag,0)
+                            params['dropped_codes'][tag] += 1
 
                     #Apply all the handlers that were found
                     for funcinfo, val in to_process:
@@ -305,22 +291,21 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
                         for func in funcs:
                             extras = dict(folded=[]);
                             extras[WORKID], extras[IID] = workid, instanceid
-                            ctx = bfcontext((workid, code, val, subfields), input_model, model, extras=extras, base=vocabbase, idgen=materialize_entity, existing_ids=existing_ids)
-
+                            #Should we use all attrs rather than subfields here?
+                            ctx = bfcontext((origin, tag, val, subfields), input_model, model, extras=extras, base=vocabbase, idgen=materialize_entity, existing_ids=existing_ids)
                             func(ctx)
 
                             params['folded'].extend(extras['folded'])
 
                     if not to_process:
                         #Nothing else has handled this data field; go to the fallback
-                        fallback_rel_base = 'tag-' + code
+                        fallback_rel_base = 'tag-' + tag
+                        #How about indicators?
                         for k, v in subfields.items():
                             fallback_rel = fallback_rel_base + k
                             #params['transforms'].append((code, fallback_rel))
                             for valitem in v:
                                 model.add(I(workid), I(iri.absolutize(fallback_rel, vocabbase)), valitem)
-
-                params['code'] = code
 
 
             extra_stmts = set() # prevent duplicate statements
@@ -332,7 +317,7 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
                     o = origin or I(instanceid)
                     if (o,k,item) not in extra_stmts:
                         model.add(o, k, item)
-                        extra_stmts.add((o,k,item))
+                        extra_stmts.add((o, k, item))
 
             instance_postprocess(params)
 
@@ -365,7 +350,7 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
                             last_chunk = chunk
                     if last_chunk: out.write(last_chunk[:-1])
             #FIXME: Postprocessing should probably be a task too
-            if postprocess: postprocess(rec)
+            if postprocess: postprocess()
             #limiting--running count of records processed versus the max number, if any
             limiting[0] += 1
             if limiting[1] is not None and limiting[0] >= limiting[1]:

@@ -8,8 +8,6 @@ import argparse
 from bibframe.reader.marcxml import bfconvert
 
 
-#PREFIXES = {u'ma': 'http://www.loc.gov/MARC21/slim', u'me': 'http://www.loc.gov/METS/'}
-
 def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, config=None, verbose=False, mods=None, canonical=False):
     '''
     Basically takes parameters typical for command line invocation and adapts them for use in the API
@@ -32,7 +30,8 @@ def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, 
 
 
 if __name__ == '__main__':
-    #marc2bfrdf -v -o /tmp/lcout.json -s /tmp/lcout.stats.js scratch/unpacked/lc-sample-files-20120725.xml 2> /tmp/lcout.log
+    #marc2bf -v test/resource/700t.mrx
+    #marc2bf -v -o /dev/null --rdfttl /tmp/foo.ttl test/resource/700t.mrx
     #parser = argparse.ArgumentParser(prog="bootstrap", add_help=False)
     parser = argparse.ArgumentParser()
     parser.add_argument('inputs', type=argparse.FileType('r'), metavar='inputs', nargs='*',
