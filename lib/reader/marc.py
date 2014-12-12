@@ -239,6 +239,46 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
             params['dropped_codes'] = {}
             #Defensive coding against missing leader or 008
             field008 = leader = None
+            #Prepare cross-references (i.e. 880s)
+            #XXX: Figure out a way to declare in TRANSFRORMS?
+            xrefs = {}
+            remove_links = []
+            add_links = []
+            for lid, marc_link in input_model:
+                origin, taglink, val, attribs = marc_link
+                if taglink == MARCXML_NS + '/leader':
+                    params['leader'] = leader = val
+                    continue
+                tag = attribs['tag']
+                for xref in attribs.get('6', []):
+                    xreftag, xrefid = xref.split('-')
+                    #Locate the matching taglink
+                    links = input_model.match(None, MARCXML_NS + '/data/' + xreftag)
+                    for link in links:
+                        #print(tag, xrefid, [ dest.split('/')[0].split('-') for dest in link[ATTRIBUTES].get('6', []) ])
+                        for dest in link[ATTRIBUTES].get('6', []):
+                            if [tag, xrefid] == dest.split('/')[0].split('-'):
+                                if tag == '880':
+                                    #880s will be handled by merger via xref, so take out for main loop
+                                    #XXX: This does, however, make input_model no longer a true representation of the input XML. Problem?
+                                    remove_links.append(lid)
+
+                                if xreftag == '880':
+                                    #Rule for 880s: merge in & add language indicator
+                                    langinfo = dest.split('/')[-1]
+                                    #Not using langinfo, really, at present because it seems near useless. Eventually we can handle by embedding a lang indicator token into attr values for later postprocessing
+                                    remove_links.append(lid)
+                                    for k, v in link[ATTRIBUTES].items():
+                                        if k[:3] not in ('tag', 'ind'):
+                                            attribs.setdefault(k, []).extend(v)
+                                    add_links.append((origin, taglink, val, attribs))
+
+            for lid in remove_links:
+                input_model.remove(lid)
+
+            for linfo in add_links:
+                input_model.add(*linfo)
+
             for lid, marc_link in input_model:
                 origin, taglink, val, attribs = marc_link
                 if taglink == MARCXML_NS + '/leader':
@@ -287,14 +327,14 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
                     for funcinfo, val in to_process:
                         #Support multiple actions per lookup
                         funcs = funcinfo if isinstance(funcinfo, tuple) else (funcinfo,)
-                        #Build Versa processing context
+
                         for func in funcs:
-                            extras = dict(folded=[]);
-                            extras[WORKID], extras[IID] = workid, instanceid
-                            #Should we use all attrs rather than subfields here?
+                            extras = { 'folded': [], WORKID: workid, IID: instanceid }
+                            #Build Versa processing context
+                            #Should we include indicators?
+                            #Should we be passing in taglik rather than tag?
                             ctx = bfcontext((origin, tag, val, subfields), input_model, model, extras=extras, base=vocabbase, idgen=materialize_entity, existing_ids=existing_ids)
                             func(ctx)
-
                             params['folded'].extend(extras['folded'])
 
                     if not to_process:
