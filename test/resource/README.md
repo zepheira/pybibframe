@@ -14,3 +14,8 @@ lcc-u.mrx - Downloaded from [this LC record](http://catalog2.loc.gov/cgi-bin/Pwe
 
 TODO: Go back to get non Unicode version when LC.gov is not timing out.
 
+## Other interesting tickets from lcdevnet/marc2bibframe with data attached
+
+ * https://github.com/lcnetdev/marc2bibframe/issues/101
+ * [007 field example](https://github.com/lcnetdev/marc2bibframe/issues/91)
+

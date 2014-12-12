@@ -240,13 +240,14 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
             #Defensive coding against missing leader or 008
             field008 = leader = None
             #Prepare cross-references (i.e. 880s)
-            #XXX: Figure out a way to declare in TRANSFRORMS?
+            #XXX: Figure out a way to declare in TRANSFRORMS? We might have to deal with non-standard relationship designators: https://github.com/lcnetdev/marc2bibframe/issues/83
             xrefs = {}
             remove_links = []
             add_links = []
             for lid, marc_link in input_model:
                 origin, taglink, val, attribs = marc_link
-                if taglink == MARCXML_NS + '/leader':
+                if taglink == MARCXML_NS + '/leader' or taglink.startswith(MARCXML_NS + '/data/9'):
+                    #900 fields are local and might not follow the general xref rules
                     params['leader'] = leader = val
                     continue
                 tag = attribs['tag']
@@ -255,7 +256,6 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
                     #Locate the matching taglink
                     links = input_model.match(None, MARCXML_NS + '/data/' + xreftag)
                     for link in links:
-                        #print(tag, xrefid, [ dest.split('/')[0].split('-') for dest in link[ATTRIBUTES].get('6', []) ])
                         for dest in link[ATTRIBUTES].get('6', []):
                             if [tag, xrefid] == dest.split('/')[0].split('-'):
                                 if tag == '880':

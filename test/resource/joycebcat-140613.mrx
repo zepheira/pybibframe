@@ -1,0 +1,133 @@
+<!-- https://github.com/lcnetdev/marc2bibframe/issues/72 -->
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+<marc:record type="Bibliographic">
+<marc:leader>01425cam a22003614a 4500</marc:leader>
+<marc:controlfield tag="001">4208199</marc:controlfield>
+<marc:controlfield tag="005">20121004091221.0</marc:controlfield>
+<marc:controlfield tag="008">030612s2003 jo ab b 000 0 ara</marc:controlfield>
+<marc:datafield tag="010" ind1=" " ind2=" ">
+<marc:subfield code="a">2003345850</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="035" ind1=" " ind2=" ">
+<marc:subfield code="a">(OCoLC)52697086</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="035" ind1=" " ind2=" ">
+<marc:subfield code="a">(CStRLIN)DCLN03-B3360</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="040" ind1=" " ind2=" ">
+<marc:subfield code="a">DLC-R</marc:subfield>
+<marc:subfield code="c">DLC-R</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="042" ind1=" " ind2=" ">
+<marc:subfield code="a">lcode</marc:subfield>
+<marc:subfield code="a">pcc</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="043" ind1=" " ind2=" ">
+<marc:subfield code="a">f-ua---</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="050" ind1="0" ind2="0">
+<marc:subfield code="a">HC830</marc:subfield>
+<marc:subfield code="b">.N37 2003</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="066" ind1=" " ind2=" ">
+<marc:subfield code="c">(3</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="100" ind1="1" ind2=" ">
+<marc:subfield code="6">880-01</marc:subfield>
+<marc:subfield code="a">Nāṣir, ʻĀmir Najīb Mūsá.</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="245" ind1="1" ind2="3">
+<marc:subfield code="6">880-02</marc:subfield>
+<marc:subfield code="a">
+al-Ḥayāh al-iqtiṣādīyah fī Miṣr fī al-ʻAṣr al-Mamlūkī /
+</marc:subfield>
+<marc:subfield code="c">taʾlīf ʻĀmir Najīb Mūsá Nāṣir.</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="246" ind1="3" ind2="0">
+<marc:subfield code="6">880-03</marc:subfield>
+<marc:subfield code="a">Miṣr</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="250" ind1=" " ind2=" ">
+<marc:subfield code="6">880-04</marc:subfield>
+<marc:subfield code="a">al-Ṭabʻah al-ʻArabīyah 1.</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="260" ind1=" " ind2=" ">
+<marc:subfield code="6">880-05</marc:subfield>
+<marc:subfield code="a">ʻAmmān :</marc:subfield>
+<marc:subfield code="b">al-Shurūq,</marc:subfield>
+<marc:subfield code="c">2003.</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="300" ind1=" " ind2=" ">
+<marc:subfield code="a">390 p. :</marc:subfield>
+<marc:subfield code="b">ill., maps ;</marc:subfield>
+<marc:subfield code="c">24 cm.</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="504" ind1=" " ind2=" ">
+<marc:subfield code="a">Includes bibliographical references (p. 362-377).</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="651" ind1=" " ind2="0">
+<marc:subfield code="a">Egypt</marc:subfield>
+<marc:subfield code="x">Economic policy.</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="651" ind1=" " ind2="0">
+<marc:subfield code="a">Egypt</marc:subfield>
+<marc:subfield code="x">Economic conditions.</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="651" ind1=" " ind2="0">
+<marc:subfield code="a">Egypt</marc:subfield>
+<marc:subfield code="x">History</marc:subfield>
+<marc:subfield code="y">1250-1517.</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="880" ind1="1" ind2=" ">
+<marc:subfield code="6">100-01/(3/r</marc:subfield>
+<marc:subfield code="a">ناصر، عامر نجيب موسى.</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="880" ind1="1" ind2="2">
+<marc:subfield code="6">245-02/(3/r</marc:subfield>
+<marc:subfield code="a">الحياة الاقتصادية في مصر في العصر المملوكي /</marc:subfield>
+<marc:subfield code="c">تأليف عامر نجيب موسى ناصر.</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="880" ind1="3" ind2="0">
+<marc:subfield code="6">246-03/(3/r</marc:subfield>
+<marc:subfield code="a">مصر</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="880" ind1=" " ind2=" ">
+<marc:subfield code="6">250-04/(3/r</marc:subfield>
+<marc:subfield code="a">الطبعة العربية 1.</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="880" ind1=" " ind2=" ">
+<marc:subfield code="6">260-05/(3/r</marc:subfield>
+<marc:subfield code="a">عمان :</marc:subfield>
+<marc:subfield code="b">الشروق،</marc:subfield>
+<marc:subfield code="c">2003.</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="904" ind1=" " ind2=" ">
+<marc:subfield code="a">ay</marc:subfield>
+<marc:subfield code="b">a</marc:subfield>
+<marc:subfield code="h">m</marc:subfield>
+<marc:subfield code="c">b</marc:subfield>
+<marc:subfield code="e">20040729</marc:subfield>
+</marc:datafield>
+<marc:datafield tag="902" ind1=" " ind2=" ">
+<marc:subfield code="a">mnc</marc:subfield>
+<marc:subfield code="b">l</marc:subfield>
+<marc:subfield code="6">a</marc:subfield>
+<marc:subfield code="7">m</marc:subfield>
+<marc:subfield code="d">v</marc:subfield>
+<marc:subfield code="f">1</marc:subfield>
+<marc:subfield code="e">20060413</marc:subfield>
+</marc:datafield>
+</marc:record>
+<marc:record type="Holdings">
+<marc:leader>00178cx a22000851 4500</marc:leader>
+<marc:controlfield tag="001">4472570</marc:controlfield>
+<marc:controlfield tag="004">4208199</marc:controlfield>
+<marc:controlfield tag="005">20110310075629.0</marc:controlfield>
+<marc:controlfield tag="008">0407294u 8 1001uu 0901128</marc:controlfield>
+<marc:datafield tag="852" ind1="0" ind2=" ">
+<marc:subfield code="b">nec</marc:subfield>
+<marc:subfield code="h">HC830</marc:subfield>
+<marc:subfield code="i">.N37 2003</marc:subfield>
+</marc:datafield>
+</marc:record>
+</marc:collection>

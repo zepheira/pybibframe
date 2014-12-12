@@ -1,0 +1,195 @@
+<!-- https://github.com/lcnetdev/marc2bibframe/issues/82 -->
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+    <marc:record type="Bibliographic">
+        <marc:leader>02099cam a2200445Ia 4500</marc:leader>
+        <marc:controlfield tag="001">8049321</marc:controlfield>
+        <marc:controlfield tag="005">20140401094028.0</marc:controlfield>
+        <marc:controlfield tag="008">930514q16791722cc a          000 0 chi d</marc:controlfield>
+        <marc:datafield tag="035" ind1=" " ind2=" ">
+            <marc:subfield code="a">(OCoLC)ocm31983844</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="040" ind1=" " ind2=" ">
+            <marc:subfield code="a">ZCA</marc:subfield>
+            <marc:subfield code="b">eng</marc:subfield>
+            <marc:subfield code="c">ZCA</marc:subfield>
+            <marc:subfield code="d">OCLCQ</marc:subfield>
+            <marc:subfield code="d">ZCU</marc:subfield>
+            <marc:subfield code="d">OCLCG</marc:subfield>
+            <marc:subfield code="d">OCLCA</marc:subfield>
+            <marc:subfield code="d">OCLCQ</marc:subfield>
+            <marc:subfield code="d">OCLCO</marc:subfield>
+            <marc:subfield code="d">OCLCA</marc:subfield>
+            <marc:subfield code="d">OCLCQ</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="035" ind1=" " ind2=" ">
+            <marc:subfield code="a">(OCoLC)31983844</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="043" ind1=" " ind2=" ">
+            <marc:subfield code="a">a-cc---</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="100" ind1="1" ind2=" ">
+            <marc:subfield code="6">880-01</marc:subfield>
+            <marc:subfield code="a">Wang, Gai,</marc:subfield>
+            <marc:subfield code="d">active 1677-1705.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="245" ind1="1" ind2="0">
+            <marc:subfield code="6">880-02</marc:subfield>
+            <marc:subfield code="a">Jie zi yuan hua zhuan :</marc:subfield>
+            <marc:subfield code="b">wu juan /</marc:subfield>
+            <marc:subfield code="c">Wang Anjie mo gu.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="250" ind1=" " ind2=" ">
+            <marc:subfield code="6">880-03</marc:subfield>
+            <marc:subfield code="a">[Cai se tao yin ben].</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="260" ind1=" " ind2=" ">
+            <marc:subfield code="6">880-04</marc:subfield>
+            <marc:subfield code="a">[China :</marc:subfield>
+            <marc:subfield code="b">s.n.,</marc:subfield>
+            <marc:subfield code="c">Qing Kangxi, between 1679 and 1722]</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="300" ind1=" " ind2=" ">
+            <marc:subfield code="a">5 v. :</marc:subfield>
+            <marc:subfield code="b">ill. ;</marc:subfield>
+            <marc:subfield code="c">29 cm.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="500" ind1=" " ind2=" ">
+            <marc:subfield code="a">On double leaves, East Asian binding.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="505" ind1="0" ind2="0">
+            <marc:subfield code="6">880-05</marc:subfield>
+            <marc:subfield code="g">1.</marc:subfield>
+            <marc:subfield code="t">Qing zai tang hua xue qian shuo --</marc:subfield>
+            <marc:subfield code="g">2.</marc:subfield>
+            <marc:subfield code="t">Shu pu --</marc:subfield>
+            <marc:subfield code="g">3.</marc:subfield>
+            <marc:subfield code="t">Shan shi pu --</marc:subfield>
+            <marc:subfield code="g">4.</marc:subfield>
+            <marc:subfield code="t">Ren wu wu yu pu --</marc:subfield>
+            <marc:subfield code="g">5.</marc:subfield>
+            <marc:subfield code="t">Mo fang zhu jia hua pu.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="500" ind1=" " ind2=" ">
+            <marc:subfield code="a">In case.</marc:subfield>
+            <marc:subfield code="5">NjP</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="541" ind1=" " ind2=" ">
+            <marc:subfield code="c">Purchase;</marc:subfield>
+            <marc:subfield code="d">1958.</marc:subfield>
+            <marc:subfield code="5">NjP</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="650" ind1=" " ind2="0">
+            <marc:subfield code="a">Painting, Chinese</marc:subfield>
+            <marc:subfield code="x">Technique.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="650" ind1=" " ind2="0">
+            <marc:subfield code="a">Painting</marc:subfield>
+            <marc:subfield code="x">Technique.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="650" ind1=" " ind2="7">
+            <marc:subfield code="6">880-06</marc:subfield>
+            <marc:subfield code="a">Zi bu</marc:subfield>
+            <marc:subfield code="x">Yi shu lei</marc:subfield>
+            <marc:subfield code="x">Hua pu.</marc:subfield>
+            <marc:subfield code="2">sk</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="700" ind1="1" ind2=" ">
+            <marc:subfield code="6">880-07</marc:subfield>
+            <marc:subfield code="a">Li, Yu,</marc:subfield>
+            <marc:subfield code="d">1611-1680?,</marc:subfield>
+            <marc:subfield code="e">lun ding.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="787" ind1="0" ind2=" ">
+            <marc:subfield code="w">8175356</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="787" ind1="0" ind2=" ">
+            <marc:subfield code="w">8175353</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="797" ind1="2" ind2=" ">
+            <marc:subfield code="a">CHRBD.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1="1" ind2=" ">
+            <marc:subfield code="6">100-01</marc:subfield>
+            <marc:subfield code="a">王槩,</marc:subfield>
+            <marc:subfield code="d">active 1677-1705.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1="1" ind2="0">
+            <marc:subfield code="6">245-02</marc:subfield>
+            <marc:subfield code="a">芥子園畫傳 :</marc:subfield>
+            <marc:subfield code="b">五卷 /</marc:subfield>
+            <marc:subfield code="c">王安節摹古.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1=" " ind2=" ">
+            <marc:subfield code="6">250-03</marc:subfield>
+            <marc:subfield code="a">[彩色套印本].</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1=" " ind2=" ">
+            <marc:subfield code="6">260-04</marc:subfield>
+            <marc:subfield code="a">[China :</marc:subfield>
+            <marc:subfield code="b">s.n.,</marc:subfield>
+            <marc:subfield code="c">清康熙, between 1679 and 1722]</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1=" " ind2=" ">
+            <marc:subfield code="6">500-00</marc:subfield>
+            <marc:subfield code="a">書名及著者據封面. 王槩, 字安節.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1=" " ind2=" ">
+            <marc:subfield code="6">500-00</marc:subfield>
+            <marc:subfield code="a">封面題: "李笠翁先生論定 繡水王安節摹古 芥子園畫傳 本衙藏板", "畫傳二集蘭竹梅菊譜已出 三集翎毛草蟲花卉譜已出".</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1=" " ind2=" ">
+            <marc:subfield code="6">500-00</marc:subfield>
+            <marc:subfield code="a">康熙十八年(1679)笠翁李漁《序》.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1=" " ind2=" ">
+            <marc:subfield code="6">500-00</marc:subfield>
+            <marc:subfield code="a">框22.5 x 14.7公分, 9行20字, 白口, 四周單邊, 單黑魚尾, 版心上鐫"芥子園画傳", 中鐫卷次.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1="0" ind2="0">
+            <marc:subfield code="6">505-05</marc:subfield>
+            <marc:subfield code="g">1.</marc:subfield>
+            <marc:subfield code="t">青在堂畫學淺說 --</marc:subfield>
+            <marc:subfield code="g">2.</marc:subfield>
+            <marc:subfield code="t">樹譜 --</marc:subfield>
+            <marc:subfield code="g">3.</marc:subfield>
+            <marc:subfield code="t">山石譜 --</marc:subfield>
+            <marc:subfield code="g">4.</marc:subfield>
+            <marc:subfield code="t">人物屋宇譜 --</marc:subfield>
+            <marc:subfield code="g">5.</marc:subfield>
+            <marc:subfield code="t">摹仿諸家畫譜.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1=" " ind2="7">
+            <marc:subfield code="6">650-06</marc:subfield>
+            <marc:subfield code="a">子部</marc:subfield>
+            <marc:subfield code="x">藝術類</marc:subfield>
+            <marc:subfield code="x">畫譜.</marc:subfield>
+            <marc:subfield code="2">sk</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1="1" ind2=" ">
+            <marc:subfield code="6">700-07</marc:subfield>
+            <marc:subfield code="a">李漁,</marc:subfield>
+            <marc:subfield code="d">1611-1680?,</marc:subfield>
+            <marc:subfield code="e">論定.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="999" ind1=" " ind2=" ">
+            <marc:subfield code="a">8049321</marc:subfield>
+        </marc:datafield>
+    </marc:record>
+    <marc:record type="Holdings">
+        <marc:leader>00206cx  a22000974  4500</marc:leader>
+        <marc:controlfield tag="001">7979037</marc:controlfield>
+        <marc:controlfield tag="004">8049321</marc:controlfield>
+        <marc:controlfield tag="005">20140401115121.0</marc:controlfield>
+        <marc:controlfield tag="008">1404014u    8   1001uu   0901128</marc:controlfield>
+        <marc:datafield tag="852" ind1="8" ind2=" ">
+            <marc:subfield code="b">gax</marc:subfield>
+            <marc:subfield code="c">Oversize</marc:subfield>
+            <marc:subfield code="h">2014-0016Q</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="866" ind1=" " ind2="0">
+            <marc:subfield code="a">[1]-[5]</marc:subfield>
+        </marc:datafield>
+    </marc:record>
+</marc:collection>
