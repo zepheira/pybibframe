@@ -11,6 +11,7 @@ import sys
 import logging
 import asyncio
 import unittest
+import difflib
 from io import StringIO
 
 from versa.driver import memory
@@ -29,6 +30,29 @@ def module_path(local_function):
 #hack to locate test resource (data) files regardless of from where nose was run
 RESOURCEPATH = os.path.normpath(os.path.join(module_path(lambda _: None), '../resource/'))
 
+def verify_conversion(name, entbase=None, config=None, loop=None, canonical=True):
+    m = memory.connection()
+    m_expected = memory.connection()
+    s = StringIO()
+    with open(os.path.join(RESOURCEPATH, name+'.mrx')) as indoc:
+        bfconvert(indoc, model=m, out=s, config=config, canonical=canonical, loop=loop)
+        s.seek(0)
+        jsonload(m, s)
+
+    with open(os.path.join(RESOURCEPATH, name+'.versa')) as indoc:
+        jsonload(m_expected, indoc)
+
+    with open('m','w') as outdoc:
+        outdoc.write(repr(m))
+    with open('me','w') as outdoc:
+        outdoc.write(repr(m_expected))
+
+    assert m == m_expected, "Discrepancies found for {0}:\n{1}".format(name, file_diff(repr(m), repr(m_expected)))
+
+def file_diff(s_orig, s_new):
+    diff = difflib.unified_diff(s_orig.split('\n'), s_new.split('\n'))
+    return '\n'.join(list(diff))
+
 class BasicTest(unittest.TestCase):
     '''
     Use a new event loop per test, and so one call of bfconvert per test
@@ -43,31 +67,19 @@ class BasicTest(unittest.TestCase):
         with open(os.path.join(RESOURCEPATH, 'multiple-authlinks.xml')) as indoc:
             bfconvert([indoc], entbase='http://example.org/', model=m, config=None, verbose=False, loop=self.loop)
 
-        assert m.size() == 0, 'Model not consumed: '+repr(m)
+        assert m.size() == 0, 'Model not consumed:\n'+repr(m)
 
-    def test_simple_verify(self,name='gunslinger'):
-        m = memory.connection()
-        m_expected = memory.connection()
-        s = StringIO()
-        with open(os.path.join(RESOURCEPATH, name+'.mrx')) as indoc:
-            bfconvert(indoc, model=m, out=s, canonical=True, loop=self.loop)
-            s.seek(0)
-            jsonload(m, s)
-
-        with open(os.path.join(RESOURCEPATH, name+'.versa')) as indoc:
-            jsonload(m_expected, indoc)
-
-        with open('m-'+name,'w') as indoc:
-            indoc.write(repr(m))
-        with open('me-'+name,'w') as indoc:
-            indoc.write(repr(m_expected))
-        assert m==m_expected, "Discrepancy found in {0}".format(name)
+    def test_simple_verify(self):
+        verify_conversion('gunslinger', loop=self.loop)
+        pass
 
     def test_simple_verify2(self):
-        self.test_simple_verify(name='egyptskulls')
+        verify_conversion('egyptskulls', loop=self.loop)
+        pass
 
     def test_simple_verify3(self):
-        self.test_simple_verify(name='kford-holdings1')
+        verify_conversion('kford-holdings1', loop=self.loop)
+        pass
 
 if __name__ == '__main__':
     raise SystemExit("use py.test")
