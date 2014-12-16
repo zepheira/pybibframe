@@ -146,7 +146,7 @@ RECORD_HASH_KEY_FIELDS = [
 
 def record_hash_key(model):
     #Creating the hash with a delimeter between input fields just makes even slighter the collision risk
-    return '|'.join(( val for code, val in marc_lookup(model, RECORD_HASH_KEY_FIELDS)))
+    return '|'.join(sorted(list( val for code, val in marc_lookup(model, RECORD_HASH_KEY_FIELDS))))
 
 
 @asyncio.coroutine
