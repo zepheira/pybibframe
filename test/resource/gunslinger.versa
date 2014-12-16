@@ -30,79 +30,79 @@
         {}
     ],
     [
-        "Cb6l9cg1",
+        "6V3FTm1R",
         "http://bibfra.me/purl/versa/type",
         "LanguageMaterial",
         {}
     ],
     [
-        "Cb6l9cg1",
+        "6V3FTm1R",
         "http://bibfra.me/purl/versa/type",
         "fiction",
         {}
     ],
     [
-        "Cb6l9cg1",
+        "6V3FTm1R",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/annotation/LanguageMaterial",
         {}
     ],
     [
-        "Cb6l9cg1",
+        "6V3FTm1R",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
         {}
     ],
     [
-        "Cb6l9cg1",
+        "6V3FTm1R",
         "http://bibfra.me/vocab/lite/dimensions",
         "23 cm.",
         {}
     ],
     [
-        "Cb6l9cg1",
+        "6V3FTm1R",
         "http://bibfra.me/vocab/lite/extent",
         "224 p. :",
         {}
     ],
     [
-        "Cb6l9cg1",
+        "6V3FTm1R",
         "http://bibfra.me/vocab/lite/instantiates",
-        "fB7j7v-S",
+        "EPUuiFj_",
         {}
     ],
     [
-        "Cb6l9cg1",
+        "6V3FTm1R",
         "http://bibfra.me/vocab/lite/link",
         "http://www.loc.gov/catdir/enhancements/fy1206/88009938-b.html",
         {}
     ],
     [
-        "Cb6l9cg1",
+        "6V3FTm1R",
         "http://bibfra.me/vocab/lite/title",
         "The gunslinger /",
         {}
     ],
     [
-        "Cb6l9cg1",
+        "6V3FTm1R",
         "http://bibfra.me/vocab/rda/isbn",
         "0452261341",
         {}
     ],
     [
-        "Cb6l9cg1",
+        "6V3FTm1R",
         "http://bibfra.me/vocab/rda/otherPhysicalDetails",
         "ill. (some col.) ;",
         {}
     ],
     [
-        "Cb6l9cg1",
+        "6V3FTm1R",
         "http://bibfra.me/vocab/rda/publication",
         "V7iD25YY",
         {}
     ],
     [
-        "Cb6l9cg1",
+        "6V3FTm1R",
         "http://bibfra.me/vocab/rda/titleStatement",
         "by Stephen King ; illustrated by Michael Whelan.",
         {}
@@ -135,6 +135,210 @@
         "CmR-BPWH",
         "http://bibfra.me/vocab/marc/sf-c",
         "1988, c1982.",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/lite/creator",
+        "wbZVlnE7",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/lite/genre",
+        "Whi1HZhf",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/lite/note",
+        "\"A Plume book.\"",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/lite/subject",
+        "1nLcPNBX",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/lite/title",
+        "The gunslinger /",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/marc/tag-020a",
+        "0452261341",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/marc/tag-0359",
+        "(DLC)   88009938",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/marc/tag-800a",
+        "King, Stephen,",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/marc/tag-800d",
+        "1947-",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/marc/tag-800t",
+        "Dark tower ;",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/marc/tag-800v",
+        "1.",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/marc/tag-906a",
+        "7",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/marc/tag-906b",
+        "cbc",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/marc/tag-906c",
+        "orignew",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/marc/tag-906d",
+        "1",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/marc/tag-906e",
+        "ocip",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/marc/tag-906f",
+        "19",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/marc/tag-906g",
+        "y-gencatlg",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/marc/tag-955a",
+        "CIP VER lh03 09-20-96 to SL",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/marc/tag-991b",
+        "c-GenColl",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/marc/tag-991h",
+        "PS3561.I483",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/marc/tag-991i",
+        "G86 1988",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/marc/tag-991p",
+        "00035919508",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/marc/tag-991t",
+        "Copy 1",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/marc/tag-991w",
+        "BOOKS",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/rda/catalogingSource",
+        "DLC",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/rda/deweyNumber",
+        "813/.54",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/rda/lcCallNumber",
+        "PS3561.I483",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/rda/lcItemNumber",
+        "G86 1988",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/rda/lccn",
+        "   88009938 ",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/rda/seriesStatement",
+        "The Dark tower ;",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/rda/seriesVolume",
+        "1",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/rda/titleStatement",
+        "by Stephen King ; illustrated by Michael Whelan.",
         {}
     ],
     [
@@ -234,213 +438,9 @@
         {}
     ],
     [
-        "fB7j7v-S",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Work",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/lite/creator",
-        "wbZVlnE7",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/lite/genre",
-        "Whi1HZhf",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/lite/note",
-        "\"A Plume book.\"",
-        {}
-    ],
-    [
-        "fB7j7v-S",
+        "record-1:38",
         "http://bibfra.me/vocab/lite/providerAgent",
         "dEZTwJ9J",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/lite/subject",
-        "1nLcPNBX",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/lite/title",
-        "The gunslinger /",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/marc/tag-020a",
-        "0452261341",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/marc/tag-0359",
-        "(DLC)   88009938",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/marc/tag-800a",
-        "King, Stephen,",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/marc/tag-800d",
-        "1947-",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/marc/tag-800t",
-        "Dark tower ;",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/marc/tag-800v",
-        "1.",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/marc/tag-906a",
-        "7",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/marc/tag-906b",
-        "cbc",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/marc/tag-906c",
-        "orignew",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/marc/tag-906d",
-        "1",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/marc/tag-906e",
-        "ocip",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/marc/tag-906f",
-        "19",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/marc/tag-906g",
-        "y-gencatlg",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/marc/tag-955a",
-        "CIP VER lh03 09-20-96 to SL",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/marc/tag-991b",
-        "c-GenColl",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/marc/tag-991h",
-        "PS3561.I483",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/marc/tag-991i",
-        "G86 1988",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/marc/tag-991p",
-        "00035919508",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/marc/tag-991t",
-        "Copy 1",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/marc/tag-991w",
-        "BOOKS",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/rda/catalogingSource",
-        "DLC",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/rda/deweyNumber",
-        "813/.54",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/rda/lcCallNumber",
-        "PS3561.I483",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/rda/lcItemNumber",
-        "G86 1988",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/rda/lccn",
-        "   88009938 ",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/rda/seriesStatement",
-        "The Dark tower ;",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/rda/seriesVolume",
-        "1",
-        {}
-    ],
-    [
-        "fB7j7v-S",
-        "http://bibfra.me/vocab/rda/titleStatement",
-        "by Stephen King ; illustrated by Michael Whelan.",
         {}
     ],
     [

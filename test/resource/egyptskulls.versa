@@ -30,91 +30,271 @@
         {}
     ],
     [
-        "92mJzR1f",
+        "AosgU3-6",
         "http://bibfra.me/purl/versa/type",
-        "LanguageMaterial",
+        "http://bibfra.me/vocab/lite/Work",
         {}
     ],
     [
-        "92mJzR1f",
-        "http://bibfra.me/purl/versa/type",
-        "bibliography",
+        "AosgU3-6",
+        "http://bibfra.me/vocab/lite/creator",
+        "vxMNUBHb",
         {}
     ],
     [
-        "92mJzR1f",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/annotation/LanguageMaterial",
+        "AosgU3-6",
+        "http://bibfra.me/vocab/lite/language",
+        "eng",
         {}
     ],
     [
-        "92mJzR1f",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
+        "AosgU3-6",
+        "http://bibfra.me/vocab/lite/memberOf",
+        "LKiHfdhb",
         {}
     ],
     [
-        "92mJzR1f",
-        "http://bibfra.me/purl/versa/type",
-        "non-fiction",
+        "AosgU3-6",
+        "http://bibfra.me/vocab/lite/subject",
+        "4RtBPAGz",
         {}
     ],
     [
-        "92mJzR1f",
-        "http://bibfra.me/vocab/lite/dimensions",
-        "30 cm.",
+        "AosgU3-6",
+        "http://bibfra.me/vocab/lite/subject",
+        "KuzlkMad",
         {}
     ],
     [
-        "92mJzR1f",
-        "http://bibfra.me/vocab/lite/extent",
-        "143 p. :",
+        "AosgU3-6",
+        "http://bibfra.me/vocab/lite/subject",
+        "Miw4fdBA",
         {}
     ],
     [
-        "92mJzR1f",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "sA8Jo-lB",
+        "AosgU3-6",
+        "http://bibfra.me/vocab/lite/subject",
+        "PbQrLRnd",
         {}
     ],
     [
-        "92mJzR1f",
+        "AosgU3-6",
+        "http://bibfra.me/vocab/lite/subject",
+        "ZRVwkamR",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/lite/subject",
+        "ffgtMLFy",
+        {}
+    ],
+    [
+        "AosgU3-6",
         "http://bibfra.me/vocab/lite/title",
         "An appraisal of the skulls and dentition of ancient Egyptians :",
         {}
     ],
     [
-        "92mJzR1f",
-        "http://bibfra.me/vocab/rda/contentsNote",
-        "The medical papyri -- Geography, climate and diet in ancient Egypt and the consequential medical conditions -- The title of dentist in ancient egyptian history and conflicting evidence of the practice of restorative dentistry -- Previous dental examinations of ancient skeletal and mummified material -- Materials and methods -- Results -- Discussion .",
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-0152",
+        "bnb",
         {}
     ],
     [
-        "92mJzR1f",
-        "http://bibfra.me/vocab/rda/isbn",
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-015a",
+        "GBA884764",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-0162",
+        "Uk",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-016a",
+        "014654524",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-020a",
+        "1407302825",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-020a",
         "9781407302829",
         {}
     ],
     [
-        "92mJzR1f",
-        "http://bibfra.me/vocab/rda/otherPhysicalDetails",
-        "ill. ;",
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-0359",
+        "101481333",
         {}
     ],
     [
-        "92mJzR1f",
-        "http://bibfra.me/vocab/rda/publication",
-        "bB8qlAbW",
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-042a",
+        "nlmcopyc",
         {}
     ],
     [
-        "92mJzR1f",
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-043a",
+        "f-ua---",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-0449",
+        "England",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-992a",
+        "20081001",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-992e",
+        "EF",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-992p",
+        "P3",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-993a",
+        "KJD",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-993b",
+        "20081007",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-994a",
+        "CDN",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-994b",
+        "20081010",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-995a",
+        "AUTH",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-995b",
+        "20081031",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-995c",
+        "REV",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-995d",
+        "20081121",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-999a",
+        "AUTH",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/rda/bibliographyNote",
+        "Includes bibliographical references (p. 137-143).",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/rda/catalogingSource",
+        "SUC",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/rda/deweyNumber",
+        "614.59960932",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/rda/lcCallNumber",
+        "RK281",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/rda/lcItemNumber",
+        ".M55 2008",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/rda/nlmCallNumber",
+        "2008 L-006",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/rda/nlmCallNumber",
+        "WU 11 HE3",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/rda/nlmItemNumber",
+        "M648a 2008",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/rda/seriesStatement",
+        "BAR international series ;",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/rda/seriesVolume",
+        "1794",
+        {}
+    ],
+    [
+        "AosgU3-6",
         "http://bibfra.me/vocab/rda/titleRemainder",
         "highlighting the pathology and speculating on the influence of diet and environment /",
         {}
     ],
     [
-        "92mJzR1f",
+        "AosgU3-6",
         "http://bibfra.me/vocab/rda/titleStatement",
         "Judith Miller.",
         {}
@@ -348,279 +528,99 @@
         {}
     ],
     [
-        "sA8Jo-lB",
+        "lQimSsFK",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Work",
+        "LanguageMaterial",
         {}
     ],
     [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/lite/creator",
-        "vxMNUBHb",
+        "lQimSsFK",
+        "http://bibfra.me/purl/versa/type",
+        "bibliography",
         {}
     ],
     [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/lite/language",
-        "eng",
+        "lQimSsFK",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/annotation/LanguageMaterial",
         {}
     ],
     [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/lite/memberOf",
-        "LKiHfdhb",
+        "lQimSsFK",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
         {}
     ],
     [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "_vkbUld3",
+        "lQimSsFK",
+        "http://bibfra.me/purl/versa/type",
+        "non-fiction",
         {}
     ],
     [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/lite/subject",
-        "4RtBPAGz",
+        "lQimSsFK",
+        "http://bibfra.me/vocab/lite/dimensions",
+        "30 cm.",
         {}
     ],
     [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/lite/subject",
-        "KuzlkMad",
+        "lQimSsFK",
+        "http://bibfra.me/vocab/lite/extent",
+        "143 p. :",
         {}
     ],
     [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/lite/subject",
-        "Miw4fdBA",
+        "lQimSsFK",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "AosgU3-6",
         {}
     ],
     [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/lite/subject",
-        "PbQrLRnd",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/lite/subject",
-        "ZRVwkamR",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/lite/subject",
-        "ffgtMLFy",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
+        "lQimSsFK",
         "http://bibfra.me/vocab/lite/title",
         "An appraisal of the skulls and dentition of ancient Egyptians :",
         {}
     ],
     [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/marc/tag-0152",
-        "bnb",
+        "lQimSsFK",
+        "http://bibfra.me/vocab/rda/contentsNote",
+        "The medical papyri -- Geography, climate and diet in ancient Egypt and the consequential medical conditions -- The title of dentist in ancient egyptian history and conflicting evidence of the practice of restorative dentistry -- Previous dental examinations of ancient skeletal and mummified material -- Materials and methods -- Results -- Discussion .",
         {}
     ],
     [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/marc/tag-015a",
-        "GBA884764",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/marc/tag-0162",
-        "Uk",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/marc/tag-016a",
-        "014654524",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/marc/tag-020a",
-        "1407302825",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/marc/tag-020a",
+        "lQimSsFK",
+        "http://bibfra.me/vocab/rda/isbn",
         "9781407302829",
         {}
     ],
     [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/marc/tag-0359",
-        "101481333",
+        "lQimSsFK",
+        "http://bibfra.me/vocab/rda/otherPhysicalDetails",
+        "ill. ;",
         {}
     ],
     [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/marc/tag-042a",
-        "nlmcopyc",
+        "lQimSsFK",
+        "http://bibfra.me/vocab/rda/publication",
+        "bB8qlAbW",
         {}
     ],
     [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/marc/tag-043a",
-        "f-ua---",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/marc/tag-0449",
-        "England",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/marc/tag-992a",
-        "20081001",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/marc/tag-992e",
-        "EF",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/marc/tag-992p",
-        "P3",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/marc/tag-993a",
-        "KJD",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/marc/tag-993b",
-        "20081007",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/marc/tag-994a",
-        "CDN",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/marc/tag-994b",
-        "20081010",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/marc/tag-995a",
-        "AUTH",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/marc/tag-995b",
-        "20081031",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/marc/tag-995c",
-        "REV",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/marc/tag-995d",
-        "20081121",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/marc/tag-999a",
-        "AUTH",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/rda/bibliographyNote",
-        "Includes bibliographical references (p. 137-143).",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/rda/catalogingSource",
-        "SUC",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/rda/deweyNumber",
-        "614.59960932",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/rda/lcCallNumber",
-        "RK281",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/rda/lcItemNumber",
-        ".M55 2008",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/rda/nlmCallNumber",
-        "2008 L-006",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/rda/nlmCallNumber",
-        "WU 11 HE3",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/rda/nlmItemNumber",
-        "M648a 2008",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/rda/seriesStatement",
-        "BAR international series ;",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
-        "http://bibfra.me/vocab/rda/seriesVolume",
-        "1794",
-        {}
-    ],
-    [
-        "sA8Jo-lB",
+        "lQimSsFK",
         "http://bibfra.me/vocab/rda/titleRemainder",
         "highlighting the pathology and speculating on the influence of diet and environment /",
         {}
     ],
     [
-        "sA8Jo-lB",
+        "lQimSsFK",
         "http://bibfra.me/vocab/rda/titleStatement",
         "Judith Miller.",
+        {}
+    ],
+    [
+        "record-3:0",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "_vkbUld3",
         {}
     ],
     [
