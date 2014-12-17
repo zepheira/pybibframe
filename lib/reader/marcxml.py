@@ -149,7 +149,7 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
     def postprocess():
         #No need to bother with Versa -> RDF translation if we were not asked to generate Turtle
         if any((rdfttl, rdfxml)): rdf.process(model, g, to_ignore=extant_resources, logger=logger)
-        if canonical: global_model.add_many([(o,r,t,a,rid) for (rid,(o,r,t,a)) in model])
+        if canonical: global_model.add_many([(o,r,t,a) for (rid,(o,r,t,a)) in model])
 
         model.create_space()
 
