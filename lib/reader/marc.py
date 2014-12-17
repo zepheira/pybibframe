@@ -211,7 +211,7 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
             workid = materialize_entity(iri.absolutize('Work', BL), hash=workhash, existing_ids=existing_ids)
             is_folded = workid in existing_ids
             existing_ids.add(workid)
-            dumb_title = list(marc_lookup(input_model, '245$a')) or '[NO 245$a TITLE]'
+            dumb_title = list(marc_lookup(input_model, '245$a')) or ['NO 245$a TITLE']
             logger.debug('Uniform title from 245$a: {0}'.format(dumb_title[0]))
             logger.debug('Work hash result: {0} from \'{1}\''.format(workid, 'Work' + workhash))
 
