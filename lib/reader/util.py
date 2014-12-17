@@ -258,7 +258,7 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
             #Have been given enough info to derive the origin from context. Ignore origin in current link
             o = derive_origin(ctx)
         computed_unique = unique(ctx) if unique else None
-        objid = ctx.idgen(_typ, unique=unique(ctx), existing_ids=ctx.existing_ids)
+        objid = ctx.idgen(_typ, unique=computed_unique, existing_ids=ctx.existing_ids)
         for curr_rel in rels:
             #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
             curr_rel = '_' + curr_rel if curr_rel.isdigit() else curr_rel

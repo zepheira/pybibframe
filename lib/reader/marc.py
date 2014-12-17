@@ -178,7 +178,8 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
         As a convenience, if a vocabulary base is provided, concatenate it to etype and the data keys
         '''
         params = {}
-        etype = vocabbase + etype
+        if vocabbase:
+            etype = vocabbase + etype
         data_full = { vocabbase + k: v for (k, v) in data.items() }
         # nobody likes non-deterministic ids! ordering matters to hash()
         data_full = OrderedDict(sorted(data_full.items(), key=lambda x: x[0]))
