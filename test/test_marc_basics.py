@@ -76,5 +76,14 @@ class BasicTest(unittest.TestCase):
         verify_conversion('kford-holdings1', loop=self.loop)
         pass
 
+    def test_simple_verify4(self):
+        verify_conversion('timathom-140716', loop=self.loop)
+        pass
+
+    def test_simple_verify5(self):
+        verify_conversion('joycebcat-140613', loop=self.loop)
+        pass
+
+
 if __name__ == '__main__':
     raise SystemExit("use py.test")
