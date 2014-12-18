@@ -329,13 +329,12 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
                         funcs = funcinfo if isinstance(funcinfo, tuple) else (funcinfo,)
 
                         for func in funcs:
-                            extras = { 'folded': [], WORKID: workid, IID: instanceid }
+                            extras = { WORKID: workid, IID: instanceid }
                             #Build Versa processing context
                             #Should we include indicators?
                             #Should we be passing in taglik rather than tag?
                             ctx = bfcontext((origin, tag, val, subfields), input_model, model, extras=extras, base=vocabbase, idgen=materialize_entity, existing_ids=existing_ids)
                             func(ctx)
-                            params['folded'].extend(extras['folded'])
 
                     if not to_process:
                         #Nothing else has handled this data field; go to the fallback
