@@ -31,34 +31,34 @@ class transforms(object):
         [(None, 'http://bibfra.me/purl/versa/type', I('Collection')), (None, 'http://bibfra.me/purl/versa/type', I('Multimedia')), (None, 'http://bibfra.me/purl/versa/type', I('Collection'))]
         """
         broad_06 = dict(
-            a=I(self._vocab[BA]+"LanguageMaterial"),
-            c=I("LanguageMaterial"),
-            d=I("LanguageMaterial"),
-            e=I("StillImage"),
-            f=I("StillImage"),
-            g=I("MovingImage"),
-            i=I("Audio"),
-            j=I("Audio"),
-            k=I("StillImage"),
-            m=I("Software"),
-            p=I("Collection"),
-            t=I("LanguageMaterial"))
+            a=I(self._vocab[BL]+"LanguageMaterial"),
+            c=I(self._vocab[BL]+"LanguageMaterial"),
+            d=I(self._vocab[BL]+"LanguageMaterial"),
+            e=I(self._vocab[BL]+"StillImage"),
+            f=I(self._vocab[BL]+"StillImage"),
+            g=I(self._vocab[BL]+"MovingImage"),
+            i=I(self._vocab[BL]+"Audio"),
+            j=I(self._vocab[BL]+"Audio"),
+            k=I(self._vocab[BL]+"StillImage"),
+            m=I(self._vocab[BL]+"Software"),
+            p=I(self._vocab[BL]+"Collection"),
+            t=I(self._vocab[BL]+"LanguageMaterial"))
     
         detailed_06 = dict(
-            a=I("LanguageMaterial"),
-            c=I("NotatedMusic"),
-            d=(I("Manuscript"), I("NotatedMusic")),
-            e=I("Cartography"),
-            f=(I("Manuscript"), I("Cartography")),
-            g=I("MovingImage"),
-            i=(I("Nonmusical"), I("Sounds")),
-            j=I("Musical"),
-            k=I("StillImage"),
-            m=I("Multimedia"),
-            o=I("Kit"),
-            p=I("Multimedia"),
-            r=I("ThreeDimensionalObject"),
-            t=(I("LanguageMaterial"), I("Manuscript")))
+            a=I(self._vocab[BL]+"LanguageMaterial"),
+            c=I(self._vocab[BL]+"NotatedMusic"),
+            d=(self._vocab[BL]+I("Manuscript"), self._vocab[BL]+I("NotatedMusic")),
+            e=I(self._vocab[BL]+"Cartography"),
+            f=(self._vocab[BL]+I("Manuscript"), self._vocab[BL]+I("Cartography")),
+            g=I(self._vocab[BL]+"MovingImage"),
+            i=(self._vocab[BL]+I("Nonmusical"), self._vocab[BL]+I("Sounds")),
+            j=I(self._vocab[BL]+"Musical"),
+            k=I(self._vocab[BL]+"StillImage"),
+            m=I(self._vocab[BL]+"Multimedia"),
+            o=I(self._vocab[BL]+"Kit"),
+            p=I(self._vocab[BL]+"Multimedia"),
+            r=I(self._vocab[BL]+"ThreeDimensionalObject"),
+            t=(self._vocab[BL]+I("LanguageMaterial"), self._vocab[BL]+I("Manuscript")))
     
         _06 = leader[6]
         if _06 in broad_06.keys():
@@ -79,81 +79,81 @@ class transforms(object):
         #[('date', '1979-07-26')]
         """
         audiences = {
-            'a': I("preschool"),
-            'b': I("primary"),
-            'c': I("pre-adolescent"),
-            'd': I("adolescent"),
-            'e': I("adult"),
-            'f': I("specialized"),
-            'g': I("general"),
-            'j': I("juvenile")}
+            'a': I(self._vocab[BL]+"preschool"),
+            'b': I(self._vocab[BL]+"primary"),
+            'c': I(self._vocab[BL]+"pre-adolescent"),
+            'd': I(self._vocab[BL]+"adolescent"),
+            'e': I(self._vocab[BL]+"adult"),
+            'f': I(self._vocab[BL]+"specialized"),
+            'g': I(self._vocab[BL]+"general"),
+            'j': I(self._vocab[BL]+"juvenile")}
 
         media = {
-            'a': I("microfilm"),
-            'b': I("microfiche"),
-            'c': I("microopaque"),
-            'd': I("large-print"),
-            'f': I("braille"),
-            'r': I("regular-print-reproduction"),
-            's': I("electronic")
+            'a': I(self._vocab[BL]+"microfilm"),
+            'b': I(self._vocab[BL]+"microfiche"),
+            'c': I(self._vocab[BL]+"microopaque"),
+            'd': I(self._vocab[BL]+"large-print"),
+            'f': I(self._vocab[BL]+"braille"),
+            'r': I(self._vocab[BL]+"regular-print-reproduction"),
+            's': I(self._vocab[BL]+"electronic")
             }
 
         types = {
-            "a": I("abstracts+summaries"),
-            "b": I("bibliography"), #"bibliographies (is one or contains one)"
-            "c": I("catalogs"),
-            "d": I("dictionaries"),
-            "e": I("encyclopedias"),
-            "f": I("handbooks"),
-            "g": I("legal-articles"),
-            "i": I("indexes"),
-            "j": I("patent-document"),
-            "k": I("discographies"),
-            "l": I("legislation"),
-            "m": I("theses"),
-            "n": I("surveys-of-literature"),
-            "o": I("reviews"),
-            "p": I("programmed-texts"),
-            "q": I("filmographies"),
-            "r": I("directories"),
-            "s": I("statistics"),
-            "t": I("technical-reports"),
-            "u": I("standards+specifications"),
-            "v": I("legal-cases-and-notes"),
-            "w": I("law-reports-and-digests"),
+            "a": I(self._vocab[BL]+"abstracts+summaries"),
+            "b": I(self._vocab[BL]+"bibliography"), #"bibliographies (is one or contains one)"
+            "c": I(self._vocab[BL]+"catalogs"),
+            "d": I(self._vocab[BL]+"dictionaries"),
+            "e": I(self._vocab[BL]+"encyclopedias"),
+            "f": I(self._vocab[BL]+"handbooks"),
+            "g": I(self._vocab[BL]+"legal-articles"),
+            "i": I(self._vocab[BL]+"indexes"),
+            "j": I(self._vocab[BL]+"patent-document"),
+            "k": I(self._vocab[BL]+"discographies"),
+            "l": I(self._vocab[BL]+"legislation"),
+            "m": I(self._vocab[BL]+"theses"),
+            "n": I(self._vocab[BL]+"surveys-of-literature"),
+            "o": I(self._vocab[BL]+"reviews"),
+            "p": I(self._vocab[BL]+"programmed-texts"),
+            "q": I(self._vocab[BL]+"filmographies"),
+            "r": I(self._vocab[BL]+"directories"),
+            "s": I(self._vocab[BL]+"statistics"),
+            "t": I(self._vocab[BL]+"technical-reports"),
+            "u": I(self._vocab[BL]+"standards+specifications"),
+            "v": I(self._vocab[BL]+"legal-cases-and-notes"),
+            "w": I(self._vocab[BL]+"law-reports-and-digests"),
             "z": I("treaties")}
     
         govt_publication = {
-            "i": I("international-or-intergovernmental-publication"),
-            "f": I("federal/national-government-publication"),
-            "a": I("publication-of-autonomous-or-semi-autonomous-component-of-government"),
-            "s": I("government-publication-of-a-state,-province,-territory,-dependency,-etc."),
-            "m": I("multistate-government-publication"),
-            "c": I("publication-from-multiple-local-governments"),
-            "l": I("local-government-publication"),
-            "z": I("other-type-of-government-publication"),
-            "o": I("government-publication-level-undetermined"),
-            "u": I("unknown-if-item-is-government-publication")}
+            "i": I(self._vocab[BL]+"international-or-intergovernmental-publication"),
+            "f": I(self._vocab[BL]+"federal/national-government-publication"),
+            "a": I(self._vocab[BL]+"publication-of-autonomous-or-semi-autonomous-component-of-government"),
+            "s": I(self._vocab[BL]+"government-publication-of-a-state,-province,-territory,-dependency,-etc."),
+            "m": I(self._vocab[BL]+"multistate-government-publication"),
+            "c": I(self._vocab[BL]+"publication-from-multiple-local-governments"),
+            "l": I(self._vocab[BL]+"local-government-publication"),
+            "z": I(self._vocab[BL]+"other-type-of-government-publication"),
+            "o": I(self._vocab[BL]+"government-publication-level-undetermined"),
+            "u": I(self._vocab[BL]+"unknown-if-item-is-government-publication")}
 
         genres = {
-            "0": I("non-fiction"),
-            "1": I("fiction"),
-            "c": I("comic-strips"),
-            "d": I("dramas"),
-            "e": I("essays"),
-            "f": I("novels"),
-            "h": I("humor-satires-etc."),
-            "i": I("letters"),
-            "j": I("short-stories"),
-            "m": I("mixed-forms"),
-            "p": I("poetry"),
-            "s": I("speeches")}
+            "0": I(self._vocab[BL]+"non-fiction"),
+            "1": I(self._vocab[BL]+"fiction"),
+            "c": I(self._vocab[BL]+"comic-strips"),
+            "d": I(self._vocab[BL]+"dramas"),
+            "e": I(self._vocab[BL]+"essays"),
+            "f": I(self._vocab[BL]+"novels"),
+            "h": I(self._vocab[BL]+"humor-satires-etc."),
+            "i": I(self._vocab[BL]+"letters"),
+            "j": I(self._vocab[BL]+"short-stories"),
+            "m": I(self._vocab[BL]+"mixed-forms"),
+            "p": I(self._vocab[BL]+"poetry"),
+            "s": I(self._vocab[BL]+"speeches")}
 
         biographical = dict(
-            a=I("autobiography"),
-            b=I('individual-biography'),
-            c=I('collective-biography'),
-            d=I('contains-biographical-information'))
+            a=I(self._vocab[BL]+"autobiography"),
+            b=I(self._vocab[BL]+'individual-biography'),
+            c=I(self._vocab[BL]+'collective-biography'),
+            d=I(self._vocab[BL]+'contains-biographical-information'))
     
         #info = field008
         #ARE YOU FRIGGING KIDDING ME?! NON-Y2K SAFE?!
