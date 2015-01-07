@@ -32,25 +32,19 @@
     [
         "6V3FTm1R",
         "http://bibfra.me/purl/versa/type",
-        "LanguageMaterial",
-        {}
-    ],
-    [
-        "6V3FTm1R",
-        "http://bibfra.me/purl/versa/type",
-        "fiction",
-        {}
-    ],
-    [
-        "6V3FTm1R",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/annotation/LanguageMaterial",
-        {}
-    ],
-    [
-        "6V3FTm1R",
-        "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
+        {}
+    ],
+    [
+        "6V3FTm1R",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/LanguageMaterial",
+        {}
+    ],
+    [
+        "6V3FTm1R",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/fiction",
         {}
     ],
     [

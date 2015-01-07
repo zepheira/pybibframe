@@ -596,30 +596,6 @@
     [
         "n1luapbs",
         "http://bibfra.me/purl/versa/type",
-        "LanguageMaterial",
-        {}
-    ],
-    [
-        "n1luapbs",
-        "http://bibfra.me/purl/versa/type",
-        "abstracts+summaries",
-        {}
-    ],
-    [
-        "n1luapbs",
-        "http://bibfra.me/purl/versa/type",
-        "directories",
-        {}
-    ],
-    [
-        "n1luapbs",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/annotation/LanguageMaterial",
-        {}
-    ],
-    [
-        "n1luapbs",
-        "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
         {}
     ],
@@ -632,7 +608,25 @@
     [
         "n1luapbs",
         "http://bibfra.me/purl/versa/type",
-        "publication-of-autonomous-or-semi-autonomous-component-of-government",
+        "http://bibfra.me/vocab/lite/LanguageMaterial",
+        {}
+    ],
+    [
+        "n1luapbs",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/abstracts+summaries",
+        {}
+    ],
+    [
+        "n1luapbs",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/directories",
+        {}
+    ],
+    [
+        "n1luapbs",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/publication-of-autonomous-or-semi-autonomous-component-of-government",
         {}
     ],
     [

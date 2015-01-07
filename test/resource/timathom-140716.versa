@@ -686,18 +686,6 @@
     [
         "ikh_UgUp",
         "http://bibfra.me/purl/versa/type",
-        "LanguageMaterial",
-        {}
-    ],
-    [
-        "ikh_UgUp",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/annotation/LanguageMaterial",
-        {}
-    ],
-    [
-        "ikh_UgUp",
-        "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
         {}
     ],
@@ -710,7 +698,13 @@
     [
         "ikh_UgUp",
         "http://bibfra.me/purl/versa/type",
-        "non-fiction",
+        "http://bibfra.me/vocab/lite/LanguageMaterial",
+        {}
+    ],
+    [
+        "ikh_UgUp",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/non-fiction",
         {}
     ],
     [

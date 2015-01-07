@@ -530,31 +530,25 @@
     [
         "lQimSsFK",
         "http://bibfra.me/purl/versa/type",
-        "LanguageMaterial",
-        {}
-    ],
-    [
-        "lQimSsFK",
-        "http://bibfra.me/purl/versa/type",
-        "bibliography",
-        {}
-    ],
-    [
-        "lQimSsFK",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/annotation/LanguageMaterial",
-        {}
-    ],
-    [
-        "lQimSsFK",
-        "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
         {}
     ],
     [
         "lQimSsFK",
         "http://bibfra.me/purl/versa/type",
-        "non-fiction",
+        "http://bibfra.me/vocab/lite/LanguageMaterial",
+        {}
+    ],
+    [
+        "lQimSsFK",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/bibliography",
+        {}
+    ],
+    [
+        "lQimSsFK",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/non-fiction",
         {}
     ],
     [
