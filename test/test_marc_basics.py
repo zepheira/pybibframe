@@ -42,7 +42,7 @@ def verify_conversion(name, entbase=None, config=None, loop=None, canonical=True
     with open(os.path.join(RESOURCEPATH, name+'.versa')) as indoc:
         jsonload(m_expected, indoc)
 
-    assert m == m_expected, "Discrepancies found for {0}:\n{1}".format(name, file_diff(repr(m), repr(m_expected)))
+    assert m == m_expected, "Discrepancies found for {0}:\n{1}".format(name, file_diff(repr(m_expected), repr(m)))
 
 def file_diff(s_orig, s_new):
     diff = difflib.unified_diff(s_orig.split('\n'), s_new.split('\n'))
