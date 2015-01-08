@@ -56,31 +56,7 @@
     [
         "Enn8Anjr",
         "http://bibfra.me/purl/versa/type",
-        "LanguageMaterial",
-        {}
-    ],
-    [
-        "Enn8Anjr",
-        "http://bibfra.me/purl/versa/type",
-        "bibliography",
-        {}
-    ],
-    [
-        "Enn8Anjr",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/annotation/LanguageMaterial",
-        {}
-    ],
-    [
-        "Enn8Anjr",
-        "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
-        {}
-    ],
-    [
-        "Enn8Anjr",
-        "http://bibfra.me/purl/versa/type",
-        "non-fiction",
         {}
     ],
     [
@@ -248,31 +224,7 @@
     [
         "IgdEHVMv",
         "http://bibfra.me/purl/versa/type",
-        "LanguageMaterial",
-        {}
-    ],
-    [
-        "IgdEHVMv",
-        "http://bibfra.me/purl/versa/type",
-        "bibliography",
-        {}
-    ],
-    [
-        "IgdEHVMv",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/annotation/LanguageMaterial",
-        {}
-    ],
-    [
-        "IgdEHVMv",
-        "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
-        {}
-    ],
-    [
-        "IgdEHVMv",
-        "http://bibfra.me/purl/versa/type",
-        "non-fiction",
         {}
     ],
     [
@@ -416,7 +368,25 @@
     [
         "q_QCmXAb",
         "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/LanguageMaterial",
+        {}
+    ],
+    [
+        "q_QCmXAb",
+        "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
+        {}
+    ],
+    [
+        "q_QCmXAb",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/bibliography",
+        {}
+    ],
+    [
+        "q_QCmXAb",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/non-fiction",
         {}
     ],
     [

@@ -140,7 +140,31 @@
     [
         "6zEBppp3",
         "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/LanguageMaterial",
+        {}
+    ],
+    [
+        "6zEBppp3",
+        "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
+        {}
+    ],
+    [
+        "6zEBppp3",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/abstracts+summaries",
+        {}
+    ],
+    [
+        "6zEBppp3",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/directories",
+        {}
+    ],
+    [
+        "6zEBppp3",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/publication-of-autonomous-or-semi-autonomous-component-of-government",
         {}
     ],
     [
@@ -596,30 +620,6 @@
     [
         "n1luapbs",
         "http://bibfra.me/purl/versa/type",
-        "LanguageMaterial",
-        {}
-    ],
-    [
-        "n1luapbs",
-        "http://bibfra.me/purl/versa/type",
-        "abstracts+summaries",
-        {}
-    ],
-    [
-        "n1luapbs",
-        "http://bibfra.me/purl/versa/type",
-        "directories",
-        {}
-    ],
-    [
-        "n1luapbs",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/annotation/LanguageMaterial",
-        {}
-    ],
-    [
-        "n1luapbs",
-        "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
         {}
     ],
@@ -627,12 +627,6 @@
         "n1luapbs",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
-        {}
-    ],
-    [
-        "n1luapbs",
-        "http://bibfra.me/purl/versa/type",
-        "publication-of-autonomous-or-semi-autonomous-component-of-government",
         {}
     ],
     [

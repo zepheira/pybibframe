@@ -66,7 +66,7 @@ class transforms(object):
         if _06 in detailed_06.keys():
             yield None, self._vocab[VTYPE], detailed_06[_06]
         if leader[7] in ('c', 's'):
-            yield None, self._vocab[VTYPE], I("Collection")
+            yield None, self._vocab[VTYPE], self._vocab[BL]+I("Collection")
 
 
     def process_008(self, info, work, instance):
@@ -121,7 +121,7 @@ class transforms(object):
             "u": I(self._vocab[BL]+"standards+specifications"),
             "v": I(self._vocab[BL]+"legal-cases-and-notes"),
             "w": I(self._vocab[BL]+"law-reports-and-digests"),
-            "z": I("treaties")}
+            "z": I(self._vocab[BL]+"treaties")}
     
         govt_publication = {
             "i": I(self._vocab[BL]+"international-or-intergovernmental-publication"),
@@ -170,18 +170,18 @@ class transforms(object):
                 if i < 23 or field in ('#', ' ', '|'):
                     continue
                 elif i == 23:
-                    yield None, 'medium', media[info[23]]
+                    yield None, self._vocab[BL]+'medium', media[info[23]]
                 elif i >= 24 and i <= 27:
                     yield None, self._vocab[VTYPE], types[info[i]]
                 elif i == 28:
                     yield None, self._vocab[VTYPE], govt_publication[info[28]]
                 elif i == 29 and field == '1':
-                    yield None, self._vocab[VTYPE], 'conference-publication'
+                    yield None, self._vocab[VTYPE], self._vocab[BL]+'conference-publication'
                 elif i == 30 and field == '1':
-                    yield None, self._vocab[VTYPE], 'festschrift'
+                    yield None, self._vocab[VTYPE], self._vocab[BL]+'festschrift'
                 elif i == 33:
                     if field != 'u': #unknown
-                            yield None, self._vocab[VTYPE], genres[info[33]]
+                        yield None, self._vocab[VTYPE], genres[info[33]]
                 elif i == 34:
                     try:
                         yield None, self._vocab[VTYPE], biographical[info[34]]

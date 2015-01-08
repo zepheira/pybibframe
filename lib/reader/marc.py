@@ -177,7 +177,7 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
         according to the resource type. Implements the Libhub Resource Hash Convention
         As a convenience, if a vocabulary base is provided, concatenate it to etype and the data keys
         '''
-        params = {}
+        params = {'logger': logger}
         etype = vocabbase + etype
         data_full = { vocabbase + k: v for (k, v) in data.items() }
         # nobody likes non-deterministic ids! ordering matters to hash()
@@ -207,6 +207,7 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
             leader = None
             #Add work item record, with actual hash resource IDs based on default or plugged-in algo
             #FIXME: No plug-in support yet
+            params = {'input_model': input_model, 'logger': logger, 'input_model': input_model, 'output_model': model, 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids, 'existing_ids': existing_ids}
             workhash = record_hash_key(input_model)
             workid = materialize_entity(iri.absolutize('Work', BL), hash=workhash, existing_ids=existing_ids)
             is_folded = workid in existing_ids
@@ -233,7 +234,9 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
             if instanceids:
                 instanceid = instanceids[0]
 
+            params['workid'] = workid
             params['instanceids'] = instanceids
+            params['folded'] = folded
             params['transforms'] = [] # set()
             params['fields_used'] = []
             params['dropped_codes'] = {}
@@ -242,7 +245,7 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
             #Prepare cross-references (i.e. 880s)
             #XXX: Figure out a way to declare in TRANSFRORMS? We might have to deal with non-standard relationship designators: https://github.com/lcnetdev/marc2bibframe/issues/83
             xrefs = {}
-            remove_links = []
+            remove_links = set()
             add_links = []
             for lid, marc_link in input_model:
                 origin, taglink, val, attribs = marc_link
@@ -256,22 +259,24 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
                     #Locate the matching taglink
                     links = input_model.match(None, MARCXML_NS + '/data/' + xreftag)
                     for link in links:
+                        #6 is the cross-reference subfield
                         for dest in link[ATTRIBUTES].get('6', []):
                             if [tag, xrefid] == dest.split('/')[0].split('-'):
                                 if tag == '880':
                                     #880s will be handled by merger via xref, so take out for main loop
                                     #XXX: This does, however, make input_model no longer a true representation of the input XML. Problem?
-                                    remove_links.append(lid)
+                                    remove_links.add(lid)
 
                                 if xreftag == '880':
                                     #Rule for 880s: merge in & add language indicator
                                     langinfo = dest.split('/')[-1]
                                     #Not using langinfo, really, at present because it seems near useless. Eventually we can handle by embedding a lang indicator token into attr values for later postprocessing
-                                    remove_links.append(lid)
+                                    remove_links.add(lid)
+                                    copied_attribs = attribs.copy()
                                     for k, v in link[ATTRIBUTES].items():
                                         if k[:3] not in ('tag', 'ind'):
-                                            attribs.setdefault(k, []).extend(v)
-                                    add_links.append((origin, taglink, val, attribs))
+                                            copied_attribs.setdefault(k, []).extend(v)
+                                    add_links.append((origin, taglink, val, copied_attribs))
 
             for lid in remove_links:
                 input_model.remove(lid)
@@ -353,7 +358,7 @@ def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugi
                         extra_transforms.process_008(field008, workid, instanceid)):
                 v = v if isinstance(v, tuple) else (v,)
                 for item in v:
-                    o = origin or I(instanceid)
+                    o = origin or I(workid)
                     if (o,k,item) not in extra_stmts:
                         model.add(o, k, item)
                         extra_stmts.add((o, k, item))

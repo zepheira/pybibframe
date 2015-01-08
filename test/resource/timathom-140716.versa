@@ -308,7 +308,19 @@
     [
         "e0M-N8gw",
         "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/LanguageMaterial",
+        {}
+    ],
+    [
+        "e0M-N8gw",
+        "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
+        {}
+    ],
+    [
+        "e0M-N8gw",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/non-fiction",
         {}
     ],
     [
@@ -686,18 +698,6 @@
     [
         "ikh_UgUp",
         "http://bibfra.me/purl/versa/type",
-        "LanguageMaterial",
-        {}
-    ],
-    [
-        "ikh_UgUp",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/annotation/LanguageMaterial",
-        {}
-    ],
-    [
-        "ikh_UgUp",
-        "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
         {}
     ],
@@ -705,12 +705,6 @@
         "ikh_UgUp",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
-        {}
-    ],
-    [
-        "ikh_UgUp",
-        "http://bibfra.me/purl/versa/type",
-        "non-fiction",
         {}
     ],
     [
@@ -789,12 +783,6 @@
         "ikh_UgUp",
         "http://bibfra.me/vocab/rda/titleStatement",
         "\u738b\u5b89\u7bc0\u6479\u53e4.",
-        {}
-    ],
-    [
-        "qbKonQGk",
-        "http://bibfra.me/purl/versa/type",
-        "conference-publication",
         {}
     ],
     [
@@ -1035,6 +1023,12 @@
         "y_vgeorr",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
+        {}
+    ],
+    [
+        "y_vgeorr",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/conference-publication",
         {}
     ],
     [

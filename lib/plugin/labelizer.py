@@ -25,7 +25,7 @@ from versa.util import simple_lookup
 
 from amara3 import iri
 
-from bibframe import BFZ, BFLC, g_services, BF_INIT_TASK, BF_MARCREC_TASK, BF_FINAL_TASK
+from bibframe import BFZ, BFLC, g_services, BF_INIT_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
 
 RDF_NAMESPACE = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'
 RDFS_NAMESPACE = 'http://www.w3.org/2000/01/rdf-schema#'

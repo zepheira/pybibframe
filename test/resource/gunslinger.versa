@@ -32,24 +32,6 @@
     [
         "6V3FTm1R",
         "http://bibfra.me/purl/versa/type",
-        "LanguageMaterial",
-        {}
-    ],
-    [
-        "6V3FTm1R",
-        "http://bibfra.me/purl/versa/type",
-        "fiction",
-        {}
-    ],
-    [
-        "6V3FTm1R",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/annotation/LanguageMaterial",
-        {}
-    ],
-    [
-        "6V3FTm1R",
-        "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
         {}
     ],
@@ -140,7 +122,19 @@
     [
         "EPUuiFj_",
         "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/LanguageMaterial",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/fiction",
         {}
     ],
     [
