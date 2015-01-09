@@ -11,13 +11,9 @@ import itertools
 import asyncio
 from collections import defaultdict, OrderedDict
 
-#from datachef.ids import simple_hashstring
 from bibframe.contrib.datachefids import idgen, FROM_EMPTY_HASH
 
-#from amara.lib import U
 from amara3 import iri
-#from amara import namespaces
-#from amara3.util import coroutine
 
 from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 from versa.util import simple_lookup, OrderedJsonEncoder

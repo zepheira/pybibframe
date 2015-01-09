@@ -5,7 +5,7 @@ from enum import Enum #https://docs.python.org/3.4/library/enum.html
 from versa.pipeline import *
 from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 
-from bibframe.contrib.datachefids import slugify, idgen, FROM_EMPTY_HASH
+from bibframe.contrib.datachefids import slugify, default_idgen, FROM_EMPTY_HASH
 from bibframe import BFZ
 
 RDA_PARENS_PAT = re.compile('\\(.*\\)')
@@ -22,8 +22,8 @@ class bfcontext(context):
         self.output_model = output_model
         self.base = base
         self.extras = extras or {}
-        self.idgen = idgen
-        self.existing_ids = existing_ids
+        self.idgen = idgen or default_idgen(base)
+        self.existing_ids = existing_ids or set()
         self.logger = logger
         return
 
@@ -288,7 +288,7 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
                     newctx = ctx.copy(current_link=new_current_link)
                     v = v(newctx) if callable(v) else v
 
-                #If k or v come from pipeline functions as None it signals to skip generating anything else for this link item
+                    #If k or v come from pipeline functions as None it signals to skip generating anything else for this link item
                     if v is not None:
                         v = v(newctx) if callable(v) else v
                         #FIXME: Fix properly, by slugifying & making sure slugify handles all-numeric case
