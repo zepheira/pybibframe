@@ -32,7 +32,25 @@
     [
         "AosgU3-6",
         "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/LanguageMaterial",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/bibliography",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/non-fiction",
         {}
     ],
     [
@@ -530,31 +548,7 @@
     [
         "lQimSsFK",
         "http://bibfra.me/purl/versa/type",
-        "LanguageMaterial",
-        {}
-    ],
-    [
-        "lQimSsFK",
-        "http://bibfra.me/purl/versa/type",
-        "bibliography",
-        {}
-    ],
-    [
-        "lQimSsFK",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/annotation/LanguageMaterial",
-        {}
-    ],
-    [
-        "lQimSsFK",
-        "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
-        {}
-    ],
-    [
-        "lQimSsFK",
-        "http://bibfra.me/purl/versa/type",
-        "non-fiction",
         {}
     ],
     [
