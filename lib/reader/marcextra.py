@@ -99,7 +99,9 @@ class transforms(object):
             }
 
         types = {
-            "a": I(self._vocab[BL]+"abstracts+summaries"),
+            "a": I(self._vocab[BL]+"abstracts-summaries"),
+            #Don't use + in marcextra values because of problems with dumb RDF reserialization
+            #"a": I(self._vocab[BL]+"abstracts+summaries"),
             "b": I(self._vocab[BL]+"bibliography"), #"bibliographies (is one or contains one)"
             "c": I(self._vocab[BL]+"catalogs"),
             "d": I(self._vocab[BL]+"dictionaries"),
@@ -118,7 +120,9 @@ class transforms(object):
             "r": I(self._vocab[BL]+"directories"),
             "s": I(self._vocab[BL]+"statistics"),
             "t": I(self._vocab[BL]+"technical-reports"),
-            "u": I(self._vocab[BL]+"standards+specifications"),
+            "u": I(self._vocab[BL]+"standards-specifications"),
+            #Don't use + in marcextra values because of problems with dumb RDF reserialization
+            #"u": I(self._vocab[BL]+"standards+specifications"),
             "v": I(self._vocab[BL]+"legal-cases-and-notes"),
             "w": I(self._vocab[BL]+"law-reports-and-digests"),
             "z": I(self._vocab[BL]+"treaties")}
@@ -142,7 +146,7 @@ class transforms(object):
             "d": I(self._vocab[BL]+"dramas"),
             "e": I(self._vocab[BL]+"essays"),
             "f": I(self._vocab[BL]+"novels"),
-            "h": I(self._vocab[BL]+"humor-satires-etc."),
+            "h": I(self._vocab[BL]+"humor-satires-etc"),
             "i": I(self._vocab[BL]+"letters"),
             "j": I(self._vocab[BL]+"short-stories"),
             "m": I(self._vocab[BL]+"mixed-forms"),
