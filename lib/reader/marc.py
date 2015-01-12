@@ -146,8 +146,11 @@ def record_hash_key(model):
 
 
 @asyncio.coroutine
-def record_handler(loop, model, entbase=None, vocabbase=BL, limiting=None, plugins=None,
-                   ids=None, postprocess=None, out=None, logger=logging, transforms=TRANSFORMS, extra_transforms=extra_transforms(), canonical=False, **kwargs):
+def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
+                    plugins=None, ids=None, postprocess=None, out=None,
+                    logger=logging, transforms=TRANSFORMS,
+                    extra_transforms=extra_transforms(),
+                    canonical=False, **kwargs):
     '''
     loop - asyncio event loop
     model - the Versa model for the record

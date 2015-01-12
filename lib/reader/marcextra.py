@@ -129,9 +129,9 @@ class transforms(object):
     
         govt_publication = {
             "i": I(self._vocab[BL]+"international-or-intergovernmental-publication"),
-            "f": I(self._vocab[BL]+"federal/national-government-publication"),
+            "f": I(self._vocab[BL]+"federal-national-government-publication"),
             "a": I(self._vocab[BL]+"publication-of-autonomous-or-semi-autonomous-component-of-government"),
-            "s": I(self._vocab[BL]+"government-publication-of-a-state,-province,-territory,-dependency,-etc."),
+            "s": I(self._vocab[BL]+"government-publication-of-a-state-province-territory-dependency,-etc"),
             "m": I(self._vocab[BL]+"multistate-government-publication"),
             "c": I(self._vocab[BL]+"publication-from-multiple-local-governments"),
             "l": I(self._vocab[BL]+"local-government-publication"),

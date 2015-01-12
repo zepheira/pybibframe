@@ -16,6 +16,7 @@ from xml import sax
 
 from bibframe import g_services
 from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_FINAL_TASK
+from bibframe.reader.marcextra import transforms as extra_transforms
 
 import rdflib
 
@@ -172,6 +173,8 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
     else:
         transforms = TRANSFORMS
 
+    marcextras_vocab = config.get('marcextras-vocab')
+
     #Initialize auxiliary services (i.e. plugins)
     plugins = []
     for pc in config.get('plugins', []):
@@ -186,7 +189,19 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
     #logger=logger,
     
     for inf in inputs:
-        sink = marc.record_handler(loop, model, entbase=entbase, vocabbase=vb, limiting=limiting, plugins=plugins, ids=ids, postprocess=postprocess, out=out, logger=logger, transforms=transforms,canonical=canonical)
+        sink = marc.record_handler( loop,
+                                    model,
+                                    entbase=entbase,
+                                    vocabbase=vb,
+                                    limiting=limiting,
+                                    plugins=plugins,
+                                    ids=ids,
+                                    postprocess=postprocess,
+                                    out=out,
+                                    logger=logger,
+                                    transforms=transforms,
+                                    extra_transforms=extra_transforms(marcextras_vocab),
+                                    canonical=canonical)
         parser = sax.make_parser()
         #parser.setContentHandler(marcxmlhandler(receive_recs()))
         parser.setContentHandler(marcxmlhandler(sink))
