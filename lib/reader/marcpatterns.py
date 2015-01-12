@@ -347,7 +347,7 @@ BFLITE_TRANSFORMS = {
                                    ),                   
                     onwork.materialize(BL+'Person', 
                                        values(BL+'contributor', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)), 
-                                       unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
+                                       unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')), 
                                        links={BL+'name': subfield('a'), RDA+'numeration': subfield('b'), RDA+'titles': subfield('c'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0')})
                     ),
 
