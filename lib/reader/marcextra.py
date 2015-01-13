@@ -16,7 +16,7 @@ class transforms(object):
     def __init__(self, vocab=None):
         DEFAULT_VOCAB = { i:i for i in DEFAULT_VOCAB_ITEMS }
         vocab = vocab or {}
-        #Use any provided, overriden vocab items, or just the defaults
+        #Use any provided, overridden vocab items, or just the defaults
         self._vocab = { i: vocab.get(i, i) for i in DEFAULT_VOCAB_ITEMS }
         return
 
@@ -131,7 +131,7 @@ class transforms(object):
             "i": I(self._vocab[BL]+"international-or-intergovernmental-publication"),
             "f": I(self._vocab[BL]+"federal-national-government-publication"),
             "a": I(self._vocab[BL]+"publication-of-autonomous-or-semi-autonomous-component-of-government"),
-            "s": I(self._vocab[BL]+"government-publication-of-a-state-province-territory-dependency,-etc"),
+            "s": I(self._vocab[BL]+"government-publication-of-a-state-province-territory-dependency-etc"),
             "m": I(self._vocab[BL]+"multistate-government-publication"),
             "c": I(self._vocab[BL]+"publication-from-multiple-local-governments"),
             "l": I(self._vocab[BL]+"local-government-publication"),

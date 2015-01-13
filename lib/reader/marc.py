@@ -25,7 +25,7 @@ from bibframe import BFZ, BFLC, g_services
 from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
 from bibframe.isbnplus import isbn_list
 from bibframe.reader.marcpatterns import TRANSFORMS, bfcontext
-from bibframe.reader.marcextra import transforms as extra_transforms
+from bibframe.reader.marcextra import transforms as default_extra_transforms
 
 
 MARCXML_NS = "http://www.loc.gov/MARC21/slim"
@@ -149,7 +149,7 @@ def record_hash_key(model):
 def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                     plugins=None, ids=None, postprocess=None, out=None,
                     logger=logging, transforms=TRANSFORMS,
-                    extra_transforms=extra_transforms(),
+                    extra_transforms=default_extra_transforms(),
                     canonical=False, **kwargs):
     '''
     loop - asyncio event loop
