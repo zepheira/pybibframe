@@ -111,7 +111,6 @@ def isbn_instancegen(params):
     else:
         instanceid = materialize_entity(iri.absolutize('Instance', vocabbase), instantiates=workid, existing_ids=existing_ids)
         if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
-        output_model.add(I(instanceid), TYPE_REL, I(iri.absolutize('Instance', vocabbase)))
         existing_ids.add(instanceid)
         instance_ids.append(instanceid)
 
