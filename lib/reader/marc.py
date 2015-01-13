@@ -294,6 +294,8 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                 params['subfields'] = subfields = { k: v for k, v in attribs.items() if k[:3] not in ('tag', 'ind') }
                 params['code'] = tag = attribs['tag']
                 if taglink.startswith(MARCXML_NS + '/control'):
+                    #No indicators on control fields. Turn them off, in effect
+                    indicator_list = ('#', '#')
                     key = 'tag-' + tag
                     if tag == '008':
                         params['field008'] = field008 = val
@@ -306,50 +308,50 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                     #indicator_list = (indicators['ind1'], indicators['ind2'])
                     params['fields_used'].append(tuple([tag] + list(subfields.keys())))
 
-                    #This is where we check each incoming MARC link to see if it matches a transform into an output link (e.g. renaming 020 to 'isbn')
-                    to_process = []
-                    if indicator_list != ('#', '#'):
-                        #One or other indicator is set, so let's check the transforms against those
-                        lookup = '{0}-{1}{2}'.format(*((tag,) + indicator_list))
+                #This is where we check each incoming MARC link to see if it matches a transform into an output link (e.g. renaming 020 to 'isbn')
+                to_process = []
+                if indicator_list != ('#', '#'):
+                    #One or other indicator is set, so let's check the transforms against those
+                    lookup = '{0}-{1}{2}'.format(*((tag,) + indicator_list))
+                for k, v in subfields.items():
+                    lookup = '{0}${1}'.format(tag, k)
+                    for valitems in v:
+                        if lookup in transforms:
+                            to_process.append((transforms[lookup], valitems))
+                        else:
+                            if not tag in transforms: # don't report on subfields for which a code-transform exists
+                                params['dropped_codes'].setdefault(lookup,0)
+                                params['dropped_codes'][lookup] += 1
+
+                if tag in transforms:
+                    to_process.append((transforms[tag], val))
+                else:
+                    if not subfields: # don't count as dropped if subfields were processed
+                        params['dropped_codes'].setdefault(tag,0)
+                        params['dropped_codes'][tag] += 1
+
+                #Apply all the handlers that were found
+                for funcinfo, val in to_process:
+                    #Support multiple actions per lookup
+                    funcs = funcinfo if isinstance(funcinfo, tuple) else (funcinfo,)
+
+                    for func in funcs:
+                        extras = { WORKID: workid, IID: instanceid }
+                        #Build Versa processing context
+                        #Should we include indicators?
+                        #Should we be passing in taglik rather than tag?
+                        ctx = bfcontext((origin, tag, val, subfields), input_model, model, extras=extras, base=vocabbase, idgen=materialize_entity, existing_ids=existing_ids)
+                        func(ctx)
+
+                if not to_process:
+                    #Nothing else has handled this data field; go to the fallback
+                    fallback_rel_base = 'tag-' + tag
+                    #How about indicators?
                     for k, v in subfields.items():
-                        lookup = '{0}${1}'.format(tag, k)
-                        for valitems in v:
-                            if lookup in transforms:
-                                to_process.append((transforms[lookup], valitems))
-                            else:
-                                if not tag in transforms: # don't report on subfields for which a code-transform exists
-                                    params['dropped_codes'].setdefault(lookup,0)
-                                    params['dropped_codes'][lookup] += 1
-
-                    if tag in transforms:
-                        to_process.append((transforms[tag], ''))
-                    else:
-                        if not subfields: # don't count as dropped if subfields were processed
-                            params['dropped_codes'].setdefault(tag,0)
-                            params['dropped_codes'][tag] += 1
-
-                    #Apply all the handlers that were found
-                    for funcinfo, val in to_process:
-                        #Support multiple actions per lookup
-                        funcs = funcinfo if isinstance(funcinfo, tuple) else (funcinfo,)
-
-                        for func in funcs:
-                            extras = { WORKID: workid, IID: instanceid }
-                            #Build Versa processing context
-                            #Should we include indicators?
-                            #Should we be passing in taglik rather than tag?
-                            ctx = bfcontext((origin, tag, val, subfields), input_model, model, extras=extras, base=vocabbase, idgen=materialize_entity, existing_ids=existing_ids)
-                            func(ctx)
-
-                    if not to_process:
-                        #Nothing else has handled this data field; go to the fallback
-                        fallback_rel_base = 'tag-' + tag
-                        #How about indicators?
-                        for k, v in subfields.items():
-                            fallback_rel = fallback_rel_base + k
-                            #params['transforms'].append((code, fallback_rel))
-                            for valitem in v:
-                                model.add(I(workid), I(iri.absolutize(fallback_rel, vocabbase)), valitem)
+                        fallback_rel = fallback_rel_base + k
+                        #params['transforms'].append((code, fallback_rel))
+                        for valitem in v:
+                            model.add(I(workid), I(iri.absolutize(fallback_rel, vocabbase)), valitem)
 
 
             extra_stmts = set() # prevent duplicate statements
