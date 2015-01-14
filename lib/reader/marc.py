@@ -111,7 +111,6 @@ def isbn_instancegen(params):
     else:
         instanceid = materialize_entity(iri.absolutize('Instance', vocabbase), instantiates=workid, existing_ids=existing_ids)
         if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
-        output_model.add(I(instanceid), TYPE_REL, I(iri.absolutize('Instance', vocabbase)))
         existing_ids.add(instanceid)
         instance_ids.append(instanceid)
 
@@ -346,13 +345,17 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                 if not to_process:
                     #Nothing else has handled this data field; go to the fallback
                     fallback_rel_base = 'tag-' + tag
-                    #How about indicators?
+                    if not subfields:
+                        #Fallback for control field: Captures MARC tag & value 
+                        model.add(I(workid), I(iri.absolutize(fallback_rel_base, vocabbase)), val)
                     for k, v in subfields.items():
-                        fallback_rel = fallback_rel_base + k
+                        #Fallback for data field: Captures MARC tag, indicators, subfields & value 
+                        fallback_rel = '{0}-{1}{2}-{3}'.format(
+                            fallback_rel_base, indicator_list[0].replace('#', 'X'),
+                            indicator_list[1].replace('#', 'X'), k)
                         #params['transforms'].append((code, fallback_rel))
                         for valitem in v:
                             model.add(I(workid), I(iri.absolutize(fallback_rel, vocabbase)), valitem)
-
 
             extra_stmts = set() # prevent duplicate statements
             for origin, k, v in itertools.chain(
