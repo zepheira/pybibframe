@@ -22,6 +22,8 @@ from bibframe.reader.util import *
 # Partitioning namespaces
 
 BFLITE_TRANSFORMS = {
+    '001': oninstance.rename(rel=BL+'controlCode'),
+
     #Link to the 010a value, naming the relationship 'lccn'
     '010$a': onwork.rename(rel=RDA+'lccn'),
     '017$a': onwork.rename(rel=RDA+'legalDeposit'),
