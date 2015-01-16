@@ -1,38 +1,44 @@
 [
     [
-        "1nLcPNBX",
+        "4MtTcWPl",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
+        "http://bibfra.me/vocab/lite/Genre",
         {}
     ],
     [
-        "1nLcPNBX",
+        "4MtTcWPl",
         "http://bibfra.me/vocab/lite/name",
-        "Roland (Fictitious character : King)",
+        "Fantasy fiction.",
         {}
     ],
     [
-        "1nLcPNBX",
+        "4MtTcWPl",
+        "http://bibfra.me/vocab/marc/sf-2",
+        "gsafd",
+        {}
+    ],
+    [
+        "4MtTcWPl",
         "http://bibfra.me/vocab/marc/sf-a",
-        "Roland (Fictitious character : King)",
+        "Fantasy fiction.",
         {}
     ],
     [
-        "1nLcPNBX",
-        "http://bibfra.me/vocab/marc/sf-v",
-        "Fiction.",
-        {}
-    ],
-    [
-        "1nLcPNBX",
-        "http://bibfra.me/vocab/rda/formSubdivision",
-        "Fiction.",
+        "4MtTcWPl",
+        "http://bibfra.me/vocab/rda/source",
+        "gsafd",
         {}
     ],
     [
         "6V3FTm1R",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
+        {}
+    ],
+    [
+        "6V3FTm1R",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "547530",
         {}
     ],
     [
@@ -57,6 +63,12 @@
         "6V3FTm1R",
         "http://bibfra.me/vocab/lite/link",
         "http://www.loc.gov/catdir/enhancements/fy1206/88009938-b.html",
+        {}
+    ],
+    [
+        "6V3FTm1R",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "dEZTwJ9J",
         {}
     ],
     [
@@ -146,7 +158,7 @@
     [
         "EPUuiFj_",
         "http://bibfra.me/vocab/lite/genre",
-        "Whi1HZhf",
+        "4MtTcWPl",
         {}
     ],
     [
@@ -158,7 +170,7 @@
     [
         "EPUuiFj_",
         "http://bibfra.me/vocab/lite/subject",
-        "1nLcPNBX",
+        "dGphWO_9",
         {}
     ],
     [
@@ -169,121 +181,133 @@
     ],
     [
         "EPUuiFj_",
-        "http://bibfra.me/vocab/marc/tag-020a",
+        "http://bibfra.me/vocab/marc/tag-005",
+        "20120215121458.0",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/marc/tag-008",
+        "880323t19881982nyua          000 1 eng  ",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/marc/tag-020-XX-a",
         "0452261341",
         {}
     ],
     [
         "EPUuiFj_",
-        "http://bibfra.me/vocab/marc/tag-0359",
+        "http://bibfra.me/vocab/marc/tag-035-XX-9",
         "(DLC)   88009938",
         {}
     ],
     [
         "EPUuiFj_",
-        "http://bibfra.me/vocab/marc/tag-800a",
+        "http://bibfra.me/vocab/marc/tag-800-1X-a",
         "King, Stephen,",
         {}
     ],
     [
         "EPUuiFj_",
-        "http://bibfra.me/vocab/marc/tag-800d",
+        "http://bibfra.me/vocab/marc/tag-800-1X-d",
         "1947-",
         {}
     ],
     [
         "EPUuiFj_",
-        "http://bibfra.me/vocab/marc/tag-800t",
+        "http://bibfra.me/vocab/marc/tag-800-1X-t",
         "Dark tower ;",
         {}
     ],
     [
         "EPUuiFj_",
-        "http://bibfra.me/vocab/marc/tag-800v",
+        "http://bibfra.me/vocab/marc/tag-800-1X-v",
         "1.",
         {}
     ],
     [
         "EPUuiFj_",
-        "http://bibfra.me/vocab/marc/tag-906a",
+        "http://bibfra.me/vocab/marc/tag-906-XX-a",
         "7",
         {}
     ],
     [
         "EPUuiFj_",
-        "http://bibfra.me/vocab/marc/tag-906b",
+        "http://bibfra.me/vocab/marc/tag-906-XX-b",
         "cbc",
         {}
     ],
     [
         "EPUuiFj_",
-        "http://bibfra.me/vocab/marc/tag-906c",
+        "http://bibfra.me/vocab/marc/tag-906-XX-c",
         "orignew",
         {}
     ],
     [
         "EPUuiFj_",
-        "http://bibfra.me/vocab/marc/tag-906d",
+        "http://bibfra.me/vocab/marc/tag-906-XX-d",
         "1",
         {}
     ],
     [
         "EPUuiFj_",
-        "http://bibfra.me/vocab/marc/tag-906e",
+        "http://bibfra.me/vocab/marc/tag-906-XX-e",
         "ocip",
         {}
     ],
     [
         "EPUuiFj_",
-        "http://bibfra.me/vocab/marc/tag-906f",
+        "http://bibfra.me/vocab/marc/tag-906-XX-f",
         "19",
         {}
     ],
     [
         "EPUuiFj_",
-        "http://bibfra.me/vocab/marc/tag-906g",
+        "http://bibfra.me/vocab/marc/tag-906-XX-g",
         "y-gencatlg",
         {}
     ],
     [
         "EPUuiFj_",
-        "http://bibfra.me/vocab/marc/tag-955a",
+        "http://bibfra.me/vocab/marc/tag-955-XX-a",
         "CIP VER lh03 09-20-96 to SL",
         {}
     ],
     [
         "EPUuiFj_",
-        "http://bibfra.me/vocab/marc/tag-991b",
+        "http://bibfra.me/vocab/marc/tag-991-XX-b",
         "c-GenColl",
         {}
     ],
     [
         "EPUuiFj_",
-        "http://bibfra.me/vocab/marc/tag-991h",
+        "http://bibfra.me/vocab/marc/tag-991-XX-h",
         "PS3561.I483",
         {}
     ],
     [
         "EPUuiFj_",
-        "http://bibfra.me/vocab/marc/tag-991i",
+        "http://bibfra.me/vocab/marc/tag-991-XX-i",
         "G86 1988",
         {}
     ],
     [
         "EPUuiFj_",
-        "http://bibfra.me/vocab/marc/tag-991p",
+        "http://bibfra.me/vocab/marc/tag-991-XX-p",
         "00035919508",
         {}
     ],
     [
         "EPUuiFj_",
-        "http://bibfra.me/vocab/marc/tag-991t",
+        "http://bibfra.me/vocab/marc/tag-991-XX-t",
         "Copy 1",
         {}
     ],
     [
         "EPUuiFj_",
-        "http://bibfra.me/vocab/marc/tag-991w",
+        "http://bibfra.me/vocab/marc/tag-991-XX-w",
         "BOOKS",
         {}
     ],
@@ -372,36 +396,6 @@
         {}
     ],
     [
-        "Whi1HZhf",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Genre",
-        {}
-    ],
-    [
-        "Whi1HZhf",
-        "http://bibfra.me/vocab/lite/name",
-        "Fantasy fiction.",
-        {}
-    ],
-    [
-        "Whi1HZhf",
-        "http://bibfra.me/vocab/marc/sf-2",
-        "gsafd",
-        {}
-    ],
-    [
-        "Whi1HZhf",
-        "http://bibfra.me/vocab/marc/sf-a",
-        "Fantasy fiction.",
-        {}
-    ],
-    [
-        "Whi1HZhf",
-        "http://bibfra.me/vocab/rda/source",
-        "gsafd",
-        {}
-    ],
-    [
         "dEZTwJ9J",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Agent",
@@ -432,9 +426,33 @@
         {}
     ],
     [
-        "record-1:38",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "dEZTwJ9J",
+        "dGphWO_9",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {}
+    ],
+    [
+        "dGphWO_9",
+        "http://bibfra.me/vocab/lite/name",
+        "Roland (Fictitious character : King)",
+        {}
+    ],
+    [
+        "dGphWO_9",
+        "http://bibfra.me/vocab/marc/sf-a",
+        "Roland (Fictitious character : King)",
+        {}
+    ],
+    [
+        "dGphWO_9",
+        "http://bibfra.me/vocab/marc/sf-v",
+        "Fiction.",
+        {}
+    ],
+    [
+        "dGphWO_9",
+        "http://bibfra.me/vocab/rda/formSubdivision",
+        "Fiction.",
         {}
     ],
     [

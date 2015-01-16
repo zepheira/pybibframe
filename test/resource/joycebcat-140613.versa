@@ -1,32 +1,44 @@
 [
     [
-        "0c8cqfRw",
+        "188AIQDR",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Place",
         {}
     ],
     [
-        "0c8cqfRw",
+        "188AIQDR",
         "http://bibfra.me/vocab/lite/name",
         "Egypt",
         {}
     ],
     [
-        "0c8cqfRw",
+        "188AIQDR",
         "http://bibfra.me/vocab/marc/sf-a",
         "Egypt",
         {}
     ],
     [
-        "0c8cqfRw",
+        "188AIQDR",
         "http://bibfra.me/vocab/marc/sf-x",
-        "Economic conditions.",
+        "History",
         {}
     ],
     [
-        "0c8cqfRw",
+        "188AIQDR",
+        "http://bibfra.me/vocab/marc/sf-y",
+        "1250-1517.",
+        {}
+    ],
+    [
+        "188AIQDR",
+        "http://bibfra.me/vocab/rda/chronologicalSubdivision",
+        "1250-1517.",
+        {}
+    ],
+    [
+        "188AIQDR",
         "http://bibfra.me/vocab/rda/generalSubdivision",
-        "Economic conditions.",
+        "History",
         {}
     ],
     [
@@ -138,6 +150,36 @@
         {}
     ],
     [
+        "5F9DQ-Pb",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Place",
+        {}
+    ],
+    [
+        "5F9DQ-Pb",
+        "http://bibfra.me/vocab/lite/name",
+        "Egypt",
+        {}
+    ],
+    [
+        "5F9DQ-Pb",
+        "http://bibfra.me/vocab/marc/sf-a",
+        "Egypt",
+        {}
+    ],
+    [
+        "5F9DQ-Pb",
+        "http://bibfra.me/vocab/marc/sf-x",
+        "Economic conditions.",
+        {}
+    ],
+    [
+        "5F9DQ-Pb",
+        "http://bibfra.me/vocab/rda/generalSubdivision",
+        "Economic conditions.",
+        {}
+    ],
+    [
         "6zEBppp3",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/LanguageMaterial",
@@ -152,7 +194,7 @@
     [
         "6zEBppp3",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/abstracts+summaries",
+        "http://bibfra.me/vocab/lite/abstracts-summaries",
         {}
     ],
     [
@@ -176,19 +218,19 @@
     [
         "6zEBppp3",
         "http://bibfra.me/vocab/lite/subject",
-        "0c8cqfRw",
+        "188AIQDR",
         {}
     ],
     [
         "6zEBppp3",
         "http://bibfra.me/vocab/lite/subject",
-        "8MNSlyuF",
+        "5F9DQ-Pb",
         {}
     ],
     [
         "6zEBppp3",
         "http://bibfra.me/vocab/lite/subject",
-        "Je0MJ-cG",
+        "tAKZlKqV",
         {}
     ],
     [
@@ -205,175 +247,187 @@
     ],
     [
         "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-042a",
+        "http://bibfra.me/vocab/marc/tag-005",
+        "20121004091221.0",
+        {}
+    ],
+    [
+        "6zEBppp3",
+        "http://bibfra.me/vocab/marc/tag-008",
+        "030612s2003 jo ab b 000 0 ara",
+        {}
+    ],
+    [
+        "6zEBppp3",
+        "http://bibfra.me/vocab/marc/tag-042-XX-a",
         "lcode",
         {}
     ],
     [
         "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-042a",
+        "http://bibfra.me/vocab/marc/tag-042-XX-a",
         "pcc",
         {}
     ],
     [
         "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-043a",
+        "http://bibfra.me/vocab/marc/tag-043-XX-a",
         "f-ua---",
         {}
     ],
     [
         "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-066c",
+        "http://bibfra.me/vocab/marc/tag-066-XX-c",
         "(3",
         {}
     ],
     [
         "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-8806",
-        "100-01/(3/r",
-        {}
-    ],
-    [
-        "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-8806",
+        "http://bibfra.me/vocab/marc/tag-880-12-6",
         "245-02/(3/r",
         {}
     ],
     [
         "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-8806",
-        "246-03/(3/r",
-        {}
-    ],
-    [
-        "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-8806",
-        "250-04/(3/r",
-        {}
-    ],
-    [
-        "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-8806",
-        "260-05/(3/r",
-        {}
-    ],
-    [
-        "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-880a",
+        "http://bibfra.me/vocab/marc/tag-880-12-a",
         "\u0627\u0644\u062d\u064a\u0627\u0629 \u0627\u0644\u0627\u0642\u062a\u0635\u0627\u062f\u064a\u0629 \u0641\u064a \u0645\u0635\u0631 \u0641\u064a \u0627\u0644\u0639\u0635\u0631 \u0627\u0644\u0645\u0645\u0644\u0648\u0643\u064a /",
         {}
     ],
     [
         "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-880a",
-        "\u0627\u0644\u0637\u0628\u0639\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629 1.",
-        {}
-    ],
-    [
-        "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-880a",
-        "\u0639\u0645\u0627\u0646 :",
-        {}
-    ],
-    [
-        "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-880a",
-        "\u0645\u0635\u0631",
-        {}
-    ],
-    [
-        "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-880a",
-        "\u0646\u0627\u0635\u0631\u060c \u0639\u0627\u0645\u0631 \u0646\u062c\u064a\u0628 \u0645\u0648\u0633\u0649.",
-        {}
-    ],
-    [
-        "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-880b",
-        "\u0627\u0644\u0634\u0631\u0648\u0642\u060c",
-        {}
-    ],
-    [
-        "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-880c",
-        "2003.",
-        {}
-    ],
-    [
-        "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-880c",
+        "http://bibfra.me/vocab/marc/tag-880-12-c",
         "\u062a\u0623\u0644\u064a\u0641 \u0639\u0627\u0645\u0631 \u0646\u062c\u064a\u0628 \u0645\u0648\u0633\u0649 \u0646\u0627\u0635\u0631.",
         {}
     ],
     [
         "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-9026",
+        "http://bibfra.me/vocab/marc/tag-880-1X-6",
+        "100-01/(3/r",
+        {}
+    ],
+    [
+        "6zEBppp3",
+        "http://bibfra.me/vocab/marc/tag-880-1X-a",
+        "\u0646\u0627\u0635\u0631\u060c \u0639\u0627\u0645\u0631 \u0646\u062c\u064a\u0628 \u0645\u0648\u0633\u0649.",
+        {}
+    ],
+    [
+        "6zEBppp3",
+        "http://bibfra.me/vocab/marc/tag-880-30-6",
+        "246-03/(3/r",
+        {}
+    ],
+    [
+        "6zEBppp3",
+        "http://bibfra.me/vocab/marc/tag-880-30-a",
+        "\u0645\u0635\u0631",
+        {}
+    ],
+    [
+        "6zEBppp3",
+        "http://bibfra.me/vocab/marc/tag-880-XX-6",
+        "250-04/(3/r",
+        {}
+    ],
+    [
+        "6zEBppp3",
+        "http://bibfra.me/vocab/marc/tag-880-XX-6",
+        "260-05/(3/r",
+        {}
+    ],
+    [
+        "6zEBppp3",
+        "http://bibfra.me/vocab/marc/tag-880-XX-a",
+        "\u0627\u0644\u0637\u0628\u0639\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629 1.",
+        {}
+    ],
+    [
+        "6zEBppp3",
+        "http://bibfra.me/vocab/marc/tag-880-XX-a",
+        "\u0639\u0645\u0627\u0646 :",
+        {}
+    ],
+    [
+        "6zEBppp3",
+        "http://bibfra.me/vocab/marc/tag-880-XX-b",
+        "\u0627\u0644\u0634\u0631\u0648\u0642\u060c",
+        {}
+    ],
+    [
+        "6zEBppp3",
+        "http://bibfra.me/vocab/marc/tag-880-XX-c",
+        "2003.",
+        {}
+    ],
+    [
+        "6zEBppp3",
+        "http://bibfra.me/vocab/marc/tag-902-XX-6",
         "a",
         {}
     ],
     [
         "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-9027",
+        "http://bibfra.me/vocab/marc/tag-902-XX-7",
         "m",
         {}
     ],
     [
         "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-902a",
+        "http://bibfra.me/vocab/marc/tag-902-XX-a",
         "mnc",
         {}
     ],
     [
         "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-902b",
+        "http://bibfra.me/vocab/marc/tag-902-XX-b",
         "l",
         {}
     ],
     [
         "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-902d",
+        "http://bibfra.me/vocab/marc/tag-902-XX-d",
         "v",
         {}
     ],
     [
         "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-902e",
+        "http://bibfra.me/vocab/marc/tag-902-XX-e",
         "20060413",
         {}
     ],
     [
         "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-902f",
+        "http://bibfra.me/vocab/marc/tag-902-XX-f",
         "1",
         {}
     ],
     [
         "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-904a",
+        "http://bibfra.me/vocab/marc/tag-904-XX-a",
         "ay",
         {}
     ],
     [
         "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-904b",
+        "http://bibfra.me/vocab/marc/tag-904-XX-b",
         "a",
         {}
     ],
     [
         "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-904c",
+        "http://bibfra.me/vocab/marc/tag-904-XX-c",
         "b",
         {}
     ],
     [
         "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-904e",
+        "http://bibfra.me/vocab/marc/tag-904-XX-e",
         "20040729",
         {}
     ],
     [
         "6zEBppp3",
-        "http://bibfra.me/vocab/marc/tag-904h",
+        "http://bibfra.me/vocab/marc/tag-904-XX-h",
         "m",
         {}
     ],
@@ -441,78 +495,6 @@
         "6zEBppp3",
         "http://bibfra.me/vocab/rda/titleVariation",
         "\u0645\u0635\u0631",
-        {}
-    ],
-    [
-        "8MNSlyuF",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Place",
-        {}
-    ],
-    [
-        "8MNSlyuF",
-        "http://bibfra.me/vocab/lite/name",
-        "Egypt",
-        {}
-    ],
-    [
-        "8MNSlyuF",
-        "http://bibfra.me/vocab/marc/sf-a",
-        "Egypt",
-        {}
-    ],
-    [
-        "8MNSlyuF",
-        "http://bibfra.me/vocab/marc/sf-x",
-        "Economic policy.",
-        {}
-    ],
-    [
-        "8MNSlyuF",
-        "http://bibfra.me/vocab/rda/generalSubdivision",
-        "Economic policy.",
-        {}
-    ],
-    [
-        "Je0MJ-cG",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Place",
-        {}
-    ],
-    [
-        "Je0MJ-cG",
-        "http://bibfra.me/vocab/lite/name",
-        "Egypt",
-        {}
-    ],
-    [
-        "Je0MJ-cG",
-        "http://bibfra.me/vocab/marc/sf-a",
-        "Egypt",
-        {}
-    ],
-    [
-        "Je0MJ-cG",
-        "http://bibfra.me/vocab/marc/sf-x",
-        "History",
-        {}
-    ],
-    [
-        "Je0MJ-cG",
-        "http://bibfra.me/vocab/marc/sf-y",
-        "1250-1517.",
-        {}
-    ],
-    [
-        "Je0MJ-cG",
-        "http://bibfra.me/vocab/rda/chronologicalSubdivision",
-        "1250-1517.",
-        {}
-    ],
-    [
-        "Je0MJ-cG",
-        "http://bibfra.me/vocab/rda/generalSubdivision",
-        "History",
         {}
     ],
     [
@@ -625,8 +607,8 @@
     ],
     [
         "n1luapbs",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "4208199",
         {}
     ],
     [
@@ -645,6 +627,18 @@
         "n1luapbs",
         "http://bibfra.me/vocab/lite/instantiates",
         "6zEBppp3",
+        {}
+    ],
+    [
+        "n1luapbs",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "bHW7P1Zj",
+        {}
+    ],
+    [
+        "n1luapbs",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "yOQF68y6",
         {}
     ],
     [
@@ -703,14 +697,14 @@
     ],
     [
         "qbKonQGk",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
+        "http://bibfra.me/vocab/annotation/institution",
+        "aXZ8X7uh",
         {}
     ],
     [
         "qbKonQGk",
-        "http://bibfra.me/vocab/annotation/institution",
-        "aXZ8X7uh",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "4472570",
         {}
     ],
     [
@@ -720,15 +714,33 @@
         {}
     ],
     [
-        "record-3:0",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "bHW7P1Zj",
+        "tAKZlKqV",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Place",
         {}
     ],
     [
-        "record-3:0",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "yOQF68y6",
+        "tAKZlKqV",
+        "http://bibfra.me/vocab/lite/name",
+        "Egypt",
+        {}
+    ],
+    [
+        "tAKZlKqV",
+        "http://bibfra.me/vocab/marc/sf-a",
+        "Egypt",
+        {}
+    ],
+    [
+        "tAKZlKqV",
+        "http://bibfra.me/vocab/marc/sf-x",
+        "Economic policy.",
+        {}
+    ],
+    [
+        "tAKZlKqV",
+        "http://bibfra.me/vocab/rda/generalSubdivision",
+        "Economic policy.",
         {}
     ],
     [
@@ -867,6 +879,24 @@
         "y_vgeorr",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
+        {}
+    ],
+    [
+        "y_vgeorr",
+        "http://bibfra.me/vocab/marc/tag-004",
+        "4208199",
+        {}
+    ],
+    [
+        "y_vgeorr",
+        "http://bibfra.me/vocab/marc/tag-005",
+        "20110310075629.0",
+        {}
+    ],
+    [
+        "y_vgeorr",
+        "http://bibfra.me/vocab/marc/tag-008",
+        "0407294u 8 1001uu 0901128",
         {}
     ]
 ]

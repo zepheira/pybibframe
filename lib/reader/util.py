@@ -270,7 +270,10 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
             if _typ: ctx.output_model.add(I(objid), VTYPE_REL, I(iri.absolutize(_typ, ctx.base)), {})
             #FIXME: Should we be using Python Nones to mark blanks, or should Versa define some sort of null resource?
             for k, v in links.items():
-                k = k(ctx) if callable(k) else k
+                #Make sure the context used has the right origin
+                new_current_link = (o, ctx.current_link[RELATIONSHIP], ctx.current_link[TARGET], ctx.current_link[ATTRIBUTES])
+                newctx = ctx.copy(current_link=new_current_link)
+                k = k(newctx) if callable(k) else k
                 #If k is a list of contexts use it to dynamically execute functions
                 if isinstance(k, list):
                     if k and isinstance(k[0], bfcontext):
@@ -285,13 +288,11 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
                 #test expression result is False, it will come back as None,
                 #and we don't want to run the v function
                 if k:
-                    new_current_link = (I(objid), k, ctx.current_link[TARGET], ctx.current_link[ATTRIBUTES])
-                    newctx = ctx.copy(current_link=new_current_link)
-                    v = v(newctx) if callable(v) else v
-
+                    new_current_link = (I(objid), k, newctx.current_link[TARGET], newctx.current_link[ATTRIBUTES])
+                    newctx = newctx.copy(current_link=new_current_link)
                     #If k or v come from pipeline functions as None it signals to skip generating anything else for this link item
+                    v = v(newctx) if callable(v) else v
                     if v is not None:
-                        v = v(newctx) if callable(v) else v
                         #FIXME: Fix properly, by slugifying & making sure slugify handles all-numeric case
                         if k.isdigit(): k = '_' + k
                         if isinstance(v, list):

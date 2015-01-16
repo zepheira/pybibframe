@@ -1,62 +1,14 @@
 [
     [
-        "5vXbjs7x",
+        "Enn8Anjr",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
-        {}
-    ],
-    [
-        "5vXbjs7x",
-        "http://bibfra.me/vocab/lite/name",
-        "Democratization.",
-        {}
-    ],
-    [
-        "5vXbjs7x",
-        "http://bibfra.me/vocab/marc/sf-a",
-        "Democratization.",
-        {}
-    ],
-    [
-        "75I6yA7c",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
-        {}
-    ],
-    [
-        "75I6yA7c",
-        "http://bibfra.me/vocab/lite/name",
-        "International organization.",
-        {}
-    ],
-    [
-        "75I6yA7c",
-        "http://bibfra.me/vocab/marc/sf-a",
-        "International organization.",
-        {}
-    ],
-    [
-        "Ac54fUwy",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Person",
-        {}
-    ],
-    [
-        "Ac54fUwy",
-        "http://bibfra.me/vocab/lite/name",
-        "Scholte, Jan Aart.",
-        {}
-    ],
-    [
-        "Ac54fUwy",
-        "http://bibfra.me/vocab/marc/sf-a",
-        "Scholte, Jan Aart.",
+        "http://bibfra.me/vocab/lite/Instance",
         {}
     ],
     [
         "Enn8Anjr",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "16575466",
         {}
     ],
     [
@@ -99,6 +51,12 @@
         "Enn8Anjr",
         "http://bibfra.me/vocab/lite/link",
         "http://www.loc.gov/catdir/enhancements/fy1114/2010052188-t.html",
+        {}
+    ],
+    [
+        "Enn8Anjr",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "Ifb1GUO4",
         {}
     ],
     [
@@ -229,6 +187,12 @@
     ],
     [
         "IgdEHVMv",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "16575466",
+        {}
+    ],
+    [
+        "IgdEHVMv",
         "http://bibfra.me/vocab/lite/dimensions",
         "24 cm.",
         {}
@@ -271,6 +235,12 @@
     ],
     [
         "IgdEHVMv",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "Ifb1GUO4",
+        {}
+    ],
+    [
+        "IgdEHVMv",
         "http://bibfra.me/vocab/lite/title",
         "Building global democracy? :",
         {}
@@ -306,21 +276,39 @@
         {}
     ],
     [
-        "QNyRXkHq",
+        "MOlkZ5nX",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Topic",
         {}
     ],
     [
-        "QNyRXkHq",
+        "MOlkZ5nX",
         "http://bibfra.me/vocab/lite/name",
-        "Civil society.",
+        "International organization.",
         {}
     ],
     [
-        "QNyRXkHq",
+        "MOlkZ5nX",
         "http://bibfra.me/vocab/marc/sf-a",
-        "Civil society.",
+        "International organization.",
+        {}
+    ],
+    [
+        "UDlfj-SJ",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {}
+    ],
+    [
+        "UDlfj-SJ",
+        "http://bibfra.me/vocab/lite/name",
+        "Democratization.",
+        {}
+    ],
+    [
+        "UDlfj-SJ",
+        "http://bibfra.me/vocab/marc/sf-a",
+        "Democratization.",
         {}
     ],
     [
@@ -366,6 +354,24 @@
         {}
     ],
     [
+        "gf_oOFp5",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {}
+    ],
+    [
+        "gf_oOFp5",
+        "http://bibfra.me/vocab/lite/name",
+        "Civil society.",
+        {}
+    ],
+    [
+        "gf_oOFp5",
+        "http://bibfra.me/vocab/marc/sf-a",
+        "Civil society.",
+        {}
+    ],
+    [
         "q_QCmXAb",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/LanguageMaterial",
@@ -392,25 +398,25 @@
     [
         "q_QCmXAb",
         "http://bibfra.me/vocab/lite/contributor",
-        "Ac54fUwy",
+        "xe3ggs_a",
         {}
     ],
     [
         "q_QCmXAb",
         "http://bibfra.me/vocab/lite/subject",
-        "5vXbjs7x",
+        "MOlkZ5nX",
         {}
     ],
     [
         "q_QCmXAb",
         "http://bibfra.me/vocab/lite/subject",
-        "75I6yA7c",
+        "UDlfj-SJ",
         {}
     ],
     [
         "q_QCmXAb",
         "http://bibfra.me/vocab/lite/subject",
-        "QNyRXkHq",
+        "gf_oOFp5",
         {}
     ],
     [
@@ -421,337 +427,349 @@
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-020a",
+        "http://bibfra.me/vocab/marc/tag-005",
+        "20110822121127.0",
+        {}
+    ],
+    [
+        "q_QCmXAb",
+        "http://bibfra.me/vocab/marc/tag-008",
+        "101210s2011    enk      b    001 0 eng  ",
+        {}
+    ],
+    [
+        "q_QCmXAb",
+        "http://bibfra.me/vocab/marc/tag-020-XX-a",
         "0521140552 (pbk.)",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-020a",
+        "http://bibfra.me/vocab/marc/tag-020-XX-a",
         "0521192196",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-020a",
+        "http://bibfra.me/vocab/marc/tag-020-XX-a",
         "9780521140553 (pbk.)",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-020a",
+        "http://bibfra.me/vocab/marc/tag-020-XX-a",
         "9780521192194",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-042a",
+        "http://bibfra.me/vocab/marc/tag-042-XX-a",
         "pcc",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-0842",
+        "http://bibfra.me/vocab/marc/tag-084-XX-2",
         "bisacsh",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-084a",
+        "http://bibfra.me/vocab/marc/tag-084-XX-a",
         "POL011000",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505r",
+        "http://bibfra.me/vocab/marc/tag-505-00-r",
         "Alnoor Ebrahim and Steven Herz --",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505r",
+        "http://bibfra.me/vocab/marc/tag-505-00-r",
         "Carolyn Long and Nata Duvvury --",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505r",
+        "http://bibfra.me/vocab/marc/tag-505-00-r",
         "Heidi Ullrich --",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505r",
+        "http://bibfra.me/vocab/marc/tag-505-00-r",
         "Jan Aart Scholte --",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505r",
+        "http://bibfra.me/vocab/marc/tag-505-00-r",
         "Jan Aart Scholte --",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505r",
+        "http://bibfra.me/vocab/marc/tag-505-00-r",
         "Jan Aart Scholte --",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505r",
+        "http://bibfra.me/vocab/marc/tag-505-00-r",
         "Jan Aart Scholte.",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505r",
+        "http://bibfra.me/vocab/marc/tag-505-00-r",
         "Julie Gilson --",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505r",
+        "http://bibfra.me/vocab/marc/tag-505-00-r",
         "Kerstin Martens --",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505r",
+        "http://bibfra.me/vocab/marc/tag-505-00-r",
         "Marc Williams --",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505r",
+        "http://bibfra.me/vocab/marc/tag-505-00-r",
         "Mawaki Chango --",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505r",
+        "http://bibfra.me/vocab/marc/tag-505-00-r",
         "Morten Ougaard --",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505r",
+        "http://bibfra.me/vocab/marc/tag-505-00-r",
         "Peter I. Hajnal --",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505r",
+        "http://bibfra.me/vocab/marc/tag-505-00-r",
         "Peter Newell --",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505r",
+        "http://bibfra.me/vocab/marc/tag-505-00-r",
         "Saied Reza Ameli --",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505r",
+        "http://bibfra.me/vocab/marc/tag-505-00-r",
         "Timothy M. Shaw and Pamela K. Mbabazi --",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505t",
+        "http://bibfra.me/vocab/marc/tag-505-00-t",
         "Accountability in private global governance: ICANN and civil society /",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505t",
+        "http://bibfra.me/vocab/marc/tag-505-00-t",
         "Civil society and G8 accountability /",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505t",
+        "http://bibfra.me/vocab/marc/tag-505-00-t",
         "Civil society and IMF accountability /",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505t",
+        "http://bibfra.me/vocab/marc/tag-505-00-t",
         "Civil society and accountability in global governance of climate change /",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505t",
+        "http://bibfra.me/vocab/marc/tag-505-00-t",
         "Civil society and accountability in the Commonwealth /",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505t",
+        "http://bibfra.me/vocab/marc/tag-505-00-t",
         "Civil society and accountability of the United Nations /",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505t",
+        "http://bibfra.me/vocab/marc/tag-505-00-t",
         "Civil society and accountability promotion in the global fund /",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505t",
+        "http://bibfra.me/vocab/marc/tag-505-00-t",
         "Civil society and patterns of accountability in the OECD /",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505t",
+        "http://bibfra.me/vocab/marc/tag-505-00-t",
         "Civil society and the WTO: contesting accountability /",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505t",
+        "http://bibfra.me/vocab/marc/tag-505-00-t",
         "Civil society and the World Fair Trade Organisation: developing responsive accountability /",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505t",
+        "http://bibfra.me/vocab/marc/tag-505-00-t",
         "Conclusion /",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505t",
+        "http://bibfra.me/vocab/marc/tag-505-00-t",
         "Global governance, accountability and civil society /",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505t",
+        "http://bibfra.me/vocab/marc/tag-505-00-t",
         "Introduction /",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505t",
+        "http://bibfra.me/vocab/marc/tag-505-00-t",
         "Structuring accountability: civil society and the Asia-Europe meeting /",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505t",
+        "http://bibfra.me/vocab/marc/tag-505-00-t",
         "The World Bank and democratic accountability: the role of civil society /",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-505t",
+        "http://bibfra.me/vocab/marc/tag-505-00-t",
         "The organisation of the Islamic conference, accountability and civil society /",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-906a",
+        "http://bibfra.me/vocab/marc/tag-906-XX-a",
         "7",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-906b",
+        "http://bibfra.me/vocab/marc/tag-906-XX-b",
         "cbc",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-906c",
+        "http://bibfra.me/vocab/marc/tag-906-XX-c",
         "orignew",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-906d",
+        "http://bibfra.me/vocab/marc/tag-906-XX-d",
         "1",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-906e",
+        "http://bibfra.me/vocab/marc/tag-906-XX-e",
         "ecip",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-906f",
+        "http://bibfra.me/vocab/marc/tag-906-XX-f",
         "20",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-906g",
+        "http://bibfra.me/vocab/marc/tag-906-XX-g",
         "y-gencatlg",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-925a",
+        "http://bibfra.me/vocab/marc/tag-925-0X-a",
         "acquire",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-925b",
+        "http://bibfra.me/vocab/marc/tag-925-0X-b",
         "2 shelf copies",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-925x",
+        "http://bibfra.me/vocab/marc/tag-925-0X-x",
         "policy default",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-955a",
+        "http://bibfra.me/vocab/marc/tag-955-XX-a",
         "xe08 2011-07-15 2 copies rec'd to CIP ver.",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-955b",
+        "http://bibfra.me/vocab/marc/tag-955-XX-b",
         "xj07 2010-12-10",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-955c",
+        "http://bibfra.me/vocab/marc/tag-955-XX-c",
         "xj07 2010-12-10 ONIX to Soc.Sci. Sect.",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-955d",
+        "http://bibfra.me/vocab/marc/tag-955-XX-d",
         "xj03 2010-12-17; 2010-12-20 to Dewey",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-955f",
+        "http://bibfra.me/vocab/marc/tag-955-XX-f",
         "xh58 2011-07-19 Z-CipVer",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-955t",
+        "http://bibfra.me/vocab/marc/tag-955-XX-t",
         "xh58 2011-07-19 c. 2 added",
         {}
     ],
     [
         "q_QCmXAb",
-        "http://bibfra.me/vocab/marc/tag-955w",
+        "http://bibfra.me/vocab/marc/tag-955-XX-w",
         "rd05 2010-12-21",
         {}
     ],
@@ -822,9 +840,21 @@
         {}
     ],
     [
-        "record-10:0",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "Ifb1GUO4",
+        "xe3ggs_a",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Person",
+        {}
+    ],
+    [
+        "xe3ggs_a",
+        "http://bibfra.me/vocab/lite/name",
+        "Scholte, Jan Aart.",
+        {}
+    ],
+    [
+        "xe3ggs_a",
+        "http://bibfra.me/vocab/marc/sf-a",
+        "Scholte, Jan Aart.",
         {}
     ]
 ]

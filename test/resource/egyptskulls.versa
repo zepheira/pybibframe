@@ -1,35 +1,5 @@
 [
     [
-        "4RtBPAGz",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
-        {}
-    ],
-    [
-        "4RtBPAGz",
-        "http://bibfra.me/vocab/lite/name",
-        "Diet",
-        {}
-    ],
-    [
-        "4RtBPAGz",
-        "http://bibfra.me/vocab/marc/sf-a",
-        "Diet",
-        {}
-    ],
-    [
-        "4RtBPAGz",
-        "http://bibfra.me/vocab/marc/sf-x",
-        "history",
-        {}
-    ],
-    [
-        "4RtBPAGz",
-        "http://bibfra.me/vocab/rda/generalSubdivision",
-        "history",
-        {}
-    ],
-    [
         "AosgU3-6",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/LanguageMaterial",
@@ -74,37 +44,37 @@
     [
         "AosgU3-6",
         "http://bibfra.me/vocab/lite/subject",
-        "4RtBPAGz",
+        "HRiuntAE",
         {}
     ],
     [
         "AosgU3-6",
         "http://bibfra.me/vocab/lite/subject",
-        "KuzlkMad",
+        "NeVTJ3Wy",
         {}
     ],
     [
         "AosgU3-6",
         "http://bibfra.me/vocab/lite/subject",
-        "Miw4fdBA",
+        "Ptti8_vD",
         {}
     ],
     [
         "AosgU3-6",
         "http://bibfra.me/vocab/lite/subject",
-        "PbQrLRnd",
+        "R3O_3-nI",
         {}
     ],
     [
         "AosgU3-6",
         "http://bibfra.me/vocab/lite/subject",
-        "ZRVwkamR",
+        "qbT_LmCq",
         {}
     ],
     [
         "AosgU3-6",
         "http://bibfra.me/vocab/lite/subject",
-        "ffgtMLFy",
+        "ts72UDvN",
         {}
     ],
     [
@@ -115,133 +85,145 @@
     ],
     [
         "AosgU3-6",
-        "http://bibfra.me/vocab/marc/tag-0152",
+        "http://bibfra.me/vocab/marc/tag-005",
+        "20081122072417.0",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-008",
+        "080703s2008    enka     b    000 0 eng d",
+        {}
+    ],
+    [
+        "AosgU3-6",
+        "http://bibfra.me/vocab/marc/tag-015-XX-2",
         "bnb",
         {}
     ],
     [
         "AosgU3-6",
-        "http://bibfra.me/vocab/marc/tag-015a",
+        "http://bibfra.me/vocab/marc/tag-015-XX-a",
         "GBA884764",
         {}
     ],
     [
         "AosgU3-6",
-        "http://bibfra.me/vocab/marc/tag-0162",
+        "http://bibfra.me/vocab/marc/tag-016-7X-2",
         "Uk",
         {}
     ],
     [
         "AosgU3-6",
-        "http://bibfra.me/vocab/marc/tag-016a",
+        "http://bibfra.me/vocab/marc/tag-016-7X-a",
         "014654524",
         {}
     ],
     [
         "AosgU3-6",
-        "http://bibfra.me/vocab/marc/tag-020a",
+        "http://bibfra.me/vocab/marc/tag-020-XX-a",
         "1407302825",
         {}
     ],
     [
         "AosgU3-6",
-        "http://bibfra.me/vocab/marc/tag-020a",
+        "http://bibfra.me/vocab/marc/tag-020-XX-a",
         "9781407302829",
         {}
     ],
     [
         "AosgU3-6",
-        "http://bibfra.me/vocab/marc/tag-0359",
+        "http://bibfra.me/vocab/marc/tag-035-XX-9",
         "101481333",
         {}
     ],
     [
         "AosgU3-6",
-        "http://bibfra.me/vocab/marc/tag-042a",
+        "http://bibfra.me/vocab/marc/tag-042-XX-a",
         "nlmcopyc",
         {}
     ],
     [
         "AosgU3-6",
-        "http://bibfra.me/vocab/marc/tag-043a",
+        "http://bibfra.me/vocab/marc/tag-043-XX-a",
         "f-ua---",
         {}
     ],
     [
         "AosgU3-6",
-        "http://bibfra.me/vocab/marc/tag-0449",
+        "http://bibfra.me/vocab/marc/tag-044-XX-9",
         "England",
         {}
     ],
     [
         "AosgU3-6",
-        "http://bibfra.me/vocab/marc/tag-992a",
+        "http://bibfra.me/vocab/marc/tag-992-XX-a",
         "20081001",
         {}
     ],
     [
         "AosgU3-6",
-        "http://bibfra.me/vocab/marc/tag-992e",
+        "http://bibfra.me/vocab/marc/tag-992-XX-e",
         "EF",
         {}
     ],
     [
         "AosgU3-6",
-        "http://bibfra.me/vocab/marc/tag-992p",
+        "http://bibfra.me/vocab/marc/tag-992-XX-p",
         "P3",
         {}
     ],
     [
         "AosgU3-6",
-        "http://bibfra.me/vocab/marc/tag-993a",
+        "http://bibfra.me/vocab/marc/tag-993-XX-a",
         "KJD",
         {}
     ],
     [
         "AosgU3-6",
-        "http://bibfra.me/vocab/marc/tag-993b",
+        "http://bibfra.me/vocab/marc/tag-993-XX-b",
         "20081007",
         {}
     ],
     [
         "AosgU3-6",
-        "http://bibfra.me/vocab/marc/tag-994a",
+        "http://bibfra.me/vocab/marc/tag-994-XX-a",
         "CDN",
         {}
     ],
     [
         "AosgU3-6",
-        "http://bibfra.me/vocab/marc/tag-994b",
+        "http://bibfra.me/vocab/marc/tag-994-XX-b",
         "20081010",
         {}
     ],
     [
         "AosgU3-6",
-        "http://bibfra.me/vocab/marc/tag-995a",
+        "http://bibfra.me/vocab/marc/tag-995-XX-a",
         "AUTH",
         {}
     ],
     [
         "AosgU3-6",
-        "http://bibfra.me/vocab/marc/tag-995b",
+        "http://bibfra.me/vocab/marc/tag-995-XX-b",
         "20081031",
         {}
     ],
     [
         "AosgU3-6",
-        "http://bibfra.me/vocab/marc/tag-995c",
+        "http://bibfra.me/vocab/marc/tag-995-XX-c",
         "REV",
         {}
     ],
     [
         "AosgU3-6",
-        "http://bibfra.me/vocab/marc/tag-995d",
+        "http://bibfra.me/vocab/marc/tag-995-XX-d",
         "20081121",
         {}
     ],
     [
         "AosgU3-6",
-        "http://bibfra.me/vocab/marc/tag-999a",
+        "http://bibfra.me/vocab/marc/tag-999-XX-a",
         "AUTH",
         {}
     ],
@@ -318,31 +300,31 @@
         {}
     ],
     [
-        "KuzlkMad",
+        "HRiuntAE",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Topic",
         {}
     ],
     [
-        "KuzlkMad",
+        "HRiuntAE",
         "http://bibfra.me/vocab/lite/name",
-        "Tooth Diseases",
+        "Diet",
         {}
     ],
     [
-        "KuzlkMad",
+        "HRiuntAE",
         "http://bibfra.me/vocab/marc/sf-a",
-        "Tooth Diseases",
+        "Diet",
         {}
     ],
     [
-        "KuzlkMad",
+        "HRiuntAE",
         "http://bibfra.me/vocab/marc/sf-x",
         "history",
         {}
     ],
     [
-        "KuzlkMad",
+        "HRiuntAE",
         "http://bibfra.me/vocab/rda/generalSubdivision",
         "history",
         {}
@@ -378,39 +360,69 @@
         {}
     ],
     [
-        "Miw4fdBA",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Place",
-        {}
-    ],
-    [
-        "Miw4fdBA",
-        "http://bibfra.me/vocab/lite/name",
-        "Egypt",
-        {}
-    ],
-    [
-        "Miw4fdBA",
-        "http://bibfra.me/vocab/marc/sf-a",
-        "Egypt",
-        {}
-    ],
-    [
-        "PbQrLRnd",
+        "NeVTJ3Wy",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Topic",
         {}
     ],
     [
-        "PbQrLRnd",
+        "NeVTJ3Wy",
+        "http://bibfra.me/vocab/lite/name",
+        "Tooth Diseases",
+        {}
+    ],
+    [
+        "NeVTJ3Wy",
+        "http://bibfra.me/vocab/marc/sf-a",
+        "Tooth Diseases",
+        {}
+    ],
+    [
+        "NeVTJ3Wy",
+        "http://bibfra.me/vocab/marc/sf-x",
+        "history",
+        {}
+    ],
+    [
+        "NeVTJ3Wy",
+        "http://bibfra.me/vocab/rda/generalSubdivision",
+        "history",
+        {}
+    ],
+    [
+        "Ptti8_vD",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {}
+    ],
+    [
+        "Ptti8_vD",
         "http://bibfra.me/vocab/lite/name",
         "History, Ancient",
         {}
     ],
     [
-        "PbQrLRnd",
+        "Ptti8_vD",
         "http://bibfra.me/vocab/marc/sf-a",
         "History, Ancient",
+        {}
+    ],
+    [
+        "R3O_3-nI",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {}
+    ],
+    [
+        "R3O_3-nI",
+        "http://bibfra.me/vocab/lite/name",
+        "Skull",
+        {}
+    ],
+    [
+        "R3O_3-nI",
+        "http://bibfra.me/vocab/marc/sf-a",
+        "Skull",
         {}
     ],
     [
@@ -441,24 +453,6 @@
         "Re9dUfWX",
         "http://bibfra.me/vocab/marc/sf-c",
         "2008.",
-        {}
-    ],
-    [
-        "ZRVwkamR",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
-        {}
-    ],
-    [
-        "ZRVwkamR",
-        "http://bibfra.me/vocab/lite/name",
-        "Skull",
-        {}
-    ],
-    [
-        "ZRVwkamR",
-        "http://bibfra.me/vocab/marc/sf-a",
-        "Skull",
         {}
     ],
     [
@@ -528,27 +522,15 @@
         {}
     ],
     [
-        "ffgtMLFy",
+        "lQimSsFK",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
-        {}
-    ],
-    [
-        "ffgtMLFy",
-        "http://bibfra.me/vocab/lite/name",
-        "Dentition",
-        {}
-    ],
-    [
-        "ffgtMLFy",
-        "http://bibfra.me/vocab/marc/sf-a",
-        "Dentition",
+        "http://bibfra.me/vocab/lite/Instance",
         {}
     ],
     [
         "lQimSsFK",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "1481333",
         {}
     ],
     [
@@ -567,6 +549,12 @@
         "lQimSsFK",
         "http://bibfra.me/vocab/lite/instantiates",
         "AosgU3-6",
+        {}
+    ],
+    [
+        "lQimSsFK",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "_vkbUld3",
         {}
     ],
     [
@@ -612,9 +600,39 @@
         {}
     ],
     [
-        "record-3:0",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "_vkbUld3",
+        "qbT_LmCq",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {}
+    ],
+    [
+        "qbT_LmCq",
+        "http://bibfra.me/vocab/lite/name",
+        "Dentition",
+        {}
+    ],
+    [
+        "qbT_LmCq",
+        "http://bibfra.me/vocab/marc/sf-a",
+        "Dentition",
+        {}
+    ],
+    [
+        "ts72UDvN",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Place",
+        {}
+    ],
+    [
+        "ts72UDvN",
+        "http://bibfra.me/vocab/lite/name",
+        "Egypt",
+        {}
+    ],
+    [
+        "ts72UDvN",
+        "http://bibfra.me/vocab/marc/sf-a",
+        "Egypt",
         {}
     ],
     [
