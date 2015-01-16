@@ -7,9 +7,17 @@
         {"id": "http://bibfra.me/tool/pybibframe#linkreport",
         "output-file": "/tmp/linkreport.html"},
         {"id": "http://bibfra.me/tool/pybibframe#labelizer",
-        "lookup": {"Work": "title", "Instance": "title", "Agent": "name", "Person": "name", "Organization": "name", "Place": "name",
-            "Collection": "name", "Meeting": "name", "Topic": "name", "Geographic": "name", "Genre": "name",
-            "Series": "title"}
-        }
+	        "lookup": {
+	            "http://bibfra.me/vocab/lite/Work": "http://bibfra.me/vocab/lite/title",
+	            "http://bibfra.me/vocab/lite/Instance": "http://bibfra.me/vocab/lite/title",
+	            "http://bibfra.me/vocab/lite/Agent": "http://bibfra.me/vocab/lite/name",
+	            "http://bibfra.me/vocab/lite/Person": "http://bibfra.me/vocab/lite/name",
+	            "http://bibfra.me/vocab/lite/Organization": "http://bibfra.me/vocab/lite/name",
+	            "http://bibfra.me/vocab/lite/Place": "http://bibfra.me/vocab/lite/name",
+	            "http://bibfra.me/vocab/lite/Collection": "http://bibfra.me/vocab/lite/name",
+	            "http://bibfra.me/vocab/lite/Meeting": "http://bibfra.me/vocab/lite/name",
+	            "http://bibfra.me/vocab/lite/Topic": "http://bibfra.me/vocab/lite/name",
+	            "http://bibfra.me/vocab/lite/Genre": "http://bibfra.me/vocab/lite/name"}
+	        }
     ]
 }

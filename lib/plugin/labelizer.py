@@ -4,7 +4,17 @@ Sample config JSON stanza:
 {
     "plugins": [
         {"id": "http://bibfra.me/tool/pybibframe#labelizer",
-        "lookup": {"Work": "title", "Instance": "title", "Agent": "name", "Person": "name", "Organization": "name", "Place": "name", "Collection": "name", "Meeting": "name", "Topic": "name", "Geographic": "name", "Genre": "name"}
+        "lookup": {
+            "http://bibfra.me/vocab/lite/Work": "http://bibfra.me/vocab/lite/title",
+            "http://bibfra.me/vocab/lite/Instance": "http://bibfra.me/vocab/lite/title",
+            "http://bibfra.me/vocab/lite/Agent": "http://bibfra.me/vocab/lite/name",
+            "http://bibfra.me/vocab/lite/Person": "http://bibfra.me/vocab/lite/name",
+            "http://bibfra.me/vocab/lite/Organization": "http://bibfra.me/vocab/lite/name",
+            "http://bibfra.me/vocab/lite/Place": "http://bibfra.me/vocab/lite/name",
+            "http://bibfra.me/vocab/lite/Collection": "http://bibfra.me/vocab/lite/name",
+            "http://bibfra.me/vocab/lite/Meeting": "http://bibfra.me/vocab/lite/name",
+            "http://bibfra.me/vocab/lite/Topic": "http://bibfra.me/vocab/lite/name",
+            "http://bibfra.me/vocab/lite/Genre": "http://bibfra.me/vocab/lite/name"}
         }
     ]
 }
@@ -67,14 +77,15 @@ class labelizer(object):
             params['instanceid']: list of IDs of instances constructed from the MARC record
         '''
         #print ('BF_MARCREC_TASK', linkreport.PLUGIN_ID)
-        #Get the configured vocabulary base IRI
+        #Get the configured default vocabulary base IRI
         vocabbase = params['vocabbase']
         for cls, prop in self._config['lookup'].items():
             for link in model.match(None, VTYPE_REL, I(iri.absolutize(cls, vocabbase))):
                 #simple_lookup() is a little helper for getting a property from a resource
-                val = simple_lookup(model, link[ORIGIN], I(iri.absolutize(prop, vocabbase)))
-                if val:
-                    model.add(link[ORIGIN], I(RDFS_LABEL), val)
+                links = model.match(link[ORIGIN], I(iri.absolutize(prop, vocabbase)))
+                if links:
+                    label = ' | '.join([ link[TARGET] for link in links ])
+                    model.add(link[ORIGIN], I(RDFS_LABEL), label)
         return
 
     @asyncio.coroutine
