@@ -14,10 +14,14 @@ Sample config JSON stanza:
             "http://bibfra.me/vocab/lite/Collection": "http://bibfra.me/vocab/lite/name",
             "http://bibfra.me/vocab/lite/Meeting": "http://bibfra.me/vocab/lite/name",
             "http://bibfra.me/vocab/lite/Topic": "http://bibfra.me/vocab/lite/name",
-            "http://bibfra.me/vocab/lite/Genre": "http://bibfra.me/vocab/lite/name"}
+            "http://bibfra.me/vocab/lite/Genre": "http://bibfra.me/vocab/lite/name",
+            "http://bibfra.me/vocab/lite/Foobar": [" ","http://bibfra.me/vocab/lite/title","http://bibfra.me/vocab/lite/name"]}
         }
     ]
 }
+
+Tuple notation in lookup configuration is used to join multiple properties, using the
+first item as the separator ('' for no separator)
 
 Already built into demo config:
 
@@ -82,10 +86,19 @@ class labelizer(object):
         for cls, prop in self._config['lookup'].items():
             for link in model.match(None, VTYPE_REL, I(iri.absolutize(cls, vocabbase))):
                 #simple_lookup() is a little helper for getting a property from a resource
-                links = model.match(link[ORIGIN], I(iri.absolutize(prop, vocabbase)))
-                if links:
-                    label = ' | '.join([ link[TARGET] for link in links ])
-                    model.add(link[ORIGIN], I(RDFS_LABEL), label)
+                props = prop if isinstance(prop, list) else ['',prop]
+                label = ''
+                sep = props[0]
+                def label_segments(props):
+                    for p in props[1:]:
+                        links = model.match(link[ORIGIN], I(iri.absolutize(p, vocabbase)))
+                        if links:
+                            s = [ link[TARGET] for link in links]
+                            if len(s) > 0:
+                                yield ' | '.join(s)
+
+                segments = list(label_segments(props))
+                model.add(link[ORIGIN], I(RDFS_LABEL), sep.join(segments))
         return
 
     @asyncio.coroutine
