@@ -10,7 +10,8 @@ BL = 'http://bibfra.me/vocab/lite/'
 #TODO: Also split on multiple 260 fields
 
 VTYPE = VERSA_BASEIRI+'type'
-DEFAULT_VOCAB_ITEMS = [BL, BA, REL, RDA, RBMS, AV, VTYPE]
+LANG= BL+'language'
+DEFAULT_VOCAB_ITEMS = [BL, BA, REL, RDA, RBMS, AV, LANG, VTYPE]
 
 class transforms(object):
     def __init__(self, vocab=None):
@@ -160,7 +161,7 @@ class transforms(object):
             d=I(self._vocab[BL]+'contains-biographical-information'))
     
         #info = field008
-        #ARE YOU FRIGGING KIDDING ME?! NON-Y2K SAFE?!
+        #ARE YOU FRIGGING KIDDING ME?! MARC/008 is NON-Y2K SAFE?!
         year = info[0:2]
         try:
             century = '19' if int(year) > 30 else '20' #I guess we can give an 18 year berth before this breaks ;)
@@ -169,6 +170,8 @@ class transforms(object):
         except ValueError:
             #Completely Invalid date
             pass
+        if info[35:38] not in ("###", "zxx", "mul", "sgn", "und"):
+            yield None, self._vocab[LANG], info[35:38]
         for i, field in enumerate(info):
             try:
                 if i < 23 or field in ('#', ' ', '|'):
