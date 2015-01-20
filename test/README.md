@@ -4,7 +4,9 @@ Run as follows:
 
 	py.test test/test_marc_basics.py 
     
-If you update code in a way that affects output, you can update the expected output as in the following example.
+If you update code in a way that affects output, you can update the expected output
+(once you've verified that the new output is more correct, of course)
+as in the following example.
 
     cd test/resource
     marc2bf gunslinger.mrx --canonical -o gunslinger.versa

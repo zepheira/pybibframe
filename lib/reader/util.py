@@ -271,7 +271,7 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
             #FIXME: Should we be using Python Nones to mark blanks, or should Versa define some sort of null resource?
             for k, v in links.items():
                 #Make sure the context used has the right origin
-                new_current_link = (o, ctx.current_link[RELATIONSHIP], ctx.current_link[TARGET], ctx.current_link[ATTRIBUTES])
+                new_current_link = (I(objid), ctx.current_link[RELATIONSHIP], ctx.current_link[TARGET], ctx.current_link[ATTRIBUTES])
                 newctx = ctx.copy(current_link=new_current_link)
                 k = k(newctx) if callable(k) else k
                 #If k is a list of contexts use it to dynamically execute functions
