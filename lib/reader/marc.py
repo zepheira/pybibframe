@@ -256,6 +256,14 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                 for xref in attribs.get('6', []):
                     xreftag, xrefid = xref.split('-')
                     #Locate the matching taglink
+                    if tag == '880' and xrefid.startswith('00'):
+                        #Special case, no actual xref, just the non-roman text
+                        #Rule for 880s: merge in & add language indicator
+                        langinfo = xrefid.split('/')[-1]
+                        #Not using langinfo, really, at present because it seems near useless. Eventually we can handle by embedding a lang indicator token into attr values for later postprocessing
+                        attribs['tag'] = xreftag
+                        add_links.append((origin, MARCXML_NS + '/data/' + xreftag, val, attribs))
+
                     links = input_model.match(None, MARCXML_NS + '/data/' + xreftag)
                     for link in links:
                         #6 is the cross-reference subfield

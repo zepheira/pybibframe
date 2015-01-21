@@ -244,14 +244,57 @@ def foreach(origin=None, rel=None, target=None, attributes=None):
 
 def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
     '''
-    Create a new resource related to the origin
+    Create a new resource related to the origin.
+    
+    :param typ: IRI of the type for the resource to be materialized,
+    which becomes the target of the main link, and the origin of any
+    additional links given in the links param
+
+    :param rel: IRI of the relationship between the origin and the materialized
+    target, or a list of relationship IRIs, each of which will be used to create
+    a separate link, or a versa action function to derive this relationship or
+    list of relationships at run time, or None. If None, the relationship is derived
+    from the context given when the materialize action function is called
+
+    :param derive_origin: Versa action function to be invoked in order to
+    determine the origin of the main generated link. If none the origin is derived
+    from the context given when the materialize action function is called
+
+    :param unique: Versa action function to be invoked in order to
+    derive a unique hash key fo rthe materialized resource
+
+    :param links: Dictionary of links from the newly materialized resource.
+    Each keys can be a relationship IRIs, a Versa action function returning
+    a relationship IRI, a Versa action function returning a list of Versa
+    contexts, which can be used to guide a sequence pattern of generated
+    links, or a Versa action function returning None, which signals that
+    the particular link is skipped entirely.
+    
+    For examples of all these scenarios see marcpatterns.py
+
+    :return: Versa action function to do the actual work
+    
     '''
     links = links or {}
     def _materialize(ctx):
+        '''
+        Inserts at least two main link in the context's output_model, one or more for
+        the relationship from the origin to the materialized resource, one for the
+        type of the materialized resource, and links according to the links parameter
+
+        :param ctx: Runtime Versa context used in processing (e.g. includes the prototype link)
+        :return: None
+        
+        This function is intricate in its use and shifting of Versa context, but the
+        intricacies are all designed to make the marcpatterns mini language more natural.
+        '''
+        #If need be call the Versa action function to determine the materialized resource's type
         _typ = typ(ctx) if callable(typ) else typ
+        #If need be call the Versa action function to determine the relationship to the materialized resource
         _rel = rel(ctx) if callable(rel) else rel
-        #Conversions to make sure we end up with a list of relationships out of it all
+        #The current link from the passed-in context might be used in several aspects of operation
         (o, r, t, a) = ctx.current_link
+        #Some conversions to make sure we end up with a list of relationships
         if _rel is None:
             _rel = [r]
         rels = _rel if isinstance(_rel, list) else ([_rel] if rel else [])

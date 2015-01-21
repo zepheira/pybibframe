@@ -1,9 +1,94 @@
 '''
-Declarations used to elucidate MARC model
+Declarations defining patterns to be asserted upon MARC files to generate linked data
+in the form of a Versa output model
+
+BFLITE_TRANSFORMS is an example of a speification designed to be understood
+by moderately tech-savvy librarians, and even overridden to specialize the
+MARC -> BIBFRAME conversion by the more adventurous.
+
+A few examples of entries to help communicate the nature and power of the pattern
+specification language
+
+    '001': oninstance.rename(rel=BL+'controlCode'),
+
+The left hand side defines the data to be matched from the MARC input in MARC terms
+(tags, values, indicators and subfields). In this case match any 001 tag field.
+
+The right hand side expresses the output in terms of BIBFRAME. For each processed
+MARC record pybibframe assumes and materializes (creates) one Work resource output,
+and one or more Instance resource output. In this case create an output link from
+the materialized instance, using a relationship property IRI of
+`http://bibfra.me/vocab/lite/controlCode`. BL is the IRI stem to which the term
+`controlCode` is concatenated. The link terget is the value of the 001 tag field.
+
+    '010$a': onwork.rename(rel=RDA+'lccn'),
+
+In this case what's matched is any MARC 010 tag field which has an `a` subfield.
+The generated link originates with the materialized work resource rather than
+than the instance. The link relationship IRI is `http://bibfra.me/vocab/rda/lccn`.
+The link target value comes form the value of the `a` subfield.
+
+    '100': onwork.materialize(
+                BL+'Person', BL+'creator',
+                unique=values(subfield('a'), subfield('b'), subfield('c')),
+                links={
+                    BL+'name': subfield('a'),
+                    RDA+'numeration': subfield('b'),
+                    RDA+'titles': subfield('c'),
+                    BL+'date': subfield('d'),
+                    BL+'authorityLink': subfield('0')
+                }),
+
+In this case a new resource is materialized, of type Person, and related to the
+main materialized work. The link from the work to the Person resource has
+relationship IRI `http://bibfra.me/vocab/lite/creator`. The ID of the new Person
+resource is derived and rendered unique based on the value of the `a`, `b` and `c`
+MARC subfields. The new person resource is further characterized with additional
+links derived from other subfields. For example a link is created originating on
+the person, with a rel IRI of `http://bibfra.me/vocab/lite/name` and a link target
+value from the MARC subfield `a` value.
+
+    '100': onwork.materialize(
+                BL+'Person', values(BL+'creator',
+                relator_property(subfield('e'), prefix=REL),
+                relator_property(subfield('4'), prefix=REL)), 
+                unique=values(subfield('a'), subfield('b'), subfield('c')),
+                links={
+                    BL+'name': subfield('a'),
+                    RDA+'numeration': subfield('b'),
+                    RDA+'titles': subfield('c'),
+                    BL+'date': subfield('d'),
+                    BL+'authorityLink': subfield('0')
+                }),
+
+In this case, more than one main link is generated from the work to the newly
+materialized person. in addition to `http://bibfra.me/vocab/lite/creator` there
+are links based on any MARC subfield `e` and `4` values, treated as relators.
+
+    '260': oninstance.materialize(
+                BL+'ProviderEvent', RDA+'publication',
+                unique=all_subfields, 
+                links={
+                    ifexists(subfield('a'), BL+'providerPlace'):
+                        materialize(BL+'Place', unique=subfield('a'),
+                                    links={BL+'name': subfield('a')}),
+                    foreach(target=subfield('b')):
+                        materialize(BL+'Agent', BL+'providerAgent', unique=target(),
+                                    links={BL+'name': target()}),
+                    BL+'providerDate': subfield('c')
+                },
+
+This case illustrates that any number of resources can be generated from a single
+MARC field. When generating links from the new provider event resource,
+subfield `a` is checked, and if it exists create a providerPlace link to yet
+another materialized resource of type Place which in term has a name from the `a`
+subfield and a unique ID derived from the same subfield. Also each subfield `b`
+leads to a newly materialized Agent resource. This time the unique ID is derived from
+the value of the `b` itself (this is what target() means in that situation, because
+it is under the influence of the foreach function).
+
 '''
-#Just set up some flags
-#BOUND_TO_WORK = object()
-#BOUND_TO_INSTANCE = object()
+#all_subfields - All the MARC subfields are used together to determine the uniqueness
 
 #Full MARC field list: http://www.loc.gov/marc/bibliographic/ecbdlist.html
 
