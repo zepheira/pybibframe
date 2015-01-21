@@ -67,12 +67,6 @@
     ],
     [
         "6V3FTm1R",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "dEZTwJ9J",
-        {}
-    ],
-    [
-        "6V3FTm1R",
         "http://bibfra.me/vocab/lite/title",
         "The gunslinger /",
         {}
@@ -159,6 +153,12 @@
         "EPUuiFj_",
         "http://bibfra.me/vocab/lite/genre",
         "4MtTcWPl",
+        {}
+    ],
+    [
+        "EPUuiFj_",
+        "http://bibfra.me/vocab/lite/language",
+        "eng",
         {}
     ],
     [
@@ -363,6 +363,12 @@
         "V7iD25YY",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/ProviderEvent",
+        {}
+    ],
+    [
+        "V7iD25YY",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "dEZTwJ9J",
         {}
     ],
     [

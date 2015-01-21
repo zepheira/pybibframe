@@ -37,6 +37,12 @@
     ],
     [
         "AosgU3-6",
+        "http://bibfra.me/vocab/lite/language",
+        "eng",
+        {}
+    ],
+    [
+        "AosgU3-6",
         "http://bibfra.me/vocab/lite/memberOf",
         "LKiHfdhb",
         {}
@@ -493,6 +499,12 @@
     ],
     [
         "bB8qlAbW",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "_vkbUld3",
+        {}
+    ],
+    [
+        "bB8qlAbW",
         "http://bibfra.me/vocab/lite/providerDate",
         "2008.",
         {}
@@ -549,12 +561,6 @@
         "lQimSsFK",
         "http://bibfra.me/vocab/lite/instantiates",
         "AosgU3-6",
-        {}
-    ],
-    [
-        "lQimSsFK",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "_vkbUld3",
         {}
     ],
     [

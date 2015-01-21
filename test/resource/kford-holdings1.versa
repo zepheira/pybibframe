@@ -55,12 +55,6 @@
     ],
     [
         "Enn8Anjr",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "Ifb1GUO4",
-        {}
-    ],
-    [
-        "Enn8Anjr",
         "http://bibfra.me/vocab/lite/title",
         "Building global democracy? :",
         {}
@@ -105,6 +99,12 @@
         "ICGdLYZ3",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/ProviderEvent",
+        {}
+    ],
+    [
+        "ICGdLYZ3",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "Ifb1GUO4",
         {}
     ],
     [
@@ -231,12 +231,6 @@
         "IgdEHVMv",
         "http://bibfra.me/vocab/lite/link",
         "http://www.loc.gov/catdir/enhancements/fy1114/2010052188-t.html",
-        {}
-    ],
-    [
-        "IgdEHVMv",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "Ifb1GUO4",
         {}
     ],
     [
@@ -399,6 +393,12 @@
         "q_QCmXAb",
         "http://bibfra.me/vocab/lite/contributor",
         "xe3ggs_a",
+        {}
+    ],
+    [
+        "q_QCmXAb",
+        "http://bibfra.me/vocab/lite/language",
+        "eng",
         {}
     ],
     [

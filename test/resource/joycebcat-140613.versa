@@ -631,18 +631,6 @@
     ],
     [
         "n1luapbs",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "bHW7P1Zj",
-        {}
-    ],
-    [
-        "n1luapbs",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "yOQF68y6",
-        {}
-    ],
-    [
-        "n1luapbs",
         "http://bibfra.me/vocab/lite/title",
         "\nal-\u1e24ay\u0101h al-iqti\u1e63\u0101d\u012byah f\u012b Mi\u1e63r f\u012b al-\u02bbA\u1e63r al-Maml\u016bk\u012b /\n",
         {}
@@ -747,6 +735,18 @@
         "vSPVNx06",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/ProviderEvent",
+        {}
+    ],
+    [
+        "vSPVNx06",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "bHW7P1Zj",
+        {}
+    ],
+    [
+        "vSPVNx06",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "yOQF68y6",
         {}
     ],
     [

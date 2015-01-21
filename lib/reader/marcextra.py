@@ -170,7 +170,7 @@ class transforms(object):
         except ValueError:
             #Completely Invalid date
             pass
-        if info[35:38] not in ("###", "zxx", "mul", "sgn", "und"):
+        if info[35:38] not in ("###", "zxx", "mul", "sgn", "und", "   ", ""):
             yield None, self._vocab[LANG], info[35:38]
         for i, field in enumerate(info):
             try:

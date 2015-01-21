@@ -235,6 +235,12 @@
     ],
     [
         "e0M-N8gw",
+        "http://bibfra.me/vocab/lite/language",
+        "chi",
+        {}
+    ],
+    [
+        "e0M-N8gw",
         "http://bibfra.me/vocab/lite/note",
         "In case.",
         {}
@@ -637,18 +643,6 @@
     ],
     [
         "ikh_UgUp",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "x6dpEkfs",
-        {}
-    ],
-    [
-        "ikh_UgUp",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "x6dpEkfs",
-        {}
-    ],
-    [
-        "ikh_UgUp",
         "http://bibfra.me/vocab/lite/title",
         "Jie zi yuan hua zhuan :",
         {}
@@ -837,6 +831,18 @@
         "sZABbxZg",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/ProviderEvent",
+        {}
+    ],
+    [
+        "sZABbxZg",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "x6dpEkfs",
+        {}
+    ],
+    [
+        "sZABbxZg",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "x6dpEkfs",
         {}
     ],
     [
