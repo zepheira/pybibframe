@@ -159,7 +159,32 @@ class transforms(object):
             b=I(self._vocab[BL]+'individual-biography'),
             c=I(self._vocab[BL]+'collective-biography'),
             d=I(self._vocab[BL]+'contains-biographical-information'))
-    
+
+        #Marc chaacters skipped in the 008 field by convention
+        #In most cases we dont have to actually check for these, as they'll just not be in the value lookup tables above
+        SKIP_CHARS = ('#', ' ', '|')
+        #Registry of patterns to be processed from 008 field {index key: value function}
+        #There are 3 types of index keys to this dict
+        #1) An int, simply processed as a character position passed to the value function
+        #2) A tuple of ints, processed once for each character position in the list, each int passed to the value function
+        #3) A tuple starting with 'slice' and then 2 ints, processed as a character chunk/slice passed as a whole to the value function
+        #If the value function returns None or a tuple with None in the lats position, it's a signal to do nothing for the case at hand
+        FiELD_OO8_PATTERNS = {
+            23: lambda i: (None, self._vocab[BL]+'medium', media.get(info[i])),
+            (24, 25, 26, 27): lambda i: (None, self._vocab[VTYPE], types.get(info[i])),
+            28: lambda i: (None, self._vocab[VTYPE], govt_publication.get(info[i])),
+            29: lambda i: (None, self._vocab[VTYPE], self._vocab[BL]+'conference-publication')
+                            if info[i] == '1' else None,
+            30: lambda i: (None, self._vocab[VTYPE], self._vocab[BL]+'festschrift')
+                            if info[i] == '1' else None,
+            33: lambda i: (None, self._vocab[VTYPE], genres.get(info[i]))
+                            if info[i] != 'u' else None, #'u' means unknown?
+            34: lambda i: (None, self._vocab[VTYPE], biographical.get(info[i])),
+            ('slice', 35, 38): lambda i: (None, self._vocab[LANG], info[i.start:i.stop])
+                            if info[i.start:i.stop] not in
+                                ("###", "zxx", "mul", "sgn", "und", "   ", "") else None,
+        }
+        
         #info = field008
         #ARE YOU FRIGGING KIDDING ME?! MARC/008 is NON-Y2K SAFE?!
         year = info[0:2]
@@ -170,34 +195,22 @@ class transforms(object):
         except ValueError:
             #Completely Invalid date
             pass
-        if info[35:38] not in ("###", "zxx", "mul", "sgn", "und", "   ", ""):
-            yield None, self._vocab[LANG], info[35:38]
-        for i, field in enumerate(info):
-            try:
-                if i < 23 or field in ('#', ' ', '|'):
-                    continue
-                elif i == 23:
-                    yield None, self._vocab[BL]+'medium', media[info[23]]
-                elif i >= 24 and i <= 27:
-                    yield None, self._vocab[VTYPE], types[info[i]]
-                elif i == 28:
-                    yield None, self._vocab[VTYPE], govt_publication[info[28]]
-                elif i == 29 and field == '1':
-                    yield None, self._vocab[VTYPE], self._vocab[BL]+'conference-publication'
-                elif i == 30 and field == '1':
-                    yield None, self._vocab[VTYPE], self._vocab[BL]+'festschrift'
-                elif i == 33:
-                    if field != 'u': #unknown
-                        yield None, self._vocab[VTYPE], genres[info[33]]
-                elif i == 34:
-                    try:
-                        yield None, self._vocab[VTYPE], biographical[info[34]]
-                    except KeyError :
-                        # logging.warn('something')
-                        pass
+
+        #Execute the rules detailed in the "Registry of patterns" comment above
+        for i, func in FiELD_OO8_PATTERNS.items():
+            if isinstance(i, tuple):
+                if i[0] == 'slice':
+                    params = [slice(i[1], i[2])]
                 else:
-                    continue
-            except KeyError:
-                # ':('
-                pass
+                    params = i
+            elif isinstance(i, int):
+                params = [i]
+
+            for param in params:
+                try:
+                    result = func(param)
+                    if result and result[2] is not None:
+                        yield result
+                except IndexError:
+                    pass #Truncated 008 field
 
