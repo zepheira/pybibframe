@@ -53,7 +53,8 @@ class marcxmlhandler(sax.ContentHandler):
     def startElementNS(self, name, qname, attributes):
         (ns, local) = name
         if ns == MARCXML_NS:
-            #ignore the 'collection' element
+            #Ignore the 'collection' element
+            #What to do with the record/@type
             if local == 'record':
                 #XXX: Entity base IRI needed?
                 self._record_id = 'record-{0}:{1}'.format(self._locator.getLineNumber(), self._locator.getColumnNumber())

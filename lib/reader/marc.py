@@ -85,6 +85,8 @@ def isbn_instancegen(params):
     materialize_entity = params['materialize_entity']
     existing_ids = params['existing_ids']
     workid = params['workid']
+    ids = params['ids']
+    plugins = params['plugins']
     
     isbns = list(( val for code, val in marc_lookup(input_model, '020$a')))
     logger.debug('Raw ISBNS:\t{0}'.format(isbns))
@@ -98,7 +100,7 @@ def isbn_instancegen(params):
     if normalized_isbns:
         for subix, (inum, itype) in enumerate(normalized_isbns):
             #XXX Do we use vocabbase? Probably since if they are substituting a new vocab base, we assume they're substituting semantics entirely
-            instanceid = materialize_entity(iri.absolutize('Instance', vocabbase), instantiates=workid, isbn=inum, existing_ids=existing_ids)
+            instanceid = materialize_entity('Instance', vocabbase=vocabbase, existing_ids=existing_ids, ids=ids, plugins=plugins, instantiates=workid, isbn=inum)
             #ids.send(['', ])
             if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
 
@@ -109,7 +111,7 @@ def isbn_instancegen(params):
             existing_ids.add(instanceid)
             instance_ids.append(instanceid)
     else:
-        instanceid = materialize_entity(iri.absolutize('Instance', vocabbase), instantiates=workid, existing_ids=existing_ids)
+        instanceid = materialize_entity('Instance', vocabbase=vocabbase, existing_ids=existing_ids, ids=ids, plugins=plugins, instantiates=workid)
         if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
         existing_ids.add(instanceid)
         instance_ids.append(instanceid)
@@ -144,6 +146,38 @@ def record_hash_key(model):
     return '|'.join(sorted(list( val for code, val in marc_lookup(model, RECORD_HASH_KEY_FIELDS))))
 
 
+def materialize_entity(etype, vocabbase=BL, existing_ids=None, ids=None, plugins=None, unique=None, logger=logging, **data):
+    '''
+    Routine for creating a BIBFRAME resource. Takes the entity (resource) type and a data mapping
+    according to the resource type. Implements the Libhub Resource Hash Convention
+    As a convenience, if a vocabulary base is provided, concatenate it to etype and the data keys
+    '''
+    if vocabbase:
+        etype = vocabbase + etype
+    params = {'logger': logger}
+    data_full = { vocabbase + k: v for (k, v) in data.items() }
+    # nobody likes non-deterministic ids! ordering matters to hash()
+    data_full = OrderedDict(sorted(data_full.items(), key=lambda x: x[0]))
+    plaintext = json.dumps([etype, data_full],cls=OrderedJsonEncoder)
+
+    if data_full or unique:
+        #We only have a type; no other distinguishing data. Generate a random hash
+        if unique is None:
+            eid = ids.send(plaintext)
+        else:
+            eid = ids.send([plaintext, unique])
+    else:
+        eid = next(ids)
+    params['materialized_id'] = eid
+    params['first_seen'] = eid in existing_ids
+    for plugin in plugins or ():
+        #Not using yield from
+        if BF_MATRES_TASK in plugin:
+            for p in plugin[BF_MATRES_TASK](loop, model, params): pass
+        #logger.debug("Pending tasks: %s" % asyncio.Task.all_tasks(loop))
+    return eid
+
+
 @asyncio.coroutine
 def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                     plugins=None, ids=None, postprocess=None, out=None,
@@ -169,46 +203,15 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
     if out and not canonical: out.write('[')
     first_record = True
 
-    def materialize_entity(etype, vocabbase=vocabbase, existing_ids=existing_ids, unique=None, **data):
-        '''
-        Routine for creating a BIBFRAME resource. Takes the entity (resource) type and a data mapping
-        according to the resource type. Implements the Libhub Resource Hash Convention
-        As a convenience, if a vocabulary base is provided, concatenate it to etype and the data keys
-        '''
-        if vocabbase:
-            etype = vocabbase + etype
-        params = {'logger': logger}
-        data_full = { vocabbase + k: v for (k, v) in data.items() }
-        # nobody likes non-deterministic ids! ordering matters to hash()
-        data_full = OrderedDict(sorted(data_full.items(), key=lambda x: x[0]))
-        plaintext = json.dumps([etype, data_full],cls=OrderedJsonEncoder)
-
-        if data_full or unique:
-            #We only have a type; no other distinguishing data. Generate a random hash
-            if unique is None:
-                eid = ids.send(plaintext)
-            else:
-                eid = ids.send([plaintext, unique])
-        else:
-            eid = next(ids)
-        params['materialized_id'] = eid
-        params['first_seen'] = eid in existing_ids
-        for plugin in plugins:
-            #Not using yield from
-            if BF_MATRES_TASK in plugin:
-                for p in plugin[BF_MATRES_TASK](loop, model, params): pass
-            #logger.debug("Pending tasks: %s" % asyncio.Task.all_tasks(loop))
-        return eid
-
     try:
         while True:
             input_model = yield
             leader = None
             #Add work item record, with actual hash resource IDs based on default or plugged-in algo
             #FIXME: No plug-in support yet
-            params = {'input_model': input_model, 'logger': logger, 'input_model': input_model, 'output_model': model, 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids, 'existing_ids': existing_ids}
+            params = {'input_model': input_model, 'logger': logger, 'input_model': input_model, 'output_model': model, 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids, 'existing_ids': existing_ids, 'plugins': plugins}
             workhash = record_hash_key(input_model)
-            workid = materialize_entity(iri.absolutize('Work', BL), hash=workhash, existing_ids=existing_ids)
+            workid = materialize_entity('Work', vocabbase=vocabbase, existing_ids=existing_ids, ids=ids, plugins=plugins, hash=workhash)
             is_folded = workid in existing_ids
             existing_ids.add(workid)
             dumb_title = list(marc_lookup(input_model, '245$a')) or ['NO 245$a TITLE']
@@ -337,6 +340,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                         params['dropped_codes'].setdefault(tag,0)
                         params['dropped_codes'][tag] += 1
 
+                mat_ent = fuctools.partial(materialize_entity, vocabbase=vocabbase, existing_ids=existing_ids, ids=ids, plugins=plugins)
                 #Apply all the handlers that were found
                 for funcinfo, val in to_process:
                     #Support multiple actions per lookup
@@ -347,7 +351,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                         #Build Versa processing context
                         #Should we include indicators?
                         #Should we be passing in taglik rather than tag?
-                        ctx = bfcontext((origin, tag, val, subfields), input_model, model, extras=extras, base=vocabbase, idgen=materialize_entity, existing_ids=existing_ids)
+                        ctx = bfcontext((origin, tag, val, subfields), input_model, model, extras=extras, base=vocabbase, idgen=mat_ent, existing_ids=existing_ids)
                         func(ctx)
 
                 if not to_process:
