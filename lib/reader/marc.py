@@ -161,7 +161,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
     plugins = plugins or []
     if ids is None: ids = idgen(entbase)
 
-    #FIXME: For now always generate instances from ISBNs, but consider working this through th plugins system
+    #FIXME: For now always generate instances from ISBNs, but consider working this through the plugins system
     instancegen = isbn_instancegen
 
     existing_ids = set()
@@ -206,9 +206,9 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             leader = None
             #Add work item record, with actual hash resource IDs based on default or plugged-in algo
             #FIXME: No plug-in support yet
-            params = {'input_model': input_model, 'logger': logger, 'input_model': input_model, 'output_model': model, 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids, 'existing_ids': existing_ids}
+            params = {'input_model': input_model, 'output_model': model, 'logger': logger, 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids, 'existing_ids': existing_ids}
             workhash = record_hash_key(input_model)
-            workid = materialize_entity(iri.absolutize('Work', BL), hash=workhash, existing_ids=existing_ids)
+            workid = materialize_entity(iri.absolutize('Work', vocabbase), hash=workhash, existing_ids=existing_ids)
             is_folded = workid in existing_ids
             existing_ids.add(workid)
             dumb_title = list(marc_lookup(input_model, '245$a')) or ['NO 245$a TITLE']
@@ -222,10 +222,10 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
 
             folded = [workid] if is_folded else []
 
-            model.add(workid, TYPE_REL, I(iri.absolutize('Work', BL)))
+            model.add(workid, TYPE_REL, I(iri.absolutize('Work', vocabbase)))
 
-            #params = {'workid': workid, 'rec': rec, 'logger': logger, 'input_model': input_model, 'output_model': model, 'entbase': entbase, 'vocabbase': vocabase, 'ids': ids, 'existing_ids': existing_ids, 'folded': folded}
-            params = {'workid': workid, 'input_model': input_model, 'logger': logger, 'input_model': input_model, 'output_model': model, 'entbase': entbase, 'vocabbase': BL, 'ids': ids, 'existing_ids': existing_ids, 'folded': folded}
+            params['workid'] = workid
+            params['folded'] = folded
 
             #Figure out instances
             params['materialize_entity'] = materialize_entity
