@@ -86,16 +86,15 @@ class labelizer(object):
         for cls, prop in self._config['lookup'].items():
             for link in model.match(None, VTYPE_REL, I(iri.absolutize(cls, vocabbase))):
                 #simple_lookup() is a little helper for getting a property from a resource
-                props = prop if isinstance(prop, list) else ['',prop]
+                props = prop if isinstance(prop, list) else ['', prop]
                 label = ''
                 sep = props[0]
                 def label_segments(props):
                     for p in props[1:]:
                         links = model.match(link[ORIGIN], I(iri.absolutize(p, vocabbase)))
-                        if links:
-                            s = [ link[TARGET] for link in links]
-                            if len(s) > 0:
-                                yield ' | '.join(s)
+                        s = [ link[TARGET] for link in links ]
+                        if len(s) > 0:
+                            yield ' | '.join(s)
 
                 segments = list(label_segments(props))
                 model.add(link[ORIGIN], I(RDFS_LABEL), sep.join(segments))
