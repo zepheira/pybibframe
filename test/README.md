@@ -14,4 +14,5 @@ as in the following example.
     marc2bf joycebcat-140613.mrx --canonical -o joycebcat-140613.versa 
     marc2bf kford-holdings1.mrx --canonical -o kford-holdings1.versa 
     marc2bf timathom-140716.mrx --canonical -o timathom-140716.versa 
+    cd -
 

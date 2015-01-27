@@ -10,7 +10,6 @@ pip install pytest
 import sys
 import logging
 import asyncio
-import unittest
 import difflib
 from io import StringIO
 
@@ -18,6 +17,8 @@ from versa.driver import memory
 from versa.util import jsondump, jsonload
 
 from bibframe.reader.marcxml import bfconvert
+
+import pytest
 
 #Move to a test utils module
 import os, inspect
@@ -30,10 +31,15 @@ def module_path(local_function):
 #hack to locate test resource (data) files regardless of from where nose was run
 RESOURCEPATH = os.path.normpath(os.path.join(module_path(lambda _: None), '../resource/'))
 
-def verify_conversion(name, entbase=None, config=None, loop=None, canonical=True):
+def file_diff(s_orig, s_new):
+    diff = difflib.unified_diff(s_orig.split('\n'), s_new.split('\n'))
+    return '\n'.join(list(diff))
+
+def run_one(name, entbase=None, config=None, loop=None, canonical=True):
     m = memory.connection()
     m_expected = memory.connection()
     s = StringIO()
+
     with open(os.path.join(RESOURCEPATH, name+'.mrx')) as indoc:
         bfconvert(indoc, model=m, out=s, config=config, canonical=canonical, loop=loop)
         s.seek(0)
@@ -44,45 +50,26 @@ def verify_conversion(name, entbase=None, config=None, loop=None, canonical=True
 
     assert m == m_expected, "Discrepancies found for {0}:\n{1}".format(name, file_diff(repr(m_expected), repr(m)))
 
-def file_diff(s_orig, s_new):
-    diff = difflib.unified_diff(s_orig.split('\n'), s_new.split('\n'))
-    return '\n'.join(list(diff))
 
-class BasicTest(unittest.TestCase):
-    '''
-    Use a new event loop per test, and so one call of bfconvert per test
-    '''
+NAMES = ['gunslinger', 'egyptskulls', 'kford-holdings1', 'timathom-140716', 'joycebcat-140613']
 
-    def setUp(self):
-        self.loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(None)
+@pytest.mark.parametrize('name', NAMES)
+def test_usecases(name):
+    #Use a new event loop per test instance, and so one call of bfconvert per test
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(None)
 
-    def test_model_consumed(self):
-        m = memory.connection()
-        with open(os.path.join(RESOURCEPATH, 'multiple-authlinks.xml')) as indoc:
-            bfconvert([indoc], entbase='http://example.org/', model=m, config=None, verbose=False, loop=self.loop)
+    config = None
+    run_one(name, config=config, loop=loop)
 
-        assert m.size() == 0, 'Model not consumed:\n'+repr(m)
+def test_model_consumed():
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(None)
+    m = memory.connection()
+    with open(os.path.join(RESOURCEPATH, 'multiple-authlinks.xml')) as indoc:
+        bfconvert([indoc], entbase='http://example.org/', model=m, config=None, verbose=False, loop=loop)
 
-    def test_simple_verify(self):
-        verify_conversion('gunslinger', loop=self.loop)
-        pass
-
-    def test_simple_verify2(self):
-        verify_conversion('egyptskulls', loop=self.loop)
-        pass
-
-    def test_simple_verify3(self):
-        verify_conversion('kford-holdings1', loop=self.loop)
-        pass
-
-    def test_simple_verify4(self):
-        verify_conversion('timathom-140716', loop=self.loop)
-        pass
-
-    def test_simple_verify5(self):
-        verify_conversion('joycebcat-140613', loop=self.loop)
-        pass
+    assert m.size() == 0, 'Model not consumed:\n'+repr(m)
 
 
 if __name__ == '__main__':
