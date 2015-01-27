@@ -71,7 +71,7 @@ def marc_lookup(model, codes):
             yield code, link[TARGET]
 
 
-def isbn_instancegen(params):
+def isbn_instancegen(params, loop, model):
     '''
     Default handling of the idea of splitting a MARC record with FRBR Work info as well as instances signalled by ISBNs
 
@@ -101,7 +101,7 @@ def isbn_instancegen(params):
     if normalized_isbns:
         for subix, (inum, itype) in enumerate(normalized_isbns):
             #XXX Do we use vocabbase? Probably since if they are substituting a new vocab base, we assume they're substituting semantics entirely
-            instanceid = materialize_entity('Instance', vocabbase=BL, existing_ids=existing_ids, ids=ids, plugins=plugins, instantiates=workid, isbn=inum)
+            instanceid = materialize_entity('Instance', vocabbase=BL, existing_ids=existing_ids, ids=ids, plugins=plugins, instantiates=workid, isbn=inum, loop=loop, model=output_model)
             #ids.send(['', ])
             if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
 
@@ -112,7 +112,7 @@ def isbn_instancegen(params):
             existing_ids.add(instanceid)
             instance_ids.append(instanceid)
     else:
-        instanceid = materialize_entity('Instance', vocabbase=BL, existing_ids=existing_ids, ids=ids, plugins=plugins, instantiates=workid)
+        instanceid = materialize_entity('Instance', vocabbase=BL, existing_ids=existing_ids, ids=ids, plugins=plugins, instantiates=workid, loop=loop, model=output_model)
         if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
         existing_ids.add(instanceid)
         instance_ids.append(instanceid)
@@ -147,7 +147,7 @@ def record_hash_key(model):
     return '|'.join(sorted(list( val for code, val in marc_lookup(model, RECORD_HASH_KEY_FIELDS))))
 
 
-def materialize_entity(etype, vocabbase=BL, existing_ids=None, ids=None, plugins=None, unique=None, logger=logging, **data):
+def materialize_entity(etype, vocabbase=BL, existing_ids=None, ids=None, plugins=None, unique=None, logger=logging, loop=None, model=None, **data):
     '''
     Routine for creating a BIBFRAME resource. Takes the entity (resource) type and a data mapping
     according to the resource type. Implements the Libhub Resource Hash Convention
@@ -212,7 +212,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             #FIXME: No plug-in support yet
             params = {'input_model': input_model, 'output_model': model, 'logger': logger, 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids, 'existing_ids': existing_ids, 'plugins': plugins}
             workhash = record_hash_key(input_model)
-            workid = materialize_entity('Work', vocabbase=BL, existing_ids=existing_ids, ids=ids, plugins=plugins, hash=workhash)
+            workid = materialize_entity('Work', vocabbase=BL, existing_ids=existing_ids, ids=ids, plugins=plugins, hash=workhash, loop=loop, model=model)
             is_folded = workid in existing_ids
             existing_ids.add(workid)
             dumb_title = list(marc_lookup(input_model, '245$a')) or ['NO 245$a TITLE']
@@ -233,7 +233,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
 
             #Figure out instances
             params['materialize_entity'] = materialize_entity
-            instanceids = instancegen(params)
+            instanceids = instancegen(params, loop, model)
             if instanceids:
                 instanceid = instanceids[0]
 
@@ -341,7 +341,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                         params['dropped_codes'].setdefault(tag,0)
                         params['dropped_codes'][tag] += 1
 
-                mat_ent = functools.partial(materialize_entity, vocabbase=vocabbase, existing_ids=existing_ids, ids=ids, plugins=plugins)
+                mat_ent = functools.partial(materialize_entity, vocabbase=vocabbase, existing_ids=existing_ids, ids=ids, plugins=plugins, loop=loop, model=model)
                 #Apply all the handlers that were found
                 for funcinfo, val in to_process:
                     #Support multiple actions per lookup
