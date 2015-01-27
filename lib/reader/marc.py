@@ -101,7 +101,7 @@ def isbn_instancegen(params):
     if normalized_isbns:
         for subix, (inum, itype) in enumerate(normalized_isbns):
             #XXX Do we use vocabbase? Probably since if they are substituting a new vocab base, we assume they're substituting semantics entirely
-            instanceid = materialize_entity('Instance', vocabbase=vocabbase, existing_ids=existing_ids, ids=ids, plugins=plugins, instantiates=workid, isbn=inum)
+            instanceid = materialize_entity('Instance', vocabbase=BL, existing_ids=existing_ids, ids=ids, plugins=plugins, instantiates=workid, isbn=inum)
             #ids.send(['', ])
             if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
 
@@ -112,13 +112,13 @@ def isbn_instancegen(params):
             existing_ids.add(instanceid)
             instance_ids.append(instanceid)
     else:
-        instanceid = materialize_entity('Instance', vocabbase=vocabbase, existing_ids=existing_ids, ids=ids, plugins=plugins, instantiates=workid)
+        instanceid = materialize_entity('Instance', vocabbase=BL, existing_ids=existing_ids, ids=ids, plugins=plugins, instantiates=workid)
         if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
         existing_ids.add(instanceid)
         instance_ids.append(instanceid)
 
-    output_model.add(instance_ids[0], I(iri.absolutize('instantiates', vocabbase)), I(workid))
-    output_model.add(I(instance_ids[0]), TYPE_REL, I(iri.absolutize('Instance', vocabbase)))
+    output_model.add(instance_ids[0], I(iri.absolutize('instantiates', BL)), I(workid))
+    output_model.add(I(instance_ids[0]), TYPE_REL, I(iri.absolutize('Instance', BL)))
 
     return instance_ids
 
@@ -212,7 +212,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             #FIXME: No plug-in support yet
             params = {'input_model': input_model, 'output_model': model, 'logger': logger, 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids, 'existing_ids': existing_ids, 'plugins': plugins}
             workhash = record_hash_key(input_model)
-            workid = materialize_entity('Work', vocabbase=vocabbase, existing_ids=existing_ids, ids=ids, plugins=plugins, hash=workhash)
+            workid = materialize_entity('Work', vocabbase=BL, existing_ids=existing_ids, ids=ids, plugins=plugins, hash=workhash)
             is_folded = workid in existing_ids
             existing_ids.add(workid)
             dumb_title = list(marc_lookup(input_model, '245$a')) or ['NO 245$a TITLE']
@@ -226,7 +226,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
 
             folded = [workid] if is_folded else []
 
-            model.add(workid, TYPE_REL, I(iri.absolutize('Work', vocabbase)))
+            model.add(workid, TYPE_REL, I(iri.absolutize('Work', BL)))
 
             params['workid'] = workid
             params['folded'] = folded
