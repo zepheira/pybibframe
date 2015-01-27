@@ -6,6 +6,7 @@ marc2bfrdf -v -o /tmp/ph1.ttl -s /tmp/ph1.stats.js -b http://example.org test/re
 import re
 import os
 import json
+import functools
 import logging
 import itertools
 import asyncio
@@ -340,7 +341,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                         params['dropped_codes'].setdefault(tag,0)
                         params['dropped_codes'][tag] += 1
 
-                mat_ent = fuctools.partial(materialize_entity, vocabbase=vocabbase, existing_ids=existing_ids, ids=ids, plugins=plugins)
+                mat_ent = functools.partial(materialize_entity, vocabbase=vocabbase, existing_ids=existing_ids, ids=ids, plugins=plugins)
                 #Apply all the handlers that were found
                 for funcinfo, val in to_process:
                     #Support multiple actions per lookup
