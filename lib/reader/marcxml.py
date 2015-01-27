@@ -9,6 +9,7 @@ import asyncio
 import collections
 import logging
 from collections import defaultdict
+import warnings
 
 from xml import sax
 #from xml.sax.handler import ContentHandler
@@ -43,10 +44,7 @@ class marcxmlhandler(sax.ContentHandler):
         self._sink = sink
         next(self._sink) #Start the coroutine running
         self._getcontent = False
-        #self._record_id = ''
-        #self._link_iri = None
-        #self._marc_attributes = None
-        #self._subfield = None
+        self._empty = True
         sax.ContentHandler.__init__(self, *args, **kwargs)
         return
 
@@ -56,6 +54,7 @@ class marcxmlhandler(sax.ContentHandler):
             #Ignore the 'collection' element
             #What to do with the record/@type
             if local == 'record':
+                self._empty = False
                 #XXX: Entity base IRI needed?
                 self._record_id = 'record-{0}:{1}'.format(self._locator.getLineNumber(), self._locator.getColumnNumber())
                 #Versa model with a representation of the record
@@ -109,6 +108,8 @@ class marcxmlhandler(sax.ContentHandler):
         return
 
     def endDocument(self):
+        if self._empty:
+            warnings.warn("No records found. Possibly an XML namespace problem.", RuntimeWarning)
         self._sink.close()
 
 #PYTHONASYNCIODEBUG = 1
