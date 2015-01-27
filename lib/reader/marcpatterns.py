@@ -110,19 +110,19 @@ BFLITE_TRANSFORMS = {
     '001': oninstance.rename(rel=BL+'controlCode'),
 
     #Link to the 010a value, naming the relationship 'lccn'
-    '010$a': onwork.rename(rel=RDA+'lccn'),
-    '017$a': onwork.rename(rel=RDA+'legalDeposit'),
+    '010$a': oninstance.rename(rel=RDA+'lccn'),
+    '017$a': oninstance.rename(rel=RDA+'legalDeposit'),
     #ISBN is specially processed
     #'020$a': oninstance.rename(rel='isbn'),
     '022$a': oninstance.rename(rel=RDA+'issn'),
-    '024$a': onwork.rename(rel=RDA+'otherControlNumber'),
-    '025$a': onwork.rename(rel=RDA+'lcOverseasAcq'),
+    '024$a': oninstance.rename(rel=RDA+'otherControlNumber'),
+    '025$a': oninstance.rename(rel=RDA+'lcOverseasAcq'),
 
-    '034$a': onwork.rename(rel=RDA+'cartographicMathematicalDataScaleStatement'),  #Rebecca & Sally suggested this should effectively be a merge with 034a
-    '034$b': onwork.rename(rel=RDA+'cartographicMathematicalDataProjectionStatement'),
-    '034$c': onwork.rename(rel=RDA+'cartographicMathematicalDataCoordinateStatement'),
-    '035$a': onwork.rename(rel=RDA+'systemControlNumber'),
-    '037$a': onwork.rename(rel=RDA+'stockNumber'),
+    '034$a': oninstance.rename(rel=RDA+'cartographicMathematicalDataScaleStatement'),  #Rebecca & Sally suggested this should effectively be a merge with 034a
+    '034$b': oninstance.rename(rel=RDA+'cartographicMathematicalDataProjectionStatement'),
+    '034$c': oninstance.rename(rel=RDA+'cartographicMathematicalDataCoordinateStatement'),
+    '035$a': oninstance.rename(rel=RDA+'systemControlNumber'),
+    '037$a': oninstance.rename(rel=RDA+'stockNumber'),
 
     '040$a': onwork.rename(rel=RDA+'catalogingSource'),
     '041$a': onwork.rename(rel=BL+'language'),
@@ -269,15 +269,15 @@ BFLITE_TRANSFORMS = {
     '300$3': oninstance.rename(rel=RDA+'materials'),
     '310$a': oninstance.rename(rel=RDA+'publicationFrequency'),
     '310$b': oninstance.rename(rel=RDA+'publicationDateFrequency'),
-    '336$a': onwork.rename(rel=RDA+'contentCategory'),
-    '336$b': onwork.rename(rel=RDA+'contentTypeCode'),
-    '336$2': onwork.rename(rel=RDA+'contentTypeRDAsource'),
-    '337$a': onwork.rename(rel=RDA+'mediaCategory'),
-    '337$b': onwork.rename(rel=RDA+'mediaTypeCode'),
-    '337$2': onwork.rename(rel=RDA+'medaiRDAsource'),
-    '338$a': onwork.rename(rel=RDA+'carrierCategory'),
-    '338$b': onwork.rename(rel=RDA+'carrierCategoryCode'),
-    '338$2': onwork.rename(rel=RDA+'carrierRDASource'),
+    '336$a': oninstance.rename(rel=RDA+'contentCategory'),
+    '336$b': oninstance.rename(rel=RDA+'contentTypeCode'),
+    '336$2': oninstance.rename(rel=RDA+'contentTypeRDAsource'),
+    '337$a': oninstance.rename(rel=RDA+'mediaCategory'),
+    '337$b': oninstance.rename(rel=RDA+'mediaTypeCode'),
+    '337$2': oninstance.rename(rel=RDA+'medaiRDAsource'),
+    '338$a': oninstance.rename(rel=RDA+'carrierCategory'),
+    '338$b': oninstance.rename(rel=RDA+'carrierCategoryCode'),
+    '338$2': oninstance.rename(rel=RDA+'carrierRDASource'),
     '340$a': oninstance.rename(rel=RDA+'physicalSubstance'),
     '340$b': oninstance.rename(rel=RDA+'dimensions'),
     '340$c': oninstance.rename(rel=RDA+'materialsApplied'),
@@ -398,10 +398,10 @@ BFLITE_TRANSFORMS = {
                               unique=values(subfield('a'), subfield('c'), subfield('d'), subfield('e'), subfield('f'), subfield('g'), subfield('h'), subfield('k'), subfield('l'), subfield('n'), subfield('p'), subfield('q'), subfield('s'), subfield('t'), subfield('u'), subfield('v'), subfield('x'), subfield('y'), subfield('z')),
                               links={BL+'name': subfield('a'), RDA+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), RDA+'formSubdivision': subfield('v'), RDA+'generalSubdivision': subfield('x'), RDA+'chronologicalSubdivision': subfield('y'), RDA+'geographicSubdivision': subfield('z'), BL+'authorityLink': subfield('0')}),
 
-    '630': onwork.materialize(RDA+'Title', 
+    '630': onwork.materialize(BL+'Collection', 
                               BL+'subject', 
                               unique=all_subfields,
-                              links={BL+'name': subfield('a'), BL+'language': subfield('l'), BL+'medium': subfield('h'), RDA+'nameOfPart': subfield('p'), RDA+'formSubdivision': subfield('v'), RDA+'generalSubdivision': subfield('x'), RDA+'chronologicalSubdivision': subfield('y'), RDA+'geographicSubdivision': subfield('z')}),
+                              links={BL+'title': subfield('a'), BL+'language': subfield('l'), BL+'medium': subfield('h'), RDA+'nameOfPart': subfield('p'), RDA+'formSubdivision': subfield('v'), RDA+'generalSubdivision': subfield('x'), RDA+'chronologicalSubdivision': subfield('y'), RDA+'geographicSubdivision': subfield('z')}),
 
     '650': onwork.materialize(BL+'Topic', 
                               BL+'subject', 
@@ -472,6 +472,11 @@ BFLITE_TRANSFORMS = {
                                        links={BL+'name': subfield('a'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0')})
                     ),
     
+    '730': onwork.materialize(BL+'Collection', 
+                              BL+'contributor', 
+                              unique=all_subfields,
+                              links={BL+'title': subfield('a'), BL+'language': subfield('l'), BL+'medium': subfield('h'), RDA+'nameOfPart': subfield('p'), RDA+'formSubdivision': subfield('v'), RDA+'generalSubdivision': subfield('x'), RDA+'chronologicalSubdivision': subfield('y'), RDA+'geographicSubdivision': subfield('z')}),
+
     # Series
 
     '830': onwork.materialize(RDA+'Series', 
