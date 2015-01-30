@@ -34,10 +34,9 @@ You can get the source from standard input:
 
     curl http://lccn.loc.gov/2006013175/marcxml | marc2bf -c /Users/uche/dev/zepheira/pybibframe-plus/test/resource/config1.json --mod=bibframe.zextra -o /tmp/marc2bf.versa.json
 
-<!--
-	See also Das Innere des Glaspalastes in London from one of Eric Miller's favorite examples
+See also Das Innere des Glaspalastes in London from one of Eric Miller's favorite examples:
+
     curl http://lccn.loc.gov/2012659481/marcxml | marc2bf -c /Users/uche/dev/zepheira/pybibframe-plus/test/resource/config1.json --mod=bibframe.zextra -o /tmp/marc2bf.versa.json
--->
 
 (Pulling a record from the Web, in particular Library of Congress Online Catalog / LCCN Permalink)
 
@@ -57,12 +56,15 @@ Where the contents of config1.json might be:
 
 	{
 	    "plugins": [
-	        {"id": "https://github.com/uogbuji/pybibframe#linkreport",
-	        "output-file": "linkreport.html"}
+                {"id": "http://bibfra.me/tool/pybibframe#labelizer",
+                 "lookup": {
+                     "http://bibfra.me/vocab/lite/Work": "http://bibfra.me/vocab/lite/title",
+                     "http://bibfra.me/vocab/lite/Instance": "http://bibfra.me/vocab/lite/title"
+                }
 	    ]
 	}
 
-Which in this case will generate, in addition to the regular outputs will create a file named `linkreport.html` listing any resource fields in the form of URIs.
+Which in this case will add RDFS label statements for Works and Instances to the output.
 
 
 # Converting MARC/XML to RDF or Versa output (API)
@@ -72,7 +74,7 @@ The `bibframe.reader.marcxml.bfconvert` method can be used from APIs etc to run 
 	>>> from bibframe.reader.marcxml import bfconvert
 	>>> inputs = open('records.mrx', 'r')
 	>>> out = open('resorces.versa.json', 'w')
-	>>> bfconvert(inputs=inputs, base='http://example.org', out=out)
+	>>> bfconvert(inputs=inputs, entbase='http://example.org', out=out)
 
 
 # See also
@@ -84,8 +86,8 @@ Note: very useful to have around yaz-marcdump (which e.g. you can use to conver 
 
 Download from http://ftp.indexdata.com/pub/yaz/ , unpack then do:
 
-$ ./configure --prefix=$HOME/.local
-$ make && make install
+    $ ./configure --prefix=$HOME/.local
+    $ make && make install
 
-[MarcEdit](http://marcedit.reeset.net/) can also convert to MARC/XML. Just install, select "MARC Tools" from the menu, choose your input file, specify an output file, and specify the conversion you need to perform, e.g. "MARC21->MARC21XML" for MARC to MARC/XML. Note the availability of the UTF-8 output option too.
+MarcEdit - http://marcedit.reeset.net/ - can also convert to MARC/XML. Just install, select "MARC Tools" from the menu, choose your input file, specify an output file, and specify the conversion you need to perform, e.g. "MARC21->MARC21XML" for MARC to MARC/XML. Note the availability of the UTF-8 output option too.
 

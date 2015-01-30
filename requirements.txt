@@ -3,12 +3,7 @@ pymarc
 rdflib
 mmh3
 pytest
-versa>=0.2.7
+versa>=0.2.8
 
 #From Versa pyreqs.txt
-amara3-xml==3.0.0a4
-Markdown
-nose
-nose-testconfig
-jinja2
-
+amara3-xml==3.0.0a5

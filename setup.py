@@ -28,8 +28,8 @@ Converting MARC/XML to RDF or Versa output (command line)
 ---------------------------------------------------------
 
 Note: Versa is a model for Web resources and relationships. Think of it
-as an evolution of Resource Description Framework (RDF) that’s at once
-simpler and more expressive. It’s the default internal representation
+as an evolution of Resource Description Framework (RDF) that's at once
+simpler and more expressive. It's the default internal representation
 for PyBibframe, though regular RDF is an optional output.
 
 ::
@@ -65,12 +65,12 @@ You can get the source from standard input:
 
     curl http://lccn.loc.gov/2006013175/marcxml | marc2bf -c /Users/uche/dev/zepheira/pybibframe-plus/test/resource/config1.json --mod=bibframe.zextra -o /tmp/marc2bf.versa.json
 
-.. raw:: html
+See also Das Innere des Glaspalastes in London from one of Eric Miller's
+favorite examples:
 
-   <!--
-       See also Das Innere des Glaspalastes in London from one of Eric Miller's favorite examples
-       curl http://lccn.loc.gov/2012659481/marcxml | marc2bf -c /Users/uche/dev/zepheira/pybibframe-plus/test/resource/config1.json --mod=bibframe.zextra -o /tmp/marc2bf.versa.json
-   -->
+::
+
+    curl http://lccn.loc.gov/2012659481/marcxml | marc2bf -c /Users/uche/dev/zepheira/pybibframe-plus/test/resource/config1.json --mod=bibframe.zextra -o /tmp/marc2bf.versa.json
 
 (Pulling a record from the Web, in particular Library of Congress Online
 Catalog / LCCN Permalink)
@@ -104,14 +104,16 @@ Where the contents of config1.json might be:
 
     {
         "plugins": [
-            {"id": "https://github.com/uogbuji/pybibframe#linkreport",
-            "output-file": "linkreport.html"}
+                {"id": "http://bibfra.me/tool/pybibframe#labelizer",
+                 "lookup": {
+                     "http://bibfra.me/vocab/lite/Work": "http://bibfra.me/vocab/lite/title",
+                     "http://bibfra.me/vocab/lite/Instance": "http://bibfra.me/vocab/lite/title"
+                }
         ]
     }
 
-Which in this case will generate, in addition to the regular outputs
-will create a file named ``linkreport.html`` listing any resource fields
-in the form of URIs.
+Which in this case will add RDFS label statements for Works and
+Instances to the output.
 
 Converting MARC/XML to RDF or Versa output (API)
 ================================================
@@ -124,7 +126,7 @@ etc to run the conversion.
     >>> from bibframe.reader.marcxml import bfconvert
     >>> inputs = open('records.mrx', 'r')
     >>> out = open('resorces.versa.json', 'w')
-    >>> bfconvert(inputs=inputs, base='http://example.org', out=out)
+    >>> bfconvert(inputs=inputs, entbase='http://example.org', out=out)
 
 See also
 ========
@@ -137,15 +139,16 @@ conver other MARC formats to MARC/XML)
 
 Download from http://ftp.indexdata.com/pub/yaz/ , unpack then do:
 
-$ ./configure –prefix=$HOME/.local $ make && make install
+::
 
-`MarcEdit`_ can also convert to MARC/XML. Just install, select “MARC
-Tools” from the menu, choose your input file, specify an output file,
-and specify the conversion you need to perform, e.g. “MARC21->MARC21XML”
-for MARC to MARC/XML. Note the availability of the UTF-8 output option
-too.
+    $ ./configure --prefix=$HOME/.local
+    $ make && make install
 
-.. _MarcEdit: http://marcedit.reeset.net/
+MarcEdit - http://marcedit.reeset.net/ - can also convert to MARC/XML.
+Just install, select "MARC Tools" from the menu, choose your input file,
+specify an output file, and specify the conversion you need to perform,
+e.g. "MARC21->MARC21XML" for MARC to MARC/XML. Note the availability of
+the UTF-8 output option too.
 '''
 
 setup(
@@ -164,7 +167,7 @@ setup(
     classifiers = [ # From http://pypi.python.org/pypi?%3Aaction=list_classifiers
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 4 - Beta",
         #"Environment :: Other Environment",
         "Intended Audience :: Information Technology",
         "License :: OSI Approved :: Apache Software License",
