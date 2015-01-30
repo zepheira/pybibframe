@@ -9,6 +9,7 @@ import asyncio
 import collections
 import logging
 from collections import defaultdict
+import unicodedata
 import warnings
 
 from xml import sax
@@ -81,7 +82,9 @@ class marcxmlhandler(sax.ContentHandler):
 
     def characters(self, data):
         if self._getcontent:
-            self._chardata_dest += data
+            #NFKC normalization precombines composed characters and substitutes compatibility codepoints
+            #We want to make sure we're dealing with comparable & consistently hashable strings throughout the toolchain
+            self._chardata_dest += unicodedata.normalize('NFKC', data)
 
     def endElementNS(self, name, qname):
         (ns, local) = name

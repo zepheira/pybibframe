@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 '''
 Test some small, simple MARC snippets.
 
@@ -13,7 +14,6 @@ You must have matched series each with all 3 components matched up, otherwise th
 
 Example of how to add another test case, assumign correct pybibframe state:
 
-#import logging
 import asyncio
 from io import StringIO
 
@@ -396,6 +396,144 @@ EXPECTED_4 = '''[
     ]
 ]
 '''
+
+SNIPPET_5 = '''<record xmlns="http://www.loc.gov/MARC21/slim">
+<leader>02915cam a2200601 a 4500</leader>
+<controlfield tag="008">020613s1860 ja a 000 0 jpn</controlfield>
+<datafield tag="245" ind1="1" ind2="0">
+  <subfield code="6">880-02</subfield>
+  <subfield code="a">Ishinpō /</subfield>
+  <subfield code="c">Tanba no Sukune Yasuyori sen.</subfield>
+</datafield>
+<datafield tag="880" ind1="1" ind2="0">
+  <subfield code="6">245-02/$1</subfield>
+  <subfield code="a">醫心方 /</subfield>
+  <subfield code="c">丹波宿袮康頼撰.</subfield>
+</datafield>
+</record>
+'''
+
+CONFIG_5 = None
+
+EXPECTED_5 = '''[
+    [
+        "nFBFsha6",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/LanguageMaterial",
+        {}
+    ],
+    [
+        "nFBFsha6",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {}
+    ],
+    [
+        "nFBFsha6",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/programmed-texts",
+        {}
+    ],
+    [
+        "nFBFsha6",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/surveys-of-literature",
+        {}
+    ],
+    [
+        "nFBFsha6",
+        "http://bibfra.me/vocab/lite/title",
+        "Ishinp\u014d /",
+        {}
+    ],
+    [
+        "nFBFsha6",
+        "http://bibfra.me/vocab/lite/title",
+        "\u91ab\u5fc3\u65b9 /",
+        {}
+    ],
+    [
+        "nFBFsha6",
+        "http://bibfra.me/vocab/marc/tag-008",
+        "020613s1860 ja a 000 0 jpn",
+        {}
+    ],
+    [
+        "nFBFsha6",
+        "http://bibfra.me/vocab/marc/tag-880-10-6",
+        "245-02/$1",
+        {}
+    ],
+    [
+        "nFBFsha6",
+        "http://bibfra.me/vocab/marc/tag-880-10-a",
+        "\u91ab\u5fc3\u65b9 /",
+        {}
+    ],
+    [
+        "nFBFsha6",
+        "http://bibfra.me/vocab/marc/tag-880-10-c",
+        "\u4e39\u6ce2\u5bbf\u88ae\u5eb7\u983c\u64b0.",
+        {}
+    ],
+    [
+        "nFBFsha6",
+        "http://bibfra.me/vocab/rda/titleStatement",
+        "Tanba no Sukune Yasuyori sen.",
+        {}
+    ],
+    [
+        "nFBFsha6",
+        "http://bibfra.me/vocab/rda/titleStatement",
+        "\u4e39\u6ce2\u5bbf\u88ae\u5eb7\u983c\u64b0.",
+        {}
+    ],
+    [
+        "zRg2BG3T",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {}
+    ],
+    [
+        "zRg2BG3T",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "nFBFsha6",
+        {}
+    ],
+    [
+        "zRg2BG3T",
+        "http://bibfra.me/vocab/lite/title",
+        "Ishinp\u014d /",
+        {}
+    ],
+    [
+        "zRg2BG3T",
+        "http://bibfra.me/vocab/lite/title",
+        "\u91ab\u5fc3\u65b9 /",
+        {}
+    ],
+    [
+        "zRg2BG3T",
+        "http://bibfra.me/vocab/rda/titleStatement",
+        "Tanba no Sukune Yasuyori sen.",
+        {}
+    ],
+    [
+        "zRg2BG3T",
+        "http://bibfra.me/vocab/rda/titleStatement",
+        "\u4e39\u6ce2\u5bbf\u88ae\u5eb7\u983c\u64b0.",
+        {}
+    ]
+]
+'''
+
+#Test the uncombined version of the character after testing the combined one
+#Another useful test would be using e.g. '\u2166', which is NFKC normalized to 3 separate characters VII
+SNIPPET_6 = SNIPPET_5.replace('ō', 'ō')
+
+CONFIG_6 = None
+
+EXPECTED_6 = EXPECTED_5
 
 all_snippets = sorted([ sym for sym in globals() if sym.startswith('SNIPPET') ])
 all_config = sorted([ sym for sym in globals() if sym.startswith('CONFIG') ])
