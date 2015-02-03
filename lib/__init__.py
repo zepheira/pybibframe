@@ -3,7 +3,7 @@
 from versa import I
 
 # use BFZ namespace to scope MARC tags that don't match transformation recipes 
-BFZ = I('http://bibfra.me/vocab/marc/')
+BFZ = I('http://bibfra.me/vocab/marcext/')
 BFLC = I('http://bibframe.org/vocab/')
 
 #A way to register services to specialize bibframe.py processing
@@ -18,7 +18,7 @@ BF_FINAL_TASK = 'http://bibfra.me/tool/pybibframe#task.final'
 BL = 'http://bibfra.me/vocab/lite/'
 BA = 'http://bibfra.me/vocab/annotation/'
 REL = 'http://bibfra.me/vocab/relation/'
-RDA = 'http://bibfra.me/vocab/rda/'
+RDA = 'http://bibfra.me/vocab/marc/'
 RBMS = 'http://bibfra.me/vocab/rbms/'
 AV = 'http://bibfra.me/vocab/audiovisual/'
 
