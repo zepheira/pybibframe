@@ -477,6 +477,11 @@ BFLITE_TRANSFORMS = {
                               unique=all_subfields,
                               links={BL+'title': subfield('a'), BL+'language': subfield('l'), BL+'medium': subfield('h'), RDA+'nameOfPart': subfield('p'), RDA+'formSubdivision': subfield('v'), RDA+'generalSubdivision': subfield('x'), RDA+'chronologicalSubdivision': subfield('y'), RDA+'geographicSubdivision': subfield('z')}),
 
+    '740': onwork.materialize(BL+'Work', 
+                              BL+'related', 
+                              unique=values(subfield('a'), subfield('h'), subfield('n'), subfield('p')),
+                              links={BL+'title': subfield('a'), RDA+'medium': subfield('h'), RDA+'titleNumber': subfield('n'), RDA+'titleName': subfield('p')}),
+
     # Series
 
     '830': onwork.materialize(RDA+'Series', 
