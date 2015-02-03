@@ -116,7 +116,13 @@ BFLITE_TRANSFORMS = {
     #'020$a': oninstance.rename(rel='isbn'),
     '022$a': oninstance.rename(rel=RDA+'issn'),
     '024$a': oninstance.rename(rel=RDA+'otherControlNumber'),
+    '024$a-#1': oninstance.rename(rel=RDA+'upc'),
     '025$a': oninstance.rename(rel=RDA+'lcOverseasAcq'),
+
+    '028$a': oninstance.rename(rel=RDA+'publisherNumber'),
+    '028$a-#0': oninstance.rename(rel=RDA+'issueNumber'),
+    '028$a-#2': oninstance.rename(rel=RDA+'plateNumber'),
+    '028$a-#4': oninstance.rename(rel=RDA+'videoRecordingNumber'),    
 
     '034$a': oninstance.rename(rel=RDA+'cartographicMathematicalDataScaleStatement'),  #Rebecca & Sally suggested this should effectively be a merge with 034a
     '034$b': oninstance.rename(rel=RDA+'cartographicMathematicalDataProjectionStatement'),
@@ -143,17 +149,17 @@ BFLITE_TRANSFORMS = {
     '100': onwork.materialize(BL+'Person', 
                               values(BL+'creator', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')),
-                              links={BL+'name': subfield('a'), RDA+'numeration': subfield('b'), RDA+'titles': subfield('c'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0')}),
+                              links={BL+'name': subfield('a'), RDA+'numeration': subfield('b'), RDA+'titles': subfield('c'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0'), RDA+'additionalName': subfield('q')}),
 
     '110': onwork.materialize(BL+'Organization', 
                               values(BL+'creator', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')),
-                              links={BL+'name': subfield('a'), RDA+'subordinateUnit': subfield('b'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0')}),
+                              links={BL+'name': subfield('a'), RDA+'subordinateUnit': subfield('b'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0'), RDA+'additionalName': subfield('q')}),
 
     '111': onwork.materialize(BL+'Meeting', 
                               values(BL+'creator', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')),
-                              links={BL+'name': subfield('a'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0')}),
+                              links={BL+'name': subfield('a'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0'), RDA+'additionalName': subfield('q')}),
 
     '210$a': oninstance.rename(rel=RDA+'abbreviatedTitle'),
     '222$a': oninstance.rename(rel=RDA+'keyTitle'),
@@ -288,6 +294,10 @@ BFLITE_TRANSFORMS = {
     '351$c': oninstance.rename(rel=RDA+'hierarchy'),
     '351$3': oninstance.rename(rel=RDA+'materialsSpec'),
 
+    '362$a': oninstance.rename(rel=RDA+'publicationDesignation'),
+
+
+
 # let's make some music! 
 #
 #    '382$a': onwork.materialize('Medium', 
@@ -325,7 +335,9 @@ BFLITE_TRANSFORMS = {
     '502$g': onwork.rename(rel=RDA+'dissertationNote'),
     '502$o': onwork.rename(rel=RDA+'dissertationID'),
     '504$a': onwork.rename(rel=RDA+'bibliographyNote'),
+
     '505$a': oninstance.rename(rel=RDA+'contentsNote'),
+
     '506$a': oninstance.rename(rel=RDA+'governingAccessNote'),
     '506$b': oninstance.rename(rel=RDA+'jurisdictionNote'),
     '506$c': oninstance.rename(rel=RDA+'physicalAccess'),
@@ -380,6 +392,8 @@ BFLITE_TRANSFORMS = {
     '561$a': oninstance.rename(rel=RDA+'ownership'),
     '580$a': onwork.rename(rel=BL+'note'),
     '583$a': onwork.rename(rel=RDA+'action'),
+    '586$a': onwork.rename(rel=RDA+'AwardsNote'),
+
 
     # subjects
     # generate hash values only from all properties specific to Subjects
