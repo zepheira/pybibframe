@@ -321,25 +321,40 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
 
                 #This is where we check each incoming MARC link to see if it matches a transform into an output link (e.g. renaming 020 to 'isbn')
                 to_process = []
-                if indicator_list != ('#', '#'):
-                    #One or other indicator is set, so let's check the transforms against those
-                    lookup = '{0}-{1}{2}'.format(*((tag,) + indicator_list))
+                #Start with most specific matches, then to most general
+                
+                #First with subfields, with and without indicators:
                 for k, v in subfields.items():
-                    lookup = '{0}${1}'.format(tag, k)
+                    #if indicator_list == ('#', '#'):
+                    lookups = [
+                        '{0}-{1}{2}${3}'.format(tag, indicator_list[0], indicator_list[1], k),
+                        '{0}${1}'.format(tag, k),
+                    ]
                     for valitems in v:
-                        if lookup in transforms:
-                            to_process.append((transforms[lookup], valitems))
-                        else:
-                            if not tag in transforms: # don't report on subfields for which a code-transform exists
-                                params['dropped_codes'].setdefault(lookup,0)
-                                params['dropped_codes'][lookup] += 1
+                        for lookup in lookups:
+                            if lookup in transforms:
+                                to_process.append((transforms[lookup], valitems))
+                            else:
+                                if not tag in transforms: # don't report on subfields for which a code-transform exists
+                                    params['dropped_codes'].setdefault(lookup,0)
+                                    params['dropped_codes'][lookup] += 1
 
-                if tag in transforms:
-                    to_process.append((transforms[tag], val))
-                else:
-                    if not subfields: # don't count as dropped if subfields were processed
-                        params['dropped_codes'].setdefault(tag,0)
-                        params['dropped_codes'][tag] += 1
+                #Now just the tag, with and wothout indicators
+                lookups = [
+                    '{0}-{1}{2}'.format(tag, indicator_list[0], indicator_list[1]),
+                    tag, 
+                ]
+
+                #Remember how many lookups were successful based on subfields
+                subfields_results_len = len(to_process)
+                for lookup in lookups:
+                    if lookup in transforms:
+                        to_process.append((transforms[tag], val))
+
+                if subfields_results_len == len(to_process) and not subfields:
+                    # Count as dropped if subfields were not processed and theer were no matches on non-subfield lookups
+                    params['dropped_codes'].setdefault(tag,0)
+                    params['dropped_codes'][tag] += 1
 
                 mat_ent = functools.partial(materialize_entity, vocabbase=vocabbase, existing_ids=existing_ids, ids=ids, plugins=plugins, loop=loop, model=model)
                 #Apply all the handlers that were found
