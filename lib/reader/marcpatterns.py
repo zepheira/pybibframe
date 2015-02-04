@@ -500,7 +500,7 @@ BFLITE_TRANSFORMS = {
     # Translation(s)
     
     '765':  onwork.materialize(BL+'Work', 
-                               REL+'translationOf', 
+                               REL+'isTranslationOf', 
                                unique=all_subfields, 
                                links={BL+'title': subfield('t'), RDA+'issn': subfield('x'), BL+'authorityLink': subfield('w'), RDA+'edition': subfield('b'), BL+'note': subfield('n'), RDA+'edition': subfield('b'), RDA+'isbn': subfield('z')}),
 
