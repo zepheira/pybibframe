@@ -349,7 +349,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                 subfields_results_len = len(to_process)
                 for lookup in lookups:
                     if lookup in transforms:
-                        to_process.append((transforms[tag], val))
+                        to_process.append((transforms[lookup], val))
 
                 if subfields_results_len == len(to_process) and not subfields:
                     # Count as dropped if subfields were not processed and theer were no matches on non-subfield lookups
