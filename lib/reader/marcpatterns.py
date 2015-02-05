@@ -505,95 +505,95 @@ BFLITE_TRANSFORMS = {
                                links={BL+'title': subfield('t'), RDA+'issn': subfield('x'), BL+'authorityLink': subfield('w'), RDA+'edition': subfield('b'), BL+'note': subfield('n'), RDA+'edition': subfield('b'), RDA+'isbn': subfield('z')}),
 
     '767':  onwork.materialize(BL+'Work', 
-                               REL+'translationOf', 
+                               REL+'hasTranslation', 
                                unique=all_subfields, 
                                links={BL+'title': subfield('t'), RDA+'issn': subfield('x'), BL+'authorityLink': subfield('w'), RDA+'edition': subfield('b'), BL+'note': subfield('n'), RDA+'edition': subfield('b'), RDA+'isbn': subfield('z')}),
 
     # Preceding Entry
 
-    '780-#0': onwork.materialize(BL+'Work', 
+    '780-?0': onwork.materialize(BL+'Work', 
                                  REL+'continues', 
                                  unique=all_subfields, 
                                  links={BL+'title': subfield('t'), RDA+'issn': subfield('x'), BL+'authorityLink': subfield('w'), RDA+'edition': subfield('b'), BL+'note': subfield('n'), RDA+'edition': subfield('b'), RDA+'isbn': subfield('z')}),
 
-    '780-#1': onwork.materialize(BL+'Work', 
+    '780-?1': onwork.materialize(BL+'Work', 
                                  REL+'continuesInPart', 
                                  unique=all_subfields, 
                                  links={BL+'title': subfield('t'), RDA+'issn': subfield('x'), BL+'authorityLink': subfield('w'), RDA+'edition': subfield('b'), BL+'note': subfield('n'), RDA+'edition': subfield('b'), RDA+'isbn': subfield('z')}),
 
-    '780-#2': onwork.materialize(BL+'Work', 
+    '780-?2': onwork.materialize(BL+'Work', 
                                  REL+'supersedes', 
                                  unique=all_subfields, 
                                  links={BL+'title': subfield('t'), RDA+'issn': subfield('x'), BL+'authorityLink': subfield('w'), RDA+'edition': subfield('b'), BL+'note': subfield('n'), RDA+'edition': subfield('b'), RDA+'isbn': subfield('z')}),
 
-    '780-#3': onwork.materialize(BL+'Work', 
+    '780-?3': onwork.materialize(BL+'Work', 
                                  REL+'supersedesInPart', 
                                  unique=all_subfields, 
                                  links={BL+'title': subfield('t'), RDA+'issn': subfield('x'), BL+'authorityLink': subfield('w'), RDA+'edition': subfield('b'), BL+'note': subfield('n'), RDA+'edition': subfield('b'), RDA+'isbn': subfield('z')}),
 
-    '780-#4': onwork.materialize(BL+'Work', 
+    '780-?4': onwork.materialize(BL+'Work', 
                                  REL+'unionOf', 
                                  unique=all_subfields, 
                                  links={BL+'title': subfield('t'), RDA+'issn': subfield('x'), BL+'authorityLink': subfield('w'), RDA+'edition': subfield('b'), BL+'note': subfield('n'), RDA+'edition': subfield('b'), RDA+'isbn': subfield('z')}),
 
-    '780-#5': onwork.materialize(BL+'Work', 
+    '780-?5': onwork.materialize(BL+'Work', 
                                  REL+'absorbed', 
                                  unique=all_subfields, 
                                  links={BL+'title': subfield('t'), RDA+'issn': subfield('x'), BL+'authorityLink': subfield('w'), RDA+'edition': subfield('b'), BL+'note': subfield('n'), RDA+'edition': subfield('b'), RDA+'isbn': subfield('z')}),
 
-    '780-#6': onwork.materialize(BL+'Work', 
+    '780-?6': onwork.materialize(BL+'Work', 
                                  REL+'absorbedInPart', 
                                  unique=all_subfields, 
                                  links={BL+'title': subfield('t'), RDA+'issn': subfield('x'), BL+'authorityLink': subfield('w'), RDA+'edition': subfield('b'), BL+'note': subfield('n'), RDA+'edition': subfield('b'), RDA+'isbn': subfield('z')}),
 
-    '780-#7': onwork.materialize(BL+'Work', 
+    '780-?7': onwork.materialize(BL+'Work', 
                                  REL+'separatedFrom', 
                                  unique=all_subfields, 
                                  links={BL+'title': subfield('t'), RDA+'issn': subfield('x'), BL+'authorityLink': subfield('w'), RDA+'edition': subfield('b'), BL+'note': subfield('n'), RDA+'edition': subfield('b'), RDA+'isbn': subfield('z')}),
 
     # Succeeding Entry
 
-    '785-#0': onwork.materialize(BL+'Work', 
+    '785-?0': onwork.materialize(BL+'Work', 
                                  REL+'continuedBy', 
                                  unique=all_subfields, 
                                  links={BL+'title': subfield('t'), RDA+'issn': subfield('x'), BL+'authorityLink': subfield('w'), RDA+'edition': subfield('b'), BL+'note': subfield('n'), RDA+'edition': subfield('b'), RDA+'isbn': subfield('z')}),
 
-    '785-#1': onwork.materialize(BL+'Work', 
+    '785-?1': onwork.materialize(BL+'Work', 
                                  REL+'continuedInPartBy', 
                                  unique=all_subfields, 
                                  links={BL+'title': subfield('t'), RDA+'issn': subfield('x'), BL+'authorityLink': subfield('w'), RDA+'edition': subfield('b'), BL+'note': subfield('n'), RDA+'edition': subfield('b'), RDA+'isbn': subfield('z')}),
 
-    '785-#2': onwork.materialize(BL+'Work', 
+    '785-?2': onwork.materialize(BL+'Work', 
                                  REL+'supersededBy', 
                                  unique=all_subfields, 
                                  links={BL+'title': subfield('t'), RDA+'issn': subfield('x'), BL+'authorityLink': subfield('w'), RDA+'edition': subfield('b'), BL+'note': subfield('n'), RDA+'edition': subfield('b'), RDA+'isbn': subfield('z')}),
 
-    '785-#3': onwork.materialize(BL+'Work', 
+    '785-?3': onwork.materialize(BL+'Work', 
                                  REL+'supersededInPartBy', 
                                  unique=all_subfields, 
                                  links={BL+'title': subfield('t'), RDA+'issn': subfield('x'), BL+'authorityLink': subfield('w'), RDA+'edition': subfield('b'), BL+'note': subfield('n'), RDA+'edition': subfield('b'), RDA+'isbn': subfield('z')}),
 
-    '785-#4': onwork.materialize(BL+'Work', 
+    '785-?4': onwork.materialize(BL+'Work', 
                                  REL+'absorbedBy', 
                                  unique=all_subfields, 
                                  links={BL+'title': subfield('t'), RDA+'issn': subfield('x'), BL+'authorityLink': subfield('w'), RDA+'edition': subfield('b'), BL+'note': subfield('n'), RDA+'edition': subfield('b'), RDA+'isbn': subfield('z')}),
 
-    '785-#5': onwork.materialize(BL+'Work', 
+    '785-?5': onwork.materialize(BL+'Work', 
                                  REL+'absorbedInPartBy', 
                                  unique=all_subfields, 
                                  links={BL+'title': subfield('t'), RDA+'issn': subfield('x'), BL+'authorityLink': subfield('w'), RDA+'edition': subfield('b'), BL+'note': subfield('n'), RDA+'edition': subfield('b'), RDA+'isbn': subfield('z')}),
 
-    '785-#6': onwork.materialize(BL+'Work', 
+    '785-?6': onwork.materialize(BL+'Work', 
                                  REL+'splitInto', 
                                  unique=all_subfields, 
                                  links={BL+'title': subfield('t'), RDA+'issn': subfield('x'), BL+'authorityLink': subfield('w'), RDA+'edition': subfield('b'), BL+'note': subfield('n'), RDA+'edition': subfield('b'), RDA+'isbn': subfield('z')}),
 
-    '785-#7': onwork.materialize(BL+'Work', 
+    '785-?7': onwork.materialize(BL+'Work', 
                                  REL+'mergedWith', 
                                  unique=all_subfields, 
                                  links={BL+'title': subfield('t'), RDA+'issn': subfield('x'), BL+'authorityLink': subfield('w'), RDA+'edition': subfield('b'), BL+'note': subfield('n'), RDA+'edition': subfield('b'), RDA+'isbn': subfield('z')}),
 
-    '785-#8': onwork.materialize(BL+'Work', 
+    '785-?8': onwork.materialize(BL+'Work', 
                                  REL+'changedBackTo', 
                                  unique=all_subfields, 
                                  links={BL+'title': subfield('t'), RDA+'issn': subfield('x'), BL+'authorityLink': subfield('w'), RDA+'edition': subfield('b'), BL+'note': subfield('n'), RDA+'edition': subfield('b'), RDA+'isbn': subfield('z')}),
