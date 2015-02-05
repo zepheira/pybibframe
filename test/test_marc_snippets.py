@@ -636,6 +636,140 @@ EXPECTED_7 = '''[
 ]
 '''
 
+SNIPPET_8 = '''<collection xmlns="http://www.loc.gov/MARC21/slim">
+<record>
+  <leader>02415cas a2200637 a 4500</leader>
+  <controlfield tag="008">010806c20019999ru br p       0   a0eng d</controlfield>
+  <datafield tag="780" ind1="1" ind2="4">
+    <subfield code="t">Doklady biochemistry</subfield>
+    <subfield code="x">0012-4958</subfield>
+    <subfield code="w">(DLC)   96646621</subfield>
+    <subfield code="w">(OCoLC)1478787</subfield>
+    <subfield code="w">(DNLM)7505458</subfield>
+  </datafield>
+  </record>
+</collection>'''
+
+CONFIG_8 = None
+
+EXPECTED_8 = '''[
+    [
+        "IoGxK0TV",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {}
+    ],
+    [
+        "IoGxK0TV",
+        "http://bibfra.me/vocab/lite/authorityLink",
+        "http://lccn.loc.gov/96646621",
+        {}
+    ],
+    [
+        "IoGxK0TV",
+        "http://bibfra.me/vocab/lite/authorityLink",
+        "http://www.ncbi.nlm.nih.gov/nlmcatalog?term=7505458",
+        {}
+    ],
+    [
+        "IoGxK0TV",
+        "http://bibfra.me/vocab/lite/authorityLink",
+        "http://www.worldcat.org/oclc/1478787",
+        {}
+    ],
+    [
+        "IoGxK0TV",
+        "http://bibfra.me/vocab/lite/title",
+        "Doklady biochemistry",
+        {}
+    ],
+    [
+        "IoGxK0TV",
+        "http://bibfra.me/vocab/marc/issn",
+        "0012-4958",
+        {}
+    ],
+    [
+        "IoGxK0TV",
+        "http://bibfra.me/vocab/marcext/sf-t",
+        "Doklady biochemistry",
+        {}
+    ],
+    [
+        "IoGxK0TV",
+        "http://bibfra.me/vocab/marcext/sf-w",
+        "(DLC)   96646621",
+        {}
+    ],
+    [
+        "IoGxK0TV",
+        "http://bibfra.me/vocab/marcext/sf-w",
+        "(DNLM)7505458",
+        {}
+    ],
+    [
+        "IoGxK0TV",
+        "http://bibfra.me/vocab/marcext/sf-w",
+        "(OCoLC)1478787",
+        {}
+    ],
+    [
+        "IoGxK0TV",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "0012-4958",
+        {}
+    ],
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {}
+    ],
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "kP2G4QhW",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Collection",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/LanguageMaterial",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/lite/language",
+        "eng",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marcext/tag-008",
+        "010806c20019999ru br p       0   a0eng d",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/relation/unionOf",
+        "IoGxK0TV",
+        {}
+    ]
+]
+'''
+
 
 all_snippets = sorted([ sym for sym in globals() if sym.startswith('SNIPPET') ])
 all_config = sorted([ sym for sym in globals() if sym.startswith('CONFIG') ])

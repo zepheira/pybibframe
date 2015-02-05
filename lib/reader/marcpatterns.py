@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 '''
 Declarations defining patterns to be asserted upon MARC files to generate linked data
 in the form of a Versa output model
@@ -15,17 +16,25 @@ The left hand side defines the data to be matched from the MARC input in MARC te
 (tags, values, indicators and subfields). In this case match any 001 tag field.
 
 The right hand side expresses the output in terms of BIBFRAME. For each processed
-MARC record pybibframe assumes and materializes (creates) one Work resource output,
-and one or more Instance resource output. In this case create an output link from
+MARC record pybibframe assumes and materializes (creates)¹ one Work resource output,
+and one or more Instance resource output. In this case create an output "link"² from
 the materialized instance, using a relationship property IRI of
-`http://bibfra.me/vocab/lite/controlCode`. BL is the IRI stem to which the term
-`controlCode` is concatenated. The link terget is the value of the 001 tag field.
+`http://bibfra.me/vocab/lite/controlCode`. `BL` is the IRI stem to which the term
+`controlCode` is concatenated. The link target (a string data item in this case)
+is the value of the 001 tag field.
 
-    '010$a': onwork.rename(rel=RDA+'lccn'),
+¹The idea of materialization is that it is the process of converting "strings"
+from MARC into "things" as Linked Data resources.
+²The Versa concept of a link is analogous to the RDF concept of a statement.
+The target of a Versa link can be a data item as well as a resource
 
-In this case what's matched is any MARC 010 tag field which has an `a` subfield.
+In the following case
+
+    '010$a': onwork.rename(rel=MARC+'lccn'),
+
+what's matched is any MARC 010 tag field which has an `a` subfield.
 The generated link originates with the materialized work resource rather than
-than the instance. The link relationship IRI is `http://bibfra.me/vocab/rda/lccn`.
+than the instance. The link relationship IRI is `http://bibfra.me/vocab/marc/lccn`.
 The link target value comes form the value of the `a` subfield.
 
     '100': onwork.materialize(
@@ -33,8 +42,8 @@ The link target value comes form the value of the `a` subfield.
                 unique=values(subfield('a'), subfield('b'), subfield('c')),
                 links={
                     BL+'name': subfield('a'),
-                    RDA+'numeration': subfield('b'),
-                    RDA+'titles': subfield('c'),
+                    MARC+'numeration': subfield('b'),
+                    MARC+'titles': subfield('c'),
                     BL+'date': subfield('d'),
                     BL+'authorityLink': subfield('0')
                 }),
@@ -55,8 +64,8 @@ value from the MARC subfield `a` value.
                 unique=values(subfield('a'), subfield('b'), subfield('c')),
                 links={
                     BL+'name': subfield('a'),
-                    RDA+'numeration': subfield('b'),
-                    RDA+'titles': subfield('c'),
+                    MARC+'numeration': subfield('b'),
+                    MARC+'titles': subfield('c'),
                     BL+'date': subfield('d'),
                     BL+'authorityLink': subfield('0')
                 }),
@@ -96,7 +105,7 @@ it is under the influence of the foreach function).
 from bibframe import BL, BA, REL, RDA, RBMS, AV
 from bibframe.reader.util import *
 
-#This line only needed if you are using patterns with the replace_from function
+#This line only needed if you are using advanced patterns e.g. with the replace_from function
 import re
 
 #from bibframe.reader.marcpatterns import *
