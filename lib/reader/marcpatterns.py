@@ -96,15 +96,22 @@ it is under the influence of the foreach function).
 from bibframe import BL, BA, REL, RDA, RBMS, AV
 from bibframe.reader.util import *
 
+#This line only needed if you are using patterns with the replace_from function
+import re
+
 #from bibframe.reader.marcpatterns import *
 #sorted([ (m, MATERIALIZE[m]) for m in MATERIALIZE if [ wf for wf in WORK_FIELDS if m[:2] == wf[:2]] ])
 
 #    '100': onwork.materialize('Agent', 'creator', unique=all_subfields, links={'a': 'label'}),
 
 # where do we put LDR info, e.g. LDR 07 / 19 positions = mode of issuance
-#Don't do a simple field renaming of ISBN because
 
-# Partitioning namespaces
+AUTHORITY_CODES = [
+    (re.compile(r'\(DLC\)\s*(\S+)'), r'http://lccn.loc.gov/\1'),
+    (re.compile(r'\(OCoLC\)\s*(\S+)'), r'http://www.worldcat.org/oclc/\1'),
+    (re.compile(r'\(DNLM\)\s*(\S+)'), r'http://www.ncbi.nlm.nih.gov/nlmcatalog?term=\1'),
+]
+
 
 BFLITE_TRANSFORMS = {
     '001': oninstance.rename(rel=BL+'controlCode'),
@@ -534,7 +541,7 @@ BFLITE_TRANSFORMS = {
     '780-?4': onwork.materialize(BL+'Work', 
                                  REL+'unionOf', 
                                  unique=all_subfields, 
-                                 links={BL+'title': subfield('t'), RDA+'issn': subfield('x'), BL+'authorityLink': subfield('w'), RDA+'edition': subfield('b'), BL+'note': subfield('n'), RDA+'edition': subfield('b'), RDA+'isbn': subfield('z')}),
+                                 links={BL+'title': subfield('t'), RDA+'issn': subfield('x'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('w')), RDA+'edition': subfield('b'), BL+'note': subfield('n'), RDA+'edition': subfield('b'), RDA+'isbn': subfield('z')}),
 
     '780-?5': onwork.materialize(BL+'Work', 
                                  REL+'absorbed', 

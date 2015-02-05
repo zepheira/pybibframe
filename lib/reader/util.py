@@ -182,8 +182,47 @@ def relator_property(text_in, prefix=None):
         _text_in = text_in(ctx) if callable(text_in) else text_in
         if isinstance(_text_in, list) and _text_in: _text_in = _text_in[0]
         #Take into account RDA-isms such as $iContainer of (expression) by stripping the parens https://foundry.zepheira.com/topics/380
-        return ((prefix or '') + slugify(RDA_PARENS_PAT.subn('', _text_in)[0], False)) if _text_in else ''
+        return ((prefix or '') + slugify(RDA_PARENS_PAT.sub('', _text_in), False)) if _text_in else ''
     return _relator_property
+
+
+def replace_from(patterns, old_text, res=True):
+    '''
+    Action function generator to take some text and replace it with another value based on a regular expression pattern
+
+    :param specs: List of replacement specifications to use, each one a (pattern, replacement) tuple
+    :param old_text: Source text for the value to be created. If this is a list, the return value will be a list processed from each item
+    :return: Versa action function to do the actual work
+    '''
+    def _replace_from(ctx):
+        '''
+        Versa action function Utility to do the text replacement
+
+        :param ctx: Versa context used in processing (e.g. includes the prototype link)
+        :return: Replacement text
+        '''
+        #If we get a list arg, take the first
+        _old_text = old_text(ctx) if callable(old_text) else old_text
+        _old_text = [] if _old_text is None else _old_text
+        old_text_list = isinstance(_old_text, list)
+        _old_text = _old_text if old_text_list else [_old_text]
+        #print(old_text_list, _old_text)
+        new_text_list = []
+        for text in _old_text:
+            new_text = text #So just return the original string, if a replacement is not processed
+            for pat, repl in patterns:
+                m = pat.match(text)
+                if not m: continue
+                new_text = pat.sub(repl, text)
+                if res:
+                    try:
+                        new_text = I(new_text)
+                    except ValueError:
+                        pass
+            new_text_list.append(new_text)
+        #print(new_text_list)
+        return new_text_list if old_text_list else new_text_list[0]
+    return _replace_from
 
 
 def ifexists(test, value, alt=None):
@@ -211,7 +250,7 @@ def ifexists(test, value, alt=None):
 
 def foreach(origin=None, rel=None, target=None, attributes=None):
     '''
-    Action function generator to compute a combination of links and fun the 
+    Action function generator to compute a combination of links from a list of expressions
 
     :return: Versa action function to do the actual work
     '''
