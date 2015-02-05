@@ -323,11 +323,14 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                 to_process = []
                 #Start with most specific matches, then to most general
                 
+                # "?" syntax in lookups is a single char wildcard
                 #First with subfields, with and without indicators:
                 for k, v in subfields.items():
                     #if indicator_list == ('#', '#'):
                     lookups = [
                         '{0}-{1}{2}${3}'.format(tag, indicator_list[0], indicator_list[1], k),
+                        '{0}-?{2}${3}'.format(tag, indicator_list[0], indicator_list[1], k),
+                        '{0}-{1}?${3}'.format(tag, indicator_list[0], indicator_list[1], k),
                         '{0}${1}'.format(tag, k),
                     ]
                     for valitems in v:
@@ -342,6 +345,8 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                 #Now just the tag, with and wothout indicators
                 lookups = [
                     '{0}-{1}{2}'.format(tag, indicator_list[0], indicator_list[1]),
+                    '{0}-?{2}'.format(tag, indicator_list[0], indicator_list[1]),
+                    '{0}-{1}?'.format(tag, indicator_list[0], indicator_list[1]),
                     tag, 
                 ]
 
