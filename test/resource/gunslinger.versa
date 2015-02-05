@@ -1,62 +1,164 @@
 [
     [
-        "4MtTcWPl",
+        "29emyrsh",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Agent",
+        {}
+    ],
+    [
+        "29emyrsh",
+        "http://bibfra.me/vocab/lite/name",
+        "New American Library,",
+        {}
+    ],
+    [
+        "29emyrsh",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "New York, NY :",
+        {}
+    ],
+    [
+        "29emyrsh",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "New American Library,",
+        {}
+    ],
+    [
+        "29emyrsh",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "1988, c1982.",
+        {}
+    ],
+    [
+        "56QRMKVt",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Person",
+        {}
+    ],
+    [
+        "56QRMKVt",
+        "http://bibfra.me/vocab/lite/date",
+        "1947-",
+        {}
+    ],
+    [
+        "56QRMKVt",
+        "http://bibfra.me/vocab/lite/name",
+        "King, Stephen,",
+        {}
+    ],
+    [
+        "56QRMKVt",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "King, Stephen,",
+        {}
+    ],
+    [
+        "56QRMKVt",
+        "http://bibfra.me/vocab/marcext/sf-d",
+        "1947-",
+        {}
+    ],
+    [
+        "CUePrkKA",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/ProviderEvent",
+        {}
+    ],
+    [
+        "CUePrkKA",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "29emyrsh",
+        {}
+    ],
+    [
+        "CUePrkKA",
+        "http://bibfra.me/vocab/lite/providerDate",
+        "1988, c1982.",
+        {}
+    ],
+    [
+        "CUePrkKA",
+        "http://bibfra.me/vocab/lite/providerPlace",
+        "UJdiCXY3",
+        {}
+    ],
+    [
+        "CUePrkKA",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "New York, NY :",
+        {}
+    ],
+    [
+        "CUePrkKA",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "New American Library,",
+        {}
+    ],
+    [
+        "CUePrkKA",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "1988, c1982.",
+        {}
+    ],
+    [
+        "L6T19VOx",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Genre",
         {}
     ],
     [
-        "4MtTcWPl",
+        "L6T19VOx",
         "http://bibfra.me/vocab/lite/name",
         "Fantasy fiction.",
         {}
     ],
     [
-        "4MtTcWPl",
-        "http://bibfra.me/vocab/marc/sf-2",
+        "L6T19VOx",
+        "http://bibfra.me/vocab/marc/source",
         "gsafd",
         {}
     ],
     [
-        "4MtTcWPl",
-        "http://bibfra.me/vocab/marc/sf-a",
+        "L6T19VOx",
+        "http://bibfra.me/vocab/marcext/sf-2",
+        "gsafd",
+        {}
+    ],
+    [
+        "L6T19VOx",
+        "http://bibfra.me/vocab/marcext/sf-a",
         "Fantasy fiction.",
         {}
     ],
     [
-        "4MtTcWPl",
-        "http://bibfra.me/vocab/rda/source",
-        "gsafd",
-        {}
-    ],
-    [
-        "CmR-BPWH",
+        "LKNwWKi8",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Place",
+        "http://bibfra.me/vocab/lite/Topic",
         {}
     ],
     [
-        "CmR-BPWH",
+        "LKNwWKi8",
         "http://bibfra.me/vocab/lite/name",
-        "New York, NY :",
+        "Roland (Fictitious character : King)",
         {}
     ],
     [
-        "CmR-BPWH",
-        "http://bibfra.me/vocab/marc/sf-a",
-        "New York, NY :",
+        "LKNwWKi8",
+        "http://bibfra.me/vocab/marc/formSubdivision",
+        "Fiction.",
         {}
     ],
     [
-        "CmR-BPWH",
-        "http://bibfra.me/vocab/marc/sf-b",
-        "New American Library,",
+        "LKNwWKi8",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Roland (Fictitious character : King)",
         {}
     ],
     [
-        "CmR-BPWH",
-        "http://bibfra.me/vocab/marc/sf-c",
-        "1988, c1982.",
+        "LKNwWKi8",
+        "http://bibfra.me/vocab/marcext/sf-v",
+        "Fiction.",
         {}
     ],
     [
@@ -103,134 +205,62 @@
     ],
     [
         "MxEcN_qS",
-        "http://bibfra.me/vocab/rda/isbn",
-        "0452261341",
-        {}
-    ],
-    [
-        "MxEcN_qS",
-        "http://bibfra.me/vocab/rda/lccn",
+        "http://bibfra.me/vocab/marc/lccn",
         "   88009938 ",
         {}
     ],
     [
         "MxEcN_qS",
-        "http://bibfra.me/vocab/rda/otherPhysicalDetails",
+        "http://bibfra.me/vocab/marc/otherPhysicalDetails",
         "ill. (some col.) ;",
         {}
     ],
     [
         "MxEcN_qS",
-        "http://bibfra.me/vocab/rda/publication",
-        "V7iD25YY",
+        "http://bibfra.me/vocab/marc/publication",
+        "CUePrkKA",
         {}
     ],
     [
         "MxEcN_qS",
-        "http://bibfra.me/vocab/rda/titleStatement",
+        "http://bibfra.me/vocab/marc/titleStatement",
         "by Stephen King ; illustrated by Michael Whelan.",
         {}
     ],
     [
-        "V7iD25YY",
+        "MxEcN_qS",
+        "http://bibfra.me/vocab/rda/isbn",
+        "0452261341",
+        {}
+    ],
+    [
+        "UJdiCXY3",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/ProviderEvent",
+        "http://bibfra.me/vocab/lite/Place",
         {}
     ],
     [
-        "V7iD25YY",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "dEZTwJ9J",
-        {}
-    ],
-    [
-        "V7iD25YY",
-        "http://bibfra.me/vocab/lite/providerDate",
-        "1988, c1982.",
-        {}
-    ],
-    [
-        "V7iD25YY",
-        "http://bibfra.me/vocab/lite/providerPlace",
-        "CmR-BPWH",
-        {}
-    ],
-    [
-        "V7iD25YY",
-        "http://bibfra.me/vocab/marc/sf-a",
+        "UJdiCXY3",
+        "http://bibfra.me/vocab/lite/name",
         "New York, NY :",
         {}
     ],
     [
-        "V7iD25YY",
-        "http://bibfra.me/vocab/marc/sf-b",
-        "New American Library,",
-        {}
-    ],
-    [
-        "V7iD25YY",
-        "http://bibfra.me/vocab/marc/sf-c",
-        "1988, c1982.",
-        {}
-    ],
-    [
-        "dEZTwJ9J",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Agent",
-        {}
-    ],
-    [
-        "dEZTwJ9J",
-        "http://bibfra.me/vocab/lite/name",
-        "New American Library,",
-        {}
-    ],
-    [
-        "dEZTwJ9J",
-        "http://bibfra.me/vocab/marc/sf-a",
+        "UJdiCXY3",
+        "http://bibfra.me/vocab/marcext/sf-a",
         "New York, NY :",
         {}
     ],
     [
-        "dEZTwJ9J",
-        "http://bibfra.me/vocab/marc/sf-b",
+        "UJdiCXY3",
+        "http://bibfra.me/vocab/marcext/sf-b",
         "New American Library,",
         {}
     ],
     [
-        "dEZTwJ9J",
-        "http://bibfra.me/vocab/marc/sf-c",
+        "UJdiCXY3",
+        "http://bibfra.me/vocab/marcext/sf-c",
         "1988, c1982.",
-        {}
-    ],
-    [
-        "dGphWO_9",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
-        {}
-    ],
-    [
-        "dGphWO_9",
-        "http://bibfra.me/vocab/lite/name",
-        "Roland (Fictitious character : King)",
-        {}
-    ],
-    [
-        "dGphWO_9",
-        "http://bibfra.me/vocab/marc/sf-a",
-        "Roland (Fictitious character : King)",
-        {}
-    ],
-    [
-        "dGphWO_9",
-        "http://bibfra.me/vocab/marc/sf-v",
-        "Fiction.",
-        {}
-    ],
-    [
-        "dGphWO_9",
-        "http://bibfra.me/vocab/rda/formSubdivision",
-        "Fiction.",
         {}
     ],
     [
@@ -254,13 +284,13 @@
     [
         "hq7wu2dv",
         "http://bibfra.me/vocab/lite/creator",
-        "wbZVlnE7",
+        "56QRMKVt",
         {}
     ],
     [
         "hq7wu2dv",
         "http://bibfra.me/vocab/lite/genre",
-        "4MtTcWPl",
+        "L6T19VOx",
         {}
     ],
     [
@@ -278,7 +308,7 @@
     [
         "hq7wu2dv",
         "http://bibfra.me/vocab/lite/subject",
-        "dGphWO_9",
+        "LKNwWKi8",
         {}
     ],
     [
@@ -289,206 +319,176 @@
     ],
     [
         "hq7wu2dv",
-        "http://bibfra.me/vocab/marc/tag-005",
-        "20120215121458.0",
-        {}
-    ],
-    [
-        "hq7wu2dv",
-        "http://bibfra.me/vocab/marc/tag-008",
-        "880323t19881982nyua          000 1 eng  ",
-        {}
-    ],
-    [
-        "hq7wu2dv",
-        "http://bibfra.me/vocab/marc/tag-020-XX-a",
-        "0452261341",
-        {}
-    ],
-    [
-        "hq7wu2dv",
-        "http://bibfra.me/vocab/marc/tag-035-XX-9",
-        "(DLC)   88009938",
-        {}
-    ],
-    [
-        "hq7wu2dv",
-        "http://bibfra.me/vocab/marc/tag-800-1X-a",
-        "King, Stephen,",
-        {}
-    ],
-    [
-        "hq7wu2dv",
-        "http://bibfra.me/vocab/marc/tag-800-1X-d",
-        "1947-",
-        {}
-    ],
-    [
-        "hq7wu2dv",
-        "http://bibfra.me/vocab/marc/tag-800-1X-t",
-        "Dark tower ;",
-        {}
-    ],
-    [
-        "hq7wu2dv",
-        "http://bibfra.me/vocab/marc/tag-800-1X-v",
-        "1.",
-        {}
-    ],
-    [
-        "hq7wu2dv",
-        "http://bibfra.me/vocab/marc/tag-906-XX-a",
-        "7",
-        {}
-    ],
-    [
-        "hq7wu2dv",
-        "http://bibfra.me/vocab/marc/tag-906-XX-b",
-        "cbc",
-        {}
-    ],
-    [
-        "hq7wu2dv",
-        "http://bibfra.me/vocab/marc/tag-906-XX-c",
-        "orignew",
-        {}
-    ],
-    [
-        "hq7wu2dv",
-        "http://bibfra.me/vocab/marc/tag-906-XX-d",
-        "1",
-        {}
-    ],
-    [
-        "hq7wu2dv",
-        "http://bibfra.me/vocab/marc/tag-906-XX-e",
-        "ocip",
-        {}
-    ],
-    [
-        "hq7wu2dv",
-        "http://bibfra.me/vocab/marc/tag-906-XX-f",
-        "19",
-        {}
-    ],
-    [
-        "hq7wu2dv",
-        "http://bibfra.me/vocab/marc/tag-906-XX-g",
-        "y-gencatlg",
-        {}
-    ],
-    [
-        "hq7wu2dv",
-        "http://bibfra.me/vocab/marc/tag-955-XX-a",
-        "CIP VER lh03 09-20-96 to SL",
-        {}
-    ],
-    [
-        "hq7wu2dv",
-        "http://bibfra.me/vocab/marc/tag-991-XX-b",
-        "c-GenColl",
-        {}
-    ],
-    [
-        "hq7wu2dv",
-        "http://bibfra.me/vocab/marc/tag-991-XX-h",
-        "PS3561.I483",
-        {}
-    ],
-    [
-        "hq7wu2dv",
-        "http://bibfra.me/vocab/marc/tag-991-XX-i",
-        "G86 1988",
-        {}
-    ],
-    [
-        "hq7wu2dv",
-        "http://bibfra.me/vocab/marc/tag-991-XX-p",
-        "00035919508",
-        {}
-    ],
-    [
-        "hq7wu2dv",
-        "http://bibfra.me/vocab/marc/tag-991-XX-t",
-        "Copy 1",
-        {}
-    ],
-    [
-        "hq7wu2dv",
-        "http://bibfra.me/vocab/marc/tag-991-XX-w",
-        "BOOKS",
-        {}
-    ],
-    [
-        "hq7wu2dv",
-        "http://bibfra.me/vocab/rda/catalogingSource",
+        "http://bibfra.me/vocab/marc/catalogingSource",
         "DLC",
         {}
     ],
     [
         "hq7wu2dv",
-        "http://bibfra.me/vocab/rda/deweyNumber",
+        "http://bibfra.me/vocab/marc/deweyNumber",
         "813/.54",
         {}
     ],
     [
         "hq7wu2dv",
-        "http://bibfra.me/vocab/rda/lcCallNumber",
+        "http://bibfra.me/vocab/marc/lcCallNumber",
         "PS3561.I483",
         {}
     ],
     [
         "hq7wu2dv",
-        "http://bibfra.me/vocab/rda/lcItemNumber",
+        "http://bibfra.me/vocab/marc/lcItemNumber",
         "G86 1988",
         {}
     ],
     [
         "hq7wu2dv",
-        "http://bibfra.me/vocab/rda/seriesStatement",
+        "http://bibfra.me/vocab/marc/seriesStatement",
         "The Dark tower ;",
         {}
     ],
     [
         "hq7wu2dv",
-        "http://bibfra.me/vocab/rda/seriesVolume",
+        "http://bibfra.me/vocab/marc/seriesVolume",
         "1",
         {}
     ],
     [
         "hq7wu2dv",
-        "http://bibfra.me/vocab/rda/titleStatement",
+        "http://bibfra.me/vocab/marc/titleStatement",
         "by Stephen King ; illustrated by Michael Whelan.",
         {}
     ],
     [
-        "wbZVlnE7",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Person",
+        "hq7wu2dv",
+        "http://bibfra.me/vocab/marcext/tag-005",
+        "20120215121458.0",
         {}
     ],
     [
-        "wbZVlnE7",
-        "http://bibfra.me/vocab/lite/date",
-        "1947-",
+        "hq7wu2dv",
+        "http://bibfra.me/vocab/marcext/tag-008",
+        "880323t19881982nyua          000 1 eng  ",
         {}
     ],
     [
-        "wbZVlnE7",
-        "http://bibfra.me/vocab/lite/name",
+        "hq7wu2dv",
+        "http://bibfra.me/vocab/marcext/tag-020-XX-a",
+        "0452261341",
+        {}
+    ],
+    [
+        "hq7wu2dv",
+        "http://bibfra.me/vocab/marcext/tag-035-XX-9",
+        "(DLC)   88009938",
+        {}
+    ],
+    [
+        "hq7wu2dv",
+        "http://bibfra.me/vocab/marcext/tag-800-1X-a",
         "King, Stephen,",
         {}
     ],
     [
-        "wbZVlnE7",
-        "http://bibfra.me/vocab/marc/sf-a",
-        "King, Stephen,",
+        "hq7wu2dv",
+        "http://bibfra.me/vocab/marcext/tag-800-1X-d",
+        "1947-",
         {}
     ],
     [
-        "wbZVlnE7",
-        "http://bibfra.me/vocab/marc/sf-d",
-        "1947-",
+        "hq7wu2dv",
+        "http://bibfra.me/vocab/marcext/tag-800-1X-t",
+        "Dark tower ;",
+        {}
+    ],
+    [
+        "hq7wu2dv",
+        "http://bibfra.me/vocab/marcext/tag-800-1X-v",
+        "1.",
+        {}
+    ],
+    [
+        "hq7wu2dv",
+        "http://bibfra.me/vocab/marcext/tag-906-XX-a",
+        "7",
+        {}
+    ],
+    [
+        "hq7wu2dv",
+        "http://bibfra.me/vocab/marcext/tag-906-XX-b",
+        "cbc",
+        {}
+    ],
+    [
+        "hq7wu2dv",
+        "http://bibfra.me/vocab/marcext/tag-906-XX-c",
+        "orignew",
+        {}
+    ],
+    [
+        "hq7wu2dv",
+        "http://bibfra.me/vocab/marcext/tag-906-XX-d",
+        "1",
+        {}
+    ],
+    [
+        "hq7wu2dv",
+        "http://bibfra.me/vocab/marcext/tag-906-XX-e",
+        "ocip",
+        {}
+    ],
+    [
+        "hq7wu2dv",
+        "http://bibfra.me/vocab/marcext/tag-906-XX-f",
+        "19",
+        {}
+    ],
+    [
+        "hq7wu2dv",
+        "http://bibfra.me/vocab/marcext/tag-906-XX-g",
+        "y-gencatlg",
+        {}
+    ],
+    [
+        "hq7wu2dv",
+        "http://bibfra.me/vocab/marcext/tag-955-XX-a",
+        "CIP VER lh03 09-20-96 to SL",
+        {}
+    ],
+    [
+        "hq7wu2dv",
+        "http://bibfra.me/vocab/marcext/tag-991-XX-b",
+        "c-GenColl",
+        {}
+    ],
+    [
+        "hq7wu2dv",
+        "http://bibfra.me/vocab/marcext/tag-991-XX-h",
+        "PS3561.I483",
+        {}
+    ],
+    [
+        "hq7wu2dv",
+        "http://bibfra.me/vocab/marcext/tag-991-XX-i",
+        "G86 1988",
+        {}
+    ],
+    [
+        "hq7wu2dv",
+        "http://bibfra.me/vocab/marcext/tag-991-XX-p",
+        "00035919508",
+        {}
+    ],
+    [
+        "hq7wu2dv",
+        "http://bibfra.me/vocab/marcext/tag-991-XX-t",
+        "Copy 1",
+        {}
+    ],
+    [
+        "hq7wu2dv",
+        "http://bibfra.me/vocab/marcext/tag-991-XX-w",
+        "BOOKS",
         {}
     ]
 ]

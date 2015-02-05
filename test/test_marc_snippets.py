@@ -12,26 +12,26 @@ You must have matched series each with all 3 components matched up, otherwise th
 
 ----
 
-Example of how to add another test case, assumign correct pybibframe state:
+Recipe for regenerating the test case expected outputs:
 
-import asyncio
-from io import StringIO
+python -i test/test_marc_snippets.py #Ignore the SystemExit
 
-from versa.driver import memory
-from versa.util import jsondump, jsonload
+Then:
 
-from bibframe.reader.marcxml import bfconvert
+all_snippets = sorted([ sym for sym in globals() if sym.startswith('SNIPPET') ])
+all_config = sorted([ sym for sym in globals() if sym.startswith('CONFIG') ])
+all_expected = sorted([ sym for sym in globals() if sym.startswith('EXPECTED') ])
 
-SNIPPET = '<collection xmlns="http://www.loc.gov/MARC21/slim"><record><leader>...</leader></record></collection>'
-CONFIG = None
-
-loop = asyncio.new_event_loop()
-asyncio.set_event_loop(None)
-m = memory.connection()
-instream = StringIO(SNIPPET)
-outstream = StringIO()
-bfconvert(instream, model=m, out=outstream, canonical=True, loop=loop)
-print(outstream.getvalue()) #This output becomes the EXPECTED stanza
+for s, c, e in zip(all_snippets, all_config, all_expected):
+    sobj, cobj, eobj = globals()[s], globals()[c], globals()[e]
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(None)
+    m = memory.connection()
+    instream = StringIO(sobj)
+    outstream = StringIO()
+    bfconvert(instream, model=m, out=outstream, config=cobj, canonical=True, loop=loop)
+    print('EXPECTED from {0}:'.format(s))
+    print(outstream.getvalue()) #This output becomes the EXPECTED stanza
 
 '''
 
@@ -113,7 +113,7 @@ EXPECTED_1 = '''[
     ],
     [
         "kP2G4QhW",
-        "http://bibfra.me/vocab/marc/tag-008",
+        "http://bibfra.me/vocab/marcext/tag-008",
         "920219s1993 caua j 000 0 eng",
         {}
     ]
@@ -173,14 +173,14 @@ EXPECTED_2 = '''[
     ],
     [
         "X76tY3SC",
-        "http://bibfra.me/vocab/marc/tag-008",
-        "920219s1993 caua j 000 0 eng",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "Carl Sandburg ; illustrated as an anamorphic adventure by Ted Rand.",
         {}
     ],
     [
         "X76tY3SC",
-        "http://bibfra.me/vocab/rda/titleStatement",
-        "Carl Sandburg ; illustrated as an anamorphic adventure by Ted Rand.",
+        "http://bibfra.me/vocab/marcext/tag-008",
+        "920219s1993 caua j 000 0 eng",
         {}
     ],
     [
@@ -203,7 +203,7 @@ EXPECTED_2 = '''[
     ],
     [
         "bwbrjGVf",
-        "http://bibfra.me/vocab/rda/titleStatement",
+        "http://bibfra.me/vocab/marc/titleStatement",
         "Carl Sandburg ; illustrated as an anamorphic adventure by Ted Rand.",
         {}
     ]
@@ -264,14 +264,14 @@ EXPECTED_3 = '''[
     ],
     [
         "X76tY3SC",
-        "http://bibfra.me/vocab/marc/tag-008",
-        "920219s1993 caua j 000 0 eng",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "Carl Sandburg ; illustrated as an anamorphic adventure by Ted Rand.",
         {}
     ],
     [
         "X76tY3SC",
-        "http://bibfra.me/vocab/rda/titleStatement",
-        "Carl Sandburg ; illustrated as an anamorphic adventure by Ted Rand.",
+        "http://bibfra.me/vocab/marcext/tag-008",
+        "920219s1993 caua j 000 0 eng",
         {}
     ],
     [
@@ -300,7 +300,7 @@ EXPECTED_3 = '''[
     ],
     [
         "bwbrjGVf",
-        "http://bibfra.me/vocab/rda/titleStatement",
+        "http://bibfra.me/vocab/marc/titleStatement",
         "Carl Sandburg ; illustrated as an anamorphic adventure by Ted Rand.",
         {}
     ]
@@ -336,12 +336,6 @@ EXPECTED_4 = '''[
     ],
     [
         "PZ-aV_fa",
-        "http://www.w3.org/2000/01/rdf-schema#label",
-        "",
-        {}
-    ],
-    [
-        "PZ-aV_fa",
         "http://bibfra.me/vocab/lite/controlCode",
         "92005291",
         {}
@@ -353,15 +347,15 @@ EXPECTED_4 = '''[
         {}
     ],
     [
-        "kP2G4QhW",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/LanguageMaterial",
+        "PZ-aV_fa",
+        "http://www.w3.org/2000/01/rdf-schema#label",
+        "",
         {}
     ],
     [
         "kP2G4QhW",
-        "http://www.w3.org/2000/01/rdf-schema#label",
-        "",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/LanguageMaterial",
         {}
     ],
     [
@@ -390,8 +384,14 @@ EXPECTED_4 = '''[
     ],
     [
         "kP2G4QhW",
-        "http://bibfra.me/vocab/marc/tag-008",
+        "http://bibfra.me/vocab/marcext/tag-008",
         "920219s1993 caua j 000 0 eng",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://www.w3.org/2000/01/rdf-schema#label",
+        "",
         {}
     ]
 ]
@@ -454,37 +454,37 @@ EXPECTED_5 = '''[
     ],
     [
         "nFBFsha6",
-        "http://bibfra.me/vocab/marc/tag-008",
-        "020613s1860 ja a 000 0 jpn",
-        {}
-    ],
-    [
-        "nFBFsha6",
-        "http://bibfra.me/vocab/marc/tag-880-10-6",
-        "245-02/$1",
-        {}
-    ],
-    [
-        "nFBFsha6",
-        "http://bibfra.me/vocab/marc/tag-880-10-a",
-        "\u91ab\u5fc3\u65b9 /",
-        {}
-    ],
-    [
-        "nFBFsha6",
-        "http://bibfra.me/vocab/marc/tag-880-10-c",
-        "\u4e39\u6ce2\u5bbf\u88ae\u5eb7\u983c\u64b0.",
-        {}
-    ],
-    [
-        "nFBFsha6",
-        "http://bibfra.me/vocab/rda/titleStatement",
+        "http://bibfra.me/vocab/marc/titleStatement",
         "Tanba no Sukune Yasuyori sen.",
         {}
     ],
     [
         "nFBFsha6",
-        "http://bibfra.me/vocab/rda/titleStatement",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "\u4e39\u6ce2\u5bbf\u88ae\u5eb7\u983c\u64b0.",
+        {}
+    ],
+    [
+        "nFBFsha6",
+        "http://bibfra.me/vocab/marcext/tag-008",
+        "020613s1860 ja a 000 0 jpn",
+        {}
+    ],
+    [
+        "nFBFsha6",
+        "http://bibfra.me/vocab/marcext/tag-880-10-6",
+        "245-02/$1",
+        {}
+    ],
+    [
+        "nFBFsha6",
+        "http://bibfra.me/vocab/marcext/tag-880-10-a",
+        "\u91ab\u5fc3\u65b9 /",
+        {}
+    ],
+    [
+        "nFBFsha6",
+        "http://bibfra.me/vocab/marcext/tag-880-10-c",
         "\u4e39\u6ce2\u5bbf\u88ae\u5eb7\u983c\u64b0.",
         {}
     ],
@@ -514,13 +514,13 @@ EXPECTED_5 = '''[
     ],
     [
         "zRg2BG3T",
-        "http://bibfra.me/vocab/rda/titleStatement",
+        "http://bibfra.me/vocab/marc/titleStatement",
         "Tanba no Sukune Yasuyori sen.",
         {}
     ],
     [
         "zRg2BG3T",
-        "http://bibfra.me/vocab/rda/titleStatement",
+        "http://bibfra.me/vocab/marc/titleStatement",
         "\u4e39\u6ce2\u5bbf\u88ae\u5eb7\u983c\u64b0.",
         {}
     ]
@@ -534,6 +534,108 @@ SNIPPET_6 = SNIPPET_5.replace('ō', 'ō')
 CONFIG_6 = None
 
 EXPECTED_6 = EXPECTED_5
+
+SNIPPET_7 = '''<collection xmlns="http://www.loc.gov/MARC21/slim">
+<record>
+  <leader>01142cam 2200301 a 4500</leader>
+  <controlfield tag="008">920219s1993 caua j 000 0 eng</controlfield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">Sandburg, Carl,</subfield>
+    <subfield code="d">1878-1967.</subfield>
+  </datafield>
+  </record>
+</collection>'''
+
+CONFIG_7 = None
+
+EXPECTED_7 = '''[
+    [
+        "Ht2FQsIY",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {}
+    ],
+    [
+        "Ht2FQsIY",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "XsrrgYIS",
+        {}
+    ],
+    [
+        "JqXcDz18",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Person",
+        {}
+    ],
+    [
+        "JqXcDz18",
+        "http://bibfra.me/vocab/lite/date",
+        "1878-1967.",
+        {}
+    ],
+    [
+        "JqXcDz18",
+        "http://bibfra.me/vocab/lite/name",
+        "Sandburg, Carl,",
+        {}
+    ],
+    [
+        "JqXcDz18",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Sandburg, Carl,",
+        {}
+    ],
+    [
+        "JqXcDz18",
+        "http://bibfra.me/vocab/marcext/sf-d",
+        "1878-1967.",
+        {}
+    ],
+    [
+        "XsrrgYIS",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/LanguageMaterial",
+        {}
+    ],
+    [
+        "XsrrgYIS",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {}
+    ],
+    [
+        "XsrrgYIS",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/encyclopedias",
+        {}
+    ],
+    [
+        "XsrrgYIS",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/legal-articles",
+        {}
+    ],
+    [
+        "XsrrgYIS",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/surveys-of-literature",
+        {}
+    ],
+    [
+        "XsrrgYIS",
+        "http://bibfra.me/vocab/lite/creator",
+        "JqXcDz18",
+        {}
+    ],
+    [
+        "XsrrgYIS",
+        "http://bibfra.me/vocab/marcext/tag-008",
+        "920219s1993 caua j 000 0 eng",
+        {}
+    ]
+]
+'''
+
 
 all_snippets = sorted([ sym for sym in globals() if sym.startswith('SNIPPET') ])
 all_config = sorted([ sym for sym in globals() if sym.startswith('CONFIG') ])
