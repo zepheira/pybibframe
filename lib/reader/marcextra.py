@@ -48,26 +48,26 @@ class transforms(object):
         detailed_06 = dict(
             a=I(self._vocab[BL]+"LanguageMaterial"),
             c=I(self._vocab[BL]+"NotatedMusic"),
-            d=(self._vocab[BL]+I("Manuscript"), self._vocab[BL]+I("NotatedMusic")),
+            d=(I(self._vocab[BL]+"Manuscript"), I(self._vocab[BL]+"NotatedMusic")),
             e=I(self._vocab[BL]+"Cartography"),
-            f=(self._vocab[BL]+I("Manuscript"), self._vocab[BL]+I("Cartography")),
+            f=(I(self._vocab[BL]+"Manuscript"), I(self._vocab[BL]+"Cartography")),
             g=I(self._vocab[BL]+"MovingImage"),
-            i=(self._vocab[BL]+I("Nonmusical"), self._vocab[BL]+I("Sounds")),
+            i=(I(self._vocab[BL]+"Nonmusical"), I(self._vocab[BL]+"Sounds")),
             j=I(self._vocab[BL]+"Musical"),
             k=I(self._vocab[BL]+"StillImage"),
             m=I(self._vocab[BL]+"Multimedia"),
             o=I(self._vocab[BL]+"Kit"),
             p=I(self._vocab[BL]+"Multimedia"),
             r=I(self._vocab[BL]+"ThreeDimensionalObject"),
-            t=(self._vocab[BL]+I("LanguageMaterial"), self._vocab[BL]+I("Manuscript")))
+            t=(I(self._vocab[BL]+"LanguageMaterial"), I(self._vocab[BL]+"Manuscript")))
     
         _06 = leader[6]
         if _06 in broad_06.keys():
-            yield None, self._vocab[VTYPE], broad_06[_06]
+            yield None, I(self._vocab[VTYPE]), broad_06[_06]
         if _06 in detailed_06.keys():
-            yield None, self._vocab[VTYPE], detailed_06[_06]
+            yield None, I(self._vocab[VTYPE]), detailed_06[_06]
         if leader[7] in ('c', 's'):
-            yield None, self._vocab[VTYPE], self._vocab[BL]+I("Collection")
+            yield None, I(self._vocab[VTYPE]), I(self._vocab[BL]+"Collection")
 
 
     def process_008(self, info, work, instance):
@@ -170,17 +170,17 @@ class transforms(object):
         #3) A tuple starting with 'slice' and then 2 ints, processed as a character chunk/slice passed as a whole to the value function
         #If the value function returns None or a tuple with None in the lats position, it's a signal to do nothing for the case at hand
         FiELD_OO8_PATTERNS = {
-            23: lambda i: (None, self._vocab[BL]+'medium', media.get(info[i])),
-            (24, 25, 26, 27): lambda i: (None, self._vocab[VTYPE], types.get(info[i])),
-            28: lambda i: (None, self._vocab[VTYPE], govt_publication.get(info[i])),
-            29: lambda i: (None, self._vocab[VTYPE], self._vocab[BL]+'conference-publication')
+            23: lambda i: (None, I(self._vocab[BL]+'medium'), media.get(info[i])),
+            (24, 25, 26, 27): lambda i: (None, I(self._vocab[VTYPE]), types.get(info[i])),
+            28: lambda i: (None, I(self._vocab[VTYPE]), govt_publication.get(info[i])),
+            29: lambda i: (None, I(self._vocab[VTYPE]), I(self._vocab[BL]+'conference-publication'))
                             if info[i] == '1' else None,
-            30: lambda i: (None, self._vocab[VTYPE], self._vocab[BL]+'festschrift')
+            30: lambda i: (None, I(self._vocab[VTYPE]), I(self._vocab[BL]+'festschrift'))
                             if info[i] == '1' else None,
-            33: lambda i: (None, self._vocab[VTYPE], genres.get(info[i]))
+            33: lambda i: (None, I(self._vocab[VTYPE]), genres.get(info[i]))
                             if info[i] != 'u' else None, #'u' means unknown?
-            34: lambda i: (None, self._vocab[VTYPE], biographical.get(info[i])),
-            ('slice', 35, 38): lambda i: (None, self._vocab[LANG], info[i.start:i.stop])
+            34: lambda i: (None, I(self._vocab[VTYPE]), biographical.get(info[i])),
+            ('slice', 35, 38): lambda i: (None, I(self._vocab[LANG]), info[i.start:i.stop])
                             if info[i.start:i.stop] not in
                                 ("###", "zxx", "mul", "sgn", "und", "   ", "") else None,
         }
