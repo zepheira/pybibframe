@@ -119,6 +119,9 @@ AUTHORITY_CODES = [
     (re.compile(r'\(DLC\)\s*(\S+)'), r'http://lccn.loc.gov/\1'),
     (re.compile(r'\(OCoLC\)\s*(\S+)'), r'http://www.worldcat.org/oclc/\1'),
     (re.compile(r'\(DNLM\)\s*(\S+)'), r'http://www.ncbi.nlm.nih.gov/nlmcatalog?term=\1'),
+    (re.compile(r'\(DE\-101\)\s*(\S+)'), r'http://d-nb.info/\1'),
+    (re.compile(r'\(viaf\)\s*(\S+)'), r'http://viaf.org/viaf/\1'),
+    (re.compile(r'\(LoC\)\s*(\S+)'), r'http://id.loc.gov/authorities/names/\1')
 ]
 
 
@@ -165,17 +168,17 @@ BFLITE_TRANSFORMS = {
     '100': onwork.materialize(BL+'Person', 
                               values(BL+'creator', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')),
-                              links={BL+'name': subfield('a'), RDA+'numeration': subfield('b'), RDA+'titles': subfield('c'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0'), RDA+'additionalName': subfield('q')}),
+                              links={BL+'name': subfield('a'), RDA+'numeration': subfield('b'), RDA+'titles': subfield('c'), BL+'date': subfield('d'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0')), RDA+'additionalName': subfield('q')}),
 
     '110': onwork.materialize(BL+'Organization', 
                               values(BL+'creator', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')),
-                              links={BL+'name': subfield('a'), RDA+'subordinateUnit': subfield('b'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0'), RDA+'additionalName': subfield('q')}),
+                              links={BL+'name': subfield('a'), RDA+'subordinateUnit': subfield('b'), BL+'date': subfield('d'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0')), RDA+'additionalName': subfield('q')}),
 
     '111': onwork.materialize(BL+'Meeting', 
                               values(BL+'creator', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')),
-                              links={BL+'name': subfield('a'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0'), RDA+'additionalName': subfield('q')}),
+                              links={BL+'name': subfield('a'), BL+'date': subfield('d'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0')), RDA+'additionalName': subfield('q')}),
 
     '210$a': oninstance.rename(rel=RDA+'abbreviatedTitle'),
     '222$a': oninstance.rename(rel=RDA+'keyTitle'),
@@ -417,17 +420,17 @@ BFLITE_TRANSFORMS = {
     '600': onwork.materialize(BL+'Person', 
                               BL+'subject', 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('f'), subfield('g'), subfield('h'), subfield('j'), subfield('k'), subfield('l'), subfield('m'), subfield('n'), subfield('o'), subfield('p'), subfield('q'), subfield('r'), subfield('s'), subfield('t'), subfield('u'), subfield('v'), subfield('x'), subfield('y'), subfield('z')),
-                              links={BL+'name': subfield('a'), RDA+'numeration': subfield('b'), RDA+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), RDA+'formSubdivision': subfield('v'), RDA+'generalSubdivision': subfield('x'), RDA+'chronologicalSubdivision': subfield('y'), RDA+'geographicSubdivision': subfield('z'), BL+'authorityLink': subfield('0')}),
+                              links={BL+'name': subfield('a'), RDA+'numeration': subfield('b'), RDA+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), RDA+'formSubdivision': subfield('v'), RDA+'generalSubdivision': subfield('x'), RDA+'chronologicalSubdivision': subfield('y'), RDA+'geographicSubdivision': subfield('z'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))}),
 
     '610': onwork.materialize(BL+'Organization', 
                               BL+'subject', 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('f'), subfield('g'), subfield('h'), subfield('k'), subfield('l'), subfield('m'), subfield('n'), subfield('o'), subfield('p'), subfield('r'), subfield('s'), subfield('t'), subfield('u'), subfield('v'), subfield('x'), subfield('y'), subfield('z')),
-                              links={BL+'name': subfield('a'), RDA+'subordinateUnit': subfield('b'), RDA+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), RDA+'formSubdivision': subfield('v'), RDA+'generalSubdivision': subfield('x'), RDA+'chronologicalSubdivision': subfield('y'), RDA+'geographicSubdivision': subfield('z'), BL+'authorityLink': subfield('0')}),
+                              links={BL+'name': subfield('a'), RDA+'subordinateUnit': subfield('b'), RDA+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), RDA+'formSubdivision': subfield('v'), RDA+'generalSubdivision': subfield('x'), RDA+'chronologicalSubdivision': subfield('y'), RDA+'geographicSubdivision': subfield('z'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))}),
 
     '611': onwork.materialize(BL+'Meeting', 
                               BL+'subject', 
                               unique=values(subfield('a'), subfield('c'), subfield('d'), subfield('e'), subfield('f'), subfield('g'), subfield('h'), subfield('k'), subfield('l'), subfield('n'), subfield('p'), subfield('q'), subfield('s'), subfield('t'), subfield('u'), subfield('v'), subfield('x'), subfield('y'), subfield('z')),
-                              links={BL+'name': subfield('a'), RDA+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), RDA+'formSubdivision': subfield('v'), RDA+'generalSubdivision': subfield('x'), RDA+'chronologicalSubdivision': subfield('y'), RDA+'geographicSubdivision': subfield('z'), BL+'authorityLink': subfield('0')}),
+                              links={BL+'name': subfield('a'), RDA+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), RDA+'formSubdivision': subfield('v'), RDA+'generalSubdivision': subfield('x'), RDA+'chronologicalSubdivision': subfield('y'), RDA+'geographicSubdivision': subfield('z'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))}),
 
     '630': onwork.materialize(BL+'Collection', 
                               BL+'subject', 
@@ -437,17 +440,17 @@ BFLITE_TRANSFORMS = {
     '650': onwork.materialize(BL+'Topic', 
                               BL+'subject', 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('v'), subfield('x'), subfield('y'), subfield('z')),
-                              links={BL+'name': subfield('a'), RDA+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), RDA+'formSubdivision': subfield('v'), RDA+'generalSubdivision': subfield('x'), RDA+'chronologicalSubdivision': subfield('y'), RDA+'geographicSubdivision': subfield('z'), BL+'authorityLink': subfield('0')}),
+                              links={BL+'name': subfield('a'), RDA+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), RDA+'formSubdivision': subfield('v'), RDA+'generalSubdivision': subfield('x'), RDA+'chronologicalSubdivision': subfield('y'), RDA+'geographicSubdivision': subfield('z'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))}),
 
     '651': onwork.materialize(BL+'Place', 
                               BL+'subject', 
                               unique=values(subfield('a'), subfield('g'), subfield('v'), subfield('x'), subfield('y'), subfield('z')),
-                              links={BL+'name': subfield('a'), BL+'date': subfield('d'), RDA+'formSubdivision': subfield('v'), RDA+'generalSubdivision': subfield('x'), RDA+'chronologicalSubdivision': subfield('y'), RDA+'geographicSubdivision': subfield('z'), BL+'authorityLink': subfield('0')}),
+                              links={BL+'name': subfield('a'), BL+'date': subfield('d'), RDA+'formSubdivision': subfield('v'), RDA+'generalSubdivision': subfield('x'), RDA+'chronologicalSubdivision': subfield('y'), RDA+'geographicSubdivision': subfield('z'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))}),
     
     '655': onwork.materialize(BL+'Genre', 
                               BL+'genre', 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('v'), subfield('x'), subfield('y'), subfield('z')),
-                              links={BL+'name': subfield('a'), RDA+'source': subfield('2'), BL+'authorityLink': subfield('0')}),
+                              links={BL+'name': subfield('a'), RDA+'source': subfield('2'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))}),
 
     # Fields 700,710,711,etc. have a contributor + role (if specified) relationship to a new Agent object (only created as a new object if all subfields are unique)
     # Generate hash values only from the properties specific to Agents 
@@ -456,17 +459,17 @@ BFLITE_TRANSFORMS = {
     '700': ifexists(subfield('t'),
                     onwork.materialize(BL+'Work', 
                                        values(BL+'related', relator_property(subfield('i'), prefix=REL)),
-                                       unique=values(subfield('t'), subfield('l')),
-                                       links={BL+'language': subfield('l'),
+                                       unique=values(subfield('t'), subfield('l'), subfield('m'), subfield('n'), subfield('o'), subfield('p'), subfield('r'), subfield('k'), subfield('f'), subfield('s')),
+                                       links={BL+'title': subfield('t'), BL+'language': subfield('l'), AV+'musicMedium': subfield('m'), RDA+'number': subfield('n'), AV+'arrangedMusic': subfield('o'), RDA+'part': subfield('p'), AV+'musicKey': subfield('r'), RDA+'form': subfield('k'), BL+'date': subfield('f'), RDA+'version': subfield('s'),
                                               ifexists(subfield('a'), BL+'creator'): materialize(BL+'Person', 
                                                                                                  unique=values(subfield('a')),
-                                                                                                 links={BL+'name': subfield('a'), BL+'date': subfield('d')}), 
-                                              BL+'title': subfield('t'), BL+'language': subfield('l')}
-                                   ),                   
+                                                                                                 links={BL+'name': subfield('a'), BL+'date': subfield('d')})
+                                              }
+                                       ),                   
                     onwork.materialize(BL+'Person', 
                                        values(BL+'contributor', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)), 
                                        unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')),
-                                       links={BL+'name': subfield('a'), RDA+'numeration': subfield('b'), RDA+'titles': subfield('c'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0')})
+                                       links={BL+'name': subfield('a'), RDA+'numeration': subfield('b'), RDA+'titles': subfield('c'), BL+'date': subfield('d'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))})
                     ),
 
 
@@ -483,7 +486,7 @@ BFLITE_TRANSFORMS = {
                     onwork.materialize(BL+'Organization', 
                                        values(BL+'contributor', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)), 
                                        unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')),
-                                       links={BL+'name': subfield('a'), RDA+'subordinateUnit': subfield('b'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0')})
+                                       links={BL+'name': subfield('a'), RDA+'subordinateUnit': subfield('b'), BL+'date': subfield('d'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))})
                     ),
 
     
@@ -500,7 +503,7 @@ BFLITE_TRANSFORMS = {
                     onwork.materialize(BL+'Meeting', 
                                        values(BL+'contributor', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)), 
                                        unique=values(subfield('a'), subfield('c'), subfield('d'), subfield('e'), subfield('q'), subfield('u')),
-                                       links={BL+'name': subfield('a'), BL+'date': subfield('d'), BL+'authorityLink': subfield('0')})
+                                       links={BL+'name': subfield('a'), BL+'date': subfield('d'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))})
                     ),
     
     '730': onwork.materialize(BL+'Collection', 
