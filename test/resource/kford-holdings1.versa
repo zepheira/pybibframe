@@ -3,7 +3,9 @@
         "4zX_582O",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Agent",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "4zX_582O",
@@ -39,31 +41,41 @@
         "8-u7AoZu",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/LanguageMaterial",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "8-u7AoZu",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "8-u7AoZu",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/bibliography",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "8-u7AoZu",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/non-fiction",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "8-u7AoZu",
         "http://bibfra.me/vocab/lite/contributor",
         "ZARAjpJ4",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "8-u7AoZu",
@@ -75,19 +87,25 @@
         "8-u7AoZu",
         "http://bibfra.me/vocab/lite/subject",
         "JvNSObIM",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "8-u7AoZu",
         "http://bibfra.me/vocab/lite/subject",
         "dLBpzE2f",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "8-u7AoZu",
         "http://bibfra.me/vocab/lite/subject",
         "eCfh34Az",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "8-u7AoZu",
@@ -501,7 +519,9 @@
         "JvNSObIM",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Topic",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "JvNSObIM",
@@ -519,7 +539,9 @@
         "K3FLMHxV",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "K3FLMHxV",
@@ -543,31 +565,41 @@
         "K3FLMHxV",
         "http://bibfra.me/vocab/lite/instantiates",
         "8-u7AoZu",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "K3FLMHxV",
         "http://bibfra.me/vocab/lite/link",
         "http://assets.cambridge.org/97805211/40553/cover/9780521140553.jpg",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "K3FLMHxV",
         "http://bibfra.me/vocab/lite/link",
         "http://www.loc.gov/catdir/enhancements/fy1114/2010052188-b.html",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "K3FLMHxV",
         "http://bibfra.me/vocab/lite/link",
         "http://www.loc.gov/catdir/enhancements/fy1114/2010052188-d.html",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "K3FLMHxV",
         "http://bibfra.me/vocab/lite/link",
         "http://www.loc.gov/catdir/enhancements/fy1114/2010052188-t.html",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "K3FLMHxV",
@@ -585,7 +617,9 @@
         "K3FLMHxV",
         "http://bibfra.me/vocab/marc/publication",
         "uf6wThjn",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "K3FLMHxV",
@@ -627,7 +661,9 @@
         "XinTOTbA",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "XinTOTbA",
@@ -651,31 +687,41 @@
         "XinTOTbA",
         "http://bibfra.me/vocab/lite/instantiates",
         "8-u7AoZu",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "XinTOTbA",
         "http://bibfra.me/vocab/lite/link",
         "http://assets.cambridge.org/97805211/40553/cover/9780521140553.jpg",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "XinTOTbA",
         "http://bibfra.me/vocab/lite/link",
         "http://www.loc.gov/catdir/enhancements/fy1114/2010052188-b.html",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "XinTOTbA",
         "http://bibfra.me/vocab/lite/link",
         "http://www.loc.gov/catdir/enhancements/fy1114/2010052188-d.html",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "XinTOTbA",
         "http://bibfra.me/vocab/lite/link",
         "http://www.loc.gov/catdir/enhancements/fy1114/2010052188-t.html",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "XinTOTbA",
@@ -693,7 +739,9 @@
         "XinTOTbA",
         "http://bibfra.me/vocab/marc/publication",
         "uf6wThjn",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "XinTOTbA",
@@ -729,7 +777,9 @@
         "ZARAjpJ4",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Person",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "ZARAjpJ4",
@@ -747,7 +797,9 @@
         "dLBpzE2f",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Topic",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "dLBpzE2f",
@@ -765,7 +817,9 @@
         "eCfh34Az",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Topic",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "eCfh34Az",
@@ -783,7 +837,9 @@
         "ks-KktuF",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Place",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "ks-KktuF",
@@ -825,13 +881,17 @@
         "uf6wThjn",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/ProviderEvent",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "uf6wThjn",
         "http://bibfra.me/vocab/lite/providerAgent",
         "4zX_582O",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "uf6wThjn",
@@ -843,7 +903,9 @@
         "uf6wThjn",
         "http://bibfra.me/vocab/lite/providerPlace",
         "ks-KktuF",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "uf6wThjn",

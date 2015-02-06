@@ -3,7 +3,9 @@
         "5Q3WjVOG",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Topic",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "5Q3WjVOG",
@@ -105,7 +107,9 @@
         "EkY_5geW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "EkY_5geW",
@@ -123,7 +127,9 @@
         "F6lysvLh",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Topic",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "F6lysvLh",
@@ -153,7 +159,9 @@
         "JBkLZaiZ",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Place",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "JBkLZaiZ",
@@ -219,7 +227,9 @@
         "JOQ-3KM0",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "JOQ-3KM0",
@@ -237,13 +247,17 @@
         "PZ-aV_fa",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "PZ-aV_fa",
         "http://bibfra.me/vocab/annotation/institution",
         "wepQKqKn",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "PZ-aV_fa",
@@ -255,13 +269,17 @@
         "PZ-aV_fa",
         "http://bibfra.me/vocab/lite/instantiates",
         "kP2G4QhW",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "RNuPnKbi",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Person",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "RNuPnKbi",
@@ -339,19 +357,25 @@
         "XlUxQVGp",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/ProviderEvent",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "XlUxQVGp",
         "http://bibfra.me/vocab/lite/providerAgent",
         "yMrdaqOj",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "XlUxQVGp",
         "http://bibfra.me/vocab/lite/providerAgent",
         "yMrdaqOj",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "XlUxQVGp",
@@ -369,7 +393,9 @@
         "XlUxQVGp",
         "http://bibfra.me/vocab/lite/providerPlace",
         "JBkLZaiZ",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "XlUxQVGp",
@@ -423,7 +449,9 @@
         "bGfRwwDX",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Person",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "bGfRwwDX",
@@ -489,13 +517,17 @@
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/conference-publication",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "kP2G4QhW",
@@ -525,7 +557,9 @@
         "m1ItcnSz",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Topic",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "m1ItcnSz",
@@ -555,7 +589,9 @@
         "tpDx6o-6",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "tpDx6o-6",
@@ -579,7 +615,9 @@
         "tpDx6o-6",
         "http://bibfra.me/vocab/lite/instantiates",
         "vkNgcXiH",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "tpDx6o-6",
@@ -615,7 +653,9 @@
         "tpDx6o-6",
         "http://bibfra.me/vocab/marc/publication",
         "XlUxQVGp",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "tpDx6o-6",
@@ -657,31 +697,41 @@
         "vkNgcXiH",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/LanguageMaterial",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "vkNgcXiH",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "vkNgcXiH",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/non-fiction",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "vkNgcXiH",
         "http://bibfra.me/vocab/lite/contributor",
         "RNuPnKbi",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "vkNgcXiH",
         "http://bibfra.me/vocab/lite/creator",
         "bGfRwwDX",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "vkNgcXiH",
@@ -729,19 +779,25 @@
         "vkNgcXiH",
         "http://bibfra.me/vocab/lite/subject",
         "5Q3WjVOG",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "vkNgcXiH",
         "http://bibfra.me/vocab/lite/subject",
         "F6lysvLh",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "vkNgcXiH",
         "http://bibfra.me/vocab/lite/subject",
         "m1ItcnSz",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "vkNgcXiH",
@@ -1017,25 +1073,33 @@
         "vkNgcXiH",
         "http://bibfra.me/vocab/relation/lunding",
         "RNuPnKbi",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "vkNgcXiH",
         "http://bibfra.me/vocab/relation/related",
         "EkY_5geW",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "vkNgcXiH",
         "http://bibfra.me/vocab/relation/related",
         "JOQ-3KM0",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "wepQKqKn",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Annotation",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "wepQKqKn",
@@ -1077,7 +1141,9 @@
         "yMrdaqOj",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Agent",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "yMrdaqOj",

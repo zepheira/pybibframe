@@ -3,7 +3,9 @@
         "0OXa3Kt4",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Agent",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "0OXa3Kt4",
@@ -63,7 +65,9 @@
         "1gL93Odw",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Place",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "1gL93Odw",
@@ -129,55 +133,73 @@
         "8GQmH0u7",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/LanguageMaterial",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "8GQmH0u7",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "8GQmH0u7",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/abstracts-summaries",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "8GQmH0u7",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/directories",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "8GQmH0u7",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/publication-of-autonomous-or-semi-autonomous-component-of-government",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "8GQmH0u7",
         "http://bibfra.me/vocab/lite/creator",
         "VTRgAJG1",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "8GQmH0u7",
         "http://bibfra.me/vocab/lite/subject",
         "HTg2tD2q",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "8GQmH0u7",
         "http://bibfra.me/vocab/lite/subject",
         "KaW836U7",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "8GQmH0u7",
         "http://bibfra.me/vocab/lite/subject",
         "QNvgCCFy",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "8GQmH0u7",
@@ -429,19 +451,25 @@
         "AMnIRh-g",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/ProviderEvent",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "AMnIRh-g",
         "http://bibfra.me/vocab/lite/providerAgent",
         "0OXa3Kt4",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "AMnIRh-g",
         "http://bibfra.me/vocab/lite/providerAgent",
         "qJP_nrip",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "AMnIRh-g",
@@ -459,7 +487,9 @@
         "AMnIRh-g",
         "http://bibfra.me/vocab/lite/providerPlace",
         "1gL93Odw",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "AMnIRh-g",
@@ -513,7 +543,9 @@
         "HTg2tD2q",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Place",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "HTg2tD2q",
@@ -555,7 +587,9 @@
         "KHGOU3Bn",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "KHGOU3Bn",
@@ -579,7 +613,9 @@
         "KHGOU3Bn",
         "http://bibfra.me/vocab/lite/instantiates",
         "8GQmH0u7",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "KHGOU3Bn",
@@ -621,7 +657,9 @@
         "KHGOU3Bn",
         "http://bibfra.me/vocab/marc/publication",
         "AMnIRh-g",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "KHGOU3Bn",
@@ -651,7 +689,9 @@
         "KaW836U7",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Place",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "KaW836U7",
@@ -681,13 +721,17 @@
         "PZ-aV_fa",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "PZ-aV_fa",
         "http://bibfra.me/vocab/annotation/institution",
         "PfCt6MOO",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "PZ-aV_fa",
@@ -699,13 +743,17 @@
         "PZ-aV_fa",
         "http://bibfra.me/vocab/lite/instantiates",
         "kP2G4QhW",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "PfCt6MOO",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Annotation",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "PfCt6MOO",
@@ -747,7 +795,9 @@
         "QNvgCCFy",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Place",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "QNvgCCFy",
@@ -777,7 +827,9 @@
         "VTRgAJG1",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Person",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "VTRgAJG1",
@@ -819,7 +871,9 @@
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "kP2G4QhW",
@@ -843,7 +897,9 @@
         "qJP_nrip",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Agent",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "qJP_nrip",

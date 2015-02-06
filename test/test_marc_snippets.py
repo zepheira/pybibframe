@@ -67,7 +67,9 @@ EXPECTED_1 = '''[
         "PZ-aV_fa",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "PZ-aV_fa",
@@ -79,37 +81,49 @@ EXPECTED_1 = '''[
         "PZ-aV_fa",
         "http://bibfra.me/vocab/lite/instantiates",
         "kP2G4QhW",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/LanguageMaterial",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/encyclopedias",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/legal-articles",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/surveys-of-literature",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "kP2G4QhW",
@@ -139,31 +153,41 @@ EXPECTED_2 = '''[
         "X76tY3SC",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/LanguageMaterial",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "X76tY3SC",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "X76tY3SC",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/encyclopedias",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "X76tY3SC",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/legal-articles",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "X76tY3SC",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/surveys-of-literature",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "X76tY3SC",
@@ -187,13 +211,17 @@ EXPECTED_2 = '''[
         "bwbrjGVf",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "bwbrjGVf",
         "http://bibfra.me/vocab/lite/instantiates",
         "X76tY3SC",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "bwbrjGVf",
@@ -230,31 +258,41 @@ EXPECTED_3 = '''[
         "X76tY3SC",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/LanguageMaterial",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "X76tY3SC",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "X76tY3SC",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/encyclopedias",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "X76tY3SC",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/legal-articles",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "X76tY3SC",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/surveys-of-literature",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "X76tY3SC",
@@ -278,7 +316,9 @@ EXPECTED_3 = '''[
         "bwbrjGVf",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "bwbrjGVf",
@@ -290,7 +330,9 @@ EXPECTED_3 = '''[
         "bwbrjGVf",
         "http://bibfra.me/vocab/lite/instantiates",
         "X76tY3SC",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "bwbrjGVf",
@@ -332,7 +374,9 @@ EXPECTED_4 = '''[
         "PZ-aV_fa",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "PZ-aV_fa",
@@ -344,7 +388,9 @@ EXPECTED_4 = '''[
         "PZ-aV_fa",
         "http://bibfra.me/vocab/lite/instantiates",
         "kP2G4QhW",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "PZ-aV_fa",
@@ -356,31 +402,41 @@ EXPECTED_4 = '''[
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/LanguageMaterial",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/encyclopedias",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/legal-articles",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/surveys-of-literature",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "kP2G4QhW",
@@ -420,25 +476,33 @@ EXPECTED_5 = '''[
         "nFBFsha6",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/LanguageMaterial",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "nFBFsha6",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "nFBFsha6",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/programmed-texts",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "nFBFsha6",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/surveys-of-literature",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "nFBFsha6",
@@ -492,13 +556,17 @@ EXPECTED_5 = '''[
         "zRg2BG3T",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "zRg2BG3T",
         "http://bibfra.me/vocab/lite/instantiates",
         "nFBFsha6",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "zRg2BG3T",
@@ -553,19 +621,25 @@ EXPECTED_7 = '''[
         "Ht2FQsIY",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "Ht2FQsIY",
         "http://bibfra.me/vocab/lite/instantiates",
         "XsrrgYIS",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "JqXcDz18",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Person",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "JqXcDz18",
@@ -595,37 +669,49 @@ EXPECTED_7 = '''[
         "XsrrgYIS",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/LanguageMaterial",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "XsrrgYIS",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "XsrrgYIS",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/encyclopedias",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "XsrrgYIS",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/legal-articles",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "XsrrgYIS",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/surveys-of-literature",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "XsrrgYIS",
         "http://bibfra.me/vocab/lite/creator",
         "JqXcDz18",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "XsrrgYIS",
@@ -657,25 +743,33 @@ EXPECTED_8 = '''[
         "IoGxK0TV",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "IoGxK0TV",
         "http://bibfra.me/vocab/lite/authorityLink",
         "http://lccn.loc.gov/96646621",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "IoGxK0TV",
         "http://bibfra.me/vocab/lite/authorityLink",
         "http://www.ncbi.nlm.nih.gov/nlmcatalog?term=7505458",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "IoGxK0TV",
         "http://bibfra.me/vocab/lite/authorityLink",
         "http://www.worldcat.org/oclc/1478787",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "IoGxK0TV",
@@ -723,31 +817,41 @@ EXPECTED_8 = '''[
         "PZ-aV_fa",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "PZ-aV_fa",
         "http://bibfra.me/vocab/lite/instantiates",
         "kP2G4QhW",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Collection",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/LanguageMaterial",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "kP2G4QhW",
@@ -765,7 +869,9 @@ EXPECTED_8 = '''[
         "kP2G4QhW",
         "http://bibfra.me/vocab/relation/unionOf",
         "IoGxK0TV",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ]
 ]
 '''
