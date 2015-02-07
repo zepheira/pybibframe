@@ -117,10 +117,11 @@ import re
 
 AUTHORITY_CODES = [
     (re.compile(r'\(DLC\)\s*(\S+)'), r'http://lccn.loc.gov/\1'),
-    (re.compile(r'\(OCoLC\)\s*(\S+)'), r'http://www.worldcat.org/oclc/\1'),
+    (re.compile(r'\(OCoLC\)fst(\d+)'), r'http://id.worldcat.org/fast/\1'),
+    (re.compile(r'\(OCoLC\)\s*(\d+)'), r'http://www.worldcat.org/oclc/\1'),
+    (re.compile(r'\(viaf\)\s*(\S+)'), r'http://viaf.org/viaf/\1'),
     (re.compile(r'\(DNLM\)\s*(\S+)'), r'http://www.ncbi.nlm.nih.gov/nlmcatalog?term=\1'),
     (re.compile(r'\(DE\-101\)\s*(\S+)'), r'http://d-nb.info/\1'),
-    (re.compile(r'\(viaf\)\s*(\S+)'), r'http://viaf.org/viaf/\1'),
     (re.compile(r'\(LoC\)\s*(\S+)'), r'http://id.loc.gov/authorities/names/\1')
 ]
 
