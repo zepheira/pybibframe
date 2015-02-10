@@ -186,13 +186,13 @@ BFLITE_TRANSFORMS = {
 
     '240': onwork.materialize(BL+'Collection', 
                               BL+'memberOf', 
-                              unique=values(subfield('a'), subfield('h'), subfield('k'), subfield('l'), subfield('m'), subfield('s')),
-                              links={BL+'title': subfield('a'), RDA+'legalDate': subfield('d'), BL+'medium': subfield('h'), AV+'musicMedium': subfield('m'), AV+'musicKey': subfield('r')}),
+                              unique=values(subfield('a'), subfield('d'), subfield('h'), subfield('l'), subfield('m'), subfield('n'), subfield('o'), subfield('p'), subfield('r'), subfield('k'), subfield('f'), subfield('s')),
+                              links={BL+'title': subfield('a'), RDA+'legalDate': subfield('d'), BL+'medium': subfield('h'), BL+'language': subfield('l'), AV+'musicMedium': subfield('m'), RDA+'titleNumber': subfield('n'), AV+'arrangedMusic': subfield('o'), RDA+'titlePart': subfield('p'), AV+'musicKey': subfield('r'), RDA+'form': subfield('k'), BL+'date': subfield('f'), RDA+'version': subfield('s')}),
     
     '243': onwork.materialize(BL+'Collection', 
                               BL+'memberOf', 
-                              unique=values(subfield('a'), subfield('h'), subfield('k'), subfield('l'), subfield('m'), subfield('s')),
-                              links={BL+'title': subfield('a'), RDA+'legalDate': subfield('d'), BL+'medium': subfield('h'), AV+'musicMedium': subfield('m'), AV+'musicKey': subfield('r')}),
+                              unique=values(subfield('a'), subfield('d'), subfield('h'), subfield('l'), subfield('m'), subfield('n'), subfield('o'), subfield('p'), subfield('r'), subfield('k'), subfield('f'), subfield('s')),
+                              links={BL+'title': subfield('a'), RDA+'legalDate': subfield('d'), BL+'medium': subfield('h'), BL+'language': subfield('l'), AV+'musicMedium': subfield('m'), RDA+'titleNumber': subfield('n'), AV+'arrangedMusic': subfield('o'), RDA+'titlePart': subfield('p'), AV+'musicKey': subfield('r'), RDA+'form': subfield('k'), BL+'date': subfield('f'), RDA+'version': subfield('s')}),
 
     # Title(s) - replicate across both Work and Instance(s) 
 
@@ -510,7 +510,7 @@ BFLITE_TRANSFORMS = {
     '730': onwork.materialize(BL+'Collection', 
                               BL+'related', 
                               unique=all_subfields,
-                              links={BL+'title': subfield('a'), BL+'language': subfield('l'), BL+'medium': subfield('h'), RDA+'nameOfPart': subfield('p'), RDA+'formSubdivision': subfield('v'), RDA+'generalSubdivision': subfield('x'), RDA+'chronologicalSubdivision': subfield('y'), RDA+'geographicSubdivision': subfield('z')}),
+                              links={BL+'title': subfield('a'), BL+'language': subfield('l'), BL+'medium': subfield('h'), RDA+'titlePart': subfield('p'), RDA+'titleNumber': subfield('n'), RDA+'formSubdivision': subfield('v'), RDA+'generalSubdivision': subfield('x'), RDA+'chronologicalSubdivision': subfield('y'), RDA+'geographicSubdivision': subfield('z')}),
 
     '740': onwork.materialize(BL+'Work', 
                               BL+'related', 
