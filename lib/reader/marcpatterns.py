@@ -200,7 +200,7 @@ BFLITE_TRANSFORMS = {
     '245$b': (onwork.rename(rel=RDA+'titleRemainder'), oninstance.rename(rel=RDA+'titleRemainder')),
     '245$c': (onwork.rename(rel=RDA+'titleStatement'), oninstance.rename(rel=RDA+'titleStatement')),
     '245$n': (onwork.rename(rel=RDA+'titleNumber'), oninstance.rename(rel=RDA+'titleNumber')),
-    '245$p': (onwork.rename(rel=RDA+'titleName'), oninstance.rename(rel=RDA+'titleName')),
+    '245$p': (onwork.rename(rel=RDA+'titlePart'), oninstance.rename(rel=RDA+'titlePart')),
 
     '245$f': onwork.rename(rel=RDA+'inclusiveDates'),
     '245$h': onwork.rename(rel=BL+'medium'),
@@ -461,7 +461,7 @@ BFLITE_TRANSFORMS = {
                     onwork.materialize(BL+'Work', 
                                        values(BL+'related', relator_property(subfield('i'), prefix=REL)),
                                        unique=values(subfield('t'), subfield('l'), subfield('m'), subfield('n'), subfield('o'), subfield('p'), subfield('r'), subfield('k'), subfield('f'), subfield('s')),
-                                       links={BL+'title': subfield('t'), BL+'language': subfield('l'), AV+'musicMedium': subfield('m'), RDA+'number': subfield('n'), AV+'arrangedMusic': subfield('o'), RDA+'part': subfield('p'), AV+'musicKey': subfield('r'), RDA+'form': subfield('k'), BL+'date': subfield('f'), RDA+'version': subfield('s'),
+                                       links={BL+'title': subfield('t'), BL+'language': subfield('l'), AV+'musicMedium': subfield('m'), RDA+'titleNumber': subfield('n'), AV+'arrangedMusic': subfield('o'), RDA+'titlePart': subfield('p'), AV+'musicKey': subfield('r'), RDA+'form': subfield('k'), BL+'date': subfield('f'), RDA+'version': subfield('s'),
                                               ifexists(subfield('a'), BL+'creator'): materialize(BL+'Person', 
                                                                                                  unique=values(subfield('a')),
                                                                                                  links={BL+'name': subfield('a'), BL+'date': subfield('d')})
@@ -515,7 +515,7 @@ BFLITE_TRANSFORMS = {
     '740': onwork.materialize(BL+'Work', 
                               BL+'related', 
                               unique=values(subfield('a'), subfield('h'), subfield('n'), subfield('p')),
-                              links={BL+'title': subfield('a'), RDA+'medium': subfield('h'), RDA+'titleNumber': subfield('n'), RDA+'titleName': subfield('p')}),
+                              links={BL+'title': subfield('a'), RDA+'medium': subfield('h'), RDA+'titleNumber': subfield('n'), RDA+'titlePart': subfield('p')}),
 
     # Translation(s)
     
@@ -630,11 +630,10 @@ BFLITE_TRANSFORMS = {
     '830': onwork.materialize(RDA+'Series', 
                               BL+'memberOf', 
                               unique=values(subfield('a')),
-                              links={BL+'title': subfield('a'), RDA+'subtitle': subfield('k'), RDA+'volume': subfield('v'), RDA+'number': subfield('n'), RDA+'part': subfield('p'), }),
-
-    # '880$a' insert logic here
+                              links={BL+'title': subfield('a'), RDA+'titleRemainder': subfield('k'), RDA+'volume': subfield('v'), RDA+'titleNumber': subfield('n'), RDA+'titlePart': subfield('p'), }),
 
     '856$u': oninstance.rename(rel=BL+'link', res=True),
+
     }
 
 register_transforms("http://bibfra.me/tool/pybibframe/transforms#bflite", BFLITE_TRANSFORMS)
