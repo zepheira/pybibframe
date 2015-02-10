@@ -23,56 +23,67 @@ class transforms(object):
 
     def process_leader(self, leader, work, instance):
         """
+        Processes leader field according to the MARC standard.
         http://www.loc.gov/marc/marc2dc.html#ldr06conversionrules
         http://www.loc.gov/marc/bibliographic/bdleader.html
+
+        :leader: - text of leader field, a character array
+        :work: - work resource in context of which leader is being processed. Useful in the return value.
+        :instance: - instance resource in context of which leader is being processed. Useful in the return value.
+
+        yields - 0 or more 3-tuples, (origin, rel, target), each representing a new
+            link generated from leader data. origin is almost always the work or instance
+            resource passed in. If origin is None, signal to the caller to default
+            to the work as origin
 
         >>> from bibframe.reader.marcextra import transforms
         >>> t = transforms()
         >>> list(t.process_leader('03495cpcaa2200673 a 4500'))
         [(None, 'http://bibfra.me/purl/versa/type', I('Collection')), (None, 'http://bibfra.me/purl/versa/type', I('Multimedia')), (None, 'http://bibfra.me/purl/versa/type', I('Collection'))]
         """
-        broad_06 = dict(
+        work_06 = dict(
             a=I(self._vocab[BL]+"LanguageMaterial"),
-            c=I(self._vocab[BL]+"LanguageMaterial"),
-            d=I(self._vocab[BL]+"LanguageMaterial"),
-            e=I(self._vocab[BL]+"StillImage"),
-            f=I(self._vocab[BL]+"StillImage"),
+            c=(I(self._vocab[BL]+"LanguageMaterial"), I(self._vocab[BL]+"NotatedMusic")),
+            d=(I(self._vocab[BL]+"LanguageMaterial"), I(self._vocab[BL]+"Manuscript"), I(self._vocab[BL]+"NotatedMusic")),
+            e=(I(self._vocab[BL]+"StillImage"), I(self._vocab[BL]+"Cartography")),
+            f=(I(self._vocab[BL]+"Manuscript"), I(self._vocab[BL]+"Cartography"), I(self._vocab[BL]+"StillImage")),
             g=I(self._vocab[BL]+"MovingImage"),
-            i=I(self._vocab[BL]+"Audio"),
-            j=I(self._vocab[BL]+"Audio"),
+            i=(I(self._vocab[BL]+"Audio"), I(self._vocab[BL]+"Nonmusical"), I(self._vocab[BL]+"Sounds")),
+            j=(I(self._vocab[BL]+"Audio"), I(self._vocab[BL]+"Musical")),
             k=I(self._vocab[BL]+"StillImage"),
-            m=I(self._vocab[BL]+"Software"),
-            p=I(self._vocab[BL]+"Collection"),
-            t=I(self._vocab[BL]+"LanguageMaterial"))
-    
-        detailed_06 = dict(
-            a=I(self._vocab[BL]+"LanguageMaterial"),
-            c=I(self._vocab[BL]+"NotatedMusic"),
-            d=(I(self._vocab[BL]+"Manuscript"), I(self._vocab[BL]+"NotatedMusic")),
-            e=I(self._vocab[BL]+"Cartography"),
-            f=(I(self._vocab[BL]+"Manuscript"), I(self._vocab[BL]+"Cartography")),
-            g=I(self._vocab[BL]+"MovingImage"),
-            i=(I(self._vocab[BL]+"Nonmusical"), I(self._vocab[BL]+"Sounds")),
-            j=I(self._vocab[BL]+"Musical"),
-            k=I(self._vocab[BL]+"StillImage"),
-            m=I(self._vocab[BL]+"Multimedia"),
+            m=(I(self._vocab[BL]+"Multimedia"), I(self._vocab[BL]+"Software")),
             o=I(self._vocab[BL]+"Kit"),
-            p=I(self._vocab[BL]+"Multimedia"),
+            p=(I(self._vocab[BL]+"Collection"), I(self._vocab[BL]+"Multimedia")),
             r=I(self._vocab[BL]+"ThreeDimensionalObject"),
-            t=(I(self._vocab[BL]+"LanguageMaterial"), I(self._vocab[BL]+"Manuscript")))
+            t=(I(self._vocab[BL]+"LanguageMaterial"), I(self._vocab[BL]+"Manuscript"))
+            )
+
+        instance_06 = dict(
+            )
     
         _06 = leader[6]
-        if _06 in broad_06.keys():
-            yield None, I(self._vocab[VTYPE]), broad_06[_06]
-        if _06 in detailed_06.keys():
-            yield None, I(self._vocab[VTYPE]), detailed_06[_06]
+        if _06 in work_06.keys():
+            yield work, I(self._vocab[VTYPE]), work_06[_06]
+        if _06 in instance_06.keys():
+            yield instance, I(self._vocab[VTYPE]), instance_06[_06]
         if leader[7] in ('c', 's'):
             yield None, I(self._vocab[VTYPE]), I(self._vocab[BL]+"Collection")
 
 
     def process_008(self, info, work, instance):
         """
+        Processes 008 control field according to the MARC standard.
         http://www.loc.gov/marc/umb/um07to10.html#part9
+
+        :info: - text of 008 field, a character array
+        :work: - work resource in context of which 008 is being processed. Useful in the return value.
+        :instance: - instance resource in context of which leader is being processed. Useful in the return value.
+
+        yields - 0 or more 3-tuples, (origin, rel, target), each representing a new
+            link generated from 008 data. origin is almost always the work or instance
+            resource passed in. If origin is None, signal to the caller to default
+            to the work as origin
+
 
         #>>> from bibframe.reader.marcextra import transforms
         #>>> t = transforms()
