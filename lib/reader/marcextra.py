@@ -60,7 +60,7 @@ class transforms(object):
 
         instance_06 = dict(
             )
-    
+
         _06 = leader[6]
         if _06 in work_06.keys():
             yield work, I(self._vocab[VTYPE]), work_06[_06]
@@ -68,7 +68,6 @@ class transforms(object):
             yield instance, I(self._vocab[VTYPE]), instance_06[_06]
         if leader[7] in ('c', 's'):
             yield None, I(self._vocab[VTYPE]), I(self._vocab[BL]+"Collection")
-
 
     def process_008(self, info, work, instance):
         """
@@ -180,7 +179,7 @@ class transforms(object):
         #2) A tuple of ints, processed once for each character position in the list, each int passed to the value function
         #3) A tuple starting with 'slice' and then 2 ints, processed as a character chunk/slice passed as a whole to the value function
         #If the value function returns None or a tuple with None in the lats position, it's a signal to do nothing for the case at hand
-        FiELD_OO8_PATTERNS = {
+        FIELD_008_PATTERNS = {
             23: lambda i: (None, I(self._vocab[BL]+'medium'), media.get(info[i])),
             (24, 25, 26, 27): lambda i: (None, I(self._vocab[VTYPE]), types.get(info[i])),
             28: lambda i: (None, I(self._vocab[VTYPE]), govt_publication.get(info[i])),
@@ -207,21 +206,177 @@ class transforms(object):
             #Completely Invalid date
             pass
 
-        #Execute the rules detailed in the "Registry of patterns" comment above
-        for i, func in FiELD_OO8_PATTERNS.items():
-            if isinstance(i, tuple):
-                if i[0] == 'slice':
-                    params = [slice(i[1], i[2])]
-                else:
-                    params = i
-            elif isinstance(i, int):
-                params = [i]
+        yield from process_patterns(FIELD_008_PATTERNS)
 
-            for param in params:
-                try:
-                    result = func(param)
-                    if result and result[2] is not None:
-                        yield result
-                except IndexError:
-                    pass #Truncated 008 field
+    def process_006(self, infos, leader, work, instance):
+        """
+        Process 006 control fields
 
+        :info: - list of the text from any 006 fields
+        :leader - leader header, a character array
+
+        Rest of params and yield, same as for process_008
+        """
+
+        # 006 requires a multi-stage lookup of everything in this page
+        # and beneath the subtypes
+        # http://www.loc.gov/marc/bibliographic/bd008.html
+
+        Books = dict(
+            Illustrations = dict(
+                a=I(self._vocab[BL]+'illustrations'),
+                b=I(self._vocab[BL]+'maps'),
+                c=I(self._vocab[BL]+'portraits'),
+                d=I(self._vocab[BL]+'charts'),
+                e=I(self._vocab[BL]+'plans'),
+                f=I(self._vocab[BL]+'plates'),
+                g=I(self._vocab[BL]+'music'),
+                h=I(self._vocab[BL]+'facsimiles'),
+                i=I(self._vocab[BL]+'coats-of-arms'),
+                j=I(self._vocab[BL]+'genealogical-tables'),
+                k=I(self._vocab[BL]+'forms'),
+                l=I(self._vocab[BL]+'samples'),
+                m=I(self._vocab[BL]+'phonodisk'),
+                o=I(self._vocab[BL]+'photographs'),
+                p=I(self._vocab[BL]+'illuminations'),
+            ),
+            TargetAudience = dict(
+                a=I(self._vocab[BL]+'preschool'),
+                b=I(self._vocab[BL]+'primary'),
+                c=I(self._vocab[BL]+'pre-adolescent'),
+                d=I(self._vocab[BL]+'adolescent'),
+                e=I(self._vocab[BL]+'adult'),
+                f=I(self._vocab[BL]+'specialized'),
+                g=I(self._vocab[BL]+'general'),
+                j=I(self._vocab[BL]+'juvenile'),
+            ),
+            FormOfItem = dict(
+                a=I(self._vocab[BL]+'microfilm'),
+                b=I(self._vocab[BL]+'microfiche'),
+                c=I(self._vocab[BL]+'microopaque'),
+                d=I(self._vocab[BL]+'large-print'),
+                f=I(self._vocab[BL]+'braille'),
+                o=I(self._vocab[BL]+'online'),
+                q=I(self._vocab[BL]+'direct-electronic'),
+                r=I(self._vocab[BL]+'regular-print-reproduction'),
+                s=I(self._vocab[BL]+'electronic'),
+            ),
+            NatureOfContents = { # numeric keys
+                'a': I(self._vocab[BL]+'abstracts-summaries'),
+                'b': I(self._vocab[BL]+'bibliographies'),
+                'c': I(self._vocab[BL]+'catalogs'),
+                'd': I(self._vocab[BL]+'dictionaries'),
+                'e': I(self._vocab[BL]+'encyclopedias'),
+                'f': I(self._vocab[BL]+'handbooks'),
+                'g': I(self._vocab[BL]+'legal-articles'),
+                'i': I(self._vocab[BL]+'indexes'),
+                'j': I(self._vocab[BL]+'patent-document'),
+                'k': I(self._vocab[BL]+'discographies'),
+                'l': I(self._vocab[BL]+'legislation'),
+                'm': I(self._vocab[BL]+'theses'),
+                'n': I(self._vocab[BL]+'surveys-of-literature-in-a-subject-area'),
+                'o': I(self._vocab[BL]+'reviews'),
+                'p': I(self._vocab[BL]+'programmed-texts'),
+                'q': I(self._vocab[BL]+'filmographies'),
+                'r': I(self._vocab[BL]+'directories'),
+                's': I(self._vocab[BL]+'statistics'),
+                't': I(self._vocab[BL]+'technical-reports'),
+                'u': I(self._vocab[BL]+'standards-specifications'),
+                'v': I(self._vocab[BL]+'legal-cases-and-case-notes'),
+                'w': I(self._vocab[BL]+'law-reports-and-digests'),
+                'y': I(self._vocab[BL]+'yearbooks'),
+                'z': I(self._vocab[BL]+'treaties'),
+                '2': I(self._vocab[BL]+'offprints'),
+                '5': I(self._vocab[BL]+'calendars'),
+                '6': I(self._vocab[BL]+'comics-graphic-novels'),
+            },
+            GovernmentPublication = dict(
+            ),
+            ConferencePublication = dict(
+            ),
+            Festschrift = dict(
+            ),
+            Index = dict(
+            ),
+            LiteraryForm = dict(
+            ),
+            Biography = dict(
+            ),
+        )
+
+        Music = dict(
+        )
+
+        Maps = dict(
+        )
+
+        VisualMaterials = dict(
+        )
+
+        ComputerFiles = dict( 
+        )
+
+        MixedMaterials = dict(
+        )
+
+        # From http://www.itsmarc.com/crs/mergedprojects/helptop1/helptop1/variable_control_fields/idh_006_00_bib.htm
+        material_form_type = dict(
+            a='Books',
+            c='Music',
+            d='Music',
+            e='Maps',
+            f='Maps',
+            g='VisualMaterials',
+            i='Music',
+            j='Music',
+            k='VisualMaterials',
+            m='ComputerFiles',
+            o='VisualMaterials',
+            p='MixedMaterials',
+            r='VisualMaterials',
+            t='Books'
+            )
+
+        Patterns_Books = {
+            ('slice', 18, 22): lambda i: [(None, I(self._vocab[VTYPE]), Books['Illustrations'].get(x)) for x in info[i]],
+            22: lambda i: (None, I(self._vocab[VTYPE]), Books['TargetAudience'].get(info[i])),
+            23: lambda i: (None, I(self._vocab[VTYPE]), Books['FormOfItem'].get(info[i])),
+            ('slice', 24, 28): lambda i: [(None, I(self._vocab[VTYPE]), Books['NatureOfContents'].get(x)) for x in info[i]],
+            28: lambda i: (None, I(self._vocab[VTYPE]), Books['GovernmentPublication'].get(info[i])),
+            29: lambda i: (None, I(self._vocab[VTYPE]), Books['ConferencePublication'].get(info[i])),
+            30: lambda i: (None, I(self._vocab[VTYPE]), Books['Festschrift'].get(info[i])),
+            31: lambda i: (None, I(self._vocab[VTYPE]), Books['Index'].get(info[i])),
+            33: lambda i: (None, I(self._vocab[VTYPE]), Books['LiteraryForm'].get(info[i])),
+            34: lambda i: (None, I(self._vocab[VTYPE]), Books['Biography'].get(info[i])),
+        }
+
+        Patterns_Music = {
+        }
+
+        _06 = leader[6]
+        typ = material_form_type.get(_06, {})
+        patterns = locals().get('Patterns_{}'.format(typ))
+        if patterns:
+            for info in infos: # FIXME unintuitive late binding of "info" to lambdas in patterns dicts
+                yield from process_patterns(patterns)
+
+def process_patterns(patterns):
+    #Execute the rules detailed in the various positional patterns lookup tables above
+    for i, func in patterns.items():
+        if isinstance(i, tuple):
+            if i[0] == 'slice':
+                params = [slice(i[1], i[2])]
+            else:
+                params = i
+        elif isinstance(i, int):
+            params = [i]
+
+        for param in params:
+            try:
+                result = func(param)
+                result = result if isinstance(result, list) else [result]
+                for r in result:
+                    if r and r[2] is not None:
+                        yield r
+            except IndexError:
+                pass #Truncated field
