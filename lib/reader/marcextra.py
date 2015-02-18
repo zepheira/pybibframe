@@ -13,70 +13,16 @@ VTYPE = VERSA_BASEIRI+'type'
 LANG= BL+'language'
 DEFAULT_VOCAB_ITEMS = [BL, BA, REL, RDA, RBMS, AV, LANG, VTYPE]
 
-# some shared mappings between 006/008
-AUDIENCES = {
-    'a': I(self._vocab[BL]+"preschool"),
-    'b': I(self._vocab[BL]+"primary"),
-    'c': I(self._vocab[BL]+"pre-adolescent"),
-    'd': I(self._vocab[BL]+"adolescent"),
-    'e': I(self._vocab[BL]+"adult"),
-    'f': I(self._vocab[BL]+"specialized"),
-    'g': I(self._vocab[BL]+"general"),
-    'j': I(self._vocab[BL]+"juvenile")
-    }
-
-MEDIA = {
-    'a': I(self._vocab[BL]+"microfilm"),
-    'b': I(self._vocab[BL]+"microfiche"),
-    'c': I(self._vocab[BL]+"microopaque"),
-    'd': I(self._vocab[BL]+"large-print"),
-    'f': I(self._vocab[BL]+"braille"),
-    'r': I(self._vocab[BL]+"regular-print-reproduction"),
-    's': I(self._vocab[BL]+"electronic")
-    }
-
-# extended version of MEDIA above. Interchangeable?
-FORM_OF_ITEM = {
-    'a': I(self._vocab[BL]+'microfilm'),
-    'b': I(self._vocab[BL]+'microfiche'),
-    'c': I(self._vocab[BL]+'microopaque'),
-    'd': I(self._vocab[BL]+'large-print'),
-    'f': I(self._vocab[BL]+'braille'),
-    'o': I(self._vocab[BL]+'online'),
-    'q': I(self._vocab[BL]+'direct-electronic'),
-    'r': I(self._vocab[BL]+'regular-print-reproduction'),
-    's': I(self._vocab[BL]+'electronic'),
-    }
-
-BIOGRAPHICAL = dict(
-    a=I(self._vocab[BL]+"autobiography"),
-    b=I(self._vocab[BL]+'individual-biography'),
-    c=I(self._vocab[BL]+'collective-biography'),
-    d=I(self._vocab[BL]+'contains-biographical-information')
-    )
-
-GOVT_PUBLICATION = {
-    "a": I(self._vocab[BL]+"publication-of-autonomous-or-semi-autonomous-component-of-government"),
-    "c": I(self._vocab[BL]+"publication-from-multiple-local-governments"),
-    "f": I(self._vocab[BL]+"federal-national-government-publication"),
-    "i": I(self._vocab[BL]+"international-or-intergovernmental-publication"),
-    "l": I(self._vocab[BL]+"local-government-publication"),
-    "m": I(self._vocab[BL]+"multistate-government-publication"),
-    "o": I(self._vocab[BL]+"government-publication-level-undetermined"),
-    "s": I(self._vocab[BL]+"government-publication-of-a-state-province-territory-dependency-etc"),
-    "u": I(self._vocab[BL]+"unknown-if-item-is-government-publication"),
-    "z": I(self._vocab[BL]+"other-type-of-government-publication")}
-
 def runtime(rt):
     '''
-    Handle visual material runtime property
+    Handle visual material running time property
     '''
     runtime = None # no runtime property produced
-    if instanceof(rt, str):
+    if isinstance(rt, str):
         if rt == 'nnn':
-            runtime = I(self._vocab[BL]+"runtime-not-applicable")
+            runtime = I(self._vocab[BL]+"running-time-not-applicable")
         elif rt == '---':
-            runtime = I(self._vocab[BL]+"unknown-runtime")
+            runtime = I(self._vocab[BL]+"unknown-running-time")
     else:
         try:
             runtime = int(rt)
@@ -91,6 +37,61 @@ class transforms(object):
         vocab = vocab or {}
         #Use any provided, overridden vocab items, or just the defaults
         self._vocab = { i: vocab.get(i, i) for i in DEFAULT_VOCAB_ITEMS }
+
+        # some shared mappings between and within 006/008 fields
+        self.AUDIENCE = {
+            'a': I(self._vocab[BL]+"preschool"),
+            'b': I(self._vocab[BL]+"primary"),
+            'c': I(self._vocab[BL]+"pre-adolescent"),
+            'd': I(self._vocab[BL]+"adolescent"),
+            'e': I(self._vocab[BL]+"adult"),
+            'f': I(self._vocab[BL]+"specialized"),
+            'g': I(self._vocab[BL]+"general"),
+            'j': I(self._vocab[BL]+"juvenile")
+            }
+
+        self.MEDIA = {
+            'a': I(self._vocab[BL]+"microfilm"),
+            'b': I(self._vocab[BL]+"microfiche"),
+            'c': I(self._vocab[BL]+"microopaque"),
+            'd': I(self._vocab[BL]+"large-print"),
+            'f': I(self._vocab[BL]+"braille"),
+            'r': I(self._vocab[BL]+"regular-print-reproduction"),
+            's': I(self._vocab[BL]+"electronic")
+            }
+
+        # extended version of MEDIA above. Interchangeable?
+        self.FORM_OF_ITEM = {
+            'a': I(self._vocab[BL]+'microfilm'),
+            'b': I(self._vocab[BL]+'microfiche'),
+            'c': I(self._vocab[BL]+'microopaque'),
+            'd': I(self._vocab[BL]+'large-print'),
+            'f': I(self._vocab[BL]+'braille'),
+            'o': I(self._vocab[BL]+'online'),
+            'q': I(self._vocab[BL]+'direct-electronic'),
+            'r': I(self._vocab[BL]+'regular-print-reproduction'),
+            's': I(self._vocab[BL]+'electronic'),
+            }
+
+        self.BIOGRAPHICAL = dict(
+            a=I(self._vocab[BL]+"autobiography"),
+            b=I(self._vocab[BL]+'individual-biography'),
+            c=I(self._vocab[BL]+'collective-biography'),
+            d=I(self._vocab[BL]+'contains-biographical-information')
+            )
+
+        self.GOVT_PUBLICATION = {
+            "a": I(self._vocab[BL]+"publication-of-autonomous-or-semi-autonomous-component-of-government"),
+            "c": I(self._vocab[BL]+"publication-from-multiple-local-governments"),
+            "f": I(self._vocab[BL]+"federal-national-government-publication"),
+            "i": I(self._vocab[BL]+"international-or-intergovernmental-publication"),
+            "l": I(self._vocab[BL]+"local-government-publication"),
+            "m": I(self._vocab[BL]+"multistate-government-publication"),
+            "o": I(self._vocab[BL]+"government-publication-level-undetermined"),
+            "s": I(self._vocab[BL]+"government-publication-of-a-state-province-territory-dependency-etc"),
+            "u": I(self._vocab[BL]+"unknown-if-item-is-government-publication"),
+            "z": I(self._vocab[BL]+"other-type-of-government-publication")}
+
         return
 
     def process_leader(self, leader, work, instance):
@@ -215,16 +216,16 @@ class transforms(object):
         #3) A tuple starting with 'slice' and then 2 ints, processed as a character chunk/slice passed as a whole to the value function
         #If the value function returns None or a tuple with None in the lats position, it's a signal to do nothing for the case at hand
         FIELD_008_PATTERNS = {
-            23: lambda i: (None, I(self._vocab[BL]+'medium'), MEDIA.get(info[i])),
+            23: lambda i: (None, I(self._vocab[BL]+'medium'), self.MEDIA.get(info[i])),
             (24, 25, 26, 27): lambda i: (None, I(self._vocab[VTYPE]), types.get(info[i])),
-            28: lambda i: (None, I(self._vocab[VTYPE]), govt_publication.get(info[i])),
+            28: lambda i: (None, I(self._vocab[VTYPE]), self.GOVT_PUBLICATION.get(info[i])),
             29: lambda i: (None, I(self._vocab[VTYPE]), I(self._vocab[BL]+'conference-publication'))
                             if info[i] == '1' else None,
             30: lambda i: (None, I(self._vocab[VTYPE]), I(self._vocab[BL]+'festschrift'))
                             if info[i] == '1' else None,
             33: lambda i: (None, I(self._vocab[VTYPE]), genres.get(info[i]))
                             if info[i] != 'u' else None, #'u' means unknown?
-            34: lambda i: (None, I(self._vocab[VTYPE]), biographical.get(info[i])),
+            34: lambda i: (None, I(self._vocab[VTYPE]), self.BIOGRAPHICAL.get(info[i])),
             ('slice', 35, 38): lambda i: (None, I(self._vocab[LANG]), info[i.start:i.stop])
                             if info[i.start:i.stop] not in
                                 ("###", "zxx", "mul", "sgn", "und", "   ", "") else None,
@@ -275,17 +276,6 @@ class transforms(object):
                 'o': I(self._vocab[BL]+'photographs'),
                 'p': I(self._vocab[BL]+'illuminations'),
             },
-            TargetAudience = {
-                'a': I(self._vocab[BL]+'preschool'),
-                'b': I(self._vocab[BL]+'primary'),
-                'c': I(self._vocab[BL]+'pre-adolescent'),
-                'd': I(self._vocab[BL]+'adolescent'),
-                'e': I(self._vocab[BL]+'adult'),
-                'f': I(self._vocab[BL]+'specialized'),
-                'g': I(self._vocab[BL]+'general'),
-                'j': I(self._vocab[BL]+'juvenile'),
-            },
-            FormOfItem = FORM_OF_ITEM,
             NatureOfContents = { # numeric keys
                 'a': I(self._vocab[BL]+'abstracts-summaries'),
                 'b': I(self._vocab[BL]+'bibliographies'),
@@ -315,7 +305,6 @@ class transforms(object):
                 '5': I(self._vocab[BL]+'calendars'),
                 '6': I(self._vocab[BL]+'comics-graphic-novels'),
             },
-            GovernmentPublication = GOVT_PUBLICATION,
             ConferencePublication = {
                 '1': I(self._vocab[BL]+'conference-publication'),
             },
@@ -339,7 +328,6 @@ class transforms(object):
                 's': I(self._vocab[BL]+'speeches'),
                 'u': I(self._vocab[BL]+'unknown-literary-form'),
             },
-            Biography = BIOGRAPHICAL,
         )
 
         Music = dict(
@@ -441,8 +429,6 @@ class transforms(object):
                 'n': I(self._vocab[BL]+'not-applicable'),
                 'u': I(self._vocab[BL]+'unknown-parts'),
             },
-            TargetAudience = Books['TargetAudience'],
-            FormOfItem = Books['FormOfItem'],
             AccompanyingMatter = {
                 'a': I(self._vocab[BL]+'discography'),
                 'b': I(self._vocab[BL]+'bibliography'),
@@ -563,8 +549,6 @@ class transforms(object):
                 'u': I(self._vocab[BL]+'unknown-type-of-cartographic-material'),
                 'z': I(self._vocab[BL]+'other-type-of-cartographic-material'),
             },
-            GovernmentPublication = GOVT_PUBLICATION,
-            FormOfItem = FORM_OF_ITEM,
             SpecialFormatCharacteristics = {
                 'e': I(self._vocab[BL]+'manuscript'),
                 'j': I(self._vocab[BL]+'picture-card-post-card'),
@@ -579,9 +563,6 @@ class transforms(object):
         )
 
         VisualMaterials = dict(
-            TargetAudience = AUDIENCES,
-            GovernmentPublication = GOVT_PUBLICATION,
-            FormOfItem = FORM_OF_ITEM,
             TypeOfVisualMaterial = {
                 'a': I(self._vocab[BL]+'art-original'),
                 'b': I(self._vocab[BL]+'kit'),
@@ -637,9 +618,6 @@ class transforms(object):
             }
         )
 
-        MixedMaterials = dict(
-        )
-
         # From http://www.itsmarc.com/crs/mergedprojects/helptop1/helptop1/variable_control_fields/idh_006_00_bib.htm
         material_form_type = dict(
             a='Books',
@@ -661,22 +639,22 @@ class transforms(object):
         Patterns = dict(
             Books = {
                 (18, 19, 20, 21): lambda i: (None, I(self._vocab[VTYPE]), Books['Illustrations'].get(info[i])),
-                22: lambda i: (None, I(self._vocab[VTYPE]), Books['TargetAudience'].get(info[i])),
-                23: lambda i: (None, I(self._vocab[VTYPE]), Books['FormOfItem'].get(info[i])),
+                22: lambda i: (None, I(self._vocab[VTYPE]), self.AUDIENCE.get(info[i])),
+                23: lambda i: (None, I(self._vocab[VTYPE]), self.FORM_OF_ITEM.get(info[i])),
                 (24, 25, 26, 27): lambda i: (None, I(self._vocab[VTYPE]), Books['NatureOfContents'].get(info[i])),
-                28: lambda i: (None, I(self._vocab[VTYPE]), Books['GovernmentPublication'].get(info[i])),
+                28: lambda i: (None, I(self._vocab[VTYPE]), self.GOVT_PUBLICATION.get(info[i])),
                 29: lambda i: (None, I(self._vocab[VTYPE]), Books['ConferencePublication'].get(info[i])),
                 30: lambda i: (None, I(self._vocab[VTYPE]), Books['Festschrift'].get(info[i])),
                 31: lambda i: (None, I(self._vocab[VTYPE]), Books['Index'].get(info[i])),
                 33: lambda i: (None, I(self._vocab[VTYPE]), Books['LiteraryForm'].get(info[i])),
-                34: lambda i: (None, I(self._vocab[VTYPE]), Books['Biography'].get(info[i])),
+                34: lambda i: (None, I(self._vocab[VTYPE]), self.BIOGRAPHICAL.get(info[i])),
             },
             Music = {
                 ('slice', 18, 20): lambda i: (None, I(self._vocab[VTYPE]), Music['FormOfComposition'].get(info[i])),
                 20: lambda i: (None, I(self._vocab[VTYPE]), Music['FormatOfMusic'].get(info[i])),
                 21: lambda i: (None, I(self._vocab[VTYPE]), Music['MusicParts'].get(info[i])),
-                22: lambda i: (None, I(self._vocab[VTYPE]), Music['TargetAudience'].get(info[i])),
-                23: lambda i: (None, I(self._vocab[VTYPE]), Music['FormOfItem'].get(info[i])),
+                22: lambda i: (None, I(self._vocab[VTYPE]), self.AUDIENCE.get(info[i])),
+                23: lambda i: (None, I(self._vocab[VTYPE]), self.FORM_OF_ITEM.get(info[i])),
                 (24, 25, 26, 27, 28, 29): lambda i: (None, I(self._vocab[VTYPE]), Music['AccompanyingMatter'].get(info[i])),
                 (30, 31): lambda i: (None, I(self._vocab[VTYPE]), Music['LiteraryTextForSoundsRecordings'].get(info[i])),
                 33: lambda i: (None, I(self._vocab[VTYPE]), Music['TranspositionAndArrangement'].get(info[i])),
@@ -685,30 +663,32 @@ class transforms(object):
                 (18, 19, 20, 21): lambda i: (None, I(self._vocab[VTYPE]), Maps['Relief'].get(info[i])),
                 ('slice', 22, 23): lambda i: (None, I(self._vocab[VTYPE]), Maps['Projection'].get(info[i])),
                 25: lambda i: (None, I(self._vocab[VTYPE]), Maps['TypeOfCartographicMaterial'].get(info[i])),
-                28: lambda i: (None, I(self._vocab[VTYPE]), GOVT_PUBLICATIONS.get(info[i])),
-                29: lambda i: (None, I(self._vocab[VTYPE]), FORM_OF_ITEM.get(info[i])),
+                28: lambda i: (None, I(self._vocab[VTYPE]), self.GOVT_PUBLICATION.get(info[i])),
+                29: lambda i: (None, I(self._vocab[VTYPE]), self.FORM_OF_ITEM.get(info[i])),
                 31: lambda i: (None, I(self._vocab[VTYPE]), Maps['Index'].get(info[i])),
                 (33, 34): lambda i: (None, I(self._vocab[VTYPE]), Maps['SpecialFormatCharacteristics'].get(info[i])),
             },
             VisualMaterials = {
                 ('slice', 18, 21): lambda i: (None, I(self._vocab[BL]+'runtime'), runtime(info[i])),
-                22: lambda i: (None, I(self._vocab[VTYPE]), AUDIENCES.get(info[i])),
-                28: lambda i: (None, I(self._vocab[VTYPE]), GOVT_PUBLICATIONS.get(info[i])),
-                29: lambda i: (None, I(self._vocab[VTYPE]), FORM_OF_ITEM.get(info[i])),
+                22: lambda i: (None, I(self._vocab[VTYPE]), self.AUDIENCE.get(info[i])),
+                28: lambda i: (None, I(self._vocab[VTYPE]), self.GOVT_PUBLICATION.get(info[i])),
+                29: lambda i: (None, I(self._vocab[VTYPE]), self.FORM_OF_ITEM.get(info[i])),
                 33: lambda i: (None, I(self._vocab[VTYPE]), VisualMaterials['TypeOfVisualMaterial'].get(info[i])),
                 34: lambda i: (None, I(self._vocab[VTYPE]), VisualMaterials['Technique'].get(info[i])),
             },
             ComputerFiles = {
-                22: lambda i: (None, I(self._vocab[VTYPE]), AUDIENCES.get(info[i])),
+                22: lambda i: (None, I(self._vocab[VTYPE]), self.AUDIENCE.get(info[i])),
+                23: lambda i: (None, I(self._vocab[VTYPE]), ComputerFiles['FormOfItem'].get(info[i])),
                 26: lambda i: (None, I(self._vocab[VTYPE]), ComputerFiles['TypeOfComputerFile'].get(info[i])),
-                28: lambda i: (None, I(self._vocab[VTYPE]), GOVT_PUBLICATIONS.get(info[i])),
+                28: lambda i: (None, I(self._vocab[VTYPE]), self.GOVT_PUBLICATION.get(info[i])),
             },
             MixedMaterials = {
+                23: lambda i: (None, I(self._vocab[VTYPE]), self.FORM_OF_ITEM.get(info[i])),
             }
         )
 
         _06 = leader[6]
-        typ = material_form_type.get(_06, {})
+        typ = material_form_type.get(_06)
         patterns = Patterns.get(typ)
         if patterns:
             for info in infos: # FIXME unintuitive late binding of "info" to lambdas in patterns dicts
