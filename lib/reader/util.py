@@ -162,12 +162,9 @@ def values(*rels):
         computed_rels = []
         for rel in rels:
             if callable(rel):
-                r = rel(ctx)
-                if isinstance(r, list):
-                    computed_rels.extend(r)
-                else:
-                    computed_rels.append(r)
-            elif isinstance(rel, list):
+                rel = rel(ctx)
+
+            if isinstance(rel, list):
                 computed_rels.extend(rel)
             else:
                 computed_rels.append(rel)
