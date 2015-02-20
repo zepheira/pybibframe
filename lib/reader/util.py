@@ -159,7 +159,19 @@ def values(*rels):
         :param ctx: Versa context used in processing (e.g. includes the prototype link
         :return: Tuple of key/value tuples from the attributes; suitable for hashing
         '''
-        computed_rels = [ rel(ctx) if callable(rel) else rel for rel in rels ]
+        computed_rels = []
+        for rel in rels:
+            if callable(rel):
+                r = rel(ctx)
+                if isinstance(r, list):
+                    computed_rels.extend(r)
+                else:
+                    computed_rels.append(r)
+            elif isinstance(rel, list):
+                computed_rels.extend(rel)
+            else:
+                computed_rels.append(rel)
+
         return computed_rels
     return _values
 
@@ -168,7 +180,7 @@ def relator_property(text_in, prefix=None):
     '''
     Action function generator to take some text and compute a relationship slug therefrom
 
-    :param text_in: Source text for the relationship to be created, e.g. a MARC relator
+    :param text_in: Source text, or list thereof, for the relationship to be created, e.g. a MARC relator
     :return: Versa action function to do the actual work
     '''
     def _relator_property(ctx):
@@ -176,13 +188,12 @@ def relator_property(text_in, prefix=None):
         Versa action function Utility to specify a list of relationships
 
         :param ctx: Versa context used in processing (e.g. includes the prototype link)
-        :return: Relationship computed from the source text
+        :return: List of relationships computed from the source text
         '''
-        #If we get a list arg, take the first
         _text_in = text_in(ctx) if callable(text_in) else text_in
-        if isinstance(_text_in, list) and _text_in: _text_in = _text_in[0]
+        if not isinstance(_text_in, list): _text_in = [_text_in]
         #Take into account RDA-isms such as $iContainer of (expression) by stripping the parens https://foundry.zepheira.com/topics/380
-        return ((prefix or '') + slugify(RDA_PARENS_PAT.sub('', _text_in), False)) if _text_in else ''
+        return [((prefix or '') + slugify(RDA_PARENS_PAT.sub('', ti), False)) if ti else '' for ti in _text_in]
     return _relator_property
 
 
