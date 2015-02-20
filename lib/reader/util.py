@@ -9,6 +9,8 @@ from bibframe.contrib.datachefids import slugify, FROM_EMPTY_HASH
 from bibframe.contrib.datachefids import idgen as default_idgen
 from bibframe import BFZ
 
+import amara3.iri
+
 RDA_PARENS_PAT = re.compile('\\(.*\\)')
 
 PYBF_BASE = '"http://bibfra.me/tool/pybibframe/transforms#'
@@ -354,7 +356,7 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
             #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
             curr_rel = '_' + curr_rel if curr_rel.isdigit() else curr_rel
             if curr_rel:
-                ctx.output_model.add(I(o), I(iri.absolutize(curr_rel, ctx.base)), I(objid), {})
+                ctx.output_model.add(I(o), I(iri.absolutize(amara3.iri.percent_encode(curr_rel), ctx.base)), I(objid), {})
         folded = objid in ctx.existing_ids
         if not folded:
             if _typ: ctx.output_model.add(I(objid), VTYPE_REL, I(iri.absolutize(_typ, ctx.base)), {})

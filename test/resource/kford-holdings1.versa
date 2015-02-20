@@ -72,7 +72,7 @@
     [
         "8-u7AoZu",
         "http://bibfra.me/vocab/lite/contributor",
-        "ZARAjpJ4",
+        "ZqIxCeXX",
         {
             "@target-type": "@iri-ref"
         }
@@ -86,7 +86,7 @@
     [
         "8-u7AoZu",
         "http://bibfra.me/vocab/lite/subject",
-        "JvNSObIM",
+        "k-E6MKqQ",
         {
             "@target-type": "@iri-ref"
         }
@@ -94,7 +94,7 @@
     [
         "8-u7AoZu",
         "http://bibfra.me/vocab/lite/subject",
-        "dLBpzE2f",
+        "l5FBC4GX",
         {
             "@target-type": "@iri-ref"
         }
@@ -102,7 +102,7 @@
     [
         "8-u7AoZu",
         "http://bibfra.me/vocab/lite/subject",
-        "eCfh34Az",
+        "pwmQRcFg",
         {
             "@target-type": "@iri-ref"
         }
@@ -516,26 +516,6 @@
         {}
     ],
     [
-        "JvNSObIM",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "JvNSObIM",
-        "http://bibfra.me/vocab/lite/name",
-        "Civil society.",
-        {}
-    ],
-    [
-        "JvNSObIM",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Civil society.",
-        {}
-    ],
-    [
         "K3FLMHxV",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
@@ -774,7 +754,7 @@
         {}
     ],
     [
-        "ZARAjpJ4",
+        "ZqIxCeXX",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Person",
         {
@@ -782,19 +762,19 @@
         }
     ],
     [
-        "ZARAjpJ4",
+        "ZqIxCeXX",
         "http://bibfra.me/vocab/lite/name",
         "Scholte, Jan Aart.",
         {}
     ],
     [
-        "ZARAjpJ4",
+        "ZqIxCeXX",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Scholte, Jan Aart.",
         {}
     ],
     [
-        "dLBpzE2f",
+        "k-E6MKqQ",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Topic",
         {
@@ -802,33 +782,13 @@
         }
     ],
     [
-        "dLBpzE2f",
-        "http://bibfra.me/vocab/lite/name",
-        "International organization.",
-        {}
-    ],
-    [
-        "dLBpzE2f",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "International organization.",
-        {}
-    ],
-    [
-        "eCfh34Az",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "eCfh34Az",
+        "k-E6MKqQ",
         "http://bibfra.me/vocab/lite/name",
         "Democratization.",
         {}
     ],
     [
-        "eCfh34Az",
+        "k-E6MKqQ",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Democratization.",
         {}
@@ -875,6 +835,46 @@
         "ks-KktuF",
         "http://bibfra.me/vocab/marcext/sf-c",
         "2011.",
+        {}
+    ],
+    [
+        "l5FBC4GX",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "l5FBC4GX",
+        "http://bibfra.me/vocab/lite/name",
+        "Civil society.",
+        {}
+    ],
+    [
+        "l5FBC4GX",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Civil society.",
+        {}
+    ],
+    [
+        "pwmQRcFg",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "pwmQRcFg",
+        "http://bibfra.me/vocab/lite/name",
+        "International organization.",
+        {}
+    ],
+    [
+        "pwmQRcFg",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "International organization.",
         {}
     ],
     [

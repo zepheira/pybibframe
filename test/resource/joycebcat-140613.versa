@@ -172,7 +172,7 @@
     [
         "8GQmH0u7",
         "http://bibfra.me/vocab/lite/creator",
-        "VTRgAJG1",
+        "Vv02CEt9",
         {
             "@target-type": "@iri-ref"
         }
@@ -180,7 +180,7 @@
     [
         "8GQmH0u7",
         "http://bibfra.me/vocab/lite/subject",
-        "HTg2tD2q",
+        "fKi_0VXJ",
         {
             "@target-type": "@iri-ref"
         }
@@ -188,7 +188,7 @@
     [
         "8GQmH0u7",
         "http://bibfra.me/vocab/lite/subject",
-        "KaW836U7",
+        "hvsZMnqQ",
         {
             "@target-type": "@iri-ref"
         }
@@ -196,7 +196,7 @@
     [
         "8GQmH0u7",
         "http://bibfra.me/vocab/lite/subject",
-        "QNvgCCFy",
+        "mKfA9yBe",
         {
             "@target-type": "@iri-ref"
         }
@@ -540,50 +540,6 @@
         {}
     ],
     [
-        "HTg2tD2q",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Place",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "HTg2tD2q",
-        "http://bibfra.me/vocab/lite/name",
-        "Egypt",
-        {}
-    ],
-    [
-        "HTg2tD2q",
-        "http://bibfra.me/vocab/marc/chronologicalSubdivision",
-        "1250-1517.",
-        {}
-    ],
-    [
-        "HTg2tD2q",
-        "http://bibfra.me/vocab/marc/generalSubdivision",
-        "History",
-        {}
-    ],
-    [
-        "HTg2tD2q",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Egypt",
-        {}
-    ],
-    [
-        "HTg2tD2q",
-        "http://bibfra.me/vocab/marcext/sf-x",
-        "History",
-        {}
-    ],
-    [
-        "HTg2tD2q",
-        "http://bibfra.me/vocab/marcext/sf-y",
-        "1250-1517.",
-        {}
-    ],
-    [
         "KHGOU3Bn",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
@@ -686,38 +642,6 @@
         {}
     ],
     [
-        "KaW836U7",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Place",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "KaW836U7",
-        "http://bibfra.me/vocab/lite/name",
-        "Egypt",
-        {}
-    ],
-    [
-        "KaW836U7",
-        "http://bibfra.me/vocab/marc/generalSubdivision",
-        "Economic conditions.",
-        {}
-    ],
-    [
-        "KaW836U7",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Egypt",
-        {}
-    ],
-    [
-        "KaW836U7",
-        "http://bibfra.me/vocab/marcext/sf-x",
-        "Economic conditions.",
-        {}
-    ],
-    [
         "PZ-aV_fa",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
@@ -792,39 +716,7 @@
         {}
     ],
     [
-        "QNvgCCFy",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Place",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "QNvgCCFy",
-        "http://bibfra.me/vocab/lite/name",
-        "Egypt",
-        {}
-    ],
-    [
-        "QNvgCCFy",
-        "http://bibfra.me/vocab/marc/generalSubdivision",
-        "Economic policy.",
-        {}
-    ],
-    [
-        "QNvgCCFy",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Egypt",
-        {}
-    ],
-    [
-        "QNvgCCFy",
-        "http://bibfra.me/vocab/marcext/sf-x",
-        "Economic policy.",
-        {}
-    ],
-    [
-        "VTRgAJG1",
+        "Vv02CEt9",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Person",
         {
@@ -832,39 +724,115 @@
         }
     ],
     [
-        "VTRgAJG1",
+        "Vv02CEt9",
         "http://bibfra.me/vocab/lite/name",
         "N\u0101\u1e63ir, \u02bb\u0100mir Naj\u012bb M\u016bs\u00e1.",
         {}
     ],
     [
-        "VTRgAJG1",
+        "Vv02CEt9",
         "http://bibfra.me/vocab/lite/name",
         "\u0646\u0627\u0635\u0631\u060c \u0639\u0627\u0645\u0631 \u0646\u062c\u064a\u0628 \u0645\u0648\u0633\u0649.",
         {}
     ],
     [
-        "VTRgAJG1",
+        "Vv02CEt9",
         "http://bibfra.me/vocab/marcext/sf-6",
         "100-01/(3/r",
         {}
     ],
     [
-        "VTRgAJG1",
+        "Vv02CEt9",
         "http://bibfra.me/vocab/marcext/sf-6",
         "880-01",
         {}
     ],
     [
-        "VTRgAJG1",
+        "Vv02CEt9",
         "http://bibfra.me/vocab/marcext/sf-a",
         "N\u0101\u1e63ir, \u02bb\u0100mir Naj\u012bb M\u016bs\u00e1.",
         {}
     ],
     [
-        "VTRgAJG1",
+        "Vv02CEt9",
         "http://bibfra.me/vocab/marcext/sf-a",
         "\u0646\u0627\u0635\u0631\u060c \u0639\u0627\u0645\u0631 \u0646\u062c\u064a\u0628 \u0645\u0648\u0633\u0649.",
+        {}
+    ],
+    [
+        "fKi_0VXJ",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Place",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "fKi_0VXJ",
+        "http://bibfra.me/vocab/lite/name",
+        "Egypt",
+        {}
+    ],
+    [
+        "fKi_0VXJ",
+        "http://bibfra.me/vocab/marc/chronologicalSubdivision",
+        "1250-1517.",
+        {}
+    ],
+    [
+        "fKi_0VXJ",
+        "http://bibfra.me/vocab/marc/generalSubdivision",
+        "History",
+        {}
+    ],
+    [
+        "fKi_0VXJ",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Egypt",
+        {}
+    ],
+    [
+        "fKi_0VXJ",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "History",
+        {}
+    ],
+    [
+        "fKi_0VXJ",
+        "http://bibfra.me/vocab/marcext/sf-y",
+        "1250-1517.",
+        {}
+    ],
+    [
+        "hvsZMnqQ",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Place",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "hvsZMnqQ",
+        "http://bibfra.me/vocab/lite/name",
+        "Egypt",
+        {}
+    ],
+    [
+        "hvsZMnqQ",
+        "http://bibfra.me/vocab/marc/generalSubdivision",
+        "Economic policy.",
+        {}
+    ],
+    [
+        "hvsZMnqQ",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Egypt",
+        {}
+    ],
+    [
+        "hvsZMnqQ",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "Economic policy.",
         {}
     ],
     [
@@ -891,6 +859,38 @@
         "kP2G4QhW",
         "http://bibfra.me/vocab/marcext/tag-008",
         "0407294u 8 1001uu 0901128",
+        {}
+    ],
+    [
+        "mKfA9yBe",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Place",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "mKfA9yBe",
+        "http://bibfra.me/vocab/lite/name",
+        "Egypt",
+        {}
+    ],
+    [
+        "mKfA9yBe",
+        "http://bibfra.me/vocab/marc/generalSubdivision",
+        "Economic conditions.",
+        {}
+    ],
+    [
+        "mKfA9yBe",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Egypt",
+        {}
+    ],
+    [
+        "mKfA9yBe",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "Economic conditions.",
         {}
     ],
     [

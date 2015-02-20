@@ -48,7 +48,39 @@
         {}
     ],
     [
-        "0DZc11bi",
+        "3I2hXNWb",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/Series",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "3I2hXNWb",
+        "http://bibfra.me/vocab/lite/title",
+        "BAR international series ;",
+        {}
+    ],
+    [
+        "3I2hXNWb",
+        "http://bibfra.me/vocab/marc/volume",
+        "1794.",
+        {}
+    ],
+    [
+        "3I2hXNWb",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "BAR international series ;",
+        {}
+    ],
+    [
+        "3I2hXNWb",
+        "http://bibfra.me/vocab/marcext/sf-v",
+        "1794.",
+        {}
+    ],
+    [
+        "CGiap4LW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Topic",
         {
@@ -56,47 +88,15 @@
         }
     ],
     [
-        "0DZc11bi",
+        "CGiap4LW",
         "http://bibfra.me/vocab/lite/name",
-        "Diet",
+        "Skull",
         {}
     ],
     [
-        "0DZc11bi",
-        "http://bibfra.me/vocab/marc/generalSubdivision",
-        "history",
-        {}
-    ],
-    [
-        "0DZc11bi",
+        "CGiap4LW",
         "http://bibfra.me/vocab/marcext/sf-a",
-        "Diet",
-        {}
-    ],
-    [
-        "0DZc11bi",
-        "http://bibfra.me/vocab/marcext/sf-x",
-        "history",
-        {}
-    ],
-    [
-        "3j0eg-7h",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "3j0eg-7h",
-        "http://bibfra.me/vocab/lite/name",
-        "History, Ancient",
-        {}
-    ],
-    [
-        "3j0eg-7h",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "History, Ancient",
+        "Skull",
         {}
     ],
     [
@@ -134,7 +134,7 @@
     [
         "J0CluD7b",
         "http://bibfra.me/vocab/lite/creator",
-        "o7vlGu-P",
+        "cHwfCSEU",
         {
             "@target-type": "@iri-ref"
         }
@@ -154,7 +154,7 @@
     [
         "J0CluD7b",
         "http://bibfra.me/vocab/lite/memberOf",
-        "o-IUxx-W",
+        "3I2hXNWb",
         {
             "@target-type": "@iri-ref"
         }
@@ -162,7 +162,7 @@
     [
         "J0CluD7b",
         "http://bibfra.me/vocab/lite/subject",
-        "0DZc11bi",
+        "CGiap4LW",
         {
             "@target-type": "@iri-ref"
         }
@@ -170,7 +170,7 @@
     [
         "J0CluD7b",
         "http://bibfra.me/vocab/lite/subject",
-        "3j0eg-7h",
+        "L3MBakpI",
         {
             "@target-type": "@iri-ref"
         }
@@ -178,7 +178,7 @@
     [
         "J0CluD7b",
         "http://bibfra.me/vocab/lite/subject",
-        "MVOnM9fD",
+        "XojY7t4w",
         {
             "@target-type": "@iri-ref"
         }
@@ -186,7 +186,7 @@
     [
         "J0CluD7b",
         "http://bibfra.me/vocab/lite/subject",
-        "O-WU31MC",
+        "Y_IVpAh8",
         {
             "@target-type": "@iri-ref"
         }
@@ -194,7 +194,7 @@
     [
         "J0CluD7b",
         "http://bibfra.me/vocab/lite/subject",
-        "XM6mSsWf",
+        "fKXDrBV0",
         {
             "@target-type": "@iri-ref"
         }
@@ -202,7 +202,7 @@
     [
         "J0CluD7b",
         "http://bibfra.me/vocab/lite/subject",
-        "v6Onn8_p",
+        "n0weIiyn",
         {
             "@target-type": "@iri-ref"
         }
@@ -430,27 +430,7 @@
         {}
     ],
     [
-        "MVOnM9fD",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Place",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "MVOnM9fD",
-        "http://bibfra.me/vocab/lite/name",
-        "Egypt",
-        {}
-    ],
-    [
-        "MVOnM9fD",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Egypt",
-        {}
-    ],
-    [
-        "O-WU31MC",
+        "L3MBakpI",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Topic",
         {
@@ -458,19 +438,19 @@
         }
     ],
     [
-        "O-WU31MC",
+        "L3MBakpI",
         "http://bibfra.me/vocab/lite/name",
-        "Skull",
+        "Dentition",
         {}
     ],
     [
-        "O-WU31MC",
+        "L3MBakpI",
         "http://bibfra.me/vocab/marcext/sf-a",
-        "Skull",
+        "Dentition",
         {}
     ],
     [
-        "XM6mSsWf",
+        "XojY7t4w",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Topic",
         {
@@ -478,25 +458,97 @@
         }
     ],
     [
-        "XM6mSsWf",
+        "XojY7t4w",
         "http://bibfra.me/vocab/lite/name",
-        "Tooth Diseases",
+        "Diet",
         {}
     ],
     [
-        "XM6mSsWf",
+        "XojY7t4w",
         "http://bibfra.me/vocab/marc/generalSubdivision",
         "history",
         {}
     ],
     [
-        "XM6mSsWf",
+        "XojY7t4w",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Diet",
+        {}
+    ],
+    [
+        "XojY7t4w",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "history",
+        {}
+    ],
+    [
+        "Y_IVpAh8",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Y_IVpAh8",
+        "http://bibfra.me/vocab/lite/name",
+        "History, Ancient",
+        {}
+    ],
+    [
+        "Y_IVpAh8",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "History, Ancient",
+        {}
+    ],
+    [
+        "cHwfCSEU",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Person",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "cHwfCSEU",
+        "http://bibfra.me/vocab/lite/name",
+        "Miller, Judith.",
+        {}
+    ],
+    [
+        "cHwfCSEU",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Miller, Judith.",
+        {}
+    ],
+    [
+        "fKXDrBV0",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "fKXDrBV0",
+        "http://bibfra.me/vocab/lite/name",
+        "Tooth Diseases",
+        {}
+    ],
+    [
+        "fKXDrBV0",
+        "http://bibfra.me/vocab/marc/generalSubdivision",
+        "history",
+        {}
+    ],
+    [
+        "fKXDrBV0",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Tooth Diseases",
         {}
     ],
     [
-        "XM6mSsWf",
+        "fKXDrBV0",
         "http://bibfra.me/vocab/marcext/sf-x",
         "history",
         {}
@@ -612,55 +664,23 @@
         {}
     ],
     [
-        "o-IUxx-W",
+        "n0weIiyn",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/marc/Series",
+        "http://bibfra.me/vocab/lite/Place",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "o-IUxx-W",
-        "http://bibfra.me/vocab/lite/title",
-        "BAR international series ;",
-        {}
-    ],
-    [
-        "o-IUxx-W",
-        "http://bibfra.me/vocab/marc/volume",
-        "1794.",
-        {}
-    ],
-    [
-        "o-IUxx-W",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "BAR international series ;",
-        {}
-    ],
-    [
-        "o-IUxx-W",
-        "http://bibfra.me/vocab/marcext/sf-v",
-        "1794.",
-        {}
-    ],
-    [
-        "o7vlGu-P",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Person",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "o7vlGu-P",
+        "n0weIiyn",
         "http://bibfra.me/vocab/lite/name",
-        "Miller, Judith.",
+        "Egypt",
         {}
     ],
     [
-        "o7vlGu-P",
+        "n0weIiyn",
         "http://bibfra.me/vocab/marcext/sf-a",
-        "Miller, Judith.",
+        "Egypt",
         {}
     ],
     [
@@ -693,26 +713,6 @@
         "usms7P-e",
         "http://bibfra.me/vocab/marcext/sf-c",
         "2008.",
-        {}
-    ],
-    [
-        "v6Onn8_p",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "v6Onn8_p",
-        "http://bibfra.me/vocab/lite/name",
-        "Dentition",
-        {}
-    ],
-    [
-        "v6Onn8_p",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Dentition",
         {}
     ]
 ]

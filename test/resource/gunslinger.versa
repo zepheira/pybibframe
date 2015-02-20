@@ -32,35 +32,35 @@
         {}
     ],
     [
-        "56QRMKVt",
+        "B4Si4egk",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Person",
+        "http://bibfra.me/vocab/lite/Genre",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "56QRMKVt",
-        "http://bibfra.me/vocab/lite/date",
-        "1947-",
-        {}
-    ],
-    [
-        "56QRMKVt",
+        "B4Si4egk",
         "http://bibfra.me/vocab/lite/name",
-        "King, Stephen,",
+        "Fantasy fiction.",
         {}
     ],
     [
-        "56QRMKVt",
+        "B4Si4egk",
+        "http://bibfra.me/vocab/marc/source",
+        "gsafd",
+        {}
+    ],
+    [
+        "B4Si4egk",
+        "http://bibfra.me/vocab/marcext/sf-2",
+        "gsafd",
+        {}
+    ],
+    [
+        "B4Si4egk",
         "http://bibfra.me/vocab/marcext/sf-a",
-        "King, Stephen,",
-        {}
-    ],
-    [
-        "56QRMKVt",
-        "http://bibfra.me/vocab/marcext/sf-d",
-        "1947-",
+        "Fantasy fiction.",
         {}
     ],
     [
@@ -112,39 +112,7 @@
         {}
     ],
     [
-        "L6T19VOx",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Genre",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "L6T19VOx",
-        "http://bibfra.me/vocab/lite/name",
-        "Fantasy fiction.",
-        {}
-    ],
-    [
-        "L6T19VOx",
-        "http://bibfra.me/vocab/marc/source",
-        "gsafd",
-        {}
-    ],
-    [
-        "L6T19VOx",
-        "http://bibfra.me/vocab/marcext/sf-2",
-        "gsafd",
-        {}
-    ],
-    [
-        "L6T19VOx",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Fantasy fiction.",
-        {}
-    ],
-    [
-        "LKNwWKi8",
+        "HGRtYKwv",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Topic",
         {
@@ -152,25 +120,25 @@
         }
     ],
     [
-        "LKNwWKi8",
+        "HGRtYKwv",
         "http://bibfra.me/vocab/lite/name",
         "Roland (Fictitious character : King)",
         {}
     ],
     [
-        "LKNwWKi8",
+        "HGRtYKwv",
         "http://bibfra.me/vocab/marc/formSubdivision",
         "Fiction.",
         {}
     ],
     [
-        "LKNwWKi8",
+        "HGRtYKwv",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Roland (Fictitious character : King)",
         {}
     ],
     [
-        "LKNwWKi8",
+        "HGRtYKwv",
         "http://bibfra.me/vocab/marcext/sf-v",
         "Fiction.",
         {}
@@ -314,7 +282,7 @@
     [
         "hq7wu2dv",
         "http://bibfra.me/vocab/lite/creator",
-        "56QRMKVt",
+        "uBIf_CV-",
         {
             "@target-type": "@iri-ref"
         }
@@ -322,7 +290,7 @@
     [
         "hq7wu2dv",
         "http://bibfra.me/vocab/lite/genre",
-        "L6T19VOx",
+        "B4Si4egk",
         {
             "@target-type": "@iri-ref"
         }
@@ -342,7 +310,7 @@
     [
         "hq7wu2dv",
         "http://bibfra.me/vocab/lite/subject",
-        "LKNwWKi8",
+        "HGRtYKwv",
         {
             "@target-type": "@iri-ref"
         }
@@ -525,6 +493,38 @@
         "hq7wu2dv",
         "http://bibfra.me/vocab/marcext/tag-991-XX-w",
         "BOOKS",
+        {}
+    ],
+    [
+        "uBIf_CV-",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Person",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "uBIf_CV-",
+        "http://bibfra.me/vocab/lite/date",
+        "1947-",
+        {}
+    ],
+    [
+        "uBIf_CV-",
+        "http://bibfra.me/vocab/lite/name",
+        "King, Stephen,",
+        {}
+    ],
+    [
+        "uBIf_CV-",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "King, Stephen,",
+        {}
+    ],
+    [
+        "uBIf_CV-",
+        "http://bibfra.me/vocab/marcext/sf-d",
+        "1947-",
         {}
     ]
 ]
