@@ -119,6 +119,7 @@ AUTHORITY_CODES = [
     (re.compile(r'\(DLC\)\s*(\S+)'), r'http://lccn.loc.gov/\1'),
     (re.compile(r'\(OCoLC\)fst(\d+)'), r'http://id.worldcat.org/fast/\1'),
     (re.compile(r'\(OCoLC\)\s*(\d+)'), r'http://www.worldcat.org/oclc/\1'),
+    (re.compile(r'\(0CoLC\)\s*(\d+)'), r'http://www.worldcat.org/oclc/\1'),   # yes, thats 0CoLC not OCoLC
     (re.compile(r'\(viaf\)\s*(\S+)'), r'http://viaf.org/viaf/\1'),
     (re.compile(r'\(DNLM\)\s*(\S+)'), r'http://www.ncbi.nlm.nih.gov/nlmcatalog?term=\1'),
     (re.compile(r'\(DE\-101\)\s*(\S+)'), r'http://d-nb.info/\1'),
@@ -459,7 +460,7 @@ BFLITE_TRANSFORMS = {
 
     '700': ifexists(subfield('t'),
                     onwork.materialize(BL+'Work', 
-                                       values(BL+'related', relator_property(subfield('i'), prefix=REL)),
+                                       values(REL+'hasPart', relator_property(subfield('i'), prefix=REL)),
                                        unique=values(subfield('t'), subfield('l'), subfield('m'), subfield('n'), subfield('o'), subfield('p'), subfield('r'), subfield('k'), subfield('f'), subfield('s')),
                                        links={BL+'title': subfield('t'), BL+'language': subfield('l'), AV+'musicMedium': subfield('m'), RDA+'titleNumber': subfield('n'), AV+'arrangedMusic': subfield('o'), RDA+'titlePart': subfield('p'), AV+'musicKey': subfield('r'), RDA+'form': subfield('k'), BL+'date': subfield('f'), RDA+'version': subfield('s'),
                                               ifexists(subfield('a'), BL+'creator'): materialize(BL+'Person', 
@@ -476,7 +477,7 @@ BFLITE_TRANSFORMS = {
 
     '710': ifexists(subfield('t'),
                     onwork.materialize(BL+'Work', 
-                                       values(BL+ 'related', relator_property(subfield('i'), prefix=REL)),
+                                       values(REL+'hasPart', relator_property(subfield('i'), prefix=REL)),
                                        unique=values(subfield('t'), subfield('l')),
                                        links={BL+'language': subfield('l'),
                                               ifexists(subfield('a'), BL+'creator'): materialize(BL+'Organization', 
@@ -493,7 +494,7 @@ BFLITE_TRANSFORMS = {
     
     '711': ifexists(subfield('t'),
                     onwork.materialize(BL+'Work', 
-                                       values(BL+'related', relator_property(subfield('i'), prefix=REL)),
+                                       values(REL+'hasPart', relator_property(subfield('i'), prefix=REL)),
                                        unique=values(subfield('t'), subfield('l')),
                                        links={BL+'language': subfield('l'),
                                               ifexists(subfield('a'), BL+'creator'): materialize(BL+'Meeting', 
@@ -506,7 +507,12 @@ BFLITE_TRANSFORMS = {
                                        unique=values(subfield('a'), subfield('c'), subfield('d'), subfield('e'), subfield('q'), subfield('u')),
                                        links={BL+'name': subfield('a'), BL+'date': subfield('d'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))})
                     ),
-    
+
+    '720': onwork.materialize(BL+'Agent',
+                              values(BL+'contributor', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)),
+                              unique=values(subfield('a')),
+                              links={BL+'name': subfield('a')}),
+
     '730': onwork.materialize(BL+'Collection', 
                               BL+'related', 
                               unique=all_subfields,
