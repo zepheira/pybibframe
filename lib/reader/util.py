@@ -192,7 +192,7 @@ def relator_property(text_in, prefix=None):
         _text_in = text_in(ctx) if callable(text_in) else text_in
         if not isinstance(_text_in, list): _text_in = [_text_in]
         #Take into account RDA-isms such as $iContainer of (expression) by stripping the parens https://foundry.zepheira.com/topics/380
-        return [((prefix or '') + slugify(RDA_PARENS_PAT.sub('', ti), False)) if ti else '' for ti in _text_in]
+        return [((prefix or '') + amara3.iri.percent_encode(slugify(RDA_PARENS_PAT.sub('', ti), False))) if ti else '' for ti in _text_in]
     return _relator_property
 
 
@@ -356,7 +356,7 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
             #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
             curr_rel = '_' + curr_rel if curr_rel.isdigit() else curr_rel
             if curr_rel:
-                ctx.output_model.add(I(o), I(iri.absolutize(amara3.iri.percent_encode(curr_rel), ctx.base)), I(objid), {})
+                ctx.output_model.add(I(o), I(iri.absolutize(curr_rel, ctx.base)), I(objid), {})
         folded = objid in ctx.existing_ids
         if not folded:
             if _typ: ctx.output_model.add(I(objid), VTYPE_REL, I(iri.absolutize(_typ, ctx.base)), {})

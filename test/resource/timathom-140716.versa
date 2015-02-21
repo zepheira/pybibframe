@@ -217,6 +217,14 @@
     ],
     [
         "PZ-aV_fa",
+        "http://bibfra.me/vocab/annotation/institution",
+        "wepQKqKn",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "PZ-aV_fa",
         "http://bibfra.me/vocab/lite/controlCode",
         "7979037",
         {}
@@ -230,17 +238,25 @@
         }
     ],
     [
-        "PZ-aV_fa",
-        "http://bibfra.me/vocab/marcext/http%3A%2F%2Fbibfra.me%2Fvocab%2Fannotation%2Finstitution",
-        "wepQKqKn",
+        "XlUxQVGp",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/ProviderEvent",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
         "XlUxQVGp",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/ProviderEvent",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "yMrdaqOj",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "XlUxQVGp",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "yMrdaqOj",
         {
             "@target-type": "@iri-ref"
         }
@@ -259,23 +275,7 @@
     ],
     [
         "XlUxQVGp",
-        "http://bibfra.me/vocab/marcext/http%3A%2F%2Fbibfra.me%2Fvocab%2Flite%2FproviderAgent",
-        "yMrdaqOj",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "XlUxQVGp",
-        "http://bibfra.me/vocab/marcext/http%3A%2F%2Fbibfra.me%2Fvocab%2Flite%2FproviderAgent",
-        "yMrdaqOj",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "XlUxQVGp",
-        "http://bibfra.me/vocab/marcext/http%3A%2F%2Fbibfra.me%2Fvocab%2Flite%2FproviderPlace",
+        "http://bibfra.me/vocab/lite/providerPlace",
         "JBkLZaiZ",
         {
             "@target-type": "@iri-ref"
@@ -619,6 +619,14 @@
     ],
     [
         "tpDx6o-6",
+        "http://bibfra.me/vocab/marc/publication",
+        "XlUxQVGp",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "tpDx6o-6",
         "http://bibfra.me/vocab/marc/systemControlNumber",
         "(OCoLC)31983844",
         {}
@@ -654,14 +662,6 @@
         {}
     ],
     [
-        "tpDx6o-6",
-        "http://bibfra.me/vocab/marcext/http%3A%2F%2Fbibfra.me%2Fvocab%2Fmarc%2Fpublication",
-        "XlUxQVGp",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
         "vkNgcXiH",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/LanguageMaterial",
@@ -681,6 +681,22 @@
         "vkNgcXiH",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/non-fiction",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "vkNgcXiH",
+        "http://bibfra.me/vocab/lite/contributor",
+        "l5bYLOgq",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "vkNgcXiH",
+        "http://bibfra.me/vocab/lite/creator",
+        "EqPm2pqV",
         {
             "@target-type": "@iri-ref"
         }
@@ -729,6 +745,30 @@
     ],
     [
         "vkNgcXiH",
+        "http://bibfra.me/vocab/lite/subject",
+        "FJt3H8uN",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "vkNgcXiH",
+        "http://bibfra.me/vocab/lite/subject",
+        "nsHp4CQq",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "vkNgcXiH",
+        "http://bibfra.me/vocab/lite/subject",
+        "wpkwy4oS",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "vkNgcXiH",
         "http://bibfra.me/vocab/lite/title",
         "Jie zi yuan hua zhuan :",
         {}
@@ -768,78 +808,6 @@
         "http://bibfra.me/vocab/marc/titleStatement",
         "\u738b\u5b89\u7bc0\u6479\u53e4.",
         {}
-    ],
-    [
-        "vkNgcXiH",
-        "http://bibfra.me/vocab/marcext/http%3A%2F%2Fbibfra.me%2Fvocab%2Flite%2Fcontributor",
-        "l5bYLOgq",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "vkNgcXiH",
-        "http://bibfra.me/vocab/marcext/http%3A%2F%2Fbibfra.me%2Fvocab%2Flite%2Fcreator",
-        "EqPm2pqV",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "vkNgcXiH",
-        "http://bibfra.me/vocab/marcext/http%3A%2F%2Fbibfra.me%2Fvocab%2Flite%2Fsubject",
-        "FJt3H8uN",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "vkNgcXiH",
-        "http://bibfra.me/vocab/marcext/http%3A%2F%2Fbibfra.me%2Fvocab%2Flite%2Fsubject",
-        "nsHp4CQq",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "vkNgcXiH",
-        "http://bibfra.me/vocab/marcext/http%3A%2F%2Fbibfra.me%2Fvocab%2Flite%2Fsubject",
-        "wpkwy4oS",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "vkNgcXiH",
-        "http://bibfra.me/vocab/marcext/http%3A%2F%2Fbibfra.me%2Fvocab%2Frelation%2F%E8%AB%96%E5%AE%9A",
-        "l5bYLOgq",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "vkNgcXiH",
-        "http://bibfra.me/vocab/marcext/http%3A%2F%2Fbibfra.me%2Fvocab%2Frelation%2Flunding",
-        "l5bYLOgq",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "vkNgcXiH",
-        "http://bibfra.me/vocab/marcext/http%3A%2F%2Fbibfra.me%2Fvocab%2Frelation%2Frelated",
-        "EkY_5geW",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "vkNgcXiH",
-        "http://bibfra.me/vocab/marcext/http%3A%2F%2Fbibfra.me%2Fvocab%2Frelation%2Frelated",
-        "JOQ-3KM0",
-        {
-            "@target-type": "@iri-ref"
-        }
     ],
     [
         "vkNgcXiH",
@@ -1068,6 +1036,38 @@
         "http://bibfra.me/vocab/marcext/tag-999-XX-a",
         "8049321",
         {}
+    ],
+    [
+        "vkNgcXiH",
+        "http://bibfra.me/vocab/relation/%E8%AB%96%E5%AE%9A",
+        "l5bYLOgq",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "vkNgcXiH",
+        "http://bibfra.me/vocab/relation/lunding",
+        "l5bYLOgq",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "vkNgcXiH",
+        "http://bibfra.me/vocab/relation/related",
+        "EkY_5geW",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "vkNgcXiH",
+        "http://bibfra.me/vocab/relation/related",
+        "JOQ-3KM0",
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "wepQKqKn",
