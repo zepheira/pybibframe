@@ -3,7 +3,7 @@ Treatment of certain special MARC fields, leader, 006, 007, 008, etc.
 '''
 
 from versa import I, VERSA_BASEIRI
-from bibframe import BL, BA, REL, RDA, RBMS, AV
+from bibframe import BL, BA, REL, MARC, RBMS, AV
 
 BL = 'http://bibfra.me/vocab/lite/'
 
@@ -11,9 +11,9 @@ BL = 'http://bibfra.me/vocab/lite/'
 
 VTYPE = VERSA_BASEIRI+'type'
 LANG= BL+'language'
-DEFAULT_VOCAB_ITEMS = [BL, BA, REL, RDA, RBMS, AV, LANG, VTYPE]
+DEFAULT_VOCAB_ITEMS = [BL, BA, REL, MARC, RBMS, AV, LANG, VTYPE]
 
-SLUG = lambda s: s.rsplit('/')[-1] if s else None
+SLUG = lambda s: s.rsplit('/')[-1].replace('-',' ') if s else None
 
 def runtime(rt):
     '''

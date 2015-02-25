@@ -18,7 +18,7 @@ BF_FINAL_TASK = 'http://bibfra.me/tool/pybibframe#task.final'
 BL = 'http://bibfra.me/vocab/lite/'
 BA = 'http://bibfra.me/vocab/annotation/'
 REL = 'http://bibfra.me/vocab/relation/'
-RDA = 'http://bibfra.me/vocab/marc/'
+MARC = 'http://bibfra.me/vocab/marc/'
 RBMS = 'http://bibfra.me/vocab/rbms/'
 AV = 'http://bibfra.me/vocab/audiovisual/'
 
