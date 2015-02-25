@@ -639,7 +639,7 @@ class transforms(object):
                 4: lambda i: (None, I(self._vocab[MARC]+'targetAudience'), SLUG(self.AUDIENCE.get(info[i]))),
                 5: lambda i: (instance, I(self._vocab[MARC]+'formOfItem'), SLUG(self.FORM_OF_ITEM.get(info[i]))),
                 (6, 7, 8, 9, 10, 11): lambda i: (None, I(self._vocab[MARC]+'accompanyingMatter'), SLUG(self.Music['AccompanyingMatter'].get(info[i]))),
-                (12, 13): lambda i: (None, I(self._vocab[MARC]+'literaryTextForSoundRecordings'), SLUG(self.Music['LiteraryTextForSoundsRecordings'].get(info[i]))),
+                (12, 13): lambda i: (None, I(self._vocab[MARC]+'literaryTextForSoundRecordings'), SLUG(self.Music['LiteraryTextForSoundRecordings'].get(info[i]))),
                 15: lambda i: (None, I(self._vocab[MARC]+'transpositionAndArrangement'), SLUG(self.Music['TranspositionAndArrangement'].get(info[i]))),
             },
             Maps = {
