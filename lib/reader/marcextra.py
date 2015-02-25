@@ -13,6 +13,8 @@ VTYPE = VERSA_BASEIRI+'type'
 LANG= BL+'language'
 DEFAULT_VOCAB_ITEMS = [BL, BA, REL, RDA, RBMS, AV, LANG, VTYPE]
 
+SLUG = lambda s: s.rsplit('/')[-1] if s else None
+
 def runtime(rt):
     '''
     Handle visual material running time property
@@ -632,7 +634,7 @@ class transforms(object):
         PATTERNS = dict(
             Books = {
                 (0, 1, 2, 3): lambda i: (None, I(self._vocab[VTYPE]), self.Books['Illustrations'].get(info[i])),
-                4: lambda i: (None, I(self._vocab[BL]+'audience'), self.AUDIENCE.get(info[i])),
+                4: lambda i: (None, I(self._vocab[BL]+'target-audience'), SLUG(self.AUDIENCE.get(info[i]))),
                 5: lambda i: (None, I(self._vocab[BL]+'form-of-item'), self.FORM_OF_ITEM.get(info[i])),
                 (6, 7, 8, 9): lambda i: (None, I(self._vocab[VTYPE]), self.Books['NatureOfContents'].get(info[i])),
                 10: lambda i: (None, I(self._vocab[VTYPE]), self.GOVT_PUBLICATION.get(info[i])),
@@ -646,7 +648,7 @@ class transforms(object):
                 ('slice', 0, 2): lambda i: (None, I(self._vocab[VTYPE]), self.Music['FormOfComposition'].get(info[i])),
                 2: lambda i: (None, I(self._vocab[VTYPE]), self.Music['FormatOfMusic'].get(info[i])),
                 3: lambda i: (None, I(self._vocab[VTYPE]), self.Music['MusicParts'].get(info[i])),
-                4: lambda i: (None, I(self._vocab[BL]+'audience'), self.AUDIENCE.get(info[i])),
+                4: lambda i: (None, I(self._vocab[BL]+'target-audience'), SLUG(self.AUDIENCE.get(info[i]))),
                 5: lambda i: (None, I(self._vocab[BL]+'form-of-item'), self.FORM_OF_ITEM.get(info[i])),
                 (6, 7, 8, 9, 10, 11): lambda i: (None, I(self._vocab[VTYPE]), self.Music['AccompanyingMatter'].get(info[i])),
                 (12, 13): lambda i: (None, I(self._vocab[VTYPE]), self.Music['LiteraryTextForSoundsRecordings'].get(info[i])),
@@ -663,14 +665,14 @@ class transforms(object):
             },
             VisualMaterials = {
                 ('slice', 0, 2): lambda i: (None, I(self._vocab[BL]+'runtime'), runtime(info[i])),
-                4: lambda i: (None, I(self._vocab[VTYPE]), self.AUDIENCE.get(info[i])),
+                4: lambda i: (None, I(self._vocab[BL]+'target-audience'), SLUG(self.AUDIENCE.get(info[i]))),
                 10: lambda i: (None, I(self._vocab[VTYPE]), self.GOVT_PUBLICATION.get(info[i])),
                 11: lambda i: (None, I(self._vocab[VTYPE]), self.FORM_OF_ITEM.get(info[i])),
                 15: lambda i: (None, I(self._vocab[VTYPE]), self.VisualMaterials['TypeOfVisualMaterial'].get(info[i])),
                 16: lambda i: (None, I(self._vocab[VTYPE]), self.VisualMaterials['Technique'].get(info[i])),
             },
             ComputerFiles = {
-                4: lambda i: (None, I(self._vocab[VTYPE]), self.AUDIENCE.get(info[i])),
+                4: lambda i: (None, I(self._vocab[BL]+'target-audience'), SLUG(self.AUDIENCE.get(info[i]))),
                 5: lambda i: (None, I(self._vocab[VTYPE]), self.ComputerFiles['FormOfItem'].get(info[i])),
                 8: lambda i: (None, I(self._vocab[VTYPE]), self.ComputerFiles['TypeOfComputerFile'].get(info[i])),
                 10: lambda i: (None, I(self._vocab[VTYPE]), self.GOVT_PUBLICATION.get(info[i])),
