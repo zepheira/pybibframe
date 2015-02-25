@@ -669,7 +669,7 @@ class transforms(object):
                 10: lambda i: (None, I(self._vocab[VTYPE]), self.GOVT_PUBLICATION.get(info[i])),
                 11: lambda i: (None, I(self._vocab[VTYPE]), self.FORM_OF_ITEM.get(info[i])),
                 15: lambda i: (None, I(self._vocab[VTYPE]), self.VisualMaterials['TypeOfVisualMaterial'].get(info[i])),
-                16: lambda i: (None, I(self._vocab[VTYPE]), self.VisualMaterials['Technique'].get(info[i])),
+                16: lambda i: (None, I(self._vocab[BL]+'technique'), SLUG(self.VisualMaterials['Technique'].get(info[i]))),
             },
             ComputerFiles = {
                 4: lambda i: (None, I(self._vocab[BL]+'target-audience'), SLUG(self.AUDIENCE.get(info[i]))),
