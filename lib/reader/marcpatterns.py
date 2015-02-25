@@ -508,7 +508,7 @@ BFLITE_TRANSFORMS = {
                                        links={BL+'name': subfield('a'), BL+'date': subfield('d'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))})
                     ),
 
-    '720-#2': onwork.materialize(BL+'Person',
+    '720-1#': onwork.materialize(BL+'Person',
                                  values(BL+'contributor', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)),
                                  unique=values(subfield('a')),
                                  links={BL+'name': subfield('a')}),
@@ -651,7 +651,10 @@ register_transforms("http://bibfra.me/tool/pybibframe/transforms#bflite", BFLITE
 
 MARC_TRANSFORMS = {
     #HeldItem is a refinement of Annotation
-    '852': oninstance.materialize(BL+'Annotation', BA+'institution', unique=all_subfields, links={BA+'holderType': BA+'Library', BA+'location': subfield('a'), BA+'subLocation': subfield('b'), BA+'callNumber': subfield('h'), BA+'code': subfield('n'), BL+'link': subfield('u'), BA+'streetAddress': subfield('e')}),
+    '852': oninstance.materialize(BL+'Annotation', 
+                                  BA+'institution', 
+                                  unique=all_subfields, 
+                                  links={BA+'holderType': BA+'Library', BA+'location': subfield('a'), BA+'subLocation': subfield('b'), BA+'callNumber': subfield('h'), BA+'code': subfield('n'), BL+'link': subfield('u'), BA+'streetAddress': subfield('e')}),
 }
 
 register_transforms("http://bibfra.me/tool/pybibframe/transforms#marc", MARC_TRANSFORMS)
