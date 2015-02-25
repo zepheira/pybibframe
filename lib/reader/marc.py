@@ -245,6 +245,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             params['dropped_codes'] = {}
             #Defensive coding against missing leader or 008
             field008 = leader = None
+            fields006 = []
             #Prepare cross-references (i.e. 880s)
             #XXX: Figure out a way to declare in TRANSFRORMS? We might have to deal with non-standard relationship designators: https://github.com/lcnetdev/marc2bibframe/issues/83
             xrefs = {}
@@ -308,6 +309,9 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                     #No indicators on control fields. Turn them off, in effect
                     indicator_list = ('#', '#')
                     key = 'tag-' + tag
+                    if tag == '006':
+                        fields006.append(val)
+                        params['fields006'] = fields006
                     if tag == '008':
                         params['field008'] = field008 = val
                     params['transforms'].append((tag, key))
@@ -393,7 +397,8 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             extra_stmts = set() # prevent duplicate statements
             for origin, k, v in itertools.chain(
                         extra_transforms.process_leader(leader, workid, instanceid),
-                        extra_transforms.process_008(field008, workid, instanceid)):
+                        extra_transforms.process_006(fields006, leader, workid, instanceid),
+                        extra_transforms.process_008(field008, leader, workid, instanceid)):
                 v = v if isinstance(v, tuple) else (v,)
                 for item in v:
                     o = origin or I(workid)
