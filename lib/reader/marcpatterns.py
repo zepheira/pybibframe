@@ -649,13 +649,13 @@ BFLITE_TRANSFORMS = {
 
 register_transforms("http://bibfra.me/tool/pybibframe/transforms#bflite", BFLITE_TRANSFORMS)
 
-MARC_TRANSFORMS = {
-    #HeldItem is a refinement of Annotation
-    '852': oninstance.materialize(BL+'Annotation', 
-                                  BA+'institution', 
-                                  unique=all_subfields, 
-                                  links={BA+'holderType': BA+'Library', BA+'location': subfield('a'), BA+'subLocation': subfield('b'), BA+'callNumber': subfield('h'), BA+'code': subfield('n'), BL+'link': subfield('u'), BA+'streetAddress': subfield('e')}),
-}
+#MARC_TRANSFORMS = {
+#    #HeldItem is a refinement of Annotation
+#    '852': oninstance.materialize(BL+'Annotation', 
+#                                  BA+'institution', 
+#                                  unique=all_subfields, 
+#                                  links={BA+'holderType': BA+'Library', BA+'location': subfield('a'), BA+'subLocation': subfield('b'), BA+'callNumber': subfield('h'), BA+'code': subfield('n'), BL+'link': subfield('u'), BA+'streetAddress': subfield('e')}),
+#}
 
 register_transforms("http://bibfra.me/tool/pybibframe/transforms#marc", MARC_TRANSFORMS)
 
