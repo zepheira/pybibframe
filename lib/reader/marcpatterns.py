@@ -204,7 +204,7 @@ BFLITE_TRANSFORMS = {
     '245$p': (onwork.rename(rel=MARC+'titlePart'), oninstance.rename(rel=MARC+'titlePart')),
 
     '245$f': onwork.rename(rel=MARC+'inclusiveDates'),
-    '245$h': onwork.rename(rel=BL+'medium'),
+    '245$h': oninstance.rename(rel=BL+'medium'),
     '245$k': onwork.rename(rel=MARC+'formDesignation'),
     '246$a': onwork.rename(rel=MARC+'titleVariation'),
     '246$b': onwork.rename(rel=MARC+'titleVariationRemainder'),
@@ -508,10 +508,15 @@ BFLITE_TRANSFORMS = {
                                        links={BL+'name': subfield('a'), BL+'date': subfield('d'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))})
                     ),
 
-    '720': onwork.materialize(BL+'Agent',
-                              values(BL+'contributor', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)),
-                              unique=values(subfield('a')),
-                              links={BL+'name': subfield('a')}),
+    '720-#2': onwork.materialize(BL+'Person',
+                                 values(BL+'contributor', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)),
+                                 unique=values(subfield('a')),
+                                 links={BL+'name': subfield('a')}),
+
+    '720-##': onwork.materialize(BL+'Agent',
+                                 values(BL+'contributor', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)),
+                                 unique=values(subfield('a')),
+                                 links={BL+'name': subfield('a')}),
 
     '730': onwork.materialize(BL+'Collection', 
                               BL+'related', 
