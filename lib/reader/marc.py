@@ -398,7 +398,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             for origin, k, v in itertools.chain(
                         extra_transforms.process_leader(leader, workid, instanceid),
                         extra_transforms.process_006(fields006, leader, workid, instanceid),
-                        extra_transforms.process_008(field008, workid, instanceid)):
+                        extra_transforms.process_008(field008, leader, workid, instanceid)):
                 v = v if isinstance(v, tuple) else (v,)
                 for item in v:
                     o = origin or I(workid)

@@ -50,17 +50,6 @@ class transforms(object):
             'j': I(self._vocab[BL]+"juvenile")
             }
 
-        self.MEDIA = {
-            'a': I(self._vocab[BL]+"microfilm"),
-            'b': I(self._vocab[BL]+"microfiche"),
-            'c': I(self._vocab[BL]+"microopaque"),
-            'd': I(self._vocab[BL]+"large-print"),
-            'f': I(self._vocab[BL]+"braille"),
-            'r': I(self._vocab[BL]+"regular-print-reproduction"),
-            's': I(self._vocab[BL]+"electronic")
-            }
-
-        # extended version of MEDIA above. Interchangeable?
         self.FORM_OF_ITEM = {
             'a': I(self._vocab[BL]+'microfilm'),
             'b': I(self._vocab[BL]+'microfiche'),
@@ -92,106 +81,12 @@ class transforms(object):
             "u": I(self._vocab[BL]+"unknown-if-item-is-government-publication"),
             "z": I(self._vocab[BL]+"other-type-of-government-publication")}
 
-        return
+        self.INDEX = {
+            '0': I(self._vocab[BL]+'no-index-present'),
+            '1': I(self._vocab[BL]+'index-present'),
+        }
 
-    def process_leader(self, leader, work, instance):
-        """
-        Processes leader field according to the MARC standard.
-        http://www.loc.gov/marc/marc2dc.html#ldr06conversionrules
-        http://www.loc.gov/marc/bibliographic/bdleader.html
-
-        :leader: - text of leader field, a character array
-        :work: - work resource in context of which leader is being processed. Useful in the return value.
-        :instance: - instance resource in context of which leader is being processed. Useful in the return value.
-
-        yields - 0 or more 3-tuples, (origin, rel, target), each representing a new
-            link generated from leader data. origin is almost always the work or instance
-            resource passed in. If origin is None, signal to the caller to default
-            to the work as origin
-
-        >>> from bibframe.reader.marcextra import transforms
-        >>> t = transforms()
-        >>> list(t.process_leader('03495cpcaa2200673 a 4500'))
-        [(None, 'http://bibfra.me/purl/versa/type', I('Collection')), (None, 'http://bibfra.me/purl/versa/type', I('Multimedia')), (None, 'http://bibfra.me/purl/versa/type', I('Collection'))]
-        """
-        work_06 = dict(
-            a=I(self._vocab[BL]+"LanguageMaterial"),
-            c=(I(self._vocab[BL]+"LanguageMaterial"), I(self._vocab[BL]+"NotatedMusic")),
-            d=(I(self._vocab[BL]+"LanguageMaterial"), I(self._vocab[BL]+"Manuscript"), I(self._vocab[BL]+"NotatedMusic")),
-            e=(I(self._vocab[BL]+"StillImage"), I(self._vocab[BL]+"Cartography")),
-            f=(I(self._vocab[BL]+"Manuscript"), I(self._vocab[BL]+"Cartography"), I(self._vocab[BL]+"StillImage")),
-            g=I(self._vocab[BL]+"MovingImage"),
-            i=(I(self._vocab[BL]+"Audio"), I(self._vocab[BL]+"Nonmusical"), I(self._vocab[BL]+"Sounds")),
-            j=(I(self._vocab[BL]+"Audio"), I(self._vocab[BL]+"Musical")),
-            k=I(self._vocab[BL]+"StillImage"),
-            m=(I(self._vocab[BL]+"Multimedia"), I(self._vocab[BL]+"Software")),
-            o=I(self._vocab[BL]+"Kit"),
-            p=(I(self._vocab[BL]+"Collection"), I(self._vocab[BL]+"Multimedia")),
-            r=I(self._vocab[BL]+"ThreeDimensionalObject"),
-            t=(I(self._vocab[BL]+"LanguageMaterial"), I(self._vocab[BL]+"Manuscript"))
-            )
-
-        instance_06 = dict(
-            )
-
-        _06 = leader[6]
-        if _06 in work_06.keys():
-            yield work, I(self._vocab[VTYPE]), work_06[_06]
-        if _06 in instance_06.keys():
-            yield instance, I(self._vocab[VTYPE]), instance_06[_06]
-        if leader[7] in ('c', 's'):
-            yield None, I(self._vocab[VTYPE]), I(self._vocab[BL]+"Collection")
-
-    def process_008(self, info, work, instance):
-        """
-        Processes 008 control field according to the MARC standard.
-        http://www.loc.gov/marc/umb/um07to10.html#part9
-
-        :info: - text of 008 field, a character array
-        :work: - work resource in context of which 008 is being processed. Useful in the return value.
-        :instance: - instance resource in context of which leader is being processed. Useful in the return value.
-
-        yields - 0 or more 3-tuples, (origin, rel, target), each representing a new
-            link generated from 008 data. origin is almost always the work or instance
-            resource passed in. If origin is None, signal to the caller to default
-            to the work as origin
-
-
-        #>>> from bibframe.reader.marcextra import transforms
-        #>>> t = transforms()
-        #>>> list(t.process_008('790726||||||||||||                 eng  '))
-        #[('date', '1979-07-26')]
-        """
-        types = {
-            "a": I(self._vocab[BL]+"abstracts-summaries"),
-            #Don't use + in marcextra values because of problems with dumb RDF reserialization
-            #"a": I(self._vocab[BL]+"abstracts+summaries"),
-            "b": I(self._vocab[BL]+"bibliography"), #"bibliographies (is one or contains one)"
-            "c": I(self._vocab[BL]+"catalogs"),
-            "d": I(self._vocab[BL]+"dictionaries"),
-            "e": I(self._vocab[BL]+"encyclopedias"),
-            "f": I(self._vocab[BL]+"handbooks"),
-            "g": I(self._vocab[BL]+"legal-articles"),
-            "i": I(self._vocab[BL]+"indexes"),
-            "j": I(self._vocab[BL]+"patent-document"),
-            "k": I(self._vocab[BL]+"discographies"),
-            "l": I(self._vocab[BL]+"legislation"),
-            "m": I(self._vocab[BL]+"theses"),
-            "n": I(self._vocab[BL]+"surveys-of-literature"),
-            "o": I(self._vocab[BL]+"reviews"),
-            "p": I(self._vocab[BL]+"programmed-texts"),
-            "q": I(self._vocab[BL]+"filmographies"),
-            "r": I(self._vocab[BL]+"directories"),
-            "s": I(self._vocab[BL]+"statistics"),
-            "t": I(self._vocab[BL]+"technical-reports"),
-            "u": I(self._vocab[BL]+"standards-specifications"),
-            #Don't use + in marcextra values because of problems with dumb RDF reserialization
-            #"u": I(self._vocab[BL]+"standards+specifications"),
-            "v": I(self._vocab[BL]+"legal-cases-and-notes"),
-            "w": I(self._vocab[BL]+"law-reports-and-digests"),
-            "z": I(self._vocab[BL]+"treaties")}
-    
-        genres = {
+        self.LITERARY_FORM = {
             "0": I(self._vocab[BL]+"non-fiction"),
             "1": I(self._vocab[BL]+"fiction"),
             "c": I(self._vocab[BL]+"comic-strips"),
@@ -203,62 +98,11 @@ class transforms(object):
             "j": I(self._vocab[BL]+"short-stories"),
             "m": I(self._vocab[BL]+"mixed-forms"),
             "p": I(self._vocab[BL]+"poetry"),
-            "s": I(self._vocab[BL]+"speeches")}
-
-
-        #Marc chaacters skipped in the 008 field by convention
-        #In most cases we dont have to actually check for these, as they'll just not be in the value lookup tables above
-        SKIP_CHARS = ('#', ' ', '|')
-        #Registry of patterns to be processed from 008 field {index key: value function}
-        #There are 3 types of index keys to this dict
-        #1) An int, simply processed as a character position passed to the value function
-        #2) A tuple of ints, processed once for each character position in the list, each int passed to the value function
-        #3) A tuple starting with 'slice' and then 2 ints, processed as a character chunk/slice passed as a whole to the value function
-        #If the value function returns None or a tuple with None in the lats position, it's a signal to do nothing for the case at hand
-        FIELD_008_PATTERNS = {
-            23: lambda i: (None, I(self._vocab[BL]+'medium'), self.MEDIA.get(info[i])),
-            (24, 25, 26, 27): lambda i: (None, I(self._vocab[VTYPE]), types.get(info[i])),
-            28: lambda i: (None, I(self._vocab[VTYPE]), self.GOVT_PUBLICATION.get(info[i])),
-            29: lambda i: (None, I(self._vocab[VTYPE]), I(self._vocab[BL]+'conference-publication'))
-                            if info[i] == '1' else None,
-            30: lambda i: (None, I(self._vocab[VTYPE]), I(self._vocab[BL]+'festschrift'))
-                            if info[i] == '1' else None,
-            33: lambda i: (None, I(self._vocab[VTYPE]), genres.get(info[i]))
-                            if info[i] != 'u' else None, #'u' means unknown?
-            34: lambda i: (None, I(self._vocab[VTYPE]), self.BIOGRAPHICAL.get(info[i])),
-            ('slice', 35, 38): lambda i: (None, I(self._vocab[LANG]), info[i.start:i.stop])
-                            if info[i.start:i.stop] not in
-                                ("###", "zxx", "mul", "sgn", "und", "   ", "") else None,
+            "s": I(self._vocab[BL]+"speeches"),
+            "u": I(self._vocab[BL]+'unknown-literary-form')
         }
-        
-        #info = field008
-        #ARE YOU FRIGGING KIDDING ME?! MARC/008 is NON-Y2K SAFE?!
-        year = info[0:2]
-        try:
-            century = '19' if int(year) > 30 else '20' #I guess we can give an 18 year berth before this breaks ;)
-            # remove date_008 from data export at this time
-            # yield 'date_008', '{}{}-{}-{}'.format(century, year, info[2:4], info[4:6])
-        except ValueError:
-            #Completely Invalid date
-            pass
 
-        yield from process_patterns(FIELD_008_PATTERNS)
-
-    def process_006(self, infos, leader, work, instance):
-        """
-        Process 006 control fields
-
-        :infos: - list of the text from any 006 fields
-        :leader - leader header, a character array
-
-        Rest of params and yield, same as for process_008
-        """
-
-        # 006 requires a multi-stage lookup of everything in this page
-        # and beneath the subtypes
-        # http://www.loc.gov/marc/bibliographic/bd008.html
-
-        Books = dict(
+        self.Books = dict(
             Illustrations = {
                 'a': I(self._vocab[BL]+'illustrations'),
                 'b': I(self._vocab[BL]+'maps'),
@@ -278,7 +122,7 @@ class transforms(object):
             },
             NatureOfContents = { # numeric keys
                 'a': I(self._vocab[BL]+'abstracts-summaries'),
-                'b': I(self._vocab[BL]+'bibliographies'),
+                'b': I(self._vocab[BL]+'bibliography'),
                 'c': I(self._vocab[BL]+'catalogs'),
                 'd': I(self._vocab[BL]+'dictionaries'),
                 'e': I(self._vocab[BL]+'encyclopedias'),
@@ -289,7 +133,7 @@ class transforms(object):
                 'k': I(self._vocab[BL]+'discographies'),
                 'l': I(self._vocab[BL]+'legislation'),
                 'm': I(self._vocab[BL]+'theses'),
-                'n': I(self._vocab[BL]+'surveys-of-literature-in-a-subject-area'),
+                'n': I(self._vocab[BL]+'surveys-of-literature'),
                 'o': I(self._vocab[BL]+'reviews'),
                 'p': I(self._vocab[BL]+'programmed-texts'),
                 'q': I(self._vocab[BL]+'filmographies'),
@@ -297,7 +141,7 @@ class transforms(object):
                 's': I(self._vocab[BL]+'statistics'),
                 't': I(self._vocab[BL]+'technical-reports'),
                 'u': I(self._vocab[BL]+'standards-specifications'),
-                'v': I(self._vocab[BL]+'legal-cases-and-case-notes'),
+                'v': I(self._vocab[BL]+'legal-cases-and-notes'),
                 'w': I(self._vocab[BL]+'law-reports-and-digests'),
                 'y': I(self._vocab[BL]+'yearbooks'),
                 'z': I(self._vocab[BL]+'treaties'),
@@ -310,9 +154,6 @@ class transforms(object):
             },
             Festschrift = {
                 '1': I(self._vocab[BL]+'festschrift'),
-            },
-            Index = {
-                '1': I(self._vocab[BL]+'index-present'),
             },
             LiteraryForm = {
                 '0': I(self._vocab[BL]+'not-fiction'),
@@ -330,7 +171,7 @@ class transforms(object):
             },
         )
 
-        Music = dict(
+        self.Music = dict(
             FormOfComposition = {
                 'an': I(self._vocab[BL]+'anthems'),
                 'bd': I(self._vocab[BL]+'ballads'),
@@ -475,7 +316,7 @@ class transforms(object):
             }
         )
 
-        Maps = dict(
+        self.Maps = dict(
             Relief = {
                 'a': I(self._vocab[BL]+'contours'),
                 'b': I(self._vocab[BL]+'shading'),
@@ -559,10 +400,10 @@ class transforms(object):
                 'p': I(self._vocab[BL]+'playing-cards'),
                 'r': I(self._vocab[BL]+'loose-leaf'),
                 'z': I(self._vocab[BL]+'other-special-format-characteristic'),
-            }
+            },
         )
 
-        VisualMaterials = dict(
+        self.VisualMaterials = dict(
             TypeOfVisualMaterial = {
                 'a': I(self._vocab[BL]+'art-original'),
                 'b': I(self._vocab[BL]+'kit'),
@@ -596,7 +437,7 @@ class transforms(object):
             }
         )
 
-        ComputerFiles = dict( 
+        self.ComputerFiles = dict( 
             FormOfItem = { # subset of FORM_OF_ITEM
                 'o': I(self._vocab[BL]+'online'),
                 'q': I(self._vocab[BL]+'direct-electronic'),
@@ -618,81 +459,280 @@ class transforms(object):
             }
         )
 
-        # From http://www.itsmarc.com/crs/mergedprojects/helptop1/helptop1/variable_control_fields/idh_006_00_bib.htm
-        material_form_type = dict(
-            a='Books',
-            c='Music',
-            d='Music',
-            e='Maps',
-            f='Maps',
-            g='VisualMaterials',
-            i='Music',
-            j='Music',
-            k='VisualMaterials',
-            m='ComputerFiles',
-            o='VisualMaterials',
-            p='MixedMaterials',
-            r='VisualMaterials',
-            t='Books'
-            )
-
-        Patterns = dict(
-            Books = {
-                (18, 19, 20, 21): lambda i: (None, I(self._vocab[VTYPE]), Books['Illustrations'].get(info[i])),
-                22: lambda i: (None, I(self._vocab[VTYPE]), self.AUDIENCE.get(info[i])),
-                23: lambda i: (None, I(self._vocab[VTYPE]), self.FORM_OF_ITEM.get(info[i])),
-                (24, 25, 26, 27): lambda i: (None, I(self._vocab[VTYPE]), Books['NatureOfContents'].get(info[i])),
-                28: lambda i: (None, I(self._vocab[VTYPE]), self.GOVT_PUBLICATION.get(info[i])),
-                29: lambda i: (None, I(self._vocab[VTYPE]), Books['ConferencePublication'].get(info[i])),
-                30: lambda i: (None, I(self._vocab[VTYPE]), Books['Festschrift'].get(info[i])),
-                31: lambda i: (None, I(self._vocab[VTYPE]), Books['Index'].get(info[i])),
-                33: lambda i: (None, I(self._vocab[VTYPE]), Books['LiteraryForm'].get(info[i])),
-                34: lambda i: (None, I(self._vocab[VTYPE]), self.BIOGRAPHICAL.get(info[i])),
+        self.ContinuingResources = dict(
+            Frequency = {
+                'a': I(self._vocab[BL]+'annual'),
+                'b': I(self._vocab[BL]+'bimonthly'),
+                'c': I(self._vocab[BL]+'semiweekly'),
+                'd': I(self._vocab[BL]+'daily'),
+                'e': I(self._vocab[BL]+'biweekly'),
+                'f': I(self._vocab[BL]+'semiannual'),
+                'g': I(self._vocab[BL]+'biennial'),
+                'h': I(self._vocab[BL]+'triennial'),
+                'i': I(self._vocab[BL]+'three-times-a-week'),
+                'j': I(self._vocab[BL]+'three-times-a-month'),
+                'k': I(self._vocab[BL]+'continuously-updated'),
+                'm': I(self._vocab[BL]+'monthly'),
+                'q': I(self._vocab[BL]+'quarterly'),
+                't': I(self._vocab[BL]+'three-times-a-year'),
+                'u': I(self._vocab[BL]+'unknown-frequency'),
+                'w': I(self._vocab[BL]+'weekly'),
+                'z': I(self._vocab[BL]+'other-frequency'),
             },
-            Music = {
-                ('slice', 18, 20): lambda i: (None, I(self._vocab[VTYPE]), Music['FormOfComposition'].get(info[i])),
-                20: lambda i: (None, I(self._vocab[VTYPE]), Music['FormatOfMusic'].get(info[i])),
-                21: lambda i: (None, I(self._vocab[VTYPE]), Music['MusicParts'].get(info[i])),
-                22: lambda i: (None, I(self._vocab[VTYPE]), self.AUDIENCE.get(info[i])),
-                23: lambda i: (None, I(self._vocab[VTYPE]), self.FORM_OF_ITEM.get(info[i])),
-                (24, 25, 26, 27, 28, 29): lambda i: (None, I(self._vocab[VTYPE]), Music['AccompanyingMatter'].get(info[i])),
-                (30, 31): lambda i: (None, I(self._vocab[VTYPE]), Music['LiteraryTextForSoundsRecordings'].get(info[i])),
-                33: lambda i: (None, I(self._vocab[VTYPE]), Music['TranspositionAndArrangement'].get(info[i])),
+            Regularity = {
+                'n': I(self._vocab[BL]+'normalized-irregular'),
+                'r': I(self._vocab[BL]+'regular'),
+                'u': I(self._vocab[BL]+'unknown'),
+                'x': I(self._vocab[BL]+'complete-irregular'),
             },
-            Maps = {
-                (18, 19, 20, 21): lambda i: (None, I(self._vocab[VTYPE]), Maps['Relief'].get(info[i])),
-                ('slice', 22, 23): lambda i: (None, I(self._vocab[VTYPE]), Maps['Projection'].get(info[i])),
-                25: lambda i: (None, I(self._vocab[VTYPE]), Maps['TypeOfCartographicMaterial'].get(info[i])),
-                28: lambda i: (None, I(self._vocab[VTYPE]), self.GOVT_PUBLICATION.get(info[i])),
-                29: lambda i: (None, I(self._vocab[VTYPE]), self.FORM_OF_ITEM.get(info[i])),
-                31: lambda i: (None, I(self._vocab[VTYPE]), Maps['Index'].get(info[i])),
-                (33, 34): lambda i: (None, I(self._vocab[VTYPE]), Maps['SpecialFormatCharacteristics'].get(info[i])),
+            TypeOfContinuingResource = {
+                'd': I(self._vocab[BL]+'updating-database'),
+                'l': I(self._vocab[BL]+'updating-loose-leaf'),
+                'm': I(self._vocab[BL]+'monographic-series'),
+                'n': I(self._vocab[BL]+'newspaper'),
+                'p': I(self._vocab[BL]+'periodical'),
+                'w': I(self._vocab[BL]+'updating-web-site'),
             },
-            VisualMaterials = {
-                ('slice', 18, 21): lambda i: (None, I(self._vocab[BL]+'runtime'), runtime(info[i])),
-                22: lambda i: (None, I(self._vocab[VTYPE]), self.AUDIENCE.get(info[i])),
-                28: lambda i: (None, I(self._vocab[VTYPE]), self.GOVT_PUBLICATION.get(info[i])),
-                29: lambda i: (None, I(self._vocab[VTYPE]), self.FORM_OF_ITEM.get(info[i])),
-                33: lambda i: (None, I(self._vocab[VTYPE]), VisualMaterials['TypeOfVisualMaterial'].get(info[i])),
-                34: lambda i: (None, I(self._vocab[VTYPE]), VisualMaterials['Technique'].get(info[i])),
+            OriginalAlphabetOrScriptOfTitle = {
+                'a': I(self._vocab[BL]+'basic-roman'),
+                'b': I(self._vocab[BL]+'extended-roman'),
+                'c': I(self._vocab[BL]+'cyrillic'),
+                'd': I(self._vocab[BL]+'japanese'),
+                'e': I(self._vocab[BL]+'chinese'),
+                'f': I(self._vocab[BL]+'arabic'),
+                'g': I(self._vocab[BL]+'greek'),
+                'h': I(self._vocab[BL]+'hebrew'),
+                'i': I(self._vocab[BL]+'thai'),
+                'j': I(self._vocab[BL]+'devanagari'),
+                'k': I(self._vocab[BL]+'korean'),
+                'l': I(self._vocab[BL]+'tamil'),
+                'u': I(self._vocab[BL]+'unknown-alphabet'),
+                'z': I(self._vocab[BL]+'other-alphabet'),
             },
-            ComputerFiles = {
-                22: lambda i: (None, I(self._vocab[VTYPE]), self.AUDIENCE.get(info[i])),
-                23: lambda i: (None, I(self._vocab[VTYPE]), ComputerFiles['FormOfItem'].get(info[i])),
-                26: lambda i: (None, I(self._vocab[VTYPE]), ComputerFiles['TypeOfComputerFile'].get(info[i])),
-                28: lambda i: (None, I(self._vocab[VTYPE]), self.GOVT_PUBLICATION.get(info[i])),
-            },
-            MixedMaterials = {
-                23: lambda i: (None, I(self._vocab[VTYPE]), self.FORM_OF_ITEM.get(info[i])),
+            EntryConvention = {
+                '0': I(self._vocab[BL]+'successive-entry'),
+                '1': I(self._vocab[BL]+'latest-entry'),
+                '2': I(self._vocab[BL]+'integrated-entry'),
             }
         )
 
+        # leader6+7 lookup based on all the "field definition and scope" sections below
+        # http://www.loc.gov/marc/bibliographic/bd008.html
+        self.MATERIAL_TYPE = {
+            'aa': 'Books',
+            'ab': 'ContinuingResources',
+            'ac': 'Books',
+            'ad': 'Books',
+            'ai': 'ContinuingResources',
+            'am': 'Books',
+            'as': 'ContinuingResources',
+            'c': 'Music',
+            'd': 'Music',
+            'e': 'Maps',
+            'f': 'Maps',
+            'g': 'VisualMaterials',
+            'i': 'Music',
+            'j': 'Music',
+            'k': 'VisualMaterials',
+            'm': 'ComputerFiles',
+            'o': 'VisualMaterials',
+            'p': 'MixedMaterials',
+            'r': 'VisualMaterials',
+            'ta': 'Books',
+            'tb': 'ContinuingResources',
+            'tc': 'Books',
+            'td': 'Books',
+            'ti': 'ContinuingResources',
+            'tm': 'Books',
+            'ts': 'ContinuingResources',
+        }
+
+        return
+
+    def process_leader(self, leader, work, instance):
+        """
+        Processes leader field according to the MARC standard.
+        http://www.loc.gov/marc/marc2dc.html#ldr06conversionrules
+        http://www.loc.gov/marc/bibliographic/bdleader.html
+
+        :leader: - text of leader field, a character array
+        :work: - work resource in context of which leader is being processed. Useful in the return value.
+        :instance: - instance resource in context of which leader is being processed. Useful in the return value.
+
+        yields - 0 or more 3-tuples, (origin, rel, target), each representing a new
+            link generated from leader data. origin is almost always the work or instance
+            resource passed in. If origin is None, signal to the caller to default
+            to the work as origin
+
+        >>> from bibframe.reader.marcextra import transforms
+        >>> t = transforms()
+        >>> list(t.process_leader('03495cpcaa2200673 a 4500'))
+        [(None, 'http://bibfra.me/purl/versa/type', I('Collection')), (None, 'http://bibfra.me/purl/versa/type', I('Multimedia')), (None, 'http://bibfra.me/purl/versa/type', I('Collection'))]
+        """
+        work_06 = dict(
+            a=I(self._vocab[BL]+"LanguageMaterial"),
+            c=(I(self._vocab[BL]+"LanguageMaterial"), I(self._vocab[BL]+"NotatedMusic")),
+            d=(I(self._vocab[BL]+"LanguageMaterial"), I(self._vocab[BL]+"Manuscript"), I(self._vocab[BL]+"NotatedMusic")),
+            e=(I(self._vocab[BL]+"StillImage"), I(self._vocab[BL]+"Cartography")),
+            f=(I(self._vocab[BL]+"Manuscript"), I(self._vocab[BL]+"Cartography"), I(self._vocab[BL]+"StillImage")),
+            g=I(self._vocab[BL]+"MovingImage"),
+            i=(I(self._vocab[BL]+"Audio"), I(self._vocab[BL]+"Nonmusical"), I(self._vocab[BL]+"Sounds")),
+            j=(I(self._vocab[BL]+"Audio"), I(self._vocab[BL]+"Musical")),
+            k=I(self._vocab[BL]+"StillImage"),
+            m=(I(self._vocab[BL]+"Multimedia"), I(self._vocab[BL]+"Software")),
+            o=I(self._vocab[BL]+"Kit"),
+            p=(I(self._vocab[BL]+"Collection"), I(self._vocab[BL]+"Multimedia")),
+            r=I(self._vocab[BL]+"ThreeDimensionalObject"),
+            t=(I(self._vocab[BL]+"LanguageMaterial"), I(self._vocab[BL]+"Manuscript"))
+            )
+
+        instance_06 = dict(
+            )
+
         _06 = leader[6]
-        typ = material_form_type.get(_06)
-        patterns = Patterns.get(typ)
+        if _06 in work_06.keys():
+            yield work, I(self._vocab[VTYPE]), work_06[_06]
+        if _06 in instance_06.keys():
+            yield instance, I(self._vocab[VTYPE]), instance_06[_06]
+        if leader[7] in ('c', 's'):
+            yield None, I(self._vocab[VTYPE]), I(self._vocab[BL]+"Collection")
+
+    def _process_fixed_length(self, info, leader, offset, work, instance):
+        """
+        Processes 008 and 006 control fields containing fixed length data elements,
+        according to the MARC standard http://www.loc.gov/marc/umb/um07to10.html#part9
+
+        :info: - text of 008 or a single 006 field, a character array
+        :work: - work resource in context of which 008 is being processed. Useful in the return value.
+        :instance: - instance resource in context of which leader is being processed. Useful in the return value.
+        :offset: - byte offset into 'info' containing germane data. 18 for 008, 0 for 006
+
+        yields - 0 or more 3-tuples, (origin, rel, target), each representing a new
+            link generated from 008 data. origin is almost always the work or instance
+            resource passed in. If origin is None, signal to the caller to default
+            to the work as origin
+
+
+        #>>> from bibframe.reader.marcextra import transforms
+        #>>> t = transforms()
+        #>>> list(t.process_008('790726||||||||||||                 eng  '))
+        #[('date', '1979-07-26')]
+        """
+
+        #Marc chaacters skipped in the 008 field by convention
+        #In most cases we dont have to actually check for these, as they'll just not be in the value lookup tables above
+        SKIP_CHARS = ('#', ' ', '|')
+
+        # Registry of patterns to be processed from 008 field {index key: value function}
+        # There are 3 types of index keys to this dict
+        # 1) An int, simply processed as a character position passed to the value function
+        # 2) A tuple of ints, processed once for each character position in the list, each int passed to the value function
+        # 3) A tuple starting with 'slice' and then 2 ints, processed as a character chunk/slice passed as a whole to the value function
+        # If the value function returns None or a tuple with None in the lats position, it's a signal to do nothing for the case at hand
+        PATTERNS = dict(
+            Books = {
+                (0, 1, 2, 3): lambda i: (None, I(self._vocab[VTYPE]), self.Books['Illustrations'].get(info[i])),
+                4: lambda i: (None, I(self._vocab[BL]+'audience'), self.AUDIENCE.get(info[i])),
+                5: lambda i: (None, I(self._vocab[BL]+'form-of-item'), self.FORM_OF_ITEM.get(info[i])),
+                (6, 7, 8, 9): lambda i: (None, I(self._vocab[VTYPE]), self.Books['NatureOfContents'].get(info[i])),
+                10: lambda i: (None, I(self._vocab[VTYPE]), self.GOVT_PUBLICATION.get(info[i])),
+                11: lambda i: (None, I(self._vocab[VTYPE]), self.Books['ConferencePublication'].get(info[i])),
+                12: lambda i: (None, I(self._vocab[VTYPE]), self.Books['Festschrift'].get(info[i])),
+                13: lambda i: (None, I(self._vocab[BL]+'index'), self.INDEX.get(info[i])),
+                15: lambda i: (None, I(self._vocab[VTYPE]), self.Books['LiteraryForm'].get(info[i])),
+                16: lambda i: (None, I(self._vocab[VTYPE]), self.BIOGRAPHICAL.get(info[i])),
+            },
+            Music = {
+                ('slice', 0, 2): lambda i: (None, I(self._vocab[VTYPE]), self.Music['FormOfComposition'].get(info[i])),
+                2: lambda i: (None, I(self._vocab[VTYPE]), self.Music['FormatOfMusic'].get(info[i])),
+                3: lambda i: (None, I(self._vocab[VTYPE]), self.Music['MusicParts'].get(info[i])),
+                4: lambda i: (None, I(self._vocab[BL]+'audience'), self.AUDIENCE.get(info[i])),
+                5: lambda i: (None, I(self._vocab[BL]+'form-of-item'), self.FORM_OF_ITEM.get(info[i])),
+                (6, 7, 8, 9, 10, 11): lambda i: (None, I(self._vocab[VTYPE]), self.Music['AccompanyingMatter'].get(info[i])),
+                (12, 13): lambda i: (None, I(self._vocab[VTYPE]), self.Music['LiteraryTextForSoundsRecordings'].get(info[i])),
+                15: lambda i: (None, I(self._vocab[VTYPE]), self.Music['TranspositionAndArrangement'].get(info[i])),
+            },
+            Maps = {
+                (0, 1, 2, 3): lambda i: (None, I(self._vocab[VTYPE]), self.Maps['Relief'].get(info[i])),
+                ('slice', 4, 5): lambda i: (None, I(self._vocab[VTYPE]), self.Maps['Projection'].get(info[i])),
+                7: lambda i: (None, I(self._vocab[VTYPE]), self.Maps['TypeOfCartographicMaterial'].get(info[i])),
+                10: lambda i: (None, I(self._vocab[VTYPE]), self.GOVT_PUBLICATION.get(info[i])),
+                11: lambda i: (None, I(self._vocab[VTYPE]), self.FORM_OF_ITEM.get(info[i])),
+                13: lambda i: (None, I(self._vocab[VTYPE]), self.INDEX.get(info[i])),
+                (15, 16): lambda i: (None, I(self._vocab[VTYPE]), self.Maps['SpecialFormatCharacteristics'].get(info[i])),
+            },
+            VisualMaterials = {
+                ('slice', 0, 2): lambda i: (None, I(self._vocab[BL]+'runtime'), runtime(info[i])),
+                4: lambda i: (None, I(self._vocab[VTYPE]), self.AUDIENCE.get(info[i])),
+                10: lambda i: (None, I(self._vocab[VTYPE]), self.GOVT_PUBLICATION.get(info[i])),
+                11: lambda i: (None, I(self._vocab[VTYPE]), self.FORM_OF_ITEM.get(info[i])),
+                15: lambda i: (None, I(self._vocab[VTYPE]), self.VisualMaterials['TypeOfVisualMaterial'].get(info[i])),
+                16: lambda i: (None, I(self._vocab[VTYPE]), self.VisualMaterials['Technique'].get(info[i])),
+            },
+            ComputerFiles = {
+                4: lambda i: (None, I(self._vocab[VTYPE]), self.AUDIENCE.get(info[i])),
+                5: lambda i: (None, I(self._vocab[VTYPE]), self.ComputerFiles['FormOfItem'].get(info[i])),
+                8: lambda i: (None, I(self._vocab[VTYPE]), self.ComputerFiles['TypeOfComputerFile'].get(info[i])),
+                10: lambda i: (None, I(self._vocab[VTYPE]), self.GOVT_PUBLICATION.get(info[i])),
+            },
+            MixedMaterials = {
+                5: lambda i: (None, I(self._vocab[VTYPE]), self.FORM_OF_ITEM.get(info[i])),
+            },
+            #ContinuingResources = {
+            #}
+        )
+
+        # build new patterns from existing patterns by byte shifting, i.e. 18 bytes for 006->008
+        def shift_patterns(patterns, offset):
+            from pprint import pprint
+            new_patt = {}
+            for k, v in patterns.items():
+                if isinstance(k, tuple):
+                    if k[0] == 'slice':
+                        new_k = (k[0], k[1]+offset, k[2]+offset)
+                    else:
+                        new_k = tuple((kk+offset for kk in k))
+                else: # int
+                    new_k = k+offset
+
+                new_patt[new_k] = v
+
+            return new_patt
+
+        # first perform 6/7 lookup, then fallback to 6 lookup
+        _06 = leader[6]
+        _07 = leader[7] if leader[7] != ' ' else ''
+        typ = self.MATERIAL_TYPE.get(_06+_07)
+        if not typ:
+            typ = self.MATERIAL_TYPE.get(_06)
+            if not typ:
+                print("unknown leader6/7", _06, _07)
+       
+        patterns = PATTERNS.get(typ)
         if patterns:
-            for info in infos: # FIXME unintuitive late binding of "info" to lambdas in patterns dicts
-                yield from process_patterns(patterns)
+            if offset:
+                patterns = shift_patterns(patterns, offset)
+
+            yield from process_patterns(patterns)
+
+    def process_008(self, info, leader, work, instance):
+
+        #info = field008
+        #ARE YOU FRIGGING KIDDING ME?! MARC/008 is NON-Y2K SAFE?!
+        year = info[0:2]
+        try:
+            century = '19' if int(year) > 30 else '20' #I guess we can give an 18 year berth before this breaks ;)
+            # remove date_008 from data export at this time
+            # yield 'date_008', '{}{}-{}-{}'.format(century, year, info[2:4], info[4:6])
+        except ValueError:
+            #Completely Invalid date
+            pass
+
+        yield from self._process_fixed_length(info, leader, 18, work, instance)
+
+    def process_006(self, infos, leader, work, instance):
+        for info in infos:
+            yield from self._process_fixed_length(info, leader, 0, work, instance)
 
 def process_patterns(patterns):
     #Execute the rules detailed in the various positional patterns lookup tables above
