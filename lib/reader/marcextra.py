@@ -735,6 +735,10 @@ class transforms(object):
         yield from self._process_fixed_length(info, leader, 18, work, instance)
 
     def process_006(self, infos, leader, work, instance):
+        '''
+        Re: Multiple 006 fields see page 2 of University of Colorado Boulder University Libraries Cataloging Procedures Manual,
+        "Books with Accompanying Media" https://ucblibraries.colorado.edu/cataloging/cpm/bookswithmedia.pdf
+        '''
         for info in infos:
             yield from self._process_fixed_length(info, leader, 0, work, instance)
 
