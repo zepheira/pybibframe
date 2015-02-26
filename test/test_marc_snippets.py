@@ -62,7 +62,8 @@ SNIPPET_1 = '''<collection xmlns="http://www.loc.gov/MARC21/slim">
 
 CONFIG_1 = None
 
-EXPECTED_1 = '''[
+EXPECTED_1 = '''
+[
     [
         "PZ-aV_fa",
         "http://bibfra.me/purl/versa/type",
@@ -88,14 +89,6 @@ EXPECTED_1 = '''[
     [
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/LanguageMaterial",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "kP2G4QhW",
-        "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
             "@target-type": "@iri-ref"
@@ -104,7 +97,7 @@ EXPECTED_1 = '''[
     [
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/encyclopedias",
+        "http://bibfra.me/vocab/marc/Books",
         {
             "@target-type": "@iri-ref"
         }
@@ -112,18 +105,28 @@ EXPECTED_1 = '''[
     [
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/legal-articles",
+        "http://bibfra.me/vocab/marc/LanguageMaterial",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
         "kP2G4QhW",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/surveys-of-literature",
-        {
-            "@target-type": "@iri-ref"
-        }
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "encyclopedias",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "legal articles",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "surveys of literature",
+        {}
     ],
     [
         "kP2G4QhW",
@@ -148,17 +151,18 @@ SNIPPET_2 = '''<collection xmlns="http://www.loc.gov/MARC21/slim">
 
 CONFIG_2 = None
 
-EXPECTED_2 = '''[
+EXPECTED_2 = '''
+[
     [
-        "X76tY3SC",
+        "uod_ls3S",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/LanguageMaterial",
+        "http://bibfra.me/vocab/marc/Books",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "X76tY3SC",
+        "uod_ls3S",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
@@ -166,49 +170,51 @@ EXPECTED_2 = '''[
         }
     ],
     [
-        "X76tY3SC",
+        "uod_ls3S",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/encyclopedias",
+        "http://bibfra.me/vocab/marc/LanguageMaterial",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "X76tY3SC",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/legal-articles",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "X76tY3SC",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/surveys-of-literature",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "X76tY3SC",
+        "uod_ls3S",
         "http://bibfra.me/vocab/lite/title",
         "Arithmetic /",
         {}
     ],
     [
-        "X76tY3SC",
+        "uod_ls3S",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "encyclopedias",
+        {}
+    ],
+    [
+        "uod_ls3S",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "legal articles",
+        {}
+    ],
+    [
+        "uod_ls3S",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "surveys of literature",
+        {}
+    ],
+    [
+        "uod_ls3S",
         "http://bibfra.me/vocab/marc/titleStatement",
         "Carl Sandburg ; illustrated as an anamorphic adventure by Ted Rand.",
         {}
     ],
     [
-        "X76tY3SC",
+        "uod_ls3S",
         "http://bibfra.me/vocab/marcext/tag-008",
         "920219s1993 caua j 000 0 eng",
         {}
     ],
     [
-        "bwbrjGVf",
+        "uqMAKS-3",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
         {
@@ -216,21 +222,21 @@ EXPECTED_2 = '''[
         }
     ],
     [
-        "bwbrjGVf",
+        "uqMAKS-3",
         "http://bibfra.me/vocab/lite/instantiates",
-        "X76tY3SC",
+        "uod_ls3S",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "bwbrjGVf",
+        "uqMAKS-3",
         "http://bibfra.me/vocab/lite/title",
         "Arithmetic /",
         {}
     ],
     [
-        "bwbrjGVf",
+        "uqMAKS-3",
         "http://bibfra.me/vocab/marc/titleStatement",
         "Carl Sandburg ; illustrated as an anamorphic adventure by Ted Rand.",
         {}
@@ -253,17 +259,10 @@ SNIPPET_3 = '''<collection xmlns="http://www.loc.gov/MARC21/slim">
 
 CONFIG_3 = None
 
-EXPECTED_3 = '''[
+EXPECTED_3 = '''
+[
     [
-        "X76tY3SC",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/LanguageMaterial",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "X76tY3SC",
+        "uod_ls3S",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
@@ -271,49 +270,59 @@ EXPECTED_3 = '''[
         }
     ],
     [
-        "X76tY3SC",
+        "uod_ls3S",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/encyclopedias",
+        "http://bibfra.me/vocab/marc/Books",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "X76tY3SC",
+        "uod_ls3S",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/legal-articles",
+        "http://bibfra.me/vocab/marc/LanguageMaterial",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "X76tY3SC",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/surveys-of-literature",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "X76tY3SC",
+        "uod_ls3S",
         "http://bibfra.me/vocab/lite/title",
         "Arithmetic /",
         {}
     ],
     [
-        "X76tY3SC",
+        "uod_ls3S",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "encyclopedias",
+        {}
+    ],
+    [
+        "uod_ls3S",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "legal articles",
+        {}
+    ],
+    [
+        "uod_ls3S",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "surveys of literature",
+        {}
+    ],
+    [
+        "uod_ls3S",
         "http://bibfra.me/vocab/marc/titleStatement",
         "Carl Sandburg ; illustrated as an anamorphic adventure by Ted Rand.",
         {}
     ],
     [
-        "X76tY3SC",
+        "uod_ls3S",
         "http://bibfra.me/vocab/marcext/tag-008",
         "920219s1993 caua j 000 0 eng",
         {}
     ],
     [
-        "bwbrjGVf",
+        "uqMAKS-3",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
         {
@@ -321,27 +330,27 @@ EXPECTED_3 = '''[
         }
     ],
     [
-        "bwbrjGVf",
+        "uqMAKS-3",
         "http://bibfra.me/vocab/lite/controlCode",
         "92005291",
         {}
     ],
     [
-        "bwbrjGVf",
+        "uqMAKS-3",
         "http://bibfra.me/vocab/lite/instantiates",
-        "X76tY3SC",
+        "uod_ls3S",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "bwbrjGVf",
+        "uqMAKS-3",
         "http://bibfra.me/vocab/lite/title",
         "Arithmetic /",
         {}
     ],
     [
-        "bwbrjGVf",
+        "uqMAKS-3",
         "http://bibfra.me/vocab/marc/titleStatement",
         "Carl Sandburg ; illustrated as an anamorphic adventure by Ted Rand.",
         {}
@@ -369,7 +378,8 @@ CONFIG_4 = {
     ]
 }
 
-EXPECTED_4 = '''[
+EXPECTED_4 = '''
+[
     [
         "PZ-aV_fa",
         "http://bibfra.me/purl/versa/type",
@@ -401,14 +411,6 @@ EXPECTED_4 = '''[
     [
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/LanguageMaterial",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "kP2G4QhW",
-        "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
             "@target-type": "@iri-ref"
@@ -417,7 +419,7 @@ EXPECTED_4 = '''[
     [
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/encyclopedias",
+        "http://bibfra.me/vocab/marc/Books",
         {
             "@target-type": "@iri-ref"
         }
@@ -425,18 +427,28 @@ EXPECTED_4 = '''[
     [
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/legal-articles",
+        "http://bibfra.me/vocab/marc/LanguageMaterial",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
         "kP2G4QhW",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/surveys-of-literature",
-        {
-            "@target-type": "@iri-ref"
-        }
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "encyclopedias",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "legal articles",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "surveys of literature",
+        {}
     ],
     [
         "kP2G4QhW",
@@ -471,17 +483,10 @@ SNIPPET_5 = '''<record xmlns="http://www.loc.gov/MARC21/slim">
 
 CONFIG_5 = None
 
-EXPECTED_5 = '''[
+EXPECTED_5 = '''
+[
     [
-        "nFBFsha6",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/LanguageMaterial",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "nFBFsha6",
+        "GoXwXAgG",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
@@ -489,71 +494,83 @@ EXPECTED_5 = '''[
         }
     ],
     [
-        "nFBFsha6",
+        "GoXwXAgG",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/programmed-texts",
+        "http://bibfra.me/vocab/marc/Books",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "nFBFsha6",
+        "GoXwXAgG",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/surveys-of-literature",
+        "http://bibfra.me/vocab/marc/LanguageMaterial",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "nFBFsha6",
+        "GoXwXAgG",
         "http://bibfra.me/vocab/lite/title",
         "Ishinp\u014d /",
         {}
     ],
     [
-        "nFBFsha6",
+        "GoXwXAgG",
         "http://bibfra.me/vocab/lite/title",
         "\u91ab\u5fc3\u65b9 /",
         {}
     ],
     [
-        "nFBFsha6",
+        "GoXwXAgG",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "programmed texts",
+        {}
+    ],
+    [
+        "GoXwXAgG",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "surveys of literature",
+        {}
+    ],
+    [
+        "GoXwXAgG",
         "http://bibfra.me/vocab/marc/titleStatement",
         "Tanba no Sukune Yasuyori sen.",
         {}
     ],
     [
-        "nFBFsha6",
+        "GoXwXAgG",
         "http://bibfra.me/vocab/marc/titleStatement",
         "\u4e39\u6ce2\u5bbf\u88ae\u5eb7\u983c\u64b0.",
         {}
     ],
     [
-        "nFBFsha6",
+        "GoXwXAgG",
         "http://bibfra.me/vocab/marcext/tag-008",
         "020613s1860 ja a 000 0 jpn",
         {}
     ],
     [
-        "nFBFsha6",
+        "GoXwXAgG",
         "http://bibfra.me/vocab/marcext/tag-880-10-6",
         "245-02/$1",
         {}
     ],
     [
-        "nFBFsha6",
+        "GoXwXAgG",
         "http://bibfra.me/vocab/marcext/tag-880-10-a",
         "\u91ab\u5fc3\u65b9 /",
         {}
     ],
     [
-        "nFBFsha6",
+        "GoXwXAgG",
         "http://bibfra.me/vocab/marcext/tag-880-10-c",
         "\u4e39\u6ce2\u5bbf\u88ae\u5eb7\u983c\u64b0.",
         {}
     ],
     [
-        "zRg2BG3T",
+        "dF3pns7f",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
         {
@@ -561,33 +578,33 @@ EXPECTED_5 = '''[
         }
     ],
     [
-        "zRg2BG3T",
+        "dF3pns7f",
         "http://bibfra.me/vocab/lite/instantiates",
-        "nFBFsha6",
+        "GoXwXAgG",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "zRg2BG3T",
+        "dF3pns7f",
         "http://bibfra.me/vocab/lite/title",
         "Ishinp\u014d /",
         {}
     ],
     [
-        "zRg2BG3T",
+        "dF3pns7f",
         "http://bibfra.me/vocab/lite/title",
         "\u91ab\u5fc3\u65b9 /",
         {}
     ],
     [
-        "zRg2BG3T",
+        "dF3pns7f",
         "http://bibfra.me/vocab/marc/titleStatement",
         "Tanba no Sukune Yasuyori sen.",
         {}
     ],
     [
-        "zRg2BG3T",
+        "dF3pns7f",
         "http://bibfra.me/vocab/marc/titleStatement",
         "\u4e39\u6ce2\u5bbf\u88ae\u5eb7\u983c\u64b0.",
         {}
@@ -616,7 +633,8 @@ SNIPPET_7 = '''<collection xmlns="http://www.loc.gov/MARC21/slim">
 
 CONFIG_7 = None
 
-EXPECTED_7 = '''[
+EXPECTED_7 = '''
+[
     [
         "Ht2FQsIY",
         "http://bibfra.me/purl/versa/type",
@@ -668,14 +686,6 @@ EXPECTED_7 = '''[
     [
         "XsrrgYIS",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/LanguageMaterial",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "XsrrgYIS",
-        "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
             "@target-type": "@iri-ref"
@@ -684,7 +694,7 @@ EXPECTED_7 = '''[
     [
         "XsrrgYIS",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/encyclopedias",
+        "http://bibfra.me/vocab/marc/Books",
         {
             "@target-type": "@iri-ref"
         }
@@ -692,15 +702,7 @@ EXPECTED_7 = '''[
     [
         "XsrrgYIS",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/legal-articles",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "XsrrgYIS",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/surveys-of-literature",
+        "http://bibfra.me/vocab/marc/LanguageMaterial",
         {
             "@target-type": "@iri-ref"
         }
@@ -712,6 +714,24 @@ EXPECTED_7 = '''[
         {
             "@target-type": "@iri-ref"
         }
+    ],
+    [
+        "XsrrgYIS",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "encyclopedias",
+        {}
+    ],
+    [
+        "XsrrgYIS",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "legal articles",
+        {}
+    ],
+    [
+        "XsrrgYIS",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "surveys of literature",
+        {}
     ],
     [
         "XsrrgYIS",
@@ -738,7 +758,8 @@ SNIPPET_8 = '''<collection xmlns="http://www.loc.gov/MARC21/slim">
 
 CONFIG_8 = None
 
-EXPECTED_8 = '''[
+EXPECTED_8 = '''
+[
     [
         "IoGxK0TV",
         "http://bibfra.me/purl/versa/type",
@@ -832,22 +853,6 @@ EXPECTED_8 = '''[
     [
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Collection",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "kP2G4QhW",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/LanguageMaterial",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "kP2G4QhW",
-        "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
             "@target-type": "@iri-ref"
@@ -855,8 +860,58 @@ EXPECTED_8 = '''[
     ],
     [
         "kP2G4QhW",
-        "http://bibfra.me/vocab/lite/language",
-        "eng",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/Collection",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/ContinuingResources",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/LanguageMaterial",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/periodical",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/entryConvention",
+        "successive entry",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/frequency",
+        "bimonthly",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/originalAlphabetOrScriptOfTitle",
+        "basic roman",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/regularity",
+        "regular",
         {}
     ],
     [
@@ -876,6 +931,168 @@ EXPECTED_8 = '''[
 ]
 '''
 
+SNIPPET_9 = '''<collection xmlns="http://www.loc.gov/MARC21/slim">
+<record>
+  <leader>02386cas a2200637 a 4500</leader>
+  <controlfield tag="001">37263290</controlfield>
+  <controlfield tag="003">OCoLC</controlfield>
+  <controlfield tag="005">20141208144405.0</controlfield>
+  <controlfield tag="006">m     o  d f      </controlfield>
+  <controlfield tag="007">cr gn|||||||||</controlfield>
+  <controlfield tag="008">970709c19679999dcugr   o hr f0   a0eng  </controlfield>
+</record></collection>
+'''
+
+CONFIG_9 = None
+
+EXPECTED_9 = '''
+[
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "37263290",
+        {}
+    ],
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "kP2G4QhW",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/vocab/marc/formOfItem",
+        "online",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/Collection",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/ContinuingResources",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/LanguageMaterial",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/entryConvention",
+        "successive entry",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/frequency",
+        "biennial",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/frequency",
+        "monthly",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/governmentPublication",
+        "federal national government publication",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "dictionaries",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "directories",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/natureOfEntireWork",
+        "reviews",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/originalAlphabetOrScriptOfTitle",
+        "basic roman",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/regularity",
+        "regular",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marcext/tag-003",
+        "OCoLC",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marcext/tag-005",
+        "20141208144405.0",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marcext/tag-006",
+        "m     o  d f      ",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marcext/tag-007",
+        "cr gn|||||||||",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marcext/tag-008",
+        "970709c19679999dcugr   o hr f0   a0eng  ",
+        {}
+    ]
+]
+'''
 
 all_snippets = sorted([ sym for sym in globals() if sym.startswith('SNIPPET') ])
 all_config = sorted([ sym for sym in globals() if sym.startswith('CONFIG') ])
