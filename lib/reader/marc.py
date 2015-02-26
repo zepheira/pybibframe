@@ -399,9 +399,9 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
 
             extra_stmts = set() # prevent duplicate statements
             for origin, k, v in itertools.chain(
-                        extra_transforms.process_leader(leader, workid, instanceid),
-                        extra_transforms.process_006(fields006, leader, workid, instanceid),
-                        extra_transforms.process_008(field008, leader, workid, instanceid)):
+                        extra_transforms.process_leader(params),
+                        extra_transforms.process_006(fields006, params),
+                        extra_transforms.process_008(field008, params)):
                 v = v if isinstance(v, tuple) else (v,)
                 for item in v:
                     o = origin or I(workid)
