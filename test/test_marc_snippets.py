@@ -931,7 +931,155 @@ EXPECTED_8 = '''
 ]
 '''
 
+#Leader + 008 + 1 data
 SNIPPET_9 = '''<collection xmlns="http://www.loc.gov/MARC21/slim">
+<record>
+  <leader>01025cas a22003251  4500</leader>
+  <controlfield tag="008">821218d18821919ja uu p       0||||0jpn b</controlfield>
+  <datafield tag="260" ind1=" " ind2=" ">
+      <subfield code="a">Tokyo.</subfield>
+  </datafield>
+</record>
+</collection>'''
+
+CONFIG_9 = None
+
+EXPECTED_9 = '''
+[
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "kP2G4QhW",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/vocab/marc/publication",
+        "_Pdjp3p_",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "ZFkTPkl8",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Place",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "ZFkTPkl8",
+        "http://bibfra.me/vocab/lite/name",
+        "Tokyo.",
+        {}
+    ],
+    [
+        "ZFkTPkl8",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Tokyo.",
+        {}
+    ],
+    [
+        "_Pdjp3p_",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/ProviderEvent",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "_Pdjp3p_",
+        "http://bibfra.me/vocab/lite/providerPlace",
+        "ZFkTPkl8",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "_Pdjp3p_",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Tokyo.",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/Collection",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/ContinuingResources",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/LanguageMaterial",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/periodical",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/entryConvention",
+        "successive entry",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/frequency",
+        "unknown frequency",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/regularity",
+        "unknown",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marcext/tag-008",
+        "821218d18821919ja uu p       0||||0jpn b",
+        {}
+    ]
+]
+'''
+
+SNIPPET_10 = '''<collection xmlns="http://www.loc.gov/MARC21/slim">
 <record>
   <leader>02386cas a2200637 a 4500</leader>
   <controlfield tag="001">37263290</controlfield>
@@ -943,9 +1091,9 @@ SNIPPET_9 = '''<collection xmlns="http://www.loc.gov/MARC21/slim">
 </record></collection>
 '''
 
-CONFIG_9 = None
+CONFIG_10 = {}
 
-EXPECTED_9 = '''
+EXPECTED_10 = '''
 [
     [
         "PZ-aV_fa",
