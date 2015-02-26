@@ -685,7 +685,6 @@ class transforms(object):
 
         # build new patterns from existing patterns by byte shifting, i.e. 18 bytes for 006->008
         def shift_patterns(patterns, offset):
-            from pprint import pprint
             new_patt = {}
             for k, v in patterns.items():
                 if isinstance(k, tuple):
@@ -707,7 +706,7 @@ class transforms(object):
         if not typ:
             typ = self.MATERIAL_TYPE.get(_06)
             if not typ:
-                print("unknown leader6/7", _06, _07)
+                logger.debug('Unknown leader 6/7 combination "{}"'.format(_06+_07))
        
         # add a type statement for this type too
         if typ: yield work, I(self._vocab[VTYPE]), I(self._vocab[MARC]+typ)

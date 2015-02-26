@@ -216,8 +216,10 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             workid = materialize_entity('Work', vocabbase=BL, existing_ids=existing_ids, ids=ids, plugins=plugins, hash=workhash, loop=loop, model=model)
             is_folded = workid in existing_ids
             existing_ids.add(workid)
+            control_code = list(marc_lookup(input_model, '001')) or ['NO 001 CONTROL CODE']
             dumb_title = list(marc_lookup(input_model, '245$a')) or ['NO 245$a TITLE']
-            logger.debug('Uniform title from 245$a: {0}'.format(dumb_title[0]))
+            logger.debug('Control code: {0}'.format(control_code[0]))
+            logger.debug('Uniform title: {0}'.format(dumb_title[0]))
             logger.debug('Work hash result: {0} from \'{1}\''.format(workid, 'Work' + workhash))
 
             if entbase:
