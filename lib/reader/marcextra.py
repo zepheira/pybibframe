@@ -556,8 +556,8 @@ class transforms(object):
 
         >>> from bibframe.reader.marcextra import transforms
         >>> t = transforms()
-        >>> list(t.process_leader('03495cpcaa2200673 a 4500'))
-        [(None, 'http://bibfra.me/purl/versa/type', I('Collection')), (None, 'http://bibfra.me/purl/versa/type', I('Multimedia')), (None, 'http://bibfra.me/purl/versa/type', I('Collection'))]
+        >>> list(t.process_leader({'leader':'03495cpcaa2200673 a 4500','workid':None,'instanceids':[None]}))
+        [(None, I(http://bibfra.me/purl/versa/type), (I(http://bibfra.me/vocab/marc/Collection), I(http://bibfra.me/vocab/marc/Multimedia))), (None, I(http://bibfra.me/purl/versa/type), I(http://bibfra.me/vocab/marc/Collection))]
         """
         leader = params['leader']
         work = params['workid']
@@ -596,21 +596,17 @@ class transforms(object):
         according to the MARC standard http://www.loc.gov/marc/umb/um07to10.html#part9
 
         :info: - text of 008 or a single 006 field, a character array
-        :work: - work resource in context of which 008 is being processed. Useful in the return value.
-        :instance: - instance resource in context of which leader is being processed. Useful in the return value.
         :offset: - byte offset into 'info' containing germane data. 18 for 008, 0 for 006
+        :params: - work and instance resources in context of which 008 is being processed. Useful in the return value.
 
         yields - 0 or more 3-tuples, (origin, rel, target), each representing a new
             link generated from 008 data. origin is almost always the work or instance
             resource passed in. If origin is None, signal to the caller to default
             to the work as origin
 
-
-        #>>> from bibframe.reader.marcextra import transforms
-        #>>> t = transforms()
-        #>>> list(t.process_008('790726||||||||||||                 eng  '))
-        #[('date', '1979-07-26')]
         """
+        if info is None: return
+
         leader = params['leader']
         work = params['workid']
         instance = params['instanceids'][0]
@@ -726,7 +722,21 @@ class transforms(object):
             yield from process_patterns(patterns)
 
     def process_008(self, info, params):
-        #info = field008
+        '''
+        Processes 008 control fields
+        
+        #>>> from bibframe.reader.marcextra import transforms
+        #>>> import logging
+        #>>> t = transforms()
+        #>>> ld = '790726||||||||||||                 eng  '
+        #>>> list(t.process_008(ld,{'leader':ld,'workid':None,'instanceids':[None],'logger':logging}))
+        #[('date_008', '1979-07-26')]
+        '''
+        if info is None: return
+
+        # pad to expected size
+        info = info.ljust(40)
+
         #ARE YOU FRIGGING KIDDING ME?! MARC/008 is NON-Y2K SAFE?!
         year = info[0:2]
         try:
@@ -745,6 +755,9 @@ class transforms(object):
         "Books with Accompanying Media" https://ucblibraries.colorado.edu/cataloging/cpm/bookswithmedia.pdf
         '''
         for info in infos:
+            # pad to expected size
+            info = info.ljust(18)
+
             yield from self._process_fixed_length(info, 0, params)
 
 def process_patterns(patterns):
