@@ -415,7 +415,7 @@ class transforms(object):
                 'v': I(self._vocab[MARC]+'videorecording'),
                 'w': I(self._vocab[MARC]+'toy'),
                 'z': I(self._vocab[MARC]+'other-type-of-visual-material'),
-            
+
             },
             Technique = {
                 'a': I(self._vocab[MARC]+'animation'),
@@ -427,7 +427,7 @@ class transforms(object):
             }
         )
 
-        self.ComputerFiles = dict( 
+        self.ComputerFiles = dict(
             FormOfItem = { # subset of FORM_OF_ITEM
                 'o': I(self._vocab[MARC]+'online'),
                 'q': I(self._vocab[MARC]+'direct-electronic'),
@@ -539,7 +539,7 @@ class transforms(object):
 
         return
 
-    def process_leader(self, leader, work, instance):
+    def process_leader(self, params):
         """
         Processes leader field according to the MARC standard.
         http://www.loc.gov/marc/marc2dc.html#ldr06conversionrules
@@ -559,6 +559,9 @@ class transforms(object):
         >>> list(t.process_leader('03495cpcaa2200673 a 4500'))
         [(None, 'http://bibfra.me/purl/versa/type', I('Collection')), (None, 'http://bibfra.me/purl/versa/type', I('Multimedia')), (None, 'http://bibfra.me/purl/versa/type', I('Collection'))]
         """
+        leader = params['leader']
+        work = params['workid']
+        instance = params['instanceids'][0]
         work_06 = dict(
             a=I(self._vocab[MARC]+"LanguageMaterial"),
             c=(I(self._vocab[MARC]+"LanguageMaterial"), I(self._vocab[MARC]+"NotatedMusic")),
@@ -587,7 +590,7 @@ class transforms(object):
         if leader[7] in ('c', 's'):
             yield None, I(self._vocab[VTYPE]), I(self._vocab[MARC]+"Collection")
 
-    def _process_fixed_length(self, info, leader, offset, work, instance):
+    def _process_fixed_length(self, info, offset, params):
         """
         Processes 008 and 006 control fields containing fixed length data elements,
         according to the MARC standard http://www.loc.gov/marc/umb/um07to10.html#part9
@@ -608,6 +611,10 @@ class transforms(object):
         #>>> list(t.process_008('790726||||||||||||                 eng  '))
         #[('date', '1979-07-26')]
         """
+        leader = params['leader']
+        work = params['workid']
+        instance = params['instanceids'][0]
+        logger = params['logger']
 
         #Marc chaacters skipped in the 008 field by convention
         #In most cases we dont have to actually check for these, as they'll just not be in the value lookup tables above
@@ -707,7 +714,7 @@ class transforms(object):
             typ = self.MATERIAL_TYPE.get(_06)
             if not typ:
                 logger.debug('Unknown leader 6/7 combination "{}"'.format(_06+_07))
-       
+
         # add a type statement for this type too
         if typ: yield work, I(self._vocab[VTYPE]), I(self._vocab[MARC]+typ)
 
@@ -718,8 +725,7 @@ class transforms(object):
 
             yield from process_patterns(patterns)
 
-    def process_008(self, info, leader, work, instance):
-
+    def process_008(self, info, params):
         #info = field008
         #ARE YOU FRIGGING KIDDING ME?! MARC/008 is NON-Y2K SAFE?!
         year = info[0:2]
@@ -731,15 +737,15 @@ class transforms(object):
             #Completely Invalid date
             pass
 
-        yield from self._process_fixed_length(info, leader, 18, work, instance)
+        yield from self._process_fixed_length(info, 18, params)
 
-    def process_006(self, infos, leader, work, instance):
+    def process_006(self, infos, params):
         '''
         Re: Multiple 006 fields see page 2 of University of Colorado Boulder University Libraries Cataloging Procedures Manual,
         "Books with Accompanying Media" https://ucblibraries.colorado.edu/cataloging/cpm/bookswithmedia.pdf
         '''
         for info in infos:
-            yield from self._process_fixed_length(info, leader, 0, work, instance)
+            yield from self._process_fixed_length(info, 0, params)
 
 def process_patterns(patterns):
     #Execute the rules detailed in the various positional patterns lookup tables above
