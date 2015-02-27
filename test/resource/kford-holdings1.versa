@@ -126,10 +126,8 @@
     [
         "D4PHzUhr",
         "http://bibfra.me/vocab/marc/index",
-        "http://bibfra.me/vocab/marc/index-present",
-        {
-            "@target-type": "@iri-ref"
-        }
+        "index present",
+        {}
     ],
     [
         "D4PHzUhr",
