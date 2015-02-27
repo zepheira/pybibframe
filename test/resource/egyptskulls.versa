@@ -226,10 +226,8 @@
     [
         "JL0Q18QQ",
         "http://bibfra.me/vocab/marc/index",
-        "http://bibfra.me/vocab/marc/no-index-present",
-        {
-            "@target-type": "@iri-ref"
-        }
+        "no index present",
+        {}
     ],
     [
         "JL0Q18QQ",
