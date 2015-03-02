@@ -284,7 +284,7 @@ def foreach(origin=None, rel=None, target=None, attributes=None):
         #            in product(o, r, t, a)])
         return [ ctx.copy(current_link=(curr_o, curr_r, curr_t, curr_a))
                     for (curr_o, curr_r, curr_t, curr_a)
-                    in product(o, r, t, a) ]
+                    in product(o, r, t, a) if all((curr_o, curr_r, curr_t)) ]
         #for (curr_o, curr_r, curr_t, curr_a) in product(origin or [o], rel or [r], target or [t], attributes or [a]):
         #    newctx = ctx.copy(current_link=(curr_o, curr_r, curr_t, curr_a))
             #ctx.output_model.add(I(objid), VTYPE_REL, I(iri.absolutize(_typ, ctx.base)), {})

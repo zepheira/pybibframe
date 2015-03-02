@@ -100,15 +100,7 @@
         {}
     ],
     [
-        "J0CluD7b",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/LanguageMaterial",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
@@ -116,23 +108,23 @@
         }
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/bibliography",
+        "http://bibfra.me/vocab/marc/Books",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/non-fiction",
+        "http://bibfra.me/vocab/marc/LanguageMaterial",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/lite/creator",
         "cHwfCSEU",
         {
@@ -140,19 +132,13 @@
         }
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/lite/language",
         "eng",
         {}
     ],
     [
-        "J0CluD7b",
-        "http://bibfra.me/vocab/lite/language",
-        "eng",
-        {}
-    ],
-    [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/lite/memberOf",
         "3I2hXNWb",
         {
@@ -160,7 +146,7 @@
         }
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/lite/subject",
         "CGiap4LW",
         {
@@ -168,7 +154,7 @@
         }
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/lite/subject",
         "L3MBakpI",
         {
@@ -176,7 +162,7 @@
         }
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/lite/subject",
         "XojY7t4w",
         {
@@ -184,7 +170,7 @@
         }
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/lite/subject",
         "Y_IVpAh8",
         {
@@ -192,7 +178,7 @@
         }
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/lite/subject",
         "fKXDrBV0",
         {
@@ -200,7 +186,7 @@
         }
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/lite/subject",
         "n0weIiyn",
         {
@@ -208,223 +194,247 @@
         }
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/lite/title",
         "An appraisal of the skulls and dentition of ancient Egyptians :",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marc/bibliographyNote",
         "Includes bibliographical references (p. 137-143).",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marc/catalogingSource",
         "SUC",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marc/deweyNumber",
         "614.59960932",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
+        "http://bibfra.me/vocab/marc/illustrations",
+        "illustrations",
+        {}
+    ],
+    [
+        "JL0Q18QQ",
+        "http://bibfra.me/vocab/marc/index",
+        "no index present",
+        {}
+    ],
+    [
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marc/lcCallNumber",
         "RK281",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marc/lcItemNumber",
         ".M55 2008",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
+        "http://bibfra.me/vocab/marc/literaryForm",
+        "non fiction",
+        {}
+    ],
+    [
+        "JL0Q18QQ",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "bibliography",
+        {}
+    ],
+    [
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marc/nlmCallNumber",
         "2008 L-006",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marc/nlmCallNumber",
         "WU 11 HE3",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marc/nlmItemNumber",
         "M648a 2008",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marc/seriesStatement",
         "BAR international series ;",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marc/seriesVolume",
         "1794",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marc/titleRemainder",
         "highlighting the pathology and speculating on the influence of diet and environment /",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marc/titleStatement",
         "Judith Miller.",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-005",
         "20081122072417.0",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-008",
         "080703s2008    enka     b    000 0 eng d",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-015-XX-2",
         "bnb",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-015-XX-a",
         "GBA884764",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-016-7X-2",
         "Uk",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-016-7X-a",
         "014654524",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-020-XX-a",
         "1407302825",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-020-XX-a",
         "9781407302829",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-035-XX-9",
         "101481333",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-042-XX-a",
         "nlmcopyc",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-043-XX-a",
         "f-ua---",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-044-XX-9",
         "England",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-992-XX-a",
         "20081001",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-992-XX-e",
         "EF",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-992-XX-p",
         "P3",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-993-XX-a",
         "KJD",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-993-XX-b",
         "20081007",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-994-XX-a",
         "CDN",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-994-XX-b",
         "20081010",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-995-XX-a",
         "AUTH",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-995-XX-b",
         "20081031",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-995-XX-c",
         "REV",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-995-XX-d",
         "20081121",
         {}
     ],
     [
-        "J0CluD7b",
+        "JL0Q18QQ",
         "http://bibfra.me/vocab/marcext/tag-999-XX-a",
         "AUTH",
         {}
@@ -586,84 +596,6 @@
         {}
     ],
     [
-        "m_KDX91_",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "m_KDX91_",
-        "http://bibfra.me/vocab/lite/controlCode",
-        "1481333",
-        {}
-    ],
-    [
-        "m_KDX91_",
-        "http://bibfra.me/vocab/lite/dimensions",
-        "30 cm.",
-        {}
-    ],
-    [
-        "m_KDX91_",
-        "http://bibfra.me/vocab/lite/extent",
-        "143 p. :",
-        {}
-    ],
-    [
-        "m_KDX91_",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "J0CluD7b",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "m_KDX91_",
-        "http://bibfra.me/vocab/lite/title",
-        "An appraisal of the skulls and dentition of ancient Egyptians :",
-        {}
-    ],
-    [
-        "m_KDX91_",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "The medical papyri -- Geography, climate and diet in ancient Egypt and the consequential medical conditions -- The title of dentist in ancient egyptian history and conflicting evidence of the practice of restorative dentistry -- Previous dental examinations of ancient skeletal and mummified material -- Materials and methods -- Results -- Discussion .",
-        {}
-    ],
-    [
-        "m_KDX91_",
-        "http://bibfra.me/vocab/marc/otherPhysicalDetails",
-        "ill. ;",
-        {}
-    ],
-    [
-        "m_KDX91_",
-        "http://bibfra.me/vocab/marc/publication",
-        "-kMMc0Q9",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "m_KDX91_",
-        "http://bibfra.me/vocab/marc/titleRemainder",
-        "highlighting the pathology and speculating on the influence of diet and environment /",
-        {}
-    ],
-    [
-        "m_KDX91_",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "Judith Miller.",
-        {}
-    ],
-    [
-        "m_KDX91_",
-        "http://bibfra.me/vocab/rda/isbn",
-        "9781407302829",
-        {}
-    ],
-    [
         "n0weIiyn",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Place",
@@ -681,6 +613,84 @@
         "n0weIiyn",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Egypt",
+        {}
+    ],
+    [
+        "qClcGJcC",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "qClcGJcC",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "1481333",
+        {}
+    ],
+    [
+        "qClcGJcC",
+        "http://bibfra.me/vocab/lite/dimensions",
+        "30 cm.",
+        {}
+    ],
+    [
+        "qClcGJcC",
+        "http://bibfra.me/vocab/lite/extent",
+        "143 p. :",
+        {}
+    ],
+    [
+        "qClcGJcC",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "JL0Q18QQ",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "qClcGJcC",
+        "http://bibfra.me/vocab/lite/title",
+        "An appraisal of the skulls and dentition of ancient Egyptians :",
+        {}
+    ],
+    [
+        "qClcGJcC",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "The medical papyri -- Geography, climate and diet in ancient Egypt and the consequential medical conditions -- The title of dentist in ancient egyptian history and conflicting evidence of the practice of restorative dentistry -- Previous dental examinations of ancient skeletal and mummified material -- Materials and methods -- Results -- Discussion .",
+        {}
+    ],
+    [
+        "qClcGJcC",
+        "http://bibfra.me/vocab/marc/otherPhysicalDetails",
+        "ill. ;",
+        {}
+    ],
+    [
+        "qClcGJcC",
+        "http://bibfra.me/vocab/marc/publication",
+        "-kMMc0Q9",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "qClcGJcC",
+        "http://bibfra.me/vocab/marc/titleRemainder",
+        "highlighting the pathology and speculating on the influence of diet and environment /",
+        {}
+    ],
+    [
+        "qClcGJcC",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "Judith Miller.",
+        {}
+    ],
+    [
+        "qClcGJcC",
+        "http://bibfra.me/vocab/rda/isbn",
+        "9781407302829",
         {}
     ],
     [

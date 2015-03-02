@@ -134,13 +134,14 @@ def instance_postprocess(params):
 
 
 RECORD_HASH_KEY_FIELDS = [
-    '130$a', '240$a', '240$b', '240$c', '240$h', '245$a', '245$b', '245$n', '245$p', '246$a', '246$i', '246$n', '246$p', '830$a', #Title info
-    '250$a', '250$b', #Edition
-    '100$a', '100$d', '100$q', '110$a', '110$c', '110$d', '111$a', '110$c', '110$d', #Creator info
-    '700$a', '700$d', '710$a', '710$b', '710$d', #Contributor info
-    '600$a', '610$a', '611$a', '650$a', '650$x', '651$a', '615$a', '690$a' #Subject info
+    '240$a', '240$f', '240$n', '240$o', '240$p', # key uniform title info
+    '245$a', '245$b', '245$c', '245$n', '245$p', '245$f', '245$h', '245$k', # Title info
+    '246$a', '246$b', '246$f', # Title variation info
+    '250$a', '250$b', # key edition 
+    '100$a', '100$d', '110$a', '110$d', '111$a', '111$d', # key creator info
+    '700$a', '700$d', '710$a', '710$d', '711$a', '711$d', # key contributor info
+    '600$a', '610$a', '611$a', '650$a', '651$a',  # key subject info
 ]
-
 
 def record_hash_key(model):
     #Creating the hash with a delimeter between input fields just makes even slighter the collision risk
@@ -215,8 +216,10 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             workid = materialize_entity('Work', vocabbase=BL, existing_ids=existing_ids, ids=ids, plugins=plugins, hash=workhash, loop=loop, model=model)
             is_folded = workid in existing_ids
             existing_ids.add(workid)
+            control_code = list(marc_lookup(input_model, '001')) or ['NO 001 CONTROL CODE']
             dumb_title = list(marc_lookup(input_model, '245$a')) or ['NO 245$a TITLE']
-            logger.debug('Uniform title from 245$a: {0}'.format(dumb_title[0]))
+            logger.debug('Control code: {0}'.format(control_code[0]))
+            logger.debug('Uniform title: {0}'.format(dumb_title[0]))
             logger.debug('Work hash result: {0} from \'{1}\''.format(workid, 'Work' + workhash))
 
             if entbase:
@@ -245,6 +248,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             params['dropped_codes'] = {}
             #Defensive coding against missing leader or 008
             field008 = leader = None
+            fields006 = []
             #Prepare cross-references (i.e. 880s)
             #XXX: Figure out a way to declare in TRANSFRORMS? We might have to deal with non-standard relationship designators: https://github.com/lcnetdev/marc2bibframe/issues/83
             xrefs = {}
@@ -308,6 +312,9 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                     #No indicators on control fields. Turn them off, in effect
                     indicator_list = ('#', '#')
                     key = 'tag-' + tag
+                    if tag == '006':
+                        fields006.append(val)
+                        params['fields006'] = fields006
                     if tag == '008':
                         params['field008'] = field008 = val
                     params['transforms'].append((tag, key))
@@ -392,8 +399,9 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
 
             extra_stmts = set() # prevent duplicate statements
             for origin, k, v in itertools.chain(
-                        extra_transforms.process_leader(leader, workid, instanceid),
-                        extra_transforms.process_008(field008, workid, instanceid)):
+                        extra_transforms.process_leader(params),
+                        extra_transforms.process_006(fields006, params),
+                        extra_transforms.process_008(field008, params)):
                 v = v if isinstance(v, tuple) else (v,)
                 for item in v:
                     o = origin or I(workid)

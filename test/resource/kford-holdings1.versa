@@ -38,15 +38,7 @@
         {}
     ],
     [
-        "8-u7AoZu",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/LanguageMaterial",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
@@ -54,23 +46,23 @@
         }
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/bibliography",
+        "http://bibfra.me/vocab/marc/Books",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/non-fiction",
+        "http://bibfra.me/vocab/marc/LanguageMaterial",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/lite/contributor",
         "ZqIxCeXX",
         {
@@ -78,13 +70,7 @@
         }
     ],
     [
-        "8-u7AoZu",
-        "http://bibfra.me/vocab/lite/language",
-        "eng",
-        {}
-    ],
-    [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/lite/subject",
         "k-E6MKqQ",
         {
@@ -92,7 +78,7 @@
         }
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/lite/subject",
         "l5FBC4GX",
         {
@@ -100,7 +86,7 @@
         }
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/lite/subject",
         "pwmQRcFg",
         {
@@ -108,415 +94,433 @@
         }
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/lite/title",
         "Building global democracy? :",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marc/assigningSource",
         "Provided by publisher.",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marc/bibliographyNote",
         "Includes bibliographical references (p. 343-380) and index.",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marc/catalogingSource",
         "DLC",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marc/deweyNumber",
         "321.8",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
+        "http://bibfra.me/vocab/marc/index",
+        "index present",
+        {}
+    ],
+    [
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marc/lcCallNumber",
         "JC423",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marc/lcItemNumber",
         ".B8646 2011",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
+        "http://bibfra.me/vocab/marc/literaryForm",
+        "non fiction",
+        {}
+    ],
+    [
+        "D4PHzUhr",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "bibliography",
+        {}
+    ],
+    [
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marc/summary",
         "\"The scale, effectiveness and legitimacy of global governance lag far behind the world's needs. This path-breaking book examines how far civil society involvement provides an answer to these problems. Does civil society make global governance more democratic? Have citizen action groups raised the accountability of global bodies that deal with challenges such as climate change, financial crises, conflict, disease and inequality? What circumstances have promoted (or blocked) civil society efforts to make global governance institutions more democratically accountable? What could improve these outcomes in the future? The authors base their argument on studies of thirteen global institutions, including the UN, G8, WTO, ICANN and IMF. Specialists from around the world critically assess what has and has not worked in efforts to make global bodies answer to publics as well as states. Combining intellectual depth and political relevance, Building Global Democracy? will appeal to students, researchers, activists and policymakers\"--",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marc/titleRemainder",
         "civil society and accountable global governance /",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marc/titleStatement",
         "edited by Jan Aart Scholte.",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-005",
         "20110822121127.0",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-008",
         "101210s2011    enk      b    001 0 eng  ",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-020-XX-a",
         "0521140552 (pbk.)",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-020-XX-a",
         "0521192196",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-020-XX-a",
         "9780521140553 (pbk.)",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-020-XX-a",
         "9780521192194",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-042-XX-a",
         "pcc",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-084-XX-2",
         "bisacsh",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-084-XX-a",
         "POL011000",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-r",
         "Alnoor Ebrahim and Steven Herz --",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-r",
         "Carolyn Long and Nata Duvvury --",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-r",
         "Heidi Ullrich --",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-r",
         "Jan Aart Scholte --",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-r",
         "Jan Aart Scholte --",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-r",
         "Jan Aart Scholte --",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-r",
         "Jan Aart Scholte.",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-r",
         "Julie Gilson --",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-r",
         "Kerstin Martens --",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-r",
         "Marc Williams --",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-r",
         "Mawaki Chango --",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-r",
         "Morten Ougaard --",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-r",
         "Peter I. Hajnal --",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-r",
         "Peter Newell --",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-r",
         "Saied Reza Ameli --",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-r",
         "Timothy M. Shaw and Pamela K. Mbabazi --",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-t",
         "Accountability in private global governance: ICANN and civil society /",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-t",
         "Civil society and G8 accountability /",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-t",
         "Civil society and IMF accountability /",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-t",
         "Civil society and accountability in global governance of climate change /",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-t",
         "Civil society and accountability in the Commonwealth /",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-t",
         "Civil society and accountability of the United Nations /",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-t",
         "Civil society and accountability promotion in the global fund /",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-t",
         "Civil society and patterns of accountability in the OECD /",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-t",
         "Civil society and the WTO: contesting accountability /",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-t",
         "Civil society and the World Fair Trade Organisation: developing responsive accountability /",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-t",
         "Conclusion /",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-t",
         "Global governance, accountability and civil society /",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-t",
         "Introduction /",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-t",
         "Structuring accountability: civil society and the Asia-Europe meeting /",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-t",
         "The World Bank and democratic accountability: the role of civil society /",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-505-00-t",
         "The organisation of the Islamic conference, accountability and civil society /",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-906-XX-a",
         "7",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-906-XX-b",
         "cbc",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-906-XX-c",
         "orignew",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-906-XX-d",
         "1",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-906-XX-e",
         "ecip",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-906-XX-f",
         "20",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-906-XX-g",
         "y-gencatlg",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-925-0X-a",
         "acquire",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-925-0X-b",
         "2 shelf copies",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-925-0X-x",
         "policy default",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-955-XX-a",
         "xe08 2011-07-15 2 copies rec'd to CIP ver.",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-955-XX-b",
         "xj07 2010-12-10",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-955-XX-c",
         "xj07 2010-12-10 ONIX to Soc.Sci. Sect.",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-955-XX-d",
         "xj03 2010-12-17; 2010-12-20 to Dewey",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-955-XX-f",
         "xh58 2011-07-19 Z-CipVer",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-955-XX-t",
         "xh58 2011-07-19 c. 2 added",
         {}
     ],
     [
-        "8-u7AoZu",
+        "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-955-XX-w",
         "rd05 2010-12-21",
         {}
     ],
     [
-        "K3FLMHxV",
+        "YCjP4vsG",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
         {
@@ -524,33 +528,33 @@
         }
     ],
     [
-        "K3FLMHxV",
+        "YCjP4vsG",
         "http://bibfra.me/vocab/lite/controlCode",
         "16575466",
         {}
     ],
     [
-        "K3FLMHxV",
+        "YCjP4vsG",
         "http://bibfra.me/vocab/lite/dimensions",
         "24 cm.",
         {}
     ],
     [
-        "K3FLMHxV",
+        "YCjP4vsG",
         "http://bibfra.me/vocab/lite/extent",
         "xxv, 397 p. ;",
         {}
     ],
     [
-        "K3FLMHxV",
+        "YCjP4vsG",
         "http://bibfra.me/vocab/lite/instantiates",
-        "8-u7AoZu",
+        "D4PHzUhr",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "K3FLMHxV",
+        "YCjP4vsG",
         "http://bibfra.me/vocab/lite/link",
         "http://assets.cambridge.org/97805211/40553/cover/9780521140553.jpg",
         {
@@ -558,7 +562,7 @@
         }
     ],
     [
-        "K3FLMHxV",
+        "YCjP4vsG",
         "http://bibfra.me/vocab/lite/link",
         "http://www.loc.gov/catdir/enhancements/fy1114/2010052188-b.html",
         {
@@ -566,7 +570,7 @@
         }
     ],
     [
-        "K3FLMHxV",
+        "YCjP4vsG",
         "http://bibfra.me/vocab/lite/link",
         "http://www.loc.gov/catdir/enhancements/fy1114/2010052188-d.html",
         {
@@ -574,7 +578,7 @@
         }
     ],
     [
-        "K3FLMHxV",
+        "YCjP4vsG",
         "http://bibfra.me/vocab/lite/link",
         "http://www.loc.gov/catdir/enhancements/fy1114/2010052188-t.html",
         {
@@ -582,19 +586,19 @@
         }
     ],
     [
-        "K3FLMHxV",
+        "YCjP4vsG",
         "http://bibfra.me/vocab/lite/title",
         "Building global democracy? :",
         {}
     ],
     [
-        "K3FLMHxV",
+        "YCjP4vsG",
         "http://bibfra.me/vocab/marc/lccn",
         "  2010052188",
         {}
     ],
     [
-        "K3FLMHxV",
+        "YCjP4vsG",
         "http://bibfra.me/vocab/marc/publication",
         "uf6wThjn",
         {
@@ -602,153 +606,31 @@
         }
     ],
     [
-        "K3FLMHxV",
+        "YCjP4vsG",
         "http://bibfra.me/vocab/marc/systemControlNumber",
         "(OCoLC)ocn671709910",
         {}
     ],
     [
-        "K3FLMHxV",
+        "YCjP4vsG",
         "http://bibfra.me/vocab/marc/titleRemainder",
         "civil society and accountable global governance /",
         {}
     ],
     [
-        "K3FLMHxV",
+        "YCjP4vsG",
         "http://bibfra.me/vocab/marc/titleStatement",
         "edited by Jan Aart Scholte.",
         {}
     ],
     [
-        "K3FLMHxV",
+        "YCjP4vsG",
         "http://bibfra.me/vocab/rda/isbn",
         "9780521140553",
         {}
     ],
     [
-        "K3FLMHxV",
-        "http://bibfra.me/vocab/rda/isbn",
-        "9780521192194",
-        {}
-    ],
-    [
-        "K3FLMHxV",
-        "http://bibfra.me/vocab/rda/isbnType",
-        "(pbk.)",
-        {}
-    ],
-    [
-        "XinTOTbA",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "XinTOTbA",
-        "http://bibfra.me/vocab/lite/controlCode",
-        "16575466",
-        {}
-    ],
-    [
-        "XinTOTbA",
-        "http://bibfra.me/vocab/lite/dimensions",
-        "24 cm.",
-        {}
-    ],
-    [
-        "XinTOTbA",
-        "http://bibfra.me/vocab/lite/extent",
-        "xxv, 397 p. ;",
-        {}
-    ],
-    [
-        "XinTOTbA",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "8-u7AoZu",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "XinTOTbA",
-        "http://bibfra.me/vocab/lite/link",
-        "http://assets.cambridge.org/97805211/40553/cover/9780521140553.jpg",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "XinTOTbA",
-        "http://bibfra.me/vocab/lite/link",
-        "http://www.loc.gov/catdir/enhancements/fy1114/2010052188-b.html",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "XinTOTbA",
-        "http://bibfra.me/vocab/lite/link",
-        "http://www.loc.gov/catdir/enhancements/fy1114/2010052188-d.html",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "XinTOTbA",
-        "http://bibfra.me/vocab/lite/link",
-        "http://www.loc.gov/catdir/enhancements/fy1114/2010052188-t.html",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "XinTOTbA",
-        "http://bibfra.me/vocab/lite/title",
-        "Building global democracy? :",
-        {}
-    ],
-    [
-        "XinTOTbA",
-        "http://bibfra.me/vocab/marc/lccn",
-        "  2010052188",
-        {}
-    ],
-    [
-        "XinTOTbA",
-        "http://bibfra.me/vocab/marc/publication",
-        "uf6wThjn",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "XinTOTbA",
-        "http://bibfra.me/vocab/marc/systemControlNumber",
-        "(OCoLC)ocn671709910",
-        {}
-    ],
-    [
-        "XinTOTbA",
-        "http://bibfra.me/vocab/marc/titleRemainder",
-        "civil society and accountable global governance /",
-        {}
-    ],
-    [
-        "XinTOTbA",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "edited by Jan Aart Scholte.",
-        {}
-    ],
-    [
-        "XinTOTbA",
-        "http://bibfra.me/vocab/rda/isbn",
-        "9780521140553",
-        {}
-    ],
-    [
-        "XinTOTbA",
+        "YCjP4vsG",
         "http://bibfra.me/vocab/rda/isbnType",
         "(pbk.)",
         {}
@@ -771,6 +653,128 @@
         "ZqIxCeXX",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Scholte, Jan Aart.",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "16575466",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/lite/dimensions",
+        "24 cm.",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/lite/extent",
+        "xxv, 397 p. ;",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "D4PHzUhr",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/lite/link",
+        "http://assets.cambridge.org/97805211/40553/cover/9780521140553.jpg",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/lite/link",
+        "http://www.loc.gov/catdir/enhancements/fy1114/2010052188-b.html",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/lite/link",
+        "http://www.loc.gov/catdir/enhancements/fy1114/2010052188-d.html",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/lite/link",
+        "http://www.loc.gov/catdir/enhancements/fy1114/2010052188-t.html",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/lite/title",
+        "Building global democracy? :",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/lccn",
+        "  2010052188",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/publication",
+        "uf6wThjn",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/systemControlNumber",
+        "(OCoLC)ocn671709910",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/titleRemainder",
+        "civil society and accountable global governance /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "edited by Jan Aart Scholte.",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/rda/isbn",
+        "9780521140553",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/rda/isbn",
+        "9780521192194",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/rda/isbnType",
+        "(pbk.)",
         {}
     ],
     [
