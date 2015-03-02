@@ -616,7 +616,8 @@ SNIPPET_7 = '''<collection xmlns="http://www.loc.gov/MARC21/slim">
 
 CONFIG_7 = None
 
-EXPECTED_7 = '''[
+EXPECTED_7 = '''
+[
     [
         "Ht2FQsIY",
         "http://bibfra.me/purl/versa/type",
@@ -634,7 +635,7 @@ EXPECTED_7 = '''[
         }
     ],
     [
-        "JqXcDz18",
+        "Uer3F4eM",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Person",
         {
@@ -642,25 +643,25 @@ EXPECTED_7 = '''[
         }
     ],
     [
-        "JqXcDz18",
+        "Uer3F4eM",
         "http://bibfra.me/vocab/lite/date",
         "1878-1967.",
         {}
     ],
     [
-        "JqXcDz18",
+        "Uer3F4eM",
         "http://bibfra.me/vocab/lite/name",
         "Sandburg, Carl,",
         {}
     ],
     [
-        "JqXcDz18",
+        "Uer3F4eM",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Sandburg, Carl,",
         {}
     ],
     [
-        "JqXcDz18",
+        "Uer3F4eM",
         "http://bibfra.me/vocab/marcext/sf-d",
         "1878-1967.",
         {}
@@ -708,7 +709,7 @@ EXPECTED_7 = '''[
     [
         "XsrrgYIS",
         "http://bibfra.me/vocab/lite/creator",
-        "JqXcDz18",
+        "Uer3F4eM",
         {
             "@target-type": "@iri-ref"
         }
