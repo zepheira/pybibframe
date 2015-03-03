@@ -262,7 +262,12 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                     continue
                 tag = attribs['tag']
                 for xref in attribs.get('6', []):
-                    xreftag, xrefid = xref.split('-')
+                    xref_parts = xref.split('-')
+                    if len(xref_parts) < 2:
+                        logger.debug('Invalid $6: {}'.format(xref_parts))
+                        continue
+
+                    xreftag, xrefid = xref_parts
                     #Locate the matching taglink
                     if tag == '880' and xrefid.startswith('00'):
                         #Special case, no actual xref, just the non-roman text
