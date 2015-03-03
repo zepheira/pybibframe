@@ -301,7 +301,7 @@ BFLITE_TRANSFORMS = {
     '336$2': oninstance.rename(rel=MARC+'contentTypeMARCsource'),
     '337$a': oninstance.rename(rel=MARC+'mediaCategory'),
     '337$b': oninstance.rename(rel=MARC+'mediaTypeCode'),
-    '337$2': oninstance.rename(rel=MARC+'medaiMARCsource'),
+    '337$2': oninstance.rename(rel=MARC+'mediaMARCsource'),
     '338$a': oninstance.rename(rel=MARC+'carrierCategory'),
     '338$b': oninstance.rename(rel=MARC+'carrierCategoryCode'),
     '338$2': oninstance.rename(rel=MARC+'carrierMARCSource'),
@@ -348,7 +348,7 @@ BFLITE_TRANSFORMS = {
     '490$v': onwork.rename(rel=MARC+'seriesVolume'),
 
     '500$a': onwork.rename(rel=BL+'note'),
-    '501$a': onwork.rename(rel=MARC+'note'),
+    '501$a': onwork.rename(rel=BL+'note'),
     '502$a': onwork.rename(rel=MARC+'dissertationNote'),
     '502$b': onwork.rename(rel=MARC+'degree'),
     '502$c': onwork.rename(rel=MARC+'grantingInstitution'),
@@ -388,7 +388,7 @@ BFLITE_TRANSFORMS = {
     '520$u': onwork.rename(rel=MARC+'summaryURI'),
     '521$a': onwork.rename(rel=MARC+'intendedAudience'),
     '521$b': onwork.rename(rel=MARC+'intendedAudienceSource'),
-    '522$a': onwork.rename(rel=MARC+'geograhpicCoverage'),
+    '522$a': onwork.rename(rel=MARC+'geographicCoverage'),
     '525$a': oninstance.rename(rel=MARC+'supplement'),
     '526$a': onwork.rename(rel=MARC+'studyProgramName'),
     '526$b': onwork.rename(rel=MARC+'interestLevel'),
@@ -413,7 +413,7 @@ BFLITE_TRANSFORMS = {
     '561$a': oninstance.rename(rel=MARC+'ownership'),
     '580$a': onwork.rename(rel=BL+'note'),
     '583$a': onwork.rename(rel=MARC+'action'),
-    '586$a': onwork.rename(rel=MARC+'AwardsNote'),
+    '586$a': onwork.rename(rel=MARC+'awardsNote'),
 
 
     # subjects
