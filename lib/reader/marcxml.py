@@ -12,9 +12,7 @@ from collections import defaultdict
 import unicodedata
 import warnings
 
-from xml import sax
-#from xml.sax.handler import ContentHandler
-#from xml.sax.saxutils import XMLGenerator
+import xml.parsers.expat
 
 from bibframe import g_services
 from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_FINAL_TASK
@@ -45,25 +43,32 @@ VALID_SUBFIELDS.update(range(ord('A'), ord('Z')+1))
 VALID_SUBFIELDS.update(range(ord('0'), ord('9')+1))
 VALID_SUBFIELDS.add(ord('-'))
 
-#Subclass from ContentHandler in order to gain default behaviors
-class marcxmlhandler(sax.ContentHandler):
-    def __init__(self, sink, *args, **kwargs):
+NSSEP = ' '
+
+class expat_callbacks(object):
+    def __init__(self, sink, parser, lax=False):
         self._sink = sink
         next(self._sink) #Start the coroutine running
         self._getcontent = False
-        self._empty = True
-        sax.ContentHandler.__init__(self, *args, **kwargs)
+        self.no_records = True
+        self._lax = lax
+        self._parser = parser
         return
 
-    def startElementNS(self, name, qname, attributes):
-        (ns, local) = name
+    def start_element(self, name, attributes):
+        if self._lax:
+            (head, sep, tail) = name.partition(':')
+            local = tail or head
+            ns = MARCXML_NS #Just assume all elements are MARC/XML
+        else:
+            ns, local = name.split(NSSEP) if NSSEP in name else None, name
         if ns == MARCXML_NS:
             #Ignore the 'collection' element
             #What to do with the record/@type
             if local == 'record':
-                self._empty = False
+                self.no_records = False
                 #XXX: Entity base IRI needed?
-                self._record_id = 'record-{0}:{1}'.format(self._locator.getLineNumber(), self._locator.getColumnNumber())
+                self._record_id = 'record-{0}:{1}'.format(self._parser.CurrentLineNumber, self._parser.CurrentColumnNumber)
                 #Versa model with a representation of the record
                 self._record_model = memory.connection()#logger=logger)
             elif local == 'leader':
@@ -73,29 +78,28 @@ class marcxmlhandler(sax.ContentHandler):
                 self._getcontent = True
             elif local == 'controlfield':
                 self._chardata_dest = ''
-                self._link_iri = MARCXML_NS + '/control/' + attributes[None, 'tag'].strip()
+                self._link_iri = MARCXML_NS + '/control/' + attributes['tag'].strip()
                 #Control tags have neither indicators nor subfields
-                self._marc_attributes = {'tag': attributes[None, 'tag'].strip()}
+                self._marc_attributes = {'tag': attributes['tag'].strip()}
                 self._getcontent = True
             elif local == 'datafield':
-                self._link_iri = MARCXML_NS + '/data/' + attributes[None, 'tag'].strip()
-                self._marc_attributes = {k[1]: v.strip() for (k, v) in attributes.items()}
+                self._link_iri = MARCXML_NS + '/data/' + attributes['tag'].strip()
+                self._marc_attributes = {k: v.strip() for (k, v) in attributes.items() if ' ' not in k}
             elif local == 'subfield':
                 self._chardata_dest = ''
-                self._subfield = attributes[None, 'code'].strip()
+                self._subfield = attributes['code'].strip()
                 if not self._subfield or ord(self._subfield) not in VALID_SUBFIELDS:
                     self._subfield = '_'
                 self._getcontent = True
         return
 
-    def characters(self, data):
-        if self._getcontent:
-            #NFKC normalization precombines composed characters and substitutes compatibility codepoints
-            #We want to make sure we're dealing with comparable & consistently hashable strings throughout the toolchain
-            self._chardata_dest += unicodedata.normalize('NFKC', data)
-
-    def endElementNS(self, name, qname):
-        (ns, local) = name
+    def end_element(self, name):
+        if self._lax:
+            (head, sep, tail) = name.partition(':')
+            local = tail or head
+            ns = MARCXML_NS #Just assume all elements are MARC/XML
+        else:
+            ns, local = name.split(NSSEP) if NSSEP in name else None, name
         if ns == MARCXML_NS:
             if local == 'record':
                 try:
@@ -116,16 +120,24 @@ class marcxmlhandler(sax.ContentHandler):
             elif local in ('leader', 'controlfield'):
                 self._record_model.add(self._record_id, self._link_iri, self._chardata_dest, self._marc_attributes)
                 self._getcontent = False
-        return
 
-    def endDocument(self):
-        if self._empty:
-            warnings.warn("No records found. Possibly an XML namespace problem.", RuntimeWarning)
-        self._sink.close()
+    def char_data(self, data):
+        #print('Character data:', repr(data))
+        if self._getcontent:
+            #NFKC normalization precombines composed characters and substitutes compatibility codepoints
+            #We want to make sure we're dealing with comparable & consistently hashable strings throughout the toolchain
+            self._chardata_dest += unicodedata.normalize('NFKC', data)
+
+
+#Subclass from ContentHandler in order to gain default behaviors
+#class marcxmlhandler(sax.ContentHandler):
+#    def __init__(self, sink, *args, **kwargs):
+#        sax.ContentHandler.__init__(self, *args, **kwargs)
+
 
 #PYTHONASYNCIODEBUG = 1
 
-def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=None, rdfxml=None, config=None, verbose=False, logger=logging, loop=None, canonical=False):
+def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=None, rdfxml=None, config=None, verbose=False, logger=logging, loop=None, canonical=False, lax=False):
     '''
     inputs - List of MARC/XML files to be parsed and converted to BIBFRAME RDF (Note: want to allow singular input strings)
     entbase - Base IRI to be used for creating resources.
@@ -215,14 +227,26 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
                                     transforms=transforms,
                                     extra_transforms=extra_transforms(marcextras_vocab),
                                     canonical=canonical)
-        parser = sax.make_parser()
-        #parser.setContentHandler(marcxmlhandler(receive_recs()))
-        parser.setContentHandler(marcxmlhandler(sink))
-        parser.setFeature(sax.handler.feature_namespaces, 1)
+
+
+        if lax:
+            parser = xml.parsers.expat.ParserCreate()
+        else:
+            parser = xml.parsers.expat.ParserCreate(namespace_separator=NSSEP)
+        handler = expat_callbacks(sink, parser, lax)
+
+        parser.StartElementHandler = handler.start_element
+        parser.EndElementHandler = handler.end_element
+        parser.CharacterDataHandler = handler.char_data
+        parser.buffer_text = True
+
         @asyncio.coroutine
         #Wrap the parse operation to make it a task in the event loop
         def wrap_task():
-            parser.parse(inf)
+            parser.ParseFile(inf)
+            if handler.no_records:
+                warnings.warn("No records found. Possibly an XML namespace problem (try using the 'lax' flag).", RuntimeWarning)
+            sink.close()
             yield
         task = asyncio.async(wrap_task(), loop=loop)
         #parse_marcxml(inf, sink)
