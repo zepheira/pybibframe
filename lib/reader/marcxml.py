@@ -39,6 +39,12 @@ VNS = rdflib.Namespace(VERSA_BASEIRI)
 
 MARCXML_NS = marc.MARCXML_NS
 
+# valid subfield codes
+VALID_SUBFIELDS = set(range(ord('a'), ord('z')+1))
+VALID_SUBFIELDS.update(range(ord('A'), ord('Z')+1))
+VALID_SUBFIELDS.update(range(ord('0'), ord('9')+1))
+VALID_SUBFIELDS.add(ord('-'))
+
 #Subclass from ContentHandler in order to gain default behaviors
 class marcxmlhandler(sax.ContentHandler):
     def __init__(self, sink, *args, **kwargs):
@@ -77,6 +83,8 @@ class marcxmlhandler(sax.ContentHandler):
             elif local == 'subfield':
                 self._chardata_dest = ''
                 self._subfield = attributes[None, 'code'].strip()
+                if not self._subfield or ord(self._subfield) not in VALID_SUBFIELDS:
+                    self._subfield = '_'
                 self._getcontent = True
         return
 
