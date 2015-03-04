@@ -559,7 +559,11 @@ class transforms(object):
         >>> list(t.process_leader({'leader':'03495cpcaa2200673 a 4500','workid':None,'instanceids':[None]}))
         [(None, I(http://bibfra.me/purl/versa/type), (I(http://bibfra.me/vocab/marc/Collection), I(http://bibfra.me/vocab/marc/Multimedia))), (None, I(http://bibfra.me/purl/versa/type), I(http://bibfra.me/vocab/marc/Collection))]
         """
+        if 'leader' not in params: return
+
         leader = params['leader']
+        leader = leader.ljust(24) if leader is not None else ' '*24
+
         work = params['workid']
         instance = params['instanceids'][0]
         work_06 = dict(

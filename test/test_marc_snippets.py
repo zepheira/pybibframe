@@ -1242,6 +1242,100 @@ EXPECTED_10 = '''
 ]
 '''
 
+# a couple degenerate cases
+SNIPPET_11 = '''
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+<record xmlns="http://www.loc.gov/MARC21/slim"><leader>00000ngm a2200000Ka 4500</leader><controlfield tag="001">881466</controlfield></record>
+</collection>
+'''
+
+CONFIG_11 = {}
+
+EXPECTED_11 = '''
+[
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "881466",
+        {}
+    ],
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "kP2G4QhW",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/MovingImage",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ]
+]
+'''
+
+SNIPPET_11 = '''
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+<record xmlns="http://www.loc.gov/MARC21/slim"><controlfield tag="001">881466</controlfield></record>
+</collection>
+'''
+
+CONFIG_11 = {}
+
+EXPECTED_11 = '''
+[
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "881466",
+        {}
+    ],
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "kP2G4QhW",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ]
+]'''
+
 all_snippets = sorted([ sym for sym in globals() if sym.startswith('SNIPPET') ])
 all_config = sorted([ sym for sym in globals() if sym.startswith('CONFIG') ])
 all_expected = sorted([ sym for sym in globals() if sym.startswith('EXPECTED') ])

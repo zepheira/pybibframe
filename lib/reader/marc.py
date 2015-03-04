@@ -240,6 +240,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             if instanceids:
                 instanceid = instanceids[0]
 
+            params['leader'] = None
             params['workid'] = workid
             params['instanceids'] = instanceids
             params['folded'] = folded
