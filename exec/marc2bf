@@ -8,7 +8,7 @@ import argparse
 from bibframe.reader.marcxml import bfconvert
 
 
-def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, config=None, verbose=False, mods=None, canonical=False, lax=False):
+def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, config=None, verbose=False, mods=None, canonical=False, lax=False, zipcheck=None):
     '''
     Basically takes parameters typical for command line invocation and adapts them for use in the API
 
@@ -25,7 +25,7 @@ def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, 
     for mod in mods:
         __import__(mod, globals(), locals(), [])
 
-    bfconvert(inputs=inputs, entbase=base, out=out, limit=limit, rdfttl=rdfttl, rdfxml=rdfxml, config=config, verbose=verbose, canonical=canonical, logger=logger, lax=lax)
+    bfconvert(inputs=inputs, entbase=base, out=out, limit=limit, rdfttl=rdfttl, rdfxml=rdfxml, config=config, verbose=verbose, canonical=canonical, logger=logger, lax=lax, zipcheck=zipcheck)
     return
 
 
@@ -57,16 +57,20 @@ if __name__ == '__main__':
     parser.add_argument('--mod', metavar="PYMODULE", nargs="*", action='append',
         help='Python module to be imported in order to register plugins (can be specified multiple times.')
     parser.add_argument('-v', '--verbose', action='store_true',
-        help='Whether to show additional messages and information')
+        help='Show additional messages and information')
     parser.add_argument('--canonical', action='store_true',
-        help='Whether to use Versa\'s canonical form for output. Warning: memory inefficient')
+        help='Use Versa\'s canonical form for output. Warning: memory inefficient')
     parser.add_argument('--lax', action='store_true',
-        help='Whether to parse less strictly, e.g. accepting MARC/XML with bad namespace declarations')
+        help='Parse less strictly, e.g. accepting MARC/XML with bad namespace declarations')
+    #XXX: Any way to get generalized archive support using shutil? Perhaps along with tempfile?
+    #https://docs.python.org/3/library/shutil.html#archiving-operations
+    parser.add_argument('-z', '--zipcheck', action='store_true',
+        help='Check for zip files among the inputs')
     #
     args = parser.parse_args()
     args.mod = [i for items in args.mod or [] for i in items]
 
-    run(inputs=args.inputs or sys.stdin, base=args.base, out=args.out, limit=args.limit, rdfttl=args.rdfttl, rdfxml=args.rdfxml, config=args.config, verbose=args.verbose, mods=args.mod, canonical=args.canonical, lax=args.lax)
+    run(inputs=args.inputs or sys.stdin, base=args.base, out=args.out, limit=args.limit, rdfttl=args.rdfttl, rdfxml=args.rdfxml, config=args.config, verbose=args.verbose, mods=args.mod, canonical=args.canonical, lax=args.lax, zipcheck=args.zipcheck)
     for f in args.inputs: f.close()
     if args.rdfttl: args.rdfttl.close()
     if args.rdfxml: args.rdfxml.close()

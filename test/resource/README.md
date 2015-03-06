@@ -19,3 +19,12 @@ TODO: Go back to get non Unicode version when LC.gov is not timing out.
  * https://github.com/lcnetdev/marc2bibframe/issues/101
  * [007 field example](https://github.com/lcnetdev/marc2bibframe/issues/91)
 
+----
+
+= Other sources =
+
+ * [Free sample MARC data, Koha wiki](http://wiki.koha-community.org/wiki/Free_sample_MARC_data)
+ * [Springer download service for CC0 records](http://www.springer.com/?referer=springer.com&SGWID=1-148802-3020-0-0)
+ * [MARC .XML Now Available for Naxos Music Library Subscribers](http://naxosmusiclibrary.blogspot.com/2013/10/marc-xml-now-available-for-naxos-music.html)
+
+

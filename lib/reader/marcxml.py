@@ -11,6 +11,7 @@ import logging
 from collections import defaultdict
 import unicodedata
 import warnings
+import zipfile
 
 import xml.parsers.expat
 
@@ -61,7 +62,7 @@ class expat_callbacks(object):
             local = tail or head
             ns = MARCXML_NS #Just assume all elements are MARC/XML
         else:
-            ns, local = name.split(NSSEP) if NSSEP in name else None, name
+            ns, local = name.split(NSSEP) if NSSEP in name else (None, name)
         if ns == MARCXML_NS:
             #Ignore the 'collection' element
             #What to do with the record/@type
@@ -99,7 +100,7 @@ class expat_callbacks(object):
             local = tail or head
             ns = MARCXML_NS #Just assume all elements are MARC/XML
         else:
-            ns, local = name.split(NSSEP) if NSSEP in name else None, name
+            ns, local = name.split(NSSEP) if NSSEP in name else (None, name)
         if ns == MARCXML_NS:
             if local == 'record':
                 try:
@@ -122,7 +123,6 @@ class expat_callbacks(object):
                 self._getcontent = False
 
     def char_data(self, data):
-        #print('Character data:', repr(data))
         if self._getcontent:
             #NFKC normalization precombines composed characters and substitutes compatibility codepoints
             #We want to make sure we're dealing with comparable & consistently hashable strings throughout the toolchain
@@ -137,7 +137,7 @@ class expat_callbacks(object):
 
 #PYTHONASYNCIODEBUG = 1
 
-def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=None, rdfxml=None, config=None, verbose=False, logger=logging, loop=None, canonical=False, lax=False):
+def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=None, rdfxml=None, config=None, verbose=False, logger=logging, loop=None, canonical=False, lax=False, zipcheck=False):
     '''
     inputs - List of MARC/XML files to be parsed and converted to BIBFRAME RDF (Note: want to allow singular input strings)
     entbase - Base IRI to be used for creating resources.
@@ -151,6 +151,7 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
     logger - logging object for messages
     loop - optional asyncio event loop to use
     canonical - output Versa's canonical form?
+    zipcheck - whether to check for zip files among the inputs
     '''
     #if stats:
     #    register_service(statsgen.statshandler)
@@ -213,49 +214,68 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
     limiting = [0, limit]
     #logger=logger,
     
-    for inf in inputs:
-        sink = marc.record_handler( loop,
-                                    model,
-                                    entbase=entbase,
-                                    vocabbase=vb,
-                                    limiting=limiting,
-                                    plugins=plugins,
-                                    ids=ids,
-                                    postprocess=postprocess,
-                                    out=out,
-                                    logger=logger,
-                                    transforms=transforms,
-                                    extra_transforms=extra_transforms(marcextras_vocab),
-                                    canonical=canonical)
+    if zipcheck:
+        warnings.warn("The zipcheck option is not working yet.", RuntimeWarning)
+    
+    for source_file in inputs:
+        #Note: 
+        def input_fileset(sf):
+            if zipcheck and zipfile.is_zipfile(sf):
+                zf = zipfile.ZipFile(sf, 'r')
+                for info in list(zf.infolist()):
+                    #From the doc: Note If the ZipFile was created by passing in a file-like object as the first argument to the constructor, then the object returned by open() shares the ZipFile’s file pointer. Under these circumstances, the object returned by open() should not be used after any additional operations are performed on the ZipFile object.
+                    sf.seek(0, 0)
+                    zf = zipfile.ZipFile(sf, 'r')
+                    yield zf.open(info, mode='r')
+            else:
+                if zipcheck:
+                    #Because zipfile.is_zipfile fast forwards to EOF
+                    sf.seek(0, 0)
+                yield sf
 
+        for inf in input_fileset(source_file):
+            @asyncio.coroutine
+            #Wrap the parse operation to make it a task in the event loop
+            def wrap_task(inf=inf):
+                #Cannot reuse a pyexpat parser, so must create a new one for each input file
+                sink = marc.record_handler( loop,
+                                            model,
+                                            entbase=entbase,
+                                            vocabbase=vb,
+                                            limiting=limiting,
+                                            plugins=plugins,
+                                            ids=ids,
+                                            postprocess=postprocess,
+                                            out=out,
+                                            logger=logger,
+                                            transforms=transforms,
+                                            extra_transforms=extra_transforms(marcextras_vocab),
+                                            canonical=canonical)
 
-        if lax:
-            parser = xml.parsers.expat.ParserCreate()
-        else:
-            parser = xml.parsers.expat.ParserCreate(namespace_separator=NSSEP)
-        handler = expat_callbacks(sink, parser, lax)
+                if lax:
+                    parser = xml.parsers.expat.ParserCreate()
+                else:
+                    parser = xml.parsers.expat.ParserCreate(namespace_separator=NSSEP)
+                handler = expat_callbacks(sink, parser, lax)
 
-        parser.StartElementHandler = handler.start_element
-        parser.EndElementHandler = handler.end_element
-        parser.CharacterDataHandler = handler.char_data
-        parser.buffer_text = True
+                parser.StartElementHandler = handler.start_element
+                parser.EndElementHandler = handler.end_element
+                parser.CharacterDataHandler = handler.char_data
+                parser.buffer_text = True
 
-        @asyncio.coroutine
-        #Wrap the parse operation to make it a task in the event loop
-        def wrap_task():
-            parser.ParseFile(inf)
-            if handler.no_records:
-                warnings.warn("No records found. Possibly an XML namespace problem (try using the 'lax' flag).", RuntimeWarning)
-            sink.close()
-            yield
-        task = asyncio.async(wrap_task(), loop=loop)
-        #parse_marcxml(inf, sink)
-        try:
-            loop.run_until_complete(task)
-        except Exception as ex:
-            raise ex
-        finally:
-            loop.close()
+                parser.ParseFile(inf)
+                if handler.no_records:
+                    warnings.warn("No records found in this file. Possibly an XML namespace problem (try using the 'lax' flag).", RuntimeWarning)
+                sink.close()
+                yield
+            task = asyncio.async(wrap_task(), loop=loop)
+
+    try:
+        loop.run_until_complete(task)
+    except Exception as ex:
+        raise ex
+    finally:
+        loop.close()
 
     if canonical:
         out.write(repr(global_model))
