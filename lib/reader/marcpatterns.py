@@ -521,7 +521,7 @@ BFLITE_TRANSFORMS = {
     '730': onwork.materialize(BL+'Collection', 
                               BL+'related', 
                               unique=all_subfields,
-                              links={BL+'title': subfield('a'), BL+'language': subfield('l'), BL+'date': subfield('f'), BL+'medium': subfield('h'), MARC+'titlePart': subfield('p'), MARC+'titleNumber': subfield('n'), MARC+'version': subfield('s'), AV+'musicKey': subfield('r'), AV+'arrangedStatementForMusic': subfield('o'), AV+'musicMedium': subfield('m')},
+                              links={BL+'title': subfield('a'), BL+'language': subfield('l'), BL+'date': subfield('f'), BL+'medium': subfield('h'), MARC+'titlePart': subfield('p'), MARC+'titleNumber': subfield('n'), MARC+'version': subfield('s'), AV+'musicKey': subfield('r'), AV+'arrangedStatementForMusic': subfield('o'), AV+'musicMedium': subfield('m')}),
 
     '740': onwork.materialize(BL+'Work', 
                               BL+'related', 
