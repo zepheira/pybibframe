@@ -616,7 +616,7 @@ class transforms(object):
         instance = params['instanceids'][0]
         logger = params['logger']
 
-        #Marc chaacters skipped in the 008 field by convention
+        #MARC characters skipped in the 008 field by convention
         #In most cases we dont have to actually check for these, as they'll just not be in the value lookup tables above
         SKIP_CHARS = ('#', ' ', '|')
 
@@ -625,7 +625,7 @@ class transforms(object):
         # 1) An int, simply processed as a character position passed to the value function
         # 2) A tuple of ints, processed once for each character position in the list, each int passed to the value function
         # 3) A tuple starting with 'slice' and then 2 ints, processed as a character chunk/slice passed as a whole to the value function
-        # If the value function returns None or a tuple with None in the lats position, it's a signal to do nothing for the case at hand
+        # If the value function returns None or a tuple with None in the last position, it's a signal to do nothing for the case at hand
         PATTERNS = dict(
             Books = {
                 (0, 1, 2, 3): lambda i: (None, I(self._vocab[MARC]+'illustrations'), SLUG(self.Books['Illustrations'].get(info[i]))),
