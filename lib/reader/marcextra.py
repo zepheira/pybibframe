@@ -652,7 +652,7 @@ class transforms(object):
             Maps = {
                 (0, 1, 2, 3): lambda i: (None, I(self._vocab[MARC]+'relief'), SLUG(self.Maps['Relief'].get(info[i]))),
                 ('slice', 4, 5): lambda i: (None, I(self._vocab[MARC]+'projection'), SLUG(self.Maps['Projection'].get(info[i]))),
-                7: lambda i: (instance, I(self._vocab[VTYPE]), self.Maps['TypeOfCartographicMaterial'].get(info[i])),
+                7: lambda i: (None, I(self._vocab[MARC]+'characteristic'), SLUG(self.Maps['TypeOfCartographicMaterial'].get(info[i]))),
                 10: lambda i: (None, I(self._vocab[MARC]+'governmentPublication'), SLUG(self.GOVT_PUBLICATION.get(info[i]))),
                 11: lambda i: (instance, I(self._vocab[MARC]+'formOfItem'), SLUG(self.FORM_OF_ITEM.get(info[i]))),
                 13: lambda i: (None, I(self._vocab[MARC]+'index'), SLUG(self.INDEX.get(info[i]))),
@@ -663,13 +663,13 @@ class transforms(object):
                 4: lambda i: (None, I(self._vocab[MARC]+'targetAudience'), SLUG(self.AUDIENCE.get(info[i]))),
                 10: lambda i: (None, I(self._vocab[MARC]+'governmentPublication'), SLUG(self.GOVT_PUBLICATION.get(info[i]))),
                 11: lambda i: (instance, I(self._vocab[MARC]+'formOfItem'), SLUG(self.FORM_OF_ITEM.get(info[i]))),
-                15: lambda i: (instance, I(self._vocab[VTYPE]), self.VisualMaterials['TypeOfVisualMaterial'].get(info[i])),
+                15: lambda i: (None, I(self._vocab[MARC]+'characteristic'), SLUG(self.VisualMaterials['TypeOfVisualMaterial'].get(info[i]))),
                 16: lambda i: (None, I(self._vocab[MARC]+'technique'), SLUG(self.VisualMaterials['Technique'].get(info[i]))),
             },
             ComputerFiles = {
                 4: lambda i: (None, I(self._vocab[MARC]+'targetAudience'), SLUG(self.AUDIENCE.get(info[i]))),
                 5: lambda i: (instance, I(self._vocab[MARC]+'formOfItem'), SLUG(self.ComputerFiles['FormOfItem'].get(info[i]))),
-                8: lambda i: (None, I(self._vocab[VTYPE]), self.ComputerFiles['TypeOfComputerFile'].get(info[i])),
+                8: lambda i: (None, I(self._vocab[MARC]+'characteristic'), SLUG(self.ComputerFiles['TypeOfComputerFile'].get(info[i]))),
                 10: lambda i: (None, I(self._vocab[MARC]+'governmentPublication'), SLUG(self.GOVT_PUBLICATION.get(info[i]))),
             },
             MixedMaterials = {
@@ -678,7 +678,7 @@ class transforms(object):
             ContinuingResources = {
                 0: lambda i: (None, I(self._vocab[MARC]+'frequency'), SLUG(self.ContinuingResources['Frequency'].get(info[i]))),
                 1: lambda i: (None, I(self._vocab[MARC]+'regularity'), SLUG(self.ContinuingResources['Regularity'].get(info[i]))),
-                3: lambda i: (None, I(self._vocab[VTYPE]), self.ContinuingResources['TypeOfContinuingResource'].get(info[i])),
+                3: lambda i: (None, I(self._vocab[MARC]+'characteristic'), SLUG(self.ContinuingResources['TypeOfContinuingResource'].get(info[i]))),
                 4: lambda i: (instance, I(self._vocab[MARC]+'formOfOriginalItem'), SLUG(self.FORM_OF_ITEM.get(info[i]))),
                 5: lambda i: (instance, I(self._vocab[MARC]+'formOfItem'), SLUG(self.FORM_OF_ITEM.get(info[i]))),
                 6: lambda i: (None, I(self._vocab[MARC]+'natureOfEntireWork'), SLUG(self.NATURE_OF_CONTENTS.get(info[i]))),

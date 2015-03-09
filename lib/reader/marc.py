@@ -351,7 +351,10 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                             if lookup in transforms:
                                 to_process.append((transforms[lookup], valitems))
                             else:
-                                if not tag in transforms: # don't report on subfields for which a code-transform exists
+                                # don't report on subfields for which a code-transform exists,
+                                # disregard wildcards
+                                if not tag in transforms and '?' not in lookup:
+
                                     params['dropped_codes'].setdefault(lookup,0)
                                     params['dropped_codes'][lookup] += 1
 

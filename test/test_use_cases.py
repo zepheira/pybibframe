@@ -11,7 +11,7 @@ import sys
 import logging
 import asyncio
 import difflib
-from io import StringIO
+from io import StringIO, BytesIO
 
 from versa.driver import memory
 from versa.util import jsondump, jsonload
@@ -40,7 +40,7 @@ def run_one(name, entbase=None, config=None, loop=None, canonical=True):
     m_expected = memory.connection()
     s = StringIO()
 
-    with open(os.path.join(RESOURCEPATH, name+'.mrx')) as indoc:
+    with open(os.path.join(RESOURCEPATH, name+'.mrx'), 'rb') as indoc:
         bfconvert(indoc, model=m, out=s, config=config, canonical=canonical, loop=loop)
         s.seek(0)
         jsonload(m, s)
@@ -66,7 +66,7 @@ def test_model_consumed():
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(None)
     m = memory.connection()
-    with open(os.path.join(RESOURCEPATH, 'multiple-authlinks.xml')) as indoc:
+    with open(os.path.join(RESOURCEPATH, 'multiple-authlinks.xml'), 'rb') as indoc:
         bfconvert([indoc], entbase='http://example.org/', model=m, config=None, verbose=False, loop=loop)
 
     assert m.size() == 0, 'Model not consumed:\n'+repr(m)

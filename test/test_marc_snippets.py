@@ -27,7 +27,7 @@ for s, c, e in zip(all_snippets, all_config, all_expected):
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(None)
     m = memory.connection()
-    instream = StringIO(sobj)
+    instream = BytesIO(sobj.encode('utf-8'))
     outstream = StringIO()
     bfconvert(instream, model=m, out=outstream, config=cobj, canonical=True, loop=loop)
     print('EXPECTED from {0}:'.format(s))
@@ -39,7 +39,7 @@ import sys
 import logging
 import asyncio
 import difflib
-from io import StringIO
+from io import StringIO, BytesIO
 
 from versa.driver import memory
 from versa.util import jsondump, jsonload
@@ -1352,7 +1352,7 @@ def file_diff(s_orig, s_new):
 def run_one(snippet, expected, entbase=None, config=None, loop=None, canonical=True):
     m = memory.connection()
     m_expected = memory.connection()
-    instream = StringIO(snippet)
+    instream = BytesIO(snippet.encode('utf-8'))
     outstream = StringIO()
     bfconvert(instream, model=m, out=outstream, config=config, canonical=canonical, loop=loop)
     outstream.seek(0)
