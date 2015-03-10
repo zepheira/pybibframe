@@ -356,7 +356,15 @@ BFLITE_TRANSFORMS = {
     '502$g': onwork.rename(rel=MARC+'dissertationNote'),
     '502$o': onwork.rename(rel=MARC+'dissertationID'),
     '504$a': oninstance.rename(rel=MARC+'bibliographyNote'),
-    '505$a': oninstance.rename(rel=MARC+'contentsNote'),
+
+    # Formatted Contents Note
+    '505$a-0#': oninstance.rename(rel=MARC+'contentsNote'),
+    '505$a-1#': oninstance.rename(rel=MARC+'contentsNote'),  # incompleteContentsNote
+    '505$a-2#': oninstance.rename(rel=MARC+'contentsNote'),  # partialContentsNote
+    '505$t-00': oninstance.rename(rel=MARC+'contentsNote'),  # contentsTitle
+    '505$r-00': oninstance.rename(rel=MARC+'contentsNote'),  # contentsStatementOfResponsibility
+    '505$g-00': oninstance.rename(rel=MARC+'contentsNote'),  # contentsMisc
+
     '506$a': oninstance.rename(rel=MARC+'governingAccessNote'),
     '506$b': oninstance.rename(rel=MARC+'jurisdictionNote'),
     '506$c': oninstance.rename(rel=MARC+'physicalAccess'),
