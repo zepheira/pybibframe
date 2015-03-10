@@ -358,12 +358,17 @@ BFLITE_TRANSFORMS = {
     '504$a': oninstance.rename(rel=MARC+'bibliographyNote'),
 
     # Formatted Contents Note
-    '505$a-0#': oninstance.rename(rel=MARC+'contentsNote'),
-    '505$a-1#': oninstance.rename(rel=MARC+'contentsNote'),  # incompleteContentsNote
-    '505$a-2#': oninstance.rename(rel=MARC+'contentsNote'),  # partialContentsNote
-    '505$t-00': oninstance.rename(rel=MARC+'contentsNote'),  # contentsTitle
-    '505$r-00': oninstance.rename(rel=MARC+'contentsNote'),  # contentsStatementOfResponsibility
-    '505$g-00': oninstance.rename(rel=MARC+'contentsNote'),  # contentsMisc
+    '505$a': oninstance.rename(rel=MARC+'contentsNote'),
+    '505$t': oninstance.rename(rel=MARC+'contentsNote'),
+    '505$r': oninstance.rename(rel=MARC+'contentsNote'),
+    '505$g': oninstance.rename(rel=MARC+'contentsNote'),
+
+    # '505$a-0#': oninstance.rename(rel=MARC+'contentsNote'),
+    # '505$a-1#': oninstance.rename(rel=MARC+'contentsNote'),  # incompleteContentsNote
+    # '505$a-2#': oninstance.rename(rel=MARC+'contentsNote'),  # partialContentsNote
+    # '505$t-00': oninstance.rename(rel=MARC+'contentsNote'),  # contentsTitle
+    # '505$r-00': oninstance.rename(rel=MARC+'contentsNote'),  # contentsStatementOfResponsibility
+    # '505$g-00': oninstance.rename(rel=MARC+'contentsNote'),  # contentsMisc
 
     '506$a': oninstance.rename(rel=MARC+'governingAccessNote'),
     '506$b': oninstance.rename(rel=MARC+'jurisdictionNote'),
