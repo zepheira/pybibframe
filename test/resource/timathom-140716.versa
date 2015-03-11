@@ -41,42 +41,6 @@
     ],
     [
         "BbAKyHkP",
-        "http://bibfra.me/vocab/lite/note",
-        "In case.",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/lite/note",
-        "On double leaves, East Asian binding.",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/lite/note",
-        "\u5c01\u9762\u984c: \"\u674e\u7b20\u7fc1\u5148\u751f\u8ad6\u5b9a \u7e61\u6c34\u738b\u5b89\u7bc0\u6479\u53e4 \u82a5\u5b50\u5712\u756b\u50b3 \u672c\u8859\u85cf\u677f\", \"\u756b\u50b3\u4e8c\u96c6\u862d\u7af9\u6885\u83ca\u8b5c\u5df2\u51fa \u4e09\u96c6\u7fce\u6bdb\u8349\u87f2\u82b1\u5349\u8b5c\u5df2\u51fa\".",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/lite/note",
-        "\u5eb7\u7199\u5341\u516b\u5e74(1679)\u7b20\u7fc1\u674e\u6f01\u300a\u5e8f\u300b.",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/lite/note",
-        "\u66f8\u540d\u53ca\u8457\u8005\u64da\u5c01\u9762. \u738b\u69e9, \u5b57\u5b89\u7bc0.",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/lite/note",
-        "\u684622.5 x 14.7\u516c\u5206, 9\u884c20\u5b57, \u767d\u53e3, \u56db\u5468\u55ae\u908a, \u55ae\u9ed1\u9b5a\u5c3e, \u7248\u5fc3\u4e0a\u942b\"\u82a5\u5b50\u5712\u753b\u50b3\", \u4e2d\u942b\u5377\u6b21.",
-        {}
-    ],
-    [
-        "BbAKyHkP",
         "http://bibfra.me/vocab/lite/subject",
         "FJt3H8uN",
         {
@@ -175,138 +139,6 @@
         "BbAKyHkP",
         "http://bibfra.me/vocab/marcext/tag-043-XX-a",
         "a-cc---",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/marcext/tag-505-00-6",
-        "505-05",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/marcext/tag-505-00-6",
-        "880-05",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/marcext/tag-505-00-g",
-        "1.",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/marcext/tag-505-00-g",
-        "1.",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/marcext/tag-505-00-g",
-        "2.",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/marcext/tag-505-00-g",
-        "2.",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/marcext/tag-505-00-g",
-        "3.",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/marcext/tag-505-00-g",
-        "3.",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/marcext/tag-505-00-g",
-        "4.",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/marcext/tag-505-00-g",
-        "4.",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/marcext/tag-505-00-g",
-        "5.",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/marcext/tag-505-00-g",
-        "5.",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "Mo fang zhu jia hua pu.",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "Qing zai tang hua xue qian shuo --",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "Ren wu wu yu pu --",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "Shan shi pu --",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "Shu pu --",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "\u4eba\u7269\u5c4b\u5b87\u8b5c --",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "\u5c71\u77f3\u8b5c --",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "\u6479\u4eff\u8af8\u5bb6\u756b\u8b5c.",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "\u6a39\u8b5c --",
-        {}
-    ],
-    [
-        "BbAKyHkP",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "\u9752\u5728\u5802\u756b\u5b78\u6dfa\u8aaa --",
         {}
     ],
     [
@@ -685,6 +517,42 @@
     ],
     [
         "Tlxhgttm",
+        "http://bibfra.me/vocab/lite/note",
+        "In case.",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/lite/note",
+        "On double leaves, East Asian binding.",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/lite/note",
+        "\u5c01\u9762\u984c: \"\u674e\u7b20\u7fc1\u5148\u751f\u8ad6\u5b9a \u7e61\u6c34\u738b\u5b89\u7bc0\u6479\u53e4 \u82a5\u5b50\u5712\u756b\u50b3 \u672c\u8859\u85cf\u677f\", \"\u756b\u50b3\u4e8c\u96c6\u862d\u7af9\u6885\u83ca\u8b5c\u5df2\u51fa \u4e09\u96c6\u7fce\u6bdb\u8349\u87f2\u82b1\u5349\u8b5c\u5df2\u51fa\".",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/lite/note",
+        "\u5eb7\u7199\u5341\u516b\u5e74(1679)\u7b20\u7fc1\u674e\u6f01\u300a\u5e8f\u300b.",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/lite/note",
+        "\u66f8\u540d\u53ca\u8457\u8005\u64da\u5c01\u9762. \u738b\u69e9, \u5b57\u5b89\u7bc0.",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/lite/note",
+        "\u684622.5 x 14.7\u516c\u5206, 9\u884c20\u5b57, \u767d\u53e3, \u56db\u5468\u55ae\u908a, \u55ae\u9ed1\u9b5a\u5c3e, \u7248\u5fc3\u4e0a\u942b\"\u82a5\u5b50\u5712\u753b\u50b3\", \u4e2d\u942b\u5377\u6b21.",
+        {}
+    ],
+    [
+        "Tlxhgttm",
         "http://bibfra.me/vocab/lite/title",
         "Jie zi yuan hua zhuan :",
         {}
@@ -693,6 +561,126 @@
         "Tlxhgttm",
         "http://bibfra.me/vocab/lite/title",
         "\u82a5\u5b50\u5712\u756b\u50b3 :",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "1.",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "1.",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "2.",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "2.",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "3.",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "3.",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "4.",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "4.",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "5.",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "5.",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Mo fang zhu jia hua pu.",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Qing zai tang hua xue qian shuo --",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Ren wu wu yu pu --",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Shan shi pu --",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Shu pu --",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "\u4eba\u7269\u5c4b\u5b87\u8b5c --",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "\u5c71\u77f3\u8b5c --",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "\u6479\u4eff\u8af8\u5bb6\u756b\u8b5c.",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "\u6a39\u8b5c --",
+        {}
+    ],
+    [
+        "Tlxhgttm",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "\u9752\u5728\u5802\u756b\u5b78\u6dfa\u8aaa --",
         {}
     ],
     [

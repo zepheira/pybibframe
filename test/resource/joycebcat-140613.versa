@@ -177,6 +177,12 @@
     ],
     [
         "6HeeVV4p",
+        "http://bibfra.me/vocab/marc/bibliographyNote",
+        "Includes bibliographical references (p. 362-377).",
+        {}
+    ],
+    [
+        "6HeeVV4p",
         "http://bibfra.me/vocab/marc/edition",
         "al-\u1e6cab\u02bbah al-\u02bbArab\u012byah 1.",
         {}
@@ -389,12 +395,6 @@
         "DPsX5gyH",
         "http://bibfra.me/vocab/lite/title",
         "\u0627\u0644\u062d\u064a\u0627\u0629 \u0627\u0644\u0627\u0642\u062a\u0635\u0627\u062f\u064a\u0629 \u0641\u064a \u0645\u0635\u0631 \u0641\u064a \u0627\u0644\u0639\u0635\u0631 \u0627\u0644\u0645\u0645\u0644\u0648\u0643\u064a /",
-        {}
-    ],
-    [
-        "DPsX5gyH",
-        "http://bibfra.me/vocab/marc/bibliographyNote",
-        "Includes bibliographical references (p. 362-377).",
         {}
     ],
     [

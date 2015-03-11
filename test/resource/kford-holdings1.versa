@@ -107,12 +107,6 @@
     ],
     [
         "D4PHzUhr",
-        "http://bibfra.me/vocab/marc/bibliographyNote",
-        "Includes bibliographical references (p. 343-380) and index.",
-        {}
-    ],
-    [
-        "D4PHzUhr",
         "http://bibfra.me/vocab/marc/catalogingSource",
         "DLC",
         {}
@@ -223,198 +217,6 @@
         "D4PHzUhr",
         "http://bibfra.me/vocab/marcext/tag-084-XX-a",
         "POL011000",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-r",
-        "Alnoor Ebrahim and Steven Herz --",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-r",
-        "Carolyn Long and Nata Duvvury --",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-r",
-        "Heidi Ullrich --",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-r",
-        "Jan Aart Scholte --",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-r",
-        "Jan Aart Scholte --",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-r",
-        "Jan Aart Scholte --",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-r",
-        "Jan Aart Scholte.",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-r",
-        "Julie Gilson --",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-r",
-        "Kerstin Martens --",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-r",
-        "Marc Williams --",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-r",
-        "Mawaki Chango --",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-r",
-        "Morten Ougaard --",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-r",
-        "Peter I. Hajnal --",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-r",
-        "Peter Newell --",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-r",
-        "Saied Reza Ameli --",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-r",
-        "Timothy M. Shaw and Pamela K. Mbabazi --",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "Accountability in private global governance: ICANN and civil society /",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "Civil society and G8 accountability /",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "Civil society and IMF accountability /",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "Civil society and accountability in global governance of climate change /",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "Civil society and accountability in the Commonwealth /",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "Civil society and accountability of the United Nations /",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "Civil society and accountability promotion in the global fund /",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "Civil society and patterns of accountability in the OECD /",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "Civil society and the WTO: contesting accountability /",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "Civil society and the World Fair Trade Organisation: developing responsive accountability /",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "Conclusion /",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "Global governance, accountability and civil society /",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "Introduction /",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "Structuring accountability: civil society and the Asia-Europe meeting /",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "The World Bank and democratic accountability: the role of civil society /",
-        {}
-    ],
-    [
-        "D4PHzUhr",
-        "http://bibfra.me/vocab/marcext/tag-505-00-t",
-        "The organisation of the Islamic conference, accountability and civil society /",
         {}
     ],
     [
@@ -593,6 +395,204 @@
     ],
     [
         "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/bibliographyNote",
+        "Includes bibliographical references (p. 343-380) and index.",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Accountability in private global governance: ICANN and civil society /",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Alnoor Ebrahim and Steven Herz --",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Carolyn Long and Nata Duvvury --",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and G8 accountability /",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and IMF accountability /",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and accountability in global governance of climate change /",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and accountability in the Commonwealth /",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and accountability of the United Nations /",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and accountability promotion in the global fund /",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and patterns of accountability in the OECD /",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and the WTO: contesting accountability /",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and the World Fair Trade Organisation: developing responsive accountability /",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Conclusion /",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Global governance, accountability and civil society /",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Heidi Ullrich --",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Introduction /",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Jan Aart Scholte --",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Jan Aart Scholte --",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Jan Aart Scholte --",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Jan Aart Scholte.",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Julie Gilson --",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Kerstin Martens --",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Marc Williams --",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Mawaki Chango --",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Morten Ougaard --",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Peter I. Hajnal --",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Peter Newell --",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Saied Reza Ameli --",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Structuring accountability: civil society and the Asia-Europe meeting /",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "The World Bank and democratic accountability: the role of civil society /",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "The organisation of the Islamic conference, accountability and civil society /",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Timothy M. Shaw and Pamela K. Mbabazi --",
+        {}
+    ],
+    [
+        "YCjP4vsG",
         "http://bibfra.me/vocab/marc/lccn",
         "  2010052188",
         {}
@@ -725,6 +725,204 @@
         "gCR7c3Wx",
         "http://bibfra.me/vocab/lite/title",
         "Building global democracy? :",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/bibliographyNote",
+        "Includes bibliographical references (p. 343-380) and index.",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Accountability in private global governance: ICANN and civil society /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Alnoor Ebrahim and Steven Herz --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Carolyn Long and Nata Duvvury --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and G8 accountability /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and IMF accountability /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and accountability in global governance of climate change /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and accountability in the Commonwealth /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and accountability of the United Nations /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and accountability promotion in the global fund /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and patterns of accountability in the OECD /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and the WTO: contesting accountability /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and the World Fair Trade Organisation: developing responsive accountability /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Conclusion /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Global governance, accountability and civil society /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Heidi Ullrich --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Introduction /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Jan Aart Scholte --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Jan Aart Scholte --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Jan Aart Scholte --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Jan Aart Scholte.",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Julie Gilson --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Kerstin Martens --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Marc Williams --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Mawaki Chango --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Morten Ougaard --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Peter I. Hajnal --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Peter Newell --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Saied Reza Ameli --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Structuring accountability: civil society and the Asia-Europe meeting /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "The World Bank and democratic accountability: the role of civil society /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "The organisation of the Islamic conference, accountability and civil society /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Timothy M. Shaw and Pamela K. Mbabazi --",
         {}
     ],
     [

@@ -43,6 +43,12 @@
     ],
     [
         "0LD4ID6o",
+        "http://bibfra.me/vocab/lite/note",
+        "\"A Plume book.\"",
+        {}
+    ],
+    [
+        "0LD4ID6o",
         "http://bibfra.me/vocab/lite/title",
         "The gunslinger /",
         {}
@@ -294,12 +300,6 @@
         {
             "@target-type": "@iri-ref"
         }
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/lite/note",
-        "\"A Plume book.\"",
-        {}
     ],
     [
         "_1ESumkq",
