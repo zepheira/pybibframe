@@ -28,9 +28,9 @@ Converting MARC/XML to RDF or Versa output (command line)
 ---------------------------------------------------------
 
 Note: Versa is a model for Web resources and relationships. Think of it
-as an evolution of Resource Description Framework (RDF) that's at once
-simpler and more expressive. It's the default internal representation
-for PyBibframe, though regular RDF is an optional output.
+as an evolution of Resource Description Framework (RDF) that’s at once
+simpler and more expressive. It’s the default internal representation
+for pybibframe, though regular RDF is an optional output.
 
 ::
 
@@ -59,21 +59,22 @@ If you want an RDF/XML representation of this file you can do:
 
     marc2bf -o resources.versa.json --rdfxml resources.rdf records.mrx
 
-You can get the source from standard input:
+These options do build the full RDF model in memory, so they can slow
+things down quite a bit.
+
+You can get the source MARC/XML from standard input:
 
 ::
 
     curl http://lccn.loc.gov/2006013175/marcxml | marc2bf -c /Users/uche/dev/zepheira/pybibframe-plus/test/resource/config1.json --mod=bibframe.zextra -o /tmp/marc2bf.versa.json
 
-See also Das Innere des Glaspalastes in London from one of Eric Miller's
-favorite examples:
+In this case a record is pulled from the Web, in particular Library of
+Congress Online Catalog / LCCN Permalink. Another example, Das Innere
+des Glaspalastes in London:
 
 ::
 
     curl http://lccn.loc.gov/2012659481/marcxml | marc2bf -c /Users/uche/dev/zepheira/pybibframe-plus/test/resource/config1.json --mod=bibframe.zextra -o /tmp/marc2bf.versa.json
-
-(Pulling a record from the Web, in particular Library of Congress Online
-Catalog / LCCN Permalink)
 
 You can process more than one MARC/XML file at a time by listing them on
 the command line:
@@ -88,11 +89,11 @@ Or by using wildcards:
 
     marc2bf records?.mrx
 
-PyBibframe is highly extensible, and you can specify plug-ins from the
-command line. You need to specify the Python module from which the
-plugins can be imported and a configuration file specifying how the
-plugins are to be used. For example, to use the ``linkreport`` plugin
-that comes with PyBibframe you can do:
+PyBibframe is highly configurable and extensible. You can specify
+plug-ins from the command line. You need to specify the Python module
+from which the plugins can be imported and a configuration file
+specifying how the plugins are to be used. For example, to use the
+``linkreport`` plugin that comes with PyBibframe you can do:
 
 ::
 
@@ -118,8 +119,8 @@ Instances to the output.
 Converting MARC/XML to RDF or Versa output (API)
 ================================================
 
-The ``bibframe.reader.marcxml.bfconvert`` method can be used from APIs
-etc to run the conversion.
+The ``bibframe.reader.marcxml.bfconvert`` function can be used as an API to
+run the conversion.
 
 ::
 

@@ -69,7 +69,8 @@ Which in this case will add RDFS label statements for Works and Instances to the
 
 # Converting MARC/XML to RDF or Versa output (API)
 
-The `bibframe.reader.marcxml.bfconvert` function can be used from APIs etc to run the conversion.
+The `bibframe.reader.marcxml.bfconvert` function can be used as an API to
+run the conversion.
 
 	>>> from bibframe.reader.marcxml import bfconvert
 	>>> inputs = open('records.mrx', 'r')
