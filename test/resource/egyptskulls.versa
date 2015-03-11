@@ -201,12 +201,6 @@
     ],
     [
         "JL0Q18QQ",
-        "http://bibfra.me/vocab/marc/bibliographyNote",
-        "Includes bibliographical references (p. 137-143).",
-        {}
-    ],
-    [
-        "JL0Q18QQ",
         "http://bibfra.me/vocab/marc/catalogingSource",
         "SUC",
         {}
@@ -653,6 +647,12 @@
         "qClcGJcC",
         "http://bibfra.me/vocab/lite/title",
         "An appraisal of the skulls and dentition of ancient Egyptians :",
+        {}
+    ],
+    [
+        "qClcGJcC",
+        "http://bibfra.me/vocab/marc/bibliographyNote",
+        "Includes bibliographical references (p. 137-143).",
         {}
     ],
     [

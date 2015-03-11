@@ -156,7 +156,7 @@ EXPECTED_2 = '''
     [
         "uod_ls3S",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/marc/Books",
+        "http://bibfra.me/vocab/lite/Work",
         {
             "@target-type": "@iri-ref"
         }
@@ -164,7 +164,7 @@ EXPECTED_2 = '''
     [
         "uod_ls3S",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Work",
+        "http://bibfra.me/vocab/marc/Books",
         {
             "@target-type": "@iri-ref"
         }
@@ -884,11 +884,9 @@ EXPECTED_8 = '''
     ],
     [
         "kP2G4QhW",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/marc/periodical",
-        {
-            "@target-type": "@iri-ref"
-        }
+        "http://bibfra.me/vocab/marc/characteristic",
+        "periodical",
+        {}
     ],
     [
         "kP2G4QhW",
@@ -1046,11 +1044,9 @@ EXPECTED_9 = '''
     ],
     [
         "kP2G4QhW",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/marc/periodical",
-        {
-            "@target-type": "@iri-ref"
-        }
+        "http://bibfra.me/vocab/marc/characteristic",
+        "periodical",
+        {}
     ],
     [
         "kP2G4QhW",
@@ -1294,15 +1290,15 @@ EXPECTED_11 = '''
 ]
 '''
 
-SNIPPET_11 = '''
+SNIPPET_12 = '''
 <collection xmlns="http://www.loc.gov/MARC21/slim">
 <record xmlns="http://www.loc.gov/MARC21/slim"><controlfield tag="001">881466</controlfield></record>
 </collection>
 '''
 
-CONFIG_11 = {}
+CONFIG_12 = {}
 
-EXPECTED_11 = '''
+EXPECTED_12 = '''
 [
     [
         "PZ-aV_fa",
@@ -1340,16 +1336,16 @@ all_snippets = sorted([ sym for sym in globals() if sym.startswith('SNIPPET') ])
 all_config = sorted([ sym for sym in globals() if sym.startswith('CONFIG') ])
 all_expected = sorted([ sym for sym in globals() if sym.startswith('EXPECTED') ])
 
-all_snippets = [ globals()[sym] for sym in all_snippets ]
-all_config = [ globals()[sym] for sym in all_config ]
-all_expected = [ globals()[sym] for sym in all_expected ]
+all_snippets = [ (sym, globals()[sym]) for sym in all_snippets ]
+all_config = [ (sym, globals()[sym]) for sym in all_config ]
+all_expected = [ (sym, globals()[sym]) for sym in all_expected ]
 
 def file_diff(s_orig, s_new):
     diff = difflib.unified_diff(s_orig.split('\n'), s_new.split('\n'))
     return '\n'.join(list(diff))
 
 
-def run_one(snippet, expected, entbase=None, config=None, loop=None, canonical=True):
+def run_one(snippet, expected, desc, entbase=None, config=None, loop=None, canonical=True):
     m = memory.connection()
     m_expected = memory.connection()
     instream = BytesIO(snippet.encode('utf-8'))
@@ -1361,16 +1357,18 @@ def run_one(snippet, expected, entbase=None, config=None, loop=None, canonical=T
     expected_stream = StringIO(expected)
     jsonload(m_expected, expected_stream)
 
-    assert m == m_expected, "Discrepancies found:\n{0}".format(file_diff(repr(m_expected), repr(m)))
+    assert m == m_expected, "Discrepancies found ({0}):\n{1}".format(desc, file_diff(repr(m_expected), repr(m)))
 
 
 @pytest.mark.parametrize('snippet, config, expected', zip(all_snippets, all_config, all_expected))
 def test_snippets(snippet, config, expected):
     #Use a new event loop per test instance, and so one call of bfconvert per test
+    desc = '|'.join([ t[0] for t in (snippet, config, expected) ])
+    snippet, config, expected = [ t[1] for t in (snippet, config, expected) ]
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(None)
 
-    run_one(snippet, expected, config=config, loop=loop)
+    run_one(snippet, expected, desc, config=config, loop=loop)
 
 
 if __name__ == '__main__':
