@@ -28,7 +28,7 @@ MAX32LESS1 = 4294967295 #2**32-1
 def simple_hashstring(obj, bits=48):
     '''
     Creates a simple hash in brief string form from obj
-    bits is an optional bit width, defaulting to 48, and should be in multiples of 8
+    bits is an optional bit width, defaulting to 48, and should be in multiples of 8 with a maximum of 64
 
     >>> from datachef.ids import simple_hashstring
     >>> simple_hashstring("The quick brown fox jumps over the lazy dog")
@@ -43,7 +43,10 @@ def simple_hashstring(obj, bits=48):
     #Use MurmurHash3
     #Get a 64-bit integer, the first half of the 128-bit tuple from mmh and then bit shift it to get the desired bit length
     basis = mmh3.hash64(str(obj))[0] >> (64-bits)
-    raw_hash = struct.pack('l', basis)[:-int((64-bits)/8)]
+    if bits == 64:
+        raw_hash = struct.pack('l', basis)
+    else:
+        raw_hash = struct.pack('l', basis)[:-int((64-bits)/8)]
     hashstr = base64.urlsafe_b64encode(raw_hash).rstrip(b"=")
     return hashstr.decode('ascii')
 
@@ -82,32 +85,32 @@ def slugify(value, hyphenate=True, lower=True):
     return _CHANGEME_RE.sub(replacement, value)
 
 
-FROM_EMPTY_HASH = 'AAAAAAAA'
+FROM_EMPTY_64BIT_HASH = 'AAAAAAAAAAA'
 
 #from datachef.ids import simple_hashstring
 @coroutine
-def idgen(idbase, tint=None):
+def idgen(idbase, tint=None, bits=64):
     '''
     Generate an IRI as a hash of given information, or just make one up if None given
     idbase -- Base URI for generating links
     tint -- String that affects the sequence of IDs generated if sent None
 
-    >>> from datachef.ids import idgen
+    >>> from bibframe.contrib.datachefids import idgen
     >>> g = idgen(None)
     >>> next(g) #Or g.send(None)
-    'RtW-3skq'
+    'gKNG1b7eySo'
     >>> next(g)
-    'e4r-u_tx'
+    'cXx7iv67-3E'
     >>> g.send('spam')
-    'ThKLPHvp'
+    'OZxOEos8e-k'
     >>> next(g)
-    'YbGlkNf9'
+    'mCFhsaWQ1_0'
     >>> g.send('spam')
-    'ThKLPHvp'
+    'OZxOEos8e-k'
     >>> g.send('eggs')
-    'HeBrpNON'
+    'xQAd4Guk040'
     >>> g.send('')
-    'AAAAAAAA'
+    'AAAAAAAAAAA'
     '''
     counter = -1
     to_hash = None
@@ -115,7 +118,7 @@ def idgen(idbase, tint=None):
         if to_hash is None:
             to_hash = str(counter)
             if tint: to_hash += tint
-        to_hash = simple_hashstring(to_hash)
+        to_hash = simple_hashstring(to_hash, bits=bits)
         to_hash = yield iri.absolutize(to_hash, idbase) if idbase else to_hash
         counter += 1
 
