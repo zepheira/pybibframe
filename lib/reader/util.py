@@ -5,7 +5,7 @@ from enum import Enum #https://docs.python.org/3.4/library/enum.html
 from versa.pipeline import *
 from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 
-from bibframe.contrib.datachefids import slugify, FROM_EMPTY_HASH
+from bibframe.contrib.datachefids import slugify#, FROM_EMPTY_64BIT_HASH
 from bibframe.contrib.datachefids import idgen as default_idgen
 from bibframe import BFZ
 

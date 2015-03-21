@@ -12,7 +12,7 @@ import itertools
 import asyncio
 from collections import defaultdict, OrderedDict
 
-from bibframe.contrib.datachefids import idgen, FROM_EMPTY_HASH
+from bibframe.contrib.datachefids import idgen#, FROM_EMPTY_64BIT_HASH
 
 from amara3 import iri
 
