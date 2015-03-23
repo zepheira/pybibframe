@@ -25,7 +25,7 @@ from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 from versa import util
 from versa.driver import memory
 
-from bibframe import BFZ, BFLC, register_service
+from bibframe import BFZ, BFLC, BL, register_service
 from bibframe.reader import marc
 from bibframe.writer import rdf
 from bibframe.reader.marcpatterns import TRANSFORMS
@@ -186,7 +186,7 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
 
     #Allow configuration of a separate base URI for vocab items (classes & properties)
     #XXX: Is this the best way to do this, or rather via a post-processing plug-in
-    vb = config.get('vocab-base-uri', BFZ)
+    vb = config.get('vocab-base-uri', BL)
 
     transform_iris = config.get('transforms', {})
     if transform_iris:

@@ -396,7 +396,7 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
             #To avoid losing info include subfields which come via Versa attributes
             for k, v in ctx.current_link[ATTRIBUTES].items():
                 for valitems in v:
-                    ctx.output_model.add(I(objid), I(iri.absolutize('sf-' + k, ctx.base)), valitems, {})
+                    ctx.output_model.add(I(objid), I(iri.absolutize('../marcext/sf-' + k, ctx.base)), valitems, {})
             ctx.existing_ids.add(objid)
 
     return _materialize
