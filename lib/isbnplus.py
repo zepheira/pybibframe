@@ -55,8 +55,9 @@ def isbn_list(isbns, logger=logging):
             isbn_tags[cleaned_isbn] = parts[1]
     c14ned = canonicalize_isbns(isbn_tags.keys(), logger=logger)
     for c14nisbn, variants in invert_dict(c14ned).items():
+        yield c14nisbn, isbn_tags[variants[0]]
         #We'll use the heuristic that the longest ISBN number is the best
-        variants.sort(key=len, reverse=True) # sort by descending length
-        yield variants[0], isbn_tags[variants[0]]
+        #variants.sort(key=len, reverse=True) # sort by descending length
+        #yield variants[0], isbn_tags[variants[0]]
     return
 
