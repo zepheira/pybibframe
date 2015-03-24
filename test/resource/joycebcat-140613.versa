@@ -1,68 +1,98 @@
 [
     [
-        "0OXa3Kt4",
+        "1SZ3ZAsE",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Agent",
+        "http://bibfra.me/vocab/lite/ProviderEvent",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "0OXa3Kt4",
-        "http://bibfra.me/vocab/lite/name",
-        "\u0627\u0644\u0634\u0631\u0648\u0642\u060c",
+        "1SZ3ZAsE",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "a7yQkn5Q",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "1SZ3ZAsE",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "z0cH65Ro",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "1SZ3ZAsE",
+        "http://bibfra.me/vocab/lite/providerDate",
+        "2003.",
         {}
     ],
     [
-        "0OXa3Kt4",
+        "1SZ3ZAsE",
+        "http://bibfra.me/vocab/lite/providerDate",
+        "2003.",
+        {}
+    ],
+    [
+        "1SZ3ZAsE",
+        "http://bibfra.me/vocab/lite/providerPlace",
+        "1tARg6uu",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "1SZ3ZAsE",
         "http://bibfra.me/vocab/marcext/sf-6",
         "260-05/(3/r",
         {}
     ],
     [
-        "0OXa3Kt4",
+        "1SZ3ZAsE",
         "http://bibfra.me/vocab/marcext/sf-6",
         "880-05",
         {}
     ],
     [
-        "0OXa3Kt4",
+        "1SZ3ZAsE",
         "http://bibfra.me/vocab/marcext/sf-a",
         "\u02bbAmm\u0101n :",
         {}
     ],
     [
-        "0OXa3Kt4",
+        "1SZ3ZAsE",
         "http://bibfra.me/vocab/marcext/sf-a",
         "\u0639\u0645\u0627\u0646 :",
         {}
     ],
     [
-        "0OXa3Kt4",
+        "1SZ3ZAsE",
         "http://bibfra.me/vocab/marcext/sf-b",
         "al-Shur\u016bq,",
         {}
     ],
     [
-        "0OXa3Kt4",
+        "1SZ3ZAsE",
         "http://bibfra.me/vocab/marcext/sf-b",
         "\u0627\u0644\u0634\u0631\u0648\u0642\u060c",
         {}
     ],
     [
-        "0OXa3Kt4",
+        "1SZ3ZAsE",
         "http://bibfra.me/vocab/marcext/sf-c",
         "2003.",
         {}
     ],
     [
-        "0OXa3Kt4",
+        "1SZ3ZAsE",
         "http://bibfra.me/vocab/marcext/sf-c",
         "2003.",
         {}
     ],
     [
-        "1gL93Odw",
+        "1tARg6uu",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Place",
         {
@@ -70,63 +100,107 @@
         }
     ],
     [
-        "1gL93Odw",
+        "1tARg6uu",
         "http://bibfra.me/vocab/lite/name",
         "\u02bbAmm\u0101n :",
         {}
     ],
     [
-        "1gL93Odw",
+        "1tARg6uu",
         "http://bibfra.me/vocab/lite/name",
         "\u0639\u0645\u0627\u0646 :",
         {}
     ],
     [
-        "1gL93Odw",
+        "1tARg6uu",
         "http://bibfra.me/vocab/marcext/sf-6",
         "260-05/(3/r",
         {}
     ],
     [
-        "1gL93Odw",
+        "1tARg6uu",
         "http://bibfra.me/vocab/marcext/sf-6",
         "880-05",
         {}
     ],
     [
-        "1gL93Odw",
+        "1tARg6uu",
         "http://bibfra.me/vocab/marcext/sf-a",
         "\u02bbAmm\u0101n :",
         {}
     ],
     [
-        "1gL93Odw",
+        "1tARg6uu",
         "http://bibfra.me/vocab/marcext/sf-a",
         "\u0639\u0645\u0627\u0646 :",
         {}
     ],
     [
-        "1gL93Odw",
+        "1tARg6uu",
         "http://bibfra.me/vocab/marcext/sf-b",
         "al-Shur\u016bq,",
         {}
     ],
     [
-        "1gL93Odw",
+        "1tARg6uu",
         "http://bibfra.me/vocab/marcext/sf-b",
         "\u0627\u0644\u0634\u0631\u0648\u0642\u060c",
         {}
     ],
     [
-        "1gL93Odw",
+        "1tARg6uu",
         "http://bibfra.me/vocab/marcext/sf-c",
         "2003.",
         {}
     ],
     [
-        "1gL93Odw",
+        "1tARg6uu",
         "http://bibfra.me/vocab/marcext/sf-c",
         "2003.",
+        {}
+    ],
+    [
+        "39a3qPek",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Person",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "39a3qPek",
+        "http://bibfra.me/vocab/lite/name",
+        "N\u0101\u1e63ir, \u02bb\u0100mir Naj\u012bb M\u016bs\u00e1.",
+        {}
+    ],
+    [
+        "39a3qPek",
+        "http://bibfra.me/vocab/lite/name",
+        "\u0646\u0627\u0635\u0631\u060c \u0639\u0627\u0645\u0631 \u0646\u062c\u064a\u0628 \u0645\u0648\u0633\u0649.",
+        {}
+    ],
+    [
+        "39a3qPek",
+        "http://bibfra.me/vocab/marcext/sf-6",
+        "100-01/(3/r",
+        {}
+    ],
+    [
+        "39a3qPek",
+        "http://bibfra.me/vocab/marcext/sf-6",
+        "880-01",
+        {}
+    ],
+    [
+        "39a3qPek",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "N\u0101\u1e63ir, \u02bb\u0100mir Naj\u012bb M\u016bs\u00e1.",
+        {}
+    ],
+    [
+        "39a3qPek",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "\u0646\u0627\u0635\u0631\u060c \u0639\u0627\u0645\u0631 \u0646\u062c\u064a\u0628 \u0645\u0648\u0633\u0649.",
         {}
     ],
     [
@@ -208,7 +282,7 @@
     [
         "6HeeVV4p",
         "http://bibfra.me/vocab/marc/publication",
-        "AMnIRh-g",
+        "1SZ3ZAsE",
         {
             "@target-type": "@iri-ref"
         }
@@ -238,98 +312,6 @@
         {}
     ],
     [
-        "AMnIRh-g",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/ProviderEvent",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "AMnIRh-g",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "0OXa3Kt4",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "AMnIRh-g",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "qJP_nrip",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "AMnIRh-g",
-        "http://bibfra.me/vocab/lite/providerDate",
-        "2003.",
-        {}
-    ],
-    [
-        "AMnIRh-g",
-        "http://bibfra.me/vocab/lite/providerDate",
-        "2003.",
-        {}
-    ],
-    [
-        "AMnIRh-g",
-        "http://bibfra.me/vocab/lite/providerPlace",
-        "1gL93Odw",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "AMnIRh-g",
-        "http://bibfra.me/vocab/marcext/sf-6",
-        "260-05/(3/r",
-        {}
-    ],
-    [
-        "AMnIRh-g",
-        "http://bibfra.me/vocab/marcext/sf-6",
-        "880-05",
-        {}
-    ],
-    [
-        "AMnIRh-g",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "\u02bbAmm\u0101n :",
-        {}
-    ],
-    [
-        "AMnIRh-g",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "\u0639\u0645\u0627\u0646 :",
-        {}
-    ],
-    [
-        "AMnIRh-g",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "al-Shur\u016bq,",
-        {}
-    ],
-    [
-        "AMnIRh-g",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "\u0627\u0644\u0634\u0631\u0648\u0642\u060c",
-        {}
-    ],
-    [
-        "AMnIRh-g",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "2003.",
-        {}
-    ],
-    [
-        "AMnIRh-g",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "2003.",
-        {}
-    ],
-    [
         "DPsX5gyH",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
@@ -356,7 +338,7 @@
     [
         "DPsX5gyH",
         "http://bibfra.me/vocab/lite/creator",
-        "Vv02CEt9",
+        "39a3qPek",
         {
             "@target-type": "@iri-ref"
         }
@@ -364,7 +346,7 @@
     [
         "DPsX5gyH",
         "http://bibfra.me/vocab/lite/subject",
-        "fKi_0VXJ",
+        "GcCRGczX",
         {
             "@target-type": "@iri-ref"
         }
@@ -372,7 +354,7 @@
     [
         "DPsX5gyH",
         "http://bibfra.me/vocab/lite/subject",
-        "hvsZMnqQ",
+        "LL9RCi_X",
         {
             "@target-type": "@iri-ref"
         }
@@ -380,7 +362,7 @@
     [
         "DPsX5gyH",
         "http://bibfra.me/vocab/lite/subject",
-        "mKfA9yBe",
+        "_Z5Av6aR",
         {
             "@target-type": "@iri-ref"
         }
@@ -650,6 +632,70 @@
         {}
     ],
     [
+        "GcCRGczX",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Place",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "GcCRGczX",
+        "http://bibfra.me/vocab/lite/name",
+        "Egypt",
+        {}
+    ],
+    [
+        "GcCRGczX",
+        "http://bibfra.me/vocab/marc/generalSubdivision",
+        "Economic policy.",
+        {}
+    ],
+    [
+        "GcCRGczX",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Egypt",
+        {}
+    ],
+    [
+        "GcCRGczX",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "Economic policy.",
+        {}
+    ],
+    [
+        "LL9RCi_X",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Place",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "LL9RCi_X",
+        "http://bibfra.me/vocab/lite/name",
+        "Egypt",
+        {}
+    ],
+    [
+        "LL9RCi_X",
+        "http://bibfra.me/vocab/marc/generalSubdivision",
+        "Economic conditions.",
+        {}
+    ],
+    [
+        "LL9RCi_X",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Egypt",
+        {}
+    ],
+    [
+        "LL9RCi_X",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "Economic conditions.",
+        {}
+    ],
+    [
         "PZ-aV_fa",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
@@ -672,51 +718,7 @@
         }
     ],
     [
-        "Vv02CEt9",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Person",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "Vv02CEt9",
-        "http://bibfra.me/vocab/lite/name",
-        "N\u0101\u1e63ir, \u02bb\u0100mir Naj\u012bb M\u016bs\u00e1.",
-        {}
-    ],
-    [
-        "Vv02CEt9",
-        "http://bibfra.me/vocab/lite/name",
-        "\u0646\u0627\u0635\u0631\u060c \u0639\u0627\u0645\u0631 \u0646\u062c\u064a\u0628 \u0645\u0648\u0633\u0649.",
-        {}
-    ],
-    [
-        "Vv02CEt9",
-        "http://bibfra.me/vocab/marcext/sf-6",
-        "100-01/(3/r",
-        {}
-    ],
-    [
-        "Vv02CEt9",
-        "http://bibfra.me/vocab/marcext/sf-6",
-        "880-01",
-        {}
-    ],
-    [
-        "Vv02CEt9",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "N\u0101\u1e63ir, \u02bb\u0100mir Naj\u012bb M\u016bs\u00e1.",
-        {}
-    ],
-    [
-        "Vv02CEt9",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "\u0646\u0627\u0635\u0631\u060c \u0639\u0627\u0645\u0631 \u0646\u062c\u064a\u0628 \u0645\u0648\u0633\u0649.",
-        {}
-    ],
-    [
-        "fKi_0VXJ",
+        "_Z5Av6aR",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Place",
         {
@@ -724,71 +726,101 @@
         }
     ],
     [
-        "fKi_0VXJ",
+        "_Z5Av6aR",
         "http://bibfra.me/vocab/lite/name",
         "Egypt",
         {}
     ],
     [
-        "fKi_0VXJ",
+        "_Z5Av6aR",
         "http://bibfra.me/vocab/marc/chronologicalSubdivision",
         "1250-1517.",
         {}
     ],
     [
-        "fKi_0VXJ",
+        "_Z5Av6aR",
         "http://bibfra.me/vocab/marc/generalSubdivision",
         "History",
         {}
     ],
     [
-        "fKi_0VXJ",
+        "_Z5Av6aR",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Egypt",
         {}
     ],
     [
-        "fKi_0VXJ",
+        "_Z5Av6aR",
         "http://bibfra.me/vocab/marcext/sf-x",
         "History",
         {}
     ],
     [
-        "fKi_0VXJ",
+        "_Z5Av6aR",
         "http://bibfra.me/vocab/marcext/sf-y",
         "1250-1517.",
         {}
     ],
     [
-        "hvsZMnqQ",
+        "a7yQkn5Q",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Place",
+        "http://bibfra.me/vocab/lite/Agent",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "hvsZMnqQ",
+        "a7yQkn5Q",
         "http://bibfra.me/vocab/lite/name",
-        "Egypt",
+        "\u0627\u0644\u0634\u0631\u0648\u0642\u060c",
         {}
     ],
     [
-        "hvsZMnqQ",
-        "http://bibfra.me/vocab/marc/generalSubdivision",
-        "Economic policy.",
+        "a7yQkn5Q",
+        "http://bibfra.me/vocab/marcext/sf-6",
+        "260-05/(3/r",
         {}
     ],
     [
-        "hvsZMnqQ",
+        "a7yQkn5Q",
+        "http://bibfra.me/vocab/marcext/sf-6",
+        "880-05",
+        {}
+    ],
+    [
+        "a7yQkn5Q",
         "http://bibfra.me/vocab/marcext/sf-a",
-        "Egypt",
+        "\u02bbAmm\u0101n :",
         {}
     ],
     [
-        "hvsZMnqQ",
-        "http://bibfra.me/vocab/marcext/sf-x",
-        "Economic policy.",
+        "a7yQkn5Q",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "\u0639\u0645\u0627\u0646 :",
+        {}
+    ],
+    [
+        "a7yQkn5Q",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "al-Shur\u016bq,",
+        {}
+    ],
+    [
+        "a7yQkn5Q",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "\u0627\u0644\u0634\u0631\u0648\u0642\u060c",
+        {}
+    ],
+    [
+        "a7yQkn5Q",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "2003.",
+        {}
+    ],
+    [
+        "a7yQkn5Q",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "2003.",
         {}
     ],
     [
@@ -836,39 +868,7 @@
         {}
     ],
     [
-        "mKfA9yBe",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Place",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "mKfA9yBe",
-        "http://bibfra.me/vocab/lite/name",
-        "Egypt",
-        {}
-    ],
-    [
-        "mKfA9yBe",
-        "http://bibfra.me/vocab/marc/generalSubdivision",
-        "Economic conditions.",
-        {}
-    ],
-    [
-        "mKfA9yBe",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Egypt",
-        {}
-    ],
-    [
-        "mKfA9yBe",
-        "http://bibfra.me/vocab/marcext/sf-x",
-        "Economic conditions.",
-        {}
-    ],
-    [
-        "qJP_nrip",
+        "z0cH65Ro",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Agent",
         {
@@ -876,55 +876,55 @@
         }
     ],
     [
-        "qJP_nrip",
+        "z0cH65Ro",
         "http://bibfra.me/vocab/lite/name",
         "al-Shur\u016bq,",
         {}
     ],
     [
-        "qJP_nrip",
+        "z0cH65Ro",
         "http://bibfra.me/vocab/marcext/sf-6",
         "260-05/(3/r",
         {}
     ],
     [
-        "qJP_nrip",
+        "z0cH65Ro",
         "http://bibfra.me/vocab/marcext/sf-6",
         "880-05",
         {}
     ],
     [
-        "qJP_nrip",
+        "z0cH65Ro",
         "http://bibfra.me/vocab/marcext/sf-a",
         "\u02bbAmm\u0101n :",
         {}
     ],
     [
-        "qJP_nrip",
+        "z0cH65Ro",
         "http://bibfra.me/vocab/marcext/sf-a",
         "\u0639\u0645\u0627\u0646 :",
         {}
     ],
     [
-        "qJP_nrip",
+        "z0cH65Ro",
         "http://bibfra.me/vocab/marcext/sf-b",
         "al-Shur\u016bq,",
         {}
     ],
     [
-        "qJP_nrip",
+        "z0cH65Ro",
         "http://bibfra.me/vocab/marcext/sf-b",
         "\u0627\u0644\u0634\u0631\u0648\u0642\u060c",
         {}
     ],
     [
-        "qJP_nrip",
+        "z0cH65Ro",
         "http://bibfra.me/vocab/marcext/sf-c",
         "2003.",
         {}
     ],
     [
-        "qJP_nrip",
+        "z0cH65Ro",
         "http://bibfra.me/vocab/marcext/sf-c",
         "2003.",
         {}

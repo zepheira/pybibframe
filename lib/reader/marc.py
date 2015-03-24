@@ -21,8 +21,8 @@ from versa.util import simple_lookup, OrderedJsonEncoder
 from versa.driver import memory
 from versa.pipeline import *
 
+from bibframe import MARC
 from bibframe.reader.util import WORKID, IID
-from bibframe import BFZ, BFLC, g_services
 from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
 from bibframe.isbnplus import isbn_list
 from bibframe.reader.marcpatterns import TRANSFORMS, bfcontext
@@ -38,7 +38,7 @@ NEW_RECORD = 'http://bibfra.me/purl/versa/' + 'newrecord'
 # Namespaces 
 
 BL = 'http://bibfra.me/vocab/lite/'
-ISBNNS = 'http://bibfra.me/vocab/rda/'
+ISBNNS = MARC
 
 TYPE_REL = I(iri.absolutize('type', VERSA_BASEIRI))
 
@@ -71,11 +71,14 @@ def marc_lookup(model, codes):
             yield code, link[TARGET]
 
 
+ISBN_REL = I(iri.absolutize('isbn', ISBNNS))
+ISBN_TYPE_REL = I(iri.absolutize('isbnType', ISBNNS))
+
 def isbn_instancegen(params, loop, model):
     '''
     Default handling of the idea of splitting a MARC record with FRBR Work info as well as instances signalled by ISBNs
 
-
+    According to Vicki Instances can be signalled by 007, 020 or 3XX, but we stick to 020 for now
     '''
     #Handle ISBNs re: https://foundry.zepheira.com/issues/1976
     entbase = params['entbase']
@@ -99,26 +102,25 @@ def isbn_instancegen(params, loop, model):
     instance_ids = []
     logger.debug('Normalized ISBN:\t{0}'.format(normalized_isbns))
     if normalized_isbns:
-        for subix, (inum, itype) in enumerate(normalized_isbns):
-            #XXX Do we use vocabbase? Probably since if they are substituting a new vocab base, we assume they're substituting semantics entirely
-            instanceid = materialize_entity('Instance', vocabbase=vocabbase, existing_ids=existing_ids, ids=ids, plugins=plugins, instantiates=workid, isbn=inum, loop=loop, model=output_model)
-            #ids.send(['', ])
+        for inum, itype in normalized_isbns:
+            instanceid = materialize_entity('Instance', ctx_params=params, loop=loop, update_model=True, instantiates=workid, isbn=inum)
             if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
 
-            # output_model.add(I(instanceid), I(iri.absolutize('isbn', vocabbase)), inum)
-            output_model.add(I(instanceid), I(iri.absolutize('isbn', ISBNNS)), inum)
-            #subitem['id'] = instanceid + (unichr(subscript + subix) if subix else '')
-            if itype: output_model.add(I(instanceid), I(iri.absolutize('isbnType', ISBNNS)), itype)
+            output_model.add(I(instanceid), ISBN_REL, inum)
+            output_model.add(I(instanceid), I(iri.absolutize('instantiates', vocabbase)), I(workid))
+            if itype: output_model.add(I(instanceid), ISBN_TYPE_REL, itype)
             existing_ids.add(instanceid)
             instance_ids.append(instanceid)
     else:
-        instanceid = materialize_entity('Instance', vocabbase=vocabbase, existing_ids=existing_ids, ids=ids, plugins=plugins, instantiates=workid, loop=loop, model=output_model)
+        #If there are no ISBNs, we'll generate a default Instance
+        instanceid = materialize_entity('Instance', ctx_params=params, loop=loop, update_model=True, instantiates=workid)
         if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
+        output_model.add(I(instanceid), I(iri.absolutize('instantiates', vocabbase)), I(workid))
         existing_ids.add(instanceid)
         instance_ids.append(instanceid)
 
-    output_model.add(instance_ids[0], I(iri.absolutize('instantiates', vocabbase)), I(workid))
-    output_model.add(I(instance_ids[0]), TYPE_REL, I(iri.absolutize('Instance', vocabbase)))
+    #output_model.add(instance_ids[0], I(iri.absolutize('instantiates', vocabbase)), I(workid))
+    #output_model.add(I(instance_ids[0]), TYPE_REL, I(iri.absolutize('Instance', vocabbase)))
 
     return instance_ids
 
@@ -126,10 +128,13 @@ def isbn_instancegen(params, loop, model):
 def instance_postprocess(params):
     instanceids = params['instanceids']
     model = params['output_model']
+    def dupe_filter(o, r, t, a):
+        #Filter out ISBN relationships
+        return r not in (ISBN_REL, ISBN_TYPE_REL)
     if len(instanceids) > 1:
         base_instance_id = instanceids[0]
         for instanceid in instanceids[1:]:
-            duplicate_statements(model, base_instance_id, instanceid)
+            duplicate_statements(model, base_instance_id, instanceid, rfilter=dupe_filter)
     return
 
 
@@ -148,19 +153,26 @@ def record_hash_key(model):
     return '|'.join(sorted(list( val for code, val in marc_lookup(model, RECORD_HASH_KEY_FIELDS))))
 
 
-def materialize_entity(etype, vocabbase=BL, existing_ids=None, ids=None, plugins=None, unique=None, logger=logging, loop=None, model=None, **data):
+def materialize_entity(etype, ctx_params=None, unique=None, loop=None, update_model=False, **data):
     '''
     Routine for creating a BIBFRAME resource. Takes the entity (resource) type and a data mapping
     according to the resource type. Implements the Libhub Resource Hash Convention
     As a convenience, if a vocabulary base is provided, concatenate it to etype and the data keys
     '''
+    ctx_params = ctx_params or {}
+    vocabbase = ctx_params.get('vocabbase', BL)
+    existing_ids = ctx_params.get('existing_ids')
+    plugins = ctx_params.get('plugins')
+    logger = ctx_params.get('logger', logging)
+    output_model = ctx_params.get('output_model')
+    ids = ctx_params.get('ids')
     if vocabbase:
         etype = vocabbase + etype
     params = {'logger': logger}
     data_full = { vocabbase + k: v for (k, v) in data.items() }
     # nobody likes non-deterministic ids! ordering matters to hash()
     data_full = OrderedDict(sorted(data_full.items(), key=lambda x: x[0]))
-    plaintext = json.dumps([etype, data_full],cls=OrderedJsonEncoder)
+    plaintext = json.dumps([etype, data_full], cls=OrderedJsonEncoder)
 
     if data_full or unique:
         #We only have a type; no other distinguishing data. Generate a random hash
@@ -170,12 +182,16 @@ def materialize_entity(etype, vocabbase=BL, existing_ids=None, ids=None, plugins
             eid = ids.send([plaintext, unique])
     else:
         eid = next(ids)
+
+    if update_model:
+        output_model.add(I(eid), TYPE_REL, I(etype))
+
     params['materialized_id'] = eid
     params['first_seen'] = eid in existing_ids
     for plugin in plugins or ():
         #Not using yield from
         if BF_MATRES_TASK in plugin:
-            for p in plugin[BF_MATRES_TASK](loop, model, params): pass
+            for p in plugin[BF_MATRES_TASK](loop, output_model, params): pass
         #logger.debug("Pending tasks: %s" % asyncio.Task.all_tasks(loop))
     return eid
 
@@ -213,7 +229,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             #FIXME: No plug-in support yet
             params = {'input_model': input_model, 'output_model': model, 'logger': logger, 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids, 'existing_ids': existing_ids, 'plugins': plugins}
             workhash = record_hash_key(input_model)
-            workid = materialize_entity('Work', vocabbase=vocabbase, existing_ids=existing_ids, ids=ids, plugins=plugins, hash=workhash, loop=loop, model=model)
+            workid = materialize_entity('Work', ctx_params=params, loop=loop, hash=workhash)
             is_folded = workid in existing_ids
             existing_ids.add(workid)
             control_code = list(marc_lookup(input_model, '001')) or ['NO 001 CONTROL CODE']
@@ -332,7 +348,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                     #indicator_list = (indicators['ind1'], indicators['ind2'])
                     params['fields_used'].append(tuple([tag] + list(subfields.keys())))
 
-                #This is where we check each incoming MARC link to see if it matches a transform into an output link (e.g. renaming 020 to 'isbn')
+                #This is where we check each incoming MARC link to see if it matches a transform into an output link (e.g. renaming 001 to 'controlCode')
                 to_process = []
                 #Start with most specific matches, then to most general
                 
@@ -377,7 +393,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                     params['dropped_codes'].setdefault(tag,0)
                     params['dropped_codes'][tag] += 1
 
-                mat_ent = functools.partial(materialize_entity, vocabbase=vocabbase, existing_ids=existing_ids, ids=ids, plugins=plugins, loop=loop, model=model)
+                mat_ent = functools.partial(materialize_entity, ctx_params=params, loop=loop)
                 #Apply all the handlers that were found
                 for funcinfo, val in to_process:
                     #Support multiple actions per lookup
@@ -481,7 +497,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
     return
 
 
-def duplicate_statements(model, oldorigin, neworigin):
+def duplicate_statements(model, oldorigin, neworigin, rfilter=None):
     '''
     Take links with a given origin, and create duplicate links with the same information but a new origin
 
@@ -492,7 +508,8 @@ def duplicate_statements(model, oldorigin, neworigin):
     '''
     for link in model.match(oldorigin):
         o, r, t, a = link
-        model.add(I(neworigin), r, t, a)
+        if rfilter is None or rfilter(o, r, t, a):
+            model.add(I(neworigin), r, t, a)
     return
 
 

@@ -54,6 +54,7 @@ class expat_callbacks(object):
         self.no_records = True
         self._lax = lax
         self._parser = parser
+        self._record_model = None
         return
 
     def start_element(self, name, attributes):
@@ -114,12 +115,12 @@ class expat_callbacks(object):
                 #sfdict = defaultdict(list)
                 #[ sfdict[sf[0]].append(sf[1]) for sf in self._record[-1][3] ]
                 #self._record[-1][3] = sfdict
-                self._record_model.add(self._record_id, self._link_iri, '', self._marc_attributes)
+                if self._record_model: self._record_model.add(self._record_id, self._link_iri, '', self._marc_attributes)
                 self._getcontent = False
             elif local == 'subfield':
                 self._marc_attributes.setdefault(self._subfield, []).append(self._chardata_dest)
             elif local in ('leader', 'controlfield'):
-                self._record_model.add(self._record_id, self._link_iri, self._chardata_dest, self._marc_attributes)
+                if self._record_model: self._record_model.add(self._record_id, self._link_iri, self._chardata_dest, self._marc_attributes)
                 self._getcontent = False
 
     def char_data(self, data):

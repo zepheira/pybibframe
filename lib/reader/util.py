@@ -351,7 +351,10 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
             #Have been given enough info to derive the origin from context. Ignore origin in current link
             o = derive_origin(ctx)
         computed_unique = unique(ctx) if unique else None
-        objid = ctx.idgen(_typ, unique=computed_unique, existing_ids=ctx.existing_ids)
+        #objid = ctx.idgen(_typ, unique=computed_unique, existing_ids=ctx.existing_ids)
+
+        #XXX: Relying here on shared existing_ids from the idgen function. Probably need to think through this state coupling
+        objid = ctx.idgen(_typ, unique=computed_unique)
         for curr_rel in rels:
             #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
             curr_rel = '_' + curr_rel if curr_rel.isdigit() else curr_rel
@@ -375,6 +378,7 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
                         continue
 
                 #import traceback; traceback.print_stack() #For looking up the call stack e.g. to debug nested materialize
+
                 #Check that the links key is not None, which is a signal not to
                 #generate the item. For example if the key is an ifexists and the
                 #test expression result is False, it will come back as None,

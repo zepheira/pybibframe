@@ -21,7 +21,7 @@ REL = 'http://bibfra.me/vocab/relation/'
 MARC = 'http://bibfra.me/vocab/marc/'
 RBMS = 'http://bibfra.me/vocab/rbms/'
 AV = 'http://bibfra.me/vocab/audiovisual/'
-
+MARCEXT = I('http://bibfra.me/vocab/marcext/')
 
 
 #def register_service(coro, iri=None):

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <marc:record>
+    <marc:leader>02173pam a22004694a 4500</marc:leader>
+    <marc:controlfield tag="001">1247500</marc:controlfield>
+    <marc:controlfield tag="005">20120419084953.0</marc:controlfield>
+    <marc:controlfield tag="008">050506s2005    gw a     b    001 0 eng  </marc:controlfield>
+    <marc:datafield tag="010" ind1=" " ind2=" ">
+      <marc:subfield code="a">  2005013120</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="020" ind1=" " ind2=" ">
+      <marc:subfield code="a">9783136128046 (GTV)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="020" ind1=" " ind2=" ">
+      <marc:subfield code="a">3136128044 (GTV)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="020" ind1=" " ind2=" ">
+      <marc:subfield code="a">9781588902153 (TNY)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="020" ind1=" " ind2=" ">
+      <marc:subfield code="a">1588902153 (TNY)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="9">101247500</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">DNLM</marc:subfield>
+      <marc:subfield code="c">DNLM</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="041" ind1="1" ind2="9">
+      <marc:subfield code="a">eng</marc:subfield>
+      <marc:subfield code="h">ger</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="042" ind1=" " ind2=" ">
+      <marc:subfield code="a">pcc</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="044" ind1=" " ind2=" ">
+      <marc:subfield code="9">Germany</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="060" ind1="0" ind2="0">
+      <marc:subfield code="a">2006 C-989</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="060" ind1="1" ind2="0">
+      <marc:subfield code="a">WL 141</marc:subfield>
+      <marc:subfield code="b">B139d 2005a</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="a">Bähr, Mathias.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="240" ind1="1" ind2="0">
+      <marc:subfield code="a">Duus' neurologisch-topische Diagnostik.</marc:subfield>
+      <marc:subfield code="l">English</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="a">Duus' topical diagnosis in neurology :</marc:subfield>
+      <marc:subfield code="b">anatomy, physiology, signs, symptoms /</marc:subfield>
+      <marc:subfield code="c">Mathias Baehr, Michael Frotscher ; with contributions by Wilhelm Kueker ; founding author, Peter Duus ; translated by Ethan Taub ; 400 illustrations, most in color, by Gerhard Spitzer and Barbara Gay.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="246" ind1="3" ind2="0">
+      <marc:subfield code="a">Topical diagnosis in neurology</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="250" ind1=" " ind2=" ">
+      <marc:subfield code="a">4th completely rev. ed.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">Stuttgart ;</marc:subfield>
+      <marc:subfield code="a">New York :</marc:subfield>
+      <marc:subfield code="b">Thieme,</marc:subfield>
+      <marc:subfield code="c">c2005.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">xiv, 517 p. :</marc:subfield>
+      <marc:subfield code="b">ill.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Revised translation of the 8th German ed. c2003.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="504" ind1=" " ind2=" ">
+      <marc:subfield code="a">Includes bibliographical references (p. 493-496) and index.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="0" ind2=" ">
+      <marc:subfield code="a">Elements of the nervous system -- Somatosensory system -- Motor system -- Brainstem -- Cerebellum -- Diencephalon and autonomic nervous system -- Limbic system -- Basal ganglia -- Cerebrum -- Coverings of the brain and spinal cord: cerebrospinal fluid and ventricular system -- Blood supply and vascular disorders of the central nervous system.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1="1" ind2="2">
+      <marc:subfield code="a">Nervous System Diseases</marc:subfield>
+      <marc:subfield code="x">diagnosis</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1="2" ind2="2">
+      <marc:subfield code="a">Nervous System</marc:subfield>
+      <marc:subfield code="x">anatomy &amp; histology</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1="2" ind2="2">
+      <marc:subfield code="a">Nervous System</marc:subfield>
+      <marc:subfield code="x">physiopathology</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Frotscher, M.</marc:subfield>
+      <marc:subfield code="q">(Michael),</marc:subfield>
+      <marc:subfield code="d">1947-</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Duus, Peter,</marc:subfield>
+      <marc:subfield code="d">1908-</marc:subfield>
+      <marc:subfield code="t">Topical diagnosis in neurology.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="963" ind1=" " ind2=" ">
+      <marc:subfield code="a">Ingrid Schoellhammer; phone: 711-8931-522; fax: 711-8931-323; email: Ingrid.Schoellhammer@thieme.de; bc: Ingrid.Schoellhammer@thieme.de</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="992" ind1=" " ind2=" ">
+      <marc:subfield code="p">P1</marc:subfield>
+      <marc:subfield code="e">E4</marc:subfield>
+      <marc:subfield code="a">20060314</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="993" ind1=" " ind2=" ">
+      <marc:subfield code="a">AXE</marc:subfield>
+      <marc:subfield code="b">20060315</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="994" ind1=" " ind2=" ">
+      <marc:subfield code="a">CDN</marc:subfield>
+      <marc:subfield code="b">20060315</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="995" ind1=" " ind2=" ">
+      <marc:subfield code="a">AUTH</marc:subfield>
+      <marc:subfield code="b">20050510</marc:subfield>
+      <marc:subfield code="c">REV</marc:subfield>
+      <marc:subfield code="d">20120419</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="996" ind1=" " ind2=" ">
+      <marc:subfield code="a">rev. CIP</marc:subfield>
+      <marc:subfield code="b">20060317</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="999" ind1=" " ind2=" ">
+      <marc:subfield code="a">AUTH</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+</marc:collection>

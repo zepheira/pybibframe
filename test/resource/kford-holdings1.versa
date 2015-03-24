@@ -1,40 +1,22 @@
 [
     [
-        "4zX_582O",
+        "Ap3GxXiI",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Agent",
+        "http://bibfra.me/vocab/lite/Person",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "4zX_582O",
+        "Ap3GxXiI",
         "http://bibfra.me/vocab/lite/name",
-        "Cambridge University Press,",
+        "Scholte, Jan Aart.",
         {}
     ],
     [
-        "4zX_582O",
+        "Ap3GxXiI",
         "http://bibfra.me/vocab/marcext/sf-a",
-        "Cambridge, UK ;",
-        {}
-    ],
-    [
-        "4zX_582O",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "New York :",
-        {}
-    ],
-    [
-        "4zX_582O",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "Cambridge University Press,",
-        {}
-    ],
-    [
-        "4zX_582O",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "2011.",
+        "Scholte, Jan Aart.",
         {}
     ],
     [
@@ -64,7 +46,7 @@
     [
         "D4PHzUhr",
         "http://bibfra.me/vocab/lite/contributor",
-        "ZqIxCeXX",
+        "Ap3GxXiI",
         {
             "@target-type": "@iri-ref"
         }
@@ -72,7 +54,7 @@
     [
         "D4PHzUhr",
         "http://bibfra.me/vocab/lite/subject",
-        "k-E6MKqQ",
+        "W7GXeVAo",
         {
             "@target-type": "@iri-ref"
         }
@@ -80,7 +62,7 @@
     [
         "D4PHzUhr",
         "http://bibfra.me/vocab/lite/subject",
-        "l5FBC4GX",
+        "WGpQ_sgW",
         {
             "@target-type": "@iri-ref"
         }
@@ -88,7 +70,7 @@
     [
         "D4PHzUhr",
         "http://bibfra.me/vocab/lite/subject",
-        "pwmQRcFg",
+        "rn1nkWd4",
         {
             "@target-type": "@iri-ref"
         }
@@ -322,6 +304,46 @@
         {}
     ],
     [
+        "W7GXeVAo",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "W7GXeVAo",
+        "http://bibfra.me/vocab/lite/name",
+        "Civil society.",
+        {}
+    ],
+    [
+        "W7GXeVAo",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Civil society.",
+        {}
+    ],
+    [
+        "WGpQ_sgW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "WGpQ_sgW",
+        "http://bibfra.me/vocab/lite/name",
+        "International organization.",
+        {}
+    ],
+    [
+        "WGpQ_sgW",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "International organization.",
+        {}
+    ],
+    [
         "YCjP4vsG",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
@@ -593,6 +615,18 @@
     ],
     [
         "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/isbn",
+        "9780521140553",
+        {}
+    ],
+    [
+        "YCjP4vsG",
+        "http://bibfra.me/vocab/marc/isbnType",
+        "(pbk.)",
+        {}
+    ],
+    [
+        "YCjP4vsG",
         "http://bibfra.me/vocab/marc/lccn",
         "  2010052188",
         {}
@@ -600,7 +634,7 @@
     [
         "YCjP4vsG",
         "http://bibfra.me/vocab/marc/publication",
-        "uf6wThjn",
+        "_Ym5ZLlN",
         {
             "@target-type": "@iri-ref"
         }
@@ -624,463 +658,7 @@
         {}
     ],
     [
-        "YCjP4vsG",
-        "http://bibfra.me/vocab/rda/isbn",
-        "9780521140553",
-        {}
-    ],
-    [
-        "YCjP4vsG",
-        "http://bibfra.me/vocab/rda/isbnType",
-        "(pbk.)",
-        {}
-    ],
-    [
-        "ZqIxCeXX",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Person",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "ZqIxCeXX",
-        "http://bibfra.me/vocab/lite/name",
-        "Scholte, Jan Aart.",
-        {}
-    ],
-    [
-        "ZqIxCeXX",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Scholte, Jan Aart.",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/lite/controlCode",
-        "16575466",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/lite/dimensions",
-        "24 cm.",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/lite/extent",
-        "xxv, 397 p. ;",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "D4PHzUhr",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/lite/link",
-        "http://assets.cambridge.org/97805211/40553/cover/9780521140553.jpg",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/lite/link",
-        "http://www.loc.gov/catdir/enhancements/fy1114/2010052188-b.html",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/lite/link",
-        "http://www.loc.gov/catdir/enhancements/fy1114/2010052188-d.html",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/lite/link",
-        "http://www.loc.gov/catdir/enhancements/fy1114/2010052188-t.html",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/lite/title",
-        "Building global democracy? :",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/bibliographyNote",
-        "Includes bibliographical references (p. 343-380) and index.",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Accountability in private global governance: ICANN and civil society /",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Alnoor Ebrahim and Steven Herz --",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Carolyn Long and Nata Duvvury --",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Civil society and G8 accountability /",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Civil society and IMF accountability /",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Civil society and accountability in global governance of climate change /",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Civil society and accountability in the Commonwealth /",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Civil society and accountability of the United Nations /",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Civil society and accountability promotion in the global fund /",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Civil society and patterns of accountability in the OECD /",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Civil society and the WTO: contesting accountability /",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Civil society and the World Fair Trade Organisation: developing responsive accountability /",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Conclusion /",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Global governance, accountability and civil society /",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Heidi Ullrich --",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Introduction /",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Jan Aart Scholte --",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Jan Aart Scholte --",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Jan Aart Scholte --",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Jan Aart Scholte.",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Julie Gilson --",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Kerstin Martens --",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Marc Williams --",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Mawaki Chango --",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Morten Ougaard --",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Peter I. Hajnal --",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Peter Newell --",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Saied Reza Ameli --",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Structuring accountability: civil society and the Asia-Europe meeting /",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "The World Bank and democratic accountability: the role of civil society /",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "The organisation of the Islamic conference, accountability and civil society /",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Timothy M. Shaw and Pamela K. Mbabazi --",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/lccn",
-        "  2010052188",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/publication",
-        "uf6wThjn",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/systemControlNumber",
-        "(OCoLC)ocn671709910",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/titleRemainder",
-        "civil society and accountable global governance /",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "edited by Jan Aart Scholte.",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/rda/isbn",
-        "9780521140553",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/rda/isbn",
-        "9780521192194",
-        {}
-    ],
-    [
-        "gCR7c3Wx",
-        "http://bibfra.me/vocab/rda/isbnType",
-        "(pbk.)",
-        {}
-    ],
-    [
-        "k-E6MKqQ",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "k-E6MKqQ",
-        "http://bibfra.me/vocab/lite/name",
-        "Democratization.",
-        {}
-    ],
-    [
-        "k-E6MKqQ",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Democratization.",
-        {}
-    ],
-    [
-        "ks-KktuF",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Place",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "ks-KktuF",
-        "http://bibfra.me/vocab/lite/name",
-        "Cambridge, UK ;",
-        {}
-    ],
-    [
-        "ks-KktuF",
-        "http://bibfra.me/vocab/lite/name",
-        "New York :",
-        {}
-    ],
-    [
-        "ks-KktuF",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Cambridge, UK ;",
-        {}
-    ],
-    [
-        "ks-KktuF",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "New York :",
-        {}
-    ],
-    [
-        "ks-KktuF",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "Cambridge University Press,",
-        {}
-    ],
-    [
-        "ks-KktuF",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "2011.",
-        {}
-    ],
-    [
-        "l5FBC4GX",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "l5FBC4GX",
-        "http://bibfra.me/vocab/lite/name",
-        "Civil society.",
-        {}
-    ],
-    [
-        "l5FBC4GX",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Civil society.",
-        {}
-    ],
-    [
-        "pwmQRcFg",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "pwmQRcFg",
-        "http://bibfra.me/vocab/lite/name",
-        "International organization.",
-        {}
-    ],
-    [
-        "pwmQRcFg",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "International organization.",
-        {}
-    ],
-    [
-        "uf6wThjn",
+        "_Ym5ZLlN",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/ProviderEvent",
         {
@@ -1088,49 +666,475 @@
         }
     ],
     [
-        "uf6wThjn",
+        "_Ym5ZLlN",
         "http://bibfra.me/vocab/lite/providerAgent",
-        "4zX_582O",
+        "qr4kjwkf",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "uf6wThjn",
+        "_Ym5ZLlN",
         "http://bibfra.me/vocab/lite/providerDate",
         "2011.",
         {}
     ],
     [
-        "uf6wThjn",
+        "_Ym5ZLlN",
         "http://bibfra.me/vocab/lite/providerPlace",
-        "ks-KktuF",
+        "i0WftCOk",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "uf6wThjn",
+        "_Ym5ZLlN",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Cambridge, UK ;",
         {}
     ],
     [
-        "uf6wThjn",
+        "_Ym5ZLlN",
         "http://bibfra.me/vocab/marcext/sf-a",
         "New York :",
         {}
     ],
     [
-        "uf6wThjn",
+        "_Ym5ZLlN",
         "http://bibfra.me/vocab/marcext/sf-b",
         "Cambridge University Press,",
         {}
     ],
     [
-        "uf6wThjn",
+        "_Ym5ZLlN",
         "http://bibfra.me/vocab/marcext/sf-c",
         "2011.",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "16575466",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/lite/dimensions",
+        "24 cm.",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/lite/extent",
+        "xxv, 397 p. ;",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "D4PHzUhr",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "D4PHzUhr",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/lite/link",
+        "http://assets.cambridge.org/97805211/40553/cover/9780521140553.jpg",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/lite/link",
+        "http://www.loc.gov/catdir/enhancements/fy1114/2010052188-b.html",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/lite/link",
+        "http://www.loc.gov/catdir/enhancements/fy1114/2010052188-d.html",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/lite/link",
+        "http://www.loc.gov/catdir/enhancements/fy1114/2010052188-t.html",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/lite/title",
+        "Building global democracy? :",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/bibliographyNote",
+        "Includes bibliographical references (p. 343-380) and index.",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Accountability in private global governance: ICANN and civil society /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Alnoor Ebrahim and Steven Herz --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Carolyn Long and Nata Duvvury --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and G8 accountability /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and IMF accountability /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and accountability in global governance of climate change /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and accountability in the Commonwealth /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and accountability of the United Nations /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and accountability promotion in the global fund /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and patterns of accountability in the OECD /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and the WTO: contesting accountability /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Civil society and the World Fair Trade Organisation: developing responsive accountability /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Conclusion /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Global governance, accountability and civil society /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Heidi Ullrich --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Introduction /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Jan Aart Scholte --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Jan Aart Scholte --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Jan Aart Scholte --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Jan Aart Scholte.",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Julie Gilson --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Kerstin Martens --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Marc Williams --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Mawaki Chango --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Morten Ougaard --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Peter I. Hajnal --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Peter Newell --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Saied Reza Ameli --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Structuring accountability: civil society and the Asia-Europe meeting /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "The World Bank and democratic accountability: the role of civil society /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "The organisation of the Islamic conference, accountability and civil society /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Timothy M. Shaw and Pamela K. Mbabazi --",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/isbn",
+        "9780521192194",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/lccn",
+        "  2010052188",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/publication",
+        "_Ym5ZLlN",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/systemControlNumber",
+        "(OCoLC)ocn671709910",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/titleRemainder",
+        "civil society and accountable global governance /",
+        {}
+    ],
+    [
+        "gCR7c3Wx",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "edited by Jan Aart Scholte.",
+        {}
+    ],
+    [
+        "i0WftCOk",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Place",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "i0WftCOk",
+        "http://bibfra.me/vocab/lite/name",
+        "Cambridge, UK ;",
+        {}
+    ],
+    [
+        "i0WftCOk",
+        "http://bibfra.me/vocab/lite/name",
+        "New York :",
+        {}
+    ],
+    [
+        "i0WftCOk",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Cambridge, UK ;",
+        {}
+    ],
+    [
+        "i0WftCOk",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "New York :",
+        {}
+    ],
+    [
+        "i0WftCOk",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "Cambridge University Press,",
+        {}
+    ],
+    [
+        "i0WftCOk",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "2011.",
+        {}
+    ],
+    [
+        "qr4kjwkf",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Agent",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "qr4kjwkf",
+        "http://bibfra.me/vocab/lite/name",
+        "Cambridge University Press,",
+        {}
+    ],
+    [
+        "qr4kjwkf",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Cambridge, UK ;",
+        {}
+    ],
+    [
+        "qr4kjwkf",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "New York :",
+        {}
+    ],
+    [
+        "qr4kjwkf",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "Cambridge University Press,",
+        {}
+    ],
+    [
+        "qr4kjwkf",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "2011.",
+        {}
+    ],
+    [
+        "rn1nkWd4",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "rn1nkWd4",
+        "http://bibfra.me/vocab/lite/name",
+        "Democratization.",
+        {}
+    ],
+    [
+        "rn1nkWd4",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Democratization.",
         {}
     ]
 ]

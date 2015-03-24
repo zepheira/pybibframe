@@ -636,6 +636,38 @@ CONFIG_7 = None
 EXPECTED_7 = '''
 [
     [
+        "DoVM1hvc",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Person",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "DoVM1hvc",
+        "http://bibfra.me/vocab/lite/date",
+        "1878-1967.",
+        {}
+    ],
+    [
+        "DoVM1hvc",
+        "http://bibfra.me/vocab/lite/name",
+        "Sandburg, Carl,",
+        {}
+    ],
+    [
+        "DoVM1hvc",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Sandburg, Carl,",
+        {}
+    ],
+    [
+        "DoVM1hvc",
+        "http://bibfra.me/vocab/marcext/sf-d",
+        "1878-1967.",
+        {}
+    ],
+    [
         "Ht2FQsIY",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
@@ -650,38 +682,6 @@ EXPECTED_7 = '''
         {
             "@target-type": "@iri-ref"
         }
-    ],
-    [
-        "Uer3F4eM",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Person",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "Uer3F4eM",
-        "http://bibfra.me/vocab/lite/date",
-        "1878-1967.",
-        {}
-    ],
-    [
-        "Uer3F4eM",
-        "http://bibfra.me/vocab/lite/name",
-        "Sandburg, Carl,",
-        {}
-    ],
-    [
-        "Uer3F4eM",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Sandburg, Carl,",
-        {}
-    ],
-    [
-        "Uer3F4eM",
-        "http://bibfra.me/vocab/marcext/sf-d",
-        "1878-1967.",
-        {}
     ],
     [
         "XsrrgYIS",
@@ -710,7 +710,7 @@ EXPECTED_7 = '''
     [
         "XsrrgYIS",
         "http://bibfra.me/vocab/lite/creator",
-        "Uer3F4eM",
+        "DoVM1hvc",
         {
             "@target-type": "@iri-ref"
         }
@@ -760,80 +760,6 @@ CONFIG_8 = None
 
 EXPECTED_8 = '''
 [
-    [
-        "IoGxK0TV",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Work",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "IoGxK0TV",
-        "http://bibfra.me/vocab/lite/authorityLink",
-        "http://lccn.loc.gov/96646621",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "IoGxK0TV",
-        "http://bibfra.me/vocab/lite/authorityLink",
-        "http://www.ncbi.nlm.nih.gov/nlmcatalog?term=7505458",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "IoGxK0TV",
-        "http://bibfra.me/vocab/lite/authorityLink",
-        "http://www.worldcat.org/oclc/1478787",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "IoGxK0TV",
-        "http://bibfra.me/vocab/lite/title",
-        "Doklady biochemistry",
-        {}
-    ],
-    [
-        "IoGxK0TV",
-        "http://bibfra.me/vocab/marc/issn",
-        "0012-4958",
-        {}
-    ],
-    [
-        "IoGxK0TV",
-        "http://bibfra.me/vocab/marcext/sf-t",
-        "Doklady biochemistry",
-        {}
-    ],
-    [
-        "IoGxK0TV",
-        "http://bibfra.me/vocab/marcext/sf-w",
-        "(DLC)   96646621",
-        {}
-    ],
-    [
-        "IoGxK0TV",
-        "http://bibfra.me/vocab/marcext/sf-w",
-        "(DNLM)7505458",
-        {}
-    ],
-    [
-        "IoGxK0TV",
-        "http://bibfra.me/vocab/marcext/sf-w",
-        "(OCoLC)1478787",
-        {}
-    ],
-    [
-        "IoGxK0TV",
-        "http://bibfra.me/vocab/marcext/sf-x",
-        "0012-4958",
-        {}
-    ],
     [
         "PZ-aV_fa",
         "http://bibfra.me/purl/versa/type",
@@ -921,10 +847,84 @@ EXPECTED_8 = '''
     [
         "kP2G4QhW",
         "http://bibfra.me/vocab/relation/unionOf",
-        "IoGxK0TV",
+        "v7KconuS",
         {
             "@target-type": "@iri-ref"
         }
+    ],
+    [
+        "v7KconuS",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "v7KconuS",
+        "http://bibfra.me/vocab/lite/authorityLink",
+        "http://lccn.loc.gov/96646621",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "v7KconuS",
+        "http://bibfra.me/vocab/lite/authorityLink",
+        "http://www.ncbi.nlm.nih.gov/nlmcatalog?term=7505458",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "v7KconuS",
+        "http://bibfra.me/vocab/lite/authorityLink",
+        "http://www.worldcat.org/oclc/1478787",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "v7KconuS",
+        "http://bibfra.me/vocab/lite/title",
+        "Doklady biochemistry",
+        {}
+    ],
+    [
+        "v7KconuS",
+        "http://bibfra.me/vocab/marc/issn",
+        "0012-4958",
+        {}
+    ],
+    [
+        "v7KconuS",
+        "http://bibfra.me/vocab/marcext/sf-t",
+        "Doklady biochemistry",
+        {}
+    ],
+    [
+        "v7KconuS",
+        "http://bibfra.me/vocab/marcext/sf-w",
+        "(DLC)   96646621",
+        {}
+    ],
+    [
+        "v7KconuS",
+        "http://bibfra.me/vocab/marcext/sf-w",
+        "(DNLM)7505458",
+        {}
+    ],
+    [
+        "v7KconuS",
+        "http://bibfra.me/vocab/marcext/sf-w",
+        "(OCoLC)1478787",
+        {}
+    ],
+    [
+        "v7KconuS",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "0012-4958",
+        {}
     ]
 ]
 '''
@@ -945,6 +945,26 @@ CONFIG_9 = None
 EXPECTED_9 = '''
 [
     [
+        "M7O9Q9np",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Place",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "M7O9Q9np",
+        "http://bibfra.me/vocab/lite/name",
+        "Tokyo.",
+        {}
+    ],
+    [
+        "M7O9Q9np",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Tokyo.",
+        {}
+    ],
+    [
         "PZ-aV_fa",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
@@ -963,33 +983,13 @@ EXPECTED_9 = '''
     [
         "PZ-aV_fa",
         "http://bibfra.me/vocab/marc/publication",
-        "_Pdjp3p_",
+        "fSuzQL_M",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "ZFkTPkl8",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Place",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "ZFkTPkl8",
-        "http://bibfra.me/vocab/lite/name",
-        "Tokyo.",
-        {}
-    ],
-    [
-        "ZFkTPkl8",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Tokyo.",
-        {}
-    ],
-    [
-        "_Pdjp3p_",
+        "fSuzQL_M",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/ProviderEvent",
         {
@@ -997,15 +997,15 @@ EXPECTED_9 = '''
         }
     ],
     [
-        "_Pdjp3p_",
+        "fSuzQL_M",
         "http://bibfra.me/vocab/lite/providerPlace",
-        "ZFkTPkl8",
+        "M7O9Q9np",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "_Pdjp3p_",
+        "fSuzQL_M",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Tokyo.",
         {}
@@ -1292,7 +1292,7 @@ EXPECTED_11 = '''
 
 SNIPPET_12 = '''
 <collection xmlns="http://www.loc.gov/MARC21/slim">
-<record xmlns="http://www.loc.gov/MARC21/slim"><controlfield tag="001">881466</controlfield></record>
+<record><controlfield tag="001">881466</controlfield></record>
 </collection>
 '''
 
@@ -1331,6 +1331,197 @@ EXPECTED_12 = '''
         }
     ]
 ]'''
+
+SNIPPET_13 = '''
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <leader>02173pam a22004694a 4500</leader>
+    <controlfield tag="001">1247500</controlfield>
+    <controlfield tag="008">050506s2005    gw a     b    001 0 eng  </controlfield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">9783136128046 (GTV)</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">3136128044 (GTV)</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">9781588902153 (TNY)</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">1588902153 (TNY)</subfield>
+    </datafield>
+  </record>
+</collection>
+'''
+
+CONFIG_13 = {}
+
+EXPECTED_13 = '''
+[
+    [
+        "DJcNRzpX",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "DJcNRzpX",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "1247500",
+        {}
+    ],
+    [
+        "DJcNRzpX",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "kP2G4QhW",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "DJcNRzpX",
+        "http://bibfra.me/vocab/marc/isbn",
+        "9781588902153",
+        {}
+    ],
+    [
+        "DJcNRzpX",
+        "http://bibfra.me/vocab/marc/isbnType",
+        "(TNY)",
+        {}
+    ],
+    [
+        "k7xR7AF3",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "k7xR7AF3",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "k7xR7AF3",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "1247500",
+        {}
+    ],
+    [
+        "k7xR7AF3",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "kP2G4QhW",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "k7xR7AF3",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "kP2G4QhW",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "k7xR7AF3",
+        "http://bibfra.me/vocab/marc/isbn",
+        "9783136128046",
+        {}
+    ],
+    [
+        "k7xR7AF3",
+        "http://bibfra.me/vocab/marc/isbnType",
+        "(GTV)",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/Books",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/LanguageMaterial",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/illustrations",
+        "illustrations",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/index",
+        "index present",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/literaryForm",
+        "non fiction",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "bibliography",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marcext/tag-008",
+        "050506s2005    gw a     b    001 0 eng  ",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marcext/tag-020-XX-a",
+        "1588902153 (TNY)",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marcext/tag-020-XX-a",
+        "3136128044 (GTV)",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marcext/tag-020-XX-a",
+        "9781588902153 (TNY)",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marcext/tag-020-XX-a",
+        "9783136128046 (GTV)",
+        {}
+    ]
+]
+'''
 
 all_snippets = sorted([ sym for sym in globals() if sym.startswith('SNIPPET') ])
 all_config = sorted([ sym for sym in globals() if sym.startswith('CONFIG') ])

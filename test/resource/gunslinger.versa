@@ -55,6 +55,12 @@
     ],
     [
         "0LD4ID6o",
+        "http://bibfra.me/vocab/marc/isbn",
+        "0452261341",
+        {}
+    ],
+    [
+        "0LD4ID6o",
         "http://bibfra.me/vocab/marc/lccn",
         "   88009938 ",
         {}
@@ -68,7 +74,7 @@
     [
         "0LD4ID6o",
         "http://bibfra.me/vocab/marc/publication",
-        "CUePrkKA",
+        "bGNqIoRF",
         {
             "@target-type": "@iri-ref"
         }
@@ -80,45 +86,39 @@
         {}
     ],
     [
-        "0LD4ID6o",
-        "http://bibfra.me/vocab/rda/isbn",
-        "0452261341",
-        {}
-    ],
-    [
-        "29emyrsh",
+        "4PKa2u0v",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Agent",
+        "http://bibfra.me/vocab/lite/Person",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "29emyrsh",
+        "4PKa2u0v",
+        "http://bibfra.me/vocab/lite/date",
+        "1947-",
+        {}
+    ],
+    [
+        "4PKa2u0v",
         "http://bibfra.me/vocab/lite/name",
-        "New American Library,",
+        "King, Stephen,",
         {}
     ],
     [
-        "29emyrsh",
+        "4PKa2u0v",
         "http://bibfra.me/vocab/marcext/sf-a",
-        "New York, NY :",
+        "King, Stephen,",
         {}
     ],
     [
-        "29emyrsh",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "New American Library,",
+        "4PKa2u0v",
+        "http://bibfra.me/vocab/marcext/sf-d",
+        "1947-",
         {}
     ],
     [
-        "29emyrsh",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "1988, c1982.",
-        {}
-    ],
-    [
-        "B4Si4egk",
+        "4qEMWu1K",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Genre",
         {
@@ -126,137 +126,57 @@
         }
     ],
     [
-        "B4Si4egk",
+        "4qEMWu1K",
         "http://bibfra.me/vocab/lite/name",
         "Fantasy fiction.",
         {}
     ],
     [
-        "B4Si4egk",
+        "4qEMWu1K",
         "http://bibfra.me/vocab/marc/source",
         "gsafd",
         {}
     ],
     [
-        "B4Si4egk",
+        "4qEMWu1K",
         "http://bibfra.me/vocab/marcext/sf-2",
         "gsafd",
         {}
     ],
     [
-        "B4Si4egk",
+        "4qEMWu1K",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Fantasy fiction.",
         {}
     ],
     [
-        "CUePrkKA",
+        "Dqvbf8gU",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/ProviderEvent",
+        "http://bibfra.me/vocab/lite/Agent",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "CUePrkKA",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "29emyrsh",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "CUePrkKA",
-        "http://bibfra.me/vocab/lite/providerDate",
-        "1988, c1982.",
+        "Dqvbf8gU",
+        "http://bibfra.me/vocab/lite/name",
+        "New American Library,",
         {}
     ],
     [
-        "CUePrkKA",
-        "http://bibfra.me/vocab/lite/providerPlace",
-        "UJdiCXY3",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "CUePrkKA",
+        "Dqvbf8gU",
         "http://bibfra.me/vocab/marcext/sf-a",
         "New York, NY :",
         {}
     ],
     [
-        "CUePrkKA",
+        "Dqvbf8gU",
         "http://bibfra.me/vocab/marcext/sf-b",
         "New American Library,",
         {}
     ],
     [
-        "CUePrkKA",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "1988, c1982.",
-        {}
-    ],
-    [
-        "HGRtYKwv",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "HGRtYKwv",
-        "http://bibfra.me/vocab/lite/name",
-        "Roland (Fictitious character : King)",
-        {}
-    ],
-    [
-        "HGRtYKwv",
-        "http://bibfra.me/vocab/marc/formSubdivision",
-        "Fiction.",
-        {}
-    ],
-    [
-        "HGRtYKwv",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Roland (Fictitious character : King)",
-        {}
-    ],
-    [
-        "HGRtYKwv",
-        "http://bibfra.me/vocab/marcext/sf-v",
-        "Fiction.",
-        {}
-    ],
-    [
-        "UJdiCXY3",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Place",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "UJdiCXY3",
-        "http://bibfra.me/vocab/lite/name",
-        "New York, NY :",
-        {}
-    ],
-    [
-        "UJdiCXY3",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "New York, NY :",
-        {}
-    ],
-    [
-        "UJdiCXY3",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "New American Library,",
-        {}
-    ],
-    [
-        "UJdiCXY3",
+        "Dqvbf8gU",
         "http://bibfra.me/vocab/marcext/sf-c",
         "1988, c1982.",
         {}
@@ -288,7 +208,7 @@
     [
         "_1ESumkq",
         "http://bibfra.me/vocab/lite/creator",
-        "uBIf_CV-",
+        "4PKa2u0v",
         {
             "@target-type": "@iri-ref"
         }
@@ -296,7 +216,7 @@
     [
         "_1ESumkq",
         "http://bibfra.me/vocab/lite/genre",
-        "B4Si4egk",
+        "4qEMWu1K",
         {
             "@target-type": "@iri-ref"
         }
@@ -304,7 +224,7 @@
     [
         "_1ESumkq",
         "http://bibfra.me/vocab/lite/subject",
-        "HGRtYKwv",
+        "qK3z_U-i",
         {
             "@target-type": "@iri-ref"
         }
@@ -508,35 +428,115 @@
         {}
     ],
     [
-        "uBIf_CV-",
+        "_D8n5qDj",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Person",
+        "http://bibfra.me/vocab/lite/Place",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "uBIf_CV-",
-        "http://bibfra.me/vocab/lite/date",
-        "1947-",
-        {}
-    ],
-    [
-        "uBIf_CV-",
+        "_D8n5qDj",
         "http://bibfra.me/vocab/lite/name",
-        "King, Stephen,",
+        "New York, NY :",
         {}
     ],
     [
-        "uBIf_CV-",
+        "_D8n5qDj",
         "http://bibfra.me/vocab/marcext/sf-a",
-        "King, Stephen,",
+        "New York, NY :",
         {}
     ],
     [
-        "uBIf_CV-",
-        "http://bibfra.me/vocab/marcext/sf-d",
-        "1947-",
+        "_D8n5qDj",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "New American Library,",
+        {}
+    ],
+    [
+        "_D8n5qDj",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "1988, c1982.",
+        {}
+    ],
+    [
+        "bGNqIoRF",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/ProviderEvent",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "bGNqIoRF",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "Dqvbf8gU",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "bGNqIoRF",
+        "http://bibfra.me/vocab/lite/providerDate",
+        "1988, c1982.",
+        {}
+    ],
+    [
+        "bGNqIoRF",
+        "http://bibfra.me/vocab/lite/providerPlace",
+        "_D8n5qDj",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "bGNqIoRF",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "New York, NY :",
+        {}
+    ],
+    [
+        "bGNqIoRF",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "New American Library,",
+        {}
+    ],
+    [
+        "bGNqIoRF",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "1988, c1982.",
+        {}
+    ],
+    [
+        "qK3z_U-i",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "qK3z_U-i",
+        "http://bibfra.me/vocab/lite/name",
+        "Roland (Fictitious character : King)",
+        {}
+    ],
+    [
+        "qK3z_U-i",
+        "http://bibfra.me/vocab/marc/formSubdivision",
+        "Fiction.",
+        {}
+    ],
+    [
+        "qK3z_U-i",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Roland (Fictitious character : King)",
+        {}
+    ],
+    [
+        "qK3z_U-i",
+        "http://bibfra.me/vocab/marcext/sf-v",
+        "Fiction.",
         {}
     ]
 ]
