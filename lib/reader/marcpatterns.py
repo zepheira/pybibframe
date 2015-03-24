@@ -432,34 +432,64 @@ BFLITE_TRANSFORMS = {
     '600': onwork.materialize(BL+'Person', 
                               BL+'subject', 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('f'), subfield('g'), subfield('h'), subfield('j'), subfield('k'), subfield('l'), subfield('m'), subfield('n'), subfield('o'), subfield('p'), subfield('q'), subfield('r'), subfield('s'), subfield('t'), subfield('u'), subfield('v'), subfield('x'), subfield('y'), subfield('z')),
-                              links={BL+'name': subfield('a'), MARC+'numeration': subfield('b'), MARC+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), MARC+'formSubdivision': subfield('v'), MARC+'generalSubdivision': subfield('x'), MARC+'chronologicalSubdivision': subfield('y'), MARC+'geographicSubdivision': subfield('z'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))}),
+                              links={BL+'name': subfield('a'), MARC+'numeration': subfield('b'), MARC+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), MARC+'generalSubdivision': subfield('x'), MARC+'chronologicalSubdivision': subfield('y'),  MARC+'formSubdivision': subfield('v'),  MARC+'geographicSubdivision': subfield('z'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))}),
 
-    '610': onwork.materialize(BL+'Organization', 
+    '600$v': onwork.materialize(BL + 'Genre',
+                                BL + 'genre',
+                                unique=values(subfield('v')),
+                                links={BL + 'name': subfield('v')}),
+
+    '610': onwork.materialize(BL+'Organization',
                               BL+'subject', 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('f'), subfield('g'), subfield('h'), subfield('k'), subfield('l'), subfield('m'), subfield('n'), subfield('o'), subfield('p'), subfield('r'), subfield('s'), subfield('t'), subfield('u'), subfield('v'), subfield('x'), subfield('y'), subfield('z')),
-                              links={BL+'name': subfield('a'), MARC+'subordinateUnit': subfield('b'), MARC+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), MARC+'formSubdivision': subfield('v'), MARC+'generalSubdivision': subfield('x'), MARC+'chronologicalSubdivision': subfield('y'), MARC+'geographicSubdivision': subfield('z'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))}),
+                              links={BL+'name': subfield('a'), MARC+'subordinateUnit': subfield('b'), MARC+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), MARC+'generalSubdivision': subfield('x'), MARC+'chronologicalSubdivision': subfield('y'), MARC+'formSubdivision': subfield('v'), MARC+'geographicSubdivision': subfield('z'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))}),
+
+    '610$v': onwork.materialize(BL + 'Genre',
+                                BL + 'genre',
+                                unique=values(subfield('v')),
+                                links={BL + 'name': subfield('v')}),
 
     '611': onwork.materialize(BL+'Meeting', 
                               BL+'subject', 
                               unique=values(subfield('a'), subfield('c'), subfield('d'), subfield('e'), subfield('f'), subfield('g'), subfield('h'), subfield('k'), subfield('l'), subfield('n'), subfield('p'), subfield('q'), subfield('s'), subfield('t'), subfield('u'), subfield('v'), subfield('x'), subfield('y'), subfield('z')),
-                              links={BL+'name': subfield('a'), MARC+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), MARC+'formSubdivision': subfield('v'), MARC+'generalSubdivision': subfield('x'), MARC+'chronologicalSubdivision': subfield('y'), MARC+'geographicSubdivision': subfield('z'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))}),
+                              links={BL+'name': subfield('a'), MARC+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), MARC+'generalSubdivision': subfield('x'), MARC+'chronologicalSubdivision': subfield('y'), MARC+'formSubdivision': subfield('v'), MARC+'geographicSubdivision': subfield('z'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))}),
+
+    '611$v': onwork.materialize(BL + 'Genre',
+                                BL + 'genre',
+                                unique=values(subfield('v')),
+                                links={BL + 'name': subfield('v')}),
 
     '630': onwork.materialize(BL+'Collection', 
                               BL+'subject', 
                               unique=all_subfields,
-                              links={BL+'title': subfield('a'), BL+'language': subfield('l'), BL+'medium': subfield('h'), MARC+'nameOfPart': subfield('p'), MARC+'formSubdivision': subfield('v'), MARC+'generalSubdivision': subfield('x'), MARC+'chronologicalSubdivision': subfield('y'), MARC+'geographicSubdivision': subfield('z')}),
+                              links={BL+'title': subfield('a'), BL+'language': subfield('l'), BL+'medium': subfield('h'), MARC+'nameOfPart': subfield('p'), MARC+'generalSubdivision': subfield('x'), MARC+'chronologicalSubdivision': subfield('y'), MARC+'formSubdivision': subfield('v'), MARC+'geographicSubdivision': subfield('z')}),
+
+    '630$v': onwork.materialize(BL + 'Genre',
+                                BL + 'genre',
+                                unique=values(subfield('v')),
+                                links={BL + 'name': subfield('v')}),
 
     '650': onwork.materialize(BL+'Topic', 
                               BL+'subject', 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('v'), subfield('x'), subfield('y'), subfield('z')),
-                              links={BL+'name': subfield('a'), MARC+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), MARC+'formSubdivision': subfield('v'), MARC+'generalSubdivision': subfield('x'), MARC+'chronologicalSubdivision': subfield('y'), MARC+'geographicSubdivision': subfield('z'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))}),
+                              links={BL+'name': subfield('a'), MARC+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), MARC+'generalSubdivision': subfield('x'), MARC+'chronologicalSubdivision': subfield('y'), MARC+'formSubdivision': subfield('v'), MARC+'geographicSubdivision': subfield('z'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))}),
+
+    '650$v': onwork.materialize(BL + 'Genre',
+                                BL + 'genre',
+                                unique=values(subfield('v')),
+                                links={BL + 'name': subfield('v')}),
 
     '651': onwork.materialize(BL+'Place', 
                               BL+'subject', 
                               unique=values(subfield('a'), subfield('g'), subfield('v'), subfield('x'), subfield('y'), subfield('z')),
-                              links={BL+'name': subfield('a'), BL+'date': subfield('d'), MARC+'formSubdivision': subfield('v'), MARC+'generalSubdivision': subfield('x'), MARC+'chronologicalSubdivision': subfield('y'), MARC+'geographicSubdivision': subfield('z'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))}),
-    
-    '655': onwork.materialize(BL+'Genre', 
+                              links={BL+'name': subfield('a'), BL+'date': subfield('d'), MARC+'generalSubdivision': subfield('x'), MARC+'chronologicalSubdivision': subfield('y'), MARC+'formSubdivision': subfield('v'), MARC+'geographicSubdivision': subfield('z'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))}),
+
+    '651$v': onwork.materialize(BL + 'Genre',
+                                BL + 'genre',
+                                unique=values(subfield('v')),
+                                links={BL + 'name': subfield('v')}),
+
+    '655': onwork.materialize(BL+'Genre',
                               BL+'genre', 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('v'), subfield('x'), subfield('y'), subfield('z')),
                               links={BL+'name': subfield('a'), MARC+'source': subfield('2'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))}),
