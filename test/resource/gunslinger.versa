@@ -1,91 +1,5 @@
 [
     [
-        "0LD4ID6o",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "0LD4ID6o",
-        "http://bibfra.me/vocab/lite/controlCode",
-        "547530",
-        {}
-    ],
-    [
-        "0LD4ID6o",
-        "http://bibfra.me/vocab/lite/dimensions",
-        "23 cm.",
-        {}
-    ],
-    [
-        "0LD4ID6o",
-        "http://bibfra.me/vocab/lite/extent",
-        "224 p. :",
-        {}
-    ],
-    [
-        "0LD4ID6o",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "_1ESumkq",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "0LD4ID6o",
-        "http://bibfra.me/vocab/lite/link",
-        "http://www.loc.gov/catdir/enhancements/fy1206/88009938-b.html",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "0LD4ID6o",
-        "http://bibfra.me/vocab/lite/note",
-        "\"A Plume book.\"",
-        {}
-    ],
-    [
-        "0LD4ID6o",
-        "http://bibfra.me/vocab/lite/title",
-        "The gunslinger /",
-        {}
-    ],
-    [
-        "0LD4ID6o",
-        "http://bibfra.me/vocab/marc/isbn",
-        "0452261341",
-        {}
-    ],
-    [
-        "0LD4ID6o",
-        "http://bibfra.me/vocab/marc/lccn",
-        "   88009938 ",
-        {}
-    ],
-    [
-        "0LD4ID6o",
-        "http://bibfra.me/vocab/marc/otherPhysicalDetails",
-        "ill. (some col.) ;",
-        {}
-    ],
-    [
-        "0LD4ID6o",
-        "http://bibfra.me/vocab/marc/publication",
-        "bGNqIoRF",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "0LD4ID6o",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "by Stephen King ; illustrated by Michael Whelan.",
-        {}
-    ],
-    [
         "4PKa2u0v",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Person",
@@ -147,6 +61,32 @@
         "4qEMWu1K",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Fantasy fiction.",
+        {}
+    ],
+    [
+        "BGgO5kkL",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Genre",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "BGgO5kkL",
+        "http://bibfra.me/vocab/lite/name",
+        "Fiction.",
+        {}
+    ],
+    [
+        "BGgO5kkL",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Roland (Fictitious character : King)",
+        {}
+    ],
+    [
+        "BGgO5kkL",
+        "http://bibfra.me/vocab/marcext/sf-v",
+        "Fiction.",
         {}
     ],
     [
@@ -217,6 +157,14 @@
         "_1ESumkq",
         "http://bibfra.me/vocab/lite/genre",
         "4qEMWu1K",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "_1ESumkq",
+        "http://bibfra.me/vocab/lite/genre",
+        "BGgO5kkL",
         {
             "@target-type": "@iri-ref"
         }
@@ -537,6 +485,92 @@
         "qK3z_U-i",
         "http://bibfra.me/vocab/marcext/sf-v",
         "Fiction.",
+        {}
+    ],
+    [
+        "uwutzspo",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "uwutzspo",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "547530",
+        {}
+    ],
+    [
+        "uwutzspo",
+        "http://bibfra.me/vocab/lite/dimensions",
+        "23 cm.",
+        {}
+    ],
+    [
+        "uwutzspo",
+        "http://bibfra.me/vocab/lite/extent",
+        "224 p. :",
+        {}
+    ],
+    [
+        "uwutzspo",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "_1ESumkq",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "uwutzspo",
+        "http://bibfra.me/vocab/lite/link",
+        "http://www.loc.gov/catdir/enhancements/fy1206/88009938-b.html",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "uwutzspo",
+        "http://bibfra.me/vocab/lite/note",
+        "\"A Plume book.\"",
+        {}
+    ],
+    [
+        "uwutzspo",
+        "http://bibfra.me/vocab/lite/title",
+        "The gunslinger /",
+        {}
+    ],
+    [
+        "uwutzspo",
+        "http://bibfra.me/vocab/marc/isbn",
+        "978045226134",
+        {}
+    ],
+    [
+        "uwutzspo",
+        "http://bibfra.me/vocab/marc/lccn",
+        "   88009938 ",
+        {}
+    ],
+    [
+        "uwutzspo",
+        "http://bibfra.me/vocab/marc/otherPhysicalDetails",
+        "ill. (some col.) ;",
+        {}
+    ],
+    [
+        "uwutzspo",
+        "http://bibfra.me/vocab/marc/publication",
+        "bGNqIoRF",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "uwutzspo",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "by Stephen King ; illustrated by Michael Whelan.",
         {}
     ]
 ]

@@ -1359,7 +1359,7 @@ CONFIG_13 = {}
 EXPECTED_13 = '''
 [
     [
-        "DJcNRzpX",
+        "84XAPq4b",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
         {
@@ -1367,13 +1367,13 @@ EXPECTED_13 = '''
         }
     ],
     [
-        "DJcNRzpX",
+        "84XAPq4b",
         "http://bibfra.me/vocab/lite/controlCode",
         "1247500",
         {}
     ],
     [
-        "DJcNRzpX",
+        "84XAPq4b",
         "http://bibfra.me/vocab/lite/instantiates",
         "kP2G4QhW",
         {
@@ -1381,65 +1381,15 @@ EXPECTED_13 = '''
         }
     ],
     [
-        "DJcNRzpX",
+        "84XAPq4b",
         "http://bibfra.me/vocab/marc/isbn",
-        "9781588902153",
+        "978158890215",
         {}
     ],
     [
-        "DJcNRzpX",
+        "84XAPq4b",
         "http://bibfra.me/vocab/marc/isbnType",
         "(TNY)",
-        {}
-    ],
-    [
-        "k7xR7AF3",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "k7xR7AF3",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "k7xR7AF3",
-        "http://bibfra.me/vocab/lite/controlCode",
-        "1247500",
-        {}
-    ],
-    [
-        "k7xR7AF3",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "kP2G4QhW",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "k7xR7AF3",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "kP2G4QhW",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "k7xR7AF3",
-        "http://bibfra.me/vocab/marc/isbn",
-        "9783136128046",
-        {}
-    ],
-    [
-        "k7xR7AF3",
-        "http://bibfra.me/vocab/marc/isbnType",
-        "(GTV)",
         {}
     ],
     [
@@ -1518,6 +1468,56 @@ EXPECTED_13 = '''
         "kP2G4QhW",
         "http://bibfra.me/vocab/marcext/tag-020-XX-a",
         "9783136128046 (GTV)",
+        {}
+    ],
+    [
+        "tNdA2WkE",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "tNdA2WkE",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "tNdA2WkE",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "1247500",
+        {}
+    ],
+    [
+        "tNdA2WkE",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "kP2G4QhW",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "tNdA2WkE",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "kP2G4QhW",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "tNdA2WkE",
+        "http://bibfra.me/vocab/marc/isbn",
+        "978313612804",
+        {}
+    ],
+    [
+        "tNdA2WkE",
+        "http://bibfra.me/vocab/marc/isbnType",
+        "(GTV)",
         {}
     ]
 ]

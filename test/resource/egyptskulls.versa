@@ -498,6 +498,90 @@
         {}
     ],
     [
+        "SjL0m0IW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "SjL0m0IW",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "1481333",
+        {}
+    ],
+    [
+        "SjL0m0IW",
+        "http://bibfra.me/vocab/lite/dimensions",
+        "30 cm.",
+        {}
+    ],
+    [
+        "SjL0m0IW",
+        "http://bibfra.me/vocab/lite/extent",
+        "143 p. :",
+        {}
+    ],
+    [
+        "SjL0m0IW",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "JL0Q18QQ",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "SjL0m0IW",
+        "http://bibfra.me/vocab/lite/title",
+        "An appraisal of the skulls and dentition of ancient Egyptians :",
+        {}
+    ],
+    [
+        "SjL0m0IW",
+        "http://bibfra.me/vocab/marc/bibliographyNote",
+        "Includes bibliographical references (p. 137-143).",
+        {}
+    ],
+    [
+        "SjL0m0IW",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "The medical papyri -- Geography, climate and diet in ancient Egypt and the consequential medical conditions -- The title of dentist in ancient egyptian history and conflicting evidence of the practice of restorative dentistry -- Previous dental examinations of ancient skeletal and mummified material -- Materials and methods -- Results -- Discussion .",
+        {}
+    ],
+    [
+        "SjL0m0IW",
+        "http://bibfra.me/vocab/marc/isbn",
+        "978140730282",
+        {}
+    ],
+    [
+        "SjL0m0IW",
+        "http://bibfra.me/vocab/marc/otherPhysicalDetails",
+        "ill. ;",
+        {}
+    ],
+    [
+        "SjL0m0IW",
+        "http://bibfra.me/vocab/marc/publication",
+        "5fNfTDRg",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "SjL0m0IW",
+        "http://bibfra.me/vocab/marc/titleRemainder",
+        "highlighting the pathology and speculating on the influence of diet and environment /",
+        {}
+    ],
+    [
+        "SjL0m0IW",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "Judith Miller.",
+        {}
+    ],
+    [
         "_Xc0W5FI",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Person",
@@ -567,90 +651,6 @@
         "lZVMGYL1",
         "http://bibfra.me/vocab/marcext/sf-c",
         "2008.",
-        {}
-    ],
-    [
-        "qClcGJcC",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "qClcGJcC",
-        "http://bibfra.me/vocab/lite/controlCode",
-        "1481333",
-        {}
-    ],
-    [
-        "qClcGJcC",
-        "http://bibfra.me/vocab/lite/dimensions",
-        "30 cm.",
-        {}
-    ],
-    [
-        "qClcGJcC",
-        "http://bibfra.me/vocab/lite/extent",
-        "143 p. :",
-        {}
-    ],
-    [
-        "qClcGJcC",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "JL0Q18QQ",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "qClcGJcC",
-        "http://bibfra.me/vocab/lite/title",
-        "An appraisal of the skulls and dentition of ancient Egyptians :",
-        {}
-    ],
-    [
-        "qClcGJcC",
-        "http://bibfra.me/vocab/marc/bibliographyNote",
-        "Includes bibliographical references (p. 137-143).",
-        {}
-    ],
-    [
-        "qClcGJcC",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "The medical papyri -- Geography, climate and diet in ancient Egypt and the consequential medical conditions -- The title of dentist in ancient egyptian history and conflicting evidence of the practice of restorative dentistry -- Previous dental examinations of ancient skeletal and mummified material -- Materials and methods -- Results -- Discussion .",
-        {}
-    ],
-    [
-        "qClcGJcC",
-        "http://bibfra.me/vocab/marc/isbn",
-        "9781407302829",
-        {}
-    ],
-    [
-        "qClcGJcC",
-        "http://bibfra.me/vocab/marc/otherPhysicalDetails",
-        "ill. ;",
-        {}
-    ],
-    [
-        "qClcGJcC",
-        "http://bibfra.me/vocab/marc/publication",
-        "5fNfTDRg",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "qClcGJcC",
-        "http://bibfra.me/vocab/marc/titleRemainder",
-        "highlighting the pathology and speculating on the influence of diet and environment /",
-        {}
-    ],
-    [
-        "qClcGJcC",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "Judith Miller.",
         {}
     ],
     [
