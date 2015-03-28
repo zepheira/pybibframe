@@ -170,17 +170,17 @@ BFLITE_TRANSFORMS = {
     '100': onwork.materialize(BL+'Person', 
                               values(BL+'creator', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')),
-                              links={BL+'name': subfield('a'), MARC+'numeration': subfield('b'), MARC+'titles': subfield('c'), BL+'date': subfield('d'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0')), MARC+'additionalName': subfield('q')}),
+                              links={BL+'name': subfield('a'), MARC+'numeration': subfield('b'), MARC+'titles': subfield('c'), BL+'date': subfield('d'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('0'))), MARC+'additionalName': subfield('q')}),
 
     '110': onwork.materialize(BL+'Organization', 
                               values(BL+'creator', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')),
-                              links={BL+'name': subfield('a'), MARC+'subordinateUnit': subfield('b'), BL+'date': subfield('d'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0')), MARC+'additionalName': subfield('q')}),
+                              links={BL+'name': subfield('a'), MARC+'subordinateUnit': subfield('b'), BL+'date': subfield('d'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('0'))), MARC+'additionalName': subfield('q')}),
 
     '111': onwork.materialize(BL+'Meeting', 
                               values(BL+'creator', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)), 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')),
-                              links={BL+'name': subfield('a'), BL+'date': subfield('d'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0')), MARC+'additionalName': subfield('q')}),
+                              links={BL+'name': subfield('a'), BL+'date': subfield('d'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('0'))), MARC+'additionalName': subfield('q')}),
 
     '210$a': oninstance.rename(rel=MARC+'abbreviatedTitle'),
     '222$a': oninstance.rename(rel=MARC+'keyTitle'),
@@ -432,7 +432,7 @@ BFLITE_TRANSFORMS = {
     '600': onwork.materialize(BL+'Person', 
                               BL+'subject', 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('f'), subfield('g'), subfield('h'), subfield('j'), subfield('k'), subfield('l'), subfield('m'), subfield('n'), subfield('o'), subfield('p'), subfield('q'), subfield('r'), subfield('s'), subfield('t'), subfield('u'), subfield('v'), subfield('x'), subfield('y'), subfield('z')),
-                              links={BL+'name': subfield('a'), MARC+'numeration': subfield('b'), MARC+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), MARC+'generalSubdivision': subfield('x'), MARC+'chronologicalSubdivision': subfield('y'),  MARC+'formSubdivision': subfield('v'),  MARC+'geographicSubdivision': subfield('z'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))}),
+                              links={BL+'name': subfield('a'), MARC+'numeration': subfield('b'), MARC+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), MARC+'generalSubdivision': subfield('x'), MARC+'chronologicalSubdivision': subfield('y'),  MARC+'formSubdivision': subfield('v'),  MARC+'geographicSubdivision': subfield('z'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('0')))}),
 
     '600$v': onwork.materialize(BL + 'Genre',
                                 BL + 'genre',
@@ -442,7 +442,7 @@ BFLITE_TRANSFORMS = {
     '610': onwork.materialize(BL+'Organization',
                               BL+'subject', 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('f'), subfield('g'), subfield('h'), subfield('k'), subfield('l'), subfield('m'), subfield('n'), subfield('o'), subfield('p'), subfield('r'), subfield('s'), subfield('t'), subfield('u'), subfield('v'), subfield('x'), subfield('y'), subfield('z')),
-                              links={BL+'name': subfield('a'), MARC+'subordinateUnit': subfield('b'), MARC+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), MARC+'generalSubdivision': subfield('x'), MARC+'chronologicalSubdivision': subfield('y'), MARC+'formSubdivision': subfield('v'), MARC+'geographicSubdivision': subfield('z'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))}),
+                              links={BL+'name': subfield('a'), MARC+'subordinateUnit': subfield('b'), MARC+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), MARC+'generalSubdivision': subfield('x'), MARC+'chronologicalSubdivision': subfield('y'), MARC+'formSubdivision': subfield('v'), MARC+'geographicSubdivision': subfield('z'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('0')))}),
 
     '610$v': onwork.materialize(BL + 'Genre',
                                 BL + 'genre',
@@ -452,7 +452,7 @@ BFLITE_TRANSFORMS = {
     '611': onwork.materialize(BL+'Meeting', 
                               BL+'subject', 
                               unique=values(subfield('a'), subfield('c'), subfield('d'), subfield('e'), subfield('f'), subfield('g'), subfield('h'), subfield('k'), subfield('l'), subfield('n'), subfield('p'), subfield('q'), subfield('s'), subfield('t'), subfield('u'), subfield('v'), subfield('x'), subfield('y'), subfield('z')),
-                              links={BL+'name': subfield('a'), MARC+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), MARC+'generalSubdivision': subfield('x'), MARC+'chronologicalSubdivision': subfield('y'), MARC+'formSubdivision': subfield('v'), MARC+'geographicSubdivision': subfield('z'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))}),
+                              links={BL+'name': subfield('a'), MARC+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), MARC+'generalSubdivision': subfield('x'), MARC+'chronologicalSubdivision': subfield('y'), MARC+'formSubdivision': subfield('v'), MARC+'geographicSubdivision': subfield('z'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('0')))}),
 
     '611$v': onwork.materialize(BL + 'Genre',
                                 BL + 'genre',
@@ -472,7 +472,7 @@ BFLITE_TRANSFORMS = {
     '650': onwork.materialize(BL+'Topic', 
                               BL+'subject', 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('v'), subfield('x'), subfield('y'), subfield('z')),
-                              links={BL+'name': subfield('a'), MARC+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), MARC+'generalSubdivision': subfield('x'), MARC+'chronologicalSubdivision': subfield('y'), MARC+'formSubdivision': subfield('v'), MARC+'geographicSubdivision': subfield('z'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))}),
+                              links={BL+'name': subfield('a'), MARC+'locationOfEvent': subfield('c'), BL+'date': subfield('d'), MARC+'generalSubdivision': subfield('x'), MARC+'chronologicalSubdivision': subfield('y'), MARC+'formSubdivision': subfield('v'), MARC+'geographicSubdivision': subfield('z'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('0')))}),
 
     '650$v': onwork.materialize(BL + 'Genre',
                                 BL + 'genre',
@@ -482,7 +482,7 @@ BFLITE_TRANSFORMS = {
     '651': onwork.materialize(BL+'Place', 
                               BL+'subject', 
                               unique=values(subfield('a'), subfield('g'), subfield('v'), subfield('x'), subfield('y'), subfield('z')),
-                              links={BL+'name': subfield('a'), BL+'date': subfield('d'), MARC+'generalSubdivision': subfield('x'), MARC+'chronologicalSubdivision': subfield('y'), MARC+'formSubdivision': subfield('v'), MARC+'geographicSubdivision': subfield('z'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))}),
+                              links={BL+'name': subfield('a'), BL+'date': subfield('d'), MARC+'generalSubdivision': subfield('x'), MARC+'chronologicalSubdivision': subfield('y'), MARC+'formSubdivision': subfield('v'), MARC+'geographicSubdivision': subfield('z'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('0')))}),
 
     '651$v': onwork.materialize(BL + 'Genre',
                                 BL + 'genre',
@@ -492,7 +492,7 @@ BFLITE_TRANSFORMS = {
     '655': onwork.materialize(BL+'Genre',
                               BL+'genre', 
                               unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('v'), subfield('x'), subfield('y'), subfield('z')),
-                              links={BL+'name': subfield('a'), MARC+'source': subfield('2'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))}),
+                              links={BL+'name': subfield('a'), MARC+'source': subfield('2'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('0')))}),
 
     # Fields 700,710,711,etc. have a contributor + role (if specified) relationship to a new Agent object (only created as a new object if all subfields are unique)
     # Generate hash values only from the properties specific to Agents 
@@ -511,7 +511,7 @@ BFLITE_TRANSFORMS = {
                     onwork.materialize(BL+'Person', 
                                        values(BL+'contributor', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)), 
                                        unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'), subfield('g'), subfield('j'), subfield('q'), subfield('u')),
-                                       links={BL+'name': subfield('a'), MARC+'numeration': subfield('b'), MARC+'titles': subfield('c'), BL+'date': subfield('d'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))})
+                                       links={BL+'name': subfield('a'), MARC+'numeration': subfield('b'), MARC+'titles': subfield('c'), BL+'date': subfield('d'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('0')))})
                     ),
 
 
@@ -528,7 +528,7 @@ BFLITE_TRANSFORMS = {
                     onwork.materialize(BL+'Organization', 
                                        values(BL+'contributor', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)), 
                                        unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'), subfield('j'), subfield('q'), subfield('u')),
-                                       links={BL+'name': subfield('a'), MARC+'subordinateUnit': subfield('b'), BL+'date': subfield('d'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))})
+                                       links={BL+'name': subfield('a'), MARC+'subordinateUnit': subfield('b'), BL+'date': subfield('d'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('0')))})
                     ),
 
     
@@ -545,7 +545,7 @@ BFLITE_TRANSFORMS = {
                     onwork.materialize(BL+'Meeting', 
                                        values(BL+'contributor', relator_property(subfield('e'), prefix=REL), relator_property(subfield('4'), prefix=REL)), 
                                        unique=values(subfield('a'), subfield('c'), subfield('d'), subfield('e'), subfield('q'), subfield('u')),
-                                       links={BL+'name': subfield('a'), BL+'date': subfield('d'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('0'))})
+                                       links={BL+'name': subfield('a'), BL+'date': subfield('d'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('0')))})
                     ),
 
     '720-1#': onwork.materialize(BL+'Person',
@@ -573,108 +573,108 @@ BFLITE_TRANSFORMS = {
     '765':  onwork.materialize(BL+'Work', 
                                REL+'isTranslationOf', 
                                unique=all_subfields, 
-                               links={BL+'title': subfield('t'), BL+'title': subfield('a'), MARC+'issn': subfield('x'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('w')), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
+                               links={BL+'title': subfield('t'), BL+'title': subfield('a'), MARC+'issn': subfield('x'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('w'))), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
 
     '767':  onwork.materialize(BL+'Work', 
                                REL+'hasTranslation', 
                                unique=all_subfields, 
-                               links={BL+'title': subfield('t'), BL+'title': subfield('a'), MARC+'issn': subfield('x'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('w')), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
+                               links={BL+'title': subfield('t'), BL+'title': subfield('a'), MARC+'issn': subfield('x'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('w'))), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
 
     # Preceding Entry
 
     '780-?0': onwork.materialize(BL+'Work', 
                                  REL+'continues', 
                                  unique=all_subfields, 
-                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('w')), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
+                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('w'))), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
 
     '780-?1': onwork.materialize(BL+'Work', 
                                  REL+'continuesInPart', 
                                  unique=all_subfields, 
-                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('w')), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
+                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('w'))), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
 
     '780-?2': onwork.materialize(BL+'Work', 
                                  REL+'supersedes', 
                                  unique=all_subfields, 
-                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('w')), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
+                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('w'))), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
 
     '780-?3': onwork.materialize(BL+'Work', 
                                  REL+'supersedesInPart', 
                                  unique=all_subfields, 
-                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('w')), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
+                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('w'))), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
 
     '780-?4': onwork.materialize(BL+'Work', 
                                  REL+'unionOf', 
                                  unique=all_subfields, 
-                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('w')), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
+                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('w'))), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
 
     '780-?5': onwork.materialize(BL+'Work', 
                                  REL+'absorbed', 
                                  unique=all_subfields, 
-                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('w')), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
+                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('w'))), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
 
     '780-?6': onwork.materialize(BL+'Work', 
                                  REL+'absorbedInPart', 
                                  unique=all_subfields, 
-                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('w')), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
+                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('w'))), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
 
     '780-?7': onwork.materialize(BL+'Work', 
                                  REL+'separatedFrom', 
                                  unique=all_subfields, 
-                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('w')), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
+                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('w'))), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
 
     # Succeeding Entry
 
     '785-?0': onwork.materialize(BL+'Work', 
                                  REL+'continuedBy', 
                                  unique=all_subfields, 
-                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('w')), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
+                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('w'))), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
 
     '785-?1': onwork.materialize(BL+'Work', 
                                  REL+'continuedInPartBy', 
                                  unique=all_subfields, 
-                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('w')), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
+                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('w'))), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
 
     '785-?2': onwork.materialize(BL+'Work', 
                                  REL+'supersededBy', 
                                  unique=all_subfields, 
-                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('w')), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
+                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('w'))), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
 
     '785-?3': onwork.materialize(BL+'Work', 
                                  REL+'supersededInPartBy', 
                                  unique=all_subfields, 
-                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('w')), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
+                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('w'))), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
 
     '785-?4': onwork.materialize(BL+'Work', 
                                  REL+'absorbedBy', 
                                  unique=all_subfields, 
-                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('w')), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
+                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('w'))), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
 
     '785-?5': onwork.materialize(BL+'Work', 
                                  REL+'absorbedInPartBy', 
                                  unique=all_subfields, 
-                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('w')), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
+                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('w'))), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
 
     '785-?6': onwork.materialize(BL+'Work', 
                                  REL+'splitInto', 
                                  unique=all_subfields, 
-                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('w')), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
+                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('w'))), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
 
     '785-?7': onwork.materialize(BL+'Work', 
                                  REL+'mergedWith', 
                                  unique=all_subfields, 
-                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('w')), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
+                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('w'))), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
 
     '785-?8': onwork.materialize(BL+'Work', 
                                  REL+'changedBackTo', 
                                  unique=all_subfields, 
-                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('w')), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
+                                 links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('w'))), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
 
     # Other related works
 
     '787': onwork.materialize(BL+'Work', 
                               REL+'related', 
                               unique=all_subfields, 
-                              links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': replace_from(AUTHORITY_CODES, subfield('w')), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
+                              links={BL+'title': subfield('t'), MARC+'issn': subfield('x'), BL+'authorityLink': res(replace_from(AUTHORITY_CODES, subfield('w'))), MARC+'edition': subfield('b'), BL+'note': subfield('n'), MARC+'edition': subfield('b'), MARC+'isbn': subfield('z')}),
 
     # Series
 

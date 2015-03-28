@@ -408,26 +408,13 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
 
 def res(arg):
     '''
-    Convert the argument into an IRI ref
+    Convert the argument into an IRI ref or list thereof
     '''
     def _res(ctx):
         _arg = arg(ctx) if callable(arg) else arg
-        return I(arg)
+        _arg = [_arg] if not isinstance(_arg, list) else _arg
+        return [I(u) for u in _arg]
     return _res
-
-def compose(*funcs):
-    '''
-    Compose an ordered list of functions. Args of a,b,c,d evaluates as a(b(c(d(ctx))))
-    '''
-    def _compose(ctx):
-        # last func gets context, rest get result of previous func
-        _result = funcs[-1](ctx)
-        for f in reversed(funcs[:-1]):
-            _result = f(_result)
-
-        return _result
-    return _compose
-
 
 onwork = base_transformer(origin_class.work)
 oninstance = base_transformer(origin_class.instance)
