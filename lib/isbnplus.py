@@ -11,7 +11,7 @@ def invert_dict(d):
     #See also: http://pypi.python.org/pypi/bidict
     #Though note: http://code.activestate.com/recipes/576968/#c2
     inv = {}
-    for k, v in d.items():
+    for k, v in sorted(d.items()):
         keys = inv.setdefault(v, [])
         keys.append(k)
     return inv
@@ -40,6 +40,12 @@ def canonicalize_isbns(isbns, logger=logging):
 
 
 def isbn_list(isbns, logger=logging):
+    '''
+    >>> from bibframe.isbnplus import isbn_list
+    >>> isbns = ['9783136128046 (GTV)', '1588902153 (TNY)', '9781588902153 (TNY)', '3136128044 (GTV)']
+    >>> list(isbn_list(isbns))
+    [('978158890215', '(TNY)'), ('978313612804', '(GTV)')]
+    '''
     isbn_tags = {}
     for isbn in isbns:
         parts = isbn.split(None, 1)
@@ -60,4 +66,3 @@ def isbn_list(isbns, logger=logging):
         #variants.sort(key=len, reverse=True) # sort by descending length
         #yield variants[0], isbn_tags[variants[0]]
     return
-
