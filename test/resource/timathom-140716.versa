@@ -11,7 +11,9 @@
         "29_q94cZ",
         "http://bibfra.me/vocab/lite/authorityLink",
         "8175353",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "29_q94cZ",
@@ -356,13 +358,13 @@
     [
         "BbAKyHkP",
         "http://bibfra.me/vocab/marc/titleRemainder",
-        "wu juan /",
+        "\u4e94\u5377 /",
         {}
     ],
     [
         "BbAKyHkP",
         "http://bibfra.me/vocab/marc/titleRemainder",
-        "\u4e94\u5377 /",
+        "wu juan /",
         {}
     ],
     [
@@ -608,13 +610,13 @@
     [
         "Hw7xp0wn",
         "http://bibfra.me/vocab/marcext/sf-e",
-        "lun ding.",
+        "\u8ad6\u5b9a.",
         {}
     ],
     [
         "Hw7xp0wn",
         "http://bibfra.me/vocab/marcext/sf-e",
-        "\u8ad6\u5b9a.",
+        "lun ding.",
         {}
     ],
     [
@@ -743,7 +745,9 @@
         "S1v96HE6",
         "http://bibfra.me/vocab/lite/authorityLink",
         "8175356",
-        {}
+        {
+            "@target-type": "@iri-ref"
+        }
     ],
     [
         "S1v96HE6",
@@ -994,13 +998,13 @@
     [
         "Tlxhgttm",
         "http://bibfra.me/vocab/marc/titleRemainder",
-        "wu juan /",
+        "\u4e94\u5377 /",
         {}
     ],
     [
         "Tlxhgttm",
         "http://bibfra.me/vocab/marc/titleRemainder",
-        "\u4e94\u5377 /",
+        "wu juan /",
         {}
     ],
     [
