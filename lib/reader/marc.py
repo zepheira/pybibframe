@@ -321,7 +321,10 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             for linfo in add_links:
                 input_model.add(*linfo)
 
-            for lid, marc_link in input_model:
+            # need to sort our way through the input model so that the materializations occur
+            # at the same place each time, otherwise canonicalization fails due to the
+            # addition of the subfield context (at the end of materialize())
+            for lid, marc_link in sorted(list(input_model), key=lambda x: int(x[0])):
                 origin, taglink, val, attribs = marc_link
                 if taglink == MARCXML_NS + '/leader':
                     params['leader'] = leader = val

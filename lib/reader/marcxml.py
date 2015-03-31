@@ -8,7 +8,7 @@ https://docs.python.org/3/library/xml.html#xml-vulnerabilities
 import asyncio
 import collections
 import logging
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 import unicodedata
 import warnings
 import zipfile
@@ -170,7 +170,7 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
     ids = marc.idgen(entbase)
     if model is None: model = memory.connection(logger=logger)
     g = rdflib.Graph()
-    if canonical: global_model = memory.connection()
+    if canonical: global_model = memory.connection(attr_cls=OrderedDict)
 
     extant_resources = None
     #extant_resources = set()
