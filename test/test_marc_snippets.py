@@ -1057,7 +1057,7 @@ EXPECTED_9 = '''
     [
         "kP2G4QhW",
         "http://bibfra.me/vocab/marc/frequency",
-        "unknown frequency",
+        "unknown",
         {}
     ],
     [
