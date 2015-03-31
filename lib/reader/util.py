@@ -406,7 +406,7 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
     return _materialize
 
 
-def res(arg):
+def url(arg):
     '''
     Convert the argument into an IRI ref or list thereof
     '''
