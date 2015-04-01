@@ -196,7 +196,7 @@ def relator_property(text_in, prefix=None):
     return _relator_property
 
 
-def replace_from(patterns, old_text, res=True):
+def replace_from(patterns, old_text):
     '''
     Action function generator to take some text and replace it with another value based on a regular expression pattern
 
@@ -217,21 +217,17 @@ def replace_from(patterns, old_text, res=True):
         old_text_list = isinstance(_old_text, list)
         _old_text = _old_text if old_text_list else [_old_text]
         #print(old_text_list, _old_text)
-        new_text_list = []
+        new_text_list = set()
         for text in _old_text:
             new_text = text #So just return the original string, if a replacement is not processed
             for pat, repl in patterns:
                 m = pat.match(text)
                 if not m: continue
                 new_text = pat.sub(repl, text)
-                if res:
-                    try:
-                        new_text = I(new_text)
-                    except ValueError:
-                        pass
-            new_text_list.append(new_text)
+
+            new_text_list.add(new_text)
         #print(new_text_list)
-        return new_text_list if old_text_list else new_text_list[0]
+        return list(new_text_list) if old_text_list else list(new_text_list)[0]
     return _replace_from
 
 
@@ -406,14 +402,32 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
     return _materialize
 
 
-def url(arg):
+def url(arg, base=amara3.iri.absolutize('authrec/',BFZ)):
     '''
     Convert the argument into an IRI ref or list thereof
     '''
     def _res(ctx):
         _arg = arg(ctx) if callable(arg) else arg
         _arg = [_arg] if not isinstance(_arg, list) else _arg
-        return [I(u) for u in _arg]
+        ret = []
+        for u in _arg:
+            iu = None
+            try:
+                iu = I(u)
+            except ValueError:
+                # attempt to recover by percent encoding
+                try:
+                    iu = I(amara3.iri.percent_encode(u))
+                except ValueError as e:
+                    ctx.logger('Unable to convert "{}" to IRI reference:\n{}'.format(u, e))
+                    continue
+
+            if not amara3.iri.is_absolute(iu) and base is not None:
+                iu = I(amara3.iri.absolutize(iu, base))
+
+            ret.append(iu)
+
+        return ret
     return _res
 
 onwork = base_transformer(origin_class.work)
