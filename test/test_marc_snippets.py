@@ -1523,6 +1523,167 @@ EXPECTED_13 = '''
 ]
 '''
 
+# authority link syntax
+SNIPPET_14 = '''
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <leader>02467cam a2200505 a 4500</leader>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Austen, Jane,</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/n79032879</subfield>
+      <subfield code="0">(ZZZ)x9898989898</subfield>
+      <subfield code="0">(ZZZ)  x9898989898</subfield>
+      <subfield code="0">(ZZZ)  Ishinp\u014d /</subfield>
+      <subfield code="0">http://viaf.org/viaf/102333412</subfield>
+      <subfield code="0">(viaf)102333412</subfield>
+    </datafield>
+  </record>
+</collection>
+'''
+
+CONFIG_14 = {}
+
+EXPECTED_14 = '''
+[
+    [
+        "Lw5Txi2I",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Lw5Txi2I",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "Ph1VSk-f",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Ph1VSk-f",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Ph1VSk-f",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/LanguageMaterial",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Ph1VSk-f",
+        "http://bibfra.me/vocab/lite/creator",
+        "R-ReGIB2",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "R-ReGIB2",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Person",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "R-ReGIB2",
+        "http://bibfra.me/vocab/lite/authorityLink",
+        "http://bibfra.me/vocab/marcext/authrec/%28ZZZ%29%20%20Ishinp%C5%8D%20%2F",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "R-ReGIB2",
+        "http://bibfra.me/vocab/lite/authorityLink",
+        "http://bibfra.me/vocab/marcext/authrec/%28ZZZ%29%20%20x9898989898",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "R-ReGIB2",
+        "http://bibfra.me/vocab/lite/authorityLink",
+        "http://bibfra.me/vocab/marcext/authrec/(ZZZ)x9898989898",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "R-ReGIB2",
+        "http://bibfra.me/vocab/lite/authorityLink",
+        "http://id.loc.gov/authorities/names/n79032879",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "R-ReGIB2",
+        "http://bibfra.me/vocab/lite/authorityLink",
+        "http://viaf.org/viaf/102333412",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "R-ReGIB2",
+        "http://bibfra.me/vocab/lite/name",
+        "Austen, Jane,",
+        {}
+    ],
+    [
+        "R-ReGIB2",
+        "http://bibfra.me/vocab/marcext/sf-0",
+        "(ZZZ)  Ishinp\u014d /",
+        {}
+    ],
+    [
+        "R-ReGIB2",
+        "http://bibfra.me/vocab/marcext/sf-0",
+        "(ZZZ)  x9898989898",
+        {}
+    ],
+    [
+        "R-ReGIB2",
+        "http://bibfra.me/vocab/marcext/sf-0",
+        "(ZZZ)x9898989898",
+        {}
+    ],
+    [
+        "R-ReGIB2",
+        "http://bibfra.me/vocab/marcext/sf-0",
+        "(viaf)102333412",
+        {}
+    ],
+    [
+        "R-ReGIB2",
+        "http://bibfra.me/vocab/marcext/sf-0",
+        "http://id.loc.gov/authorities/names/n79032879",
+        {}
+    ],
+    [
+        "R-ReGIB2",
+        "http://bibfra.me/vocab/marcext/sf-0",
+        "http://viaf.org/viaf/102333412",
+        {}
+    ],
+    [
+        "R-ReGIB2",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Austen, Jane,",
+        {}
+    ]
+]
+'''
+
 all_snippets = sorted([ sym for sym in globals() if sym.startswith('SNIPPET') ])
 all_config = sorted([ sym for sym in globals() if sym.startswith('CONFIG') ])
 all_expected = sorted([ sym for sym in globals() if sym.startswith('EXPECTED') ])

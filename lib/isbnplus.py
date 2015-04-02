@@ -11,7 +11,7 @@ def invert_dict(d):
     #See also: http://pypi.python.org/pypi/bidict
     #Though note: http://code.activestate.com/recipes/576968/#c2
     inv = {}
-    for k, v in sorted(d.items()):
+    for k, v in d.items():
         keys = inv.setdefault(v, [])
         keys.append(k)
     return inv
@@ -60,7 +60,7 @@ def isbn_list(isbns, logger=logging):
         else:
             isbn_tags[cleaned_isbn] = parts[1]
     c14ned = canonicalize_isbns(isbn_tags.keys(), logger=logger)
-    for c14nisbn, variants in invert_dict(c14ned).items():
+    for c14nisbn, variants in sorted(invert_dict(c14ned).items()):
         yield c14nisbn, isbn_tags[variants[0]]
         #We'll use the heuristic that the longest ISBN number is the best
         #variants.sort(key=len, reverse=True) # sort by descending length

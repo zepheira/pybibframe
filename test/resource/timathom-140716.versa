@@ -10,7 +10,7 @@
     [
         "29_q94cZ",
         "http://bibfra.me/vocab/lite/authorityLink",
-        "8175353",
+        "http://bibfra.me/vocab/marcext/authrec/8175353",
         {
             "@target-type": "@iri-ref"
         }
@@ -744,7 +744,7 @@
     [
         "S1v96HE6",
         "http://bibfra.me/vocab/lite/authorityLink",
-        "8175356",
+        "http://bibfra.me/vocab/marcext/authrec/8175356",
         {
             "@target-type": "@iri-ref"
         }
