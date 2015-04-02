@@ -670,6 +670,7 @@ class transforms(object):
             'z': I(self._vocab[MARC]+'other'),
         }
 
+        # Motion pictures use a subset of this but we reuse it anyway
         self.DIMENSIONS_FILM = {
             'a': 'standard 8mm. film width',
             'b': 'super 8mm./single 8mm. film width',
@@ -1372,7 +1373,7 @@ class transforms(object):
             }
         )
 
-        self.Unspecified = dict(
+        self.UnspecifiedCategory = dict(
             SpecificMaterialDesignation = {
                 'm': I(self._vocab[MARC]+'multiple-physical-forms'),
                 'u': I(self._vocab[MARC]+'unspecified'),
@@ -1403,6 +1404,7 @@ class transforms(object):
     def material_type_by_leader(self, leader, logger):
 
         # first perform 6/7 lookup, then fallback to 6 lookup
+        leader = leader.ljust(24) if leader is not None else ' '*24
         _06 = leader[6]
         _07 = leader[7] if leader[7] != ' ' else ''
         typ = self.MATERIAL_TYPE.get(_06+_07)
@@ -1604,6 +1606,10 @@ class transforms(object):
                 1: lambda i: (None, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.ProjectedGraphic['SpecificMaterialDesignation'].get(info[i]))),
                 3: lambda i: (None, I(self._vocab[MARC]+'color'), SLUG(self.COLOR.get(info[i]))),
                 4: lambda i: (None, I(self._vocab[MARC]+'baseOfEmulsion'), SLUG(self.ProjectedGraphic['SpecificMaterialDesignation'].get(info[i]))),
+                5: lambda i: (None, I(self._vocab[MARC]+'soundOnMediumOrSeparate'), SLUG(self.SOUND_ON_MEDIUM_OR_SEPARATE.get(info[i]))),
+                6: lambda i: (None, I(self._vocab[MARC]+'mediumForSound'), SLUG(self.MEDIUM_FOR_SOUND.get(info[i]))),
+                7: lambda i: (None, I(self._vocab[MARC]+'dimensions'), SLUG(self.DIMENSIONS_FILM.get(info[i]))),
+                8: lambda i: (None, I(self._vocab[MARC]+'secondarySupportMaterial'), SLUG(self.SUPPORT_MATERIAL.get(info[i]))),
             },
             Microform = {
                 1: lambda i: (None, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.Microform['SpecificMaterialDesignation'].get(info[i]))),
@@ -1614,7 +1620,7 @@ class transforms(object):
                 9: lambda i: (None, I(self._vocab[MARC]+'color'), SLUG(self.COLOR.get(info[i]))),
                10: lambda i: (None, I(self._vocab[MARC]+'emulsionOnFilm'), SLUG(self.Microform['EmulsionOnFilm'].get(info[i]))),
                11: lambda i: (None, I(self._vocab[MARC]+'generation'), SLUG(self.Microform['Generation'].get(info[i]))),
-               12: lambda i: (None, I(self._vocab[MARC]+'baseOfFilm'), SLUG(self.Microform['BaseOfFilm'].get(info[i]))),
+               12: lambda i: (None, I(self._vocab[MARC]+'baseOfFilm'), SLUG(self.BASE_OF_FILM.get(info[i]))),
             },
             NonprojectedGraphic = {
                 1: lambda i: (None, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.NonprojectedGraphic['SpecificMaterialDesignation'].get(info[i]))),
@@ -1626,14 +1632,14 @@ class transforms(object):
                 1: lambda i: (None, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.MotionPicture['SpecificMaterialDesignation'].get(info[i]))),
                 3: lambda i: (None, I(self._vocab[MARC]+'color'), SLUG(self.COLOR.get(info[i]))),
                 4: lambda i: (None, I(self._vocab[MARC]+'motionPicturePresentationFormat'), SLUG(self.MotionPicture['MotionPicturePresentationFormat'].get(info[i]))),
-                5: lambda i: (None, I(self._vocab[MARC]+'soundOnMediumOrSeparate'), SLUG(self.MotionPicture['SoundOnMediumOrSeparate'].get(info[i]))),
-                6: lambda i: (None, I(self._vocab[MARC]+'mediumForSound'), SLUG(self.MotionPicture['MediumForSound'].get(info[i]))),
-                7: lambda i: (None, I(self._vocab[MARC]+'dimensions'), SLUG(self.MotionPicture['Dimensions'].get(info[i]))),
-                8: lambda i: (None, I(self._vocab[MARC]+'configurationOfPlaybackChannels'), SLUG(self.MotionPicture['ConfigurationOfPlaybackChannels'].get(info[i]))),
+                5: lambda i: (None, I(self._vocab[MARC]+'soundOnMediumOrSeparate'), SLUG(self.SOUND_ON_MEDIUM_OR_SEPARATE.get(info[i]))),
+                6: lambda i: (None, I(self._vocab[MARC]+'mediumForSound'), SLUG(self.MEDIUM_FOR_SOUND.get(info[i]))),
+                7: lambda i: (None, I(self._vocab[MARC]+'dimensions'), SLUG(self.DIMENSIONS_FILM.get(info[i]))),
+                8: lambda i: (None, I(self._vocab[MARC]+'configurationOfPlaybackChannels'), SLUG(self.CONFIGURATION_OF_PLAYBACK_CHANNELS.get(info[i]))),
                 9: lambda i: (None, I(self._vocab[MARC]+'productionElements'), SLUG(self.MotionPicture['ProductionElements'].get(info[i]))),
                10: lambda i: (None, I(self._vocab[MARC]+'positiveNegativeAspect'), SLUG(self.POSITIVE_NEGATIVE_ASPECT.get(info[i]))),
                11: lambda i: (None, I(self._vocab[MARC]+'generation'), SLUG(self.MotionPicture['Generation'].get(info[i]))),
-               12: lambda i: (None, I(self._vocab[MARC]+'baseOfFilm'), SLUG(self.MotionPicture['BaseOfFilm'].get(info[i]))),
+               12: lambda i: (None, I(self._vocab[MARC]+'baseOfFilm'), SLUG(self.BASE_OF_FILM.get(info[i]))),
                13: lambda i: (None, I(self._vocab[MARC]+'refinedCategoriesOfColor'), SLUG(self.MotionPicture['RefinedCategoriesOfColor'].get(info[i]))),
                14: lambda i: (None, I(self._vocab[MARC]+'kindOfColorStockOrPrint'), SLUG(self.MotionPicture['KindOfColorStockOrPrint'].get(info[i]))),
                15: lambda i: (None, I(self._vocab[MARC]+'deteriorationStage'), SLUG(self.MotionPicture['DeteriorationStage'].get(info[i]))),
@@ -1658,13 +1664,33 @@ class transforms(object):
             },
             SoundRecording = {
                 1: lambda i: (None, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.SoundRecording['SpecificMaterialDesignation'].get(info[i]))),
+                3: lambda i: (None, I(self._vocab[MARC]+'speed'), SLUG(self.SoundRecording['Speed'].get(info[i]))),
+                4: lambda i: (None, I(self._vocab[MARC]+'configurationOfPlaybackChannels'), SLUG(self.CONFIGURATION_OF_PLAYBACK_CHANNELS.get(info[i]))),
+                5: lambda i: (None, I(self._vocab[MARC]+'grooveWidthPitch'), SLUG(self.SoundRecording['GrooveWidthPitch'].get(info[i]))),
+                6: lambda i: (None, I(self._vocab[MARC]+'dimensions'), SLUG(self.SoundRecording['Dimensions'].get(info[i]))),
+                7: lambda i: (None, I(self._vocab[MARC]+'tapeWidth'), SLUG(self.SoundRecording['TapeWidth'].get(info[i]))),
+                8: lambda i: (None, I(self._vocab[MARC]+'tapeConfiguration'), SLUG(self.SoundRecording['TapeConfiguration'].get(info[i]))),
+                9: lambda i: (None, I(self._vocab[MARC]+'kindOfDiscCylinderOrTape'), SLUG(self.SoundRecording['KindOfDiscCylinderOrTape'].get(info[i]))),
+               10: lambda i: (None, I(self._vocab[MARC]+'kindOfMaterial'), SLUG(self.SoundRecording['KindOfMaterial'].get(info[i]))),
+               11: lambda i: (None, I(self._vocab[MARC]+'kindOfCutting'), SLUG(self.SoundRecording['KindOfCutting'].get(info[i]))),
+               12: lambda i: (None, I(self._vocab[MARC]+'specialPlaybackCharacteristics'), SLUG(self.SoundRecording['SpecialPlaybackCharacteristics'].get(info[i]))),
+               13: lambda i: (None, I(self._vocab[MARC]+'captureAndStorageTechnique'), SLUG(self.SoundRecording['CaptureAndStorageTechnique'].get(info[i]))),
             },
             Text = {
                 1: lambda i: (None, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.Text['SpecificMaterialDesignation'].get(info[i]))),
             },
             VideoRecording = {
                 1: lambda i: (None, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.VideoRecording['SpecificMaterialDesignation'].get(info[i]))),
+                3: lambda i: (None, I(self._vocab[MARC]+'color'), SLUG(self.COLOR.get(info[i]))),
+                4: lambda i: (None, I(self._vocab[MARC]+'videorecordingFormat'), SLUG(self.VideoRecording['VideorecordingFormat'].get(info[i]))),
+                5: lambda i: (None, I(self._vocab[MARC]+'soundOnMediumOrSeparate'), SLUG(self.SOUND_ON_MEDIUM_OR_SEPARATE.get(info[i]))),
+                6: lambda i: (None, I(self._vocab[MARC]+'mediumForSound'), SLUG(self.MEDIUM_FOR_SOUND.get(info[i]))),
+                7: lambda i: (None, I(self._vocab[MARC]+'dimensions'), SLUG(self.VideoRecording['Dimensions'].get(info[i]))),
+                8: lambda i: (None, I(self._vocab[MARC]+'configurationOfPlaybackChannels'), SLUG(self.CONFIGURATION_OF_PLAYBACK_CHANNELS.get(info[i]))),
             },
+            UnspecifiedCategory = {
+                1: lambda i: (None, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.UnspecifiedCategory['SpecificMaterialDesignation'].get(info[i]))),
+            }
         )
 
         # build new patterns from existing patterns by byte shifting, i.e. 18 bytes for 006->008
@@ -1757,7 +1783,7 @@ class transforms(object):
             else:
                 yield instance, I(self._vocab[VTYPE]), I(self._vocab[MARC]+typ)
 
-            yield from self._process_fixed_length(typ, info, 1, params)
+            yield from self._process_fixed_length(typ, info, 0, params)
             
 def process_patterns(patterns):
     #Execute the rules detailed in the various positional patterns lookup tables above
