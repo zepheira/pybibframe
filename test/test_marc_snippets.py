@@ -1101,6 +1101,14 @@ EXPECTED_10 = '''
     ],
     [
         "PZ-aV_fa",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/ElectronicResource",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "PZ-aV_fa",
         "http://bibfra.me/vocab/lite/controlCode",
         "37263290",
         {}
@@ -1117,6 +1125,25 @@ EXPECTED_10 = '''
         "PZ-aV_fa",
         "http://bibfra.me/vocab/marc/formOfItem",
         "online",
+        {}
+    ],
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/vocab/marc/specificMaterialDesignation",
+        "remote",
+        {}
+    ],
+    [
+        "http://bibfra.me/vocab/lite/instantiates",
+        "kP2G4QhW",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/vocab/marc/dimensions",
+        "unknown",
         {}
     ],
     [
@@ -1283,6 +1310,14 @@ EXPECTED_11 = '''
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/MovingImage",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/VisualMaterials",
         {
             "@target-type": "@iri-ref"
         }
@@ -1565,6 +1600,14 @@ EXPECTED_14 = '''
         "Ph1VSk-f",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Ph1VSk-f",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/Books",
         {
             "@target-type": "@iri-ref"
         }

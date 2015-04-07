@@ -1570,7 +1570,7 @@ class transforms(object):
                 16: lambda i: (None, I(self._vocab[MARC]+'entryConvention'), SLUG(self.ContinuingResources['EntryConvention'].get(info[i]))),
             },
             Map = { #007
-                1: lambda i: (instance, I(self._vocab[VTYPE]), self.Map['SpecificMaterialDesignation'].get(info[i])),
+                1: lambda i: (instance, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.Map['SpecificMaterialDesignation'].get(info[i]))),
                 3: lambda i: (instance, I(self._vocab[MARC]+'color'), SLUG(self.COLOR.get(info[i]))),
                 4: lambda i: (instance, I(self._vocab[MARC]+'physicalMedium'), SLUG(self.PHYSICAL_MEDIUM.get(info[i]))),
                 5: lambda i: (instance, I(self._vocab[MARC]+'typeOfReproduction'), SLUG(self.TYPE_OF_REPRODUCTION.get(info[i]))),
@@ -1578,7 +1578,7 @@ class transforms(object):
                 7: lambda i: (instance, I(self._vocab[MARC]+'positiveNegativeAspect'), SLUG(self.POSITIVE_NEGATIVE_ASPECT.get(info[i]))),
             },
             ElectronicResource = {
-                1: lambda i: (instance, I(self._vocab[VTYPE]), self.ElectronicResource['SpecificMaterialDesignation'].get(info[i])),
+                1: lambda i: (instance, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.ElectronicResource['SpecificMaterialDesignation'].get(info[i]))),
                 3: lambda i: (instance, I(self._vocab[MARC]+'color'), SLUG(self.COLOR.get(info[i]))),
                 4: lambda i: (instance, I(self._vocab[MARC]+'dimensions'), SLUG(self.ElectronicResource['Dimensions'].get(info[i]))),
                 5: lambda i: (instance, I(self._vocab[MARC]+'sound'), SLUG(self.ElectronicResource['Sound'].get(info[i]))),
@@ -1590,20 +1590,20 @@ class transforms(object):
                 13: lambda i: (instance, I(self._vocab[MARC]+'reformattingQuality'), SLUG(self.ElectronicResource['ReformattingQuality'].get(info[i]))),
             },
             Globe = {
-                1: lambda i: (instance, I(self._vocab[VTYPE]), self.Globe['SpecificMaterialDesignation'].get(info[i])),
+                1: lambda i: (instance, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.Globe['SpecificMaterialDesignation'].get(info[i]))),
                 3: lambda i: (instance, I(self._vocab[MARC]+'color'), SLUG(self.COLOR.get(info[i]))),
                 4: lambda i: (instance, I(self._vocab[MARC]+'physicalMedium'), SLUG(self.PHYSICAL_MEDIUM.get(info[i]))),
                 5: lambda i: (instance, I(self._vocab[MARC]+'typeOfReproduction'), SLUG(self.TYPE_OF_REPRODUCTION.get(info[i]))),
             },
             TactileMaterial = {
-                1: lambda i: (instance, I(self._vocab[VTYPE]), self.TactileMaterial['SpecificMaterialDesignation'].get(info[i])),
+                1: lambda i: (instance, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.TactileMaterial['SpecificMaterialDesignation'].get(info[i]))),
                 ('slice', 3, 4): lambda i: (instance, I(self._vocab[MARC]+'classOfBrailleWriting'), SLUG(self.TactileMaterial['ClassOfBrailleWriting'].get(info[i]))),
                 5: lambda i: (instance, I(self._vocab[MARC]+'levelOfContraction'), SLUG(self.TactileMaterial['LevelOfContraction'].get(info[i]))),
                 (6, 7, 8): lambda i: (instance, I(self._vocab[MARC]+'brailleMusicFormat'), SLUG(self.TactileMaterial['BrailleMusicFormat'].get(info[i]))),
                 9: lambda i: (instance, I(self._vocab[MARC]+'specialPhysicalCharacteristics'), SLUG(self.TactileMaterial['SpecialPhysicalCharacteristics'].get(info[i]))),
             },
             ProjectedGraphic = {
-                1: lambda i: (instance, I(self._vocab[VTYPE]), self.ProjectedGraphic['SpecificMaterialDesignation'].get(info[i])),
+                1: lambda i: (instance, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.ProjectedGraphic['SpecificMaterialDesignation'].get(info[i]))),
                 3: lambda i: (instance, I(self._vocab[MARC]+'color'), SLUG(self.COLOR.get(info[i]))),
                 4: lambda i: (instance, I(self._vocab[MARC]+'baseOfEmulsion'), SLUG(self.ProjectedGraphic['SpecificMaterialDesignation'].get(info[i]))),
                 5: lambda i: (instance, I(self._vocab[MARC]+'soundOnMediumOrSeparate'), SLUG(self.SOUND_ON_MEDIUM_OR_SEPARATE.get(info[i]))),
@@ -1612,7 +1612,7 @@ class transforms(object):
                 8: lambda i: (instance, I(self._vocab[MARC]+'secondarySupportMaterial'), SLUG(self.SUPPORT_MATERIAL.get(info[i]))),
             },
             Microform = {
-                1: lambda i: (instance, I(self._vocab[VTYPE]), self.Microform['SpecificMaterialDesignation'].get(info[i])),
+                1: lambda i: (instance, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.Microform['SpecificMaterialDesignation'].get(info[i]))),
                 3: lambda i: (instance, I(self._vocab[MARC]+'positiveNegativeAspect'), SLUG(self.POSITIVE_NEGATIVE_ASPECT.get(info[i]))),
                 4: lambda i: (instance, I(self._vocab[MARC]+'dimensions'), SLUG(self.Microform['Dimensions'].get(info[i]))),
                 5: lambda i: (instance, I(self._vocab[MARC]+'reductionRatioRange'), SLUG(self.Microform['ReductionRatioRange'].get(info[i]))),
@@ -1623,13 +1623,13 @@ class transforms(object):
                12: lambda i: (instance, I(self._vocab[MARC]+'baseOfFilm'), SLUG(self.BASE_OF_FILM.get(info[i]))),
             },
             NonprojectedGraphic = {
-                1: lambda i: (instance, I(self._vocab[VTYPE]), self.NonprojectedGraphic['SpecificMaterialDesignation'].get(info[i])),
+                1: lambda i: (instance, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.NonprojectedGraphic['SpecificMaterialDesignation'].get(info[i]))),
                 3: lambda i: (instance, I(self._vocab[MARC]+'color'), SLUG(self.COLOR.get(info[i]))),
                 4: lambda i: (instance, I(self._vocab[MARC]+'primarySupportMaterial'), SLUG(self.SUPPORT_MATERIAL.get(info[i]))),
                 5: lambda i: (instance, I(self._vocab[MARC]+'secondarySupportMaterial'), SLUG(self.SUPPORT_MATERIAL.get(info[i]))),
             },
             MotionPicture = {
-                1: lambda i: (instance, I(self._vocab[VTYPE]), self.MotionPicture['SpecificMaterialDesignation'].get(info[i])),
+                1: lambda i: (instance, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.MotionPicture['SpecificMaterialDesignation'].get(info[i]))),
                 3: lambda i: (instance, I(self._vocab[MARC]+'color'), SLUG(self.COLOR.get(info[i]))),
                 4: lambda i: (instance, I(self._vocab[MARC]+'motionPicturePresentationFormat'), SLUG(self.MotionPicture['MotionPicturePresentationFormat'].get(info[i]))),
                 5: lambda i: (instance, I(self._vocab[MARC]+'soundOnMediumOrSeparate'), SLUG(self.SOUND_ON_MEDIUM_OR_SEPARATE.get(info[i]))),
@@ -1647,13 +1647,13 @@ class transforms(object):
                ('slice', 17, 22): lambda i: (instance, I(self._vocab[MARC]+'filmInspectionDate'), marc_date(info[i])),
             },
             Kit = {
-                1: lambda i: (instance, I(self._vocab[VTYPE]), self.Kit['SpecificMaterialDesignation'].get(info[i])),
+                1: lambda i: (instance, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.Kit['SpecificMaterialDesignation'].get(info[i]))),
             },
             NotatedMusic = {
-                1: lambda i: (instance, I(self._vocab[VTYPE]), self.NotatedMusic['SpecificMaterialDesignation'].get(info[i])),
+                1: lambda i: (instance, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.NotatedMusic['SpecificMaterialDesignation'].get(info[i]))),
             },
             RemoteSensingImage = {
-                1: lambda i: (instance, I(self._vocab[VTYPE]), self.RemoteSensingImage['SpecificMaterialDesignation'].get(info[i])),
+                1: lambda i: (instance, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.RemoteSensingImage['SpecificMaterialDesignation'].get(info[i]))),
                 3: lambda i: (instance, I(self._vocab[MARC]+'altitudeOfSensor'), SLUG(self.RemoteSensingImage['AltitudeOfSensor'].get(info[i]))),
                 4: lambda i: (instance, I(self._vocab[MARC]+'attitudeOfSensor'), SLUG(self.RemoteSensingImage['AttitudeOfSensor'].get(info[i]))),
                 5: lambda i: (instance, I(self._vocab[MARC]+'cloudCover'), SLUG(self.RemoteSensingImage['CloudCover'].get(info[i]))),
@@ -1663,7 +1663,7 @@ class transforms(object):
                 ('slice', 9, 10): lambda i: (instance, I(self._vocab[MARC]+'dataType'), SLUG(self.RemoteSensingImage['DataType'].get(info[i]))),
             },
             SoundRecording = {
-                1: lambda i: (instance, I(self._vocab[VTYPE]), self.SoundRecording['SpecificMaterialDesignation'].get(info[i])),
+                1: lambda i: (instance, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.SoundRecording['SpecificMaterialDesignation'].get(info[i]))),
                 3: lambda i: (instance, I(self._vocab[MARC]+'speed'), SLUG(self.SoundRecording['Speed'].get(info[i]))),
                 4: lambda i: (instance, I(self._vocab[MARC]+'configurationOfPlaybackChannels'), SLUG(self.CONFIGURATION_OF_PLAYBACK_CHANNELS.get(info[i]))),
                 5: lambda i: (instance, I(self._vocab[MARC]+'grooveWidthPitch'), SLUG(self.SoundRecording['GrooveWidthPitch'].get(info[i]))),
@@ -1677,10 +1677,10 @@ class transforms(object):
                13: lambda i: (instance, I(self._vocab[MARC]+'captureAndStorageTechnique'), SLUG(self.SoundRecording['CaptureAndStorageTechnique'].get(info[i]))),
             },
             Text = {
-                1: lambda i: (instance, I(self._vocab[VTYPE]), self.Text['SpecificMaterialDesignation'].get(info[i])),
+                1: lambda i: (instance, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.Text['SpecificMaterialDesignation'].get(info[i]))),
             },
             VideoRecording = {
-                1: lambda i: (instance, I(self._vocab[VTYPE]), self.VideoRecording['SpecificMaterialDesignation'].get(info[i])),
+                1: lambda i: (instance, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.VideoRecording['SpecificMaterialDesignation'].get(info[i]))),
                 3: lambda i: (instance, I(self._vocab[MARC]+'color'), SLUG(self.COLOR.get(info[i]))),
                 4: lambda i: (instance, I(self._vocab[MARC]+'videorecordingFormat'), SLUG(self.VideoRecording['VideorecordingFormat'].get(info[i]))),
                 5: lambda i: (instance, I(self._vocab[MARC]+'soundOnMediumOrSeparate'), SLUG(self.SOUND_ON_MEDIUM_OR_SEPARATE.get(info[i]))),
@@ -1689,7 +1689,7 @@ class transforms(object):
                 8: lambda i: (instance, I(self._vocab[MARC]+'configurationOfPlaybackChannels'), SLUG(self.CONFIGURATION_OF_PLAYBACK_CHANNELS.get(info[i]))),
             },
             UnspecifiedCategory = {
-                1: lambda i: (instance, I(self._vocab[VTYPE]), self.UnspecifiedCategory['SpecificMaterialDesignation'].get(info[i])),
+                1: lambda i: (instance, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.UnspecifiedCategory['SpecificMaterialDesignation'].get(info[i]))),
             }
         )
 
