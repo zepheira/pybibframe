@@ -45,7 +45,7 @@ def marc_int(rt):
 
     return mi
 
-def marc_date(d):
+def marc_date_yymmdd(d): # used in 008
     #ARE YOU FRIGGING KIDDING ME?! MARC/008 is NON-Y2K SAFE?!
     d = d.ljust(6)
 
@@ -53,10 +53,25 @@ def marc_date(d):
     year = d[0:2]
     try:
         century = '19' if int(year) > 30 else '20' #I guess we can give an 18 year berth before this breaks ;)
-        date = '{}{}-{}-{}'.format(century, year, info[2:4], info[4:6])
+        date = '{}{}-{}-{}'.format(century, year, d[2:4], d[4:6])
     except ValueError:
         #Completely Invalid date
         pass
+
+    return date
+
+def marc_date_yyyymm(d): # used in 007
+    d = d.ljust(6)
+
+    year = d[0:4]
+    month = None
+    try:
+        month = int(d[4:6])
+    except ValueError:
+        #month is unknown
+        pass
+
+    date = '{}-{:0>2}'.format(year, month) if month else year
 
     return date
 
@@ -1644,7 +1659,7 @@ class transforms(object):
                14: lambda i: (instance, I(self._vocab[MARC]+'kindOfColorStockOrPrint'), SLUG(self.MotionPicture['KindOfColorStockOrPrint'].get(info[i]))),
                15: lambda i: (instance, I(self._vocab[MARC]+'deteriorationStage'), SLUG(self.MotionPicture['DeteriorationStage'].get(info[i]))),
                16: lambda i: (instance, I(self._vocab[MARC]+'completeness'), SLUG(self.MotionPicture['Completeness'].get(info[i]))),
-               ('slice', 17, 22): lambda i: (instance, I(self._vocab[MARC]+'filmInspectionDate'), marc_date(info[i])),
+               ('slice', 17, 23): lambda i: (instance, I(self._vocab[MARC]+'filmInspectionDate'), marc_date_yyyymm(info[i])),
             },
             Kit = {
                 1: lambda i: (instance, I(self._vocab[MARC]+'specificMaterialDesignation'), SLUG(self.Kit['SpecificMaterialDesignation'].get(info[i]))),
