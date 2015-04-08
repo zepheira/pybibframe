@@ -2,6 +2,8 @@ scratch
 #PyCharm
 .idea
 MANIFEST
+*~
+.python-developer
 
 #----
 
