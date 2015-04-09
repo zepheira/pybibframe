@@ -137,10 +137,12 @@ def instance_postprocess(params):
             duplicate_statements(model, base_instance_id, instanceid, rfilter=dupe_filter)
     return
 
+# special thanks to UCD, NLM, GW
 
 RECORD_HASH_KEY_FIELDS = [
-    '240$a', '240$f', '240$n', '240$o', '240$p', # key uniform title info
-    '245$a', '245$b', '245$c', '245$n', '245$p', '245$f', '245$h', '245$k', # Title info
+    '130$a', '130$f', '130$n', '130$o', '130$p', '130$l', '130$s',
+    '240$a', '240$f', '240$n', '240$o', '240$p', '240$l', # key uniform title info
+    '245$a', '245$b', '245$c', '245$n', '245$p', '245$f', '245$k', # Title info
     '246$a', '246$b', '246$f', # Title variation info
     '250$a', '250$b', # key edition 
     '100$a', '100$d', '110$a', '110$d', '111$a', '111$d', # key creator info
