@@ -1727,6 +1727,92 @@ EXPECTED_14 = '''
 ]
 '''
 
+# some dates in a fixed length field
+SNIPPET_15 = '''
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <controlfield tag="007">m                1992</controlfield>
+    <controlfield tag="007">m                1993--</controlfield>
+    <controlfield tag="007">m                199402</controlfield>
+  </record>
+</collection>
+'''
+
+CONFIG_15 = {}
+
+EXPECTED_15 = '''
+[
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/MotionPicture",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "kP2G4QhW",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/vocab/marc/filmInspectionDate",
+        "1992",
+        {}
+    ],
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/vocab/marc/filmInspectionDate",
+        "1993",
+        {}
+    ],
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/vocab/marc/filmInspectionDate",
+        "1994-02",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marcext/tag-007",
+        "m                1992",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marcext/tag-007",
+        "m                1993--",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marcext/tag-007",
+        "m                199402",
+        {}
+    ]
+]
+'''
+
 all_snippets = sorted([ sym for sym in globals() if sym.startswith('SNIPPET') ])
 all_config = sorted([ sym for sym in globals() if sym.startswith('CONFIG') ])
 all_expected = sorted([ sym for sym in globals() if sym.startswith('EXPECTED') ])
