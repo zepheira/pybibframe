@@ -563,6 +563,7 @@ BFLITE_TRANSFORMS = {
                                               MARC + 'formSubdivision': subfield('v'),
                                               MARC + 'geographicSubdivision': subfield('z'),
                                               BL + 'title': subfield('t'),
+                                              BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0'))),
                                               ifexists(subfield('t'), BL + 'focus'):
                                                   materialize(BL + 'Work',
                                                               unique=values(subfield('a'), subfield('b'), subfield('c'),  # same as 100
@@ -596,8 +597,7 @@ BFLITE_TRANSFORMS = {
                                                                                             MARC + 'numeration': subfield('b'),
                                                                                             MARC + 'titles': subfield('c'),
                                                                                             BL + 'date': subfield('d'),
-                                                                                            MARC + 'additionalName': subfield('q'),
-                                                                                            BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0')))
+                                                                                            MARC + 'additionalName': subfield('q')                                                                                            
                                                                                             }
                                                                                      )
                                                                      }
