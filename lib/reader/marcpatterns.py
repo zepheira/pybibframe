@@ -553,7 +553,7 @@ BFLITE_TRANSFORMS = {
     # subjects of tags specific to agents with a $t designation are modeled with focuses to Works 
 
     '600': ifexists(subfield('t'),
-                    onwork.materialize(BL + 'Topic',
+                    onwork.materialize(BL + 'Concept',
                                        values(BL + 'subject'),
                                        unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'),
                                                      subfield('f'), subfield('g'), subfield('h'), subfield('j'),
@@ -612,7 +612,7 @@ BFLITE_TRANSFORMS = {
                                                               )
                                               }
                                        ),
-                    onwork.materialize(BL + 'Topic',
+                    onwork.materialize(BL + 'Concept',
                                        values(BL + 'subject'),
                                        unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'),
                                                      subfield('f'), subfield('g'), subfield('h'), subfield('j'),
@@ -647,7 +647,7 @@ BFLITE_TRANSFORMS = {
                                        )
                     ),
     
-    '610': onwork.materialize(BL + 'Topic',
+    '610': onwork.materialize(BL + 'Concept',
                               values(BL + 'subject'),
                               unique=values(subfield('a'),
                                             subfield('b'),
@@ -698,7 +698,7 @@ BFLITE_TRANSFORMS = {
                               }
     ),
 
-    '611': onwork.materialize(BL + 'Topic',
+    '611': onwork.materialize(BL + 'Concept',
                               values(BL + 'subject'),
                               unique=values(subfield('a'),
                                             subfield('c'),
@@ -746,7 +746,7 @@ BFLITE_TRANSFORMS = {
     ),
 
 
-    '630': onwork.materialize(BL + 'Topic',
+    '630': onwork.materialize(BL + 'Concept',
                               BL + 'subject',
                               unique=all_subfields,
                               links={BL + 'title': subfield('a'),
@@ -775,7 +775,7 @@ BFLITE_TRANSFORMS = {
                               }
     ),
 
-    '650': onwork.materialize(BL + 'Topic',
+    '650': onwork.materialize(BL + 'Concept',
                               BL + 'subject',
                               unique=values(subfield('a'),
                                             subfield('b'),
@@ -795,7 +795,7 @@ BFLITE_TRANSFORMS = {
                                      MARC + 'geographicSubdivision': subfield('z'),
                                      BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0'))),
                                      ifexists(subfield('a'), BL + 'focus'):
-                                         materialize(BL + 'Concept',
+                                         materialize(BL + 'Topic',
                                                      unique=values(subfield('a')),
                                                      links={BL + 'name': subfield('a'),
                                                             MARC + 'additionalName': subfield('b'),
@@ -804,7 +804,7 @@ BFLITE_TRANSFORMS = {
                               }
     ),
 
-    '651': onwork.materialize(BL + 'Topic',
+    '651': onwork.materialize(BL + 'Concept',
                               BL + 'subject',
                               unique=values(subfield('a'),
                                             subfield('g'),
