@@ -540,7 +540,7 @@ BFLITE_TRANSFORMS = {
     '586$a': onwork.rename(rel=MARC + 'awardsNote'),
 
 
-    # subjects
+    # subjects - the about-ness of a Work
     # subjects are modeled as topics with a focus specific to the MARC tag (person, place, organization, etc. 
     # subjects of tags specific to agents with a $t designation are modeled with focuses to Works 
 
@@ -639,11 +639,6 @@ BFLITE_TRANSFORMS = {
                                        )
                     ),
     
-    '600$v': onwork.materialize(BL + 'Form',
-                                BL + 'genre',
-                                unique=values(subfield('v')),
-                                links={BL + 'name': subfield('v')}),
-
     '610': onwork.materialize(BL + 'Topic',
                               values(BL + 'subject'),
                               unique=values(subfield('a'),
@@ -695,11 +690,6 @@ BFLITE_TRANSFORMS = {
                               }
     ),
 
-    '610$v': onwork.materialize(BL + 'Form',
-                                BL + 'genre',
-                                unique=values(subfield('v')),
-                                links={BL + 'name': subfield('v')}),
-
     '611': onwork.materialize(BL + 'Topic',
                               values(BL + 'subject'),
                               unique=values(subfield('a'),
@@ -748,11 +738,6 @@ BFLITE_TRANSFORMS = {
     ),
 
 
-    '611$v': onwork.materialize(BL + 'Form',
-                                BL + 'genre',
-                                unique=values(subfield('v')),
-                                links={BL + 'name': subfield('v')}),
-
     '630': onwork.materialize(BL + 'Topic',
                               BL + 'subject',
                               unique=all_subfields,
@@ -781,11 +766,6 @@ BFLITE_TRANSFORMS = {
                                          )
                               }
     ),
-
-    '630$v': onwork.materialize(BL + 'Form',
-                                BL + 'genre',
-                                unique=values(subfield('v')),
-                                links={BL + 'name': subfield('v')}),
 
     '650': onwork.materialize(BL + 'Topic',
                               BL + 'subject',
@@ -816,11 +796,6 @@ BFLITE_TRANSFORMS = {
                               }
     ),
 
-    '650$v': onwork.materialize(BL + 'Form',
-                                BL + 'genre',
-                                unique=values(subfield('v')),
-                                links={BL + 'name': subfield('v')}),
-
     '651': onwork.materialize(BL + 'Topic',
                               BL + 'subject',
                               unique=values(subfield('a'),
@@ -845,362 +820,397 @@ BFLITE_TRANSFORMS = {
                               }
 ),
 
-'651$v': onwork.materialize(BL + 'Form',
-                            BL + 'genre',
-                            unique=values(subfield('v')),
-                            links={BL + 'name': subfield('v')}),
+    # genres - the is-ness about a work
+    
+    '600$v': onwork.materialize(BL + 'Form',
+                                BL + 'genre',
+                                unique=values(subfield('v')),
+                                links={BL + 'name': subfield('v')}),
 
-'655': onwork.materialize(BL + 'Form',
-                          BL + 'genre',
-                          unique=values(subfield('a'),
-                                        subfield('b'),
-                                        subfield('c'),
-                                        subfield('v'),
-                                        subfield('x'),
-                                        subfield('y'),
-                                        subfield('z')),
-                          links={BL + 'name': subfield('a'),
-                                 MARC + 'source': subfield('2'),
-                                 BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0'))),
-                                 ifexists(subfield('a'), BL + 'focus'):
-                                     materialize(BL + 'Concept',
-                                                 unique=values(subfield('a')),
-                                                 links={BL + 'name': subfield('a'),
-                                                        MARC + 'additionalName': subfield('b')}
-                                     )
-                          }
-),
+    '610$v': onwork.materialize(BL + 'Form',
+                                BL + 'genre',
+                                unique=values(subfield('v')),
+                                links={BL + 'name': subfield('v')}),
+
+    '611$v': onwork.materialize(BL + 'Form',
+                                BL + 'genre',
+                                unique=values(subfield('v')),
+                                links={BL + 'name': subfield('v')}),
+
+    '650$v': onwork.materialize(BL + 'Form',
+                                BL + 'genre',
+                                unique=values(subfield('v')),
+                                links={BL + 'name': subfield('v')}),
+
+    '651$v': onwork.materialize(BL + 'Form',
+                                BL + 'genre',
+                                unique=values(subfield('v')),
+                                links={BL + 'name': subfield('v')}),
+    
+    '630$v': onwork.materialize(BL + 'Form',
+                                BL + 'genre',
+                                unique=values(subfield('v')),
+                                links={BL + 'name': subfield('v')}),
+    
+    '655': onwork.materialize(BL + 'Form',
+                              BL + 'genre',
+                              unique=values(subfield('a'),
+                                            subfield('b'),
+                                            subfield('c'),
+                                            subfield('v'),
+                                            subfield('x'),
+                                            subfield('y'),
+                                            subfield('z')),
+                              links={BL + 'name': subfield('a'),
+                                     MARC + 'source': subfield('2'),
+                                     BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0'))),
+                                     ifexists(subfield('a'), BL + 'focus'):
+                                         materialize(BL + 'Concept',
+                                                     unique=values(subfield('a')),
+                                                     links={BL + 'name': subfield('a'),
+                                                            MARC + 'additionalName': subfield('b')}
+                                                     )
+                                     }
+                              ),
 
 
 # Fields 700,710,711,etc. have a contributor + role (if specified) relationship to a new Agent object (only created as a new object if all subfields are unique)
 # Generate hash values only from the properties specific to Agents
 # If there is a 700$t however this is an indication that there is a new Work. And yes, we're building a touring complete micro-language to address such patterns.
 
-'700': ifexists(subfield('t'),
-                onwork.materialize(BL + 'Work',
-                                   values(REL + 'hasPart', relator_property(subfield('i'), prefix=REL)),
-                                   unique=values(subfield('t'), subfield('l'), subfield('m'), subfield('n'),
-                                                 subfield('o'), subfield('p'), subfield('r'), subfield('k'),
-                                                 subfield('f'), subfield('s')),
-                                   links={BL + 'title': subfield('t'), BL + 'language': subfield('l'),
-                                          AV + 'musicMedium': subfield('m'), MARC + 'titleNumber': subfield('n'),
-                                          AV + 'arrangedMusic': subfield('o'), MARC + 'titlePart': subfield('p'),
-                                          AV + 'musicKey': subfield('r'), MARC + 'form': subfield('k'),
-                                          BL + 'date': subfield('f'), MARC + 'version': subfield('s'),
-                                          ifexists(subfield('a'), BL + 'creator'):
-                                              materialize(BL + 'Person',
+    '700': ifexists(subfield('t'),
+                    onwork.materialize(BL + 'Work',
+                                       values(REL + 'hasPart', relator_property(subfield('i'), prefix=REL)),
+                                       unique=values(subfield('t'), subfield('l'), subfield('m'), subfield('n'),
+                                                     subfield('o'), subfield('p'), subfield('r'), subfield('k'),
+                                                     subfield('f'), subfield('s')
+                                                     ),
+                                       links={BL + 'title': subfield('t'), BL + 'language': subfield('l'),
+                                              AV + 'musicMedium': subfield('m'), MARC + 'titleNumber': subfield('n'),
+                                              AV + 'arrangedMusic': subfield('o'), MARC + 'titlePart': subfield('p'),
+                                              AV + 'musicKey': subfield('r'), MARC + 'form': subfield('k'),
+                                              BL + 'date': subfield('f'), MARC + 'version': subfield('s'),
+                                              ifexists(subfield('a'), BL + 'creator'):
+                                                  materialize(BL + 'Person',
+                                                              unique=values(subfield('a')),
+                                                              links={BL + 'name': subfield('a'),
+                                                                     BL + 'date': subfield('d')}
+                                                              )
+                                              }
+                                       ),
+                    onwork.materialize(BL + 'Person',
+                                       values(BL + 'contributor', relator_property(subfield('e'), prefix=REL),
+                                              relator_property(subfield('4'), prefix=REL)),
+                                       unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'),
+                                                     subfield('g'), subfield('j'), subfield('q'), subfield('u')),
+                                       links={BL + 'name': subfield('a'), MARC + 'numeration': subfield('b'),
+                                              MARC + 'titles': subfield('c'), BL + 'date': subfield('d'),
+                                              BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0')))
+                                              }
+                                       )
+                    ),
+
+    '710': ifexists(subfield('t'),
+                    onwork.materialize(BL + 'Work',
+                                       values(REL + 'hasPart', relator_property(subfield('i'), prefix=REL)),
+                                       unique=values(subfield('t'), subfield('l')),
+                                       links={BL + 'language': subfield('l'),
+                                              ifexists(subfield('a'), BL + 'creator'): 
+                                              materialize(BL + 'Organization',
                                                           unique=values(subfield('a')),
                                                           links={BL + 'name': subfield('a'),
-                                                                BL + 'date': subfield('d')}
-                                              )
-                                   }
-                ),
-                onwork.materialize(BL + 'Person',
-                                   values(BL + 'contributor', relator_property(subfield('e'), prefix=REL),
-                                          relator_property(subfield('4'), prefix=REL)),
-                                   unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'),
-                                                 subfield('g'), subfield('j'), subfield('q'), subfield('u')),
-                                   links={BL + 'name': subfield('a'), MARC + 'numeration': subfield('b'),
-                                          MARC + 'titles': subfield('c'), BL + 'date': subfield('d'),
-                                          BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0')))})
-),
+                                                                 BL + 'date': subfield('d')}),
+                                              BL + 'title': subfield('t'), 
+                                              BL + 'language': subfield('l')
+                                              }
+                                       ),
+                    onwork.materialize(BL + 'Organization',
+                                       values(BL + 'contributor', relator_property(subfield('e'), prefix=REL),
+                                              relator_property(subfield('4'), prefix=REL)),
+                                       unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'),
+                                                     subfield('j'), subfield('q'), subfield('u')),
+                                       links={BL + 'name': subfield('a'),
+                                              MARC + 'subordinateUnit': subfield('b'),
+                                              BL + 'date': subfield('d'),
+                                              BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0')))
+                                              }
+                                       )
+                    ),
 
-'710': ifexists(subfield('t'),
-                onwork.materialize(BL + 'Work',
-                                   values(REL + 'hasPart', relator_property(subfield('i'), prefix=REL)),
-                                   unique=values(subfield('t'), subfield('l')),
-                                   links={BL + 'language': subfield('l'),
-                                          ifexists(subfield('a'), BL + 'creator'): materialize(BL + 'Organization',
-                                                                                               unique=values(
-                                                                                                   subfield('a')),
-                                                                                               links={
-                                                                                               BL + 'name': subfield(
-                                                                                                   'a'),
-                                                                                               BL + 'date': subfield(
-                                                                                                   'd')}),
-                                          BL + 'title': subfield('t'), BL + 'language': subfield('l')}
-                ),
-                onwork.materialize(BL + 'Organization',
-                                   values(BL + 'contributor', relator_property(subfield('e'), prefix=REL),
-                                          relator_property(subfield('4'), prefix=REL)),
-                                   unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('g'),
-                                                 subfield('j'), subfield('q'), subfield('u')),
-                                   links={BL + 'name': subfield('a'), MARC + 'subordinateUnit': subfield('b'),
-                                          BL + 'date': subfield('d'),
-                                          BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0')))})
-),
+    '711': ifexists(subfield('t'),
+                    onwork.materialize(BL + 'Work',
+                                       values(REL + 'hasPart', relator_property(subfield('i'), prefix=REL)),
+                                       unique=values(subfield('t'),
+                                                     subfield('l')),
+                                       links={BL + 'language': subfield('l'),
+                                              BL + 'title': subfield('t'),
+                                              BL + 'language': subfield('l'),
+                                              ifexists(subfield('a'), BL + 'creator'): 
+                                              materialize(BL + 'Meeting',
+                                                          unique=values(subfield('a')),
+                                                          links={BL + 'name': subfield('a'),
+                                                                 BL + 'date': subfield('d')
+                                                                 }
+                                                          )
+                                              }
+                                       ),
+                    onwork.materialize(BL + 'Meeting',
+                                       values(BL + 'contributor', relator_property(subfield('e'), prefix=REL),
+                                              relator_property(subfield('4'), prefix=REL)),
+                                       unique=values(subfield('a'), subfield('c'), subfield('d'), subfield('e'),
+                                                     subfield('q'), subfield('u')
+                                                     ),
+                                       links={BL + 'name': subfield('a'), 
+                                              BL + 'date': subfield('d'),
+                                              BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0')))
+                                              }
+                                       )
+                    ),
 
-'711': ifexists(subfield('t'),
-                onwork.materialize(BL + 'Work',
-                                   values(REL + 'hasPart',
-                                          relator_property(subfield('i'), prefix=REL)),
-                                   unique=values(subfield('t'),
-                                                 subfield('l')),
-                                   links={BL + 'language': subfield('l'),
-                                          BL + 'title': subfield('t'),
-                                          BL + 'language': subfield('l'),
-                                          ifexists(subfield('a'), BL + 'creator'): materialize(BL + 'Meeting',
-                                                                                               unique=values(
-                                                                                                   subfield('a')),
-                                                                                               links={
-                                                                                               BL + 'name': subfield(
-                                                                                                   'a'),
-                                                                                               BL + 'date': subfield(
-                                                                                                   'd')})
-                                   }
-                ),
+    '720-1#': onwork.materialize(BL + 'Person',
+                                 values(BL + 'contributor', relator_property(subfield('e'), prefix=REL),
+                                        relator_property(subfield('4'), prefix=REL)),
+                                 unique=values(subfield('a')),
+                                 links={BL + 'name': subfield('a')}
+                                 ),
 
-                onwork.materialize(BL + 'Meeting',
-                                   values(BL + 'contributor', relator_property(subfield('e'), prefix=REL),
-                                          relator_property(subfield('4'), prefix=REL)),
-                                   unique=values(subfield('a'), subfield('c'), subfield('d'), subfield('e'),
-                                                 subfield('q'), subfield('u')),
-                                   links={BL + 'name': subfield('a'), BL + 'date': subfield('d'),
-                                          BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0')))})
-),
+    '720-##': onwork.materialize(BL + 'Agent',
+                                 values(BL + 'contributor', relator_property(subfield('e'), prefix=REL),
+                                        relator_property(subfield('4'), prefix=REL)),
+                                 unique=values(subfield('a')),
+                                 links={BL + 'name': subfield('a')}
+                                 ),
 
-'720-1#': onwork.materialize(BL + 'Person',
-                             values(BL + 'contributor', relator_property(subfield('e'), prefix=REL),
-                                    relator_property(subfield('4'), prefix=REL)),
-                             unique=values(subfield('a')),
-                             links={BL + 'name': subfield('a')}),
+    '730': onwork.materialize(BL + 'Collection',
+                              values(BL + 'related'),
+                              unique=all_subfields,
+                              links={BL + 'title': subfield('a'),
+                                     BL + 'language': subfield('l'),
+                                     BL + 'date': subfield('f'),
+                                     BL + 'medium': subfield('h'),
+                                     MARC + 'titlePart': subfield('p'),
+                                     MARC + 'titleNumber': subfield('n'),
+                                     MARC + 'version': subfield('s'),
+                                     AV + 'musicKey': subfield('r'),
+                                     AV + 'arrangedStatementForMusic': subfield('o'),
+                                     AV + 'musicMedium': subfield('m')}
+                              ),
+    
+    '740': onwork.materialize(BL + 'Work',
+                              values(BL + 'related'),
+                              unique=values(subfield('a'),
+                                            subfield('h'),
+                                            subfield('n'),
+                                            subfield('p')),
+                              links={BL + 'title': subfield('a'),
+                                     MARC + 'medium': subfield('h'),
+                                     MARC + 'titleNumber': subfield('n'),
+                                     MARC + 'titlePart': subfield('p')}
+                              ),
 
-'720-##': onwork.materialize(BL + 'Agent',
-                             values(BL + 'contributor', relator_property(subfield('e'), prefix=REL),
-                                    relator_property(subfield('4'), prefix=REL)),
-                             unique=values(subfield('a')),
-                             links={BL + 'name': subfield('a')}),
-
-'730': onwork.materialize(BL + 'Collection',
-                          values(BL + 'related'),
-                          unique=all_subfields,
-                          links={BL + 'title': subfield('a'),
-                                 BL + 'language': subfield('l'),
-                                 BL + 'date': subfield('f'),
-                                 BL + 'medium': subfield('h'),
-                                 MARC + 'titlePart': subfield('p'),
-                                 MARC + 'titleNumber': subfield('n'),
-                                 MARC + 'version': subfield('s'),
-                                 AV + 'musicKey': subfield('r'),
-                                 AV + 'arrangedStatementForMusic': subfield('o'),
-                                 AV + 'musicMedium': subfield('m')}
-),
-
-'740': onwork.materialize(BL + 'Work',
-                          values(BL + 'related'),
-                          unique=values(subfield('a'),
-                                        subfield('h'),
-                                        subfield('n'),
-                                        subfield('p')),
-                          links={BL + 'title': subfield('a'),
-                                 MARC + 'medium': subfield('h'),
-                                 MARC + 'titleNumber': subfield('n'),
-                                 MARC + 'titlePart': subfield('p')}
-),
-
-# Translation(s)
-
-'765':  onwork.materialize(BL + 'Work',
-                           values(REL + 'isTranslationOf'),
-                           unique=all_subfields,
-                           links={BL + 'title': subfield('t'),
-                                  MARC + 'issn': subfield('x'),
-                                  BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
-                                  MARC + 'edition': subfield('b'),
-                                  BL + 'note': subfield('n'),
-                                  MARC + 'isbn': subfield('z')}
-),
-
-'767':  onwork.materialize(BL + 'Work',
-                           values(REL + 'hasTranslation'),
-                           unique=all_subfields,
-                           links={BL + 'title': subfield('t'),
-                                  MARC + 'issn': subfield('x'),
-                                  BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
-                                  MARC + 'edition': subfield('b'),
-                                  BL + 'note': subfield('n'),
-                                  MARC + 'isbn': subfield('z')}
-),
-
-
-# Other editions
-
-'775':  onwork.materialize(BL + 'Work',
-                           values(REL + 'hasEdition'),
-                           unique=all_subfields,
-                           links={BL + 'title': subfield('t'),
-                                  MARC + 'issn': subfield('x'),
-                                  BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
-                                  MARC + 'edition': subfield('b'),
-                                  BL + 'note': subfield('n'),
-                                  MARC + 'isbn': subfield('z')}
-),
-
-
-# Preceding Entry
-
-'780-?0': onwork.materialize(BL + 'Work',
-                             values(REL + 'continues'),
-                             unique=all_subfields,
-                             links={BL + 'title': subfield('t'),
-                                    MARC + 'issn': subfield('x'),
-                                    BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
-                                    MARC + 'edition': subfield('b'),
-                                    BL + 'note': subfield('n'),
-                                    MARC + 'edition': subfield('b'),
-                                    MARC + 'isbn': subfield('z')}
-),
-
-'780-?1': onwork.materialize(BL + 'Work',
-                             REL + 'continuesInPart',
-                             unique=all_subfields,
-                             links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
-                                    BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
-                                    MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
+    # Translation(s)
+    
+    '765':  onwork.materialize(BL + 'Work',
+                               values(REL + 'isTranslationOf'),
+                               unique=all_subfields,
+                               links={BL + 'title': subfield('t'),
+                                      MARC + 'issn': subfield('x'),
+                                      BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                      MARC + 'edition': subfield('b'),
+                                      BL + 'note': subfield('n'),
+                                      MARC + 'isbn': subfield('z')}
+                               ),
+    
+    '767':  onwork.materialize(BL + 'Work',
+                               values(REL + 'hasTranslation'),
+                               unique=all_subfields,
+                               links={BL + 'title': subfield('t'),
+                                      MARC + 'issn': subfield('x'),
+                                      BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                      MARC + 'edition': subfield('b'),
+                                      BL + 'note': subfield('n'),
+                                      MARC + 'isbn': subfield('z')}
+                               ),
+    
+    
+    # Other editions
+    
+    '775':  onwork.materialize(BL + 'Work',
+                               values(REL + 'hasEdition'),
+                               unique=all_subfields,
+                               links={BL + 'title': subfield('t'),
+                                      MARC + 'issn': subfield('x'),
+                                      BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                      MARC + 'edition': subfield('b'),
+                                      BL + 'note': subfield('n'),
+                                      MARC + 'isbn': subfield('z')}
+                               ),
+    
+    
+    # Preceding Entry
+    
+    '780-?0': onwork.materialize(BL + 'Work',
+                                 values(REL + 'continues'),
+                                 unique=all_subfields,
+                                 links={BL + 'title': subfield('t'),
+                                        MARC + 'issn': subfield('x'),
+                                        BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                        MARC + 'edition': subfield('b'),
+                                        BL + 'note': subfield('n'),
+                                        MARC + 'edition': subfield('b'),
+                                        MARC + 'isbn': subfield('z')}
+                                 ),
+    
+    '780-?1': onwork.materialize(BL + 'Work',
+                                 REL + 'continuesInPart',
+                                 unique=all_subfields,
+                                 links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
+                                        BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                        MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
+                                        MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
+    
+    '780-?2': onwork.materialize(BL + 'Work',
+                                 REL + 'supersedes',
+                                 unique=all_subfields,
+                                 links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
+                                        BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                        MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
+                                        MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
+    
+    '780-?3': onwork.materialize(BL + 'Work',
+                                 REL + 'supersedesInPart',
+                                 unique=all_subfields,
+                                 links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
+                                        BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                        MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
                                     MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
 
-'780-?2': onwork.materialize(BL + 'Work',
-                             REL + 'supersedes',
-                             unique=all_subfields,
-                             links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
-                                    BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
-                                    MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
-                                    MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
+    '780-?4': onwork.materialize(BL + 'Work',
+                                 REL + 'unionOf',
+                                 unique=all_subfields,
+                                 links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
+                                        BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                        MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
+                                        MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
+    
+    '780-?5': onwork.materialize(BL + 'Work',
+                                 REL + 'absorbed',
+                                 unique=all_subfields,
+                                 links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
+                                        BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                        MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
+                                        MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
+    
+    '780-?6': onwork.materialize(BL + 'Work',
+                                 REL + 'absorbedInPart',
+                                 unique=all_subfields,
+                                 links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
+                                        BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                        MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
+                                        MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
+    
+    '780-?7': onwork.materialize(BL + 'Work',
+                                 REL + 'separatedFrom',
+                                 unique=all_subfields,
+                                 links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
+                                        BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                        MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
+                                        MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
+    
+    # Succeeding Entry
+    
+    '785-?0': onwork.materialize(BL + 'Work',
+                                 REL + 'continuedBy',
+                                 unique=all_subfields,
+                                 links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
+                                        BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                        MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
+                                        MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
+    
+    '785-?1': onwork.materialize(BL + 'Work',
+                                 REL + 'continuedInPartBy',
+                                 unique=all_subfields,
+                                 links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
+                                        BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                        MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
+                                        MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
+    
+    '785-?2': onwork.materialize(BL + 'Work',
+                                 REL + 'supersededBy',
+                                 unique=all_subfields,
+                                 links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
+                                        BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                        MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
+                                        MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
 
-'780-?3': onwork.materialize(BL + 'Work',
-                             REL + 'supersedesInPart',
-                             unique=all_subfields,
-                             links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
-                                    BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
-                                    MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
-                                    MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
+    '785-?3': onwork.materialize(BL + 'Work',
+                                 REL + 'supersededInPartBy',
+                                 unique=all_subfields,
+                                 links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
+                                        BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                        MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
+                                        MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
 
-'780-?4': onwork.materialize(BL + 'Work',
-                             REL + 'unionOf',
-                             unique=all_subfields,
-                             links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
-                                    BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
-                                    MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
-                                    MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
+    '785-?4': onwork.materialize(BL + 'Work',
+                                 REL + 'absorbedBy',
+                                 unique=all_subfields,
+                                 links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
+                                        BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                        MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
+                                        MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
 
-'780-?5': onwork.materialize(BL + 'Work',
-                             REL + 'absorbed',
-                             unique=all_subfields,
-                             links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
-                                    BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
-                                    MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
-                                    MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
+    '785-?5': onwork.materialize(BL + 'Work',
+                                 REL + 'absorbedInPartBy',
+                                 unique=all_subfields,
+                                 links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
+                                        BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                        MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
+                                        MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
 
-'780-?6': onwork.materialize(BL + 'Work',
-                             REL + 'absorbedInPart',
-                             unique=all_subfields,
-                             links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
-                                    BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
-                                    MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
-                                    MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
+    '785-?6': onwork.materialize(BL + 'Work',
+                                 REL + 'splitInto',
+                                 unique=all_subfields,
+                                 links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
+                                        BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                        MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
+                                        MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
 
-'780-?7': onwork.materialize(BL + 'Work',
-                             REL + 'separatedFrom',
-                             unique=all_subfields,
-                             links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
-                                    BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
-                                    MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
-                                    MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
+    '785-?7': onwork.materialize(BL + 'Work',
+                                 REL + 'mergedWith',
+                                 unique=all_subfields,
+                                 links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
+                                        BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                        MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
+                                        MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
 
-# Succeeding Entry
+    '785-?8': onwork.materialize(BL + 'Work',
+                                 REL + 'changedBackTo',
+                                 unique=all_subfields,
+                                 links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
+                                        BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                        MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
+                                        MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
 
-'785-?0': onwork.materialize(BL + 'Work',
-                             REL + 'continuedBy',
-                             unique=all_subfields,
-                             links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
-                                    BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
-                                    MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
-                                    MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
+    # Other related works
 
-'785-?1': onwork.materialize(BL + 'Work',
-                             REL + 'continuedInPartBy',
-                             unique=all_subfields,
-                             links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
-                                    BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
-                                    MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
-                                    MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
+    '787': onwork.materialize(BL + 'Work',
+                              REL + 'related',
+                              unique=all_subfields,
+                              links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
+                                     BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                     MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
+                                     MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
 
-'785-?2': onwork.materialize(BL + 'Work',
-                             REL + 'supersededBy',
-                             unique=all_subfields,
-                             links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
-                                    BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
-                                    MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
-                                    MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
+    # Series
 
-'785-?3': onwork.materialize(BL + 'Work',
-                             REL + 'supersededInPartBy',
-                             unique=all_subfields,
-                             links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
-                                    BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
-                                    MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
-                                    MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
+    '830': onwork.materialize(MARC + 'Series',
+                              BL + 'memberOf',
+                              unique=values(subfield('a')),
+                              links={BL + 'title': subfield('a'), MARC + 'titleRemainder': subfield('k'),
+                                     MARC + 'volume': subfield('v'), MARC + 'titleNumber': subfield('n'),
+                                     MARC + 'titlePart': subfield('p'), }),
 
-'785-?4': onwork.materialize(BL + 'Work',
-                             REL + 'absorbedBy',
-                             unique=all_subfields,
-                             links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
-                                    BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
-                                    MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
-                                    MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
-
-'785-?5': onwork.materialize(BL + 'Work',
-                             REL + 'absorbedInPartBy',
-                             unique=all_subfields,
-                             links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
-                                    BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
-                                    MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
-                                    MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
-
-'785-?6': onwork.materialize(BL + 'Work',
-                             REL + 'splitInto',
-                             unique=all_subfields,
-                             links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
-                                    BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
-                                    MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
-                                    MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
-
-'785-?7': onwork.materialize(BL + 'Work',
-                             REL + 'mergedWith',
-                             unique=all_subfields,
-                             links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
-                                    BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
-                                    MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
-                                    MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
-
-'785-?8': onwork.materialize(BL + 'Work',
-                             REL + 'changedBackTo',
-                             unique=all_subfields,
-                             links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
-                                    BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
-                                    MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
-                                    MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
-
-# Other related works
-
-'787': onwork.materialize(BL + 'Work',
-                          REL + 'related',
-                          unique=all_subfields,
-                          links={BL + 'title': subfield('t'), MARC + 'issn': subfield('x'),
-                                 BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
-                                 MARC + 'edition': subfield('b'), BL + 'note': subfield('n'),
-                                 MARC + 'edition': subfield('b'), MARC + 'isbn': subfield('z')}),
-
-# Series
-
-'830': onwork.materialize(MARC + 'Series',
-                          BL + 'memberOf',
-                          unique=values(subfield('a')),
-                          links={BL + 'title': subfield('a'), MARC + 'titleRemainder': subfield('k'),
-                                 MARC + 'volume': subfield('v'), MARC + 'titleNumber': subfield('n'),
-                                 MARC + 'titlePart': subfield('p'), }),
-
-'856$u': oninstance.rename(rel=BL + 'link', res=True),
+    '856$u': oninstance.rename(rel=BL + 'link', res=True),
 
 }
 
