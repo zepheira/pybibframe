@@ -152,7 +152,15 @@ BFLITE_TRANSFORMS = {
     '037$a': oninstance.rename(rel=MARC + 'stockNumber'),
 
     '040$a': onwork.rename(rel=MARC + 'catalogingSource'),
+
     '041$a': onwork.rename(rel=BL + 'language'),
+    '041$b': onwork.rename(rel=BL + 'language'),
+    '041$d': onwork.rename(rel=BL + 'language'),
+    '041$e': onwork.rename(rel=BL + 'language'),
+    '041$f': onwork.rename(rel=BL + 'language'),
+    '041$j': onwork.rename(rel=BL + 'language'),
+    '041$h': onwork.rename(rel=BL + 'language'),
+
     '050$a': onwork.rename(rel=MARC + 'lcCallNumber'),
     '050$b': onwork.rename(rel=MARC + 'lcItemNumber'),
     '050$3': onwork.rename(rel=BL + 'material'),
