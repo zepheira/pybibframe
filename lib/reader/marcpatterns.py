@@ -322,17 +322,18 @@ BFLITE_TRANSFORMS = {
     '260': oninstance.materialize(BL + 'ProviderEvent',
                                   values(MARC + 'publication'),
                                   unique=all_subfields,
-                                  links={ifexists(subfield('a'), BL + 'providerPlace'): materialize(BL + 'Place',
-                                                                                                    unique=subfield(
-                                                                                                        'a'), links={
-                                          BL + 'name': subfield('a')}),
-                                         foreach(target=subfield('b')): materialize(BL + 'Agent', BL + 'providerAgent',
-                                                                                    unique=target(),
-                                                                                    links={BL + 'name': target()}),
+                                  links={ifexists(subfield('a'), BL + 'providerPlace'):
+                                                materialize(BL + 'Place',
+                                                            unique=subfield('a'),
+                                                            links={BL + 'name': subfield('a')}
+                                                ),
+                                         foreach(target=subfield('b')):
+                                             materialize(BL + 'Agent', BL + 'providerAgent',
+                                                         unique=target(),
+                                                         links={BL + 'name': target()}
+                                                    ),
                                          BL + 'providerDate': subfield('c')
-                                  },
-                                  #foreach(create_link(target=materialize('Agent', unique=target(), links={'name': subfield('b')})), rel='providerAgent', target=subfield('b'))
-                                  #foreach(rel='providerAgent', target=subfield('b'))
+                                  }
     ),
 
     '264': oninstance.materialize(BL + 'ProviderEvent',
@@ -572,20 +573,11 @@ BFLITE_TRANSFORMS = {
                                               BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0'))),
                                               ifexists(subfield('t'), BL + 'focus'):
                                                   materialize(BL + 'Work',
-                                                              unique=values(subfield('a'),  # same as 100
-                                                                            subfield('b'),
-                                                                            subfield('c'),
-                                                                            subfield('d'),
-                                                                            subfield('g'),
-                                                                            subfield('j'),
-                                                                            subfield('q'),
-                                                                            subfield('u'),
-                                                                            subfield('t'),  # and the title (240)
-                                                                            subfield('n'),
-                                                                            subfield('p'),
-                                                                            subfield('r'),
-                                                                            subfield('k'),
-                                                                            subfield('f'),
+                                                              unique=values(subfield('a'), subfield('b'), subfield('c'),  # same as 100
+                                                                            subfield('d'), subfield('g'), subfield('j'),
+                                                                            subfield('q'), subfield('u'),
+                                                                            subfield('t'), subfield('n'), subfield('p'),  # and the title (240)
+                                                                            subfield('r'), subfield('k'), subfield('f'),
                                                                             subfield('s')
                                                               ),
                                                               links={BL + 'title': subfield('t'),
@@ -599,8 +591,7 @@ BFLITE_TRANSFORMS = {
                                                                      MARC + 'version': subfield('s'),
                                                                      ifexists(subfield('a'), BL + 'creator'):
                                                                          materialize(BL + 'Person',
-                                                                                     unique=values(subfield('a'),
-                                                                                                   # same as 100
+                                                                                     unique=values(subfield('a'), # same as 100
                                                                                                    subfield('b'),
                                                                                                    subfield('c'),
                                                                                                    subfield('d'),
@@ -610,13 +601,10 @@ BFLITE_TRANSFORMS = {
                                                                                                    subfield('u')
                                                                                      ),
                                                                                      links={BL + 'name': subfield('a'),
-                                                                                            MARC + 'numeration': subfield(
-                                                                                                'b'),
-                                                                                            MARC + 'titles': subfield(
-                                                                                                'c'),
+                                                                                            MARC + 'numeration': subfield'b'),
+                                                                                            MARC + 'titles': subfield('c'),
                                                                                             BL + 'date': subfield('d'),
-                                                                                            MARC + 'additionalName': subfield(
-                                                                                                'q')
+                                                                                            MARC + 'additionalName': subfield('q')
                                                                                      }
                                                                          )
                                                               }
@@ -625,29 +613,12 @@ BFLITE_TRANSFORMS = {
                     ),
                     onwork.materialize(BL + 'Topic',
                                        values(BL + 'subject'),
-                                       unique=values(subfield('a'),
-                                                     subfield('b'),
-                                                     subfield('c'),
-                                                     subfield('d'),
-                                                     subfield('f'),
-                                                     subfield('g'),
-                                                     subfield('h'),
-                                                     subfield('j'),
-                                                     subfield('k'),
-                                                     subfield('l'),
-                                                     subfield('m'),
-                                                     subfield('n'),
-                                                     subfield('o'),
-                                                     subfield('p'),
-                                                     subfield('q'),
-                                                     subfield('r'),
-                                                     subfield('s'),
-                                                     subfield('t'),
-                                                     subfield('u'),
-                                                     subfield('v'),
-                                                     subfield('x'),
-                                                     subfield('y'),
-                                                     subfield('z')
+                                       unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'),
+                                                     subfield('f'), subfield('g'), subfield('h'), subfield('j'),
+                                                     subfield('k'), subfield('l'), subfield('m'), subfield('n'),
+                                                     subfield('o'), subfield('p'), subfield('q'), subfield('r'),
+                                                     subfield('s'), subfield('t'), subfield('u'), subfield('v'),
+                                                     subfield('x'), subfield('y'), subfield('z')
                                        ),
                                        links={BL + 'name': subfield('a'),
                                               MARC + 'numeration': subfield('b'),
@@ -659,15 +630,10 @@ BFLITE_TRANSFORMS = {
                                               MARC + 'geographicSubdivision': subfield('z'),
                                               BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0'))),
                                               ifexists(subfield('a'), BL + 'focus'):
-                                                  materialize(BL + 'Person',
-                                                              unique=values(subfield('a'),  # same as 100
-                                                                            subfield('b'),
-                                                                            subfield('c'),
-                                                                            subfield('d'),
-                                                                            subfield('g'),
-                                                                            subfield('j'),
-                                                                            subfield('q'),
-                                                                            subfield('u')
+                                                  materialize(BL + 'Person', # same as 100
+                                                              unique=values(subfield('a'), subfield('b'), subfield('c'),
+                                                                            subfield('d'), subfield('g'), subfield('j'),
+                                                                            subfield('q'), subfield('u')
                                                               ),
                                                               links={BL + 'name': subfield('a'),
                                                                      MARC + 'numeration': subfield('b'),
