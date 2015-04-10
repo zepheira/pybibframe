@@ -1418,7 +1418,7 @@ EXPECTED_13 = '''
     [
         "84XAPq4b",
         "http://bibfra.me/vocab/marc/isbn",
-        "978158890215",
+        "9781588902153",
         {}
     ],
     [
@@ -1546,7 +1546,7 @@ EXPECTED_13 = '''
     [
         "tNdA2WkE",
         "http://bibfra.me/vocab/marc/isbn",
-        "978313612804",
+        "9783136128046",
         {}
     ],
     [
@@ -1854,4 +1854,3 @@ def test_snippets(snippet, config, expected):
 
 if __name__ == '__main__':
     raise SystemExit("use py.test")
-

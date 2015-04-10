@@ -24,7 +24,7 @@ from versa.pipeline import *
 from bibframe import MARC
 from bibframe.reader.util import WORKID, IID
 from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
-from bibframe.isbnplus import isbn_list
+from bibframe.isbnplus import isbn_list, compute_ean13_check
 from bibframe.reader.marcpatterns import TRANSFORMS, bfcontext
 from bibframe.reader.marcextra import transforms as default_extra_transforms
 
@@ -35,7 +35,7 @@ NON_ISBN_CHARS = re.compile('\D')
 
 NEW_RECORD = 'http://bibfra.me/purl/versa/' + 'newrecord'
 
-# Namespaces 
+# Namespaces
 
 BL = 'http://bibfra.me/vocab/lite/'
 ISBNNS = MARC
@@ -91,7 +91,7 @@ def isbn_instancegen(params, loop, model):
     workid = params['workid']
     ids = params['ids']
     plugins = params['plugins']
-    
+
     isbns = list(( val for code, val in marc_lookup(input_model, '020$a')))
     logger.debug('Raw ISBNS:\t{0}'.format(isbns))
 
@@ -106,7 +106,7 @@ def isbn_instancegen(params, loop, model):
             instanceid = materialize_entity('Instance', ctx_params=params, loop=loop, update_model=True, instantiates=workid, isbn=inum)
             if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
 
-            output_model.add(I(instanceid), ISBN_REL, inum)
+            output_model.add(I(instanceid), ISBN_REL, compute_ean13_check(inum))
             output_model.add(I(instanceid), I(iri.absolutize('instantiates', vocabbase)), I(workid))
             if itype: output_model.add(I(instanceid), ISBN_TYPE_REL, itype)
             existing_ids.add(instanceid)
@@ -144,7 +144,7 @@ RECORD_HASH_KEY_FIELDS = [
     '240$a', '240$f', '240$n', '240$o', '240$p', '240$l', # key uniform title info
     '245$a', '245$b', '245$c', '245$n', '245$p', '245$f', '245$k', # Title info
     '246$a', '246$b', '246$f', # Title variation info
-    '250$a', '250$b', # key edition 
+    '250$a', '250$b', # key edition
     '100$a', '100$d', '110$a', '110$d', '111$a', '111$d', # key creator info
     '700$a', '700$d', '710$a', '710$d', '711$a', '711$d', # key contributor info
     '600$a', '610$a', '611$a', '650$a', '651$a',  # key subject info
@@ -211,7 +211,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
     limiting - mutable pair of [count, limit] used to control the number of records processed
     '''
     _final_tasks = set() #Tasks for the event loop contributing to the MARC processing
-    
+
     plugins = plugins or []
     if ids is None: ids = idgen(entbase)
 
@@ -358,7 +358,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                 #This is where we check each incoming MARC link to see if it matches a transform into an output link (e.g. renaming 001 to 'controlCode')
                 to_process = []
                 #Start with most specific matches, then to most general
-                
+
                 # "?" syntax in lookups is a single char wildcard
                 #First with subfields, with & without indicators:
                 for k, v in subfields.items():
@@ -386,7 +386,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                     '{0}-{1}{2}'.format(tag, indicator_list[0], indicator_list[1]),
                     '{0}-?{2}'.format(tag, indicator_list[0], indicator_list[1]),
                     '{0}-{1}?'.format(tag, indicator_list[0], indicator_list[1]),
-                    tag, 
+                    tag,
                 ]
 
                 #Remember how many lookups were successful based on subfields
@@ -418,10 +418,10 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                     #Nothing else has handled this data field; go to the fallback
                     fallback_rel_base = '../marcext/tag-' + tag
                     if not subfields:
-                        #Fallback for control field: Captures MARC tag & value 
+                        #Fallback for control field: Captures MARC tag & value
                         model.add(I(workid), I(iri.absolutize(fallback_rel_base, vocabbase)), val)
                     for k, v in subfields.items():
-                        #Fallback for data field: Captures MARC tag, indicators, subfields & value 
+                        #Fallback for data field: Captures MARC tag, indicators, subfields & value
                         fallback_rel = '../marcext/{0}-{1}{2}-{3}'.format(
                             fallback_rel_base, indicator_list[0].replace('#', 'X'),
                             indicator_list[1].replace('#', 'X'), k)
@@ -538,4 +538,3 @@ def replace_entity_resource(model, oldres, newres):
             model.add(*new_link)
     model.delete(oldrids)
     return
-
