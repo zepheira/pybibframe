@@ -323,110 +323,102 @@ BFLITE_TRANSFORMS = {
                                   values(MARC + 'publication'),
                                   unique=all_subfields,
                                   links={ifexists(subfield('a'), BL + 'providerPlace'):
-                                                materialize(BL + 'Place',
-                                                            unique=subfield('a'),
-                                                            links={BL + 'name': subfield('a')}
-                                                ),
+                                             materialize(BL + 'Place',
+                                                         unique=subfield('a'),
+                                                         links={BL + 'name': subfield('a')}
+                                                         ),
                                          foreach(target=subfield('b')):
                                              materialize(BL + 'Agent', BL + 'providerAgent',
                                                          unique=target(),
                                                          links={BL + 'name': target()}
-                                                    ),
+                                                         ),
                                          BL + 'providerDate': subfield('c')
-                                  }
-    ),
+                                         }
+                                  ),
 
     '264': oninstance.materialize(BL + 'ProviderEvent',
                                   MARC + 'publication',
                                   unique=all_subfields,
-                                  links={ifexists(subfield('a'), BL + 'providerPlace'): materialize(BL + 'Place',
-                                                                                                    unique=subfield(
-                                                                                                        'a'),
-                                                                                                    links={
-                                                                                                        BL + 'name': subfield(
-                                                                                                            'a')}),
-                                         ifexists(subfield('b'), BL + 'providerAgent'): materialize(BL + 'Agent',
-                                                                                                    unique=subfield(
-                                                                                                        'b'),
-                                                                                                    links={
-                                                                                                        BL + 'name': subfield(
-                                                                                                            'b')}),
+                                  links={ifexists(subfield('a'), BL + 'providerPlace'): 
+                                         materialize(BL + 'Place',
+                                                     unique=subfield('a'),
+                                                     links={BL + 'name': subfield('a')}
+                                                     ),
+                                         ifexists(subfield('b'), BL + 'providerAgent'): 
+                                         materialize(BL + 'Agent',
+                                                     unique=subfield('b'),
+                                                     links={BL + 'name': subfield('b')}
+                                                     ),
                                          BL + 'providerDate': subfield('c')}
-    ),
+                                  ),
 
     #Ind1 is blank ('#') ind2 is 3
-
+    
     '264$c-#4': oninstance.rename(rel=MARC + 'copyrightDate'),
-
+    
     '264-#3': oninstance.materialize(BL + 'ProviderEvent',
                                      MARC + 'manufacture',
                                      unique=all_subfields,
-                                     links={ifexists(subfield('a'), BL + 'providerPlace'): materialize(BL + 'Place',
-                                                                                                       unique=subfield(
-                                                                                                           'a'),
-                                                                                                       links={
-                                                                                                           BL + 'name': subfield(
-                                                                                                               'a')}),
-                                            ifexists(subfield('b'), BL + 'providerAgent'): materialize(BL + 'Agent',
-                                                                                                       unique=subfield(
-                                                                                                           'b'),
-                                                                                                       links={
-                                                                                                           BL + 'name': subfield(
-                                                                                                               'b')}),
+                                     links={ifexists(subfield('a'), BL + 'providerPlace'): 
+                                            materialize(BL + 'Place',
+                                                        unique=subfield('a'),
+                                                        links={BL + 'name': subfield('a')}
+                                                        ),
+                                            ifexists(subfield('b'), BL + 'providerAgent'): 
+                                            materialize(BL + 'Agent', 
+                                                        unique=subfield('b'),
+                                                        links={BL + 'name': subfield('b')}
+                                                        ),
                                             BL + 'providerDate': subfield('c')}
-    ),
+                                     ),
 
     '264-#2': oninstance.materialize(BL + 'ProviderEvent',
                                      MARC + 'distribution',
                                      unique=all_subfields,
-                                     links={ifexists(subfield('a'), BL + 'providerPlace'): materialize(BL + 'Place',
-                                                                                                       unique=subfield(
-                                                                                                           'a'),
-                                                                                                       links={
-                                                                                                           BL + 'name': subfield(
-                                                                                                               'a')}),
-                                            ifexists(subfield('b'), BL + 'providerAgent'): materialize(BL + 'Agent',
-                                                                                                       unique=subfield(
-                                                                                                           'b'),
-                                                                                                       links={
-                                                                                                           BL + 'name': subfield(
-                                                                                                               'b')}),
+                                     links={ifexists(subfield('a'), BL + 'providerPlace'): 
+                                            materialize(BL + 'Place',
+                                                        unique=subfield('a'),
+                                                        links={BL + 'name': subfield('a')}
+                                                        ),
+                                            ifexists(subfield('b'), BL + 'providerAgent'): 
+                                            materialize(BL + 'Agent',
+                                                        unique=subfield('b'),
+                                                        links={BL + 'name': subfield('b')}
+                                                        ),
                                             BL + 'providerDate': subfield('c')}
-    ),
+                                     ),
 
     '264-#1': oninstance.materialize(BL + 'ProviderEvent',
                                      MARC + 'publication',
                                      unique=all_subfields,
-                                     links={ifexists(subfield('a'), BL + 'providerPlace'): materialize(BL + 'Place',
-                                                                                                       unique=subfield(
-                                                                                                           'a'),
-                                                                                                       links={
-                                                                                                           BL + 'name': subfield(
-                                                                                                               'a')}),
-                                            ifexists(subfield('b'), 'providerAgent'): materialize(BL + 'Agent',
-                                                                                                  unique=subfield('b'),
-                                                                                                  links={
-                                                                                                      BL + 'name': subfield(
-                                                                                                          'b')}),
+                                     links={ifexists(subfield('a'), BL + 'providerPlace'): 
+                                            materialize(BL + 'Place',
+                                                        unique=subfield('a'),
+                                                        links={BL + 'name': subfield('a')}
+                                                        ),
+                                            ifexists(subfield('b'), 'providerAgent'): 
+                                            materialize(BL + 'Agent',
+                                                        unique=subfield('b'),
+                                                        links={BL + 'name': subfield('b')}
+                                                        ),
                                             BL + 'providerDate': subfield('c')}
-    ),
+                                     ),
 
     '264-#0': oninstance.materialize(BL + 'ProviderEvent',
                                      MARC + 'production',
                                      unique=all_subfields,
-                                     links={ifexists(subfield('a'), BL + 'providerPlace'): materialize(BL + 'Place',
-                                                                                                       unique=subfield(
-                                                                                                           'a'),
-                                                                                                       links={
-                                                                                                           BL + 'name': subfield(
-                                                                                                               'a')}),
-                                            ifexists(subfield('b'), BL + 'providerAgent'): materialize(BL + 'Agent',
-                                                                                                       unique=subfield(
-                                                                                                           'b'),
-                                                                                                       links={
-                                                                                                           BL + 'name': subfield(
-                                                                                                               'b')}),
-                                            BL + 'providerDate': subfield('c')}),
+                                     links={ifexists(subfield('a'), BL + 'providerPlace'): 
+                                            materialize(BL + 'Place',
+                                                        unique=subfield('a'),
+                                                        links={BL + 'name': subfield('a')}
+                                                        ),
+                                            ifexists(subfield('b'), BL + 'providerAgent'): 
+                                            materialize(BL + 'Agent',
+                                                        unique=subfield('b'),
+                                                        links={BL + 'name': subfield('b')}
+                                                        ),
+                                            BL + 'providerDate': subfield('c')}
+                                     ),
 
     '300$a': oninstance.rename(rel=BL + 'extent'),
     '300$b': oninstance.rename(rel=MARC + 'otherPhysicalDetails'),
@@ -549,7 +541,8 @@ BFLITE_TRANSFORMS = {
 
 
     # subjects
-    # generate hash values only from all properties specific to Subjects
+    # subjects are modeled as topics with a focus specific to the MARC tag (person, place, organization, etc. 
+    # subjects of tags specific to agents with a $t designation are modeled with focuses to Works 
 
     '600': ifexists(subfield('t'),
                     onwork.materialize(BL + 'Topic',
@@ -560,7 +553,7 @@ BFLITE_TRANSFORMS = {
                                                      subfield('o'), subfield('p'), subfield('q'), subfield('r'),
                                                      subfield('s'), subfield('t'), subfield('u'), subfield('v'),
                                                      subfield('x'), subfield('y'), subfield('z')
-                                       ),
+                                                     ),
                                        links={BL + 'name': subfield('a'),
                                               MARC + 'numeration': subfield('b'),
                                               MARC + 'locationOfEvent': subfield('c'),
@@ -579,7 +572,7 @@ BFLITE_TRANSFORMS = {
                                                                             subfield('t'), subfield('n'), subfield('p'),  # and the title (240)
                                                                             subfield('r'), subfield('k'), subfield('f'),
                                                                             subfield('s')
-                                                              ),
+                                                                            ),
                                                               links={BL + 'title': subfield('t'),
                                                                      MARC + 'titleNumber': subfield('n'),
                                                                      MARC + 'titleNumber': subfield('n'),
@@ -599,18 +592,18 @@ BFLITE_TRANSFORMS = {
                                                                                                    subfield('j'),
                                                                                                    subfield('q'),
                                                                                                    subfield('u')
-                                                                                     ),
+                                                                                                   ),
                                                                                      links={BL + 'name': subfield('a'),
                                                                                             MARC + 'numeration': subfield('b'),
                                                                                             MARC + 'titles': subfield('c'),
                                                                                             BL + 'date': subfield('d'),
                                                                                             MARC + 'additionalName': subfield('q')
-                                                                                     }
-                                                                         )
-                                                              }
-                                                  )
-                                       }
-                    ),
+                                                                                            }
+                                                                                     )
+                                                                     }
+                                                              )
+                                              }
+                                       ),
                     onwork.materialize(BL + 'Topic',
                                        values(BL + 'subject'),
                                        unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'),
@@ -619,7 +612,7 @@ BFLITE_TRANSFORMS = {
                                                      subfield('o'), subfield('p'), subfield('q'), subfield('r'),
                                                      subfield('s'), subfield('t'), subfield('u'), subfield('v'),
                                                      subfield('x'), subfield('y'), subfield('z')
-                                       ),
+                                                     ),
                                        links={BL + 'name': subfield('a'),
                                               MARC + 'numeration': subfield('b'),
                                               MARC + 'locationOfEvent': subfield('c'),
@@ -634,19 +627,18 @@ BFLITE_TRANSFORMS = {
                                                               unique=values(subfield('a'), subfield('b'), subfield('c'),
                                                                             subfield('d'), subfield('g'), subfield('j'),
                                                                             subfield('q'), subfield('u')
-                                                              ),
+                                                                            ),
                                                               links={BL + 'name': subfield('a'),
                                                                      MARC + 'numeration': subfield('b'),
                                                                      MARC + 'titles': subfield('c'),
                                                                      BL + 'date': subfield('d'),
                                                                      MARC + 'additionalName': subfield('q')
-                                                              }
-                                                  )
-                                       }
-                    )
-    ),
-
-
+                                                                     }
+                                                              )
+                                              }
+                                       )
+                    ),
+    
     '600$v': onwork.materialize(BL + 'Form',
                                 BL + 'genre',
                                 unique=values(subfield('v')),
