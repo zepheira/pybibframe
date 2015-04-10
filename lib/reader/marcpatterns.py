@@ -601,7 +601,7 @@ BFLITE_TRANSFORMS = {
                                                                                                    subfield('u')
                                                                                      ),
                                                                                      links={BL + 'name': subfield('a'),
-                                                                                            MARC + 'numeration': subfield'b'),
+                                                                                            MARC + 'numeration': subfield('b'),
                                                                                             MARC + 'titles': subfield('c'),
                                                                                             BL + 'date': subfield('d'),
                                                                                             MARC + 'additionalName': subfield('q')
