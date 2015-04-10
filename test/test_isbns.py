@@ -1,6 +1,6 @@
 import pytest
 
-from bibframe.isbnplus import isbn_list
+from bibframe.isbnplus import isbn_list, compute_ean13_check
 
 ISBN_LISTS = [
     {'expected': [('978158890215', '(TNY)'), ('978313612804', '(GTV)')],
@@ -19,6 +19,24 @@ for igroup in ISBN_LISTS:
 @pytest.mark.parametrize('inputdata,expected', ISBN_LISTS_ENTAILED)
 def test_isbn_list(inputdata, expected):
     result = list(isbn_list(inputdata))
+    assert result == expected, (result, expected)
+
+
+ISBN_13_TESTS = {
+    '9781588902153': '9781588902153',
+    '978158890215': '9781588902153',
+    '9783136128046': '9783136128046',
+    '978313612804': '9783136128046',
+    '4006381333931': '4006381333931',
+    '400638133393': '4006381333931',
+    '9780615886084': '9780615886084',
+    '978061588608': '9780615886084',
+}
+
+
+@pytest.mark.parametrize('inputdata,expected', ISBN_13_TESTS.items())
+def test_isbn_list(inputdata, expected):
+    result = compute_ean13_check(inputdata)
     assert result == expected, (result, expected)
 
 

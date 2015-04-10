@@ -66,3 +66,36 @@ def isbn_list(isbns, logger=logging):
         #variants.sort(key=len, reverse=True) # sort by descending length
         #yield variants[0], isbn_tags[variants[0]]
     return
+
+
+def compute_ean13_check(ean):
+    '''
+    Compute the EAN-13 check digit. Note: ISBN-13 is the same scheme as EAN-13
+
+    Algorithm: http://en.wikipedia.org/wiki/International_Article_Number_(EAN)#Calculation_of_checksum_digit
+
+    >>> from bibframe.isbnplus import compute_ean13_check
+    >>> compute_ean13_check('4006381333931')
+    '4006381333931'
+    >>> compute_ean13_check('400638133393')
+    '4006381333931'
+    >>> compute_ean13_check('9780615886084') #Ndewo, Colorado :)
+    '9780615886084'
+    >>> compute_ean13_check('978061588608')
+    '9780615886084'
+    '''
+    assert len(ean) in (12, 13)
+    def weight_gen():
+        '''
+        Generator of alternating 1 and 3 weights
+        '''
+        while True:
+            yield 1
+            yield 3
+
+    assert len(ean) in (12, 13)
+    wg = weight_gen()
+    ean = ean[:12]
+    s = sum([ int(d) * next(wg) for d in ean ])
+
+    return ean + str(10 - s % 10)
