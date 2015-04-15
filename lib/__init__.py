@@ -11,6 +11,7 @@ BFLC = I('http://bibframe.org/vocab/')
 g_services = {}
 
 BF_INIT_TASK = 'http://bibfra.me/tool/pybibframe#task.init'
+BF_INPUT_TASK = 'http://bibfra.me/tool/pybibframe#task.input-model'
 BF_MARCREC_TASK = 'http://bibfra.me/tool/pybibframe#task.marcrec'
 BF_MATRES_TASK = 'http://bibfra.me/tool/pybibframe#task.materialize-resource'
 BF_FINAL_TASK = 'http://bibfra.me/tool/pybibframe#task.final'

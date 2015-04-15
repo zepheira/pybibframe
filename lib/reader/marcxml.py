@@ -6,7 +6,6 @@ https://docs.python.org/3/library/xml.html#xml-vulnerabilities
 '''
 
 import asyncio
-import collections
 import logging
 from collections import defaultdict, OrderedDict
 import unicodedata
@@ -72,21 +71,22 @@ class expat_callbacks(object):
                 #XXX: Entity base IRI needed?
                 self._record_id = 'record-{0}:{1}'.format(self._parser.CurrentLineNumber, self._parser.CurrentColumnNumber)
                 #Versa model with a representation of the record
-                self._record_model = memory.connection()#logger=logger)
+                #For input model plugins, important that natural ordering be preserved
+                self._record_model = memory.connection(rel_cls=OrderedDict, attr_cls=OrderedDict)#logger=logger)
             elif local == 'leader':
                 self._chardata_dest = ''
                 self._link_iri = MARCXML_NS + '/leader'
-                self._marc_attributes = {}
+                self._marc_attributes = OrderedDict()
                 self._getcontent = True
             elif local == 'controlfield':
                 self._chardata_dest = ''
                 self._link_iri = MARCXML_NS + '/control/' + attributes['tag'].strip()
                 #Control tags have neither indicators nor subfields
-                self._marc_attributes = {'tag': attributes['tag'].strip()}
+                self._marc_attributes = OrderedDict({'tag': attributes['tag'].strip()})
                 self._getcontent = True
             elif local == 'datafield':
                 self._link_iri = MARCXML_NS + '/data/' + attributes['tag'].strip()
-                self._marc_attributes = {k: v.strip() for (k, v) in attributes.items() if ' ' not in k}
+                self._marc_attributes = OrderedDict(([k, v.strip()] for (k, v) in attributes.items() if ' ' not in k))
             elif local == 'subfield':
                 self._chardata_dest = ''
                 self._subfield = attributes['code'].strip()

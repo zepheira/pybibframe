@@ -23,7 +23,7 @@ from versa.pipeline import *
 
 from bibframe import MARC
 from bibframe.reader.util import WORKID, IID
-from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
+from bibframe import BF_INIT_TASK, BF_INPUT_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
 from bibframe.isbnplus import isbn_list, compute_ean13_check
 from bibframe.reader.marcpatterns import TRANSFORMS, bfcontext
 from bibframe.reader.marcextra import transforms as default_extra_transforms
@@ -324,6 +324,11 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             for linfo in add_links:
                 input_model.add(*linfo)
 
+            # hook for plugins interested in the input model
+            for plugin in plugins:
+                if BF_INPUT_TASK in plugin:
+                    yield from plugin[BF_INPUT_TASK](loop, input_model, params)
+
             # need to sort our way through the input model so that the materializations occur
             # at the same place each time, otherwise canonicalization fails due to the
             # addition of the subfield context (at the end of materialize())
@@ -449,7 +454,8 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             for plugin in plugins:
                 #Each plug-in is a task
                 #task = asyncio.Task(plugin[BF_MARCREC_TASK](loop, relsink, params), loop=loop)
-                yield from plugin[BF_MARCREC_TASK](loop, model, params)
+                if BF_MARCREC_TASK in plugin:
+                    yield from plugin[BF_MARCREC_TASK](loop, model, params)
                 logger.debug("Pending tasks: %s" % asyncio.Task.all_tasks(loop))
                 #FIXME: This blocks and thus serializes the plugin operation, rather than the desired coop scheduling approach
                 #For some reason seting to async task then immediately deferring to next task via yield from sleep leads to the "yield from wasn't used with future" error (Not much clue at: https://codereview.appspot.com/7396044/)
