@@ -871,6 +871,10 @@ BFLITE_TRANSFORMS = {
                                             subfield('z')),
                               links={BL + 'name': subfield('a'),
                                      MARC + 'source': subfield('2'),
+                                     MARC + 'generalSubdivision': subfield('x'),
+                                     MARC + 'chronologicalSubdivision': subfield('y'),
+                                     MARC + 'formSubdivision': subfield('v'),
+                                     MARC + 'geographicSubdivision': subfield('z'),                                     
                                      BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0'))),
                                      ifexists(subfield('a'), BL + 'focus'):
                                          materialize(BL + 'Concept',
