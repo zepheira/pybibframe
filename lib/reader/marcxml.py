@@ -72,7 +72,7 @@ class expat_callbacks(object):
                 self._record_id = 'record-{0}:{1}'.format(self._parser.CurrentLineNumber, self._parser.CurrentColumnNumber)
                 #Versa model with a representation of the record
                 #For input model plugins, important that natural ordering be preserved
-                self._record_model = memory.connection(rel_cls=OrderedDict, attr_cls=OrderedDict)#logger=logger)
+                self._record_model = memory.connection(attr_cls=OrderedDict)#logger=logger)
             elif local == 'leader':
                 self._chardata_dest = ''
                 self._link_iri = MARCXML_NS + '/leader'
