@@ -30,7 +30,7 @@ def marc_int(rt):
     '''
     Handle encoded integers with fallback
     '''
-    mi = None # no runtime property produced
+    mi = None # no property produced
     try:
         mi = int(rt)
     except ValueError:
@@ -1397,7 +1397,7 @@ class transforms(object):
         )
 
         self.MATERIAL_CATEGORY = {
-            'a': 'Map_007', # named to avoid confusion with 'Maps' from 006/008
+            'a': 'Map',
             'c': 'ElectronicResource',
             'd': 'Globe',
             'f': 'TactileMaterial',
@@ -1555,7 +1555,7 @@ class transforms(object):
                 (15, 16): lambda i: (None, I(self._vocab[MARC]+'specialFormatCharacteristics'), SLUG(self.Maps['SpecialFormatCharacteristics'].get(info[i]))),
             },
             VisualMaterials = {
-                ('slice', 0, 2): lambda i: (None, I(self._vocab[MARC]+'runtime'), marc_int(info[i])),
+                ('slice', 0, 3): lambda i: (None, I(self._vocab[MARC]+'runtime'), marc_int(info[i])),
                 4: lambda i: (None, I(self._vocab[MARC]+'targetAudience'), SLUG(self.AUDIENCE.get(info[i]))),
                 10: lambda i: (None, I(self._vocab[MARC]+'governmentPublication'), SLUG(self.GOVT_PUBLICATION.get(info[i]))),
                 11: lambda i: (instance, I(self._vocab[MARC]+'formOfItem'), SLUG(self.FORM_OF_ITEM.get(info[i]))),
