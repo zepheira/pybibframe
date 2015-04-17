@@ -204,6 +204,86 @@
         {}
     ],
     [
+        "3K7vX49M",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "3K7vX49M",
+        "http://bibfra.me/vocab/lite/focus",
+        "UMM2SZua",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "3K7vX49M",
+        "http://bibfra.me/vocab/lite/name",
+        "Egypt",
+        {}
+    ],
+    [
+        "3K7vX49M",
+        "http://bibfra.me/vocab/marc/generalSubdivision",
+        "Economic policy.",
+        {}
+    ],
+    [
+        "3K7vX49M",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Egypt",
+        {}
+    ],
+    [
+        "3K7vX49M",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "Economic policy.",
+        {}
+    ],
+    [
+        "4jENpeBz",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "4jENpeBz",
+        "http://bibfra.me/vocab/lite/focus",
+        "UMM2SZua",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "4jENpeBz",
+        "http://bibfra.me/vocab/lite/name",
+        "Egypt",
+        {}
+    ],
+    [
+        "4jENpeBz",
+        "http://bibfra.me/vocab/marc/generalSubdivision",
+        "Economic conditions.",
+        {}
+    ],
+    [
+        "4jENpeBz",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Egypt",
+        {}
+    ],
+    [
+        "4jENpeBz",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "Economic conditions.",
+        {}
+    ],
+    [
         "6HeeVV4p",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
@@ -346,7 +426,7 @@
     [
         "DPsX5gyH",
         "http://bibfra.me/vocab/lite/subject",
-        "GcCRGczX",
+        "3K7vX49M",
         {
             "@target-type": "@iri-ref"
         }
@@ -354,7 +434,7 @@
     [
         "DPsX5gyH",
         "http://bibfra.me/vocab/lite/subject",
-        "LL9RCi_X",
+        "4jENpeBz",
         {
             "@target-type": "@iri-ref"
         }
@@ -362,7 +442,7 @@
     [
         "DPsX5gyH",
         "http://bibfra.me/vocab/lite/subject",
-        "_Z5Av6aR",
+        "c8PZyudP",
         {
             "@target-type": "@iri-ref"
         }
@@ -632,70 +712,6 @@
         {}
     ],
     [
-        "GcCRGczX",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Place",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "GcCRGczX",
-        "http://bibfra.me/vocab/lite/name",
-        "Egypt",
-        {}
-    ],
-    [
-        "GcCRGczX",
-        "http://bibfra.me/vocab/marc/generalSubdivision",
-        "Economic policy.",
-        {}
-    ],
-    [
-        "GcCRGczX",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Egypt",
-        {}
-    ],
-    [
-        "GcCRGczX",
-        "http://bibfra.me/vocab/marcext/sf-x",
-        "Economic policy.",
-        {}
-    ],
-    [
-        "LL9RCi_X",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Place",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "LL9RCi_X",
-        "http://bibfra.me/vocab/lite/name",
-        "Egypt",
-        {}
-    ],
-    [
-        "LL9RCi_X",
-        "http://bibfra.me/vocab/marc/generalSubdivision",
-        "Economic conditions.",
-        {}
-    ],
-    [
-        "LL9RCi_X",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Egypt",
-        {}
-    ],
-    [
-        "LL9RCi_X",
-        "http://bibfra.me/vocab/marcext/sf-x",
-        "Economic conditions.",
-        {}
-    ],
-    [
         "PZ-aV_fa",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
@@ -718,7 +734,7 @@
         }
     ],
     [
-        "_Z5Av6aR",
+        "UMM2SZua",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Place",
         {
@@ -726,39 +742,21 @@
         }
     ],
     [
-        "_Z5Av6aR",
+        "UMM2SZua",
         "http://bibfra.me/vocab/lite/name",
         "Egypt",
         {}
     ],
     [
-        "_Z5Av6aR",
-        "http://bibfra.me/vocab/marc/chronologicalSubdivision",
-        "1250-1517.",
-        {}
-    ],
-    [
-        "_Z5Av6aR",
-        "http://bibfra.me/vocab/marc/generalSubdivision",
-        "History",
-        {}
-    ],
-    [
-        "_Z5Av6aR",
+        "UMM2SZua",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Egypt",
         {}
     ],
     [
-        "_Z5Av6aR",
+        "UMM2SZua",
         "http://bibfra.me/vocab/marcext/sf-x",
-        "History",
-        {}
-    ],
-    [
-        "_Z5Av6aR",
-        "http://bibfra.me/vocab/marcext/sf-y",
-        "1250-1517.",
+        "Economic policy.",
         {}
     ],
     [
@@ -821,6 +819,58 @@
         "a7yQkn5Q",
         "http://bibfra.me/vocab/marcext/sf-c",
         "2003.",
+        {}
+    ],
+    [
+        "c8PZyudP",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "c8PZyudP",
+        "http://bibfra.me/vocab/lite/focus",
+        "UMM2SZua",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "c8PZyudP",
+        "http://bibfra.me/vocab/lite/name",
+        "Egypt",
+        {}
+    ],
+    [
+        "c8PZyudP",
+        "http://bibfra.me/vocab/marc/chronologicalSubdivision",
+        "1250-1517.",
+        {}
+    ],
+    [
+        "c8PZyudP",
+        "http://bibfra.me/vocab/marc/generalSubdivision",
+        "History",
+        {}
+    ],
+    [
+        "c8PZyudP",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Egypt",
+        {}
+    ],
+    [
+        "c8PZyudP",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "History",
+        {}
+    ],
+    [
+        "c8PZyudP",
+        "http://bibfra.me/vocab/marcext/sf-y",
+        "1250-1517.",
         {}
     ],
     [

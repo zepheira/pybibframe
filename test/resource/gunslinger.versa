@@ -32,64 +32,6 @@
         {}
     ],
     [
-        "4qEMWu1K",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Genre",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "4qEMWu1K",
-        "http://bibfra.me/vocab/lite/name",
-        "Fantasy fiction.",
-        {}
-    ],
-    [
-        "4qEMWu1K",
-        "http://bibfra.me/vocab/marc/source",
-        "gsafd",
-        {}
-    ],
-    [
-        "4qEMWu1K",
-        "http://bibfra.me/vocab/marcext/sf-2",
-        "gsafd",
-        {}
-    ],
-    [
-        "4qEMWu1K",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Fantasy fiction.",
-        {}
-    ],
-    [
-        "BGgO5kkL",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Genre",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "BGgO5kkL",
-        "http://bibfra.me/vocab/lite/name",
-        "Fiction.",
-        {}
-    ],
-    [
-        "BGgO5kkL",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Roland (Fictitious character : King)",
-        {}
-    ],
-    [
-        "BGgO5kkL",
-        "http://bibfra.me/vocab/marcext/sf-v",
-        "Fiction.",
-        {}
-    ],
-    [
         "Dqvbf8gU",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Agent",
@@ -119,6 +61,98 @@
         "Dqvbf8gU",
         "http://bibfra.me/vocab/marcext/sf-c",
         "1988, c1982.",
+        {}
+    ],
+    [
+        "LkzX_JtK",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Form",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "LkzX_JtK",
+        "http://bibfra.me/vocab/lite/focus",
+        "TeuKWYhH",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "LkzX_JtK",
+        "http://bibfra.me/vocab/lite/name",
+        "Fantasy fiction.",
+        {}
+    ],
+    [
+        "LkzX_JtK",
+        "http://bibfra.me/vocab/marc/source",
+        "gsafd",
+        {}
+    ],
+    [
+        "LkzX_JtK",
+        "http://bibfra.me/vocab/marcext/sf-2",
+        "gsafd",
+        {}
+    ],
+    [
+        "LkzX_JtK",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Fantasy fiction.",
+        {}
+    ],
+    [
+        "TeuKWYhH",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "TeuKWYhH",
+        "http://bibfra.me/vocab/lite/name",
+        "Fantasy fiction.",
+        {}
+    ],
+    [
+        "TeuKWYhH",
+        "http://bibfra.me/vocab/marcext/sf-2",
+        "gsafd",
+        {}
+    ],
+    [
+        "TeuKWYhH",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Fantasy fiction.",
+        {}
+    ],
+    [
+        "Z_R2lpk5",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Z_R2lpk5",
+        "http://bibfra.me/vocab/lite/name",
+        "Roland (Fictitious character : King)",
+        {}
+    ],
+    [
+        "Z_R2lpk5",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Roland (Fictitious character : King)",
+        {}
+    ],
+    [
+        "Z_R2lpk5",
+        "http://bibfra.me/vocab/marcext/sf-v",
+        "Fiction.",
         {}
     ],
     [
@@ -156,7 +190,7 @@
     [
         "_1ESumkq",
         "http://bibfra.me/vocab/lite/genre",
-        "4qEMWu1K",
+        "LkzX_JtK",
         {
             "@target-type": "@iri-ref"
         }
@@ -164,7 +198,7 @@
     [
         "_1ESumkq",
         "http://bibfra.me/vocab/lite/genre",
-        "BGgO5kkL",
+        "xNvpfQ25",
         {
             "@target-type": "@iri-ref"
         }
@@ -172,7 +206,7 @@
     [
         "_1ESumkq",
         "http://bibfra.me/vocab/lite/subject",
-        "qK3z_U-i",
+        "e7zLZqBK",
         {
             "@target-type": "@iri-ref"
         }
@@ -456,33 +490,41 @@
         {}
     ],
     [
-        "qK3z_U-i",
+        "e7zLZqBK",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
+        "http://bibfra.me/vocab/lite/Concept",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "qK3z_U-i",
+        "e7zLZqBK",
+        "http://bibfra.me/vocab/lite/focus",
+        "Z_R2lpk5",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "e7zLZqBK",
         "http://bibfra.me/vocab/lite/name",
         "Roland (Fictitious character : King)",
         {}
     ],
     [
-        "qK3z_U-i",
+        "e7zLZqBK",
         "http://bibfra.me/vocab/marc/formSubdivision",
         "Fiction.",
         {}
     ],
     [
-        "qK3z_U-i",
+        "e7zLZqBK",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Roland (Fictitious character : King)",
         {}
     ],
     [
-        "qK3z_U-i",
+        "e7zLZqBK",
         "http://bibfra.me/vocab/marcext/sf-v",
         "Fiction.",
         {}
@@ -571,6 +613,32 @@
         "uwutzspo",
         "http://bibfra.me/vocab/marc/titleStatement",
         "by Stephen King ; illustrated by Michael Whelan.",
+        {}
+    ],
+    [
+        "xNvpfQ25",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Form",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "xNvpfQ25",
+        "http://bibfra.me/vocab/lite/name",
+        "Fiction.",
+        {}
+    ],
+    [
+        "xNvpfQ25",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Roland (Fictitious character : King)",
+        {}
+    ],
+    [
+        "xNvpfQ25",
+        "http://bibfra.me/vocab/marcext/sf-v",
+        "Fiction.",
         {}
     ]
 ]
