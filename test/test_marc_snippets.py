@@ -1123,6 +1123,12 @@ EXPECTED_10 = '''
     ],
     [
         "PZ-aV_fa",
+        "http://bibfra.me/vocab/marc/dimensions",
+        "unknown",
+        {}
+    ],
+    [
+        "PZ-aV_fa",
         "http://bibfra.me/vocab/marc/formOfItem",
         "online",
         {}
@@ -1131,19 +1137,6 @@ EXPECTED_10 = '''
         "PZ-aV_fa",
         "http://bibfra.me/vocab/marc/specificMaterialDesignation",
         "remote",
-        {}
-    ],
-    [
-        "http://bibfra.me/vocab/lite/instantiates",
-        "kP2G4QhW",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "PZ-aV_fa",
-        "http://bibfra.me/vocab/marc/dimensions",
-        "unknown",
         {}
     ],
     [
@@ -1192,12 +1185,6 @@ EXPECTED_10 = '''
     ],
     [
         "kP2G4QhW",
-        "http://bibfra.me/vocab/marc/frequency",
-        "monthly",
-        {}
-    ],
-    [
-        "kP2G4QhW",
         "http://bibfra.me/vocab/marc/governmentPublication",
         "federal national government publication",
         {}
@@ -1212,12 +1199,6 @@ EXPECTED_10 = '''
         "kP2G4QhW",
         "http://bibfra.me/vocab/marc/natureOfContents",
         "directories",
-        {}
-    ],
-    [
-        "kP2G4QhW",
-        "http://bibfra.me/vocab/marc/natureOfEntireWork",
-        "reviews",
         {}
     ],
     [
