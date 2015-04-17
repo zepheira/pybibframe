@@ -26,25 +26,6 @@ def SLUG(s):
     else:
         return s
 
-def marc_int(rt):
-    '''
-    Handle encoded integers with fallback
-    '''
-    mi = None # no property produced
-    try:
-        mi = int(rt)
-    except ValueError:
-        if rt == 'nnn':
-            mi = I(self._vocab[MARC]+"not-applicable")
-        elif rt == 'mmm':
-            mi = I(self._vocab[MARC]+"multiple")
-        elif rt == '---':
-            mi = I(self._vocab[MARC]+"unknown")
-        else:
-            pass #None
-
-    return mi
-
 def marc_date_yymmdd(d): # used in 008
     #ARE YOU FRIGGING KIDDING ME?! MARC/008 is NON-Y2K SAFE?!
     d = d.ljust(6)
@@ -1416,6 +1397,25 @@ class transforms(object):
 
         return
 
+    def marc_int(self, rt):
+        '''
+        Handle encoded integers with fallback
+        '''
+        mi = None # no property produced
+        try:
+            mi = int(rt)
+        except ValueError:
+            if rt == 'nnn':
+                mi = I(self._vocab[MARC]+"not-applicable")
+            elif rt == 'mmm':
+                mi = I(self._vocab[MARC]+"multiple")
+            elif rt == '---':
+                mi = I(self._vocab[MARC]+"unknown")
+            else:
+                pass #None
+
+        return mi
+
     def material_type_by_leader(self, leader, logger):
 
         # first perform 6/7 lookup, then fallback to 6 lookup
@@ -1555,7 +1555,7 @@ class transforms(object):
                 (15, 16): lambda i: (None, I(self._vocab[MARC]+'specialFormatCharacteristics'), SLUG(self.Maps['SpecialFormatCharacteristics'].get(info[i]))),
             },
             VisualMaterials = {
-                ('slice', 0, 3): lambda i: (None, I(self._vocab[MARC]+'runtime'), marc_int(info[i])),
+                ('slice', 0, 3): lambda i: (None, I(self._vocab[MARC]+'runtime'), self.marc_int(info[i])),
                 4: lambda i: (None, I(self._vocab[MARC]+'targetAudience'), SLUG(self.AUDIENCE.get(info[i]))),
                 10: lambda i: (None, I(self._vocab[MARC]+'governmentPublication'), SLUG(self.GOVT_PUBLICATION.get(info[i]))),
                 11: lambda i: (instance, I(self._vocab[MARC]+'formOfItem'), SLUG(self.FORM_OF_ITEM.get(info[i]))),
@@ -1597,7 +1597,7 @@ class transforms(object):
                 3: lambda i: (instance, I(self._vocab[MARC]+'color'), SLUG(self.COLOR.get(info[i]))),
                 4: lambda i: (instance, I(self._vocab[MARC]+'dimensions'), SLUG(self.ElectronicResource['Dimensions'].get(info[i]))),
                 5: lambda i: (instance, I(self._vocab[MARC]+'sound'), SLUG(self.ElectronicResource['Sound'].get(info[i]))),
-                ('slice', 6, 8): lambda i: (None, I(self._vocab[MARC]+'imageBitDepth'), marc_int(info[i])),
+                ('slice', 6, 8): lambda i: (None, I(self._vocab[MARC]+'imageBitDepth'), self.marc_int(info[i])),
                 9: lambda i: (instance, I(self._vocab[MARC]+'fileFormat'), SLUG(self.ElectronicResource['FileFormats'].get(info[i]))),
                 10: lambda i: (instance, I(self._vocab[MARC]+'qualityAssuranceTargets'), SLUG(self.ElectronicResource['QualityAssuranceTargets'].get(info[i]))),
                 11: lambda i: (instance, I(self._vocab[MARC]+'antecedentSource'), SLUG(self.ElectronicResource['AntecedentSource'].get(info[i]))),
@@ -1781,7 +1781,7 @@ class transforms(object):
             # pad to expected size
             info = info.ljust(18)
 
-            yield from self._process_fixed_length(typ, info, 0, params)
+            yield from self._process_fixed_length(typ, info, 1, params)
 
     def process_007(self, infos, params):
         '''

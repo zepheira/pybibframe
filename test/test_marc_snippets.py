@@ -1813,6 +1813,151 @@ EXPECTED_15 = '''
 ]
 '''
 
+# test integer extraction from 006
+SNIPPET_16 = '''<collection xmlns="http://www.loc.gov/MARC21/slim">
+<record>
+  <leader>      g                 </leader>
+  <controlfield tag="006">c001              </controlfield>
+  <controlfield tag="006">c 02              </controlfield>
+  <controlfield tag="006">c123              </controlfield>
+  <controlfield tag="006">c---              </controlfield>
+  <controlfield tag="006">cnnn              </controlfield>
+  <controlfield tag="006">cmmm              </controlfield>
+  <controlfield tag="006">cXXX              </controlfield>
+</record></collection>
+'''
+
+CONFIG_16 = {}
+
+EXPECTED_16 = '''
+[
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "PZ-aV_fa",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "kP2G4QhW",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/MovingImage",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/VisualMaterials",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/runtime",
+        "http://bibfra.me/vocab/marc/multiple",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/runtime",
+        "http://bibfra.me/vocab/marc/not-applicable",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/runtime",
+        "http://bibfra.me/vocab/marc/unknown",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/runtime",
+        1,
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/runtime",
+        123,
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marc/runtime",
+        2,
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marcext/tag-006",
+        "c 02              ",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marcext/tag-006",
+        "c---              ",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marcext/tag-006",
+        "c001              ",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marcext/tag-006",
+        "c123              ",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marcext/tag-006",
+        "cXXX              ",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marcext/tag-006",
+        "cmmm              ",
+        {}
+    ],
+    [
+        "kP2G4QhW",
+        "http://bibfra.me/vocab/marcext/tag-006",
+        "cnnn              ",
+        {}
+    ]
+]
+'''
+
 all_snippets = sorted([ sym for sym in globals() if sym.startswith('SNIPPET') ])
 all_config = sorted([ sym for sym in globals() if sym.startswith('CONFIG') ])
 all_expected = sorted([ sym for sym in globals() if sym.startswith('EXPECTED') ])
