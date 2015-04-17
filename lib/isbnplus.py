@@ -93,7 +93,6 @@ def compute_ean13_check(ean):
             yield 1
             yield 3
 
-    assert len(ean) in (12, 13)
     wg = weight_gen()
     ean = ean[:12]
     s = sum([ int(d) * next(wg) for d in ean ])

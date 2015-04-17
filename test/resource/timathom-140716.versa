@@ -90,105 +90,113 @@
         {}
     ],
     [
-        "5Xl0_1-Q",
+        "3hrdVipq",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
+        "http://bibfra.me/vocab/lite/Concept",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "5Xl0_1-Q",
+        "3hrdVipq",
+        "http://bibfra.me/vocab/lite/focus",
+        "od1zd5ok",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "3hrdVipq",
         "http://bibfra.me/vocab/lite/name",
         "Zi bu",
         {}
     ],
     [
-        "5Xl0_1-Q",
+        "3hrdVipq",
         "http://bibfra.me/vocab/lite/name",
         "\u5b50\u90e8",
         {}
     ],
     [
-        "5Xl0_1-Q",
+        "3hrdVipq",
         "http://bibfra.me/vocab/marc/generalSubdivision",
         "Hua pu.",
         {}
     ],
     [
-        "5Xl0_1-Q",
+        "3hrdVipq",
         "http://bibfra.me/vocab/marc/generalSubdivision",
         "Yi shu lei",
         {}
     ],
     [
-        "5Xl0_1-Q",
+        "3hrdVipq",
         "http://bibfra.me/vocab/marc/generalSubdivision",
         "\u756b\u8b5c.",
         {}
     ],
     [
-        "5Xl0_1-Q",
+        "3hrdVipq",
         "http://bibfra.me/vocab/marc/generalSubdivision",
         "\u85dd\u8853\u985e",
         {}
     ],
     [
-        "5Xl0_1-Q",
+        "3hrdVipq",
         "http://bibfra.me/vocab/marcext/sf-2",
         "sk",
         {}
     ],
     [
-        "5Xl0_1-Q",
+        "3hrdVipq",
         "http://bibfra.me/vocab/marcext/sf-2",
         "sk",
         {}
     ],
     [
-        "5Xl0_1-Q",
+        "3hrdVipq",
         "http://bibfra.me/vocab/marcext/sf-6",
         "650-06",
         {}
     ],
     [
-        "5Xl0_1-Q",
+        "3hrdVipq",
         "http://bibfra.me/vocab/marcext/sf-6",
         "880-06",
         {}
     ],
     [
-        "5Xl0_1-Q",
+        "3hrdVipq",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Zi bu",
         {}
     ],
     [
-        "5Xl0_1-Q",
+        "3hrdVipq",
         "http://bibfra.me/vocab/marcext/sf-a",
         "\u5b50\u90e8",
         {}
     ],
     [
-        "5Xl0_1-Q",
+        "3hrdVipq",
         "http://bibfra.me/vocab/marcext/sf-x",
         "Hua pu.",
         {}
     ],
     [
-        "5Xl0_1-Q",
+        "3hrdVipq",
         "http://bibfra.me/vocab/marcext/sf-x",
         "Yi shu lei",
         {}
     ],
     [
-        "5Xl0_1-Q",
+        "3hrdVipq",
         "http://bibfra.me/vocab/marcext/sf-x",
         "\u756b\u8b5c.",
         {}
     ],
     [
-        "5Xl0_1-Q",
+        "3hrdVipq",
         "http://bibfra.me/vocab/marcext/sf-x",
         "\u85dd\u8853\u985e",
         {}
@@ -298,7 +306,7 @@
     [
         "BbAKyHkP",
         "http://bibfra.me/vocab/lite/subject",
-        "5Xl0_1-Q",
+        "3hrdVipq",
         {
             "@target-type": "@iri-ref"
         }
@@ -306,7 +314,7 @@
     [
         "BbAKyHkP",
         "http://bibfra.me/vocab/lite/subject",
-        "GyYgeVbz",
+        "Oe2bvGUv",
         {
             "@target-type": "@iri-ref"
         }
@@ -314,7 +322,7 @@
     [
         "BbAKyHkP",
         "http://bibfra.me/vocab/lite/subject",
-        "mKe0VOQp",
+        "vkDpdHg2",
         {
             "@target-type": "@iri-ref"
         }
@@ -508,38 +516,6 @@
         }
     ],
     [
-        "GyYgeVbz",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "GyYgeVbz",
-        "http://bibfra.me/vocab/lite/name",
-        "Painting, Chinese",
-        {}
-    ],
-    [
-        "GyYgeVbz",
-        "http://bibfra.me/vocab/marc/generalSubdivision",
-        "Technique.",
-        {}
-    ],
-    [
-        "GyYgeVbz",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Painting, Chinese",
-        {}
-    ],
-    [
-        "GyYgeVbz",
-        "http://bibfra.me/vocab/marcext/sf-x",
-        "Technique.",
-        {}
-    ],
-    [
         "Hw7xp0wn",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Person",
@@ -712,6 +688,46 @@
         {}
     ],
     [
+        "Oe2bvGUv",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Oe2bvGUv",
+        "http://bibfra.me/vocab/lite/focus",
+        "R6lcaSwV",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Oe2bvGUv",
+        "http://bibfra.me/vocab/lite/name",
+        "Painting, Chinese",
+        {}
+    ],
+    [
+        "Oe2bvGUv",
+        "http://bibfra.me/vocab/marc/generalSubdivision",
+        "Technique.",
+        {}
+    ],
+    [
+        "Oe2bvGUv",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Painting, Chinese",
+        {}
+    ],
+    [
+        "Oe2bvGUv",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "Technique.",
+        {}
+    ],
+    [
         "PZ-aV_fa",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
@@ -732,6 +748,32 @@
         {
             "@target-type": "@iri-ref"
         }
+    ],
+    [
+        "R6lcaSwV",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "R6lcaSwV",
+        "http://bibfra.me/vocab/lite/name",
+        "Painting, Chinese",
+        {}
+    ],
+    [
+        "R6lcaSwV",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Painting, Chinese",
+        {}
+    ],
+    [
+        "R6lcaSwV",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "Technique.",
+        {}
     ],
     [
         "S1v96HE6",
@@ -1020,6 +1062,32 @@
         {}
     ],
     [
+        "d7YVMB-c",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "d7YVMB-c",
+        "http://bibfra.me/vocab/lite/name",
+        "Painting",
+        {}
+    ],
+    [
+        "d7YVMB-c",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Painting",
+        {}
+    ],
+    [
+        "d7YVMB-c",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "Technique.",
+        {}
+    ],
+    [
         "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
@@ -1070,7 +1138,7 @@
         {}
     ],
     [
-        "mKe0VOQp",
+        "od1zd5ok",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Topic",
         {
@@ -1078,27 +1146,75 @@
         }
     ],
     [
-        "mKe0VOQp",
+        "od1zd5ok",
         "http://bibfra.me/vocab/lite/name",
-        "Painting",
+        "Zi bu",
         {}
     ],
     [
-        "mKe0VOQp",
-        "http://bibfra.me/vocab/marc/generalSubdivision",
-        "Technique.",
+        "od1zd5ok",
+        "http://bibfra.me/vocab/lite/name",
+        "\u5b50\u90e8",
         {}
     ],
     [
-        "mKe0VOQp",
+        "od1zd5ok",
+        "http://bibfra.me/vocab/marcext/sf-2",
+        "sk",
+        {}
+    ],
+    [
+        "od1zd5ok",
+        "http://bibfra.me/vocab/marcext/sf-2",
+        "sk",
+        {}
+    ],
+    [
+        "od1zd5ok",
+        "http://bibfra.me/vocab/marcext/sf-6",
+        "650-06",
+        {}
+    ],
+    [
+        "od1zd5ok",
+        "http://bibfra.me/vocab/marcext/sf-6",
+        "880-06",
+        {}
+    ],
+    [
+        "od1zd5ok",
         "http://bibfra.me/vocab/marcext/sf-a",
-        "Painting",
+        "Zi bu",
         {}
     ],
     [
-        "mKe0VOQp",
+        "od1zd5ok",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "\u5b50\u90e8",
+        {}
+    ],
+    [
+        "od1zd5ok",
         "http://bibfra.me/vocab/marcext/sf-x",
-        "Technique.",
+        "Hua pu.",
+        {}
+    ],
+    [
+        "od1zd5ok",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "Yi shu lei",
+        {}
+    ],
+    [
+        "od1zd5ok",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "\u756b\u8b5c.",
+        {}
+    ],
+    [
+        "od1zd5ok",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "\u85dd\u8853\u985e",
         {}
     ],
     [
@@ -1167,6 +1283,46 @@
         "uqjyBZs2",
         "http://bibfra.me/vocab/marcext/sf-d",
         "active 1677-1705.",
+        {}
+    ],
+    [
+        "vkDpdHg2",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "vkDpdHg2",
+        "http://bibfra.me/vocab/lite/focus",
+        "d7YVMB-c",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "vkDpdHg2",
+        "http://bibfra.me/vocab/lite/name",
+        "Painting",
+        {}
+    ],
+    [
+        "vkDpdHg2",
+        "http://bibfra.me/vocab/marc/generalSubdivision",
+        "Technique.",
+        {}
+    ],
+    [
+        "vkDpdHg2",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Painting",
+        {}
+    ],
+    [
+        "vkDpdHg2",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "Technique.",
         {}
     ]
 ]

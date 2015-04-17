@@ -324,6 +324,54 @@
         {}
     ],
     [
+        "5yganzds",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "5yganzds",
+        "http://bibfra.me/vocab/lite/name",
+        "Democratization.",
+        {}
+    ],
+    [
+        "5yganzds",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Democratization.",
+        {}
+    ],
+    [
+        "7ZYOZvpC",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "7ZYOZvpC",
+        "http://bibfra.me/vocab/lite/focus",
+        "VHZTelVA",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "7ZYOZvpC",
+        "http://bibfra.me/vocab/lite/name",
+        "Civil society.",
+        {}
+    ],
+    [
+        "7ZYOZvpC",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Civil society.",
+        {}
+    ],
+    [
         "Ap3GxXiI",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Person",
@@ -378,7 +426,7 @@
     [
         "D4PHzUhr",
         "http://bibfra.me/vocab/lite/subject",
-        "W7GXeVAo",
+        "7ZYOZvpC",
         {
             "@target-type": "@iri-ref"
         }
@@ -386,7 +434,7 @@
     [
         "D4PHzUhr",
         "http://bibfra.me/vocab/lite/subject",
-        "WGpQ_sgW",
+        "pUK1-wCQ",
         {
             "@target-type": "@iri-ref"
         }
@@ -394,7 +442,7 @@
     [
         "D4PHzUhr",
         "http://bibfra.me/vocab/lite/subject",
-        "rn1nkWd4",
+        "xMtpaA3V",
         {
             "@target-type": "@iri-ref"
         }
@@ -628,7 +676,7 @@
         {}
     ],
     [
-        "W7GXeVAo",
+        "VHZTelVA",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Topic",
         {
@@ -636,35 +684,15 @@
         }
     ],
     [
-        "W7GXeVAo",
+        "VHZTelVA",
         "http://bibfra.me/vocab/lite/name",
         "Civil society.",
         {}
     ],
     [
-        "W7GXeVAo",
+        "VHZTelVA",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Civil society.",
-        {}
-    ],
-    [
-        "WGpQ_sgW",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "WGpQ_sgW",
-        "http://bibfra.me/vocab/lite/name",
-        "International organization.",
-        {}
-    ],
-    [
-        "WGpQ_sgW",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "International organization.",
         {}
     ],
     [
@@ -1080,6 +1108,34 @@
         {}
     ],
     [
+        "pUK1-wCQ",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "pUK1-wCQ",
+        "http://bibfra.me/vocab/lite/focus",
+        "tTZ-HK7e",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "pUK1-wCQ",
+        "http://bibfra.me/vocab/lite/name",
+        "International organization.",
+        {}
+    ],
+    [
+        "pUK1-wCQ",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "International organization.",
+        {}
+    ],
+    [
         "qr4kjwkf",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Agent",
@@ -1118,7 +1174,7 @@
         {}
     ],
     [
-        "rn1nkWd4",
+        "tTZ-HK7e",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Topic",
         {
@@ -1126,13 +1182,41 @@
         }
     ],
     [
-        "rn1nkWd4",
+        "tTZ-HK7e",
+        "http://bibfra.me/vocab/lite/name",
+        "International organization.",
+        {}
+    ],
+    [
+        "tTZ-HK7e",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "International organization.",
+        {}
+    ],
+    [
+        "xMtpaA3V",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "xMtpaA3V",
+        "http://bibfra.me/vocab/lite/focus",
+        "5yganzds",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "xMtpaA3V",
         "http://bibfra.me/vocab/lite/name",
         "Democratization.",
         {}
     ],
     [
-        "rn1nkWd4",
+        "xMtpaA3V",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Democratization.",
         {}
