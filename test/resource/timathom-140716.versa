@@ -305,6 +305,12 @@
     ],
     [
         "BbAKyHkP",
+        "http://bibfra.me/vocab/lite/language",
+        "chi",
+        {}
+    ],
+    [
+        "BbAKyHkP",
         "http://bibfra.me/vocab/lite/subject",
         "3hrdVipq",
         {

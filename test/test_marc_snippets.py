@@ -1434,6 +1434,12 @@ EXPECTED_13 = '''
     ],
     [
         "kP2G4QhW",
+        "http://bibfra.me/vocab/lite/language",
+        "eng",
+        {}
+    ],
+    [
+        "kP2G4QhW",
         "http://bibfra.me/vocab/marc/illustrations",
         "illustrations",
         {}
