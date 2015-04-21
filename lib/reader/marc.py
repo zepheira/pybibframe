@@ -140,6 +140,7 @@ def instance_postprocess(params):
 # special thanks to UCD, NLM, GW
 
 RECORD_HASH_KEY_FIELDS = [
+    '006', '007', '008',  # fixed length field(s)
     '130$a', '130$f', '130$n', '130$o', '130$p', '130$l', '130$s',
     '240$a', '240$f', '240$n', '240$o', '240$p', '240$l', # key uniform title info
     '245$a', '245$b', '245$c', '245$n', '245$p', '245$f', '245$k', # Title info

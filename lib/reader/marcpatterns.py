@@ -760,20 +760,36 @@ BFLITE_TRANSFORMS = {
                                      BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0'))),
                                      ifexists(subfield('a'), BL + 'focus'):
                                          materialize(BL + 'Collection',
-                                                     unique=values(subfield('a'),  # same as 240
-                                                                   subfield('b'),
-                                                                   subfield('c'),
+                                                     unique=values(subfield('a'),
                                                                    subfield('d'),
+                                                                   subfield('f'),
                                                                    subfield('g'),
-                                                                   subfield('j'),
-                                                                   subfield('q'),
-                                                                   subfield('u')),
+                                                                   subfield('h'),
+                                                                   subfield('k'),
+                                                                   subfield('l'),
+                                                                   subfield('m'),
+                                                                   subfield('n'),
+                                                                   subfield('o'),
+                                                                   subfield('p'),
+                                                                   subfield('r'),
+                                                                   subfield('s'),
+                                                                   subfield('t')),
                                                      links={BL + 'title': subfield('a'),
-                                                            BL + 'date': subfield('d'),
-                                                            MARC + 'additionalName': subfield('q')}
-                                         )
-                              }
-    ),
+                                                            MARC + 'legalDate': subfield('d'),
+                                                            BL + 'date': subfield('f'),
+                                                            BL + 'medium': subfield('h'),
+                                                            MARC + 'form': subfield('k'),
+                                                            BL + 'language': subfield('l'),
+                                                            AV + 'musicMedium': subfield('m'),
+                                                            MARC + 'titleNumber': subfield('n'),
+                                                            AV + 'arrangedMusic': subfield('o'),
+                                                            MARC + 'titlePart': subfield('p'),
+                                                            AV + 'musicKey': subfield('r'),
+                                                            MARC + 'version': subfield('s')
+                                                            }
+                                                     )
+                                     }
+                              ),
 
     '650': onwork.materialize(BL + 'Concept',
                               BL + 'subject',
@@ -998,7 +1014,7 @@ BFLITE_TRANSFORMS = {
     '730': onwork.materialize(BL + 'Collection',
                               values(BL + 'related'),
                               unique=all_subfields,
-                              links={BL + 'title': subfield('a'),
+                              links={BL + 'title': ifexists(subfield('a'), subfield('a'), alt=subfield('t')),
                                      BL + 'language': subfield('l'),
                                      BL + 'date': subfield('f'),
                                      BL + 'medium': subfield('h'),
