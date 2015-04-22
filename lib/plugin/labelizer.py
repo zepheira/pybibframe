@@ -16,7 +16,8 @@ Sample config JSON stanza:
             "http://bibfra.me/vocab/lite/Topic": "http://bibfra.me/vocab/lite/name",
             "http://bibfra.me/vocab/lite/Genre": "http://bibfra.me/vocab/lite/name",
             "http://bibfra.me/vocab/lite/Foobar": [" ","http://bibfra.me/vocab/lite/title","http://bibfra.me/vocab/lite/name"]}
-        }
+        },
+        "default-label": "UNKNOWN LABEL"
     ]
 }
 
@@ -93,11 +94,15 @@ class labelizer(object):
                     for p in props[1:]:
                         links = model.match(link[ORIGIN], I(iri.absolutize(p, vocabbase)))
                         s = [ link[TARGET] for link in links ]
+                        print("s", s)
                         if len(s) > 0:
                             yield ' | '.join(s)
 
                 segments = list(label_segments(props))
-                model.add(link[ORIGIN], I(RDFS_LABEL), sep.join(segments))
+                if len(segments) > 0:
+                    model.add(link[ORIGIN], I(RDFS_LABEL), sep.join(segments))
+                elif 'default-label' in self._config:
+                    model.add(link[ORIGIN], I(RDFS_LABEL), self._config['default-label'])
         return
 
     @asyncio.coroutine
