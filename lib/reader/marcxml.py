@@ -46,11 +46,13 @@ VALID_SUBFIELDS.add(ord('-'))
 NSSEP = ' '
 
 class expat_callbacks(object):
-    def __init__(self, sink, parser, lax=False):
+    def __init__(self, sink, parser, attr_cls=OrderedDict, attr_list_cls=list, lax=False):
         self._sink = sink
         next(self._sink) #Start the coroutine running
         self._getcontent = False
         self.no_records = True
+        self._attr_cls = attr_cls # dict-like class to use for holding Versa attributes
+        self._attr_list_cls = attr_list_cls # list-like class to use for holding Versa attribute values
         self._lax = lax
         self._parser = parser
         self._record_model = None
@@ -72,21 +74,21 @@ class expat_callbacks(object):
                 self._record_id = 'record-{0}:{1}'.format(self._parser.CurrentLineNumber, self._parser.CurrentColumnNumber)
                 #Versa model with a representation of the record
                 #For input model plugins, important that natural ordering be preserved
-                self._record_model = memory.connection(attr_cls=OrderedDict)#logger=logger)
+                self._record_model = memory.connection(attr_cls=self._attr_cls())#logger=logger)
             elif local == 'leader':
                 self._chardata_dest = ''
                 self._link_iri = MARCXML_NS + '/leader'
-                self._marc_attributes = OrderedDict()
+                self._marc_attributes = self._attr_cls()
                 self._getcontent = True
             elif local == 'controlfield':
                 self._chardata_dest = ''
                 self._link_iri = MARCXML_NS + '/control/' + attributes['tag'].strip()
                 #Control tags have neither indicators nor subfields
-                self._marc_attributes = OrderedDict({'tag': attributes['tag'].strip()})
+                self._marc_attributes = self._attr_cls({'tag': attributes['tag'].strip()})
                 self._getcontent = True
             elif local == 'datafield':
                 self._link_iri = MARCXML_NS + '/data/' + attributes['tag'].strip()
-                self._marc_attributes = OrderedDict(([k, v.strip()] for (k, v) in attributes.items() if ' ' not in k))
+                self._marc_attributes = self._attr_cls(([k, v.strip()] for (k, v) in attributes.items() if ' ' not in k))
             elif local == 'subfield':
                 self._chardata_dest = ''
                 self._subfield = attributes['code'].strip()
@@ -118,7 +120,7 @@ class expat_callbacks(object):
                 if self._record_model: self._record_model.add(self._record_id, self._link_iri, '', self._marc_attributes)
                 self._getcontent = False
             elif local == 'subfield':
-                self._marc_attributes.setdefault(self._subfield, []).append(self._chardata_dest)
+                self._marc_attributes.setdefault(self._subfield, self._attr_list_cls()).append(self._chardata_dest)
             elif local in ('leader', 'controlfield'):
                 if self._record_model: self._record_model.add(self._record_id, self._link_iri, self._chardata_dest, self._marc_attributes)
                 self._getcontent = False
@@ -257,7 +259,17 @@ def bfconvert(inputs, entbase=None, model=None, out=None, limit=None, rdfttl=Non
                     parser = xml.parsers.expat.ParserCreate()
                 else:
                     parser = xml.parsers.expat.ParserCreate(namespace_separator=NSSEP)
-                handler = expat_callbacks(sink, parser, lax)
+
+                def resolve_class(fullname):
+                    import importlib
+                    modpath, name = fullname.rsplit('.', 1)
+                    module = importlib.import_module(modpath)
+                    cls = getattr(module, name)
+                    return cls
+
+                attr_cls = resolve_class(config.get('versa-attr-cls', 'collections.OrderedDict'))
+                attr_list_cls = resolve_class(config.get('versa-attr-list-cls', 'builtins.list'))
+                handler = expat_callbacks(sink, parser, attr_cls, attr_list_cls, lax)
 
                 parser.StartElementHandler = handler.start_element
                 parser.EndElementHandler = handler.end_element
