@@ -94,7 +94,6 @@ class labelizer(object):
                     for p in props[1:]:
                         links = model.match(link[ORIGIN], I(iri.absolutize(p, vocabbase)))
                         s = [ link[TARGET] for link in links ]
-                        print("s", s)
                         if len(s) > 0:
                             yield ' | '.join(s)
 
