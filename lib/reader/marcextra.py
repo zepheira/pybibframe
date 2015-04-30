@@ -1536,7 +1536,7 @@ class transforms(object):
                 16: lambda i: (None, I(self._vocab[MARC]+'biographical'), SLUG(self.BIOGRAPHICAL.get(info[i]))),
                 ('slice', 17, 20): lambda i: (None, I(self._vocab[LANG]), info[i.start:i.stop])
                                 if info[i.start:i.stop] not in
-                                    ("###", "zxx", "mul", "sgn", "und", "   ", "") else None,
+                                    ("###", "|||", "zxx", "mul", "sgn", "und", "   ", "") else None,
             },
             Music = {
                 ('slice', 0, 2): lambda i: (None, I(self._vocab[MARC]+'formOfComposition'), SLUG(self.Music['FormOfComposition'].get(info[i]))),
@@ -1549,7 +1549,7 @@ class transforms(object):
                 15: lambda i: (None, I(self._vocab[MARC]+'transpositionAndArrangement'), SLUG(self.Music['TranspositionAndArrangement'].get(info[i]))),
                 ('slice', 17, 20): lambda i: (None, I(self._vocab[LANG]), info[i.start:i.stop])
                                 if info[i.start:i.stop] not in
-                                    ("###", "zxx", "mul", "sgn", "und", "   ", "") else None,
+                                    ("###", "|||", "zxx", "mul", "sgn", "und", "   ", "") else None,
             },
             Maps = { #006/008
                 (0, 1, 2, 3): lambda i: (None, I(self._vocab[MARC]+'relief'), SLUG(self.Maps['Relief'].get(info[i]))),
@@ -1561,7 +1561,7 @@ class transforms(object):
                 (15, 16): lambda i: (None, I(self._vocab[MARC]+'specialFormatCharacteristics'), SLUG(self.Maps['SpecialFormatCharacteristics'].get(info[i]))),
                 ('slice', 17, 20): lambda i: (None, I(self._vocab[LANG]), info[i.start:i.stop])
                                 if info[i.start:i.stop] not in
-                                    ("###", "zxx", "mul", "sgn", "und", "   ", "") else None,
+                                    ("###", "|||", "zxx", "mul", "sgn", "und", "   ", "") else None,
             },
             VisualMaterials = {
                 ('slice', 0, 3): lambda i: (None, I(self._vocab[MARC]+'runtime'), self.marc_int(info[i])),
@@ -1572,7 +1572,7 @@ class transforms(object):
                 16: lambda i: (None, I(self._vocab[MARC]+'technique'), SLUG(self.VisualMaterials['Technique'].get(info[i]))),
                 ('slice', 17, 20): lambda i: (None, I(self._vocab[LANG]), info[i.start:i.stop])
                                 if info[i.start:i.stop] not in
-                                    ("###", "zxx", "mul", "sgn", "und", "   ", "") else None,
+                                    ("###", "|||", "zxx", "mul", "sgn", "und", "   ", "") else None,
             },
             ComputerFiles = {
                 4: lambda i: (None, I(self._vocab[MARC]+'targetAudience'), SLUG(self.AUDIENCE.get(info[i]))),
@@ -1581,13 +1581,13 @@ class transforms(object):
                 10: lambda i: (None, I(self._vocab[MARC]+'governmentPublication'), SLUG(self.GOVT_PUBLICATION.get(info[i]))),
                 ('slice', 17, 20): lambda i: (None, I(self._vocab[LANG]), info[i.start:i.stop])
                                 if info[i.start:i.stop] not in
-                                    ("###", "zxx", "mul", "sgn", "und", "   ", "") else None,
+                                    ("###", "|||", "zxx", "mul", "sgn", "und", "   ", "") else None,
             },
             MixedMaterials = {
                 5: lambda i: (None, I(self._vocab[VTYPE]), self.FORM_OF_ITEM.get(info[i])),
                 ('slice', 17, 20): lambda i: (None, I(self._vocab[LANG]), info[i.start:i.stop])
                                 if info[i.start:i.stop] not in
-                                    ("###", "zxx", "mul", "sgn", "und", "   ", "") else None,
+                                    ("###", "|||", "zxx", "mul", "sgn", "und", "   ", "") else None,
             },
             ContinuingResources = {
                 0: lambda i: (None, I(self._vocab[MARC]+'frequency'), SLUG(self.ContinuingResources['Frequency'].get(info[i]))),
@@ -1752,7 +1752,7 @@ class transforms(object):
     def process_008(self, info, params):
         '''
         Processes 008 control fields
-        
+
         #>>> from bibframe.reader.marcextra import transforms
         #>>> import logging
         #>>> t = transforms()
@@ -1817,7 +1817,7 @@ class transforms(object):
                 yield instance, I(self._vocab[VTYPE]), I(self._vocab[MARC]+typ)
 
             yield from self._process_fixed_length(typ, info, 0, params)
-            
+
 def process_patterns(patterns):
     #Execute the rules detailed in the various positional patterns lookup tables above
     for i, func in patterns.items():
