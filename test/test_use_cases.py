@@ -17,6 +17,7 @@ from versa.driver import memory
 from versa.util import jsondump, jsonload
 
 from bibframe.reader.marcxml import bfconvert
+from bibframe.util import hash_neutral_model
 
 import pytest
 
@@ -43,11 +44,14 @@ def run_one(name, entbase=None, config=None, loop=None, canonical=True):
     with open(os.path.join(RESOURCEPATH, name+'.mrx'), 'rb') as indoc:
         bfconvert(indoc, model=m, out=s, config=config, canonical=canonical, loop=loop)
         s.seek(0)
-        jsonload(m, s)
+        hashmap, m = hash_neutral_model(s)
+        hashmap = '\n'.join(sorted([ repr((i[1], i[0])) for i in hashmap.items() ]))
 
     with open(os.path.join(RESOURCEPATH, name+'.versa')) as indoc:
-        jsonload(m_expected, indoc)
+        hashmap_expected, m_expected = hash_neutral_model(indoc)
+        hashmap_expected = '\n'.join(sorted([ repr((i[1], i[0])) for i in hashmap_expected.items() ]))
 
+    assert hashmap == hashmap_expected, "Changes to hashes found for {0}:\n{1}\n\nActual model structure diff:\n{2}".format(name, file_diff(hashmap_expected, hashmap), file_diff(repr(m_expected), repr(m)))
     assert m == m_expected, "Discrepancies found for {0}:\n{1}".format(name, file_diff(repr(m_expected), repr(m)))
 
 

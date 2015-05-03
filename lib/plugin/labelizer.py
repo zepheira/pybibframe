@@ -15,9 +15,10 @@ Sample config JSON stanza:
             "http://bibfra.me/vocab/lite/Meeting": "http://bibfra.me/vocab/lite/name",
             "http://bibfra.me/vocab/lite/Topic": "http://bibfra.me/vocab/lite/name",
             "http://bibfra.me/vocab/lite/Genre": "http://bibfra.me/vocab/lite/name",
-            "http://bibfra.me/vocab/lite/Foobar": [" ","http://bibfra.me/vocab/lite/title","http://bibfra.me/vocab/lite/name"]}
-        },
+            "http://bibfra.me/vocab/lite/Foobar": [" ","http://bibfra.me/vocab/lite/title","http://bibfra.me/vocab/lite/name"]
+            }
         "default-label": "UNKNOWN LABEL"
+        },
     ]
 }
 

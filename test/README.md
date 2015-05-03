@@ -2,7 +2,7 @@
 
 Run as follows:
 
-	py.test test/test_marc_basics.py
+	py.test test
 
 If you update code in a way that affects output, you can update the expected output
 (once you've verified that the new output is more correct, of course)

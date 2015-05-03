@@ -104,6 +104,92 @@
         {}
     ],
     [
+        "Lod8XcPm",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Lod8XcPm",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "547530",
+        {}
+    ],
+    [
+        "Lod8XcPm",
+        "http://bibfra.me/vocab/lite/dimensions",
+        "23 cm.",
+        {}
+    ],
+    [
+        "Lod8XcPm",
+        "http://bibfra.me/vocab/lite/extent",
+        "224 p. :",
+        {}
+    ],
+    [
+        "Lod8XcPm",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "mhK8MTlH",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Lod8XcPm",
+        "http://bibfra.me/vocab/lite/link",
+        "http://www.loc.gov/catdir/enhancements/fy1206/88009938-b.html",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Lod8XcPm",
+        "http://bibfra.me/vocab/lite/note",
+        "\"A Plume book.\"",
+        {}
+    ],
+    [
+        "Lod8XcPm",
+        "http://bibfra.me/vocab/lite/title",
+        "The gunslinger /",
+        {}
+    ],
+    [
+        "Lod8XcPm",
+        "http://bibfra.me/vocab/marc/isbn",
+        "9780452261341",
+        {}
+    ],
+    [
+        "Lod8XcPm",
+        "http://bibfra.me/vocab/marc/lccn",
+        "   88009938 ",
+        {}
+    ],
+    [
+        "Lod8XcPm",
+        "http://bibfra.me/vocab/marc/otherPhysicalDetails",
+        "ill. (some col.) ;",
+        {}
+    ],
+    [
+        "Lod8XcPm",
+        "http://bibfra.me/vocab/marc/publication",
+        "bGNqIoRF",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Lod8XcPm",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "by Stephen King ; illustrated by Michael Whelan.",
+        {}
+    ],
+    [
         "TeuKWYhH",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Concept",
@@ -153,266 +239,6 @@
         "Z_R2lpk5",
         "http://bibfra.me/vocab/marcext/sf-v",
         "Fiction.",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Work",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/marc/Books",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/marc/LanguageMaterial",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/lite/creator",
-        "4PKa2u0v",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/lite/genre",
-        "LkzX_JtK",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/lite/genre",
-        "xNvpfQ25",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/lite/language",
-        "eng",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/lite/subject",
-        "e7zLZqBK",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/lite/title",
-        "The gunslinger /",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marc/catalogingSource",
-        "DLC",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marc/deweyNumber",
-        "813/.54",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marc/illustrations",
-        "illustrations",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marc/index",
-        "no index present",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marc/lcCallNumber",
-        "PS3561.I483",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marc/lcItemNumber",
-        "G86 1988",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marc/literaryForm",
-        "fiction",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marc/seriesStatement",
-        "The Dark tower ;",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marc/seriesVolume",
-        "1",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "by Stephen King ; illustrated by Michael Whelan.",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marcext/tag-005",
-        "20120215121458.0",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marcext/tag-008",
-        "880323t19881982nyua          000 1 eng  ",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marcext/tag-020-XX-a",
-        "0452261341",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marcext/tag-035-XX-9",
-        "(DLC)   88009938",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marcext/tag-800-1X-a",
-        "King, Stephen,",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marcext/tag-800-1X-d",
-        "1947-",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marcext/tag-800-1X-t",
-        "Dark tower ;",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marcext/tag-800-1X-v",
-        "1.",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marcext/tag-906-XX-a",
-        "7",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marcext/tag-906-XX-b",
-        "cbc",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marcext/tag-906-XX-c",
-        "orignew",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marcext/tag-906-XX-d",
-        "1",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marcext/tag-906-XX-e",
-        "ocip",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marcext/tag-906-XX-f",
-        "19",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marcext/tag-906-XX-g",
-        "y-gencatlg",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marcext/tag-955-XX-a",
-        "CIP VER lh03 09-20-96 to SL",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marcext/tag-991-XX-b",
-        "c-GenColl",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marcext/tag-991-XX-h",
-        "PS3561.I483",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marcext/tag-991-XX-i",
-        "G86 1988",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marcext/tag-991-XX-p",
-        "00035919508",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marcext/tag-991-XX-t",
-        "Copy 1",
-        {}
-    ],
-    [
-        "_1ESumkq",
-        "http://bibfra.me/vocab/marcext/tag-991-XX-w",
-        "BOOKS",
         {}
     ],
     [
@@ -536,89 +362,263 @@
         {}
     ],
     [
-        "uwutzspo",
+        "mhK8MTlH",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
+        "http://bibfra.me/vocab/lite/Work",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "uwutzspo",
-        "http://bibfra.me/vocab/lite/controlCode",
-        "547530",
-        {}
-    ],
-    [
-        "uwutzspo",
-        "http://bibfra.me/vocab/lite/dimensions",
-        "23 cm.",
-        {}
-    ],
-    [
-        "uwutzspo",
-        "http://bibfra.me/vocab/lite/extent",
-        "224 p. :",
-        {}
-    ],
-    [
-        "uwutzspo",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "_1ESumkq",
+        "mhK8MTlH",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/Books",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "uwutzspo",
-        "http://bibfra.me/vocab/lite/link",
-        "http://www.loc.gov/catdir/enhancements/fy1206/88009938-b.html",
+        "mhK8MTlH",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/LanguageMaterial",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "uwutzspo",
-        "http://bibfra.me/vocab/lite/note",
-        "\"A Plume book.\"",
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/lite/creator",
+        "4PKa2u0v",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/lite/genre",
+        "LkzX_JtK",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/lite/genre",
+        "xNvpfQ25",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/lite/language",
+        "eng",
         {}
     ],
     [
-        "uwutzspo",
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/lite/subject",
+        "e7zLZqBK",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "mhK8MTlH",
         "http://bibfra.me/vocab/lite/title",
         "The gunslinger /",
         {}
     ],
     [
-        "uwutzspo",
-        "http://bibfra.me/vocab/marc/isbn",
-        "9780452261341",
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marc/catalogingSource",
+        "DLC",
         {}
     ],
     [
-        "uwutzspo",
-        "http://bibfra.me/vocab/marc/lccn",
-        "   88009938 ",
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marc/deweyNumber",
+        "813/.54",
         {}
     ],
     [
-        "uwutzspo",
-        "http://bibfra.me/vocab/marc/otherPhysicalDetails",
-        "ill. (some col.) ;",
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marc/illustrations",
+        "illustrations",
         {}
     ],
     [
-        "uwutzspo",
-        "http://bibfra.me/vocab/marc/publication",
-        "bGNqIoRF",
-        {
-            "@target-type": "@iri-ref"
-        }
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marc/index",
+        "no index present",
+        {}
     ],
     [
-        "uwutzspo",
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marc/lcCallNumber",
+        "PS3561.I483",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marc/lcItemNumber",
+        "G86 1988",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marc/literaryForm",
+        "fiction",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marc/seriesStatement",
+        "The Dark tower ;",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marc/seriesVolume",
+        "1",
+        {}
+    ],
+    [
+        "mhK8MTlH",
         "http://bibfra.me/vocab/marc/titleStatement",
         "by Stephen King ; illustrated by Michael Whelan.",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marcext/tag-005",
+        "20120215121458.0",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marcext/tag-008",
+        "880323t19881982nyua          000 1 eng  ",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marcext/tag-020-XX-a",
+        "0452261341",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marcext/tag-035-XX-9",
+        "(DLC)   88009938",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marcext/tag-800-1X-a",
+        "King, Stephen,",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marcext/tag-800-1X-d",
+        "1947-",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marcext/tag-800-1X-t",
+        "Dark tower ;",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marcext/tag-800-1X-v",
+        "1.",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marcext/tag-906-XX-a",
+        "7",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marcext/tag-906-XX-b",
+        "cbc",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marcext/tag-906-XX-c",
+        "orignew",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marcext/tag-906-XX-d",
+        "1",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marcext/tag-906-XX-e",
+        "ocip",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marcext/tag-906-XX-f",
+        "19",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marcext/tag-906-XX-g",
+        "y-gencatlg",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marcext/tag-955-XX-a",
+        "CIP VER lh03 09-20-96 to SL",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marcext/tag-991-XX-b",
+        "c-GenColl",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marcext/tag-991-XX-h",
+        "PS3561.I483",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marcext/tag-991-XX-i",
+        "G86 1988",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marcext/tag-991-XX-p",
+        "00035919508",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marcext/tag-991-XX-t",
+        "Copy 1",
+        {}
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/marcext/tag-991-XX-w",
+        "BOOKS",
         {}
     ],
     [

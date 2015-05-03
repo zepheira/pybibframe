@@ -128,9 +128,11 @@ def isbn_instancegen(params, loop, model):
 def instance_postprocess(params):
     instanceids = params['instanceids']
     model = params['output_model']
+    vocabbase = params['vocabbase']
     def dupe_filter(o, r, t, a):
         #Filter out ISBN relationships
-        return r not in (ISBN_REL, ISBN_TYPE_REL)
+        return (r, t) != (TYPE_REL, I(iri.absolutize('Instance', vocabbase))) \
+            and r not in (ISBN_REL, ISBN_TYPE_REL, I(iri.absolutize('instantiates', vocabbase)))
     if len(instanceids) > 1:
         base_instance_id = instanceids[0]
         for instanceid in instanceids[1:]:
