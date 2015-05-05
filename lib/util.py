@@ -74,14 +74,14 @@ def hash_neutral_model(stream):
     >>> [ (o, r, t, a) for (rid, (o, r, t, a)) in model ][0] #Safe ordering for memory model only, mind you
     ('@R1', 'http://bibfra.me/vocab/lite/name', 'Sandburg, Carl,', OrderedDict())
     '''
-    stage1 = memory.connection(attr_cls=OrderedDict)
-    stage2 = memory.connection(attr_cls=OrderedDict)
-    stage3 = memory.connection(attr_cls=OrderedDict)
+    stage1 = memory.connection()
+    stage2 = memory.connection()
+    stage3 = memory.connection()
     jsonload(stage1, stream)
     hashmap = {}
     #One pass for origins
     dummy = repr(stage1) #Mysterious bug (presumably in jsonload): attributes lose all their contents without this line
-    for (rid, (o, r, t, a)) in stage1:
+    for (rid, (o, r, t, a)) in sorted(stage1, key=lambda x:x[1][0]): # sort by resource id
         hash_neutral_origin = hashmap.setdefault(o, '@R{}'.format(len(hashmap)))
         stage2.add(hash_neutral_origin, r, t, a)
     del stage1 #clean up
@@ -92,4 +92,3 @@ def hash_neutral_model(stream):
             hash_neutral_target = hashmap.get(t, t)
         stage3.add(o, r, hash_neutral_target, a)
     return hashmap, stage3
-
