@@ -1534,9 +1534,6 @@ class transforms(object):
                 13: lambda i: (None, I(self._vocab[MARC]+'index'), SLUG(self.INDEX.get(info[i]))),
                 15: lambda i: (None, I(self._vocab[MARC]+'literaryForm'), SLUG(self.LITERARY_FORM.get(info[i]))),
                 16: lambda i: (None, I(self._vocab[MARC]+'biographical'), SLUG(self.BIOGRAPHICAL.get(info[i]))),
-                ('slice', 17, 20): lambda i: (None, I(self._vocab[LANG]), info[i.start:i.stop])
-                                if info[i.start:i.stop] not in
-                                    ("###", "|||", "zxx", "mul", "sgn", "und", "   ", "") else None,
             },
             Music = {
                 ('slice', 0, 2): lambda i: (None, I(self._vocab[MARC]+'formOfComposition'), SLUG(self.Music['FormOfComposition'].get(info[i]))),
@@ -1547,9 +1544,6 @@ class transforms(object):
                 (6, 7, 8, 9, 10, 11): lambda i: (None, I(self._vocab[MARC]+'accompanyingMatter'), SLUG(self.Music['AccompanyingMatter'].get(info[i]))),
                 (12, 13): lambda i: (None, I(self._vocab[MARC]+'literaryTextForSoundRecordings'), SLUG(self.Music['LiteraryTextForSoundRecordings'].get(info[i]))),
                 15: lambda i: (None, I(self._vocab[MARC]+'transpositionAndArrangement'), SLUG(self.Music['TranspositionAndArrangement'].get(info[i]))),
-                ('slice', 17, 20): lambda i: (None, I(self._vocab[LANG]), info[i.start:i.stop])
-                                if info[i.start:i.stop] not in
-                                    ("###", "|||", "zxx", "mul", "sgn", "und", "   ", "") else None,
             },
             Maps = { #006/008
                 (0, 1, 2, 3): lambda i: (None, I(self._vocab[MARC]+'relief'), SLUG(self.Maps['Relief'].get(info[i]))),
@@ -1559,9 +1553,6 @@ class transforms(object):
                 11: lambda i: (instance, I(self._vocab[MARC]+'formOfItem'), SLUG(self.FORM_OF_ITEM.get(info[i]))),
                 13: lambda i: (None, I(self._vocab[MARC]+'index'), SLUG(self.INDEX.get(info[i]))),
                 (15, 16): lambda i: (None, I(self._vocab[MARC]+'specialFormatCharacteristics'), SLUG(self.Maps['SpecialFormatCharacteristics'].get(info[i]))),
-                ('slice', 17, 20): lambda i: (None, I(self._vocab[LANG]), info[i.start:i.stop])
-                                if info[i.start:i.stop] not in
-                                    ("###", "|||", "zxx", "mul", "sgn", "und", "   ", "") else None,
             },
             VisualMaterials = {
                 ('slice', 0, 3): lambda i: (None, I(self._vocab[MARC]+'runtime'), self.marc_int(info[i])),
@@ -1570,24 +1561,15 @@ class transforms(object):
                 11: lambda i: (instance, I(self._vocab[MARC]+'formOfItem'), SLUG(self.FORM_OF_ITEM.get(info[i]))),
                 15: lambda i: (None, I(self._vocab[MARC]+'characteristic'), SLUG(self.VisualMaterials['TypeOfVisualMaterial'].get(info[i]))),
                 16: lambda i: (None, I(self._vocab[MARC]+'technique'), SLUG(self.VisualMaterials['Technique'].get(info[i]))),
-                ('slice', 17, 20): lambda i: (None, I(self._vocab[LANG]), info[i.start:i.stop])
-                                if info[i.start:i.stop] not in
-                                    ("###", "|||", "zxx", "mul", "sgn", "und", "   ", "") else None,
             },
             ComputerFiles = {
                 4: lambda i: (None, I(self._vocab[MARC]+'targetAudience'), SLUG(self.AUDIENCE.get(info[i]))),
                 5: lambda i: (instance, I(self._vocab[MARC]+'formOfItem'), SLUG(self.ComputerFiles['FormOfItem'].get(info[i]))),
                 8: lambda i: (None, I(self._vocab[MARC]+'characteristic'), SLUG(self.ComputerFiles['TypeOfComputerFile'].get(info[i]))),
                 10: lambda i: (None, I(self._vocab[MARC]+'governmentPublication'), SLUG(self.GOVT_PUBLICATION.get(info[i]))),
-                ('slice', 17, 20): lambda i: (None, I(self._vocab[LANG]), info[i.start:i.stop])
-                                if info[i.start:i.stop] not in
-                                    ("###", "|||", "zxx", "mul", "sgn", "und", "   ", "") else None,
             },
             MixedMaterials = {
                 5: lambda i: (None, I(self._vocab[VTYPE]), self.FORM_OF_ITEM.get(info[i])),
-                ('slice', 17, 20): lambda i: (None, I(self._vocab[LANG]), info[i.start:i.stop])
-                                if info[i.start:i.stop] not in
-                                    ("###", "|||", "zxx", "mul", "sgn", "und", "   ", "") else None,
             },
             ContinuingResources = {
                 0: lambda i: (None, I(self._vocab[MARC]+'frequency'), SLUG(self.ContinuingResources['Frequency'].get(info[i]))),
@@ -1769,6 +1751,11 @@ class transforms(object):
 
         # pad to expected size
         info = info.ljust(40)
+
+        # special case language tag
+        lang = info[35:38]
+        if lang not in ("###", "|||", "zxx", "mul", "sgn", "und", "   "):
+            yield work, I(self._vocab[LANG]), lang
 
         # see marc_date above re date_008
 

@@ -799,6 +799,12 @@ EXPECTED_8 = '''
     ],
     [
         "NLx-hKGy",
+        "http://bibfra.me/vocab/lite/language",
+        "eng",
+        {}
+    ],
+    [
+        "NLx-hKGy",
         "http://bibfra.me/vocab/marc/characteristic",
         "periodical",
         {}
@@ -1011,6 +1017,12 @@ EXPECTED_9 = '''
     ],
     [
         "cwmyy44V",
+        "http://bibfra.me/vocab/lite/language",
+        "jpn",
+        {}
+    ],
+    [
+        "cwmyy44V",
         "http://bibfra.me/vocab/marc/characteristic",
         "periodical",
         {}
@@ -1111,6 +1123,12 @@ EXPECTED_10 = '''
         {
             "@target-type": "@iri-ref"
         }
+    ],
+    [
+        "H9IzzM8K",
+        "http://bibfra.me/vocab/lite/language",
+        "eng",
+        {}
     ],
     [
         "H9IzzM8K",
