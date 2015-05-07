@@ -1455,8 +1455,8 @@ class transforms(object):
         leader = params['leader']
         leader = leader.ljust(24) if leader is not None else ' '*24
 
-        work = params['workid']
-        instance = params['instanceids'][0]
+        work = I(params['workid'])
+        instance = I(params['instanceids'][0])
         work_06 = dict(
             a=I(self._vocab[MARC]+"LanguageMaterial"),
             c=(I(self._vocab[MARC]+"LanguageMaterial"), I(self._vocab[MARC]+"NotatedMusic")),
@@ -1504,8 +1504,8 @@ class transforms(object):
         """
         if info is None: return
 
-        work = params['workid']
-        instance = params['instanceids'][0]
+        work = I(params['workid'])
+        instance = I(params['instanceids'][0])
         logger = params['logger']
 
         #MARC characters skipped in the 008 field by convention
@@ -1745,8 +1745,8 @@ class transforms(object):
         if info is None: return
 
         leader = params['leader']
-        work = params['workid']
-        instance = params['instanceids'][0]
+        work = I(params['workid'])
+        #instance = I(params['instanceids'][0])
         logger = params['logger']
 
         # pad to expected size
@@ -1772,8 +1772,8 @@ class transforms(object):
         '''
 
         leader = params['leader']
-        work = params['workid']
-        instance = params['instanceids'][0]
+        work = I(params['workid'])
+        #instance = I(params['instanceids'][0])
         logger = params['logger']
 
         typ = self.material_type_by_leader(leader, logger)
@@ -1792,7 +1792,7 @@ class transforms(object):
         '''
         Process multiple 007 control fields per http://www.loc.gov/marc/bibliographic/bd007.html
         '''
-        instance = params['instanceids'][0]
+        instance = I(params['instanceids'][0])
 
         for info in infos:
             info = info.ljust(23)
