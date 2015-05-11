@@ -43,6 +43,9 @@ VALID_SUBFIELDS.update(range(ord('A'), ord('Z')+1))
 VALID_SUBFIELDS.update(range(ord('0'), ord('9')+1))
 VALID_SUBFIELDS.add(ord('-'))
 
+# validates tags in URL form
+IS_VALID_TAG = lambda t: len(t.rsplit('/',1)[-1]) == 3
+
 NSSEP = ' '
 
 class expat_callbacks(object):
@@ -117,12 +120,17 @@ class expat_callbacks(object):
                 #sfdict = defaultdict(list)
                 #[ sfdict[sf[0]].append(sf[1]) for sf in self._record[-1][3] ]
                 #self._record[-1][3] = sfdict
-                if self._record_model: self._record_model.add(self._record_id, self._link_iri, '', self._marc_attributes)
+                if self._record_model and IS_VALID_TAG(self._link_iri):
+                    self._record_model.add(self._record_id, self._link_iri, '', self._marc_attributes)
                 self._getcontent = False
             elif local == 'subfield':
                 self._marc_attributes.setdefault(self._subfield, self._attr_list_cls()).append(self._chardata_dest)
-            elif local in ('leader', 'controlfield'):
+            elif local == 'leader':
                 if self._record_model: self._record_model.add(self._record_id, self._link_iri, self._chardata_dest, self._marc_attributes)
+                self._getcontent = False
+            elif local == 'controlfield':
+                if self._record_model and IS_VALID_TAG(self._link_iri):
+                    self._record_model.add(self._record_id, self._link_iri, self._chardata_dest, self._marc_attributes)
                 self._getcontent = False
 
     def char_data(self, data):
