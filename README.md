@@ -72,7 +72,7 @@ Which in this case will add RDFS label statements for Works and Instances to the
 The `bibframe.reader.marcxml.bfconvert` function can be used as an API to
 run the conversion.
 
-	>>> from bibframe.reader.marcxml import bfconvert
+	>>> from bibframe.reader import bfconvert
 	>>> inputs = open('records.mrx', 'r')
 	>>> out = open('resorces.versa.json', 'w')
 	>>> bfconvert(inputs=inputs, entbase='http://example.org', out=out)

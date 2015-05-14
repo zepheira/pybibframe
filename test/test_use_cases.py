@@ -16,7 +16,7 @@ from io import StringIO, BytesIO
 from versa.driver import memory
 from versa.util import jsondump, jsonload
 
-from bibframe.reader.marcxml import bfconvert
+from bibframe.reader import bfconvert
 from bibframe.util import hash_neutral_model
 
 import pytest

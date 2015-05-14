@@ -5,7 +5,7 @@ import json
 import logging
 import argparse
 
-from bibframe.reader.marcxml import bfconvert
+from bibframe.reader import bfconvert
 
 
 def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, config=None, verbose=False, mods=None, canonical=False, lax=False, zipcheck=None):
