@@ -34,8 +34,8 @@ if __name__ == '__main__':
     #marc2bf -v -o /dev/null --rdfttl /tmp/foo.ttl test/resource/700t.mrx
     #parser = argparse.ArgumentParser(prog="bootstrap", add_help=False)
     parser = argparse.ArgumentParser()
-    parser.add_argument('inputs', type=argparse.FileType('rb'), metavar='inputs', nargs='*',
-                        help='One or more MARC/XML files to be parsed and converted to BIBFRAME RDF. If omitted use stdin')
+    parser.add_argument('inputs', metavar='inputs', nargs='*',
+                        help='One or more MARC/XML files to be parsed and converted to BIBFRAME RDF.')
     parser.add_argument('-o', '--out', type=argparse.FileType('w'), default=sys.stdout,
         help='File where raw Versa JSON output should be written'
              '(default: write to stdout)')
@@ -70,8 +70,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
     args.mod = [i for items in args.mod or [] for i in items]
 
-    run(inputs=args.inputs or sys.stdin, base=args.base, out=args.out, limit=args.limit, rdfttl=args.rdfttl, rdfxml=args.rdfxml, config=args.config, verbose=args.verbose, mods=args.mod, canonical=args.canonical, lax=args.lax, zipcheck=args.zipcheck)
-    for f in args.inputs: f.close()
+    run(inputs=args.inputs, base=args.base, out=args.out, limit=args.limit, rdfttl=args.rdfttl, rdfxml=args.rdfxml, config=args.config, verbose=args.verbose, mods=args.mod, canonical=args.canonical, lax=args.lax, zipcheck=args.zipcheck)
+    #for f in args.inputs: f.close()
     if args.rdfttl: args.rdfttl.close()
     if args.rdfxml: args.rdfxml.close()
     args.out.close()

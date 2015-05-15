@@ -59,14 +59,17 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
     #    register_service(statsgen.statshandler)
 
     config = config or {}
-    if hasattr(inputs, 'read') and hasattr(inputs, 'close'):
+    #if hasattr(inputs, 'read') and hasattr(inputs, 'close'):
         #It's a file type?
-        inputs = [inputs]
+    #    inputs = [inputs]
     if limit is not None:
         try:
             limit = int(limit)
         except ValueError:
             logger.debug('Limit must be a number, not "{0}". Ignoring.'.format(limit))
+
+    if 'marc_record_handler' in config:
+        handle_marc_source = AVAILABLE_MARC_HANDLERS[config['marc_record_handler']]
 
     ids = marc.idgen(entbase)
     if model is None: model = memory.connection(logger=logger)
@@ -119,7 +122,7 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
     if zipcheck:
         warnings.warn("The zipcheck option is not working yet.", RuntimeWarning)
     
-    for source_file in inputs:
+    for source_fname in inputs:
         #Note: 
         def input_fileset(sf):
             if zipcheck and zipfile.is_zipfile(sf):
@@ -135,10 +138,10 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
                     sf.seek(0, 0)
                 yield sf
 
-        for inf in input_fileset(source_file):
+        for infname in input_fileset(source_fname):
             @asyncio.coroutine
             #Wrap the parse operation to make it a task in the event loop
-            def wrap_task(inf=inf):
+            def wrap_task(infname=infname):
                 sink = marc.record_handler( loop,
                                             model,
                                             entbase=entbase,
@@ -164,7 +167,7 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
                 attr_list_cls = resolve_class(config.get('versa-attr-list-cls', 'builtins.list'))
 
                 args = dict(lax=lax)
-                handle_marc_source(inf, sink, args, attr_cls, attr_list_cls)
+                handle_marc_source(infname, sink, args, attr_cls, attr_list_cls)
                 sink.close()
                 yield
             task = asyncio.async(wrap_task(), loop=loop)
@@ -196,4 +199,12 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
         logger.debug('Converting to RDF.')
         rdfxml.write(g.serialize(format="pretty-xml"))
     return
+
+
+AVAILABLE_MARC_HANDLERS = {
+    "http://bibfra.me/tool/pybibframe/marchandler#marcjson": handle_marcxml_source
+}
+
+def register_marc_handler(iri, func):
+    AVAILABLE_MARC_HANDLERS[iri] = func
 
