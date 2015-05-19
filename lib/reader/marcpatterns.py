@@ -433,7 +433,7 @@ BFLITE_TRANSFORMS = {
     '300$c': oninstance.rename(rel=BL + 'dimensions'),
     '300$e': oninstance.rename(rel=MARC + 'accompanyingMaterial'),
     '300$f': oninstance.rename(rel=MARC + 'typeOfunit'),
-    '300$g': oninstance.rename(rel=BL + 'size'),
+    '300$g': oninstance.rename(rel=MARC + 'size'),
     '300$3': oninstance.rename(rel=MARC + 'materials'),
     '310$a': oninstance.rename(rel=MARC + 'publicationFrequency'),
     '310$b': oninstance.rename(rel=MARC + 'publicationDateFrequency'),
@@ -908,7 +908,7 @@ BFLITE_TRANSFORMS = {
 
     '700': ifexists(subfield('t'),
                     onwork.materialize(BL + 'Work',
-                                       values(REL + 'hasPart', relator_property(subfield('i'), prefix=REL)),
+                                       values(REL + 'related', relator_property(subfield('i'), prefix=REL)),
                                        unique=values(subfield('t'), subfield('l'), subfield('m'), subfield('n'),
                                                      subfield('o'), subfield('p'), subfield('r'), subfield('k'),
                                                      subfield('f'), subfield('s')
@@ -942,7 +942,7 @@ BFLITE_TRANSFORMS = {
 
     '710': ifexists(subfield('t'),
                     onwork.materialize(BL + 'Work',
-                                       values(REL + 'hasPart', relator_property(subfield('i'), prefix=REL)),
+                                       values(REL + 'related', relator_property(subfield('i'), prefix=REL)),
                                        unique=values(subfield('t'), subfield('l')),
                                        links={BL + 'language': subfield('l'),
                                               ifexists(subfield('a'), BL + 'creator'): 
@@ -969,7 +969,7 @@ BFLITE_TRANSFORMS = {
 
     '711': ifexists(subfield('t'),
                     onwork.materialize(BL + 'Work',
-                                       values(REL + 'hasPart', relator_property(subfield('i'), prefix=REL)),
+                                       values(REL + 'related', relator_property(subfield('i'), prefix=REL)),
                                        unique=values(subfield('t'),
                                                      subfield('l')),
                                        links={BL + 'language': subfield('l'),
