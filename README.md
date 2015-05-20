@@ -90,15 +90,24 @@ Download from http://ftp.indexdata.com/pub/yaz/ , unpack then do:
     $ ./configure --prefix=$HOME/.local
     $ make && make install
 
+If you're on a Debian-based Linux you might find useful [these indtallation notes](https://gist.github.com/uogbuji/7cbc5c62f99951999574)
+
 MarcEdit - http://marcedit.reeset.net/ - can also convert to MARC/XML. Just install, select "MARC Tools" from the menu, choose your input file, specify an output file, and specify the conversion you need to perform, e.g. "MARC21->MARC21XML" for MARC to MARC/XML. Note the availability of the UTF-8 output option too.
 
-More
-====
 
-pybibframe developement has been supported in part by the Library of Congress, BIBFLOW (an IMLS project of the UC Davis library) and Zepheira with contributions and refinements to the transformation recipes made by librarians participating in Zepheira's Linked Data and BIBFRAME Practical Practitioner Training program
+## References
+
+ * [MARC 21 Specifications for Record Structure, Character Sets, and Exchange Media: CHARACTER SETS AND ENCODING OPTIONS: Part 4 (Conversion Between Environments)](http://www.loc.gov/marc/specifications/speccharconversion.html)
+
+
+# Acknowledgements
+
+pybibframe developement, led by Zepheira, has been supported in part by the Library of Congress, BIBFLOW (an IMLS project of the UC Davis library), and thanks to contributions and refinements to the default transformation recipes made by librarians participating in Zepheira's Linked Data and BIBFRAME Practical Practitioner Training program
 
 * [Bibframe](http://bibframe.org/)
 * [Zepheira](http://zepheira.com/)
 * [Library of Congress](http://loc.gov/)
 * [BIBFLOW](http://www.lib.ucdavis.edu/bibflow/)
 * [Zepheira Linked Data and BIBFRAME Practical Practitioner Training](http://zepheira.com/solutions/library/training/)
+
+

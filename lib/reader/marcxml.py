@@ -33,7 +33,6 @@ NSSEP = ' '
 class expat_callbacks(object):
     def __init__(self, sink, parser, attr_cls=OrderedDict, attr_list_cls=list, lax=False):
         self._sink = sink
-        next(self._sink) #Start the coroutine running
         self._getcontent = False
         self.no_records = True
         self._attr_cls = attr_cls # dict-like class to use for holding Versa attributes
@@ -127,7 +126,7 @@ class expat_callbacks(object):
 
 def handle_marcxml_source(infname, sink, args, attr_cls, attr_list_cls):
     #Cannot reuse a pyexpat parser, so must create a new one for each input file
-    next(sink)
+    next(sink) #Start the coroutine running
     with open(infname, 'rb') as inf:
         lax = args['lax']
         if lax:
