@@ -23,7 +23,7 @@ from versa.pipeline import *
 
 from bibframe import MARC
 from bibframe.reader.util import WORKID, IID
-from bibframe import BF_INIT_TASK, BF_INPUT_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
+from bibframe import BF_INIT_TASK, BF_INPUT_TASK, BF_INPUT_XREF_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
 from bibframe.isbnplus import isbn_list, compute_ean13_check
 from bibframe.reader.marcpatterns import TRANSFORMS, bfcontext
 from bibframe.reader.marcextra import transforms as default_extra_transforms
@@ -233,6 +233,12 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             #Add work item record, with actual hash resource IDs based on default or plugged-in algo
             #FIXME: No plug-in support yet
             params = {'input_model': input_model, 'output_model': model, 'logger': logger, 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids, 'existing_ids': existing_ids, 'plugins': plugins}
+
+            # earliest plugin stage, with an unadulterated input model
+            for plugin in plugins:
+                if BF_INPUT_TASK in plugin:
+                    yield from plugin[BF_INPUT_TASK](loop, input_model, params)
+
             workhash = record_hash_key(input_model)
             workid = materialize_entity('Work', ctx_params=params, loop=loop, hash=workhash)
             is_folded = workid in existing_ids
@@ -327,10 +333,10 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             for linfo in add_links:
                 input_model.add(*linfo)
 
-            # hook for plugins interested in the input model
+            # hook for plugins interested in the xref-resolved input model
             for plugin in plugins:
-                if BF_INPUT_TASK in plugin:
-                    yield from plugin[BF_INPUT_TASK](loop, input_model, params)
+                if BF_INPUT_XREF_TASK in plugin:
+                    yield from plugin[BF_INPUT_XREF_TASK](loop, input_model, params)
 
             # need to sort our way through the input model so that the materializations occur
             # at the same place each time, otherwise canonicalization fails due to the
