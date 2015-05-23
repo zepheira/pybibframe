@@ -286,8 +286,8 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                 tag = attribs['tag']
                 for xref in attribs.get('6', []):
                     xref_parts = xref.split('-')
-                    if len(xref_parts) < 2:
-                        logger.debug('Invalid $6: {}'.format(xref_parts))
+                    if len(xref_parts) != 2:
+                        logger.warning('Skipping invalid $6: "{}" for {}: "{}"'.format(xref, control_code[0], dumb_title[0]))
                         continue
 
                     xreftag, xrefid = xref_parts
@@ -435,7 +435,10 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                             indicator_list[1].replace('#', 'X'), k)
                         #params['transforms'].append((code, fallback_rel))
                         for valitem in v:
-                            model.add(I(workid), I(iri.absolutize(fallback_rel, vocabbase)), valitem)
+                            try:
+                                model.add(I(workid), I(iri.absolutize(fallback_rel, vocabbase)), valitem)
+                            except ValueError as e:
+                                logger.warning('{}\nSkipping statement for {}: "{}"'.format(e, control_code[0], dumb_title[0]))
 
             extra_stmts = set() # prevent duplicate statements
             for origin, k, v in itertools.chain(
