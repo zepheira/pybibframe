@@ -41,11 +41,11 @@ def run_one(name, entbase=None, config=None, loop=None, canonical=True):
     m_expected = memory.connection()
     s = StringIO()
 
-    with open(os.path.join(RESOURCEPATH, name+'.mrx'), 'rb') as indoc:
-        bfconvert(indoc, model=m, out=s, config=config, canonical=canonical, loop=loop)
-        s.seek(0)
-        hashmap, m = hash_neutral_model(s)
-        hashmap = '\n'.join(sorted([ repr((i[1], i[0])) for i in hashmap.items() ]))
+    fname = os.path.join(RESOURCEPATH, name+'.mrx')
+    bfconvert([fname], model=m, out=s, config=config, canonical=canonical, loop=loop)
+    s.seek(0)
+    hashmap, m = hash_neutral_model(s)
+    hashmap = '\n'.join(sorted([ repr((i[1], i[0])) for i in hashmap.items() ]))
 
     with open(os.path.join(RESOURCEPATH, name+'.versa')) as indoc:
         hashmap_expected, m_expected = hash_neutral_model(indoc)
@@ -70,8 +70,8 @@ def test_model_consumed():
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(None)
     m = memory.connection()
-    with open(os.path.join(RESOURCEPATH, 'multiple-authlinks.xml'), 'rb') as indoc:
-        bfconvert([indoc], entbase='http://example.org/', model=m, config=None, verbose=False, loop=loop)
+    fname = os.path.join(RESOURCEPATH, 'multiple-authlinks.xml')
+    bfconvert([fname], entbase='http://example.org/', model=m, config=None, verbose=False, loop=loop)
 
     assert m.size() == 0, 'Model not consumed:\n'+repr(m)
 

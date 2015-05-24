@@ -40,6 +40,7 @@ import logging
 import asyncio
 import difflib
 from io import StringIO, BytesIO
+import tempfile
 
 from versa.driver import memory
 from versa.util import jsondump, jsonload
@@ -1093,7 +1094,7 @@ CONFIG_10 = {}
 EXPECTED_10 = '''
 [
     [
-        "H9IzzM8K",
+        "REBetltW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
@@ -1101,7 +1102,7 @@ EXPECTED_10 = '''
         }
     ],
     [
-        "H9IzzM8K",
+        "REBetltW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/Collection",
         {
@@ -1109,7 +1110,7 @@ EXPECTED_10 = '''
         }
     ],
     [
-        "H9IzzM8K",
+        "REBetltW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/ContinuingResources",
         {
@@ -1117,7 +1118,7 @@ EXPECTED_10 = '''
         }
     ],
     [
-        "H9IzzM8K",
+        "REBetltW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/LanguageMaterial",
         {
@@ -1125,85 +1126,85 @@ EXPECTED_10 = '''
         }
     ],
     [
-        "H9IzzM8K",
+        "REBetltW",
         "http://bibfra.me/vocab/lite/language",
         "eng",
         {}
     ],
     [
-        "H9IzzM8K",
+        "REBetltW",
         "http://bibfra.me/vocab/marc/entryConvention",
         "successive entry",
         {}
     ],
     [
-        "H9IzzM8K",
+        "REBetltW",
         "http://bibfra.me/vocab/marc/frequency",
         "biennial",
         {}
     ],
     [
-        "H9IzzM8K",
+        "REBetltW",
         "http://bibfra.me/vocab/marc/governmentPublication",
         "federal national government publication",
         {}
     ],
     [
-        "H9IzzM8K",
+        "REBetltW",
         "http://bibfra.me/vocab/marc/natureOfContents",
         "dictionaries",
         {}
     ],
     [
-        "H9IzzM8K",
+        "REBetltW",
         "http://bibfra.me/vocab/marc/natureOfContents",
         "directories",
         {}
     ],
     [
-        "H9IzzM8K",
+        "REBetltW",
         "http://bibfra.me/vocab/marc/originalAlphabetOrScriptOfTitle",
         "basic roman",
         {}
     ],
     [
-        "H9IzzM8K",
+        "REBetltW",
         "http://bibfra.me/vocab/marc/regularity",
         "regular",
         {}
     ],
     [
-        "H9IzzM8K",
+        "REBetltW",
         "http://bibfra.me/vocab/marcext/tag-003",
         "OCoLC",
         {}
     ],
     [
-        "H9IzzM8K",
+        "REBetltW",
         "http://bibfra.me/vocab/marcext/tag-005",
         "20141208144405.0",
         {}
     ],
     [
-        "H9IzzM8K",
+        "REBetltW",
         "http://bibfra.me/vocab/marcext/tag-006",
         "m     o  d f      ",
         {}
     ],
     [
-        "H9IzzM8K",
+        "REBetltW",
         "http://bibfra.me/vocab/marcext/tag-007",
         "cr gn|||||||||",
         {}
     ],
     [
-        "H9IzzM8K",
+        "REBetltW",
         "http://bibfra.me/vocab/marcext/tag-008",
         "970709c19679999dcugr   o hr f0   a0eng  ",
         {}
     ],
     [
-        "N-ApLO4K",
+        "eNfogYjb",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
         {
@@ -1211,7 +1212,7 @@ EXPECTED_10 = '''
         }
     ],
     [
-        "N-ApLO4K",
+        "eNfogYjb",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/ElectronicResource",
         {
@@ -1219,33 +1220,33 @@ EXPECTED_10 = '''
         }
     ],
     [
-        "N-ApLO4K",
+        "eNfogYjb",
         "http://bibfra.me/vocab/lite/controlCode",
         "37263290",
         {}
     ],
     [
-        "N-ApLO4K",
+        "eNfogYjb",
         "http://bibfra.me/vocab/lite/instantiates",
-        "H9IzzM8K",
+        "REBetltW",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "N-ApLO4K",
+        "eNfogYjb",
         "http://bibfra.me/vocab/marc/dimensions",
         "unknown",
         {}
     ],
     [
-        "N-ApLO4K",
+        "eNfogYjb",
         "http://bibfra.me/vocab/marc/formOfItem",
         "online",
         {}
     ],
     [
-        "N-ApLO4K",
+        "eNfogYjb",
         "http://bibfra.me/vocab/marc/specificMaterialDesignation",
         "remote",
         {}
@@ -1721,7 +1722,7 @@ CONFIG_15 = {}
 EXPECTED_15 = '''
 [
     [
-        "Dd-hEKYF",
+        "PZ-aV_fa",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
         {
@@ -1729,7 +1730,7 @@ EXPECTED_15 = '''
         }
     ],
     [
-        "Dd-hEKYF",
+        "PZ-aV_fa",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/MotionPicture",
         {
@@ -1737,33 +1738,33 @@ EXPECTED_15 = '''
         }
     ],
     [
-        "Dd-hEKYF",
+        "PZ-aV_fa",
         "http://bibfra.me/vocab/lite/instantiates",
-        "m1hRqjCr",
+        "kP2G4QhW",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "Dd-hEKYF",
+        "PZ-aV_fa",
         "http://bibfra.me/vocab/marc/filmInspectionDate",
         "1992",
         {}
     ],
     [
-        "Dd-hEKYF",
+        "PZ-aV_fa",
         "http://bibfra.me/vocab/marc/filmInspectionDate",
         "1993",
         {}
     ],
     [
-        "Dd-hEKYF",
+        "PZ-aV_fa",
         "http://bibfra.me/vocab/marc/filmInspectionDate",
         "1994-02",
         {}
     ],
     [
-        "m1hRqjCr",
+        "kP2G4QhW",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
@@ -1771,19 +1772,19 @@ EXPECTED_15 = '''
         }
     ],
     [
-        "m1hRqjCr",
+        "kP2G4QhW",
         "http://bibfra.me/vocab/marcext/tag-007",
         "m                1992",
         {}
     ],
     [
-        "m1hRqjCr",
+        "kP2G4QhW",
         "http://bibfra.me/vocab/marcext/tag-007",
         "m                1993--",
         {}
     ],
     [
-        "m1hRqjCr",
+        "kP2G4QhW",
         "http://bibfra.me/vocab/marcext/tag-007",
         "m                199402",
         {}
@@ -2438,9 +2439,12 @@ def file_diff(s_orig, s_new):
 def run_one(snippet, expected, desc, entbase=None, config=None, loop=None, canonical=True):
     m = memory.connection()
     m_expected = memory.connection()
-    instream = BytesIO(snippet.encode('utf-8'))
+    infile = tempfile.NamedTemporaryFile()
+    infile.write(snippet.encode('utf-8'))
+    infile.seek(0)
     outstream = StringIO()
-    bfconvert(instream, model=m, out=outstream, config=config, canonical=canonical, loop=loop)
+    bfconvert([infile.name], model=m, out=outstream, config=config, canonical=canonical, loop=loop)
+    infile.close()
     outstream.seek(0)
     hashmap, m = hash_neutral_model(outstream)
     hashmap = '\n'.join(sorted([ repr((i[1], i[0])) for i in hashmap.items() ]))
