@@ -129,8 +129,8 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
                 zf = zipfile.ZipFile(sf, 'r')
                 for info in list(zf.infolist()):
                     #From the doc: Note If the ZipFile was created by passing in a file-like object as the first argument to the constructor, then the object returned by open() shares the ZipFile’s file pointer. Under these circumstances, the object returned by open() should not be used after any additional operations are performed on the ZipFile object.
-                    sf.seek(0, 0)
-                    zf = zipfile.ZipFile(sf, 'r')
+                    #sf.seek(0, 0)
+                    #zf = zipfile.ZipFile(sf, 'r')
                     yield zf.open(info, mode='r')
             else:
                 if zipcheck:
