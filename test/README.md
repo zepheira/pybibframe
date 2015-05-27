@@ -38,3 +38,7 @@ Then:
 		    print(outstream.getvalue()) #This output becomes the EXPECTED stanza
 
 Then copy the corresponding EXPECTED stanzas to the right place in the test file.
+
+# Expanding the test suite
+
+* ["structural marc problems you may encounter"](https://bibwild.wordpress.com/2010/02/02/structural-marc-problems-you-may-encounter/) is a good chamber of horrors. We should check that we handle the given cases gracefully.
