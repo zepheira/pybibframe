@@ -96,6 +96,10 @@ leads to a newly materialized Agent resource. This time the unique ID is derived
 the value of the `b` itself (this is what target() means in that situation, because
 it is under the influence of the foreach function).
 
+References.
+
+ * Linked Data URIs and Libraries: The Story So Far <http://www.dlib.org/dlib/may15/papadakis/05papadakis.html>
+
 '''
 # all_subfields - All the MARC subfields are used together to determine the uniqueness
 
