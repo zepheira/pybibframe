@@ -938,7 +938,7 @@ BFLITE_TRANSFORMS = {
                                        unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'),
                                                      subfield('g'), subfield('j'), subfield('q'), subfield('u')),
                                        links={BL + 'name': subfield('a'), MARC + 'numeration': subfield('b'),
-                                              MARC + 'titles': subfield('c'), BL + 'date': subfield('d'),
+                                              MARC + 'titles': subfield('c'), BL + 'date': subfield('d'), BL + 'nameAlternative': subfield('q'),
                                               BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0')))
                                               }
                                        )
