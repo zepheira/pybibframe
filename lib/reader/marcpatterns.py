@@ -198,7 +198,7 @@ BFLITE_TRANSFORMS = {
                                      MARC + 'titles': subfield('c'),
                                      BL + 'date': subfield('d'),
                                      BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0'))),
-                                     MARC + 'additionalName': subfield('q')
+                                     BL + 'nameAlternative': subfield('q')
                               }
     ),
 
@@ -213,13 +213,11 @@ BFLITE_TRANSFORMS = {
                                             subfield('d'),
                                             subfield('g'),
                                             subfield('j'),
-                                            subfield('q'),
                                             subfield('u')),
                               links={BL + 'name': subfield('a'),
                                      MARC + 'subordinateUnit': subfield('b'),
                                      BL + 'date': subfield('d'),
-                                     BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0'))),
-                                     MARC + 'additionalName': subfield('q')
+                                     BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0')))
                               }
     ),
 
@@ -996,6 +994,7 @@ BFLITE_TRANSFORMS = {
                                                      ),
                                        links={BL + 'name': subfield('a'), 
                                               BL + 'date': subfield('d'),
+                                              BL + 'nameAlternative': subfield('q'),
                                               BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0')))
                                               }
                                        )
