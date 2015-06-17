@@ -327,11 +327,8 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                                             copied_attribs.setdefault(k, []).extend(v)
                                     add_links.append((origin, taglink, val, copied_attribs))
 
-            for lid in remove_links:
-                input_model.remove(lid)
-
-            for linfo in add_links:
-                input_model.add(*linfo)
+            input_model.remove(remove_links)
+            input_model.add_many(add_links)
 
             # hook for plugins interested in the xref-resolved input model
             for plugin in plugins:
@@ -348,7 +345,10 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                     continue
                 #Sort out attributes
                 params['indicators'] = indicators = { k: v for k, v in attribs.items() if k.startswith('ind') }
-                params['subfields'] = subfields = { k: v for k, v in attribs.items() if k[:3] not in ('tag', 'ind') }
+                params['subfields'] = subfields = attribs.copy() # preserve class
+                for k in list(subfields.keys()):
+                    if k[:3] in ('tag', 'ind'):
+                        del subfields[k]
                 params['code'] = tag = attribs['tag']
                 if taglink.startswith(MARCXML_NS + '/control'):
                     #No indicators on control fields. Turn them off, in effect

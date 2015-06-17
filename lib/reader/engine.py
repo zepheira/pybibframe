@@ -3,7 +3,7 @@
 
 import asyncio
 import logging
-from collections import defaultdict, OrderedDict
+from collections import defaultdict
 import warnings
 import zipfile
 
@@ -58,7 +58,20 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
     #if stats:
     #    register_service(statsgen.statshandler)
 
+    def resolve_class(fullname):
+        '''
+        Given a full name for a Python class, return the class object
+        '''
+        import importlib
+        modpath, name = fullname.rsplit('.', 1)
+        module = importlib.import_module(modpath)
+        cls = getattr(module, name)
+        return cls
+
     config = config or {}
+    attr_cls = resolve_class(config.get('versa-attr-cls', 'builtins.dict'))
+    attr_list_cls = resolve_class(config.get('versa-attr-list-cls', 'builtins.list'))
+
     #if hasattr(inputs, 'read') and hasattr(inputs, 'close'):
         #It's a file type?
     #    inputs = [inputs]
@@ -72,9 +85,9 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
         handle_marc_source = AVAILABLE_MARC_HANDLERS[config['marc_record_handler']]
 
     ids = marc.idgen(entbase)
-    if model is None: model = memory.connection(logger=logger)
+    if model is None: model = memory.connection(attr_cls=attr_cls)#logger=logger)
     g = rdflib.Graph()
-    if canonical: global_model = memory.connection(attr_cls=OrderedDict)
+    if canonical: global_model = memory.connection()#logger=logger)
 
     extant_resources = None
     #extant_resources = set()
@@ -155,16 +168,6 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
                                             transforms=transforms,
                                             extra_transforms=extra_transforms(marcextras_vocab),
                                             canonical=canonical)
-
-                def resolve_class(fullname):
-                    import importlib
-                    modpath, name = fullname.rsplit('.', 1)
-                    module = importlib.import_module(modpath)
-                    cls = getattr(module, name)
-                    return cls
-
-                attr_cls = resolve_class(config.get('versa-attr-cls', 'collections.OrderedDict'))
-                attr_list_cls = resolve_class(config.get('versa-attr-list-cls', 'builtins.list'))
 
                 args = dict(lax=lax)
                 handle_marc_source(infname, sink, args, attr_cls, attr_list_cls)

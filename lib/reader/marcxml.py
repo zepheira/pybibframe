@@ -31,7 +31,7 @@ IS_VALID_TAG = lambda t: len(t.rsplit('/',1)[-1]) == 3
 NSSEP = ' '
 
 class expat_callbacks(object):
-    def __init__(self, sink, parser, attr_cls=OrderedDict, attr_list_cls=list, lax=False):
+    def __init__(self, sink, parser, attr_cls=dict, attr_list_cls=list, lax=False):
         self._sink = sink
         self._getcontent = False
         self.no_records = True
@@ -58,7 +58,7 @@ class expat_callbacks(object):
                 self._record_id = 'record-{0}:{1}'.format(self._parser.CurrentLineNumber, self._parser.CurrentColumnNumber)
                 #Versa model with a representation of the record
                 #For input model plugins, important that natural ordering be preserved
-                self._record_model = memory.connection(attr_cls=self._attr_cls())#logger=logger)
+                self._record_model = memory.connection(attr_cls=self._attr_cls)#logger=logger)
             elif local == 'leader':
                 self._chardata_dest = ''
                 self._link_iri = MARCXML_NS + '/leader'

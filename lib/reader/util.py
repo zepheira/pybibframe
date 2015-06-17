@@ -1,6 +1,7 @@
 import re
 from itertools import product
 from enum import Enum #https://docs.python.org/3.4/library/enum.html
+from collections import OrderedDict
 
 from versa.pipeline import *
 from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
@@ -123,7 +124,14 @@ def all_subfields(ctx):
     #    result.extend(valitem)
         #sorted(functools.reduce(lambda a, b: a.extend(b), ))
     #ctx.logger('GRIPPO' + repr(sorted(functools.reduce(lambda a, b: a.extend(b), ctx.linkset[0][ATTRIBUTES].items()))))
-    return sorted(ctx.current_link[ATTRIBUTES].items())
+    
+
+    attrs = ctx.current_link[ATTRIBUTES]
+    # If attributes have their own ordering, use it, otherwise sort
+    if isinstance(attrs, OrderedDict):
+        return attrs.items()
+    else:
+        return sorted(attrs.items())
 
 
 def subfield(key):
