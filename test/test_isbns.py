@@ -8,6 +8,10 @@ ISBN_LISTS = [
         ['9783136128046 (GTV)', '1588902153 (TNY)', '9781588902153 (TNY)', '3136128044 (GTV)'],
         ['9783136128046 (GTV)', '9781588902153 (TNY)', '1588902153 (TNY)', '3136128044 (GTV)'],
         ['978-3136128046 (GTV)', '3136128044 (GTV)', '978-1588902153 (TNY)', '1588902153 (TNY)'],
+    ]},
+    {'expected': [('978068807546', None)],
+    'inputs': [
+        ['0688075460'],
     ]}
 ]
 
@@ -31,12 +35,14 @@ ISBN_13_TESTS = {
     '400638133393': '4006381333931',
     '9780615886084': '9780615886084',
     '978061588608': '9780615886084',
+    '978068807546': '9780688075460',
 }
 
 
 @pytest.mark.parametrize('inputdata,expected', ISBN_13_TESTS.items())
-def test_isbn_list(inputdata, expected):
+def test_compute_ean13_check(inputdata, expected):
     result = compute_ean13_check(inputdata)
+    assert len(result) == 13, (result,)
     assert result == expected, (result, expected)
 
 
