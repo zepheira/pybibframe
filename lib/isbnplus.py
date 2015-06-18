@@ -41,6 +41,9 @@ def canonicalize_isbns(isbns, logger=logging):
 
 def isbn_list(isbns, logger=logging):
     '''
+    Take a list of ISBN descriptions, in the form of an ISBN and an optional annotation
+    Return a list of normalized ISBNs in 12-digit form (i.e. ISBN-13 *without checkbit*), and matching annotations
+
     >>> from bibframe.isbnplus import isbn_list
     >>> isbns = ['9783136128046 (GTV)', '1588902153 (TNY)', '9781588902153 (TNY)', '3136128044 (GTV)']
     >>> list(isbn_list(isbns))
@@ -83,6 +86,8 @@ def compute_ean13_check(ean):
     '9780615886084'
     >>> compute_ean13_check('978061588608')
     '9780615886084'
+    >>> compute_ean13_check('978068807546')
+    '9780688075460'
     '''
     assert len(ean) in (12, 13)
     def weight_gen():
@@ -97,4 +102,7 @@ def compute_ean13_check(ean):
     ean = ean[:12]
     s = sum([ int(d) * next(wg) for d in ean ])
 
-    return ean + str(10 - s % 10)
+    #print(str(10 - s % 10)[-1])
+    ean_checked = ean + str(10 - s % 10)[-1]
+    assert len(ean_checked) == 13
+    return ean_checked
