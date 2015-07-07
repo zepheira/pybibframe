@@ -893,16 +893,9 @@ BFLITE_TRANSFORMS = {
                                      MARC + 'chronologicalSubdivision': subfield('y'),
                                      MARC + 'formSubdivision': subfield('v'),
                                      MARC + 'geographicSubdivision': subfield('z'),                                     
-                                     BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0'))),
-                                     ifexists(subfield('a'), BL + 'focus'):
-                                         materialize(BL + 'Concept',
-                                                     unique=values(subfield('a')),
-                                                     links={BL + 'name': subfield('a'),
-                                                            MARC + 'additionalName': subfield('b')}
-                                                     )
+                                     BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0')))
                                      }
                               ),
-
 
 # Fields 700,710,711,etc. have a contributor + role (if specified) relationship to a new Agent object (only created as a new object if all subfields are unique)
 # Generate hash values only from the properties specific to Agents
