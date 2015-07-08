@@ -844,10 +844,39 @@ BFLITE_TRANSFORMS = {
                                                             MARC + 'miscInfo': subfield('g')}
                                          )
                               }
-),
+    ),
 
-    # genres - the is-ness about a work
-    
+    '655': onwork.materialize(BL + 'Concept',
+                              BL + 'subject',
+                              unique=values(subfield('a'),
+                                            subfield('b'),
+                                            subfield('c'),
+                                            subfield('v'),
+                                            subfield('x'),
+                                            subfield('y'),
+                                            subfield('z')),
+                              links={BL + 'name': subfield('a'),
+                                     MARC + 'source': subfield('2'),
+                                     MARC + 'generalSubdivision': subfield('x'),
+                                     MARC + 'chronologicalSubdivision': subfield('y'),
+                                     MARC + 'formSubdivision': subfield('v'),
+                                     MARC + 'geographicSubdivision': subfield('z'),                                     
+                                     BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0'))),
+                                     ifexists(subfield('a'), BL + 'focus'):
+                                         materialize(BL + 'Form',
+                                                     unique=values(subfield('a')),
+                                                     links={BL + 'name': subfield('a'),
+                                                            MARC + 'miscInfo': subfield('g')}
+                                         )
+                              }
+    ),
+
+    # genres - the is-ness about a work 
+
+    # note: teasing 655 form / genre in two ways. one as a subject
+    # with a value Concept that has a focus of Form, the other simply
+    # as genre with a value of Form
+
     '600$v': onwork.materialize(BL + 'Form',
                                 BL + 'genre',
                                 unique=values(subfield('v')),
@@ -878,24 +907,10 @@ BFLITE_TRANSFORMS = {
                                 unique=values(subfield('v')),
                                 links={BL + 'name': subfield('v')}),
     
-    '655': onwork.materialize(BL + 'Form',
-                              BL + 'genre',
-                              unique=values(subfield('a'),
-                                            subfield('b'),
-                                            subfield('c'),
-                                            subfield('v'),
-                                            subfield('x'),
-                                            subfield('y'),
-                                            subfield('z')),
-                              links={BL + 'name': subfield('a'),
-                                     MARC + 'source': subfield('2'),
-                                     MARC + 'generalSubdivision': subfield('x'),
-                                     MARC + 'chronologicalSubdivision': subfield('y'),
-                                     MARC + 'formSubdivision': subfield('v'),
-                                     MARC + 'geographicSubdivision': subfield('z'),                                     
-                                     BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('0')))
-                                     }
-                              ),
+    '655$a': onwork.materialize(BL + 'Form',
+                                BL + 'genre',
+                                unique=values(subfield('a')),
+                                links={BL + 'name': subfield('a')}),
 
 # Fields 700,710,711,etc. have a contributor + role (if specified) relationship to a new Agent object (only created as a new object if all subfields are unique)
 # Generate hash values only from the properties specific to Agents
@@ -903,7 +918,7 @@ BFLITE_TRANSFORMS = {
 
     '700': ifexists(subfield('t'),
                     onwork.materialize(BL + 'Work',
-                                       values(REL + 'related', relator_property(subfield('i'), prefix=REL)),
+                                       values(BL + 'related', relator_property(subfield('i'), prefix=REL)),
                                        unique=values(subfield('t'), subfield('l'), subfield('m'), subfield('n'),
                                                      subfield('o'), subfield('p'), subfield('r'), subfield('k'),
                                                      subfield('f'), subfield('s')
@@ -937,7 +952,7 @@ BFLITE_TRANSFORMS = {
 
     '710': ifexists(subfield('t'),
                     onwork.materialize(BL + 'Work',
-                                       values(REL + 'related', relator_property(subfield('i'), prefix=REL)),
+                                       values(BL + 'related', relator_property(subfield('i'), prefix=REL)),
                                        unique=values(subfield('t'), subfield('l')),
                                        links={BL + 'language': subfield('l'),
                                               ifexists(subfield('a'), BL + 'creator'): 
@@ -964,7 +979,7 @@ BFLITE_TRANSFORMS = {
 
     '711': ifexists(subfield('t'),
                     onwork.materialize(BL + 'Work',
-                                       values(REL + 'related', relator_property(subfield('i'), prefix=REL)),
+                                       values(BL + 'related', relator_property(subfield('i'), prefix=REL)),
                                        unique=values(subfield('t'),
                                                      subfield('l')),
                                        links={BL + 'language': subfield('l'),
@@ -1540,7 +1555,7 @@ BFLITE_TRANSFORMS = {
 
     '787': ifexists(subfield('s'),
                     onwork.materialize(BL + 'Collection',
-                                       REL + 'related',
+                                       BL + 'related',
                                        unique=all_subfields,
                                        links={BL + 'title': subfield('s'),
                                               MARC + 'issn': subfield('x'),
@@ -1551,7 +1566,7 @@ BFLITE_TRANSFORMS = {
                                               MARC + 'isbn': subfield('z')}
                                        ),
                     onwork.materialize(BL + 'Work',
-                                       REL + 'related',
+                                       BL + 'related',
                                        unique=all_subfields,
                                           links={BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                               MARC + 'issn': subfield('x'),
