@@ -345,27 +345,23 @@ BFLITE_TRANSFORMS = {
                                          BL + 'providerDate': subfield('c')
                                          }
                                   ),
-
-    '264': oninstance.materialize(BL + 'ProviderEvent',
-                                  MARC + 'publication',
-                                  unique=all_subfields,
-                                  links={ifexists(subfield('a'), BL + 'providerPlace'): 
-                                         materialize(BL + 'Place',
-                                                     unique=subfield('a'),
-                                                     links={BL + 'name': subfield('a')}
-                                                     ),
-                                         ifexists(subfield('b'), BL + 'providerAgent'): 
-                                         materialize(BL + 'Agent',
-                                                     unique=subfield('b'),
-                                                     links={BL + 'name': subfield('b')}
-                                                     ),
-                                         BL + 'providerDate': subfield('c')}
-                                  ),
-
-    #Ind1 is blank ('#') ind2 is 3
     
-    '264$c-#4': oninstance.rename(rel=MARC + 'copyrightDate'),
-    
+    '264-#4': oninstance.materialize(BL + 'CopyrightEvent',
+                                     BL + 'copyright',
+                                     unique=all_subfields,
+                                     links={ifexists(subfield('a'), BL + 'copyrightPlace'): 
+                                            materialize(BL + 'Place',
+                                                        unique=subfield('a'),
+                                                        links={BL + 'name': subfield('a')}
+                                                        ),
+                                            ifexists(subfield('b'), BL + 'copyrightAgent'): 
+                                            materialize(BL + 'Agent', 
+                                                        unique=subfield('b'),
+                                                        links={BL + 'name': subfield('b')}
+                                                        ),
+                                            BL + 'copyrightDate': subfield('c')}
+                                     ),
+
     '264-#3': oninstance.materialize(BL + 'ProviderEvent',
                                      MARC + 'manufacture',
                                      unique=all_subfields,
@@ -423,6 +419,24 @@ BFLITE_TRANSFORMS = {
                                                         links={BL + 'name': subfield('a')}
                                                         ),
                                             ifexists(subfield('b'), BL + 'providerAgent'): 
+                                            materialize(BL + 'Agent',
+                                                        unique=subfield('b'),
+                                                        links={BL + 'name': subfield('b')}
+                                                        ),
+                                            BL + 'providerDate': subfield('c')}
+                                     ),
+
+    # assume if indicators are blank its a publication
+    
+    '264-##': oninstance.materialize(BL + 'ProviderEvent',
+                                     MARC + 'publication',
+                                     unique=all_subfields,
+                                     links={ifexists(subfield('a'), BL + 'providerPlace'): 
+                                            materialize(BL + 'Place',
+                                                        unique=subfield('a'),
+                                                        links={BL + 'name': subfield('a')}
+                                                        ),
+                                            ifexists(subfield('b'), 'providerAgent'): 
                                             materialize(BL + 'Agent',
                                                         unique=subfield('b'),
                                                         links={BL + 'name': subfield('b')}
