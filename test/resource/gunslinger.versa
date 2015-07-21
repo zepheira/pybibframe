@@ -64,46 +64,6 @@
         {}
     ],
     [
-        "LkzX_JtK",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Form",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "LkzX_JtK",
-        "http://bibfra.me/vocab/lite/focus",
-        "TeuKWYhH",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "LkzX_JtK",
-        "http://bibfra.me/vocab/lite/name",
-        "Fantasy fiction.",
-        {}
-    ],
-    [
-        "LkzX_JtK",
-        "http://bibfra.me/vocab/marc/source",
-        "gsafd",
-        {}
-    ],
-    [
-        "LkzX_JtK",
-        "http://bibfra.me/vocab/marcext/sf-2",
-        "gsafd",
-        {}
-    ],
-    [
-        "LkzX_JtK",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Fantasy fiction.",
-        {}
-    ],
-    [
         "Lod8XcPm",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
@@ -187,32 +147,6 @@
         "Lod8XcPm",
         "http://bibfra.me/vocab/marc/titleStatement",
         "by Stephen King ; illustrated by Michael Whelan.",
-        {}
-    ],
-    [
-        "TeuKWYhH",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Concept",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "TeuKWYhH",
-        "http://bibfra.me/vocab/lite/name",
-        "Fantasy fiction.",
-        {}
-    ],
-    [
-        "TeuKWYhH",
-        "http://bibfra.me/vocab/marcext/sf-2",
-        "gsafd",
-        {}
-    ],
-    [
-        "TeuKWYhH",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Fantasy fiction.",
         {}
     ],
     [
@@ -362,6 +296,32 @@
         {}
     ],
     [
+        "hoz_sISb",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Form",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "hoz_sISb",
+        "http://bibfra.me/vocab/lite/name",
+        "Fantasy fiction.",
+        {}
+    ],
+    [
+        "hoz_sISb",
+        "http://bibfra.me/vocab/marcext/sf-2",
+        "gsafd",
+        {}
+    ],
+    [
+        "hoz_sISb",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Fantasy fiction.",
+        {}
+    ],
+    [
         "mhK8MTlH",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
@@ -396,7 +356,7 @@
     [
         "mhK8MTlH",
         "http://bibfra.me/vocab/lite/genre",
-        "LkzX_JtK",
+        "hoz_sISb",
         {
             "@target-type": "@iri-ref"
         }
@@ -419,6 +379,14 @@
         "mhK8MTlH",
         "http://bibfra.me/vocab/lite/subject",
         "e7zLZqBK",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "mhK8MTlH",
+        "http://bibfra.me/vocab/lite/subject",
+        "vPFfp8vc",
         {
             "@target-type": "@iri-ref"
         }
@@ -619,6 +587,46 @@
         "mhK8MTlH",
         "http://bibfra.me/vocab/marcext/tag-991-XX-w",
         "BOOKS",
+        {}
+    ],
+    [
+        "vPFfp8vc",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "vPFfp8vc",
+        "http://bibfra.me/vocab/lite/focus",
+        "hoz_sISb",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "vPFfp8vc",
+        "http://bibfra.me/vocab/lite/name",
+        "Fantasy fiction.",
+        {}
+    ],
+    [
+        "vPFfp8vc",
+        "http://bibfra.me/vocab/marc/source",
+        "gsafd",
+        {}
+    ],
+    [
+        "vPFfp8vc",
+        "http://bibfra.me/vocab/marcext/sf-2",
+        "gsafd",
+        {}
+    ],
+    [
+        "vPFfp8vc",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Fantasy fiction.",
         {}
     ],
     [

@@ -575,6 +575,22 @@
     ],
     [
         "AcOw5HL-",
+        "http://bibfra.me/vocab/lite/related",
+        "29_q94cZ",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "AcOw5HL-",
+        "http://bibfra.me/vocab/lite/related",
+        "S1v96HE6",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "AcOw5HL-",
         "http://bibfra.me/vocab/lite/subject",
         "3hrdVipq",
         {
@@ -765,22 +781,6 @@
         "AcOw5HL-",
         "http://bibfra.me/vocab/relation/lunding",
         "Hw7xp0wn",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "AcOw5HL-",
-        "http://bibfra.me/vocab/relation/related",
-        "29_q94cZ",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "AcOw5HL-",
-        "http://bibfra.me/vocab/relation/related",
-        "S1v96HE6",
         {
             "@target-type": "@iri-ref"
         }
