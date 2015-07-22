@@ -14,16 +14,19 @@ Sample config JSON stanza:
             "http://bibfra.me/vocab/lite/Collection": "http://bibfra.me/vocab/lite/name",
             "http://bibfra.me/vocab/lite/Meeting": "http://bibfra.me/vocab/lite/name",
             "http://bibfra.me/vocab/lite/Topic": "http://bibfra.me/vocab/lite/name",
-            "http://bibfra.me/vocab/lite/Genre": "http://bibfra.me/vocab/lite/name",
-            "http://bibfra.me/vocab/lite/Foobar": [" ","http://bibfra.me/vocab/lite/title","http://bibfra.me/vocab/lite/name"]
+            "http://bibfra.me/vocab/lite/Form": "http://bibfra.me/vocab/lite/name",
+            "http://bibfra.me/vocab/lite/Foobar": [" $","http://bibfra.me/vocab/lite/title","http://bibfra.me/vocab/lite/name"]
             }
         "default-label": "UNKNOWN LABEL"
         },
     ]
 }
 
-Tuple notation in lookup configuration is used to join multiple properties, using the
-first item as the separator ('' for no separator)
+Tuple notation in lookup configuration is used to join multiple properties in order, using the
+first item as the separator ('' for no separator). If the separator ends with a "$" then
+then the original ordering present in the MARC record will be used instead of the order of
+the given properties, and the properties will be used purely as a filter. The "$" is ignored
+as part of the separator.
 
 Already built into demo config:
 
@@ -35,6 +38,8 @@ import os
 import json
 import itertools
 import asyncio
+
+from itertools import tee, zip_longest
 
 from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET
 from versa.util import simple_lookup
@@ -85,24 +90,46 @@ class labelizer(object):
         #print ('BF_MARCREC_TASK', linkreport.PLUGIN_ID)
         #Get the configured default vocabulary base IRI
         vocabbase = params['vocabbase']
-        for cls, prop in self._config['lookup'].items():
-            for link in model.match(None, VTYPE_REL, I(iri.absolutize(cls, vocabbase))):
-                #simple_lookup() is a little helper for getting a property from a resource
-                props = prop if isinstance(prop, list) else ['', prop]
-                label = ''
-                sep = props[0]
-                def label_segments(props):
-                    for p in props[1:]:
-                        links = model.match(link[ORIGIN], I(iri.absolutize(p, vocabbase)))
-                        s = [ link[TARGET] for link in links ]
-                        if len(s) > 0:
-                            yield ' | '.join(s)
+        for obj,_r,typ,_a in model.match(None, VTYPE_REL, None):
+            # build labels based on model order, iterating over every property of
+            # every resource, and building the label if that property is consulted 
+            prop = self._config['lookup'].get(typ)
+            if prop is None: continue
 
-                segments = list(label_segments(props))
-                if len(segments) > 0:
-                    model.add(link[ORIGIN], I(RDFS_LABEL), sep.join(segments))
-                elif 'default-label' in self._config:
-                    model.add(link[ORIGIN], I(RDFS_LABEL), self._config['default-label'])
+            props = prop if isinstance(prop, list) else ['', prop]
+
+            def pairwise(iterable):
+                a, b = tee(iterable)
+                next(b, None)
+                return zip_longest(a, b)
+
+            label = ''
+            marc_order = False
+            sep = props[0] # separator
+            if sep.endswith('$'):
+                link_stream = pairwise((l for l in model.match(obj, None, None) if l[1] in props[1:]))
+                sep = sep[:-1]
+            else:
+                link_stream = pairwise((l for p in props[1:] for l in model.match(obj, p, None)))
+
+            #print("LABELIZING {} of type {}".format(obj, typ))
+            for (link1, link2) in link_stream:
+
+                _o1,rel1,target1,_a1 = link1
+                _o2,rel2,target2,_a2 = link2 if link2 is not None else (None, None, None, None)
+
+                label += target1
+                if rel2 == rel1:
+                    label += ' | '
+                elif rel2 is not None:
+                    label += sep
+                #print("current label", label)
+
+            if len(label) > 0:
+                model.add(obj, I(RDFS_LABEL), label)
+            elif 'default-label' in self._config:
+                model.add(obj, I(RDFS_LABEL), self._config['default-label'])
+
         return
 
     @asyncio.coroutine

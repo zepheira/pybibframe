@@ -9,6 +9,7 @@ from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 from bibframe.contrib.datachefids import slugify#, FROM_EMPTY_64BIT_HASH
 from bibframe.contrib.datachefids import idgen as default_idgen
 from bibframe import BFZ
+from bibframe.util import LoggedList, merge_list_logs
 
 import amara3.iri
 
@@ -40,7 +41,9 @@ class bfcontext(context):
         idgen = idgen if idgen else self.idgen
         existing_ids = existing_ids if existing_ids else self.existing_ids
         logger = logger if logger else self.logger
+
         return bfcontext(current_link, input_model, output_model, base=base, extras=extras, idgen=idgen, existing_ids=existing_ids, logger=logger)
+
 
 
 class action(Enum):
@@ -148,6 +151,10 @@ def subfield(key):
         :param ctx: Versa context used in processing (e.g. includes the prototype link
         :return: Tuple of key/value tuples from the attributes; suitable for hashing
         '''
+
+        if 'current-subfield' in ctx.extras:
+            ctx.extras['current-subfield'] = key
+
         return ctx.current_link[ATTRIBUTES].get(key)
         #Why the blazes would this ever return [None] rather than None?!
         #return ctx.current_link[ATTRIBUTES].get(key, [None])
@@ -368,10 +375,17 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
         if not folded:
             if _typ: ctx.output_model.add(I(objid), VTYPE_REL, I(iri.absolutize(_typ, ctx.base)), {})
             #FIXME: Should we be using Python Nones to mark blanks, or should Versa define some sort of null resource?
+
+            # Create a temporary model to capture the result of just these attributes,
+            # so that we can preserve ordering afterwards.
+            tmp_omodel = ctx.output_model.copy(contents=False) # new empty temporary model, preserving model config
+
+            ctx.extras['current-subfield'] = None # start tracking current subfield
+            subfield_rids = {}
             for k, v in links.items():
                 #Make sure the context used has the right origin
                 new_current_link = (I(objid), ctx.current_link[RELATIONSHIP], ctx.current_link[TARGET], ctx.current_link[ATTRIBUTES])
-                newctx = ctx.copy(current_link=new_current_link)
+                newctx = ctx.copy(current_link=new_current_link, output_model=tmp_omodel)
                 k = k(newctx) if callable(k) else k
                 #If k is a list of contexts use it to dynamically execute functions
                 if isinstance(k, list):
@@ -389,18 +403,40 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
                 #and we don't want to run the v function
                 if k:
                     new_current_link = (I(objid), k, newctx.current_link[TARGET], newctx.current_link[ATTRIBUTES])
-                    newctx = newctx.copy(current_link=new_current_link)
+                    newctx = newctx.copy(current_link=new_current_link, output_model=tmp_omodel)
                     #If k or v come from pipeline functions as None it signals to skip generating anything else for this link item
                     v = v(newctx) if callable(v) else v
                     if v is not None:
                         #FIXME: Fix properly, by slugifying & making sure slugify handles all-numeric case
                         if k.isdigit(): k = '_' + k
-                        if isinstance(v, list):
-                            for valitems in v:
-                                if valitems:
-                                    ctx.output_model.add(I(objid), I(iri.absolutize(k, newctx.base)), valitems, {})
-                        else:
-                            ctx.output_model.add(I(objid), I(iri.absolutize(k, newctx.base)), v, {})
+                        if not isinstance(v, list): v = [v]
+                        for valitems in v:
+                            if valitems:
+                                rid = tmp_omodel.add(I(objid), I(iri.absolutize(k, newctx.base)), valitems, {})
+                                # associate the statement with the subfield
+                                subfield_rids.setdefault(ctx.extras['current-subfield'], []).append(rid)
+                                #print("{} subfield {} is responsible for statement {} with rid {}".format(ctx, ctx.extras['current-subfield'], stmt, rid))
+
+            # If we care about MARC order, add the orderable statements from the
+            # temporary model into the output model. tmp_omodel will not
+            # necessarily be empty after this block runs so we add the remaining
+            # statements into the output model too
+
+            clv = next(iter(ctx.current_link[ATTRIBUTES].values())) # just need any one attribute value
+            if isinstance(clv, LoggedList):
+                rids_to_remove = []
+                mll = list(merge_list_logs(ctx.current_link[ATTRIBUTES]))
+                for sf, v, i in mll:
+                    if sf in subfield_rids:
+                        rids = subfield_rids[sf]
+                        #print("{} moving statement number {} {} to output_model".format(ctx,rids[i], tmp_omodel[rids[i]]))
+                        ctx.output_model.add(*tmp_omodel[rids[i]])
+                        rids_to_remove.append(rids[i])
+
+                tmp_omodel.remove(rids_to_remove)
+
+            ctx.output_model.add_many(tmp_omodel)
+
             #To avoid losing info include subfields which come via Versa attributes
             for k, v in ctx.current_link[ATTRIBUTES].items():
                 for valitems in v:

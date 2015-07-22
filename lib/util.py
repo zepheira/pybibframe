@@ -14,6 +14,9 @@ class LoggedList(list):
         super(LoggedList, self).append(item)
         self.log.append((item, time.time()))
 
+    def __repr__(self):
+        return 'LoggedList({})'.format(super(LoggedList, self).__repr__())
+
 def merge_list_logs(d):
     '''
     Given a dict, return the sorted, merged log of all values which

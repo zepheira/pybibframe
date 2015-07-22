@@ -2423,6 +2423,226 @@ EXPECTED_17 = '''[
 ]
 '''
 
+SNIPPET_18 = '''
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Name goes here</subfield>
+      <subfield code="z">Region 1</subfield>
+      <subfield code="x">General Sub1</subfield>
+      <subfield code="b">Alt name not used in label</subfield>
+      <subfield code="x">General Sub2</subfield>
+      <subfield code="z">Region 2</subfield>
+    </datafield>
+  </record>
+</collection>
+'''
+
+CONFIG_18 = {
+    "versa-attr-cls": "collections.OrderedDict",
+    "versa-attr-list-cls": "bibframe.util.LoggedList",
+    "plugins": [{
+      "id": "http://bibfra.me/tool/pybibframe#labelizer",
+      "lookup": {
+        "http://bibfra.me/vocab/lite/Concept": [" > $",
+                                            "http://bibfra.me/vocab/lite/name",
+                                            "http://bibfra.me/vocab/marc/formSubdivision",
+                                            "http://bibfra.me/vocab/marc/generalSubdivision",
+                                            "http://bibfra.me/vocab/marc/chronologicalSubdivision",
+                                            "http://bibfra.me/vocab/marc/geographicSubdivision",
+                                            "http://bibfra.me/vocab/lite/title"],
+       "http://bibfra.me/vocab/lite/Topic": "http://bibfra.me/vocab/lite/name"
+      }
+    }]
+}
+
+EXPECTED_18 = '''
+[
+    [
+        "5ygS5Gv9",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "5ygS5Gv9",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "a3mOgbep",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "_nmQYQ2f",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "_nmQYQ2f",
+        "http://bibfra.me/vocab/lite/name",
+        "Name goes here",
+        {}
+    ],
+    [
+        "_nmQYQ2f",
+        "http://bibfra.me/vocab/marc/additionalName",
+        "Alt name not used in label",
+        {}
+    ],
+    [
+        "_nmQYQ2f",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Name goes here",
+        {}
+    ],
+    [
+        "_nmQYQ2f",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "Alt name not used in label",
+        {}
+    ],
+    [
+        "_nmQYQ2f",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "General Sub1",
+        {}
+    ],
+    [
+        "_nmQYQ2f",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "General Sub2",
+        {}
+    ],
+    [
+        "_nmQYQ2f",
+        "http://bibfra.me/vocab/marcext/sf-z",
+        "Region 1",
+        {}
+    ],
+    [
+        "_nmQYQ2f",
+        "http://bibfra.me/vocab/marcext/sf-z",
+        "Region 2",
+        {}
+    ],
+    [
+        "_nmQYQ2f",
+        "http://www.w3.org/2000/01/rdf-schema#label",
+        "Name goes here",
+        {}
+    ],
+    [
+        "a3mOgbep",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "a3mOgbep",
+        "http://bibfra.me/vocab/lite/subject",
+        "u0IU3M1U",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "u0IU3M1U",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "u0IU3M1U",
+        "http://bibfra.me/vocab/lite/focus",
+        "_nmQYQ2f",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "u0IU3M1U",
+        "http://bibfra.me/vocab/lite/name",
+        "Name goes here",
+        {}
+    ],
+    [
+        "u0IU3M1U",
+        "http://bibfra.me/vocab/marc/generalSubdivision",
+        "General Sub1",
+        {}
+    ],
+    [
+        "u0IU3M1U",
+        "http://bibfra.me/vocab/marc/generalSubdivision",
+        "General Sub2",
+        {}
+    ],
+    [
+        "u0IU3M1U",
+        "http://bibfra.me/vocab/marc/geographicSubdivision",
+        "Region 1",
+        {}
+    ],
+    [
+        "u0IU3M1U",
+        "http://bibfra.me/vocab/marc/geographicSubdivision",
+        "Region 2",
+        {}
+    ],
+    [
+        "u0IU3M1U",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Name goes here",
+        {}
+    ],
+    [
+        "u0IU3M1U",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "Alt name not used in label",
+        {}
+    ],
+    [
+        "u0IU3M1U",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "General Sub1",
+        {}
+    ],
+    [
+        "u0IU3M1U",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "General Sub2",
+        {}
+    ],
+    [
+        "u0IU3M1U",
+        "http://bibfra.me/vocab/marcext/sf-z",
+        "Region 1",
+        {}
+    ],
+    [
+        "u0IU3M1U",
+        "http://bibfra.me/vocab/marcext/sf-z",
+        "Region 2",
+        {}
+    ],
+    [
+        "u0IU3M1U",
+        "http://www.w3.org/2000/01/rdf-schema#label",
+        "Name goes here > Region 1 > General Sub1 | General Sub2 > Region 2",
+        {}
+    ]
+]
+'''
+
 all_snippets = sorted([ sym for sym in globals() if sym.startswith('SNIPPET') ])
 all_config = sorted([ sym for sym in globals() if sym.startswith('CONFIG') ])
 all_expected = sorted([ sym for sym in globals() if sym.startswith('EXPECTED') ])
