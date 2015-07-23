@@ -429,6 +429,8 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
                 for sf, v, i in mll:
                     if sf in subfield_rids:
                         rids = subfield_rids[sf]
+                        if i >= len(rids): continue # subfield doesn't always yield a unique statement
+
                         #print("{} moving statement number {} {} to output_model".format(ctx,rids[i], tmp_omodel[rids[i]]))
                         ctx.output_model.add(*tmp_omodel[rids[i]])
                         rids_to_remove.append(rids[i])
