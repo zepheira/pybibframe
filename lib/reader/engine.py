@@ -7,19 +7,21 @@ from collections import defaultdict
 import warnings
 import zipfile
 
-from bibframe import g_services
-from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_FINAL_TASK
-from bibframe.reader.marcextra import transforms as extra_transforms
-
 import rdflib
 
 from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 from versa import util
 from versa.driver import memory
 
+from amara3.uxml import writer
+
+from bibframe import g_services
+from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_FINAL_TASK
+from bibframe.reader.marcextra import transforms as extra_transforms
+
 from bibframe import BFZ, BFLC, BL, register_service
 from bibframe.reader import marc
-from bibframe.writer import rdf
+from bibframe.writer import rdf, microxml
 from bibframe.reader.marcpatterns import TRANSFORMS
 from bibframe.reader.util import AVAILABLE_TRANSFORMS
 
@@ -37,7 +39,7 @@ NSSEP = ' '
 
 
 def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, model=None,
-                out=None, limit=None, rdfttl=None, rdfxml=None, config=None,
+                out=None, limit=None, rdfttl=None, rdfxml=None, xml=None, config=None,
                 verbose=False, logger=logging, loop=None, canonical=False,
                 lax=False, zipcheck=False):
     '''
@@ -89,12 +91,19 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
     g = rdflib.Graph()
     if canonical: global_model = memory.connection()#logger=logger)
 
+    if xml is not None:
+        xmlw = writer.raw(xml)
+        xmlw.start_element('bibframe')
+
     extant_resources = None
     #extant_resources = set()
     def postprocess():
         #No need to bother with Versa -> RDF translation if we were not asked to generate Turtle
         if any((rdfttl, rdfxml)): rdf.process(model, g, to_ignore=extant_resources, logger=logger)
         if canonical: global_model.add_many([(o,r,t,a) for (rid,(o,r,t,a)) in model])
+
+        if xml is not None:
+            microxml.process(model, xmlw, to_ignore=extant_resources, logger=logger)
 
         model.create_space()
 
@@ -131,12 +140,12 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
 
     limiting = [0, limit]
     #logger=logger,
-    
+
     if zipcheck:
         warnings.warn("The zipcheck option is not working yet.", RuntimeWarning)
-    
+
     for source_fname in inputs:
-        #Note: 
+        #Note:
         def input_fileset(sf):
             if zipcheck and zipfile.is_zipfile(sf):
                 zf = zipfile.ZipFile(sf, 'r')
@@ -195,12 +204,16 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
         g.bind('ent', entbase)
 
     if rdfttl is not None:
-        logger.debug('Converting to RDF.')
+        logger.debug('Converting to RDF (Turtle).')
         rdfttl.write(g.serialize(format="turtle"))
 
     if rdfxml is not None:
-        logger.debug('Converting to RDF.')
+        logger.debug('Converting to RDF (XML).')
         rdfxml.write(g.serialize(format="pretty-xml"))
+
+    if xml is not None:
+        logger.debug('Converting to XML.')
+        xmlw.end_element('bibframe')
     return
 
 
@@ -210,4 +223,3 @@ AVAILABLE_MARC_HANDLERS = {
 
 def register_marc_handler(iri, func):
     AVAILABLE_MARC_HANDLERS[iri] = func
-

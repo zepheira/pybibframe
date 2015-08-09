@@ -8,7 +8,7 @@ import argparse
 from bibframe.reader import bfconvert
 
 
-def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, config=None, verbose=False, mods=None, canonical=False, lax=False, zipcheck=None):
+def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, xml=None, config=None, verbose=False, mods=None, canonical=False, lax=False, zipcheck=None):
     '''
     Basically takes parameters typical for command line invocation and adapts them for use in the API
 
@@ -25,7 +25,7 @@ def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, 
     for mod in mods:
         __import__(mod, globals(), locals(), [])
 
-    bfconvert(inputs=inputs, entbase=base, out=out, limit=limit, rdfttl=rdfttl, rdfxml=rdfxml, config=config, verbose=verbose, canonical=canonical, logger=logger, lax=lax, zipcheck=zipcheck)
+    bfconvert(inputs=inputs, entbase=base, out=out, limit=limit, rdfttl=rdfttl, rdfxml=rdfxml, xml=xml, config=config, verbose=verbose, canonical=canonical, logger=logger, lax=lax, zipcheck=zipcheck)
     return
 
 
@@ -46,6 +46,8 @@ if __name__ == '__main__':
         help='File where RDF Turtle output should be written')
     parser.add_argument('--rdfxml', type=argparse.FileType('wb'),
         help='File where RDF XML output should be written')
+    parser.add_argument('--xml', type=argparse.FileType('w'),
+        help='File where MicroXML output should be written')
     parser.add_argument('-c', '--config', type=argparse.FileType('r'),
         help='File containing config in JSON format')
     #parser.add_argument('-s', '--stats', type=argparse.FileType('w'),
@@ -70,9 +72,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
     args.mod = [i for items in args.mod or [] for i in items]
 
-    run(inputs=args.inputs, base=args.base, out=args.out, limit=args.limit, rdfttl=args.rdfttl, rdfxml=args.rdfxml, config=args.config, verbose=args.verbose, mods=args.mod, canonical=args.canonical, lax=args.lax, zipcheck=args.zipcheck)
+    run(inputs=args.inputs, base=args.base, out=args.out, limit=args.limit, rdfttl=args.rdfttl, rdfxml=args.rdfxml, xml=args.xml, config=args.config, verbose=args.verbose, mods=args.mod, canonical=args.canonical, lax=args.lax, zipcheck=args.zipcheck)
     #for f in args.inputs: f.close()
     if args.rdfttl: args.rdfttl.close()
     if args.rdfxml: args.rdfxml.close()
     args.out.close()
-
