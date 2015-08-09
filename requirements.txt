@@ -6,4 +6,4 @@ pytest
 versa>=0.3.2
 
 #From Versa pyreqs.txt
-amara3-xml==3.0.0a5
+amara3-xml==3.0.0a6
