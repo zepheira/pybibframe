@@ -92,7 +92,7 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
     if canonical: global_model = memory.connection()#logger=logger)
 
     if xml is not None:
-        xmlw = writer.raw(xml)
+        xmlw = writer.raw(xml, indent='  ')
         xmlw.start_element('bibframe')
 
     extant_resources = None

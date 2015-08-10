@@ -20,7 +20,8 @@ WORKCLASS = iri.absolutize('Work', BFZ)
 INSTANCECLASS = iri.absolutize('Instance', BFZ)
 INSTANCEREL = iri.absolutize('hasInstance', BFZ)
 
-def process(source, xmlw, to_ignore=None, logger=logging):
+#FIXME: Parameterize simplified
+def process(source, xmlw, to_ignore=None, logger=logging, simplified=True):
     '''
     Take an in-memory BIBFRAME model and convert it into a MicroXML document
     '''
@@ -28,23 +29,26 @@ def process(source, xmlw, to_ignore=None, logger=logging):
     for stmt in source.match(None, VTYPE_REL, None):
         rid = stmt[ORIGIN]
         logger.debug(rid)
-        rtype = stmt[RELATIONSHIP]
+        rtype = stmt[TARGET]
         if not (to_ignore and rid in to_ignore):
-            attrs = {'id': rid, 'type': rtype}
+            attrs = {'id': rid}
+            if not simplified:
+                attrs['type'] = rtype
             rgi = rtype.rsplit('/', 1)[-1]
             xmlw.start_element(rgi, attrs)
             rels = {}
             for o, r, t, a in source.match(rid):
                 if r == VTYPE_REL: continue
+                rtag = r.rsplit('/', 1)[-1]
+                if simplified and (rtag.startswith('tag-') or rtag.startswith('sf-')): continue
                 rels.setdefault(r, []).append((t, a))
             for r, vals in rels.items():
                 for val, attrs in vals:
-                    attrs = {'full': r}
+                    if not simplified: attrs = {'full': r}
                     vgi = r.rsplit('/', 1)[-1]
                     if type(val) is iriref:
                         attrs['href'] = val
-                        xmlw.start_element(vgi, attrs)
-                        xmlw.end_element(vgi)
+                        xmlw.start_element(vgi, attrs, empty=True)
                     else:
                         xmlw.start_element(vgi, attrs)
                         xmlw.text(str(val))
