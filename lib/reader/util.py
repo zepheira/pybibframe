@@ -45,7 +45,6 @@ class bfcontext(context):
         return bfcontext(current_link, input_model, output_model, base=base, extras=extras, idgen=idgen, existing_ids=existing_ids, logger=logger)
 
 
-
 class action(Enum):
     replace = 1
 
@@ -96,6 +95,40 @@ class base_transformer(object):
         return materialize(typ, rel, derive_origin=derive_origin, unique=unique, links=links)
 
 
+def anchor_work():
+    '''
+    Action function generator to return the anchor work ID from the current context
+
+    :return: work ID from the current context
+    '''
+    def _anchor_work(ctx):
+        '''
+        Versa action function to return the anchor work ID from the current context
+
+        :param ctx: Versa context used in processing (e.g. includes the prototype link
+        :return: work ID from the current context
+        '''
+        return ctx.extras[WORKID]
+    return _anchor_work
+
+
+def anchor_instance():
+    '''
+    Action function generator to return the anchor instance ID from the current context
+
+    :return: Instance ID from the current context
+    '''
+    def _anchor_instance(ctx):
+        '''
+        Versa action function to return the anchor instance ID from the current context
+
+        :param ctx: Versa context used in processing (e.g. includes the prototype link
+        :return: Instance ID from the current context
+        '''
+        return ctx.extras[IID]
+    return _anchor_instance
+
+
 def target():
     '''
     Action function generator to return the target of the context's current link
@@ -127,7 +160,7 @@ def all_subfields(ctx):
     #    result.extend(valitem)
         #sorted(functools.reduce(lambda a, b: a.extend(b), ))
     #ctx.logger('GRIPPO' + repr(sorted(functools.reduce(lambda a, b: a.extend(b), ctx.linkset[0][ATTRIBUTES].items()))))
-    
+
 
     attrs = ctx.current_link[ATTRIBUTES]
     # If attributes have their own ordering, use it, otherwise sort
@@ -305,7 +338,7 @@ def foreach(origin=None, rel=None, target=None, attributes=None):
 def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
     '''
     Create a new resource related to the origin.
-    
+
     :param typ: IRI of the type for the resource to be materialized,
     which becomes the target of the main link, and the origin of any
     additional links given in the links param
@@ -329,11 +362,11 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
     contexts, which can be used to guide a sequence pattern of generated
     links, or a Versa action function returning None, which signals that
     the particular link is skipped entirely.
-    
+
     For examples of all these scenarios see marcpatterns.py
 
     :return: Versa action function to do the actual work
-    
+
     '''
     links = links or {}
     def _materialize(ctx):
@@ -344,7 +377,7 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
 
         :param ctx: Runtime Versa context used in processing (e.g. includes the prototype link)
         :return: None
-        
+
         This function is intricate in its use and shifting of Versa context, but the
         intricacies are all designed to make the marcpatterns mini language more natural.
         '''
