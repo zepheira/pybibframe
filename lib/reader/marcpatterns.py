@@ -121,6 +121,11 @@ import re
 
 AUTHORITY_CODES = [
     (re.compile(r'\(DLC\)\s*(\S+)'), r'http://lccn.loc.gov/\1'),
+    (re.compile(r'\(DLC\)sf\s*(\S+)'), r'http://lccn.loc.gov/sf\1'),
+    (re.compile(r'\(DLC\)gm\s*(\S+)'), r'http://lccn.loc.gov/gm\1'),
+    (re.compile(r'\(DLC\)n\s*(\S+)'), r'http://lccn.loc.gov/n\1'),
+    (re.compile(r'\(DLC\)sh\s*(\S+)'), r'http://lccn.loc.gov/sh\1'),
+    (re.compile(r'\(DLC\)sn\s*(\S+)'), r'http://lccn.loc.gov/sn\1'),
     (re.compile(r'\(OCoLC\)fst(\d+)'), r'http://id.worldcat.org/fast/\1'),
     (re.compile(r'\(OCoLC\)\s*(\d+)'), r'http://www.worldcat.org/oclc/\1'),
     (re.compile(r'\(0CoLC\)\s*(\d+)'), r'http://www.worldcat.org/oclc/\1'),  # yes, thats 0CoLC not OCoLC
@@ -1063,6 +1068,57 @@ BFLITE_TRANSFORMS = {
                                      MARC + 'titlePart': subfield('p')}
                               ),
 
+    # Linking Entries
+
+    # SubSeries 
+
+    '760':  ifexists(subfield('s'),
+                     onwork.materialize(BL + 'Collection',
+                                        values(REL + 'isSubSeriesOf'),
+                                        unique=all_subfields,
+                                        links={BL + 'title': subfield('s'),
+                                               MARC + 'issn': subfield('x'),
+                                               BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                               MARC + 'edition': subfield('b'),
+                                               BL + 'note': subfield('n'),
+                                               MARC + 'isbn': subfield('z')}
+                                        ),
+                     onwork.materialize(BL + 'Series',
+                               values(REL + 'isSubSeriesOf'),
+                               unique=all_subfields,
+                               links={BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
+                                      MARC + 'issn': subfield('x'),
+                                      BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                      MARC + 'edition': subfield('b'),
+                                      BL + 'note': subfield('n'),
+                                      MARC + 'isbn': subfield('z')}
+                                        )
+                     ),
+    
+
+    '762':  ifexists(subfield('s'),
+                     onwork.materialize(BL + 'Collection',
+                                        values(REL + 'hasSubSeries'),
+                                        unique=all_subfields,
+                                        links={BL + 'title': subfield('s'),
+                                               MARC + 'issn': subfield('x'),
+                                               BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                               MARC + 'edition': subfield('b'),
+                                               BL + 'note': subfield('n'),
+                                               MARC + 'isbn': subfield('z')}
+                                        ),
+                     onwork.materialize(BL + 'Series',
+                               values(REL + 'hasSubSeries'),
+                               unique=all_subfields,
+                               links={BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
+                                      MARC + 'issn': subfield('x'),
+                                      BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                      MARC + 'edition': subfield('b'),
+                                      BL + 'note': subfield('n'),
+                                      MARC + 'isbn': subfield('z')}
+                                        )
+                     ),
+
     # Translation(s)
     
     '765':  ifexists(subfield('s'),
@@ -1111,6 +1167,102 @@ BFLITE_TRANSFORMS = {
                                )
                      ),
     
+    # Supplemental 
+
+    '770':  ifexists(subfield('s'),
+                     onwork.materialize(BL + 'Collection',
+                                        values(REL + 'isSupplementOf'),
+                                        unique=all_subfields,
+                                        links={BL + 'title': subfield('s'),
+                                               MARC + 'issn': subfield('x'),
+                                               BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                               MARC + 'edition': subfield('b'),
+                                               BL + 'note': subfield('n'),
+                                               MARC + 'isbn': subfield('z')}
+                                        ),
+                     onwork.materialize(BL + 'Work',
+                               values(REL + 'isSupplementOf'), 
+                               unique=all_subfields,
+                               links={BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
+                                      MARC + 'issn': subfield('x'),
+                                      BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                      MARC + 'edition': subfield('b'),
+                                      BL + 'note': subfield('n'),
+                                      MARC + 'isbn': subfield('z')}
+                                        )
+                     ),
+
+    '772':  ifexists(subfield('s'),
+                     onwork.materialize(BL + 'Collection',
+                               values(REL + 'hasSupplement'), 
+                               unique=all_subfields,
+                               links={BL + 'title': subfield('s'),
+                                      MARC + 'issn': subfield('x'),
+                                      BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                      MARC + 'edition': subfield('b'),
+                                      BL + 'note': subfield('n'),
+                                      MARC + 'isbn': subfield('z')}
+                               ),
+                     onwork.materialize(BL + 'Work',
+                               values(REL + 'hasSupplement'),
+                               unique=all_subfields,
+                               links={BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
+                                      MARC + 'issn': subfield('x'),
+                                      BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                      MARC + 'edition': subfield('b'),
+                                      BL + 'note': subfield('n'),
+                                      MARC + 'isbn': subfield('z')}
+                               )
+                     ),
+
+    # Is Part Of (vertical relationship)
+
+    '773':  ifexists(subfield('s'),
+                     onwork.materialize(BL + 'Collection',
+                                        values(REL + 'isPartOf'),
+                                        unique=all_subfields,
+                                        links={BL + 'title': subfield('s'),
+                                               MARC + 'issn': subfield('x'),
+                                               BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                               MARC + 'edition': subfield('b'),
+                                               BL + 'note': subfield('n'),
+                                               MARC + 'isbn': subfield('z')}
+                                        ),
+                     onwork.materialize(BL + 'Work',
+                               values(REL + 'isPartOf'), 
+                               unique=all_subfields,
+                               links={BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
+                                      MARC + 'issn': subfield('x'),
+                                      BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                      MARC + 'edition': subfield('b'),
+                                      BL + 'note': subfield('n'),
+                                      MARC + 'isbn': subfield('z')}
+                                        )
+                     ),
+
+    '774':  ifexists(subfield('s'),
+                     onwork.materialize(BL + 'Collection',
+                                        values(REL + 'isPartOf'),
+                                        unique=all_subfields,
+                                        links={BL + 'title': subfield('s'),
+                                               MARC + 'issn': subfield('x'),
+                                               BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                               MARC + 'edition': subfield('b'),
+                                               BL + 'note': subfield('n'),
+                                               MARC + 'isbn': subfield('z')}
+                                        ),
+                     onwork.materialize(BL + 'Work',
+                               values(REL + 'isPartOf'), 
+                               unique=all_subfields,
+                               links={BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
+                                      MARC + 'issn': subfield('x'),
+                                      BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                      MARC + 'edition': subfield('b'),
+                                      BL + 'note': subfield('n'),
+                                      MARC + 'isbn': subfield('z')}
+                                        )
+                     ),
+    
     # Other editions
     
     '775':  ifexists(subfield('s'),
@@ -1136,6 +1288,57 @@ BFLITE_TRANSFORMS = {
                                )
                      ),
     
+    # Alternative Format (Instance) - define instance to instance relationship and instantiates 
+
+    '776':  ifexists(subfield('s'),
+                     oninstance.materialize(BL + 'Collection',
+                               values(REL + 'hasOtherPhysicalFormat'),
+                               unique=all_subfields,
+                               links={BL + 'title': subfield('s'),
+                                      MARC + 'issn': subfield('x'),
+                                      BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                      MARC + 'edition': subfield('b'),
+                                      BL + 'note': subfield('n'),
+                                      MARC + 'isbn': subfield('z')}
+                               ),
+                     oninstance.materialize(BL + 'Instance',
+                                            values(REL + 'hasOtherPhysicalFormat'),
+                                            unique=all_subfields,
+                                            links={BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
+                                                   MARC + 'issn': subfield('x'),
+                                                   BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                                   MARC + 'edition': subfield('b'),
+                                                   BL + 'note': subfield('n'),
+                                                   MARC + 'isbn': subfield('z'),
+                                                   BL + 'instantiates': anchor_work() }
+                                            )
+                     ),
+
+    # Issued With (instance) 
+
+    '777':  ifexists(subfield('s'),
+                     oninstance.materialize(BL + 'Collection',
+                               values(REL + 'issuedWith'),
+                               unique=all_subfields,
+                               links={BL + 'title': subfield('s'),
+                                      MARC + 'issn': subfield('x'),
+                                      BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                      MARC + 'edition': subfield('b'),
+                                      BL + 'note': subfield('n'),
+                                      MARC + 'isbn': subfield('z')}
+                               ),
+                     oninstance.materialize(BL + 'Instance',
+                                            values(REL + 'issuedWith'),
+                                            unique=all_subfields,
+                                            links={BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
+                                                   MARC + 'issn': subfield('x'),
+                                                   BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
+                                                   MARC + 'edition': subfield('b'),
+                                                   BL + 'note': subfield('n'),
+                                                   MARC + 'isbn': subfield('z')}
+                                            )
+                     ),
+
     # Preceding Entry
     
     '780-?0': ifexists(subfield('s'),
