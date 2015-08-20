@@ -1081,9 +1081,7 @@ BFLITE_TRANSFORMS = {
                                       MARC + 'edition': subfield('b'),
                                       BL + 'note': subfield('n'),
                                       MARC + 'isbn': subfield('z')}
-                                        )
-                     ),
-    
+                               ),    
 
     '762':  onwork.materialize(MARC + 'Series',
                                values(REL + 'hasSubSeries'),
@@ -1094,9 +1092,8 @@ BFLITE_TRANSFORMS = {
                                       MARC + 'edition': subfield('b'),
                                       BL + 'note': subfield('n'),
                                       MARC + 'isbn': subfield('z')}
-                                        )
-                     ),
-
+                               ),
+    
     # Translation(s)
     
     '765':  ifexists(subfield('s'),
