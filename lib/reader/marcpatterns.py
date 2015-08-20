@@ -1072,18 +1072,7 @@ BFLITE_TRANSFORMS = {
 
     # SubSeries 
 
-    '760':  ifexists(subfield('s'),
-                     onwork.materialize(BL + 'Collection',
-                                        values(REL + 'isSubSeriesOf'),
-                                        unique=all_subfields,
-                                        links={BL + 'title': subfield('s'),
-                                               MARC + 'issn': subfield('x'),
-                                               BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
-                                               MARC + 'edition': subfield('b'),
-                                               BL + 'note': subfield('n'),
-                                               MARC + 'isbn': subfield('z')}
-                                        ),
-                     onwork.materialize(BL + 'Series',
+    '760':  onwork.materialize(MARC + 'Series',
                                values(REL + 'isSubSeriesOf'),
                                unique=all_subfields,
                                links={BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
@@ -1096,18 +1085,7 @@ BFLITE_TRANSFORMS = {
                      ),
     
 
-    '762':  ifexists(subfield('s'),
-                     onwork.materialize(BL + 'Collection',
-                                        values(REL + 'hasSubSeries'),
-                                        unique=all_subfields,
-                                        links={BL + 'title': subfield('s'),
-                                               MARC + 'issn': subfield('x'),
-                                               BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
-                                               MARC + 'edition': subfield('b'),
-                                               BL + 'note': subfield('n'),
-                                               MARC + 'isbn': subfield('z')}
-                                        ),
-                     onwork.materialize(BL + 'Series',
+    '762':  onwork.materialize(MARC + 'Series',
                                values(REL + 'hasSubSeries'),
                                unique=all_subfields,
                                links={BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
