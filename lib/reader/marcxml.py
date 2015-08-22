@@ -124,25 +124,24 @@ class expat_callbacks(object):
 #PYTHONASYNCIODEBUG = 1
 
 
-def handle_marcxml_source(infname, sink, args, attr_cls, attr_list_cls):
+def handle_marcxml_source(source, sink, args, attr_cls, attr_list_cls):
     #Cannot reuse a pyexpat parser, so must create a new one for each input file
     next(sink) #Start the coroutine running
-    with open(infname, 'rb') as inf:
-        lax = args['lax']
-        if lax:
-            parser = xml.parsers.expat.ParserCreate()
-        else:
-            parser = xml.parsers.expat.ParserCreate(namespace_separator=NSSEP)
+    lax = args['lax']
+    if lax:
+        parser = xml.parsers.expat.ParserCreate()
+    else:
+        parser = xml.parsers.expat.ParserCreate(namespace_separator=NSSEP)
 
-        handler = expat_callbacks(sink, parser, attr_cls, attr_list_cls, lax)
+    handler = expat_callbacks(sink, parser, attr_cls, attr_list_cls, lax)
 
-        parser.StartElementHandler = handler.start_element
-        parser.EndElementHandler = handler.end_element
-        parser.CharacterDataHandler = handler.char_data
-        parser.buffer_text = True
+    parser.StartElementHandler = handler.start_element
+    parser.EndElementHandler = handler.end_element
+    parser.CharacterDataHandler = handler.char_data
+    parser.buffer_text = True
 
-        parser.ParseFile(inf)
-        if handler.no_records:
-            warnings.warn("No records found in this file. Possibly an XML namespace problem (try using the 'lax' flag).", RuntimeWarning)
+    parser.ParseFile(source)
+    if handler.no_records:
+        warnings.warn("No records found in this file. Possibly an XML namespace problem (try using the 'lax' flag).", RuntimeWarning)
     return
 
