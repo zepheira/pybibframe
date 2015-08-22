@@ -84,6 +84,54 @@
         {}
     ],
     [
+        "Bg4KvcePpQI",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/ProviderEvent",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Bg4KvcePpQI",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "B_aVlUwZgvU",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Bg4KvcePpQI",
+        "http://bibfra.me/vocab/lite/providerDate",
+        "2008.",
+        {}
+    ],
+    [
+        "Bg4KvcePpQI",
+        "http://bibfra.me/vocab/lite/providerPlace",
+        "4tS4qFK3rfE",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Bg4KvcePpQI",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Oxford :",
+        {}
+    ],
+    [
+        "Bg4KvcePpQI",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "Archaeopress,",
+        {}
+    ],
+    [
+        "Bg4KvcePpQI",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "2008.",
+        {}
+    ],
+    [
         "G7ZieF7idHQ",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Concept",
@@ -190,7 +238,7 @@
     [
         "GXMm_0p8qzU",
         "http://bibfra.me/vocab/marc/publication",
-        "rxrl819MNGA",
+        "Bg4KvcePpQI",
         {
             "@target-type": "@iri-ref"
         }
@@ -495,54 +543,6 @@
         "rC79dzRbkUg",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Miller, Judith.",
-        {}
-    ],
-    [
-        "rxrl819MNGA",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/ProviderEvent",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "rxrl819MNGA",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "B_aVlUwZgvU",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "rxrl819MNGA",
-        "http://bibfra.me/vocab/lite/providerDate",
-        "2008.",
-        {}
-    ],
-    [
-        "rxrl819MNGA",
-        "http://bibfra.me/vocab/lite/providerPlace",
-        "4tS4qFK3rfE",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "rxrl819MNGA",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Oxford :",
-        {}
-    ],
-    [
-        "rxrl819MNGA",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "Archaeopress,",
-        {}
-    ],
-    [
-        "rxrl819MNGA",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "2008.",
         {}
     ],
     [

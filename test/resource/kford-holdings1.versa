@@ -290,7 +290,7 @@
     [
         "1UNO2coudbM",
         "http://bibfra.me/vocab/marc/publication",
-        "V9b9iblkuU0",
+        "zxs6u1h_SmI",
         {
             "@target-type": "@iri-ref"
         }
@@ -423,60 +423,6 @@
     ],
     [
         "UM2qviSPCR8",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "2011.",
-        {}
-    ],
-    [
-        "V9b9iblkuU0",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/ProviderEvent",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "V9b9iblkuU0",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "UM2qviSPCR8",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "V9b9iblkuU0",
-        "http://bibfra.me/vocab/lite/providerDate",
-        "2011.",
-        {}
-    ],
-    [
-        "V9b9iblkuU0",
-        "http://bibfra.me/vocab/lite/providerPlace",
-        "jAqLRZ-0I6Q",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "V9b9iblkuU0",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Cambridge, UK ;",
-        {}
-    ],
-    [
-        "V9b9iblkuU0",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "New York :",
-        {}
-    ],
-    [
-        "V9b9iblkuU0",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "Cambridge University Press,",
-        {}
-    ],
-    [
-        "V9b9iblkuU0",
         "http://bibfra.me/vocab/marcext/sf-c",
         "2011.",
         {}
@@ -1160,7 +1106,7 @@
     [
         "x7eaK3bMFbY",
         "http://bibfra.me/vocab/marc/publication",
-        "V9b9iblkuU0",
+        "zxs6u1h_SmI",
         {
             "@target-type": "@iri-ref"
         }
@@ -1209,6 +1155,60 @@
         "zdWlQrX7AJA",
         "http://bibfra.me/vocab/marcext/sf-a",
         "International organization.",
+        {}
+    ],
+    [
+        "zxs6u1h_SmI",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/ProviderEvent",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "zxs6u1h_SmI",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "UM2qviSPCR8",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "zxs6u1h_SmI",
+        "http://bibfra.me/vocab/lite/providerDate",
+        "2011.",
+        {}
+    ],
+    [
+        "zxs6u1h_SmI",
+        "http://bibfra.me/vocab/lite/providerPlace",
+        "jAqLRZ-0I6Q",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "zxs6u1h_SmI",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Cambridge, UK ;",
+        {}
+    ],
+    [
+        "zxs6u1h_SmI",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "New York :",
+        {}
+    ],
+    [
+        "zxs6u1h_SmI",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "Cambridge University Press,",
+        {}
+    ],
+    [
+        "zxs6u1h_SmI",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "2011.",
         {}
     ]
 ]

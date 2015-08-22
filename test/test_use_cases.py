@@ -13,6 +13,9 @@ import asyncio
 import difflib
 from io import StringIO, BytesIO
 
+from amara3.inputsource import factory
+from amara3 import inputsource
+
 from versa.driver import memory
 from versa.util import jsondump, jsonload
 
@@ -42,7 +45,10 @@ def run_one(name, entbase=None, config=None, loop=None, canonical=True):
     s = StringIO()
 
     fname = os.path.join(RESOURCEPATH, name+'.mrx')
-    bfconvert([fname], model=m, out=s, config=config, canonical=canonical, loop=loop)
+    #bfconvert(factory(open(fname, 'rb')), model=m, out=s, config=config, canonical=canonical, loop=loop)
+    #raise(Exception(repr(inputsource(open(fname, 'rb')))))
+    
+    bfconvert([inputsource(open(fname, 'rb'))], model=m, out=s, config=config, canonical=canonical, loop=loop)
     s.seek(0)
     hashmap, m = hash_neutral_model(s)
     hashmap = '\n'.join(sorted([ repr((i[1], i[0])) for i in hashmap.items() ]))
@@ -71,7 +77,7 @@ def test_model_consumed():
     asyncio.set_event_loop(None)
     m = memory.connection()
     fname = os.path.join(RESOURCEPATH, 'multiple-authlinks.xml')
-    bfconvert([fname], entbase='http://example.org/', model=m, config=None, verbose=False, loop=loop)
+    bfconvert([inputsource(open(fname, 'rb'))], entbase='http://example.org/', model=m, config=None, verbose=False, loop=loop)
 
     assert m.size() == 0, 'Model not consumed:\n'+repr(m)
 

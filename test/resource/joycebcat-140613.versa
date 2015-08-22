@@ -482,7 +482,7 @@
     [
         "HnnSIiJA7YQ",
         "http://bibfra.me/vocab/marc/publication",
-        "kEXVJndkCwQ",
+        "n_aVgwDFqYM",
         {
             "@target-type": "@iri-ref"
         }
@@ -742,98 +742,6 @@
         {}
     ],
     [
-        "kEXVJndkCwQ",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/ProviderEvent",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "kEXVJndkCwQ",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "1VVrvJCSflA",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "kEXVJndkCwQ",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "j2HPRwfrlGg",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "kEXVJndkCwQ",
-        "http://bibfra.me/vocab/lite/providerDate",
-        "2003.",
-        {}
-    ],
-    [
-        "kEXVJndkCwQ",
-        "http://bibfra.me/vocab/lite/providerDate",
-        "2003.",
-        {}
-    ],
-    [
-        "kEXVJndkCwQ",
-        "http://bibfra.me/vocab/lite/providerPlace",
-        "s3TW0BGDq64",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "kEXVJndkCwQ",
-        "http://bibfra.me/vocab/marcext/sf-6",
-        "260-05/(3/r",
-        {}
-    ],
-    [
-        "kEXVJndkCwQ",
-        "http://bibfra.me/vocab/marcext/sf-6",
-        "880-05",
-        {}
-    ],
-    [
-        "kEXVJndkCwQ",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "\u02bbAmm\u0101n :",
-        {}
-    ],
-    [
-        "kEXVJndkCwQ",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "\u0639\u0645\u0627\u0646 :",
-        {}
-    ],
-    [
-        "kEXVJndkCwQ",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "\u0627\u0644\u0634\u0631\u0648\u0642\u060c",
-        {}
-    ],
-    [
-        "kEXVJndkCwQ",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "al-Shur\u016bq,",
-        {}
-    ],
-    [
-        "kEXVJndkCwQ",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "2003.",
-        {}
-    ],
-    [
-        "kEXVJndkCwQ",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "2003.",
-        {}
-    ],
-    [
         "mZ1QwzZJm5o",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Place",
@@ -857,6 +765,98 @@
         "mZ1QwzZJm5o",
         "http://bibfra.me/vocab/marcext/sf-x",
         "Economic policy.",
+        {}
+    ],
+    [
+        "n_aVgwDFqYM",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/ProviderEvent",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "n_aVgwDFqYM",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "1VVrvJCSflA",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "n_aVgwDFqYM",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "j2HPRwfrlGg",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "n_aVgwDFqYM",
+        "http://bibfra.me/vocab/lite/providerDate",
+        "2003.",
+        {}
+    ],
+    [
+        "n_aVgwDFqYM",
+        "http://bibfra.me/vocab/lite/providerDate",
+        "2003.",
+        {}
+    ],
+    [
+        "n_aVgwDFqYM",
+        "http://bibfra.me/vocab/lite/providerPlace",
+        "s3TW0BGDq64",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "n_aVgwDFqYM",
+        "http://bibfra.me/vocab/marcext/sf-6",
+        "260-05/(3/r",
+        {}
+    ],
+    [
+        "n_aVgwDFqYM",
+        "http://bibfra.me/vocab/marcext/sf-6",
+        "880-05",
+        {}
+    ],
+    [
+        "n_aVgwDFqYM",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "\u02bbAmm\u0101n :",
+        {}
+    ],
+    [
+        "n_aVgwDFqYM",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "\u0639\u0645\u0627\u0646 :",
+        {}
+    ],
+    [
+        "n_aVgwDFqYM",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "\u0627\u0644\u0634\u0631\u0648\u0642\u060c",
+        {}
+    ],
+    [
+        "n_aVgwDFqYM",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "al-Shur\u016bq,",
+        {}
+    ],
+    [
+        "n_aVgwDFqYM",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "2003.",
+        {}
+    ],
+    [
+        "n_aVgwDFqYM",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "2003.",
         {}
     ],
     [

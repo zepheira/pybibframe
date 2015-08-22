@@ -26,98 +26,6 @@
         {}
     ],
     [
-        "AuInrSUi_S8",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/ProviderEvent",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "AuInrSUi_S8",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "oXjtGzuoE2Y",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "AuInrSUi_S8",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "oXjtGzuoE2Y",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "AuInrSUi_S8",
-        "http://bibfra.me/vocab/lite/providerDate",
-        "Qing Kangxi, between 1679 and 1722]",
-        {}
-    ],
-    [
-        "AuInrSUi_S8",
-        "http://bibfra.me/vocab/lite/providerDate",
-        "\u6e05\u5eb7\u7199, between 1679 and 1722]",
-        {}
-    ],
-    [
-        "AuInrSUi_S8",
-        "http://bibfra.me/vocab/lite/providerPlace",
-        "pijafWgaIH8",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "AuInrSUi_S8",
-        "http://bibfra.me/vocab/marcext/sf-6",
-        "260-04",
-        {}
-    ],
-    [
-        "AuInrSUi_S8",
-        "http://bibfra.me/vocab/marcext/sf-6",
-        "880-04",
-        {}
-    ],
-    [
-        "AuInrSUi_S8",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "[China :",
-        {}
-    ],
-    [
-        "AuInrSUi_S8",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "[China :",
-        {}
-    ],
-    [
-        "AuInrSUi_S8",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "s.n.,",
-        {}
-    ],
-    [
-        "AuInrSUi_S8",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "s.n.,",
-        {}
-    ],
-    [
-        "AuInrSUi_S8",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "Qing Kangxi, between 1679 and 1722]",
-        {}
-    ],
-    [
-        "AuInrSUi_S8",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "\u6e05\u5eb7\u7199, between 1679 and 1722]",
-        {}
-    ],
-    [
         "EgE4J10aMMw",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
@@ -165,6 +73,28 @@
         "EgE4J10aMMw",
         "http://bibfra.me/vocab/marcext/tag-866-X0-a",
         "[1]-[5]",
+        {}
+    ],
+    [
+        "JN8Q1myJ2l4",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "JN8Q1myJ2l4",
+        "http://bibfra.me/vocab/lite/authorityLink",
+        "http://bibfra.me/vocab/marcext/authrec/8175356",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "JN8Q1myJ2l4",
+        "http://bibfra.me/vocab/marcext/sf-w",
+        "8175356",
         {}
     ],
     [
@@ -236,6 +166,98 @@
         {}
     ],
     [
+        "LVOiMkBgoYo",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/ProviderEvent",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "LVOiMkBgoYo",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "oXjtGzuoE2Y",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "LVOiMkBgoYo",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "oXjtGzuoE2Y",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "LVOiMkBgoYo",
+        "http://bibfra.me/vocab/lite/providerDate",
+        "Qing Kangxi, between 1679 and 1722]",
+        {}
+    ],
+    [
+        "LVOiMkBgoYo",
+        "http://bibfra.me/vocab/lite/providerDate",
+        "\u6e05\u5eb7\u7199, between 1679 and 1722]",
+        {}
+    ],
+    [
+        "LVOiMkBgoYo",
+        "http://bibfra.me/vocab/lite/providerPlace",
+        "pijafWgaIH8",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "LVOiMkBgoYo",
+        "http://bibfra.me/vocab/marcext/sf-6",
+        "260-04",
+        {}
+    ],
+    [
+        "LVOiMkBgoYo",
+        "http://bibfra.me/vocab/marcext/sf-6",
+        "880-04",
+        {}
+    ],
+    [
+        "LVOiMkBgoYo",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "[China :",
+        {}
+    ],
+    [
+        "LVOiMkBgoYo",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "[China :",
+        {}
+    ],
+    [
+        "LVOiMkBgoYo",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "s.n.,",
+        {}
+    ],
+    [
+        "LVOiMkBgoYo",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "s.n.,",
+        {}
+    ],
+    [
+        "LVOiMkBgoYo",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "Qing Kangxi, between 1679 and 1722]",
+        {}
+    ],
+    [
+        "LVOiMkBgoYo",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "\u6e05\u5eb7\u7199, between 1679 and 1722]",
+        {}
+    ],
+    [
         "Lrm-QOl0eDY",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Concept",
@@ -302,7 +324,7 @@
         {}
     ],
     [
-        "WKLb3-r3hxk",
+        "Vem9bt1eB2A",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
@@ -310,7 +332,7 @@
         }
     ],
     [
-        "WKLb3-r3hxk",
+        "Vem9bt1eB2A",
         "http://bibfra.me/vocab/lite/authorityLink",
         "http://bibfra.me/vocab/marcext/authrec/8175353",
         {
@@ -318,7 +340,7 @@
         }
     ],
     [
-        "WKLb3-r3hxk",
+        "Vem9bt1eB2A",
         "http://bibfra.me/vocab/marcext/sf-w",
         "8175353",
         {}
@@ -568,7 +590,7 @@
     [
         "_JP-29GTl5M",
         "http://bibfra.me/vocab/marc/publication",
-        "AuInrSUi_S8",
+        "LVOiMkBgoYo",
         {
             "@target-type": "@iri-ref"
         }
@@ -810,7 +832,7 @@
     [
         "i3sBw7Dkcv4",
         "http://bibfra.me/vocab/lite/related",
-        "WKLb3-r3hxk",
+        "JN8Q1myJ2l4",
         {
             "@target-type": "@iri-ref"
         }
@@ -818,7 +840,7 @@
     [
         "i3sBw7Dkcv4",
         "http://bibfra.me/vocab/lite/related",
-        "nRdLW_3ocTo",
+        "Vem9bt1eB2A",
         {
             "@target-type": "@iri-ref"
         }
@@ -1097,28 +1119,6 @@
         "n5UfDvGnTCc",
         "http://bibfra.me/vocab/marcext/sf-e",
         "lun ding.",
-        {}
-    ],
-    [
-        "nRdLW_3ocTo",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Work",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "nRdLW_3ocTo",
-        "http://bibfra.me/vocab/lite/authorityLink",
-        "http://bibfra.me/vocab/marcext/authrec/8175356",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "nRdLW_3ocTo",
-        "http://bibfra.me/vocab/marcext/sf-w",
-        "8175356",
         {}
     ],
     [

@@ -18,7 +18,7 @@ The following example shows how to do so for test_use_cases.py:
 
 For test_marc_snippets.py use the following recipe to regenerate the test case expected outputs:
 
-		python -i test/test_marc_snippets.py #Ignore the SystemExit
+	python -i test/test_marc_snippets.py #Ignore the SystemExit
 
 Then:
 
@@ -28,15 +28,15 @@ all_config = sorted([ sym for sym in globals() if sym.startswith('CONFIG') ])
 all_expected = sorted([ sym for sym in globals() if sym.startswith('EXPECTED') ])
 
 for s, c, e in zip(all_snippets, all_config, all_expected):
-		sobj, cobj, eobj = globals()[s], globals()[c], globals()[e]
-		loop = asyncio.new_event_loop()
-		asyncio.set_event_loop(None)
-		m = memory.connection()
-		instream = BytesIO(sobj.encode('utf-8'))
-		outstream = StringIO()
-		bfconvert(instream, model=m, out=outstream, config=cobj, canonical=True, loop=loop)
-		print('EXPECTED from {0}:'.format(s))
-		print(outstream.getvalue()) #This output becomes the EXPECTED stanza
+    sobj, cobj, eobj = globals()[s], globals()[c], globals()[e]
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(None)
+    m = memory.connection()
+    instream = BytesIO(sobj.encode('utf-8'))
+    outstream = StringIO()
+    bfconvert(factory(instream), model=m, out=outstream, config=cobj, canonical=True, loop=loop)
+    print('EXPECTED from {0}:'.format(s))
+    print(outstream.getvalue()) #This output becomes the EXPECTED stanza
 }}}
 
 Then copy the corresponding EXPECTED stanzas to the right place in the test file.

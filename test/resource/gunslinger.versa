@@ -1,53 +1,5 @@
 [
     [
-        "3LJsY2oihEU",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/ProviderEvent",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "3LJsY2oihEU",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "G4AOq9t_yBQ",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "3LJsY2oihEU",
-        "http://bibfra.me/vocab/lite/providerDate",
-        "1988, c1982.",
-        {}
-    ],
-    [
-        "3LJsY2oihEU",
-        "http://bibfra.me/vocab/lite/providerPlace",
-        "HBb8PyfmoOM",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "3LJsY2oihEU",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "New York, NY :",
-        {}
-    ],
-    [
-        "3LJsY2oihEU",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "New American Library,",
-        {}
-    ],
-    [
-        "3LJsY2oihEU",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "1988, c1982.",
-        {}
-    ],
-    [
         "6bGaErwxOUc",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
@@ -480,7 +432,7 @@
     [
         "I4uxh9WSWvk",
         "http://bibfra.me/vocab/marc/publication",
-        "3LJsY2oihEU",
+        "r1iODdzCi-o",
         {
             "@target-type": "@iri-ref"
         }
@@ -653,6 +605,54 @@
         "mGN7vMtmoEo",
         "http://bibfra.me/vocab/marcext/sf-v",
         "Fiction.",
+        {}
+    ],
+    [
+        "r1iODdzCi-o",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/ProviderEvent",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "r1iODdzCi-o",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "G4AOq9t_yBQ",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "r1iODdzCi-o",
+        "http://bibfra.me/vocab/lite/providerDate",
+        "1988, c1982.",
+        {}
+    ],
+    [
+        "r1iODdzCi-o",
+        "http://bibfra.me/vocab/lite/providerPlace",
+        "HBb8PyfmoOM",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "r1iODdzCi-o",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "New York, NY :",
+        {}
+    ],
+    [
+        "r1iODdzCi-o",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "New American Library,",
+        {}
+    ],
+    [
+        "r1iODdzCi-o",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "1988, c1982.",
         {}
     ]
 ]
