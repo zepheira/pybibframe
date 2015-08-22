@@ -48,7 +48,8 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
                 verbose=False, logger=logging, loop=None, canonical=False,
                 lax=False, zipcheck=False):
     '''
-    inputs - List of MARC/XML input sources to be parsed and converted to BIBFRAME RDF (Note: want to allow singular input strings)
+    inputs - MARC/XML inputsource (can be a compound inputsource in order to represent multiple record sets)
+                to be parsed and converted to BIBFRAME RDF (Note: want to allow singular input strings)
     entbase - Base IRI to be used for creating resources.
     model - model instance for internal use
     out - file where raw Versa JSON dump output should be written (default: write to stdout)
@@ -79,9 +80,6 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
     attr_cls = resolve_class(config.get('versa-attr-cls', 'builtins.dict'))
     attr_list_cls = resolve_class(config.get('versa-attr-list-cls', 'builtins.list'))
 
-    #if hasattr(inputs, 'read') and hasattr(inputs, 'close'):
-        #It's a file type?
-    #    inputs = [inputs]
     if limit is not None:
         try:
             limit = int(limit)

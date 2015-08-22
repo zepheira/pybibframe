@@ -125,6 +125,16 @@ class expat_callbacks(object):
 
 
 def handle_marcxml_source(source, sink, args, attr_cls, attr_list_cls):
+    '''
+    Process one source of MARC/XML records in the form of an amara3 inputsource
+    Generally this will be a single XML file with a marc:collection with one or more marc:record
+    
+    source - amara3.inputsource.inputsource instance
+    sink - coroutine to be sent the generated resources
+    args - 
+    attr_cls - 
+    attr_list_cls - 
+    '''
     #Cannot reuse a pyexpat parser, so must create a new one for each input file
     next(sink) #Start the coroutine running
     lax = args['lax']
@@ -140,7 +150,7 @@ def handle_marcxml_source(source, sink, args, attr_cls, attr_list_cls):
     parser.CharacterDataHandler = handler.char_data
     parser.buffer_text = True
 
-    parser.ParseFile(source)
+    parser.ParseFile(source.stream)
     if handler.no_records:
         warnings.warn("No records found in this file. Possibly an XML namespace problem (try using the 'lax' flag).", RuntimeWarning)
     return
