@@ -7,15 +7,12 @@ from collections import defaultdict
 import warnings
 import zipfile
 
-<<<<<<< HEAD
-=======
 #from amara3 import iri
 
 from bibframe import g_services
 from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_FINAL_TASK
 from bibframe.reader.marcextra import transforms as extra_transforms
 
->>>>>>> inputsource
 import rdflib
 
 from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
@@ -151,49 +148,7 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
 
     if zipcheck:
         warnings.warn("The zipcheck option is not working yet.", RuntimeWarning)
-<<<<<<< HEAD
 
-    for source_fname in inputs:
-        #Note:
-        def input_fileset(sf):
-            if zipcheck and zipfile.is_zipfile(sf):
-                zf = zipfile.ZipFile(sf, 'r')
-                for info in list(zf.infolist()):
-                    #From the doc: Note If the ZipFile was created by passing in a file-like object as the first argument to the constructor, then the object returned by open() shares the ZipFile’s file pointer. Under these circumstances, the object returned by open() should not be used after any additional operations are performed on the ZipFile object.
-                    #sf.seek(0, 0)
-                    #zf = zipfile.ZipFile(sf, 'r')
-                    yield zf.open(info, mode='r')
-            else:
-                if zipcheck:
-                    #Because zipfile.is_zipfile fast forwards to EOF
-                    sf.seek(0, 0)
-                yield sf
-
-        for infname in input_fileset(source_fname):
-            @asyncio.coroutine
-            #Wrap the parse operation to make it a task in the event loop
-            def wrap_task(infname=infname):
-                sink = marc.record_handler( loop,
-                                            model,
-                                            entbase=entbase,
-                                            vocabbase=vb,
-                                            limiting=limiting,
-                                            plugins=plugins,
-                                            ids=ids,
-                                            postprocess=postprocess,
-                                            out=out,
-                                            logger=logger,
-                                            transforms=transforms,
-                                            extra_transforms=extra_transforms(marcextras_vocab),
-                                            canonical=canonical)
-
-                args = dict(lax=lax)
-                handle_marc_source(infname, sink, args, attr_cls, attr_list_cls)
-                sink.close()
-                yield
-            task = asyncio.async(wrap_task(), loop=loop)
-=======
-    
     for source in inputs:
         @asyncio.coroutine
         #Wrap the parse operation to make it a task in the event loop
@@ -227,7 +182,6 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
             sink.close()
             yield
         task = asyncio.async(wrap_task(), loop=loop)
->>>>>>> inputsource
 
     try:
         loop.run_until_complete(task)

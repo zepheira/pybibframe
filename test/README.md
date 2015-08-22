@@ -22,20 +22,22 @@ For test_marc_snippets.py use the following recipe to regenerate the test case e
 
 Then:
 
-		all_snippets = sorted([ sym for sym in globals() if sym.startswith('SNIPPET') ])
-		all_config = sorted([ sym for sym in globals() if sym.startswith('CONFIG') ])
-		all_expected = sorted([ sym for sym in globals() if sym.startswith('EXPECTED') ])
+{{{
+all_snippets = sorted([ sym for sym in globals() if sym.startswith('SNIPPET') ])
+all_config = sorted([ sym for sym in globals() if sym.startswith('CONFIG') ])
+all_expected = sorted([ sym for sym in globals() if sym.startswith('EXPECTED') ])
 
-		for s, c, e in zip(all_snippets, all_config, all_expected):
-		    sobj, cobj, eobj = globals()[s], globals()[c], globals()[e]
-		    loop = asyncio.new_event_loop()
-		    asyncio.set_event_loop(None)
-		    m = memory.connection()
-		    instream = BytesIO(sobj.encode('utf-8'))
-		    outstream = StringIO()
-		    bfconvert(instream, model=m, out=outstream, config=cobj, canonical=True, loop=loop)
-		    print('EXPECTED from {0}:'.format(s))
-		    print(outstream.getvalue()) #This output becomes the EXPECTED stanza
+for s, c, e in zip(all_snippets, all_config, all_expected):
+		sobj, cobj, eobj = globals()[s], globals()[c], globals()[e]
+		loop = asyncio.new_event_loop()
+		asyncio.set_event_loop(None)
+		m = memory.connection()
+		instream = BytesIO(sobj.encode('utf-8'))
+		outstream = StringIO()
+		bfconvert(instream, model=m, out=outstream, config=cobj, canonical=True, loop=loop)
+		print('EXPECTED from {0}:'.format(s))
+		print(outstream.getvalue()) #This output becomes the EXPECTED stanza
+}}}
 
 Then copy the corresponding EXPECTED stanzas to the right place in the test file.
 

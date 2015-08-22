@@ -1,214 +1,6 @@
 [
     [
-        "4PKa2u0v",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Person",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "4PKa2u0v",
-        "http://bibfra.me/vocab/lite/date",
-        "1947-",
-        {}
-    ],
-    [
-        "4PKa2u0v",
-        "http://bibfra.me/vocab/lite/name",
-        "King, Stephen,",
-        {}
-    ],
-    [
-        "4PKa2u0v",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "King, Stephen,",
-        {}
-    ],
-    [
-        "4PKa2u0v",
-        "http://bibfra.me/vocab/marcext/sf-d",
-        "1947-",
-        {}
-    ],
-    [
-        "Dqvbf8gU",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Agent",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "Dqvbf8gU",
-        "http://bibfra.me/vocab/lite/name",
-        "New American Library,",
-        {}
-    ],
-    [
-        "Dqvbf8gU",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "New York, NY :",
-        {}
-    ],
-    [
-        "Dqvbf8gU",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "New American Library,",
-        {}
-    ],
-    [
-        "Dqvbf8gU",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "1988, c1982.",
-        {}
-    ],
-    [
-        "Lod8XcPm",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "Lod8XcPm",
-        "http://bibfra.me/vocab/lite/controlCode",
-        "547530",
-        {}
-    ],
-    [
-        "Lod8XcPm",
-        "http://bibfra.me/vocab/lite/dimensions",
-        "23 cm.",
-        {}
-    ],
-    [
-        "Lod8XcPm",
-        "http://bibfra.me/vocab/lite/extent",
-        "224 p. :",
-        {}
-    ],
-    [
-        "Lod8XcPm",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "mhK8MTlH",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "Lod8XcPm",
-        "http://bibfra.me/vocab/lite/link",
-        "http://www.loc.gov/catdir/enhancements/fy1206/88009938-b.html",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "Lod8XcPm",
-        "http://bibfra.me/vocab/lite/note",
-        "\"A Plume book.\"",
-        {}
-    ],
-    [
-        "Lod8XcPm",
-        "http://bibfra.me/vocab/lite/title",
-        "The gunslinger /",
-        {}
-    ],
-    [
-        "Lod8XcPm",
-        "http://bibfra.me/vocab/marc/isbn",
-        "9780452261341",
-        {}
-    ],
-    [
-        "Lod8XcPm",
-        "http://bibfra.me/vocab/marc/lccn",
-        "   88009938 ",
-        {}
-    ],
-    [
-        "Lod8XcPm",
-        "http://bibfra.me/vocab/marc/otherPhysicalDetails",
-        "ill. (some col.) ;",
-        {}
-    ],
-    [
-        "Lod8XcPm",
-        "http://bibfra.me/vocab/marc/publication",
-        "bGNqIoRF",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "Lod8XcPm",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "by Stephen King ; illustrated by Michael Whelan.",
-        {}
-    ],
-    [
-        "Z_R2lpk5",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "Z_R2lpk5",
-        "http://bibfra.me/vocab/lite/name",
-        "Roland (Fictitious character : King)",
-        {}
-    ],
-    [
-        "Z_R2lpk5",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Roland (Fictitious character : King)",
-        {}
-    ],
-    [
-        "Z_R2lpk5",
-        "http://bibfra.me/vocab/marcext/sf-v",
-        "Fiction.",
-        {}
-    ],
-    [
-        "_D8n5qDj",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Place",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "_D8n5qDj",
-        "http://bibfra.me/vocab/lite/name",
-        "New York, NY :",
-        {}
-    ],
-    [
-        "_D8n5qDj",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "New York, NY :",
-        {}
-    ],
-    [
-        "_D8n5qDj",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "New American Library,",
-        {}
-    ],
-    [
-        "_D8n5qDj",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "1988, c1982.",
-        {}
-    ],
-    [
-        "bGNqIoRF",
+        "3LJsY2oihEU",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/ProviderEvent",
         {
@@ -216,113 +8,47 @@
         }
     ],
     [
-        "bGNqIoRF",
+        "3LJsY2oihEU",
         "http://bibfra.me/vocab/lite/providerAgent",
-        "Dqvbf8gU",
+        "G4AOq9t_yBQ",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "bGNqIoRF",
+        "3LJsY2oihEU",
         "http://bibfra.me/vocab/lite/providerDate",
         "1988, c1982.",
         {}
     ],
     [
-        "bGNqIoRF",
+        "3LJsY2oihEU",
         "http://bibfra.me/vocab/lite/providerPlace",
-        "_D8n5qDj",
+        "HBb8PyfmoOM",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "bGNqIoRF",
+        "3LJsY2oihEU",
         "http://bibfra.me/vocab/marcext/sf-a",
         "New York, NY :",
         {}
     ],
     [
-        "bGNqIoRF",
+        "3LJsY2oihEU",
         "http://bibfra.me/vocab/marcext/sf-b",
         "New American Library,",
         {}
     ],
     [
-        "bGNqIoRF",
+        "3LJsY2oihEU",
         "http://bibfra.me/vocab/marcext/sf-c",
         "1988, c1982.",
         {}
     ],
     [
-        "e7zLZqBK",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Concept",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "e7zLZqBK",
-        "http://bibfra.me/vocab/lite/focus",
-        "Z_R2lpk5",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "e7zLZqBK",
-        "http://bibfra.me/vocab/lite/name",
-        "Roland (Fictitious character : King)",
-        {}
-    ],
-    [
-        "e7zLZqBK",
-        "http://bibfra.me/vocab/marc/formSubdivision",
-        "Fiction.",
-        {}
-    ],
-    [
-        "e7zLZqBK",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Roland (Fictitious character : King)",
-        {}
-    ],
-    [
-        "e7zLZqBK",
-        "http://bibfra.me/vocab/marcext/sf-v",
-        "Fiction.",
-        {}
-    ],
-    [
-        "hoz_sISb",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Form",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "hoz_sISb",
-        "http://bibfra.me/vocab/lite/name",
-        "Fantasy fiction.",
-        {}
-    ],
-    [
-        "hoz_sISb",
-        "http://bibfra.me/vocab/marcext/sf-2",
-        "gsafd",
-        {}
-    ],
-    [
-        "hoz_sISb",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Fantasy fiction.",
-        {}
-    ],
-    [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
@@ -330,7 +56,7 @@
         }
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/Books",
         {
@@ -338,7 +64,7 @@
         }
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/LanguageMaterial",
         {
@@ -346,291 +72,315 @@
         }
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/lite/creator",
-        "4PKa2u0v",
+        "faTg8pra7S8",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/lite/genre",
-        "hoz_sISb",
+        "HGPE2-l9Dbk",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/lite/genre",
-        "xNvpfQ25",
+        "a3SGjP-whJs",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/lite/language",
         "eng",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/lite/subject",
-        "e7zLZqBK",
+        "eX288V-ny9w",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/lite/subject",
-        "vPFfp8vc",
+        "mGN7vMtmoEo",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/lite/title",
         "The gunslinger /",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marc/catalogingSource",
         "DLC",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marc/deweyNumber",
         "813/.54",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marc/illustrations",
         "illustrations",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marc/index",
         "no index present",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marc/lcCallNumber",
         "PS3561.I483",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marc/lcItemNumber",
         "G86 1988",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marc/literaryForm",
         "fiction",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marc/seriesStatement",
         "The Dark tower ;",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marc/seriesVolume",
         "1",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marc/titleStatement",
         "by Stephen King ; illustrated by Michael Whelan.",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marcext/tag-005",
         "20120215121458.0",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marcext/tag-008",
         "880323t19881982nyua          000 1 eng  ",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marcext/tag-020-XX-a",
         "0452261341",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marcext/tag-035-XX-9",
         "(DLC)   88009938",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marcext/tag-800-1X-a",
         "King, Stephen,",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marcext/tag-800-1X-d",
         "1947-",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marcext/tag-800-1X-t",
         "Dark tower ;",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marcext/tag-800-1X-v",
         "1.",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marcext/tag-906-XX-a",
         "7",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marcext/tag-906-XX-b",
         "cbc",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marcext/tag-906-XX-c",
         "orignew",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marcext/tag-906-XX-d",
         "1",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marcext/tag-906-XX-e",
         "ocip",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marcext/tag-906-XX-f",
         "19",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marcext/tag-906-XX-g",
         "y-gencatlg",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marcext/tag-955-XX-a",
         "CIP VER lh03 09-20-96 to SL",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marcext/tag-991-XX-b",
         "c-GenColl",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marcext/tag-991-XX-h",
         "PS3561.I483",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marcext/tag-991-XX-i",
         "G86 1988",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marcext/tag-991-XX-p",
         "00035919508",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marcext/tag-991-XX-t",
         "Copy 1",
         {}
     ],
     [
-        "mhK8MTlH",
+        "6bGaErwxOUc",
         "http://bibfra.me/vocab/marcext/tag-991-XX-w",
         "BOOKS",
         {}
     ],
     [
-        "vPFfp8vc",
+        "G4AOq9t_yBQ",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Concept",
+        "http://bibfra.me/vocab/lite/Agent",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "vPFfp8vc",
-        "http://bibfra.me/vocab/lite/focus",
-        "hoz_sISb",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "vPFfp8vc",
+        "G4AOq9t_yBQ",
         "http://bibfra.me/vocab/lite/name",
-        "Fantasy fiction.",
+        "New American Library,",
         {}
     ],
     [
-        "vPFfp8vc",
-        "http://bibfra.me/vocab/marc/source",
-        "gsafd",
-        {}
-    ],
-    [
-        "vPFfp8vc",
-        "http://bibfra.me/vocab/marcext/sf-2",
-        "gsafd",
-        {}
-    ],
-    [
-        "vPFfp8vc",
+        "G4AOq9t_yBQ",
         "http://bibfra.me/vocab/marcext/sf-a",
-        "Fantasy fiction.",
+        "New York, NY :",
         {}
     ],
     [
-        "xNvpfQ25",
+        "G4AOq9t_yBQ",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "New American Library,",
+        {}
+    ],
+    [
+        "G4AOq9t_yBQ",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "1988, c1982.",
+        {}
+    ],
+    [
+        "HBb8PyfmoOM",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Place",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "HBb8PyfmoOM",
+        "http://bibfra.me/vocab/lite/name",
+        "New York, NY :",
+        {}
+    ],
+    [
+        "HBb8PyfmoOM",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "New York, NY :",
+        {}
+    ],
+    [
+        "HBb8PyfmoOM",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "New American Library,",
+        {}
+    ],
+    [
+        "HBb8PyfmoOM",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "1988, c1982.",
+        {}
+    ],
+    [
+        "HGPE2-l9Dbk",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Form",
         {
@@ -638,19 +388,269 @@
         }
     ],
     [
-        "xNvpfQ25",
+        "HGPE2-l9Dbk",
         "http://bibfra.me/vocab/lite/name",
         "Fiction.",
         {}
     ],
     [
-        "xNvpfQ25",
+        "HGPE2-l9Dbk",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Roland (Fictitious character : King)",
         {}
     ],
     [
-        "xNvpfQ25",
+        "HGPE2-l9Dbk",
+        "http://bibfra.me/vocab/marcext/sf-v",
+        "Fiction.",
+        {}
+    ],
+    [
+        "I4uxh9WSWvk",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "I4uxh9WSWvk",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "547530",
+        {}
+    ],
+    [
+        "I4uxh9WSWvk",
+        "http://bibfra.me/vocab/lite/dimensions",
+        "23 cm.",
+        {}
+    ],
+    [
+        "I4uxh9WSWvk",
+        "http://bibfra.me/vocab/lite/extent",
+        "224 p. :",
+        {}
+    ],
+    [
+        "I4uxh9WSWvk",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "6bGaErwxOUc",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "I4uxh9WSWvk",
+        "http://bibfra.me/vocab/lite/link",
+        "http://www.loc.gov/catdir/enhancements/fy1206/88009938-b.html",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "I4uxh9WSWvk",
+        "http://bibfra.me/vocab/lite/note",
+        "\"A Plume book.\"",
+        {}
+    ],
+    [
+        "I4uxh9WSWvk",
+        "http://bibfra.me/vocab/lite/title",
+        "The gunslinger /",
+        {}
+    ],
+    [
+        "I4uxh9WSWvk",
+        "http://bibfra.me/vocab/marc/isbn",
+        "9780452261341",
+        {}
+    ],
+    [
+        "I4uxh9WSWvk",
+        "http://bibfra.me/vocab/marc/lccn",
+        "   88009938 ",
+        {}
+    ],
+    [
+        "I4uxh9WSWvk",
+        "http://bibfra.me/vocab/marc/otherPhysicalDetails",
+        "ill. (some col.) ;",
+        {}
+    ],
+    [
+        "I4uxh9WSWvk",
+        "http://bibfra.me/vocab/marc/publication",
+        "3LJsY2oihEU",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "I4uxh9WSWvk",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "by Stephen King ; illustrated by Michael Whelan.",
+        {}
+    ],
+    [
+        "QZRn9HaWmTk",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "QZRn9HaWmTk",
+        "http://bibfra.me/vocab/lite/name",
+        "Roland (Fictitious character : King)",
+        {}
+    ],
+    [
+        "QZRn9HaWmTk",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Roland (Fictitious character : King)",
+        {}
+    ],
+    [
+        "QZRn9HaWmTk",
+        "http://bibfra.me/vocab/marcext/sf-v",
+        "Fiction.",
+        {}
+    ],
+    [
+        "a3SGjP-whJs",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Form",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "a3SGjP-whJs",
+        "http://bibfra.me/vocab/lite/name",
+        "Fantasy fiction.",
+        {}
+    ],
+    [
+        "a3SGjP-whJs",
+        "http://bibfra.me/vocab/marcext/sf-2",
+        "gsafd",
+        {}
+    ],
+    [
+        "a3SGjP-whJs",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Fantasy fiction.",
+        {}
+    ],
+    [
+        "eX288V-ny9w",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "eX288V-ny9w",
+        "http://bibfra.me/vocab/lite/focus",
+        "a3SGjP-whJs",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "eX288V-ny9w",
+        "http://bibfra.me/vocab/lite/name",
+        "Fantasy fiction.",
+        {}
+    ],
+    [
+        "eX288V-ny9w",
+        "http://bibfra.me/vocab/marc/source",
+        "gsafd",
+        {}
+    ],
+    [
+        "eX288V-ny9w",
+        "http://bibfra.me/vocab/marcext/sf-2",
+        "gsafd",
+        {}
+    ],
+    [
+        "eX288V-ny9w",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Fantasy fiction.",
+        {}
+    ],
+    [
+        "faTg8pra7S8",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Person",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "faTg8pra7S8",
+        "http://bibfra.me/vocab/lite/date",
+        "1947-",
+        {}
+    ],
+    [
+        "faTg8pra7S8",
+        "http://bibfra.me/vocab/lite/name",
+        "King, Stephen,",
+        {}
+    ],
+    [
+        "faTg8pra7S8",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "King, Stephen,",
+        {}
+    ],
+    [
+        "faTg8pra7S8",
+        "http://bibfra.me/vocab/marcext/sf-d",
+        "1947-",
+        {}
+    ],
+    [
+        "mGN7vMtmoEo",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "mGN7vMtmoEo",
+        "http://bibfra.me/vocab/lite/focus",
+        "QZRn9HaWmTk",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "mGN7vMtmoEo",
+        "http://bibfra.me/vocab/lite/name",
+        "Roland (Fictitious character : King)",
+        {}
+    ],
+    [
+        "mGN7vMtmoEo",
+        "http://bibfra.me/vocab/marc/formSubdivision",
+        "Fiction.",
+        {}
+    ],
+    [
+        "mGN7vMtmoEo",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Roland (Fictitious character : King)",
+        {}
+    ],
+    [
+        "mGN7vMtmoEo",
         "http://bibfra.me/vocab/marcext/sf-v",
         "Fiction.",
         {}
