@@ -27,9 +27,10 @@ for s, c, e in zip(all_snippets, all_config, all_expected):
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(None)
     m = memory.connection()
+    #instream = StringIO(sobj)
     instream = BytesIO(sobj.encode('utf-8'))
     outstream = StringIO()
-    bfconvert(instream, model=m, out=outstream, config=cobj, canonical=True, loop=loop)
+    bfconvert(factory(instream), model=m, out=outstream, config=cobj, canonical=True, loop=loop)
     print('EXPECTED from {0}:'.format(s))
     print(outstream.getvalue()) #This output becomes the EXPECTED stanza
 
@@ -41,6 +42,8 @@ import asyncio
 import difflib
 from io import StringIO, BytesIO
 import tempfile
+
+from amara3.inputsource import factory
 
 from versa.driver import memory
 from versa.util import jsondump, jsonload
@@ -2663,7 +2666,7 @@ def run_one(snippet, expected, desc, entbase=None, config=None, loop=None, canon
     infile.write(snippet.encode('utf-8'))
     infile.seek(0)
     outstream = StringIO()
-    bfconvert([infile.name], model=m, out=outstream, config=config, canonical=canonical, loop=loop)
+    bfconvert(factory(infile), model=m, out=outstream, config=config, canonical=canonical, loop=loop)
     infile.close()
     outstream.seek(0)
     hashmap, m = hash_neutral_model(outstream)

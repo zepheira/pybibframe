@@ -147,6 +147,7 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
     if zipcheck:
         warnings.warn("The zipcheck option is not working yet.", RuntimeWarning)
 
+    #raise(Exception(repr(inputs)))
     for source in inputs:
         @asyncio.coroutine
         #Wrap the parse operation to make it a task in the event loop
@@ -181,12 +182,12 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
             yield
         task = asyncio.async(wrap_task(), loop=loop)
 
-    try:
-        loop.run_until_complete(task)
-    except Exception as ex:
-        raise ex
-    finally:
-        loop.close()
+        try:
+            loop.run_until_complete(task)
+        except Exception as ex:
+            raise ex
+        finally:
+            loop.close()
 
     if canonical:
         out.write(repr(global_model))
