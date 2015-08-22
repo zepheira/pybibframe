@@ -7,6 +7,15 @@ from collections import defaultdict
 import warnings
 import zipfile
 
+<<<<<<< HEAD
+=======
+#from amara3 import iri
+
+from bibframe import g_services
+from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_FINAL_TASK
+from bibframe.reader.marcextra import transforms as extra_transforms
+
+>>>>>>> inputsource
 import rdflib
 
 from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
@@ -37,13 +46,12 @@ NSSEP = ' '
 
 #PYTHONASYNCIODEBUG = 1
 
-
 def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, model=None,
                 out=None, limit=None, rdfttl=None, rdfxml=None, xml=None, config=None,
                 verbose=False, logger=logging, loop=None, canonical=False,
                 lax=False, zipcheck=False):
     '''
-    inputs - List of MARC/XML files to be parsed and converted to BIBFRAME RDF (Note: want to allow singular input strings)
+    inputs - List of MARC/XML input sources to be parsed and converted to BIBFRAME RDF (Note: want to allow singular input strings)
     entbase - Base IRI to be used for creating resources.
     model - model instance for internal use
     out - file where raw Versa JSON dump output should be written (default: write to stdout)
@@ -143,6 +151,7 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
 
     if zipcheck:
         warnings.warn("The zipcheck option is not working yet.", RuntimeWarning)
+<<<<<<< HEAD
 
     for source_fname in inputs:
         #Note:
@@ -183,6 +192,42 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
                 sink.close()
                 yield
             task = asyncio.async(wrap_task(), loop=loop)
+=======
+    
+    for source in inputs:
+        @asyncio.coroutine
+        #Wrap the parse operation to make it a task in the event loop
+        def wrap_task(): #source=source
+            sink = marc.record_handler( loop,
+                                        model,
+                                        entbase=entbase,
+                                        vocabbase=vb,
+                                        limiting=limiting,
+                                        plugins=plugins,
+                                        ids=ids,
+                                        postprocess=postprocess,
+                                        out=out,
+                                        logger=logger,
+                                        transforms=transforms,
+                                        extra_transforms=extra_transforms(marcextras_vocab),
+                                        canonical=canonical)
+
+            def resolve_class(fullname):
+                import importlib
+                modpath, name = fullname.rsplit('.', 1)
+                module = importlib.import_module(modpath)
+                cls = getattr(module, name)
+                return cls
+
+            attr_cls = resolve_class(config.get('versa-attr-cls', 'collections.OrderedDict'))
+            attr_list_cls = resolve_class(config.get('versa-attr-list-cls', 'builtins.list'))
+
+            args = dict(lax=lax)
+            handle_marc_source(source, sink, args, attr_cls, attr_list_cls)
+            sink.close()
+            yield
+        task = asyncio.async(wrap_task(), loop=loop)
+>>>>>>> inputsource
 
     try:
         loop.run_until_complete(task)
