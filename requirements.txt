@@ -1,4 +1,4 @@
-amara3-iri==3.0.0b1
+amara3-iri==3.0.0b2
 pymarc
 rdflib
 mmh3
