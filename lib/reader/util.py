@@ -188,7 +188,7 @@ def subfield(key):
         if 'current-subfield' in ctx.extras:
             ctx.extras['current-subfield'] = key
 
-        return ctx.current_link[ATTRIBUTES].get(key)
+        return (key, ctx.current_link[ATTRIBUTES].get(key))
         #Why the blazes would this ever return [None] rather than None?!
         #return ctx.current_link[ATTRIBUTES].get(key, [None])
     return _subfield
@@ -238,6 +238,7 @@ def relator_property(text_in, prefix=None):
         :return: List of relationships computed from the source text
         '''
         _text_in = text_in(ctx) if callable(text_in) else text_in
+        _text_in = _text_in[1] if isinstance(_text_in, tuple) else _text_in
         if not isinstance(_text_in, list): _text_in = [_text_in]
         #Take into account RDA-isms such as $iContainer of (expression) by stripping the parens https://foundry.zepheira.com/topics/380
         return [((prefix or '') + amara3.iri.percent_encode(slugify(RDA_PARENS_PAT.sub('', ti), False))) if ti else '' for ti in _text_in]
@@ -261,6 +262,7 @@ def replace_from(patterns, old_text):
         '''
         #If we get a list arg, take the first
         _old_text = old_text(ctx) if callable(old_text) else old_text
+        _old_text = _old_text[1] if isinstance(_old_text, tuple) else _old_text
         _old_text = [] if _old_text is None else _old_text
         old_text_list = isinstance(_old_text, list)
         _old_text = _old_text if old_text_list else [_old_text]
@@ -394,7 +396,16 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
         if derive_origin:
             #Have been given enough info to derive the origin from context. Ignore origin in current link
             o = derive_origin(ctx)
-        computed_unique = unique(ctx) if unique else None
+
+        computed_unique = None
+        if unique:
+            # strip None values from computed unique list, including k/v tuples where v is None
+            computed_unique = []
+            for el in unique(ctx):
+                if el is None: continue
+                if isinstance(el, tuple) and el[1] is None: continue
+                computed_unique.append(el)
+            
         #objid = ctx.idgen(_typ, unique=computed_unique, existing_ids=ctx.existing_ids)
 
         #XXX: Relying here on shared existing_ids from the idgen function. Probably need to think through this state coupling
@@ -442,6 +453,7 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
                     if v is not None:
                         #FIXME: Fix properly, by slugifying & making sure slugify handles all-numeric case
                         if k.isdigit(): k = '_' + k
+                        if isinstance(v, tuple): v=v[1]
                         if not isinstance(v, list): v = [v]
                         for valitems in v:
                             if valitems:

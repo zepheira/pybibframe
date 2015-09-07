@@ -61,7 +61,13 @@ def run_one(name, entbase=None, config=None, loop=None, canonical=True):
     assert m == m_expected, "Discrepancies found for {0}:\n{1}".format(name, file_diff(repr(m_expected), repr(m)))
 
 
-NAMES = ['gunslinger', 'egyptskulls', 'kford-holdings1', 'timathom-140716', 'joycebcat-140613']
+NAMES = [ 'gunslinger',
+          'egyptskulls',
+          'kford-holdings1',
+          'timathom-140716',
+          'joycebcat-140613',
+          'zweig' # test of folding between different unique() statements
+        ]
 
 @pytest.mark.parametrize('name', NAMES)
 def test_usecases(name):
