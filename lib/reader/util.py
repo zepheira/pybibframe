@@ -3,7 +3,7 @@ from itertools import product
 from enum import Enum #https://docs.python.org/3.4/library/enum.html
 from collections import OrderedDict
 
-from versa.pipeline import *
+from versa.pipeline import context as versacontext
 from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 
 from bibframe.contrib.datachefids import slugify#, FROM_EMPTY_64BIT_HASH
@@ -11,16 +11,17 @@ from bibframe.contrib.datachefids import idgen as default_idgen
 from bibframe import BFZ
 from bibframe.util import LoggedList, merge_list_logs
 
-import amara3.iri
+from amara3 import iri
 
 RDA_PARENS_PAT = re.compile('\\(.*\\)')
 
 PYBF_BASE = '"http://bibfra.me/tool/pybibframe/transforms#'
 WORKID = PYBF_BASE + 'workid'
 IID = PYBF_BASE + 'iid'
+VTYPE_REL = I(iri.absolutize('type', VERSA_BASEIRI))
 
 #FIXME: Make proper use of subclassing (implementation derivation)
-class bfcontext(context):
+class bfcontext(versacontext):
     def __init__(self, current_link, input_model, output_model, base=None, extras=None, idgen=None, existing_ids=None, logger=None):
         self.current_link = current_link
         self.input_model = input_model
@@ -240,7 +241,7 @@ def relator_property(text_in, prefix=None):
         _text_in = text_in(ctx) if callable(text_in) else text_in
         if not isinstance(_text_in, list): _text_in = [_text_in]
         #Take into account RDA-isms such as $iContainer of (expression) by stripping the parens https://foundry.zepheira.com/topics/380
-        return [((prefix or '') + amara3.iri.percent_encode(slugify(RDA_PARENS_PAT.sub('', ti), False))) if ti else '' for ti in _text_in]
+        return [((prefix or '') + iri.percent_encode(slugify(RDA_PARENS_PAT.sub('', ti), False))) if ti else '' for ti in _text_in]
     return _relator_property
 
 
@@ -481,7 +482,7 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
     return _materialize
 
 
-def url(arg, base=amara3.iri.absolutize('authrec/',BFZ)):
+def url(arg, base=iri.absolutize('authrec/',BFZ)):
     '''
     Convert the argument into an IRI ref or list thereof
     '''
@@ -496,13 +497,13 @@ def url(arg, base=amara3.iri.absolutize('authrec/',BFZ)):
             except ValueError:
                 # attempt to recover by percent encoding
                 try:
-                    iu = I(amara3.iri.percent_encode(u))
+                    iu = I(iri.percent_encode(u))
                 except ValueError as e:
                     ctx.logger('Unable to convert "{}" to IRI reference:\n{}'.format(u, e))
                     continue
 
-            if not amara3.iri.is_absolute(iu) and base is not None:
-                iu = I(amara3.iri.absolutize(iu, base))
+            if not iri.is_absolute(iu) and base is not None:
+                iu = I(iri.absolutize(iu, base))
 
             ret.append(iu)
 

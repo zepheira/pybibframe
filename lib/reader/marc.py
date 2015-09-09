@@ -19,7 +19,7 @@ from amara3 import iri
 from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 from versa.util import simple_lookup, OrderedJsonEncoder
 from versa.driver import memory
-from versa.pipeline import *
+#from versa.pipeline import context as versacontext
 
 from bibframe import MARC
 from bibframe.reader.util import WORKID, IID
