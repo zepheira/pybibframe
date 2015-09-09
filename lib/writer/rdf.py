@@ -9,8 +9,6 @@ import itertools
 #from rdflib import Graph, BNode, Namespace
 from rdflib import URIRef, Literal, RDF, RDFS
 
-#from datachef.ids import simple_hashstring
-
 from amara3 import iri
 
 from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET

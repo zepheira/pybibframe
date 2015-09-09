@@ -20,26 +20,23 @@ OMIT_FROM_SLUG_PAT = re.compile('[^%s]'%SLUGCHARS)
 NORMALIZE_UNDERSCORES_PAT = re.compile('__+')
 #slug_from_title = slug_from_title = lambda t: OMIT_FROM_SLUG_PAT.sub('_', t).lower().decode('utf-8')
 
-MAX32LESS1 = 4294967295 #2**32-1
+#MAX32LESS1 = 4294967295 #2**32-1
 
 #For discussion of general purpose hashing as used in this code
 #https://github.com/uogbuji/datachef/wiki/gp-hashing
 
-def simple_hashstring(obj, bits=48):
+def simple_hashstring(obj, bits=64):
     '''
     Creates a simple hash in brief string form from obj
-    bits is an optional bit width, defaulting to 48, and should be in multiples of 8 with a maximum of 64
+    bits is an optional bit width, defaulting to 64, and should be in multiples of 8 with a maximum of 64
 
-    >>> from datachef.ids import simple_hashstring
+    >>> from bibframe.contrib.datachefids import simple_hashstring
     >>> simple_hashstring("The quick brown fox jumps over the lazy dog")
+    'bBsHvHu8S-M'
+    >>> simple_hashstring("The quick brown fox jumps over the lazy dog", bits=48)
     'B7x7vEvj'
     '''
     #Useful discussion of techniques here: http://stackoverflow.com/questions/1303021/shortest-hash-in-python-to-name-cache-files
-
-    #Abandoned idea of using MD5 and truncating
-    #raw_hash = hashlib.md5(title).digest()
-    #Abandoned Adler32 for MurmurHash3
-    #raw_hash = struct.pack('i', zlib.adler32(title[:plain_len]))
     #Use MurmurHash3
     #Get a 64-bit integer, the first half of the 128-bit tuple from mmh and then bit shift it to get the desired bit length
     basis = mmh3.hash64(str(obj))[0] >> (64-bits)

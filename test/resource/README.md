@@ -21,7 +21,7 @@ TODO: Go back to get non Unicode version when LC.gov is not timing out.
 
 ----
 
-= Other sources =
+# Other sources
 
  * [Free sample MARC data, Koha wiki](http://wiki.koha-community.org/wiki/Free_sample_MARC_data)
  * [Springer download service for CC0 records](http://www.springer.com/?referer=springer.com&SGWID=1-148802-3020-0-0)

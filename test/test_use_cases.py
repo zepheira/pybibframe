@@ -13,8 +13,7 @@ import asyncio
 import difflib
 from io import StringIO, BytesIO
 
-from amara3.inputsource import factory
-from amara3 import inputsource
+from amara3.inputsource import factory, inputsource
 
 from versa.driver import memory
 from versa.util import jsondump, jsonload
@@ -66,8 +65,12 @@ NAMES = [ 'gunslinger',
           'kford-holdings1',
           'timathom-140716',
           'joycebcat-140613',
+          'zweig-tiny',
           'zweig' # test of folding between different unique() statements
         ]
+
+#NAMES = ['zweig-tiny']
+
 
 @pytest.mark.parametrize('name', NAMES)
 def test_usecases(name):
@@ -77,6 +80,7 @@ def test_usecases(name):
 
     config = None
     run_one(name, config=config, loop=loop)
+
 
 def test_model_consumed():
     loop = asyncio.new_event_loop()

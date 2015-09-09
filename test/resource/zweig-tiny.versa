@@ -1,0 +1,106 @@
+[
+    [
+        "94jWivP4QmU",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Person",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "94jWivP4QmU",
+        "http://bibfra.me/vocab/lite/date",
+        "1881-1942",
+        {}
+    ],
+    [
+        "94jWivP4QmU",
+        "http://bibfra.me/vocab/lite/name",
+        "Zweig, Stefan,",
+        {}
+    ],
+    [
+        "94jWivP4QmU",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Zweig, Stefan,",
+        {}
+    ],
+    [
+        "94jWivP4QmU",
+        "http://bibfra.me/vocab/marcext/sf-d",
+        "1881-1942",
+        {}
+    ],
+    [
+        "Nl-2a_kCHuk",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Nl-2a_kCHuk",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "aWSh95-QiNU",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Nl-2a_kCHuk",
+        "http://bibfra.me/vocab/lite/title",
+        "Beware of pity /",
+        {}
+    ],
+    [
+        "Nl-2a_kCHuk",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "Stefan Zweig ; translated by Phyllis and Trevor Blewitt ; introduction by Joan Acocella.",
+        {}
+    ],
+    [
+        "aWSh95-QiNU",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "aWSh95-QiNU",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/Books",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "aWSh95-QiNU",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/LanguageMaterial",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "aWSh95-QiNU",
+        "http://bibfra.me/vocab/lite/creator",
+        "94jWivP4QmU",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "aWSh95-QiNU",
+        "http://bibfra.me/vocab/lite/title",
+        "Beware of pity /",
+        {}
+    ],
+    [
+        "aWSh95-QiNU",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "Stefan Zweig ; translated by Phyllis and Trevor Blewitt ; introduction by Joan Acocella.",
+        {}
+    ]
+]

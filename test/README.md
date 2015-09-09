@@ -14,6 +14,8 @@ The following example shows how to do so for test_use_cases.py:
     marc2bf joycebcat-140613.mrx --canonical -o joycebcat-140613.versa
     marc2bf kford-holdings1.mrx --canonical -o kford-holdings1.versa
     marc2bf timathom-140716.mrx --canonical -o timathom-140716.versa
+    marc2bf zweig.mrx --canonical -o zweig.versa
+    marc2bf zweig-tiny.mrx --canonical -o zweig-tiny.versa
     cd -
 
 For test_marc_snippets.py use the following recipe to regenerate the test case expected outputs:
