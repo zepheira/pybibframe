@@ -44,9 +44,9 @@ def simple_hashstring(obj, bits=48):
     #Get a 64-bit integer, the first half of the 128-bit tuple from mmh and then bit shift it to get the desired bit length
     basis = mmh3.hash64(str(obj))[0] >> (64-bits)
     if bits == 64:
-        raw_hash = struct.pack('l', basis)
+        raw_hash = struct.pack('!q', basis)
     else:
-        raw_hash = struct.pack('l', basis)[:-int((64-bits)/8)]
+        raw_hash = struct.pack('!q', basis)[:-int((64-bits)/8)]
     hashstr = base64.urlsafe_b64encode(raw_hash).rstrip(b"=")
     return hashstr.decode('ascii')
 
@@ -121,4 +121,3 @@ def idgen(idbase, tint=None, bits=64):
         to_hash = simple_hashstring(to_hash, bits=bits)
         to_hash = yield iri.absolutize(to_hash, idbase) if idbase else to_hash
         counter += 1
-
