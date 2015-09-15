@@ -171,10 +171,10 @@ def materialize_entity(etype, ctx_params=None, unique=None, loop=None, update_mo
     logger = ctx_params.get('logger', logging)
     output_model = ctx_params.get('output_model')
     ids = ctx_params.get('ids')
-    if vocabbase:
+    if vocabbase and not iri.is_absolute(etype):
         etype = vocabbase + etype
     params = {'logger': logger}
-    data_full = { vocabbase + k: v for (k, v) in data.items() }
+    data_full = { vocabbase + k if not iri.is_absolute(k) else k: v for (k, v) in data.items() }
     # nobody likes non-deterministic ids! ordering matters to hash()
     data_full = OrderedDict(sorted(data_full.items(), key=lambda x: x[0]))
     plaintext = json.dumps([etype, data_full], cls=OrderedJsonEncoder)

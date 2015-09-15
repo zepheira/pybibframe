@@ -1,6 +1,6 @@
 [
     [
-        "0XjiYvxr",
+        "1YiQn_ehZGk",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
@@ -8,305 +8,7 @@
         }
     ],
     [
-        "0XjiYvxr",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/marc/MovingImage",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "0XjiYvxr",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/marc/VisualMaterials",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "0XjiYvxr",
-        "http://bibfra.me/vocab/lite/genre",
-        "r67rt5_u",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "0XjiYvxr",
-        "http://bibfra.me/vocab/lite/related",
-        "MismkN2K",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "0XjiYvxr",
-        "http://bibfra.me/vocab/lite/subject",
-        "ZzDDAUVp",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "0XjiYvxr",
-        "http://bibfra.me/vocab/lite/title",
-        "Letter from an unknown woman",
-        {}
-    ],
-    [
-        "0XjiYvxr",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "Melange Pictures ; written by Howard Koch ; produced by John Houseman ; directed by Max Ophuls.",
-        {}
-    ],
-    [
-        "1orz-EJl",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Person",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "1orz-EJl",
-        "http://bibfra.me/vocab/lite/date",
-        "1881-1942",
-        {}
-    ],
-    [
-        "1orz-EJl",
-        "http://bibfra.me/vocab/lite/name",
-        "Zweig, Stefan,",
-        {}
-    ],
-    [
-        "1orz-EJl",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Zweig, Stefan,",
-        {}
-    ],
-    [
-        "1orz-EJl",
-        "http://bibfra.me/vocab/marcext/sf-d",
-        "1881-1942",
-        {}
-    ],
-    [
-        "1orz-EJl",
-        "http://bibfra.me/vocab/marcext/sf-v",
-        "Film adaptations.",
-        {}
-    ],
-    [
-        "JOL7zp5l",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "JOL7zp5l",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "0XjiYvxr",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "JOL7zp5l",
-        "http://bibfra.me/vocab/lite/medium",
-        "[videorecording] /",
-        {}
-    ],
-    [
-        "JOL7zp5l",
-        "http://bibfra.me/vocab/lite/title",
-        "Letter from an unknown woman",
-        {}
-    ],
-    [
-        "JOL7zp5l",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "Melange Pictures ; written by Howard Koch ; produced by John Houseman ; directed by Max Ophuls.",
-        {}
-    ],
-    [
-        "MismkN2K",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Work",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "MismkN2K",
-        "http://bibfra.me/vocab/lite/creator",
-        "1orz-EJl",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "MismkN2K",
-        "http://bibfra.me/vocab/lite/language",
-        "English.",
-        {}
-    ],
-    [
-        "MismkN2K",
-        "http://bibfra.me/vocab/lite/title",
-        "Briefe einer Unbekannten.",
-        {}
-    ],
-    [
-        "MismkN2K",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Zweig, Stefan,",
-        {}
-    ],
-    [
-        "MismkN2K",
-        "http://bibfra.me/vocab/marcext/sf-d",
-        "1881-1942",
-        {}
-    ],
-    [
-        "MismkN2K",
-        "http://bibfra.me/vocab/marcext/sf-l",
-        "English.",
-        {}
-    ],
-    [
-        "MismkN2K",
-        "http://bibfra.me/vocab/marcext/sf-t",
-        "Briefe einer Unbekannten.",
-        {}
-    ],
-    [
-        "W3JHF0gB",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Work",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "W3JHF0gB",
-        "http://bibfra.me/vocab/lite/creator",
-        "1orz-EJl",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "W3JHF0gB",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Zweig, Stefan,",
-        {}
-    ],
-    [
-        "W3JHF0gB",
-        "http://bibfra.me/vocab/marcext/sf-d",
-        "1881-1942",
-        {}
-    ],
-    [
-        "W3JHF0gB",
-        "http://bibfra.me/vocab/marcext/sf-v",
-        "Film adaptations.",
-        {}
-    ],
-    [
-        "XpKH9K-D",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "XpKH9K-D",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "ofefkIjV",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "XpKH9K-D",
-        "http://bibfra.me/vocab/lite/title",
-        "Beware of pity /",
-        {}
-    ],
-    [
-        "XpKH9K-D",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "Stefan Zweig ; translated by Phyllis and Trevor Blewitt ; introduction by Joan Acocella.",
-        {}
-    ],
-    [
-        "ZzDDAUVp",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Concept",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "ZzDDAUVp",
-        "http://bibfra.me/vocab/lite/date",
-        "1881-1942",
-        {}
-    ],
-    [
-        "ZzDDAUVp",
-        "http://bibfra.me/vocab/lite/focus",
-        "W3JHF0gB",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "ZzDDAUVp",
-        "http://bibfra.me/vocab/lite/name",
-        "Zweig, Stefan,",
-        {}
-    ],
-    [
-        "ZzDDAUVp",
-        "http://bibfra.me/vocab/marc/formSubdivision",
-        "Film adaptations.",
-        {}
-    ],
-    [
-        "ZzDDAUVp",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Zweig, Stefan,",
-        {}
-    ],
-    [
-        "ZzDDAUVp",
-        "http://bibfra.me/vocab/marcext/sf-d",
-        "1881-1942",
-        {}
-    ],
-    [
-        "ZzDDAUVp",
-        "http://bibfra.me/vocab/marcext/sf-v",
-        "Film adaptations.",
-        {}
-    ],
-    [
-        "ofefkIjV",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Work",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "ofefkIjV",
+        "1YiQn_ehZGk",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/Books",
         {
@@ -314,7 +16,7 @@
         }
     ],
     [
-        "ofefkIjV",
+        "1YiQn_ehZGk",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/LanguageMaterial",
         {
@@ -322,27 +24,273 @@
         }
     ],
     [
-        "ofefkIjV",
+        "1YiQn_ehZGk",
         "http://bibfra.me/vocab/lite/creator",
-        "1orz-EJl",
+        "2iBx-S88rEA",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "ofefkIjV",
+        "1YiQn_ehZGk",
         "http://bibfra.me/vocab/lite/title",
         "Beware of pity /",
         {}
     ],
     [
-        "ofefkIjV",
+        "1YiQn_ehZGk",
         "http://bibfra.me/vocab/marc/titleStatement",
         "Stefan Zweig ; translated by Phyllis and Trevor Blewitt ; introduction by Joan Acocella.",
         {}
     ],
     [
-        "r67rt5_u",
+        "2iBx-S88rEA",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Person",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "2iBx-S88rEA",
+        "http://bibfra.me/vocab/lite/date",
+        "1881-1942",
+        {}
+    ],
+    [
+        "2iBx-S88rEA",
+        "http://bibfra.me/vocab/lite/name",
+        "Zweig, Stefan,",
+        {}
+    ],
+    [
+        "2iBx-S88rEA",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Zweig, Stefan,",
+        {}
+    ],
+    [
+        "2iBx-S88rEA",
+        "http://bibfra.me/vocab/marcext/sf-d",
+        "1881-1942",
+        {}
+    ],
+    [
+        "2iBx-S88rEA",
+        "http://bibfra.me/vocab/marcext/sf-v",
+        "Film adaptations.",
+        {}
+    ],
+    [
+        "KlwrucxxiUE",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "KlwrucxxiUE",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "a_xi4njRSxA",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "KlwrucxxiUE",
+        "http://bibfra.me/vocab/lite/medium",
+        "[videorecording] /",
+        {}
+    ],
+    [
+        "KlwrucxxiUE",
+        "http://bibfra.me/vocab/lite/title",
+        "Letter from an unknown woman",
+        {}
+    ],
+    [
+        "KlwrucxxiUE",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "Melange Pictures ; written by Howard Koch ; produced by John Houseman ; directed by Max Ophuls.",
+        {}
+    ],
+    [
+        "PiTiJBlT5xA",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "PiTiJBlT5xA",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "1YiQn_ehZGk",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "PiTiJBlT5xA",
+        "http://bibfra.me/vocab/lite/title",
+        "Beware of pity /",
+        {}
+    ],
+    [
+        "PiTiJBlT5xA",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "Stefan Zweig ; translated by Phyllis and Trevor Blewitt ; introduction by Joan Acocella.",
+        {}
+    ],
+    [
+        "TKCUKsSagvs",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "TKCUKsSagvs",
+        "http://bibfra.me/vocab/lite/creator",
+        "2iBx-S88rEA",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "TKCUKsSagvs",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Zweig, Stefan,",
+        {}
+    ],
+    [
+        "TKCUKsSagvs",
+        "http://bibfra.me/vocab/marcext/sf-d",
+        "1881-1942",
+        {}
+    ],
+    [
+        "TKCUKsSagvs",
+        "http://bibfra.me/vocab/marcext/sf-v",
+        "Film adaptations.",
+        {}
+    ],
+    [
+        "a_xi4njRSxA",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "a_xi4njRSxA",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/MovingImage",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "a_xi4njRSxA",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/VisualMaterials",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "a_xi4njRSxA",
+        "http://bibfra.me/vocab/lite/genre",
+        "vlRUHyXZjeM",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "a_xi4njRSxA",
+        "http://bibfra.me/vocab/lite/related",
+        "zMka_WgLWLc",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "a_xi4njRSxA",
+        "http://bibfra.me/vocab/lite/subject",
+        "obilT6pWLDA",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "a_xi4njRSxA",
+        "http://bibfra.me/vocab/lite/title",
+        "Letter from an unknown woman",
+        {}
+    ],
+    [
+        "a_xi4njRSxA",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "Melange Pictures ; written by Howard Koch ; produced by John Houseman ; directed by Max Ophuls.",
+        {}
+    ],
+    [
+        "obilT6pWLDA",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "obilT6pWLDA",
+        "http://bibfra.me/vocab/lite/date",
+        "1881-1942",
+        {}
+    ],
+    [
+        "obilT6pWLDA",
+        "http://bibfra.me/vocab/lite/focus",
+        "TKCUKsSagvs",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "obilT6pWLDA",
+        "http://bibfra.me/vocab/lite/name",
+        "Zweig, Stefan,",
+        {}
+    ],
+    [
+        "obilT6pWLDA",
+        "http://bibfra.me/vocab/marc/formSubdivision",
+        "Film adaptations.",
+        {}
+    ],
+    [
+        "obilT6pWLDA",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Zweig, Stefan,",
+        {}
+    ],
+    [
+        "obilT6pWLDA",
+        "http://bibfra.me/vocab/marcext/sf-d",
+        "1881-1942",
+        {}
+    ],
+    [
+        "obilT6pWLDA",
+        "http://bibfra.me/vocab/marcext/sf-v",
+        "Film adaptations.",
+        {}
+    ],
+    [
+        "vlRUHyXZjeM",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Form",
         {
@@ -350,27 +298,79 @@
         }
     ],
     [
-        "r67rt5_u",
+        "vlRUHyXZjeM",
         "http://bibfra.me/vocab/lite/name",
         "Film adaptations.",
         {}
     ],
     [
-        "r67rt5_u",
+        "vlRUHyXZjeM",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Zweig, Stefan,",
         {}
     ],
     [
-        "r67rt5_u",
+        "vlRUHyXZjeM",
         "http://bibfra.me/vocab/marcext/sf-d",
         "1881-1942",
         {}
     ],
     [
-        "r67rt5_u",
+        "vlRUHyXZjeM",
         "http://bibfra.me/vocab/marcext/sf-v",
         "Film adaptations.",
+        {}
+    ],
+    [
+        "zMka_WgLWLc",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "zMka_WgLWLc",
+        "http://bibfra.me/vocab/lite/creator",
+        "2iBx-S88rEA",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "zMka_WgLWLc",
+        "http://bibfra.me/vocab/lite/language",
+        "English.",
+        {}
+    ],
+    [
+        "zMka_WgLWLc",
+        "http://bibfra.me/vocab/lite/title",
+        "Briefe einer Unbekannten.",
+        {}
+    ],
+    [
+        "zMka_WgLWLc",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Zweig, Stefan,",
+        {}
+    ],
+    [
+        "zMka_WgLWLc",
+        "http://bibfra.me/vocab/marcext/sf-d",
+        "1881-1942",
+        {}
+    ],
+    [
+        "zMka_WgLWLc",
+        "http://bibfra.me/vocab/marcext/sf-l",
+        "English.",
+        {}
+    ],
+    [
+        "zMka_WgLWLc",
+        "http://bibfra.me/vocab/marcext/sf-t",
+        "Briefe einer Unbekannten.",
         {}
     ]
 ]

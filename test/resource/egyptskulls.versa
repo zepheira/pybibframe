@@ -1,38 +1,6 @@
 [
     [
-        "4tS4qFK3rfE",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Place",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "4tS4qFK3rfE",
-        "http://bibfra.me/vocab/lite/name",
-        "Oxford :",
-        {}
-    ],
-    [
-        "4tS4qFK3rfE",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Oxford :",
-        {}
-    ],
-    [
-        "4tS4qFK3rfE",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "Archaeopress,",
-        {}
-    ],
-    [
-        "4tS4qFK3rfE",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "2008.",
-        {}
-    ],
-    [
-        "8qp8Dj-7Dk4",
+        "2AdPG1OHaRw",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Topic",
         {
@@ -40,139 +8,39 @@
         }
     ],
     [
-        "8qp8Dj-7Dk4",
+        "2AdPG1OHaRw",
         "http://bibfra.me/vocab/lite/name",
         "History, Ancient",
         {}
     ],
     [
-        "8qp8Dj-7Dk4",
+        "2AdPG1OHaRw",
         "http://bibfra.me/vocab/marcext/sf-a",
         "History, Ancient",
         {}
     ],
     [
-        "B_aVlUwZgvU",
+        "3xtu_Y2ZUUM",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Agent",
+        "http://bibfra.me/vocab/lite/Topic",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "B_aVlUwZgvU",
+        "3xtu_Y2ZUUM",
         "http://bibfra.me/vocab/lite/name",
-        "Archaeopress,",
+        "Skull",
         {}
     ],
     [
-        "B_aVlUwZgvU",
+        "3xtu_Y2ZUUM",
         "http://bibfra.me/vocab/marcext/sf-a",
-        "Oxford :",
+        "Skull",
         {}
     ],
     [
-        "B_aVlUwZgvU",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "Archaeopress,",
-        {}
-    ],
-    [
-        "B_aVlUwZgvU",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "2008.",
-        {}
-    ],
-    [
-        "Bg4KvcePpQI",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/ProviderEvent",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "Bg4KvcePpQI",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "B_aVlUwZgvU",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "Bg4KvcePpQI",
-        "http://bibfra.me/vocab/lite/providerDate",
-        "2008.",
-        {}
-    ],
-    [
-        "Bg4KvcePpQI",
-        "http://bibfra.me/vocab/lite/providerPlace",
-        "4tS4qFK3rfE",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "Bg4KvcePpQI",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Oxford :",
-        {}
-    ],
-    [
-        "Bg4KvcePpQI",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "Archaeopress,",
-        {}
-    ],
-    [
-        "Bg4KvcePpQI",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "2008.",
-        {}
-    ],
-    [
-        "G7ZieF7idHQ",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Concept",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "G7ZieF7idHQ",
-        "http://bibfra.me/vocab/lite/focus",
-        "yYmLxHvJtA0",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "G7ZieF7idHQ",
-        "http://bibfra.me/vocab/lite/name",
-        "Diet",
-        {}
-    ],
-    [
-        "G7ZieF7idHQ",
-        "http://bibfra.me/vocab/marc/generalSubdivision",
-        "history",
-        {}
-    ],
-    [
-        "G7ZieF7idHQ",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Diet",
-        {}
-    ],
-    [
-        "G7ZieF7idHQ",
-        "http://bibfra.me/vocab/marcext/sf-x",
-        "history",
-        {}
-    ],
-    [
-        "GXMm_0p8qzU",
+        "6iyYLE8Rijc",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
         {
@@ -180,293 +48,83 @@
         }
     ],
     [
-        "GXMm_0p8qzU",
+        "6iyYLE8Rijc",
         "http://bibfra.me/vocab/lite/controlCode",
         "1481333",
         {}
     ],
     [
-        "GXMm_0p8qzU",
+        "6iyYLE8Rijc",
         "http://bibfra.me/vocab/lite/dimensions",
         "30 cm.",
         {}
     ],
     [
-        "GXMm_0p8qzU",
+        "6iyYLE8Rijc",
         "http://bibfra.me/vocab/lite/extent",
         "143 p. :",
         {}
     ],
     [
-        "GXMm_0p8qzU",
+        "6iyYLE8Rijc",
         "http://bibfra.me/vocab/lite/instantiates",
-        "tWtAfYU-fBo",
+        "Gnw-hX1Aa7U",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "GXMm_0p8qzU",
+        "6iyYLE8Rijc",
         "http://bibfra.me/vocab/lite/title",
         "An appraisal of the skulls and dentition of ancient Egyptians :",
         {}
     ],
     [
-        "GXMm_0p8qzU",
+        "6iyYLE8Rijc",
         "http://bibfra.me/vocab/marc/bibliographyNote",
         "Includes bibliographical references (p. 137-143).",
         {}
     ],
     [
-        "GXMm_0p8qzU",
+        "6iyYLE8Rijc",
         "http://bibfra.me/vocab/marc/contentsNote",
         "The medical papyri -- Geography, climate and diet in ancient Egypt and the consequential medical conditions -- The title of dentist in ancient egyptian history and conflicting evidence of the practice of restorative dentistry -- Previous dental examinations of ancient skeletal and mummified material -- Materials and methods -- Results -- Discussion .",
         {}
     ],
     [
-        "GXMm_0p8qzU",
+        "6iyYLE8Rijc",
         "http://bibfra.me/vocab/marc/isbn",
         "9781407302829",
         {}
     ],
     [
-        "GXMm_0p8qzU",
+        "6iyYLE8Rijc",
         "http://bibfra.me/vocab/marc/otherPhysicalDetails",
         "ill. ;",
         {}
     ],
     [
-        "GXMm_0p8qzU",
+        "6iyYLE8Rijc",
         "http://bibfra.me/vocab/marc/publication",
-        "Bg4KvcePpQI",
+        "qi-_NZ2RwuE",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "GXMm_0p8qzU",
+        "6iyYLE8Rijc",
         "http://bibfra.me/vocab/marc/titleRemainder",
         "highlighting the pathology and speculating on the influence of diet and environment /",
         {}
     ],
     [
-        "GXMm_0p8qzU",
+        "6iyYLE8Rijc",
         "http://bibfra.me/vocab/marc/titleStatement",
         "Judith Miller.",
         {}
     ],
     [
-        "LiieZf4EXC0",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "LiieZf4EXC0",
-        "http://bibfra.me/vocab/lite/name",
-        "Tooth Diseases",
-        {}
-    ],
-    [
-        "LiieZf4EXC0",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Tooth Diseases",
-        {}
-    ],
-    [
-        "LiieZf4EXC0",
-        "http://bibfra.me/vocab/marcext/sf-x",
-        "history",
-        {}
-    ],
-    [
-        "QWCAEFyUEBU",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Concept",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "QWCAEFyUEBU",
-        "http://bibfra.me/vocab/lite/focus",
-        "mZ1QwzZJm5o",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "QWCAEFyUEBU",
-        "http://bibfra.me/vocab/lite/name",
-        "Egypt",
-        {}
-    ],
-    [
-        "QWCAEFyUEBU",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Egypt",
-        {}
-    ],
-    [
-        "TIspdsZicgM",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Concept",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "TIspdsZicgM",
-        "http://bibfra.me/vocab/lite/focus",
-        "XT9ebNRypbM",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "TIspdsZicgM",
-        "http://bibfra.me/vocab/lite/name",
-        "Skull",
-        {}
-    ],
-    [
-        "TIspdsZicgM",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Skull",
-        {}
-    ],
-    [
-        "Ujk1FYQy1LY",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Concept",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "Ujk1FYQy1LY",
-        "http://bibfra.me/vocab/lite/focus",
-        "XV4cbG-geI8",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "Ujk1FYQy1LY",
-        "http://bibfra.me/vocab/lite/name",
-        "Dentition",
-        {}
-    ],
-    [
-        "Ujk1FYQy1LY",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Dentition",
-        {}
-    ],
-    [
-        "XT9ebNRypbM",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "XT9ebNRypbM",
-        "http://bibfra.me/vocab/lite/name",
-        "Skull",
-        {}
-    ],
-    [
-        "XT9ebNRypbM",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Skull",
-        {}
-    ],
-    [
-        "XV4cbG-geI8",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "XV4cbG-geI8",
-        "http://bibfra.me/vocab/lite/name",
-        "Dentition",
-        {}
-    ],
-    [
-        "XV4cbG-geI8",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Dentition",
-        {}
-    ],
-    [
-        "eFoCIaBbxy8",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/marc/Series",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "eFoCIaBbxy8",
-        "http://bibfra.me/vocab/lite/title",
-        "BAR international series ;",
-        {}
-    ],
-    [
-        "eFoCIaBbxy8",
-        "http://bibfra.me/vocab/marc/volume",
-        "1794.",
-        {}
-    ],
-    [
-        "eFoCIaBbxy8",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "BAR international series ;",
-        {}
-    ],
-    [
-        "eFoCIaBbxy8",
-        "http://bibfra.me/vocab/marcext/sf-v",
-        "1794.",
-        {}
-    ],
-    [
-        "jqrCVsDHQoo",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Concept",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "jqrCVsDHQoo",
-        "http://bibfra.me/vocab/lite/focus",
-        "8qp8Dj-7Dk4",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "jqrCVsDHQoo",
-        "http://bibfra.me/vocab/lite/name",
-        "History, Ancient",
-        {}
-    ],
-    [
-        "jqrCVsDHQoo",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "History, Ancient",
-        {}
-    ],
-    [
-        "mZ1QwzZJm5o",
+        "7LNa9WP0c2U",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Place",
         {
@@ -474,419 +132,19 @@
         }
     ],
     [
-        "mZ1QwzZJm5o",
+        "7LNa9WP0c2U",
         "http://bibfra.me/vocab/lite/name",
         "Egypt",
         {}
     ],
     [
-        "mZ1QwzZJm5o",
+        "7LNa9WP0c2U",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Egypt",
         {}
     ],
     [
-        "oLEz3e6-lVA",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Concept",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "oLEz3e6-lVA",
-        "http://bibfra.me/vocab/lite/focus",
-        "LiieZf4EXC0",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "oLEz3e6-lVA",
-        "http://bibfra.me/vocab/lite/name",
-        "Tooth Diseases",
-        {}
-    ],
-    [
-        "oLEz3e6-lVA",
-        "http://bibfra.me/vocab/marc/generalSubdivision",
-        "history",
-        {}
-    ],
-    [
-        "oLEz3e6-lVA",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Tooth Diseases",
-        {}
-    ],
-    [
-        "oLEz3e6-lVA",
-        "http://bibfra.me/vocab/marcext/sf-x",
-        "history",
-        {}
-    ],
-    [
-        "rC79dzRbkUg",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Person",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "rC79dzRbkUg",
-        "http://bibfra.me/vocab/lite/name",
-        "Miller, Judith.",
-        {}
-    ],
-    [
-        "rC79dzRbkUg",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Miller, Judith.",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Work",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/marc/Books",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/marc/LanguageMaterial",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/lite/creator",
-        "rC79dzRbkUg",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/lite/language",
-        "eng",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/lite/language",
-        "eng",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/lite/memberOf",
-        "eFoCIaBbxy8",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/lite/subject",
-        "G7ZieF7idHQ",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/lite/subject",
-        "QWCAEFyUEBU",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/lite/subject",
-        "TIspdsZicgM",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/lite/subject",
-        "Ujk1FYQy1LY",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/lite/subject",
-        "jqrCVsDHQoo",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/lite/subject",
-        "oLEz3e6-lVA",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/lite/title",
-        "An appraisal of the skulls and dentition of ancient Egyptians :",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marc/catalogingSource",
-        "SUC",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marc/deweyNumber",
-        "614.59960932",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marc/illustrations",
-        "illustrations",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marc/index",
-        "no index present",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marc/lcCallNumber",
-        "RK281",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marc/lcItemNumber",
-        ".M55 2008",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marc/literaryForm",
-        "non fiction",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marc/natureOfContents",
-        "bibliography",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marc/nlmCallNumber",
-        "2008 L-006",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marc/nlmCallNumber",
-        "WU 11 HE3",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marc/nlmItemNumber",
-        "M648a 2008",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marc/seriesStatement",
-        "BAR international series ;",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marc/seriesVolume",
-        "1794",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marc/titleRemainder",
-        "highlighting the pathology and speculating on the influence of diet and environment /",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "Judith Miller.",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-005",
-        "20081122072417.0",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-008",
-        "080703s2008    enka     b    000 0 eng d",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-015-XX-2",
-        "bnb",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-015-XX-a",
-        "GBA884764",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-016-7X-2",
-        "Uk",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-016-7X-a",
-        "014654524",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-020-XX-a",
-        "1407302825",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-020-XX-a",
-        "9781407302829",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-035-XX-9",
-        "101481333",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-042-XX-a",
-        "nlmcopyc",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-043-XX-a",
-        "f-ua---",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-044-XX-9",
-        "England",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-992-XX-a",
-        "20081001",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-992-XX-e",
-        "EF",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-992-XX-p",
-        "P3",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-993-XX-a",
-        "KJD",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-993-XX-b",
-        "20081007",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-994-XX-a",
-        "CDN",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-994-XX-b",
-        "20081010",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-995-XX-a",
-        "AUTH",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-995-XX-b",
-        "20081031",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-995-XX-c",
-        "REV",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-995-XX-d",
-        "20081121",
-        {}
-    ],
-    [
-        "tWtAfYU-fBo",
-        "http://bibfra.me/vocab/marcext/tag-999-XX-a",
-        "AUTH",
-        {}
-    ],
-    [
-        "yYmLxHvJtA0",
+        "7YHMA_sG3Eo",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Topic",
         {
@@ -894,21 +152,763 @@
         }
     ],
     [
-        "yYmLxHvJtA0",
+        "7YHMA_sG3Eo",
+        "http://bibfra.me/vocab/lite/name",
+        "Dentition",
+        {}
+    ],
+    [
+        "7YHMA_sG3Eo",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Dentition",
+        {}
+    ],
+    [
+        "9qpSmxZC-BQ",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Place",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "9qpSmxZC-BQ",
+        "http://bibfra.me/vocab/lite/name",
+        "Oxford :",
+        {}
+    ],
+    [
+        "9qpSmxZC-BQ",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Oxford :",
+        {}
+    ],
+    [
+        "9qpSmxZC-BQ",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "Archaeopress,",
+        {}
+    ],
+    [
+        "9qpSmxZC-BQ",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "2008.",
+        {}
+    ],
+    [
+        "FtvjTnmgpi8",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "FtvjTnmgpi8",
+        "http://bibfra.me/vocab/lite/focus",
+        "7LNa9WP0c2U",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "FtvjTnmgpi8",
+        "http://bibfra.me/vocab/lite/name",
+        "Egypt",
+        {}
+    ],
+    [
+        "FtvjTnmgpi8",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Egypt",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/Books",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/LanguageMaterial",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/lite/creator",
+        "Z_uTI_n3LPE",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/lite/language",
+        "eng",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/lite/language",
+        "eng",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/lite/memberOf",
+        "Nxwc-Yw7tak",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/lite/subject",
+        "FtvjTnmgpi8",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/lite/subject",
+        "MHsoi8Epfb0",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/lite/subject",
+        "X3aTU7E5TFk",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/lite/subject",
+        "YusuuwUOaYM",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/lite/subject",
+        "bYlM5La5z6c",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/lite/subject",
+        "pRZfWzvKnBQ",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/lite/title",
+        "An appraisal of the skulls and dentition of ancient Egyptians :",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marc/catalogingSource",
+        "SUC",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marc/deweyNumber",
+        "614.59960932",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marc/illustrations",
+        "illustrations",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marc/index",
+        "no index present",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marc/lcCallNumber",
+        "RK281",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marc/lcItemNumber",
+        ".M55 2008",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marc/literaryForm",
+        "non fiction",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "bibliography",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marc/nlmCallNumber",
+        "2008 L-006",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marc/nlmCallNumber",
+        "WU 11 HE3",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marc/nlmItemNumber",
+        "M648a 2008",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marc/seriesStatement",
+        "BAR international series ;",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marc/seriesVolume",
+        "1794",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marc/titleRemainder",
+        "highlighting the pathology and speculating on the influence of diet and environment /",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "Judith Miller.",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-005",
+        "20081122072417.0",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-008",
+        "080703s2008    enka     b    000 0 eng d",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-015-XX-2",
+        "bnb",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-015-XX-a",
+        "GBA884764",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-016-7X-2",
+        "Uk",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-016-7X-a",
+        "014654524",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-020-XX-a",
+        "1407302825",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-020-XX-a",
+        "9781407302829",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-035-XX-9",
+        "101481333",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-042-XX-a",
+        "nlmcopyc",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-043-XX-a",
+        "f-ua---",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-044-XX-9",
+        "England",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-992-XX-a",
+        "20081001",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-992-XX-e",
+        "EF",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-992-XX-p",
+        "P3",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-993-XX-a",
+        "KJD",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-993-XX-b",
+        "20081007",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-994-XX-a",
+        "CDN",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-994-XX-b",
+        "20081010",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-995-XX-a",
+        "AUTH",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-995-XX-b",
+        "20081031",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-995-XX-c",
+        "REV",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-995-XX-d",
+        "20081121",
+        {}
+    ],
+    [
+        "Gnw-hX1Aa7U",
+        "http://bibfra.me/vocab/marcext/tag-999-XX-a",
+        "AUTH",
+        {}
+    ],
+    [
+        "H0FcEBb7gLc",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Agent",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "H0FcEBb7gLc",
+        "http://bibfra.me/vocab/lite/name",
+        "Archaeopress,",
+        {}
+    ],
+    [
+        "H0FcEBb7gLc",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Oxford :",
+        {}
+    ],
+    [
+        "H0FcEBb7gLc",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "Archaeopress,",
+        {}
+    ],
+    [
+        "H0FcEBb7gLc",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "2008.",
+        {}
+    ],
+    [
+        "MHsoi8Epfb0",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "MHsoi8Epfb0",
+        "http://bibfra.me/vocab/lite/focus",
+        "7YHMA_sG3Eo",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "MHsoi8Epfb0",
+        "http://bibfra.me/vocab/lite/name",
+        "Dentition",
+        {}
+    ],
+    [
+        "MHsoi8Epfb0",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Dentition",
+        {}
+    ],
+    [
+        "Nxwc-Yw7tak",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/Series",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Nxwc-Yw7tak",
+        "http://bibfra.me/vocab/lite/title",
+        "BAR international series ;",
+        {}
+    ],
+    [
+        "Nxwc-Yw7tak",
+        "http://bibfra.me/vocab/marc/volume",
+        "1794.",
+        {}
+    ],
+    [
+        "Nxwc-Yw7tak",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "BAR international series ;",
+        {}
+    ],
+    [
+        "Nxwc-Yw7tak",
+        "http://bibfra.me/vocab/marcext/sf-v",
+        "1794.",
+        {}
+    ],
+    [
+        "PvKuysBwFaI",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "PvKuysBwFaI",
         "http://bibfra.me/vocab/lite/name",
         "Diet",
         {}
     ],
     [
-        "yYmLxHvJtA0",
+        "PvKuysBwFaI",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Diet",
         {}
     ],
     [
-        "yYmLxHvJtA0",
+        "PvKuysBwFaI",
         "http://bibfra.me/vocab/marcext/sf-x",
         "history",
+        {}
+    ],
+    [
+        "X3aTU7E5TFk",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "X3aTU7E5TFk",
+        "http://bibfra.me/vocab/lite/focus",
+        "2AdPG1OHaRw",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "X3aTU7E5TFk",
+        "http://bibfra.me/vocab/lite/name",
+        "History, Ancient",
+        {}
+    ],
+    [
+        "X3aTU7E5TFk",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "History, Ancient",
+        {}
+    ],
+    [
+        "YusuuwUOaYM",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "YusuuwUOaYM",
+        "http://bibfra.me/vocab/lite/focus",
+        "PvKuysBwFaI",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "YusuuwUOaYM",
+        "http://bibfra.me/vocab/lite/name",
+        "Diet",
+        {}
+    ],
+    [
+        "YusuuwUOaYM",
+        "http://bibfra.me/vocab/marc/generalSubdivision",
+        "history",
+        {}
+    ],
+    [
+        "YusuuwUOaYM",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Diet",
+        {}
+    ],
+    [
+        "YusuuwUOaYM",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "history",
+        {}
+    ],
+    [
+        "Z_uTI_n3LPE",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Person",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "Z_uTI_n3LPE",
+        "http://bibfra.me/vocab/lite/name",
+        "Miller, Judith.",
+        {}
+    ],
+    [
+        "Z_uTI_n3LPE",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Miller, Judith.",
+        {}
+    ],
+    [
+        "bYlM5La5z6c",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "bYlM5La5z6c",
+        "http://bibfra.me/vocab/lite/focus",
+        "3xtu_Y2ZUUM",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "bYlM5La5z6c",
+        "http://bibfra.me/vocab/lite/name",
+        "Skull",
+        {}
+    ],
+    [
+        "bYlM5La5z6c",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Skull",
+        {}
+    ],
+    [
+        "gszVnx6AJVw",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "gszVnx6AJVw",
+        "http://bibfra.me/vocab/lite/name",
+        "Tooth Diseases",
+        {}
+    ],
+    [
+        "gszVnx6AJVw",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Tooth Diseases",
+        {}
+    ],
+    [
+        "gszVnx6AJVw",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "history",
+        {}
+    ],
+    [
+        "pRZfWzvKnBQ",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "pRZfWzvKnBQ",
+        "http://bibfra.me/vocab/lite/focus",
+        "gszVnx6AJVw",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "pRZfWzvKnBQ",
+        "http://bibfra.me/vocab/lite/name",
+        "Tooth Diseases",
+        {}
+    ],
+    [
+        "pRZfWzvKnBQ",
+        "http://bibfra.me/vocab/marc/generalSubdivision",
+        "history",
+        {}
+    ],
+    [
+        "pRZfWzvKnBQ",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Tooth Diseases",
+        {}
+    ],
+    [
+        "pRZfWzvKnBQ",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "history",
+        {}
+    ],
+    [
+        "qi-_NZ2RwuE",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/ProviderEvent",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "qi-_NZ2RwuE",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "H0FcEBb7gLc",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "qi-_NZ2RwuE",
+        "http://bibfra.me/vocab/lite/providerDate",
+        "2008.",
+        {}
+    ],
+    [
+        "qi-_NZ2RwuE",
+        "http://bibfra.me/vocab/lite/providerPlace",
+        "9qpSmxZC-BQ",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "qi-_NZ2RwuE",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Oxford :",
+        {}
+    ],
+    [
+        "qi-_NZ2RwuE",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "Archaeopress,",
+        {}
+    ],
+    [
+        "qi-_NZ2RwuE",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "2008.",
         {}
     ]
 ]

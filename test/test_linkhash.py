@@ -4,7 +4,7 @@ import base64
 import pytest
 import mmh3
 
-from datachef.ids import simple_hashstring
+from bibframe.contrib.datachefids import simple_hashstring
 
 
 RESOURCE_ID_CASES = [

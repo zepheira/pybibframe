@@ -405,7 +405,11 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
             for el in unique(ctx):
                 if el is None: continue
                 if isinstance(el, tuple) and el[1] is None: continue
-                computed_unique.append(el)
+
+                if isinstance(el, list): # may help minimize id changes in the future
+                    computed_unique.extend(el)
+                else:
+                    computed_unique.append(el)
             
         #objid = ctx.idgen(_typ, unique=computed_unique, existing_ids=ctx.existing_ids)
 

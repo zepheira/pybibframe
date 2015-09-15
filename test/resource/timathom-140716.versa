@@ -1,104 +1,6 @@
 [
     [
-        "5fhHqVxpLBU",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "5fhHqVxpLBU",
-        "http://bibfra.me/vocab/lite/name",
-        "Painting, Chinese",
-        {}
-    ],
-    [
-        "5fhHqVxpLBU",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Painting, Chinese",
-        {}
-    ],
-    [
-        "5fhHqVxpLBU",
-        "http://bibfra.me/vocab/marcext/sf-x",
-        "Technique.",
-        {}
-    ],
-    [
-        "EgE4J10aMMw",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Work",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "EgE4J10aMMw",
-        "http://bibfra.me/vocab/marcext/tag-004",
-        "8049321",
-        {}
-    ],
-    [
-        "EgE4J10aMMw",
-        "http://bibfra.me/vocab/marcext/tag-005",
-        "20140401115121.0",
-        {}
-    ],
-    [
-        "EgE4J10aMMw",
-        "http://bibfra.me/vocab/marcext/tag-008",
-        "1404014u    8   1001uu   0901128",
-        {}
-    ],
-    [
-        "EgE4J10aMMw",
-        "http://bibfra.me/vocab/marcext/tag-852-8X-b",
-        "gax",
-        {}
-    ],
-    [
-        "EgE4J10aMMw",
-        "http://bibfra.me/vocab/marcext/tag-852-8X-c",
-        "Oversize",
-        {}
-    ],
-    [
-        "EgE4J10aMMw",
-        "http://bibfra.me/vocab/marcext/tag-852-8X-h",
-        "2014-0016Q",
-        {}
-    ],
-    [
-        "EgE4J10aMMw",
-        "http://bibfra.me/vocab/marcext/tag-866-X0-a",
-        "[1]-[5]",
-        {}
-    ],
-    [
-        "JN8Q1myJ2l4",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Work",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "JN8Q1myJ2l4",
-        "http://bibfra.me/vocab/lite/authorityLink",
-        "http://bibfra.me/vocab/marcext/authrec/8175356",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "JN8Q1myJ2l4",
-        "http://bibfra.me/vocab/marcext/sf-w",
-        "8175356",
-        {}
-    ],
-    [
-        "KA-6qPIFmzY",
+        "3R2XVmb4nyE",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Person",
         {
@@ -106,233 +8,75 @@
         }
     ],
     [
-        "KA-6qPIFmzY",
+        "3R2XVmb4nyE",
         "http://bibfra.me/vocab/lite/date",
         "active 1677-1705.",
         {}
     ],
     [
-        "KA-6qPIFmzY",
+        "3R2XVmb4nyE",
         "http://bibfra.me/vocab/lite/date",
         "active 1677-1705.",
         {}
     ],
     [
-        "KA-6qPIFmzY",
+        "3R2XVmb4nyE",
         "http://bibfra.me/vocab/lite/name",
         "Wang, Gai,",
         {}
     ],
     [
-        "KA-6qPIFmzY",
+        "3R2XVmb4nyE",
         "http://bibfra.me/vocab/lite/name",
         "\u738b\u69e9,",
         {}
     ],
     [
-        "KA-6qPIFmzY",
+        "3R2XVmb4nyE",
         "http://bibfra.me/vocab/marcext/sf-6",
         "100-01",
         {}
     ],
     [
-        "KA-6qPIFmzY",
+        "3R2XVmb4nyE",
         "http://bibfra.me/vocab/marcext/sf-6",
         "880-01",
         {}
     ],
     [
-        "KA-6qPIFmzY",
+        "3R2XVmb4nyE",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Wang, Gai,",
         {}
     ],
     [
-        "KA-6qPIFmzY",
+        "3R2XVmb4nyE",
         "http://bibfra.me/vocab/marcext/sf-a",
         "\u738b\u69e9,",
         {}
     ],
     [
-        "KA-6qPIFmzY",
+        "3R2XVmb4nyE",
         "http://bibfra.me/vocab/marcext/sf-d",
         "active 1677-1705.",
         {}
     ],
     [
-        "KA-6qPIFmzY",
+        "3R2XVmb4nyE",
         "http://bibfra.me/vocab/marcext/sf-d",
         "active 1677-1705.",
         {}
     ],
     [
-        "LVOiMkBgoYo",
+        "3lvogQ4j86Q",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/ProviderEvent",
+        "http://bibfra.me/vocab/lite/Collection",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "LVOiMkBgoYo",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "oXjtGzuoE2Y",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "LVOiMkBgoYo",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "oXjtGzuoE2Y",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "LVOiMkBgoYo",
-        "http://bibfra.me/vocab/lite/providerDate",
-        "Qing Kangxi, between 1679 and 1722]",
-        {}
-    ],
-    [
-        "LVOiMkBgoYo",
-        "http://bibfra.me/vocab/lite/providerDate",
-        "\u6e05\u5eb7\u7199, between 1679 and 1722]",
-        {}
-    ],
-    [
-        "LVOiMkBgoYo",
-        "http://bibfra.me/vocab/lite/providerPlace",
-        "pijafWgaIH8",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "LVOiMkBgoYo",
-        "http://bibfra.me/vocab/marcext/sf-6",
-        "260-04",
-        {}
-    ],
-    [
-        "LVOiMkBgoYo",
-        "http://bibfra.me/vocab/marcext/sf-6",
-        "880-04",
-        {}
-    ],
-    [
-        "LVOiMkBgoYo",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "[China :",
-        {}
-    ],
-    [
-        "LVOiMkBgoYo",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "[China :",
-        {}
-    ],
-    [
-        "LVOiMkBgoYo",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "s.n.,",
-        {}
-    ],
-    [
-        "LVOiMkBgoYo",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "s.n.,",
-        {}
-    ],
-    [
-        "LVOiMkBgoYo",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "Qing Kangxi, between 1679 and 1722]",
-        {}
-    ],
-    [
-        "LVOiMkBgoYo",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "\u6e05\u5eb7\u7199, between 1679 and 1722]",
-        {}
-    ],
-    [
-        "Lrm-QOl0eDY",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Concept",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "Lrm-QOl0eDY",
-        "http://bibfra.me/vocab/lite/focus",
-        "PYB3thUwH5w",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "Lrm-QOl0eDY",
-        "http://bibfra.me/vocab/lite/name",
-        "Painting",
-        {}
-    ],
-    [
-        "Lrm-QOl0eDY",
-        "http://bibfra.me/vocab/marc/generalSubdivision",
-        "Technique.",
-        {}
-    ],
-    [
-        "Lrm-QOl0eDY",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Painting",
-        {}
-    ],
-    [
-        "Lrm-QOl0eDY",
-        "http://bibfra.me/vocab/marcext/sf-x",
-        "Technique.",
-        {}
-    ],
-    [
-        "PYB3thUwH5w",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Topic",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "PYB3thUwH5w",
-        "http://bibfra.me/vocab/lite/name",
-        "Painting",
-        {}
-    ],
-    [
-        "PYB3thUwH5w",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Painting",
-        {}
-    ],
-    [
-        "PYB3thUwH5w",
-        "http://bibfra.me/vocab/marcext/sf-x",
-        "Technique.",
-        {}
-    ],
-    [
-        "Vem9bt1eB2A",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Work",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "Vem9bt1eB2A",
+        "3lvogQ4j86Q",
         "http://bibfra.me/vocab/lite/authorityLink",
         "http://bibfra.me/vocab/marcext/authrec/8175353",
         {
@@ -340,299 +84,13 @@
         }
     ],
     [
-        "Vem9bt1eB2A",
+        "3lvogQ4j86Q",
         "http://bibfra.me/vocab/marcext/sf-w",
         "8175353",
         {}
     ],
     [
-        "XBH-CN8O5Mg",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "XBH-CN8O5Mg",
-        "http://bibfra.me/vocab/lite/controlCode",
-        "7979037",
-        {}
-    ],
-    [
-        "XBH-CN8O5Mg",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "EgE4J10aMMw",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/lite/controlCode",
-        "8049321",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/lite/dimensions",
-        "29 cm.",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/lite/extent",
-        "5 v. :",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "i3sBw7Dkcv4",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/lite/note",
-        "In case.",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/lite/note",
-        "On double leaves, East Asian binding.",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/lite/note",
-        "\u5c01\u9762\u984c: \"\u674e\u7b20\u7fc1\u5148\u751f\u8ad6\u5b9a \u7e61\u6c34\u738b\u5b89\u7bc0\u6479\u53e4 \u82a5\u5b50\u5712\u756b\u50b3 \u672c\u8859\u85cf\u677f\", \"\u756b\u50b3\u4e8c\u96c6\u862d\u7af9\u6885\u83ca\u8b5c\u5df2\u51fa \u4e09\u96c6\u7fce\u6bdb\u8349\u87f2\u82b1\u5349\u8b5c\u5df2\u51fa\".",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/lite/note",
-        "\u5eb7\u7199\u5341\u516b\u5e74(1679)\u7b20\u7fc1\u674e\u6f01\u300a\u5e8f\u300b.",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/lite/note",
-        "\u66f8\u540d\u53ca\u8457\u8005\u64da\u5c01\u9762. \u738b\u69e9, \u5b57\u5b89\u7bc0.",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/lite/note",
-        "\u684622.5 x 14.7\u516c\u5206, 9\u884c20\u5b57, \u767d\u53e3, \u56db\u5468\u55ae\u908a, \u55ae\u9ed1\u9b5a\u5c3e, \u7248\u5fc3\u4e0a\u942b\"\u82a5\u5b50\u5712\u753b\u50b3\", \u4e2d\u942b\u5377\u6b21.",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/lite/title",
-        "Jie zi yuan hua zhuan :",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/lite/title",
-        "\u82a5\u5b50\u5712\u756b\u50b3 :",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "1.",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "1.",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "2.",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "2.",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "3.",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "3.",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "4.",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "4.",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "5.",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "5.",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Mo fang zhu jia hua pu.",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Qing zai tang hua xue qian shuo --",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Ren wu wu yu pu --",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Shan shi pu --",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "Shu pu --",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "\u4eba\u7269\u5c4b\u5b87\u8b5c --",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "\u5c71\u77f3\u8b5c --",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "\u6479\u4eff\u8af8\u5bb6\u756b\u8b5c.",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "\u6a39\u8b5c --",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/contentsNote",
-        "\u9752\u5728\u5802\u756b\u5b78\u6dfa\u8aaa --",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/edition",
-        "[Cai se tao yin ben].",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/edition",
-        "[\u5f69\u8272\u5957\u5370\u672c].",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/otherPhysicalDetails",
-        "ill. ;",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/publication",
-        "LVOiMkBgoYo",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/systemControlNumber",
-        "(OCoLC)31983844",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/systemControlNumber",
-        "(OCoLC)ocm31983844",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/titleRemainder",
-        "\u4e94\u5377 /",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/titleRemainder",
-        "wu juan /",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "Wang Anjie mo gu.",
-        {}
-    ],
-    [
-        "_JP-29GTl5M",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "\u738b\u5b89\u7bc0\u6479\u53e4.",
-        {}
-    ],
-    [
-        "ctg57Zu8ZS8",
+        "Biy2AhoVGTc",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Concept",
         {
@@ -640,619 +98,111 @@
         }
     ],
     [
-        "ctg57Zu8ZS8",
+        "Biy2AhoVGTc",
         "http://bibfra.me/vocab/lite/focus",
-        "5fhHqVxpLBU",
+        "M90c05WhZ7w",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "ctg57Zu8ZS8",
-        "http://bibfra.me/vocab/lite/name",
-        "Painting, Chinese",
-        {}
-    ],
-    [
-        "ctg57Zu8ZS8",
-        "http://bibfra.me/vocab/marc/generalSubdivision",
-        "Technique.",
-        {}
-    ],
-    [
-        "ctg57Zu8ZS8",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Painting, Chinese",
-        {}
-    ],
-    [
-        "ctg57Zu8ZS8",
-        "http://bibfra.me/vocab/marcext/sf-x",
-        "Technique.",
-        {}
-    ],
-    [
-        "dvfeGt1WKmo",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Concept",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "dvfeGt1WKmo",
-        "http://bibfra.me/vocab/lite/focus",
-        "scGh3XN3miQ",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "dvfeGt1WKmo",
+        "Biy2AhoVGTc",
         "http://bibfra.me/vocab/lite/name",
         "Zi bu",
         {}
     ],
     [
-        "dvfeGt1WKmo",
+        "Biy2AhoVGTc",
         "http://bibfra.me/vocab/lite/name",
         "\u5b50\u90e8",
         {}
     ],
     [
-        "dvfeGt1WKmo",
+        "Biy2AhoVGTc",
         "http://bibfra.me/vocab/marc/generalSubdivision",
         "Hua pu.",
         {}
     ],
     [
-        "dvfeGt1WKmo",
+        "Biy2AhoVGTc",
         "http://bibfra.me/vocab/marc/generalSubdivision",
         "Yi shu lei",
         {}
     ],
     [
-        "dvfeGt1WKmo",
+        "Biy2AhoVGTc",
         "http://bibfra.me/vocab/marc/generalSubdivision",
         "\u756b\u8b5c.",
         {}
     ],
     [
-        "dvfeGt1WKmo",
+        "Biy2AhoVGTc",
         "http://bibfra.me/vocab/marc/generalSubdivision",
         "\u85dd\u8853\u985e",
         {}
     ],
     [
-        "dvfeGt1WKmo",
+        "Biy2AhoVGTc",
         "http://bibfra.me/vocab/marcext/sf-2",
         "sk",
         {}
     ],
     [
-        "dvfeGt1WKmo",
+        "Biy2AhoVGTc",
         "http://bibfra.me/vocab/marcext/sf-2",
         "sk",
         {}
     ],
     [
-        "dvfeGt1WKmo",
+        "Biy2AhoVGTc",
         "http://bibfra.me/vocab/marcext/sf-6",
         "650-06",
         {}
     ],
     [
-        "dvfeGt1WKmo",
+        "Biy2AhoVGTc",
         "http://bibfra.me/vocab/marcext/sf-6",
         "880-06",
         {}
     ],
     [
-        "dvfeGt1WKmo",
+        "Biy2AhoVGTc",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Zi bu",
         {}
     ],
     [
-        "dvfeGt1WKmo",
+        "Biy2AhoVGTc",
         "http://bibfra.me/vocab/marcext/sf-a",
         "\u5b50\u90e8",
         {}
     ],
     [
-        "dvfeGt1WKmo",
+        "Biy2AhoVGTc",
         "http://bibfra.me/vocab/marcext/sf-x",
         "Hua pu.",
         {}
     ],
     [
-        "dvfeGt1WKmo",
+        "Biy2AhoVGTc",
         "http://bibfra.me/vocab/marcext/sf-x",
         "Yi shu lei",
         {}
     ],
     [
-        "dvfeGt1WKmo",
+        "Biy2AhoVGTc",
         "http://bibfra.me/vocab/marcext/sf-x",
         "\u756b\u8b5c.",
         {}
     ],
     [
-        "dvfeGt1WKmo",
+        "Biy2AhoVGTc",
         "http://bibfra.me/vocab/marcext/sf-x",
         "\u85dd\u8853\u985e",
         {}
     ],
     [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Work",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/marc/Books",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/marc/LanguageMaterial",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/lite/contributor",
-        "n5UfDvGnTCc",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/lite/creator",
-        "KA-6qPIFmzY",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/lite/language",
-        "chi",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/lite/related",
-        "JN8Q1myJ2l4",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/lite/related",
-        "Vem9bt1eB2A",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/lite/subject",
-        "Lrm-QOl0eDY",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/lite/subject",
-        "ctg57Zu8ZS8",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/lite/subject",
-        "dvfeGt1WKmo",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/lite/title",
-        "Jie zi yuan hua zhuan :",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/lite/title",
-        "\u82a5\u5b50\u5712\u756b\u50b3 :",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marc/catalogingSource",
-        "ZCA",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marc/illustrations",
-        "illustrations",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marc/index",
-        "no index present",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marc/literaryForm",
-        "non fiction",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marc/titleRemainder",
-        "\u4e94\u5377 /",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marc/titleRemainder",
-        "wu juan /",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "Wang Anjie mo gu.",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "\u738b\u5b89\u7bc0\u6479\u53e4.",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marcext/tag-005",
-        "20140401094028.0",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marcext/tag-008",
-        "930514q16791722cc a          000 0 chi d",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marcext/tag-043-XX-a",
-        "a-cc---",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marcext/tag-541-XX-5",
-        "NjP",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marcext/tag-541-XX-c",
-        "Purchase;",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marcext/tag-541-XX-d",
-        "1958.",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marcext/tag-797-2X-a",
-        "CHRBD.",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marcext/tag-880-XX-6",
-        "500-00",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marcext/tag-880-XX-6",
-        "500-00",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marcext/tag-880-XX-6",
-        "500-00",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marcext/tag-880-XX-6",
-        "500-00",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marcext/tag-880-XX-a",
-        "\u5c01\u9762\u984c: \"\u674e\u7b20\u7fc1\u5148\u751f\u8ad6\u5b9a \u7e61\u6c34\u738b\u5b89\u7bc0\u6479\u53e4 \u82a5\u5b50\u5712\u756b\u50b3 \u672c\u8859\u85cf\u677f\", \"\u756b\u50b3\u4e8c\u96c6\u862d\u7af9\u6885\u83ca\u8b5c\u5df2\u51fa \u4e09\u96c6\u7fce\u6bdb\u8349\u87f2\u82b1\u5349\u8b5c\u5df2\u51fa\".",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marcext/tag-880-XX-a",
-        "\u5eb7\u7199\u5341\u516b\u5e74(1679)\u7b20\u7fc1\u674e\u6f01\u300a\u5e8f\u300b.",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marcext/tag-880-XX-a",
-        "\u66f8\u540d\u53ca\u8457\u8005\u64da\u5c01\u9762. \u738b\u69e9, \u5b57\u5b89\u7bc0.",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marcext/tag-880-XX-a",
-        "\u684622.5 x 14.7\u516c\u5206, 9\u884c20\u5b57, \u767d\u53e3, \u56db\u5468\u55ae\u908a, \u55ae\u9ed1\u9b5a\u5c3e, \u7248\u5fc3\u4e0a\u942b\"\u82a5\u5b50\u5712\u753b\u50b3\", \u4e2d\u942b\u5377\u6b21.",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/marcext/tag-999-XX-a",
-        "8049321",
-        {}
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/relation/%E8%AB%96%E5%AE%9A",
-        "n5UfDvGnTCc",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "i3sBw7Dkcv4",
-        "http://bibfra.me/vocab/relation/lunding",
-        "n5UfDvGnTCc",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "n5UfDvGnTCc",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Person",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "n5UfDvGnTCc",
-        "http://bibfra.me/vocab/lite/date",
-        "1611-1680?,",
-        {}
-    ],
-    [
-        "n5UfDvGnTCc",
-        "http://bibfra.me/vocab/lite/date",
-        "1611-1680?,",
-        {}
-    ],
-    [
-        "n5UfDvGnTCc",
-        "http://bibfra.me/vocab/lite/name",
-        "Li, Yu,",
-        {}
-    ],
-    [
-        "n5UfDvGnTCc",
-        "http://bibfra.me/vocab/lite/name",
-        "\u674e\u6f01,",
-        {}
-    ],
-    [
-        "n5UfDvGnTCc",
-        "http://bibfra.me/vocab/marcext/sf-6",
-        "700-07",
-        {}
-    ],
-    [
-        "n5UfDvGnTCc",
-        "http://bibfra.me/vocab/marcext/sf-6",
-        "880-07",
-        {}
-    ],
-    [
-        "n5UfDvGnTCc",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Li, Yu,",
-        {}
-    ],
-    [
-        "n5UfDvGnTCc",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "\u674e\u6f01,",
-        {}
-    ],
-    [
-        "n5UfDvGnTCc",
-        "http://bibfra.me/vocab/marcext/sf-d",
-        "1611-1680?,",
-        {}
-    ],
-    [
-        "n5UfDvGnTCc",
-        "http://bibfra.me/vocab/marcext/sf-d",
-        "1611-1680?,",
-        {}
-    ],
-    [
-        "n5UfDvGnTCc",
-        "http://bibfra.me/vocab/marcext/sf-e",
-        "\u8ad6\u5b9a.",
-        {}
-    ],
-    [
-        "n5UfDvGnTCc",
-        "http://bibfra.me/vocab/marcext/sf-e",
-        "lun ding.",
-        {}
-    ],
-    [
-        "oXjtGzuoE2Y",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Agent",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "oXjtGzuoE2Y",
-        "http://bibfra.me/vocab/lite/name",
-        "s.n.,",
-        {}
-    ],
-    [
-        "oXjtGzuoE2Y",
-        "http://bibfra.me/vocab/marcext/sf-6",
-        "260-04",
-        {}
-    ],
-    [
-        "oXjtGzuoE2Y",
-        "http://bibfra.me/vocab/marcext/sf-6",
-        "880-04",
-        {}
-    ],
-    [
-        "oXjtGzuoE2Y",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "[China :",
-        {}
-    ],
-    [
-        "oXjtGzuoE2Y",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "[China :",
-        {}
-    ],
-    [
-        "oXjtGzuoE2Y",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "s.n.,",
-        {}
-    ],
-    [
-        "oXjtGzuoE2Y",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "s.n.,",
-        {}
-    ],
-    [
-        "oXjtGzuoE2Y",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "Qing Kangxi, between 1679 and 1722]",
-        {}
-    ],
-    [
-        "oXjtGzuoE2Y",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "\u6e05\u5eb7\u7199, between 1679 and 1722]",
-        {}
-    ],
-    [
-        "pijafWgaIH8",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Place",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "pijafWgaIH8",
-        "http://bibfra.me/vocab/lite/name",
-        "[China :",
-        {}
-    ],
-    [
-        "pijafWgaIH8",
-        "http://bibfra.me/vocab/lite/name",
-        "[China :",
-        {}
-    ],
-    [
-        "pijafWgaIH8",
-        "http://bibfra.me/vocab/marcext/sf-6",
-        "260-04",
-        {}
-    ],
-    [
-        "pijafWgaIH8",
-        "http://bibfra.me/vocab/marcext/sf-6",
-        "880-04",
-        {}
-    ],
-    [
-        "pijafWgaIH8",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "[China :",
-        {}
-    ],
-    [
-        "pijafWgaIH8",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "[China :",
-        {}
-    ],
-    [
-        "pijafWgaIH8",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "s.n.,",
-        {}
-    ],
-    [
-        "pijafWgaIH8",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "s.n.,",
-        {}
-    ],
-    [
-        "pijafWgaIH8",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "Qing Kangxi, between 1679 and 1722]",
-        {}
-    ],
-    [
-        "pijafWgaIH8",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "\u6e05\u5eb7\u7199, between 1679 and 1722]",
-        {}
-    ],
-    [
-        "scGh3XN3miQ",
+        "CxKfuMEedXg",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Topic",
         {
@@ -1260,75 +210,1171 @@
         }
     ],
     [
-        "scGh3XN3miQ",
+        "CxKfuMEedXg",
+        "http://bibfra.me/vocab/lite/name",
+        "Painting, Chinese",
+        {}
+    ],
+    [
+        "CxKfuMEedXg",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Painting, Chinese",
+        {}
+    ],
+    [
+        "CxKfuMEedXg",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "Technique.",
+        {}
+    ],
+    [
+        "LOmvvXSTG7s",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "LOmvvXSTG7s",
+        "http://bibfra.me/vocab/lite/creator",
+        "_tVe9vGisCU",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "LOmvvXSTG7s",
+        "http://bibfra.me/vocab/marcext/sf-6",
+        "700-07",
+        {}
+    ],
+    [
+        "LOmvvXSTG7s",
+        "http://bibfra.me/vocab/marcext/sf-6",
+        "880-07",
+        {}
+    ],
+    [
+        "LOmvvXSTG7s",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Li, Yu,",
+        {}
+    ],
+    [
+        "LOmvvXSTG7s",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "\u674e\u6f01,",
+        {}
+    ],
+    [
+        "LOmvvXSTG7s",
+        "http://bibfra.me/vocab/marcext/sf-d",
+        "1611-1680?,",
+        {}
+    ],
+    [
+        "LOmvvXSTG7s",
+        "http://bibfra.me/vocab/marcext/sf-d",
+        "1611-1680?,",
+        {}
+    ],
+    [
+        "LOmvvXSTG7s",
+        "http://bibfra.me/vocab/marcext/sf-e",
+        "\u8ad6\u5b9a.",
+        {}
+    ],
+    [
+        "LOmvvXSTG7s",
+        "http://bibfra.me/vocab/marcext/sf-e",
+        "lun ding.",
+        {}
+    ],
+    [
+        "M90c05WhZ7w",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "M90c05WhZ7w",
         "http://bibfra.me/vocab/lite/name",
         "Zi bu",
         {}
     ],
     [
-        "scGh3XN3miQ",
+        "M90c05WhZ7w",
         "http://bibfra.me/vocab/lite/name",
         "\u5b50\u90e8",
         {}
     ],
     [
-        "scGh3XN3miQ",
+        "M90c05WhZ7w",
         "http://bibfra.me/vocab/marcext/sf-2",
         "sk",
         {}
     ],
     [
-        "scGh3XN3miQ",
+        "M90c05WhZ7w",
         "http://bibfra.me/vocab/marcext/sf-2",
         "sk",
         {}
     ],
     [
-        "scGh3XN3miQ",
+        "M90c05WhZ7w",
         "http://bibfra.me/vocab/marcext/sf-6",
         "650-06",
         {}
     ],
     [
-        "scGh3XN3miQ",
+        "M90c05WhZ7w",
         "http://bibfra.me/vocab/marcext/sf-6",
         "880-06",
         {}
     ],
     [
-        "scGh3XN3miQ",
+        "M90c05WhZ7w",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Zi bu",
         {}
     ],
     [
-        "scGh3XN3miQ",
+        "M90c05WhZ7w",
         "http://bibfra.me/vocab/marcext/sf-a",
         "\u5b50\u90e8",
         {}
     ],
     [
-        "scGh3XN3miQ",
+        "M90c05WhZ7w",
         "http://bibfra.me/vocab/marcext/sf-x",
         "Hua pu.",
         {}
     ],
     [
-        "scGh3XN3miQ",
+        "M90c05WhZ7w",
         "http://bibfra.me/vocab/marcext/sf-x",
         "Yi shu lei",
         {}
     ],
     [
-        "scGh3XN3miQ",
+        "M90c05WhZ7w",
         "http://bibfra.me/vocab/marcext/sf-x",
         "\u756b\u8b5c.",
         {}
     ],
     [
-        "scGh3XN3miQ",
+        "M90c05WhZ7w",
         "http://bibfra.me/vocab/marcext/sf-x",
         "\u85dd\u8853\u985e",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "8049321",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/lite/dimensions",
+        "29 cm.",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/lite/extent",
+        "5 v. :",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "_nLksMMBe4s",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/lite/note",
+        "In case.",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/lite/note",
+        "On double leaves, East Asian binding.",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/lite/note",
+        "\u5c01\u9762\u984c: \"\u674e\u7b20\u7fc1\u5148\u751f\u8ad6\u5b9a \u7e61\u6c34\u738b\u5b89\u7bc0\u6479\u53e4 \u82a5\u5b50\u5712\u756b\u50b3 \u672c\u8859\u85cf\u677f\", \"\u756b\u50b3\u4e8c\u96c6\u862d\u7af9\u6885\u83ca\u8b5c\u5df2\u51fa \u4e09\u96c6\u7fce\u6bdb\u8349\u87f2\u82b1\u5349\u8b5c\u5df2\u51fa\".",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/lite/note",
+        "\u5eb7\u7199\u5341\u516b\u5e74(1679)\u7b20\u7fc1\u674e\u6f01\u300a\u5e8f\u300b.",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/lite/note",
+        "\u66f8\u540d\u53ca\u8457\u8005\u64da\u5c01\u9762. \u738b\u69e9, \u5b57\u5b89\u7bc0.",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/lite/note",
+        "\u684622.5 x 14.7\u516c\u5206, 9\u884c20\u5b57, \u767d\u53e3, \u56db\u5468\u55ae\u908a, \u55ae\u9ed1\u9b5a\u5c3e, \u7248\u5fc3\u4e0a\u942b\"\u82a5\u5b50\u5712\u753b\u50b3\", \u4e2d\u942b\u5377\u6b21.",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/lite/title",
+        "Jie zi yuan hua zhuan :",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/lite/title",
+        "\u82a5\u5b50\u5712\u756b\u50b3 :",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "1.",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "1.",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "2.",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "2.",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "3.",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "3.",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "4.",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "4.",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "5.",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "5.",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Mo fang zhu jia hua pu.",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Qing zai tang hua xue qian shuo --",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Ren wu wu yu pu --",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Shan shi pu --",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "Shu pu --",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "\u4eba\u7269\u5c4b\u5b87\u8b5c --",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "\u5c71\u77f3\u8b5c --",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "\u6479\u4eff\u8af8\u5bb6\u756b\u8b5c.",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "\u6a39\u8b5c --",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/contentsNote",
+        "\u9752\u5728\u5802\u756b\u5b78\u6dfa\u8aaa --",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/edition",
+        "[Cai se tao yin ben].",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/edition",
+        "[\u5f69\u8272\u5957\u5370\u672c].",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/otherPhysicalDetails",
+        "ill. ;",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/publication",
+        "exwXVAS9uko",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/systemControlNumber",
+        "(OCoLC)31983844",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/systemControlNumber",
+        "(OCoLC)ocm31983844",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/titleRemainder",
+        "\u4e94\u5377 /",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/titleRemainder",
+        "wu juan /",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "Wang Anjie mo gu.",
+        {}
+    ],
+    [
+        "TrZ_lSfRlOU",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "\u738b\u5b89\u7bc0\u6479\u53e4.",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/Books",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/LanguageMaterial",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/lite/creator",
+        "3R2XVmb4nyE",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/lite/language",
+        "chi",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/lite/related",
+        "3lvogQ4j86Q",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/lite/related",
+        "LOmvvXSTG7s",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/lite/related",
+        "hELHXQY6nG8",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/lite/subject",
+        "Biy2AhoVGTc",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/lite/subject",
+        "c0vX7Pysu9E",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/lite/subject",
+        "wKOU2JrOemQ",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/lite/title",
+        "Jie zi yuan hua zhuan :",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/lite/title",
+        "\u82a5\u5b50\u5712\u756b\u50b3 :",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marc/catalogingSource",
+        "ZCA",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marc/illustrations",
+        "illustrations",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marc/index",
+        "no index present",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marc/literaryForm",
+        "non fiction",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marc/titleRemainder",
+        "\u4e94\u5377 /",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marc/titleRemainder",
+        "wu juan /",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "Wang Anjie mo gu.",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "\u738b\u5b89\u7bc0\u6479\u53e4.",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marcext/tag-005",
+        "20140401094028.0",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marcext/tag-008",
+        "930514q16791722cc a          000 0 chi d",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marcext/tag-043-XX-a",
+        "a-cc---",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marcext/tag-541-XX-5",
+        "NjP",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marcext/tag-541-XX-c",
+        "Purchase;",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marcext/tag-541-XX-d",
+        "1958.",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marcext/tag-797-2X-a",
+        "CHRBD.",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marcext/tag-880-XX-6",
+        "500-00",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marcext/tag-880-XX-6",
+        "500-00",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marcext/tag-880-XX-6",
+        "500-00",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marcext/tag-880-XX-6",
+        "500-00",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marcext/tag-880-XX-a",
+        "\u5c01\u9762\u984c: \"\u674e\u7b20\u7fc1\u5148\u751f\u8ad6\u5b9a \u7e61\u6c34\u738b\u5b89\u7bc0\u6479\u53e4 \u82a5\u5b50\u5712\u756b\u50b3 \u672c\u8859\u85cf\u677f\", \"\u756b\u50b3\u4e8c\u96c6\u862d\u7af9\u6885\u83ca\u8b5c\u5df2\u51fa \u4e09\u96c6\u7fce\u6bdb\u8349\u87f2\u82b1\u5349\u8b5c\u5df2\u51fa\".",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marcext/tag-880-XX-a",
+        "\u5eb7\u7199\u5341\u516b\u5e74(1679)\u7b20\u7fc1\u674e\u6f01\u300a\u5e8f\u300b.",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marcext/tag-880-XX-a",
+        "\u66f8\u540d\u53ca\u8457\u8005\u64da\u5c01\u9762. \u738b\u69e9, \u5b57\u5b89\u7bc0.",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marcext/tag-880-XX-a",
+        "\u684622.5 x 14.7\u516c\u5206, 9\u884c20\u5b57, \u767d\u53e3, \u56db\u5468\u55ae\u908a, \u55ae\u9ed1\u9b5a\u5c3e, \u7248\u5fc3\u4e0a\u942b\"\u82a5\u5b50\u5712\u753b\u50b3\", \u4e2d\u942b\u5377\u6b21.",
+        {}
+    ],
+    [
+        "_nLksMMBe4s",
+        "http://bibfra.me/vocab/marcext/tag-999-XX-a",
+        "8049321",
+        {}
+    ],
+    [
+        "_tVe9vGisCU",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Person",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "_tVe9vGisCU",
+        "http://bibfra.me/vocab/lite/date",
+        "1611-1680?,",
+        {}
+    ],
+    [
+        "_tVe9vGisCU",
+        "http://bibfra.me/vocab/lite/date",
+        "1611-1680?,",
+        {}
+    ],
+    [
+        "_tVe9vGisCU",
+        "http://bibfra.me/vocab/lite/name",
+        "Li, Yu,",
+        {}
+    ],
+    [
+        "_tVe9vGisCU",
+        "http://bibfra.me/vocab/lite/name",
+        "\u674e\u6f01,",
+        {}
+    ],
+    [
+        "_tVe9vGisCU",
+        "http://bibfra.me/vocab/marcext/sf-6",
+        "700-07",
+        {}
+    ],
+    [
+        "_tVe9vGisCU",
+        "http://bibfra.me/vocab/marcext/sf-6",
+        "880-07",
+        {}
+    ],
+    [
+        "_tVe9vGisCU",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Li, Yu,",
+        {}
+    ],
+    [
+        "_tVe9vGisCU",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "\u674e\u6f01,",
+        {}
+    ],
+    [
+        "_tVe9vGisCU",
+        "http://bibfra.me/vocab/marcext/sf-d",
+        "1611-1680?,",
+        {}
+    ],
+    [
+        "_tVe9vGisCU",
+        "http://bibfra.me/vocab/marcext/sf-d",
+        "1611-1680?,",
+        {}
+    ],
+    [
+        "_tVe9vGisCU",
+        "http://bibfra.me/vocab/marcext/sf-e",
+        "\u8ad6\u5b9a.",
+        {}
+    ],
+    [
+        "_tVe9vGisCU",
+        "http://bibfra.me/vocab/marcext/sf-e",
+        "lun ding.",
+        {}
+    ],
+    [
+        "c0vX7Pysu9E",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "c0vX7Pysu9E",
+        "http://bibfra.me/vocab/lite/focus",
+        "CxKfuMEedXg",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "c0vX7Pysu9E",
+        "http://bibfra.me/vocab/lite/name",
+        "Painting, Chinese",
+        {}
+    ],
+    [
+        "c0vX7Pysu9E",
+        "http://bibfra.me/vocab/marc/generalSubdivision",
+        "Technique.",
+        {}
+    ],
+    [
+        "c0vX7Pysu9E",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Painting, Chinese",
+        {}
+    ],
+    [
+        "c0vX7Pysu9E",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "Technique.",
+        {}
+    ],
+    [
+        "exwXVAS9uko",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/ProviderEvent",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "exwXVAS9uko",
+        "http://bibfra.me/vocab/lite/providerAgent",
+        "ugPEf9mrpLQ",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "exwXVAS9uko",
+        "http://bibfra.me/vocab/lite/providerDate",
+        "Qing Kangxi, between 1679 and 1722]",
+        {}
+    ],
+    [
+        "exwXVAS9uko",
+        "http://bibfra.me/vocab/lite/providerDate",
+        "\u6e05\u5eb7\u7199, between 1679 and 1722]",
+        {}
+    ],
+    [
+        "exwXVAS9uko",
+        "http://bibfra.me/vocab/lite/providerPlace",
+        "xiPdf8C8sIo",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "exwXVAS9uko",
+        "http://bibfra.me/vocab/marcext/sf-6",
+        "260-04",
+        {}
+    ],
+    [
+        "exwXVAS9uko",
+        "http://bibfra.me/vocab/marcext/sf-6",
+        "880-04",
+        {}
+    ],
+    [
+        "exwXVAS9uko",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "[China :",
+        {}
+    ],
+    [
+        "exwXVAS9uko",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "[China :",
+        {}
+    ],
+    [
+        "exwXVAS9uko",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "s.n.,",
+        {}
+    ],
+    [
+        "exwXVAS9uko",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "s.n.,",
+        {}
+    ],
+    [
+        "exwXVAS9uko",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "Qing Kangxi, between 1679 and 1722]",
+        {}
+    ],
+    [
+        "exwXVAS9uko",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "\u6e05\u5eb7\u7199, between 1679 and 1722]",
+        {}
+    ],
+    [
+        "fGYfLPnAEmA",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Topic",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "fGYfLPnAEmA",
+        "http://bibfra.me/vocab/lite/name",
+        "Painting",
+        {}
+    ],
+    [
+        "fGYfLPnAEmA",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Painting",
+        {}
+    ],
+    [
+        "fGYfLPnAEmA",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "Technique.",
+        {}
+    ],
+    [
+        "hELHXQY6nG8",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Collection",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "hELHXQY6nG8",
+        "http://bibfra.me/vocab/lite/authorityLink",
+        "http://bibfra.me/vocab/marcext/authrec/8175356",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "hELHXQY6nG8",
+        "http://bibfra.me/vocab/marcext/sf-w",
+        "8175356",
+        {}
+    ],
+    [
+        "sQS_KYWuhY8",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "sQS_KYWuhY8",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "7979037",
+        {}
+    ],
+    [
+        "sQS_KYWuhY8",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "zDAaXSc4ARI",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "ugPEf9mrpLQ",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Agent",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "ugPEf9mrpLQ",
+        "http://bibfra.me/vocab/lite/name",
+        "s.n.,",
+        {}
+    ],
+    [
+        "ugPEf9mrpLQ",
+        "http://bibfra.me/vocab/lite/name",
+        "s.n.,",
+        {}
+    ],
+    [
+        "ugPEf9mrpLQ",
+        "http://bibfra.me/vocab/marcext/sf-6",
+        "260-04",
+        {}
+    ],
+    [
+        "ugPEf9mrpLQ",
+        "http://bibfra.me/vocab/marcext/sf-6",
+        "880-04",
+        {}
+    ],
+    [
+        "ugPEf9mrpLQ",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "[China :",
+        {}
+    ],
+    [
+        "ugPEf9mrpLQ",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "[China :",
+        {}
+    ],
+    [
+        "ugPEf9mrpLQ",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "s.n.,",
+        {}
+    ],
+    [
+        "ugPEf9mrpLQ",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "s.n.,",
+        {}
+    ],
+    [
+        "ugPEf9mrpLQ",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "Qing Kangxi, between 1679 and 1722]",
+        {}
+    ],
+    [
+        "ugPEf9mrpLQ",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "\u6e05\u5eb7\u7199, between 1679 and 1722]",
+        {}
+    ],
+    [
+        "wKOU2JrOemQ",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "wKOU2JrOemQ",
+        "http://bibfra.me/vocab/lite/focus",
+        "fGYfLPnAEmA",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "wKOU2JrOemQ",
+        "http://bibfra.me/vocab/lite/name",
+        "Painting",
+        {}
+    ],
+    [
+        "wKOU2JrOemQ",
+        "http://bibfra.me/vocab/marc/generalSubdivision",
+        "Technique.",
+        {}
+    ],
+    [
+        "wKOU2JrOemQ",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Painting",
+        {}
+    ],
+    [
+        "wKOU2JrOemQ",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "Technique.",
+        {}
+    ],
+    [
+        "xiPdf8C8sIo",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Place",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "xiPdf8C8sIo",
+        "http://bibfra.me/vocab/lite/name",
+        "[China :",
+        {}
+    ],
+    [
+        "xiPdf8C8sIo",
+        "http://bibfra.me/vocab/lite/name",
+        "[China :",
+        {}
+    ],
+    [
+        "xiPdf8C8sIo",
+        "http://bibfra.me/vocab/marcext/sf-6",
+        "260-04",
+        {}
+    ],
+    [
+        "xiPdf8C8sIo",
+        "http://bibfra.me/vocab/marcext/sf-6",
+        "880-04",
+        {}
+    ],
+    [
+        "xiPdf8C8sIo",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "[China :",
+        {}
+    ],
+    [
+        "xiPdf8C8sIo",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "[China :",
+        {}
+    ],
+    [
+        "xiPdf8C8sIo",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "s.n.,",
+        {}
+    ],
+    [
+        "xiPdf8C8sIo",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "s.n.,",
+        {}
+    ],
+    [
+        "xiPdf8C8sIo",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "Qing Kangxi, between 1679 and 1722]",
+        {}
+    ],
+    [
+        "xiPdf8C8sIo",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "\u6e05\u5eb7\u7199, between 1679 and 1722]",
+        {}
+    ],
+    [
+        "zDAaXSc4ARI",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "zDAaXSc4ARI",
+        "http://bibfra.me/vocab/marcext/tag-004",
+        "8049321",
+        {}
+    ],
+    [
+        "zDAaXSc4ARI",
+        "http://bibfra.me/vocab/marcext/tag-005",
+        "20140401115121.0",
+        {}
+    ],
+    [
+        "zDAaXSc4ARI",
+        "http://bibfra.me/vocab/marcext/tag-008",
+        "1404014u    8   1001uu   0901128",
+        {}
+    ],
+    [
+        "zDAaXSc4ARI",
+        "http://bibfra.me/vocab/marcext/tag-852-8X-b",
+        "gax",
+        {}
+    ],
+    [
+        "zDAaXSc4ARI",
+        "http://bibfra.me/vocab/marcext/tag-852-8X-c",
+        "Oversize",
+        {}
+    ],
+    [
+        "zDAaXSc4ARI",
+        "http://bibfra.me/vocab/marcext/tag-852-8X-h",
+        "2014-0016Q",
+        {}
+    ],
+    [
+        "zDAaXSc4ARI",
+        "http://bibfra.me/vocab/marcext/tag-866-X0-a",
+        "[1]-[5]",
         {}
     ]
 ]

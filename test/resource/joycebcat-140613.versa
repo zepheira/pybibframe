@@ -1,90 +1,6 @@
 [
     [
-        "1VVrvJCSflA",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Agent",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "1VVrvJCSflA",
-        "http://bibfra.me/vocab/lite/name",
-        "\u0627\u0644\u0634\u0631\u0648\u0642\u060c",
-        {}
-    ],
-    [
-        "1VVrvJCSflA",
-        "http://bibfra.me/vocab/marcext/sf-6",
-        "260-05/(3/r",
-        {}
-    ],
-    [
-        "1VVrvJCSflA",
-        "http://bibfra.me/vocab/marcext/sf-6",
-        "880-05",
-        {}
-    ],
-    [
-        "1VVrvJCSflA",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "\u02bbAmm\u0101n :",
-        {}
-    ],
-    [
-        "1VVrvJCSflA",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "\u0639\u0645\u0627\u0646 :",
-        {}
-    ],
-    [
-        "1VVrvJCSflA",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "\u0627\u0644\u0634\u0631\u0648\u0642\u060c",
-        {}
-    ],
-    [
-        "1VVrvJCSflA",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "al-Shur\u016bq,",
-        {}
-    ],
-    [
-        "1VVrvJCSflA",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "2003.",
-        {}
-    ],
-    [
-        "1VVrvJCSflA",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "2003.",
-        {}
-    ],
-    [
-        "1XXHt_u82bg",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "1XXHt_u82bg",
-        "http://bibfra.me/vocab/lite/controlCode",
-        "4472570",
-        {}
-    ],
-    [
-        "1XXHt_u82bg",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "VqZQWM0zzdI",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "2TUz7NFuhIM",
+        "0s0zzVhQplY",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
@@ -92,511 +8,43 @@
         }
     ],
     [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/marc/Books",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/marc/LanguageMaterial",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/lite/creator",
-        "k4Xf1reo96Q",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/lite/subject",
-        "bpziMQ2l4HM",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/lite/subject",
-        "kBrcru9fj0w",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/lite/subject",
-        "s1Zzw9nK508",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/lite/title",
-        "\nal-\u1e24ay\u0101h al-iqti\u1e63\u0101d\u012byah f\u012b Mi\u1e63r f\u012b al-\u02bbA\u1e63r al-Maml\u016bk\u012b /\n",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/lite/title",
-        "\u0627\u0644\u062d\u064a\u0627\u0629 \u0627\u0644\u0627\u0642\u062a\u0635\u0627\u062f\u064a\u0629 \u0641\u064a \u0645\u0635\u0631 \u0641\u064a \u0627\u0644\u0639\u0635\u0631 \u0627\u0644\u0645\u0645\u0644\u0648\u0643\u064a /",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marc/catalogingSource",
-        "DLC-R",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marc/governmentPublication",
-        "publication of autonomous or semi autonomous component of government",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marc/illustrations",
-        "maps",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marc/lcCallNumber",
-        "HC830",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marc/lcItemNumber",
-        ".N37 2003",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marc/natureOfContents",
-        "abstracts summaries",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marc/natureOfContents",
-        "directories",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "\u062a\u0623\u0644\u064a\u0641 \u0639\u0627\u0645\u0631 \u0646\u062c\u064a\u0628 \u0645\u0648\u0633\u0649 \u0646\u0627\u0635\u0631.",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "ta\u02bel\u012bf \u02bb\u0100mir Naj\u012bb M\u016bs\u00e1 N\u0101\u1e63ir.",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marc/titleVariation",
-        "Mi\u1e63r",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marc/titleVariation",
-        "\u0645\u0635\u0631",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-005",
-        "20121004091221.0",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-008",
-        "030612s2003 jo ab b 000 0 ara",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-042-XX-a",
-        "lcode",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-042-XX-a",
-        "pcc",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-043-XX-a",
-        "f-ua---",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-066-XX-c",
-        "(3",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-880-12-6",
-        "245-02/(3/r",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-880-12-a",
-        "\u0627\u0644\u062d\u064a\u0627\u0629 \u0627\u0644\u0627\u0642\u062a\u0635\u0627\u062f\u064a\u0629 \u0641\u064a \u0645\u0635\u0631 \u0641\u064a \u0627\u0644\u0639\u0635\u0631 \u0627\u0644\u0645\u0645\u0644\u0648\u0643\u064a /",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-880-12-c",
-        "\u062a\u0623\u0644\u064a\u0641 \u0639\u0627\u0645\u0631 \u0646\u062c\u064a\u0628 \u0645\u0648\u0633\u0649 \u0646\u0627\u0635\u0631.",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-880-1X-6",
-        "100-01/(3/r",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-880-1X-a",
-        "\u0646\u0627\u0635\u0631\u060c \u0639\u0627\u0645\u0631 \u0646\u062c\u064a\u0628 \u0645\u0648\u0633\u0649.",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-880-30-6",
-        "246-03/(3/r",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-880-30-a",
-        "\u0645\u0635\u0631",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-880-XX-6",
-        "250-04/(3/r",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-880-XX-6",
-        "260-05/(3/r",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-880-XX-a",
-        "\u0627\u0644\u0637\u0628\u0639\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629 1.",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-880-XX-a",
-        "\u0639\u0645\u0627\u0646 :",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-880-XX-b",
-        "\u0627\u0644\u0634\u0631\u0648\u0642\u060c",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-880-XX-c",
-        "2003.",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-902-XX-6",
-        "a",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-902-XX-7",
-        "m",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-902-XX-a",
-        "mnc",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-902-XX-b",
-        "l",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-902-XX-d",
-        "v",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-902-XX-e",
-        "20060413",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-902-XX-f",
-        "1",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-904-XX-a",
-        "ay",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-904-XX-b",
-        "a",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-904-XX-c",
-        "b",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-904-XX-e",
-        "20040729",
-        {}
-    ],
-    [
-        "2TUz7NFuhIM",
-        "http://bibfra.me/vocab/marcext/tag-904-XX-h",
-        "m",
-        {}
-    ],
-    [
-        "HnnSIiJA7YQ",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "HnnSIiJA7YQ",
-        "http://bibfra.me/vocab/lite/controlCode",
-        "4208199",
-        {}
-    ],
-    [
-        "HnnSIiJA7YQ",
-        "http://bibfra.me/vocab/lite/dimensions",
-        "24 cm.",
-        {}
-    ],
-    [
-        "HnnSIiJA7YQ",
-        "http://bibfra.me/vocab/lite/extent",
-        "390 p. :",
-        {}
-    ],
-    [
-        "HnnSIiJA7YQ",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "2TUz7NFuhIM",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "HnnSIiJA7YQ",
-        "http://bibfra.me/vocab/lite/title",
-        "\nal-\u1e24ay\u0101h al-iqti\u1e63\u0101d\u012byah f\u012b Mi\u1e63r f\u012b al-\u02bbA\u1e63r al-Maml\u016bk\u012b /\n",
-        {}
-    ],
-    [
-        "HnnSIiJA7YQ",
-        "http://bibfra.me/vocab/lite/title",
-        "\u0627\u0644\u062d\u064a\u0627\u0629 \u0627\u0644\u0627\u0642\u062a\u0635\u0627\u062f\u064a\u0629 \u0641\u064a \u0645\u0635\u0631 \u0641\u064a \u0627\u0644\u0639\u0635\u0631 \u0627\u0644\u0645\u0645\u0644\u0648\u0643\u064a /",
-        {}
-    ],
-    [
-        "HnnSIiJA7YQ",
-        "http://bibfra.me/vocab/marc/bibliographyNote",
-        "Includes bibliographical references (p. 362-377).",
-        {}
-    ],
-    [
-        "HnnSIiJA7YQ",
-        "http://bibfra.me/vocab/marc/edition",
-        "\u0627\u0644\u0637\u0628\u0639\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629 1.",
-        {}
-    ],
-    [
-        "HnnSIiJA7YQ",
-        "http://bibfra.me/vocab/marc/edition",
-        "al-\u1e6cab\u02bbah al-\u02bbArab\u012byah 1.",
-        {}
-    ],
-    [
-        "HnnSIiJA7YQ",
-        "http://bibfra.me/vocab/marc/lccn",
-        "2003345850",
-        {}
-    ],
-    [
-        "HnnSIiJA7YQ",
-        "http://bibfra.me/vocab/marc/otherPhysicalDetails",
-        "ill., maps ;",
-        {}
-    ],
-    [
-        "HnnSIiJA7YQ",
-        "http://bibfra.me/vocab/marc/publication",
-        "n_aVgwDFqYM",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "HnnSIiJA7YQ",
-        "http://bibfra.me/vocab/marc/systemControlNumber",
-        "(CStRLIN)DCLN03-B3360",
-        {}
-    ],
-    [
-        "HnnSIiJA7YQ",
-        "http://bibfra.me/vocab/marc/systemControlNumber",
-        "(OCoLC)52697086",
-        {}
-    ],
-    [
-        "HnnSIiJA7YQ",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "\u062a\u0623\u0644\u064a\u0641 \u0639\u0627\u0645\u0631 \u0646\u062c\u064a\u0628 \u0645\u0648\u0633\u0649 \u0646\u0627\u0635\u0631.",
-        {}
-    ],
-    [
-        "HnnSIiJA7YQ",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "ta\u02bel\u012bf \u02bb\u0100mir Naj\u012bb M\u016bs\u00e1 N\u0101\u1e63ir.",
-        {}
-    ],
-    [
-        "VqZQWM0zzdI",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Work",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "VqZQWM0zzdI",
+        "0s0zzVhQplY",
         "http://bibfra.me/vocab/marcext/tag-004",
         "4208199",
         {}
     ],
     [
-        "VqZQWM0zzdI",
+        "0s0zzVhQplY",
         "http://bibfra.me/vocab/marcext/tag-005",
         "20110310075629.0",
         {}
     ],
     [
-        "VqZQWM0zzdI",
+        "0s0zzVhQplY",
         "http://bibfra.me/vocab/marcext/tag-008",
         "0407294u 8 1001uu 0901128",
         {}
     ],
     [
-        "VqZQWM0zzdI",
+        "0s0zzVhQplY",
         "http://bibfra.me/vocab/marcext/tag-852-0X-b",
         "nec",
         {}
     ],
     [
-        "VqZQWM0zzdI",
+        "0s0zzVhQplY",
         "http://bibfra.me/vocab/marcext/tag-852-0X-h",
         "HC830",
         {}
     ],
     [
-        "VqZQWM0zzdI",
+        "0s0zzVhQplY",
         "http://bibfra.me/vocab/marcext/tag-852-0X-i",
         ".N37 2003",
         {}
     ],
     [
-        "bpziMQ2l4HM",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Concept",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "bpziMQ2l4HM",
-        "http://bibfra.me/vocab/lite/focus",
-        "mZ1QwzZJm5o",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "bpziMQ2l4HM",
-        "http://bibfra.me/vocab/lite/name",
-        "Egypt",
-        {}
-    ],
-    [
-        "bpziMQ2l4HM",
-        "http://bibfra.me/vocab/marc/generalSubdivision",
-        "Economic conditions.",
-        {}
-    ],
-    [
-        "bpziMQ2l4HM",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Egypt",
-        {}
-    ],
-    [
-        "bpziMQ2l4HM",
-        "http://bibfra.me/vocab/marcext/sf-x",
-        "Economic conditions.",
-        {}
-    ],
-    [
-        "j2HPRwfrlGg",
+        "1bgCiu04r0Y",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Agent",
         {
@@ -604,145 +52,67 @@
         }
     ],
     [
-        "j2HPRwfrlGg",
+        "1bgCiu04r0Y",
+        "http://bibfra.me/vocab/lite/name",
+        "\u0627\u0644\u0634\u0631\u0648\u0642\u060c",
+        {}
+    ],
+    [
+        "1bgCiu04r0Y",
         "http://bibfra.me/vocab/lite/name",
         "al-Shur\u016bq,",
         {}
     ],
     [
-        "j2HPRwfrlGg",
+        "1bgCiu04r0Y",
         "http://bibfra.me/vocab/marcext/sf-6",
         "260-05/(3/r",
         {}
     ],
     [
-        "j2HPRwfrlGg",
+        "1bgCiu04r0Y",
         "http://bibfra.me/vocab/marcext/sf-6",
         "880-05",
         {}
     ],
     [
-        "j2HPRwfrlGg",
+        "1bgCiu04r0Y",
         "http://bibfra.me/vocab/marcext/sf-a",
         "\u02bbAmm\u0101n :",
         {}
     ],
     [
-        "j2HPRwfrlGg",
+        "1bgCiu04r0Y",
         "http://bibfra.me/vocab/marcext/sf-a",
         "\u0639\u0645\u0627\u0646 :",
         {}
     ],
     [
-        "j2HPRwfrlGg",
+        "1bgCiu04r0Y",
         "http://bibfra.me/vocab/marcext/sf-b",
         "\u0627\u0644\u0634\u0631\u0648\u0642\u060c",
         {}
     ],
     [
-        "j2HPRwfrlGg",
+        "1bgCiu04r0Y",
         "http://bibfra.me/vocab/marcext/sf-b",
         "al-Shur\u016bq,",
         {}
     ],
     [
-        "j2HPRwfrlGg",
+        "1bgCiu04r0Y",
         "http://bibfra.me/vocab/marcext/sf-c",
         "2003.",
         {}
     ],
     [
-        "j2HPRwfrlGg",
+        "1bgCiu04r0Y",
         "http://bibfra.me/vocab/marcext/sf-c",
         "2003.",
         {}
     ],
     [
-        "k4Xf1reo96Q",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Person",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "k4Xf1reo96Q",
-        "http://bibfra.me/vocab/lite/name",
-        "N\u0101\u1e63ir, \u02bb\u0100mir Naj\u012bb M\u016bs\u00e1.",
-        {}
-    ],
-    [
-        "k4Xf1reo96Q",
-        "http://bibfra.me/vocab/lite/name",
-        "\u0646\u0627\u0635\u0631\u060c \u0639\u0627\u0645\u0631 \u0646\u062c\u064a\u0628 \u0645\u0648\u0633\u0649.",
-        {}
-    ],
-    [
-        "k4Xf1reo96Q",
-        "http://bibfra.me/vocab/marcext/sf-6",
-        "100-01/(3/r",
-        {}
-    ],
-    [
-        "k4Xf1reo96Q",
-        "http://bibfra.me/vocab/marcext/sf-6",
-        "880-01",
-        {}
-    ],
-    [
-        "k4Xf1reo96Q",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "N\u0101\u1e63ir, \u02bb\u0100mir Naj\u012bb M\u016bs\u00e1.",
-        {}
-    ],
-    [
-        "k4Xf1reo96Q",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "\u0646\u0627\u0635\u0631\u060c \u0639\u0627\u0645\u0631 \u0646\u062c\u064a\u0628 \u0645\u0648\u0633\u0649.",
-        {}
-    ],
-    [
-        "kBrcru9fj0w",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Concept",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "kBrcru9fj0w",
-        "http://bibfra.me/vocab/lite/focus",
-        "mZ1QwzZJm5o",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "kBrcru9fj0w",
-        "http://bibfra.me/vocab/lite/name",
-        "Egypt",
-        {}
-    ],
-    [
-        "kBrcru9fj0w",
-        "http://bibfra.me/vocab/marc/generalSubdivision",
-        "Economic policy.",
-        {}
-    ],
-    [
-        "kBrcru9fj0w",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Egypt",
-        {}
-    ],
-    [
-        "kBrcru9fj0w",
-        "http://bibfra.me/vocab/marcext/sf-x",
-        "Economic policy.",
-        {}
-    ],
-    [
-        "mZ1QwzZJm5o",
+        "7LNa9WP0c2U",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Place",
         {
@@ -750,25 +120,133 @@
         }
     ],
     [
-        "mZ1QwzZJm5o",
+        "7LNa9WP0c2U",
         "http://bibfra.me/vocab/lite/name",
         "Egypt",
         {}
     ],
     [
-        "mZ1QwzZJm5o",
+        "7LNa9WP0c2U",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Egypt",
         {}
     ],
     [
-        "mZ1QwzZJm5o",
+        "7LNa9WP0c2U",
         "http://bibfra.me/vocab/marcext/sf-x",
         "Economic policy.",
         {}
     ],
     [
-        "n_aVgwDFqYM",
+        "9QZLHwX50C4",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "9QZLHwX50C4",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "4208199",
+        {}
+    ],
+    [
+        "9QZLHwX50C4",
+        "http://bibfra.me/vocab/lite/dimensions",
+        "24 cm.",
+        {}
+    ],
+    [
+        "9QZLHwX50C4",
+        "http://bibfra.me/vocab/lite/extent",
+        "390 p. :",
+        {}
+    ],
+    [
+        "9QZLHwX50C4",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "g4Ru0ewzNdk",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "9QZLHwX50C4",
+        "http://bibfra.me/vocab/lite/title",
+        "\nal-\u1e24ay\u0101h al-iqti\u1e63\u0101d\u012byah f\u012b Mi\u1e63r f\u012b al-\u02bbA\u1e63r al-Maml\u016bk\u012b /\n",
+        {}
+    ],
+    [
+        "9QZLHwX50C4",
+        "http://bibfra.me/vocab/lite/title",
+        "\u0627\u0644\u062d\u064a\u0627\u0629 \u0627\u0644\u0627\u0642\u062a\u0635\u0627\u062f\u064a\u0629 \u0641\u064a \u0645\u0635\u0631 \u0641\u064a \u0627\u0644\u0639\u0635\u0631 \u0627\u0644\u0645\u0645\u0644\u0648\u0643\u064a /",
+        {}
+    ],
+    [
+        "9QZLHwX50C4",
+        "http://bibfra.me/vocab/marc/bibliographyNote",
+        "Includes bibliographical references (p. 362-377).",
+        {}
+    ],
+    [
+        "9QZLHwX50C4",
+        "http://bibfra.me/vocab/marc/edition",
+        "\u0627\u0644\u0637\u0628\u0639\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629 1.",
+        {}
+    ],
+    [
+        "9QZLHwX50C4",
+        "http://bibfra.me/vocab/marc/edition",
+        "al-\u1e6cab\u02bbah al-\u02bbArab\u012byah 1.",
+        {}
+    ],
+    [
+        "9QZLHwX50C4",
+        "http://bibfra.me/vocab/marc/lccn",
+        "2003345850",
+        {}
+    ],
+    [
+        "9QZLHwX50C4",
+        "http://bibfra.me/vocab/marc/otherPhysicalDetails",
+        "ill., maps ;",
+        {}
+    ],
+    [
+        "9QZLHwX50C4",
+        "http://bibfra.me/vocab/marc/publication",
+        "MB_gUK2CnwE",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "9QZLHwX50C4",
+        "http://bibfra.me/vocab/marc/systemControlNumber",
+        "(CStRLIN)DCLN03-B3360",
+        {}
+    ],
+    [
+        "9QZLHwX50C4",
+        "http://bibfra.me/vocab/marc/systemControlNumber",
+        "(OCoLC)52697086",
+        {}
+    ],
+    [
+        "9QZLHwX50C4",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "\u062a\u0623\u0644\u064a\u0641 \u0639\u0627\u0645\u0631 \u0646\u062c\u064a\u0628 \u0645\u0648\u0633\u0649 \u0646\u0627\u0635\u0631.",
+        {}
+    ],
+    [
+        "9QZLHwX50C4",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "ta\u02bel\u012bf \u02bb\u0100mir Naj\u012bb M\u016bs\u00e1 N\u0101\u1e63ir.",
+        {}
+    ],
+    [
+        "MB_gUK2CnwE",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/ProviderEvent",
         {
@@ -776,91 +254,83 @@
         }
     ],
     [
-        "n_aVgwDFqYM",
+        "MB_gUK2CnwE",
         "http://bibfra.me/vocab/lite/providerAgent",
-        "1VVrvJCSflA",
+        "1bgCiu04r0Y",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "n_aVgwDFqYM",
-        "http://bibfra.me/vocab/lite/providerAgent",
-        "j2HPRwfrlGg",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "n_aVgwDFqYM",
+        "MB_gUK2CnwE",
         "http://bibfra.me/vocab/lite/providerDate",
         "2003.",
         {}
     ],
     [
-        "n_aVgwDFqYM",
+        "MB_gUK2CnwE",
         "http://bibfra.me/vocab/lite/providerDate",
         "2003.",
         {}
     ],
     [
-        "n_aVgwDFqYM",
+        "MB_gUK2CnwE",
         "http://bibfra.me/vocab/lite/providerPlace",
-        "s3TW0BGDq64",
+        "SGHiU2cbiak",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "n_aVgwDFqYM",
+        "MB_gUK2CnwE",
         "http://bibfra.me/vocab/marcext/sf-6",
         "260-05/(3/r",
         {}
     ],
     [
-        "n_aVgwDFqYM",
+        "MB_gUK2CnwE",
         "http://bibfra.me/vocab/marcext/sf-6",
         "880-05",
         {}
     ],
     [
-        "n_aVgwDFqYM",
+        "MB_gUK2CnwE",
         "http://bibfra.me/vocab/marcext/sf-a",
         "\u02bbAmm\u0101n :",
         {}
     ],
     [
-        "n_aVgwDFqYM",
+        "MB_gUK2CnwE",
         "http://bibfra.me/vocab/marcext/sf-a",
         "\u0639\u0645\u0627\u0646 :",
         {}
     ],
     [
-        "n_aVgwDFqYM",
+        "MB_gUK2CnwE",
         "http://bibfra.me/vocab/marcext/sf-b",
         "\u0627\u0644\u0634\u0631\u0648\u0642\u060c",
         {}
     ],
     [
-        "n_aVgwDFqYM",
+        "MB_gUK2CnwE",
         "http://bibfra.me/vocab/marcext/sf-b",
         "al-Shur\u016bq,",
         {}
     ],
     [
-        "n_aVgwDFqYM",
+        "MB_gUK2CnwE",
         "http://bibfra.me/vocab/marcext/sf-c",
         "2003.",
         {}
     ],
     [
-        "n_aVgwDFqYM",
+        "MB_gUK2CnwE",
         "http://bibfra.me/vocab/marcext/sf-c",
         "2003.",
         {}
     ],
     [
-        "s1Zzw9nK508",
+        "QqhnLmumdXs",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Concept",
         {
@@ -868,51 +338,39 @@
         }
     ],
     [
-        "s1Zzw9nK508",
+        "QqhnLmumdXs",
         "http://bibfra.me/vocab/lite/focus",
-        "mZ1QwzZJm5o",
+        "7LNa9WP0c2U",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "s1Zzw9nK508",
+        "QqhnLmumdXs",
         "http://bibfra.me/vocab/lite/name",
         "Egypt",
         {}
     ],
     [
-        "s1Zzw9nK508",
-        "http://bibfra.me/vocab/marc/chronologicalSubdivision",
-        "1250-1517.",
-        {}
-    ],
-    [
-        "s1Zzw9nK508",
+        "QqhnLmumdXs",
         "http://bibfra.me/vocab/marc/generalSubdivision",
-        "History",
+        "Economic conditions.",
         {}
     ],
     [
-        "s1Zzw9nK508",
+        "QqhnLmumdXs",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Egypt",
         {}
     ],
     [
-        "s1Zzw9nK508",
+        "QqhnLmumdXs",
         "http://bibfra.me/vocab/marcext/sf-x",
-        "History",
+        "Economic conditions.",
         {}
     ],
     [
-        "s1Zzw9nK508",
-        "http://bibfra.me/vocab/marcext/sf-y",
-        "1250-1517.",
-        {}
-    ],
-    [
-        "s3TW0BGDq64",
+        "SGHiU2cbiak",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Place",
         {
@@ -920,63 +378,541 @@
         }
     ],
     [
-        "s3TW0BGDq64",
+        "SGHiU2cbiak",
         "http://bibfra.me/vocab/lite/name",
         "\u02bbAmm\u0101n :",
         {}
     ],
     [
-        "s3TW0BGDq64",
+        "SGHiU2cbiak",
         "http://bibfra.me/vocab/lite/name",
         "\u0639\u0645\u0627\u0646 :",
         {}
     ],
     [
-        "s3TW0BGDq64",
+        "SGHiU2cbiak",
         "http://bibfra.me/vocab/marcext/sf-6",
         "260-05/(3/r",
         {}
     ],
     [
-        "s3TW0BGDq64",
+        "SGHiU2cbiak",
         "http://bibfra.me/vocab/marcext/sf-6",
         "880-05",
         {}
     ],
     [
-        "s3TW0BGDq64",
+        "SGHiU2cbiak",
         "http://bibfra.me/vocab/marcext/sf-a",
         "\u02bbAmm\u0101n :",
         {}
     ],
     [
-        "s3TW0BGDq64",
+        "SGHiU2cbiak",
         "http://bibfra.me/vocab/marcext/sf-a",
         "\u0639\u0645\u0627\u0646 :",
         {}
     ],
     [
-        "s3TW0BGDq64",
+        "SGHiU2cbiak",
         "http://bibfra.me/vocab/marcext/sf-b",
         "\u0627\u0644\u0634\u0631\u0648\u0642\u060c",
         {}
     ],
     [
-        "s3TW0BGDq64",
+        "SGHiU2cbiak",
         "http://bibfra.me/vocab/marcext/sf-b",
         "al-Shur\u016bq,",
         {}
     ],
     [
-        "s3TW0BGDq64",
+        "SGHiU2cbiak",
         "http://bibfra.me/vocab/marcext/sf-c",
         "2003.",
         {}
     ],
     [
-        "s3TW0BGDq64",
+        "SGHiU2cbiak",
         "http://bibfra.me/vocab/marcext/sf-c",
         "2003.",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/Books",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/LanguageMaterial",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/lite/creator",
+        "lOA17D1NfQc",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/lite/subject",
+        "QqhnLmumdXs",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/lite/subject",
+        "vsDu6dsYcb0",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/lite/subject",
+        "xtNxsOB4ijg",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/lite/title",
+        "\nal-\u1e24ay\u0101h al-iqti\u1e63\u0101d\u012byah f\u012b Mi\u1e63r f\u012b al-\u02bbA\u1e63r al-Maml\u016bk\u012b /\n",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/lite/title",
+        "\u0627\u0644\u062d\u064a\u0627\u0629 \u0627\u0644\u0627\u0642\u062a\u0635\u0627\u062f\u064a\u0629 \u0641\u064a \u0645\u0635\u0631 \u0641\u064a \u0627\u0644\u0639\u0635\u0631 \u0627\u0644\u0645\u0645\u0644\u0648\u0643\u064a /",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marc/catalogingSource",
+        "DLC-R",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marc/governmentPublication",
+        "publication of autonomous or semi autonomous component of government",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marc/illustrations",
+        "maps",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marc/lcCallNumber",
+        "HC830",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marc/lcItemNumber",
+        ".N37 2003",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "abstracts summaries",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "directories",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "\u062a\u0623\u0644\u064a\u0641 \u0639\u0627\u0645\u0631 \u0646\u062c\u064a\u0628 \u0645\u0648\u0633\u0649 \u0646\u0627\u0635\u0631.",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "ta\u02bel\u012bf \u02bb\u0100mir Naj\u012bb M\u016bs\u00e1 N\u0101\u1e63ir.",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marc/titleVariation",
+        "Mi\u1e63r",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marc/titleVariation",
+        "\u0645\u0635\u0631",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-005",
+        "20121004091221.0",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-008",
+        "030612s2003 jo ab b 000 0 ara",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-042-XX-a",
+        "lcode",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-042-XX-a",
+        "pcc",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-043-XX-a",
+        "f-ua---",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-066-XX-c",
+        "(3",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-880-12-6",
+        "245-02/(3/r",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-880-12-a",
+        "\u0627\u0644\u062d\u064a\u0627\u0629 \u0627\u0644\u0627\u0642\u062a\u0635\u0627\u062f\u064a\u0629 \u0641\u064a \u0645\u0635\u0631 \u0641\u064a \u0627\u0644\u0639\u0635\u0631 \u0627\u0644\u0645\u0645\u0644\u0648\u0643\u064a /",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-880-12-c",
+        "\u062a\u0623\u0644\u064a\u0641 \u0639\u0627\u0645\u0631 \u0646\u062c\u064a\u0628 \u0645\u0648\u0633\u0649 \u0646\u0627\u0635\u0631.",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-880-1X-6",
+        "100-01/(3/r",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-880-1X-a",
+        "\u0646\u0627\u0635\u0631\u060c \u0639\u0627\u0645\u0631 \u0646\u062c\u064a\u0628 \u0645\u0648\u0633\u0649.",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-880-30-6",
+        "246-03/(3/r",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-880-30-a",
+        "\u0645\u0635\u0631",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-880-XX-6",
+        "250-04/(3/r",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-880-XX-6",
+        "260-05/(3/r",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-880-XX-a",
+        "\u0627\u0644\u0637\u0628\u0639\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629 1.",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-880-XX-a",
+        "\u0639\u0645\u0627\u0646 :",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-880-XX-b",
+        "\u0627\u0644\u0634\u0631\u0648\u0642\u060c",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-880-XX-c",
+        "2003.",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-902-XX-6",
+        "a",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-902-XX-7",
+        "m",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-902-XX-a",
+        "mnc",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-902-XX-b",
+        "l",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-902-XX-d",
+        "v",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-902-XX-e",
+        "20060413",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-902-XX-f",
+        "1",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-904-XX-a",
+        "ay",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-904-XX-b",
+        "a",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-904-XX-c",
+        "b",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-904-XX-e",
+        "20040729",
+        {}
+    ],
+    [
+        "g4Ru0ewzNdk",
+        "http://bibfra.me/vocab/marcext/tag-904-XX-h",
+        "m",
+        {}
+    ],
+    [
+        "lOA17D1NfQc",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Person",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "lOA17D1NfQc",
+        "http://bibfra.me/vocab/lite/name",
+        "N\u0101\u1e63ir, \u02bb\u0100mir Naj\u012bb M\u016bs\u00e1.",
+        {}
+    ],
+    [
+        "lOA17D1NfQc",
+        "http://bibfra.me/vocab/lite/name",
+        "\u0646\u0627\u0635\u0631\u060c \u0639\u0627\u0645\u0631 \u0646\u062c\u064a\u0628 \u0645\u0648\u0633\u0649.",
+        {}
+    ],
+    [
+        "lOA17D1NfQc",
+        "http://bibfra.me/vocab/marcext/sf-6",
+        "100-01/(3/r",
+        {}
+    ],
+    [
+        "lOA17D1NfQc",
+        "http://bibfra.me/vocab/marcext/sf-6",
+        "880-01",
+        {}
+    ],
+    [
+        "lOA17D1NfQc",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "N\u0101\u1e63ir, \u02bb\u0100mir Naj\u012bb M\u016bs\u00e1.",
+        {}
+    ],
+    [
+        "lOA17D1NfQc",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "\u0646\u0627\u0635\u0631\u060c \u0639\u0627\u0645\u0631 \u0646\u062c\u064a\u0628 \u0645\u0648\u0633\u0649.",
+        {}
+    ],
+    [
+        "vsDu6dsYcb0",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "vsDu6dsYcb0",
+        "http://bibfra.me/vocab/lite/focus",
+        "7LNa9WP0c2U",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "vsDu6dsYcb0",
+        "http://bibfra.me/vocab/lite/name",
+        "Egypt",
+        {}
+    ],
+    [
+        "vsDu6dsYcb0",
+        "http://bibfra.me/vocab/marc/chronologicalSubdivision",
+        "1250-1517.",
+        {}
+    ],
+    [
+        "vsDu6dsYcb0",
+        "http://bibfra.me/vocab/marc/generalSubdivision",
+        "History",
+        {}
+    ],
+    [
+        "vsDu6dsYcb0",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Egypt",
+        {}
+    ],
+    [
+        "vsDu6dsYcb0",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "History",
+        {}
+    ],
+    [
+        "vsDu6dsYcb0",
+        "http://bibfra.me/vocab/marcext/sf-y",
+        "1250-1517.",
+        {}
+    ],
+    [
+        "vwgqE6_sXrc",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "vwgqE6_sXrc",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "4472570",
+        {}
+    ],
+    [
+        "vwgqE6_sXrc",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "0s0zzVhQplY",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "xtNxsOB4ijg",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "xtNxsOB4ijg",
+        "http://bibfra.me/vocab/lite/focus",
+        "7LNa9WP0c2U",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "xtNxsOB4ijg",
+        "http://bibfra.me/vocab/lite/name",
+        "Egypt",
+        {}
+    ],
+    [
+        "xtNxsOB4ijg",
+        "http://bibfra.me/vocab/marc/generalSubdivision",
+        "Economic policy.",
+        {}
+    ],
+    [
+        "xtNxsOB4ijg",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Egypt",
+        {}
+    ],
+    [
+        "xtNxsOB4ijg",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "Economic policy.",
         {}
     ]
 ]
