@@ -438,7 +438,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             logger.debug('Temp work hash: {0}'.format(temp_workhash))
 
             params['workid'] = temp_workhash
-            params['instanceids'] = [None]
+            params['instanceids'] = [temp_workhash + '-instance']
             params['output_model'] = model_factory()
 
             params['field008'] = leader = None
