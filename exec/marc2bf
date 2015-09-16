@@ -5,8 +5,6 @@ import json
 import logging
 import argparse
 
-from amara3.inputsource import inputsource
-
 from bibframe.reader import bfconvert
 
 
@@ -27,8 +25,6 @@ def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, 
     for mod in mods:
         __import__(mod, globals(), locals(), [])
     
-    inputs = ( inputsource(open(i, 'rb')) for i in inputs )
-
     bfconvert(inputs=inputs, entbase=base, out=out, limit=limit, rdfttl=rdfttl, rdfxml=rdfxml, xml=xml, config=config, verbose=verbose, canonical=canonical, logger=logger, lax=lax, zipcheck=zipcheck)
     return
 

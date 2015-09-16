@@ -20,6 +20,7 @@ from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 from versa import util
 from versa.driver import memory
 
+from amara3.inputsource import inputsource
 from amara3.uxml import writer
 
 from bibframe import g_services
@@ -95,6 +96,21 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
 
     if 'marc_record_handler' in config:
         handle_marc_source = AVAILABLE_MARC_HANDLERS[config['marc_record_handler']]
+
+    readmode = handle_marc_source.readmode
+    #inputs = ( inputsource(open(i, readmode)) for i in inputs )
+    #if not isinstance(inputs[0], inputsource):
+    #    inputs = ( inputsource(i, streamopenmode=readmode) for i in inputs )
+    
+    new_inputs = []
+    import os
+    for i in inputs:
+        if isinstance(i, str) and os.path.exists(i):
+            new_inputs.append(inputsource(open(i, readmode)))
+        else:
+            new_inputs.append(inputsource(i, streamopenmode=readmode))
+    inputs = new_inputs
+    #inputs = ( inputsource(i, streamopenmode=readmode) for i in inputs )
 
     ids = marc.idgen(entbase)
     if model is None: model = model_factory()

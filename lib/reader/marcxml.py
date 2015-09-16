@@ -153,3 +153,5 @@ def handle_marcxml_source(source, sink, args, model_factory):
     if handler.no_records:
         warnings.warn("No records found in this file. Possibly an XML namespace problem (try using the 'lax' flag).", RuntimeWarning)
     return
+
+handle_marcxml_source.readmode = 'rb'
