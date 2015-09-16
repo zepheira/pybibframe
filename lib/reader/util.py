@@ -403,7 +403,6 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
         if unique:
             # strip None values from computed unique list, including pairs where v is None
             computed_unique = []
-            print(unique)
             for k, v in unique:
                 if None in (k, v): continue
                 if isinstance(v, list):

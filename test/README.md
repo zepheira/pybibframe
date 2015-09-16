@@ -20,7 +20,8 @@ The following example shows how to do so for test_use_cases.py:
 
 For test_marc_snippets.py use the following recipe to regenerate the test case expected outputs:
 
-	python -i test/test_marc_snippets.py #Ignore the SystemExit
+	python -i test/test_marc_snippets1.py #Ignore the SystemExit
+	python -i test/test_marc_snippets2.py #Ignore the SystemExit
 
 Then:
 

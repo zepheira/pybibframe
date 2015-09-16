@@ -25,7 +25,8 @@ from bibframe import MARC
 from bibframe.reader.util import WORKID, IID
 from bibframe import BF_INIT_TASK, BF_INPUT_TASK, BF_INPUT_XREF_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
 from bibframe.isbnplus import isbn_list, compute_ean13_check
-from bibframe.reader.marcpatterns import TRANSFORMS, WORK_HASH_TRANSFORMS, WORK_HASH_INPUT, bfcontext
+from bibframe.reader.marcpatterns import TRANSFORMS, bfcontext
+from bibframe.reader.marcworkidpatterns import WORK_HASH_TRANSFORMS, WORK_HASH_INPUT
 from bibframe.reader.marcextra import transforms as default_extra_transforms
 
 
@@ -150,7 +151,6 @@ def gather_workid_data(model, origin):
     data = []
     for rel in WORK_HASH_INPUT:
         for link in model.match(origin, rel):
-            print('GRIPPO', link)
             data.append([link[RELATIONSHIP], link[TARGET]])
     return data
 
@@ -230,7 +230,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                 'input_model': input_model, 'output_model': model, 'logger': logger,
                 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids,
                 'existing_ids': existing_ids, 'plugins': plugins,
-                'materialize_entity': materialize_entity
+                'materialize_entity': materialize_entity, 'leader': leader,
             }
 
             # Earliest plugin stage, with an unadulterated input model
@@ -406,7 +406,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                         fallback_rel_base = '../marcext/tag-' + tag
                         if not subfields:
                             #Fallback for control field: Captures MARC tag & value
-                            model.add(I(workid), I(iri.absolutize(fallback_rel_base, vocabbase)), val)
+                            params['output_model'].add(I(workid), I(iri.absolutize(fallback_rel_base, vocabbase)), val)
                         for k, v in subfields.items():
                             #Fallback for data field: Captures MARC tag, indicators, subfields & value
                             fallback_rel = '../marcext/{0}-{1}{2}-{3}'.format(
@@ -415,7 +415,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                             #params['transform_log'].append((code, fallback_rel))
                             for valitem in v:
                                 try:
-                                    model.add(I(workid), I(iri.absolutize(fallback_rel, vocabbase)), valitem)
+                                    params['output_model'].add(I(workid), I(iri.absolutize(fallback_rel, vocabbase)), valitem)
                                 except ValueError as e:
                                     logger.warning('{}\nSkipping statement for {}: "{}"'.format(e, control_code[0], dumb_title[0]))
 
@@ -429,7 +429,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                     for item in v:
                         o = origin or I(params['workid'])
                         if o and (o, k, item) not in extra_stmts:
-                            model.add(o, k, item)
+                            params['output_model'].add(o, k, item)
                             extra_stmts.add((o, k, item))
 
             #Do one pass to establish work hash
@@ -460,11 +460,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             logger.debug('Uniform title: {0}'.format(dumb_title[0]))
             logger.debug('Work ID: {0}'.format(workid))
 
-            if entbase:
-                workid = I(iri.absolutize(workid, entbase))
-            else:
-                workid = I(workid)
-
+            workid = I(iri.absolutize(workid, entbase)) if entbase else I(workid)
             folded = [workid] if is_folded else []
 
             model.add(workid, TYPE_REL, I(iri.absolutize('Work', vocabbase)))
@@ -472,10 +468,12 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             params['workid'] = workid
             params['folded'] = folded
 
+            #Switch to the main output model for processing
+            params['output_model'] = model
+
             #Figure out instances
             instanceids = instancegen(params, loop, model)
 
-            params['leader'] = None
             params['workid'] = workid
             params['instanceids'] = instanceids or [None]
             params['folded'] = folded
@@ -487,7 +485,6 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             params['fields006'] = fields006 = []
             params['fields007'] = fields007 = []
 
-            params['output_model'] = model
             process_marcpatterns(params, main_transforms, main_phase=True)
 
             instance_postprocess(params)

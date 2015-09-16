@@ -26,7 +26,7 @@ import pytest
 #Move to a test utils module
 import os, inspect
 def module_path(local_function):
-   ''' returns the module path without the use of __file__.  Requires a function defined 
+   ''' returns the module path without the use of __file__.  Requires a function defined
    locally in the module.
    from http://stackoverflow.com/questions/729583/getting-file-path-of-imported-module'''
    return os.path.abspath(inspect.getsourcefile(local_function))
@@ -46,7 +46,7 @@ def run_one(name, entbase=None, config=None, loop=None, canonical=True):
     fname = os.path.join(RESOURCEPATH, name+'.mrx')
     #bfconvert(factory(open(fname, 'rb')), model=m, out=s, config=config, canonical=canonical, loop=loop)
     #raise(Exception(repr(inputsource(open(fname, 'rb')))))
-    
+
     bfconvert([inputsource(open(fname, 'rb'))], model=m, out=s, config=config, canonical=canonical, loop=loop)
     s.seek(0)
     hashmap, m = hash_neutral_model(s)
@@ -73,7 +73,7 @@ NAMES = [ 'gunslinger',
 
 
 @pytest.mark.parametrize('name', NAMES)
-def test_usecases(name):
+def DISABLE_test_usecases(name):
     #Use a new event loop per test instance, and so one call of bfconvert per test
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(None)
