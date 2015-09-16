@@ -357,7 +357,8 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
     from the context given when the materialize action function is called
 
     :param unique: Versa action function to be invoked in order to
-    derive a unique hash key fo rthe materialized resource
+    derive a unique hash key input for the materialized resource, in the form of
+    multiple key, value pairs (or key, list-of-values)
 
     :param links: Dictionary of links from the newly materialized resource.
     Each keys can be a relationship IRIs, a Versa action function returning
@@ -400,21 +401,19 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
 
         computed_unique = None
         if unique:
-            # strip None values from computed unique list, including k/v tuples where v is None
+            # strip None values from computed unique list, including pairs where v is None
             computed_unique = []
-            for el in unique(ctx):
-                if el is None: continue
-                if isinstance(el, tuple) and el[1] is None: continue
-
-                if isinstance(el, list): # may help minimize id changes in the future
-                    computed_unique.extend(el)
+            print(unique)
+            for k, v in unique:
+                if None in (k, v): continue
+                if isinstance(v, list):
+                    for subitem in v:
+                        computed_unique.append([k, subitem(ctx)])
                 else:
-                    computed_unique.append(el)
-            
-        #objid = ctx.idgen(_typ, unique=computed_unique, existing_ids=ctx.existing_ids)
+                    computed_unique.append([k, v(ctx)])
 
         #XXX: Relying here on shared existing_ids from the idgen function. Probably need to think through this state coupling
-        objid = ctx.idgen(_typ, unique=computed_unique)
+        objid = ctx.idgen(_typ, data=computed_unique)
         for curr_rel in rels:
             #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
             curr_rel = '_' + curr_rel if curr_rel.isdigit() else curr_rel

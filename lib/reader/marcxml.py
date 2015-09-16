@@ -13,7 +13,6 @@ import xml.parsers.expat
 
 from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 from versa import util
-from versa.driver import memory
 
 from bibframe.reader import marc
 
@@ -31,12 +30,11 @@ IS_VALID_TAG = lambda t: len(t.rsplit('/',1)[-1]) == 3
 NSSEP = ' '
 
 class expat_callbacks(object):
-    def __init__(self, sink, parser, attr_cls=dict, attr_list_cls=list, lax=False):
+    def __init__(self, sink, parser, model_factory, lax=False):
         self._sink = sink
         self._getcontent = False
         self.no_records = True
-        self._attr_cls = attr_cls # dict-like class to use for holding Versa attributes
-        self._attr_list_cls = attr_list_cls # list-like class to use for holding Versa attribute values
+        self._model_factory = model_factory
         self._lax = lax
         self._parser = parser
         self._record_model = None
@@ -52,27 +50,28 @@ class expat_callbacks(object):
         if ns == MARCXML_NS:
             #Ignore the 'collection' element
             #What to do with the record/@type
+            if self._record_model: attr_cls = self._record_model._attr_cls
             if local == 'record':
                 self.no_records = False
                 #XXX: Entity base IRI needed?
                 self._record_id = 'record-{0}:{1}'.format(self._parser.CurrentLineNumber, self._parser.CurrentColumnNumber)
                 #Versa model with a representation of the record
                 #For input model plugins, important that natural ordering be preserved
-                self._record_model = memory.connection(attr_cls=self._attr_cls)#logger=logger)
+                self._record_model = self._model_factory()
             elif local == 'leader':
                 self._chardata_dest = ''
                 self._link_iri = MARCXML_NS + '/leader'
-                self._marc_attributes = self._attr_cls()
+                self._marc_attributes = attr_cls()
                 self._getcontent = True
             elif local == 'controlfield':
                 self._chardata_dest = ''
                 self._link_iri = MARCXML_NS + '/control/' + attributes['tag'].strip()
                 #Control tags have neither indicators nor subfields
-                self._marc_attributes = self._attr_cls({'tag': attributes['tag'].strip()})
+                self._marc_attributes = attr_cls({'tag': attributes['tag'].strip()})
                 self._getcontent = True
             elif local == 'datafield':
                 self._link_iri = MARCXML_NS + '/data/' + attributes['tag'].strip()
-                self._marc_attributes = self._attr_cls(([k, v.strip()] for (k, v) in attributes.items() if ' ' not in k))
+                self._marc_attributes = attr_cls(([k, v.strip()] for (k, v) in attributes.items() if ' ' not in k))
             elif local == 'subfield':
                 self._chardata_dest = ''
                 self._subfield = attributes['code'].strip()
@@ -89,6 +88,7 @@ class expat_callbacks(object):
         else:
             ns, local = name.split(NSSEP) if NSSEP in name else (None, name)
         if ns == MARCXML_NS:
+            attr_list_cls = self._model_factory.attr_list_cls
             if local == 'record':
                 try:
                     self._sink.send(self._record_model)
@@ -105,7 +105,7 @@ class expat_callbacks(object):
                     self._record_model.add(self._record_id, self._link_iri, '', self._marc_attributes)
                 self._getcontent = False
             elif local == 'subfield':
-                self._marc_attributes.setdefault(self._subfield, self._attr_list_cls()).append(self._chardata_dest)
+                self._marc_attributes.setdefault(self._subfield, attr_list_cls()).append(self._chardata_dest)
             elif local == 'leader':
                 if self._record_model: self._record_model.add(self._record_id, self._link_iri, self._chardata_dest, self._marc_attributes)
                 self._getcontent = False
@@ -124,16 +124,15 @@ class expat_callbacks(object):
 #PYTHONASYNCIODEBUG = 1
 
 
-def handle_marcxml_source(source, sink, args, attr_cls, attr_list_cls):
+def handle_marcxml_source(source, sink, args, model_factory):
     '''
     Process one source of MARC/XML records in the form of an amara3 inputsource
     Generally this will be a single XML file with a marc:collection with one or more marc:record
-    
+
     source - amara3.inputsource.inputsource instance
     sink - coroutine to be sent the generated resources
-    args - 
-    attr_cls - 
-    attr_list_cls - 
+    args -
+    model_factory - Factory function for creating Versa models
     '''
     #Cannot reuse a pyexpat parser, so must create a new one for each input file
     next(sink) #Start the coroutine running
@@ -143,7 +142,7 @@ def handle_marcxml_source(source, sink, args, attr_cls, attr_list_cls):
     else:
         parser = xml.parsers.expat.ParserCreate(namespace_separator=NSSEP)
 
-    handler = expat_callbacks(sink, parser, attr_cls, attr_list_cls, lax)
+    handler = expat_callbacks(sink, parser, model_factory, lax)
 
     parser.StartElementHandler = handler.start_element
     parser.EndElementHandler = handler.end_element
@@ -154,4 +153,3 @@ def handle_marcxml_source(source, sink, args, attr_cls, attr_list_cls):
     if handler.no_records:
         warnings.warn("No records found in this file. Possibly an XML namespace problem (try using the 'lax' flag).", RuntimeWarning)
     return
-

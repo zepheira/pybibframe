@@ -6,6 +6,7 @@ import logging
 from collections import defaultdict
 import warnings
 import zipfile
+import functools
 
 #from amara3 import iri
 
@@ -66,6 +67,13 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
     #if stats:
     #    register_service(statsgen.statshandler)
 
+    config = config or {}
+    if limit is not None:
+        try:
+            limit = int(limit)
+        except ValueError:
+            logger.debug('Limit must be a number, not "{0}". Ignoring.'.format(limit))
+
     def resolve_class(fullname):
         '''
         Given a full name for a Python class, return the class object
@@ -76,23 +84,23 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
         cls = getattr(module, name)
         return cls
 
-    config = config or {}
     attr_cls = resolve_class(config.get('versa-attr-cls', 'builtins.dict'))
     attr_list_cls = resolve_class(config.get('versa-attr-list-cls', 'builtins.list'))
+    attr_ordered_cls = resolve_class(config.get('versa-attr-cls', 'collections.OrderedDict'))
 
-    if limit is not None:
-        try:
-            limit = int(limit)
-        except ValueError:
-            logger.debug('Limit must be a number, not "{0}". Ignoring.'.format(limit))
+    model_factory = functools.partial(memory.connection, attr_cls=attr_cls) #,logger=logger)
+    model_factory.attr_list_cls = attr_list_cls
+    model_odict_factory = functools.partial(memory.connection, attr_cls=attr_ordered_cls) #,logger=logger)
+    model_odict_factory.attr_list_cls = attr_list_cls
 
     if 'marc_record_handler' in config:
         handle_marc_source = AVAILABLE_MARC_HANDLERS[config['marc_record_handler']]
 
     ids = marc.idgen(entbase)
-    if model is None: model = memory.connection(attr_cls=attr_cls)#logger=logger)
+    if model is None: model = model_factory()
     g = rdflib.Graph()
-    if canonical: global_model = memory.connection()#logger=logger)
+    #Intentionally not using either factory
+    if canonical: global_model = memory.connection() #logger=logger)
 
     if xml is not None:
         xmlw = writer.raw(xml, indent='  ')
@@ -164,7 +172,8 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
                                         logger=logger,
                                         transforms=transforms,
                                         extra_transforms=extra_transforms(marcextras_vocab),
-                                        canonical=canonical)
+                                        canonical=canonical,
+                                        model_factory=model_factory)
 
             def resolve_class(fullname):
                 import importlib
@@ -173,11 +182,8 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
                 cls = getattr(module, name)
                 return cls
 
-            attr_cls = resolve_class(config.get('versa-attr-cls', 'collections.OrderedDict'))
-            attr_list_cls = resolve_class(config.get('versa-attr-list-cls', 'builtins.list'))
-
             args = dict(lax=lax)
-            handle_marc_source(source, sink, args, attr_cls, attr_list_cls)
+            handle_marc_source(source, sink, args, model_odict_factory)
             sink.close()
             yield
         task = asyncio.async(wrap_task(), loop=loop)
