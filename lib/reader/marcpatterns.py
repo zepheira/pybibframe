@@ -1201,7 +1201,10 @@ BFLITE_TRANSFORMS = {
     '710': ifexists(subfield('t'),
                     onwork.materialize(BL + 'Work',
                                        values(BL + 'related', relator_property(subfield('i'), prefix=REL)),
-                                       unique=values(subfield('t'), subfield('l')),
+                                       unique=[
+                                         (BL + 'title', subfield('t')),
+                                         (BL + 'language', subfield('l')),
+                                       ],
                                        links={BL + 'language': subfield('l'),
                                               ifexists(subfield('a'), BL + 'creator'):
                                               materialize(BL + 'Organization',
