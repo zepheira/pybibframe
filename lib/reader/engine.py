@@ -102,13 +102,19 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
     #if not isinstance(inputs[0], inputsource):
     #    inputs = ( inputsource(i, streamopenmode=readmode) for i in inputs )
     
-    new_inputs = []
-    import os
-    for i in inputs:
-        if isinstance(i, str) and os.path.exists(i):
-            new_inputs.append(inputsource(open(i, readmode)))
+    try:
+        if handle_marc_source.preprocessor is None:
+            new_inputs = inputs
         else:
-            new_inputs.append(inputsource(i, streamopenmode=readmode))
+            new_inputs = handle_marc_source.preprocessor(inputs)
+    except AttributeError:
+        new_inputs = []
+        import os
+        for i in inputs:
+            if isinstance(i, str) and os.path.exists(i):
+                new_inputs.append(inputsource(open(i, readmode)))
+            else:
+                new_inputs.append(inputsource(i, streamopenmode=readmode))
     inputs = new_inputs
     #inputs = ( inputsource(i, streamopenmode=readmode) for i in inputs )
 
