@@ -156,7 +156,7 @@ def gather_workid_data(model, origin):
 
 #WORK_HASH_TRANSFORMS, WORK_HASH_INPUT
 
-def materialize_entity(etype, ctx_params=None, loop=None, model_to_update=None, data=None):
+def materialize_entity(etype, ctx_params=None, loop=None, model_to_update=None, data=None, addtype=True):
     '''
     Routine for creating a BIBFRAME resource. Takes the entity (resource) type and a data mapping
     according to the resource type. Implements the Libhub Resource Hash Convention
@@ -173,7 +173,8 @@ def materialize_entity(etype, ctx_params=None, loop=None, model_to_update=None, 
         etype = vocabbase + etype
     params = {'logger': logger}
 
-    data = data or [[TYPE_REL, etype]]
+    data = data or []
+    if addtype: data.insert(0, [TYPE_REL, etype])
     data_full =  [ ((vocabbase + k if not iri.is_absolute(k) else k), v) for (k, v) in data ]
     plaintext = json.dumps(data_full, separators=(',', ':'), cls=OrderedJsonEncoder)
 

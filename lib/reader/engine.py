@@ -20,7 +20,7 @@ from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 from versa import util
 from versa.driver import memory
 
-from amara3.inputsource import inputsource
+from amara3.inputsource import factory, inputsourcetype
 from amara3.uxml import writer
 
 from bibframe import g_services
@@ -48,7 +48,7 @@ NSSEP = ' '
 def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, model=None,
                 out=None, limit=None, rdfttl=None, rdfxml=None, xml=None, config=None,
                 verbose=False, logger=logging, loop=None, canonical=False,
-                lax=False, zipcheck=False):
+                lax=False, zipcheck=False, defaultsourcetype=inputsourcetype.unknown):
     '''
     inputs - MARC/XML inputsource (can be a compound inputsource in order to represent multiple record sets)
                 to be parsed and converted to BIBFRAME RDF (Note: want to allow singular input strings)
@@ -101,21 +101,9 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
     #inputs = ( inputsource(open(i, readmode)) for i in inputs )
     #if not isinstance(inputs[0], inputsource):
     #    inputs = ( inputsource(i, streamopenmode=readmode) for i in inputs )
-    
-    try:
-        if handle_marc_source.preprocessor is None:
-            new_inputs = inputs
-        else:
-            new_inputs = handle_marc_source.preprocessor(inputs)
-    except AttributeError:
-        new_inputs = []
-        import os
-        for i in inputs:
-            if isinstance(i, str) and os.path.exists(i):
-                new_inputs.append(inputsource(open(i, readmode)))
-            else:
-                new_inputs.append(inputsource(i, streamopenmode=readmode))
-    inputs = new_inputs
+
+    if handle_marc_source.makeinputsource:
+        inputs = factory(inputs, defaultsourcetype=defaultsourcetype, streamopenmode=readmode)
     #inputs = ( inputsource(i, streamopenmode=readmode) for i in inputs )
 
     ids = marc.idgen(entbase)

@@ -6,9 +6,11 @@ import logging
 import argparse
 
 from bibframe.reader import bfconvert
+from amara3.inputsource import inputsourcetype
 
 
-def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, xml=None, config=None, verbose=False, mods=None, canonical=False, lax=False, zipcheck=None):
+def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, xml=None,
+        config=None, verbose=False, mods=None, canonical=False, lax=False, zipcheck=None):
     '''
     Basically takes parameters typical for command line invocation and adapts them for use in the API
 
@@ -24,8 +26,10 @@ def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, 
 
     for mod in mods:
         __import__(mod, globals(), locals(), [])
-    
-    bfconvert(inputs=inputs, entbase=base, out=out, limit=limit, rdfttl=rdfttl, rdfxml=rdfxml, xml=xml, config=config, verbose=verbose, canonical=canonical, logger=logger, lax=lax, zipcheck=zipcheck)
+
+    bfconvert(inputs=inputs, entbase=base, out=out, limit=limit, rdfttl=rdfttl, rdfxml=rdfxml,
+                xml=xml, config=config, verbose=verbose, canonical=canonical, logger=logger,
+                lax=lax, zipcheck=zipcheck, defaultsourcetype=inputsourcetype.filename)
     return
 
 
