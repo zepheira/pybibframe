@@ -184,6 +184,7 @@ def materialize_entity(etype, ctx_params=None, loop=None, model_to_update=None, 
 
     params['materialized_id'] = eid
     params['first_seen'] = eid in existing_ids
+    params['plaintext'] = plaintext
     for plugin in plugins or ():
         #Not using yield from
         if BF_MATRES_TASK in plugin:
