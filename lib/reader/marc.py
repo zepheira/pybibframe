@@ -17,7 +17,7 @@ from bibframe.contrib.datachefids import idgen#, FROM_EMPTY_64BIT_HASH
 from amara3 import iri
 
 from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
-from versa.util import simple_lookup, OrderedJsonEncoder
+from versa.util import duplicate_statements, OrderedJsonEncoder
 from versa.driver import memory
 #from versa.pipeline import context as versacontext
 
@@ -93,6 +93,8 @@ def isbn_instancegen(params, loop, model):
     ids = params['ids']
     plugins = params['plugins']
 
+    INSTANTIATES_REL = I(iri.absolutize('instantiates', vocabbase))
+
     isbns = list(( val for code, val in marc_lookup(input_model, '020$a')))
     logger.debug('Raw ISBNS:\t{0}'.format(isbns))
 
@@ -109,7 +111,7 @@ def isbn_instancegen(params, loop, model):
             if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
 
             output_model.add(I(instanceid), ISBN_REL, compute_ean13_check(inum))
-            output_model.add(I(instanceid), I(iri.absolutize('instantiates', vocabbase)), I(workid))
+            output_model.add(I(instanceid), INSTANTIATES_REL, I(workid))
             if itype: output_model.add(I(instanceid), ISBN_TYPE_REL, itype)
             existing_ids.add(instanceid)
             instance_ids.append(instanceid)
@@ -118,7 +120,7 @@ def isbn_instancegen(params, loop, model):
         data = [['instantiates', workid]]
         instanceid = materialize_entity('Instance', ctx_params=params, loop=loop, model_to_update=params['output_model'], data=data)
         if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
-        output_model.add(I(instanceid), I(iri.absolutize('instantiates', vocabbase)), I(workid))
+        output_model.add(I(instanceid), INSTANTIATES_REL, I(workid))
         existing_ids.add(instanceid)
         instance_ids.append(instanceid)
 
@@ -194,6 +196,146 @@ def materialize_entity(etype, ctx_params=None, loop=None, model_to_update=None, 
     return eid
 
 
+#XXX Generalize by using URIs for phase IDs
+def process_marcpatterns(params, transforms, input_model, main_phase=False):
+    if main_phase:
+        # Need to sort our way through the input model so that the materializations occur
+        # at the same place each time, otherwise canonicalization fails due to the
+        # addition of the subfield context (at the end of materialize())
+
+        # XXX Is the int() cast necessary? If not we could do key=operator.itemgetter(0)
+        input_model_iter= sorted(list(params['input_model']), key=lambda x: int(x[0]))
+    else:
+        input_model_iter= params['input_model']
+    for lid, marc_link in input_model_iter:
+        origin, taglink, val, attribs = marc_link
+        if taglink == MARCXML_NS + '/leader':
+            params['leader'] = leader = val
+            continue
+        #Sort out attributes
+        params['indicators'] = indicators = { k: v for k, v in attribs.items() if k.startswith('ind') }
+        params['subfields'] = subfields = attribs.copy() # preserve class
+        #for k in list(subfields.keys()):
+        #    if k[:3] in ('tag', 'ind'):
+        #        del subfields[k]
+        subfields = { k: v for (k, v) in subfields.items() if k[:3] not in ('tag', 'ind') }
+        params['code'] = tag = attribs['tag']
+        if taglink.startswith(MARCXML_NS + '/control'):
+            #No indicators on control fields. Turn them off, in effect
+            indicator_list = ('#', '#')
+            key = 'tag-' + tag
+            if tag == '006':
+                params['fields006'].append(val)
+            if tag == '007':
+                params['fields007'].append(val)
+            if tag == '008':
+                params['field008'] = val
+            if main_phase:
+                params['transform_log'].append((tag, key))
+                params['fields_used'].append((tag,))
+        elif taglink.startswith(MARCXML_NS + '/data'):
+            indicator_list = ((attribs.get('ind1') or ' ')[0].replace(' ', '#'), (attribs.get('ind2') or ' ')[0].replace(' ', '#'))
+            key = 'tag-' + tag
+            #logger.debug('indicators: ', repr(indicators))
+            #indicator_list = (indicators['ind1'], indicators['ind2'])
+            if main_phase: params['fields_used'].append(tuple([tag] + list(subfields.keys())))
+
+        #This is where we check each incoming MARC link to see if it matches a transform into an output link (e.g. renaming 001 to 'controlCode')
+        to_process = []
+        #Start with most specific matches, then to most general
+
+        # "?" syntax in lookups is a single char wildcard
+        #First with subfields, with & without indicators:
+        for k, v in subfields.items():
+            #if indicator_list == ('#', '#'):
+            lookups = [
+                '{0}-{1}{2}${3}'.format(tag, indicator_list[0], indicator_list[1], k),
+                '{0}-?{2}${3}'.format(tag, indicator_list[0], indicator_list[1], k),
+                '{0}-{1}?${3}'.format(tag, indicator_list[0], indicator_list[1], k),
+                '{0}${1}'.format(tag, k),
+            ]
+            for valitems in v:
+                for lookup in lookups:
+                    if lookup in transforms:
+                        to_process.append((transforms[lookup], valitems))
+                    else:
+                        # don't report on subfields for which a code-transform exists,
+                        # disregard wildcards
+                        if main_phase and not tag in transforms and '?' not in lookup:
+
+                            params['dropped_codes'].setdefault(lookup,0)
+                            params['dropped_codes'][lookup] += 1
+
+        #Now just the tag, with & without indicators
+        lookups = [
+            '{0}-{1}{2}'.format(tag, indicator_list[0], indicator_list[1]),
+            '{0}-?{2}'.format(tag, indicator_list[0], indicator_list[1]),
+            '{0}-{1}?'.format(tag, indicator_list[0], indicator_list[1]),
+            tag,
+        ]
+
+        #Remember how many lookups were successful based on subfields
+        subfields_results_len = len(to_process)
+        for lookup in lookups:
+            if lookup in transforms:
+                to_process.append((transforms[lookup], val))
+
+        if main_phase and subfields_results_len == len(to_process) and not subfields:
+            # Count as dropped if subfields were not processed and theer were no matches on non-subfield lookups
+            params['dropped_codes'].setdefault(tag,0)
+            params['dropped_codes'][tag] += 1
+
+        mat_ent = functools.partial(materialize_entity, ctx_params=params, loop=params['loop'])
+        #Apply all the handlers that were found
+        for funcinfo, val in to_process:
+            #Support multiple actions per lookup
+            funcs = funcinfo if isinstance(funcinfo, tuple) else (funcinfo,)
+
+            for func in funcs:
+                extras = { WORKID: params['workid'], IID: params['instanceids'][0] }
+                #Build Versa processing context
+                #Should we include indicators?
+                #Should we be passing in taglik rather than tag?
+                ctx = bfcontext((origin, tag, val, subfields), input_model,
+                                    params['output_model'], extras=extras,
+                                    base=params['vocabbase'], idgen=mat_ent,
+                                    existing_ids=params['existing_ids'])
+                func(ctx)
+
+        if main_phase and not to_process:
+            #Nothing else has handled this data field; go to the fallback
+            fallback_rel_base = '../marcext/tag-' + tag
+            if not subfields:
+                #Fallback for control field: Captures MARC tag & value
+                params['output_model'].add(I(params['workid']), I(iri.absolutize(fallback_rel_base, params['vocabbase'])), val)
+            for k, v in subfields.items():
+                #Fallback for data field: Captures MARC tag, indicators, subfields & value
+                fallback_rel = '../marcext/{0}-{1}{2}-{3}'.format(
+                    fallback_rel_base, indicator_list[0].replace('#', 'X'),
+                    indicator_list[1].replace('#', 'X'), k)
+                #params['transform_log'].append((code, fallback_rel))
+                for valitem in v:
+                    try:
+                        params['output_model'].add(I(params['workid']), I(iri.absolutize(fallback_rel, params['vocabbase'])), valitem)
+                    except ValueError as e:
+                        logger.warning('{}\nSkipping statement for {}: "{}"'.format(e, control_code[0], dumb_title[0]))
+
+    extra_stmts = set() # prevent duplicate statements
+    extra_transforms = params['extra_transforms']
+    for origin, k, v in itertools.chain(
+                extra_transforms.process_leader(params),
+                extra_transforms.process_006(params['fields006'], params),
+                extra_transforms.process_007(params['fields007'], params),
+                extra_transforms.process_008(params['field008'], params)):
+        v = v if isinstance(v, tuple) else (v,)
+        for item in v:
+            o = origin or I(params['workid'])
+            if o and (o, k, item) not in extra_stmts:
+                params['output_model'].add(o, k, item)
+                extra_stmts.add((o, k, item))
+    return
+
+
 @asyncio.coroutine
 def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                     plugins=None, ids=None, postprocess=None, out=None,
@@ -233,6 +375,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids,
                 'existing_ids': existing_ids, 'plugins': plugins,
                 'materialize_entity': materialize_entity, 'leader': leader,
+                'loop': loop, 'extra_transforms': extra_transforms
             }
 
             # Earliest plugin stage, with an unadulterated input model
@@ -298,142 +441,6 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                 if BF_INPUT_XREF_TASK in plugin:
                     yield from plugin[BF_INPUT_XREF_TASK](loop, input_model, params)
 
-            #XXX Generalize by using URIs for phase IDs
-            def process_marcpatterns(params, transforms, main_phase=False):
-                if main_phase:
-                    # Need to sort our way through the input model so that the materializations occur
-                    # at the same place each time, otherwise canonicalization fails due to the
-                    # addition of the subfield context (at the end of materialize())
-
-                    # XXX Is the int() cast necessary? If not we could do key=operator.itemgetter(0)
-                    input_model_iter= sorted(list(params['input_model']), key=lambda x: int(x[0]))
-                else:
-                    input_model_iter= params['input_model']
-                for lid, marc_link in input_model_iter:
-                    origin, taglink, val, attribs = marc_link
-                    if taglink == MARCXML_NS + '/leader':
-                        params['leader'] = leader = val
-                        continue
-                    #Sort out attributes
-                    params['indicators'] = indicators = { k: v for k, v in attribs.items() if k.startswith('ind') }
-                    params['subfields'] = subfields = attribs.copy() # preserve class
-                    for k in list(subfields.keys()):
-                        if k[:3] in ('tag', 'ind'):
-                            del subfields[k]
-                    params['code'] = tag = attribs['tag']
-                    if taglink.startswith(MARCXML_NS + '/control'):
-                        #No indicators on control fields. Turn them off, in effect
-                        indicator_list = ('#', '#')
-                        key = 'tag-' + tag
-                        if tag == '006':
-                            params['fields006'].append(val)
-                        if tag == '007':
-                            params['fields007'].append(val)
-                        if tag == '008':
-                            params['field008'] = val
-                        if main_phase:
-                            params['transform_log'].append((tag, key))
-                            params['fields_used'].append((tag,))
-                    elif taglink.startswith(MARCXML_NS + '/data'):
-                        indicator_list = ((attribs.get('ind1') or ' ')[0].replace(' ', '#'), (attribs.get('ind2') or ' ')[0].replace(' ', '#'))
-                        key = 'tag-' + tag
-                        #logger.debug('indicators: ', repr(indicators))
-                        #indicator_list = (indicators['ind1'], indicators['ind2'])
-                        if main_phase: params['fields_used'].append(tuple([tag] + list(subfields.keys())))
-
-                    #This is where we check each incoming MARC link to see if it matches a transform into an output link (e.g. renaming 001 to 'controlCode')
-                    to_process = []
-                    #Start with most specific matches, then to most general
-
-                    # "?" syntax in lookups is a single char wildcard
-                    #First with subfields, with & without indicators:
-                    for k, v in subfields.items():
-                        #if indicator_list == ('#', '#'):
-                        lookups = [
-                            '{0}-{1}{2}${3}'.format(tag, indicator_list[0], indicator_list[1], k),
-                            '{0}-?{2}${3}'.format(tag, indicator_list[0], indicator_list[1], k),
-                            '{0}-{1}?${3}'.format(tag, indicator_list[0], indicator_list[1], k),
-                            '{0}${1}'.format(tag, k),
-                        ]
-                        for valitems in v:
-                            for lookup in lookups:
-                                if lookup in transforms:
-                                    to_process.append((transforms[lookup], valitems))
-                                else:
-                                    # don't report on subfields for which a code-transform exists,
-                                    # disregard wildcards
-                                    if main_phase and not tag in transforms and '?' not in lookup:
-
-                                        params['dropped_codes'].setdefault(lookup,0)
-                                        params['dropped_codes'][lookup] += 1
-
-                    #Now just the tag, with & without indicators
-                    lookups = [
-                        '{0}-{1}{2}'.format(tag, indicator_list[0], indicator_list[1]),
-                        '{0}-?{2}'.format(tag, indicator_list[0], indicator_list[1]),
-                        '{0}-{1}?'.format(tag, indicator_list[0], indicator_list[1]),
-                        tag,
-                    ]
-
-                    #Remember how many lookups were successful based on subfields
-                    subfields_results_len = len(to_process)
-                    for lookup in lookups:
-                        if lookup in transforms:
-                            to_process.append((transforms[lookup], val))
-
-                    if main_phase and subfields_results_len == len(to_process) and not subfields:
-                        # Count as dropped if subfields were not processed and theer were no matches on non-subfield lookups
-                        params['dropped_codes'].setdefault(tag,0)
-                        params['dropped_codes'][tag] += 1
-
-                    mat_ent = functools.partial(materialize_entity, ctx_params=params, loop=loop)
-                    #Apply all the handlers that were found
-                    for funcinfo, val in to_process:
-                        #Support multiple actions per lookup
-                        funcs = funcinfo if isinstance(funcinfo, tuple) else (funcinfo,)
-
-                        for func in funcs:
-                            extras = { WORKID: params['workid'], IID: params['instanceids'][0] }
-                            #Build Versa processing context
-                            #Should we include indicators?
-                            #Should we be passing in taglik rather than tag?
-                            ctx = bfcontext((origin, tag, val, subfields), input_model,
-                                                params['output_model'], extras=extras,
-                                                base=vocabbase, idgen=mat_ent,
-                                                existing_ids=existing_ids)
-                            func(ctx)
-
-                    if main_phase and not to_process:
-                        #Nothing else has handled this data field; go to the fallback
-                        fallback_rel_base = '../marcext/tag-' + tag
-                        if not subfields:
-                            #Fallback for control field: Captures MARC tag & value
-                            params['output_model'].add(I(workid), I(iri.absolutize(fallback_rel_base, vocabbase)), val)
-                        for k, v in subfields.items():
-                            #Fallback for data field: Captures MARC tag, indicators, subfields & value
-                            fallback_rel = '../marcext/{0}-{1}{2}-{3}'.format(
-                                fallback_rel_base, indicator_list[0].replace('#', 'X'),
-                                indicator_list[1].replace('#', 'X'), k)
-                            #params['transform_log'].append((code, fallback_rel))
-                            for valitem in v:
-                                try:
-                                    params['output_model'].add(I(workid), I(iri.absolutize(fallback_rel, vocabbase)), valitem)
-                                except ValueError as e:
-                                    logger.warning('{}\nSkipping statement for {}: "{}"'.format(e, control_code[0], dumb_title[0]))
-
-                extra_stmts = set() # prevent duplicate statements
-                for origin, k, v in itertools.chain(
-                            extra_transforms.process_leader(params),
-                            extra_transforms.process_006(params['fields006'], params),
-                            extra_transforms.process_007(params['fields007'], params),
-                            extra_transforms.process_008(params['field008'], params)):
-                    v = v if isinstance(v, tuple) else (v,)
-                    for item in v:
-                        o = origin or I(params['workid'])
-                        if o and (o, k, item) not in extra_stmts:
-                            params['output_model'].add(o, k, item)
-                            extra_stmts.add((o, k, item))
-
             #Do one pass to establish work hash
             #XXX Should crossrefs precede this?
             temp_workhash = next(params['input_model'].match())[ORIGIN]
@@ -447,7 +454,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             params['fields006'] = fields006 = []
             params['fields007'] = fields007 = []
 
-            process_marcpatterns(params, WORK_HASH_TRANSFORMS, main_phase=False)
+            process_marcpatterns(params, WORK_HASH_TRANSFORMS, input_model, main_phase=False)
 
             workid_data = gather_workid_data(params['output_model'], temp_workhash)
             workid = materialize_entity('Work', ctx_params=params, loop=loop, data=workid_data)
@@ -476,9 +483,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             #Figure out instances
             instanceids = instancegen(params, loop, model)
 
-            params['workid'] = workid
             params['instanceids'] = instanceids or [None]
-            params['folded'] = folded
             params['transform_log'] = [] # set()
             params['fields_used'] = []
             params['dropped_codes'] = {}
@@ -487,7 +492,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             params['fields006'] = fields006 = []
             params['fields007'] = fields007 = []
 
-            process_marcpatterns(params, main_transforms, main_phase=True)
+            process_marcpatterns(params, main_transforms, input_model, main_phase=True)
 
             instance_postprocess(params)
 
@@ -550,39 +555,4 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
         #print('DONE')
         #raise
 
-    return
-
-
-def duplicate_statements(model, oldorigin, neworigin, rfilter=None):
-    '''
-    Take links with a given origin, and create duplicate links with the same information but a new origin
-
-    :param model: Versa model to be updated
-    :param oldres: resource IRI to be duplicated
-    :param newres: origin resource IRI for duplication
-    :return: None
-    '''
-    for link in model.match(oldorigin):
-        o, r, t, a = link
-        if rfilter is None or rfilter(o, r, t, a):
-            model.add(I(neworigin), r, t, a)
-    return
-
-
-def replace_entity_resource(model, oldres, newres):
-    '''
-    Replace one entity in the model with another with the same links
-
-    :param model: Versa model to be updated
-    :param oldres: old/former resource IRI to be replaced
-    :param newres: new/replacement resource IRI
-    :return: None
-    '''
-    oldrids = set()
-    for rid, link in model:
-        if link[ORIGIN] == oldres or link[TARGET] == oldres or oldres in link[ATTRIBUTES].values():
-            oldrids.add(rid)
-            new_link = (newres if o == oldres else o, r, newres if t == oldres else t, dict((k, newres if v == oldres else v) for k, v in a.items()))
-            model.add(*new_link)
-    model.delete(oldrids)
     return
