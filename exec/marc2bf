@@ -10,7 +10,7 @@ from amara3.inputsource import inputsourcetype
 
 
 def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, xml=None,
-        config=None, verbose=False, mods=None, canonical=False, lax=False, zipcheck=None):
+        config=None, verbose=False, mods=None, canonical=False, lax=False):
     '''
     Basically takes parameters typical for command line invocation and adapts them for use in the API
 
@@ -29,7 +29,7 @@ def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, 
 
     bfconvert(inputs=inputs, entbase=base, out=out, limit=limit, rdfttl=rdfttl, rdfxml=rdfxml,
                 xml=xml, config=config, verbose=verbose, canonical=canonical, logger=logger,
-                lax=lax, zipcheck=zipcheck, defaultsourcetype=inputsourcetype.filename)
+                lax=lax, defaultsourcetype=inputsourcetype.filename)
     return
 
 
@@ -70,13 +70,13 @@ if __name__ == '__main__':
         help='Parse less strictly, e.g. accepting MARC/XML with bad namespace declarations')
     #XXX: Any way to get generalized archive support using shutil? Perhaps along with tempfile?
     #https://docs.python.org/3/library/shutil.html#archiving-operations
-    parser.add_argument('-z', '--zipcheck', action='store_true',
-        help='Check for zip files among the inputs')
+    #parser.add_argument('-z', '--zipcheck', action='store_true',
+    #    help='Check for zip files among the inputs')
     #
     args = parser.parse_args()
     args.mod = [i for items in args.mod or [] for i in items]
 
-    run(inputs=args.inputs, base=args.base, out=args.out, limit=args.limit, rdfttl=args.rdfttl, rdfxml=args.rdfxml, xml=args.xml, config=args.config, verbose=args.verbose, mods=args.mod, canonical=args.canonical, lax=args.lax, zipcheck=args.zipcheck)
+    run(inputs=args.inputs, base=args.base, out=args.out, limit=args.limit, rdfttl=args.rdfttl, rdfxml=args.rdfxml, xml=args.xml, config=args.config, verbose=args.verbose, mods=args.mod, canonical=args.canonical, lax=args.lax)
     #for f in args.inputs: f.close()
     if args.rdfttl: args.rdfttl.close()
     if args.rdfxml: args.rdfxml.close()
