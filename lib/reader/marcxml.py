@@ -68,8 +68,8 @@ class expat_callbacks(object):
                 self._chardata_dest = ''
                 tag = attributes['tag'].strip()
                 if len(tag) != 3 or not tag.isdigit():
-                    tag = '000'
                     self._logger.warn('Invalid datafield tag "{0}" in record "{1}"'.format(tag, self._record_id))
+                    tag = '000'
                 self._link_iri = MARCXML_NS + '/control/' + tag
                 #Control tags have neither indicators nor subfields
                 self._marc_attributes = attr_cls({'tag': tag})
@@ -77,8 +77,8 @@ class expat_callbacks(object):
             elif local == 'datafield':
                 tag = attributes['tag'].strip()
                 if len(tag) != 3 or not tag.isdigit():
-                    tag = '000'
                     self._logger.warn('Invalid datafield tag "{0}" in record "{1}"'.format(tag, self._record_id))
+                    tag = '000'
                 self._link_iri = MARCXML_NS + '/data/' + tag
                 self._marc_attributes = attr_cls(([k, v.strip()] for (k, v) in attributes.items() if ' ' not in k))
             elif local == 'subfield':
