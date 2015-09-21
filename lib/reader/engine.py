@@ -193,7 +193,7 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
                 return cls
 
             args = dict(lax=lax)
-            handle_marc_source(source, sink, args, model_factory)
+            handle_marc_source(source, sink, args, logger, model_factory)
             sink.close()
             yield
         task = asyncio.async(wrap_task(), loop=loop)
