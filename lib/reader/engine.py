@@ -48,10 +48,11 @@ NSSEP = ' '
 def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, model=None,
                 out=None, limit=None, rdfttl=None, rdfxml=None, xml=None, config=None,
                 verbose=False, logger=logging, loop=None, canonical=False,
-                lax=False, zipcheck=False, defaultsourcetype=inputsourcetype.unknown):
+                lax=False, defaultsourcetype=inputsourcetype.unknown):
     '''
-    inputs - MARC/XML inputsource (can be a compound inputsource in order to represent multiple record sets)
-                to be parsed and converted to BIBFRAME RDF (Note: want to allow singular input strings)
+    inputs - One or more open file-like object, string with MARC content, or filename or IRI. If filename or
+                IRI it's a good idea to indicate this via the defaultsourcetype parameter
+    handle_marc_source - Function to turn a source of MARC data (e.g. XML or JSON) into the internal format for processing
     entbase - Base IRI to be used for creating resources.
     model - model instance for internal use
     out - file where raw Versa JSON dump output should be written (default: write to stdout)
@@ -63,7 +64,9 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
     logger - logging object for messages
     loop - optional asyncio event loop to use
     canonical - output Versa's canonical form?
-    zipcheck - whether to check for zip files among the inputs
+    lax - If True signal to the handle_marc_source function that relaxed syntax rules should be applied
+            (e.g. accept XML with namespace problems)
+    defaultsourcetype - Signal indicating how best to interpret inputs to create an inputsource
     '''
     #if stats:
     #    register_service(statsgen.statshandler)
@@ -161,9 +164,6 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
 
     limiting = [0, limit]
     #logger=logger,
-
-    if zipcheck:
-        warnings.warn("The zipcheck option is not working yet.", RuntimeWarning)
 
     #raise(Exception(repr(inputs)))
     for source in inputs:

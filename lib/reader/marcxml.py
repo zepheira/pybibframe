@@ -30,7 +30,7 @@ IS_VALID_TAG = lambda t: len(t.rsplit('/',1)[-1]) == 3
 NSSEP = ' '
 
 class expat_callbacks(object):
-    def __init__(self, sink, parser, model_factory, lax=False):
+    def __init__(self, sink, parser, logger, model_factory, lax=False):
         self._sink = sink
         self._getcontent = False
         self.no_records = True
@@ -38,6 +38,7 @@ class expat_callbacks(object):
         self._lax = lax
         self._parser = parser
         self._record_model = None
+        self._logger = logger
         return
 
     def start_element(self, name, attributes):
@@ -65,17 +66,26 @@ class expat_callbacks(object):
                 self._getcontent = True
             elif local == 'controlfield':
                 self._chardata_dest = ''
-                self._link_iri = MARCXML_NS + '/control/' + attributes['tag'].strip()
+                tag = attributes['tag'].strip()
+                if len(tag) != 3 or not tag.isdigit():
+                    self._logger.warn('Invalid datafield tag "{0}" in record "{1}"'.format(tag, self._record_id))
+                    tag = '000'
+                self._link_iri = MARCXML_NS + '/control/' + tag
                 #Control tags have neither indicators nor subfields
-                self._marc_attributes = attr_cls({'tag': attributes['tag'].strip()})
+                self._marc_attributes = attr_cls({'tag': tag})
                 self._getcontent = True
             elif local == 'datafield':
-                self._link_iri = MARCXML_NS + '/data/' + attributes['tag'].strip()
+                tag = attributes['tag'].strip()
+                if len(tag) != 3 or not tag.isdigit():
+                    self._logger.warn('Invalid datafield tag "{0}" in record "{1}"'.format(tag, self._record_id))
+                    tag = '000'
+                self._link_iri = MARCXML_NS + '/data/' + tag
                 self._marc_attributes = attr_cls(([k, v.strip()] for (k, v) in attributes.items() if ' ' not in k))
             elif local == 'subfield':
                 self._chardata_dest = ''
                 self._subfield = attributes['code'].strip()
-                if not self._subfield or ord(self._subfield) not in VALID_SUBFIELDS:
+                if len(self._subfield) != 1 or ord(self._subfield) not in VALID_SUBFIELDS:
+                    self._logger.warn('Invalid subfield code "{0}" in record "{1}", tag "{2}"'.format(self._subfield, self._record_id, self._marc_attributes['tag']))
                     self._subfield = '_'
                 self._getcontent = True
         return
@@ -124,7 +134,7 @@ class expat_callbacks(object):
 #PYTHONASYNCIODEBUG = 1
 
 
-def handle_marcxml_source(source, sink, args, model_factory):
+def handle_marcxml_source(source, sink, args, logger, model_factory):
     '''
     Process one source of MARC/XML records in the form of an amara3 inputsource
     Generally this will be a single XML file with a marc:collection with one or more marc:record
@@ -142,7 +152,7 @@ def handle_marcxml_source(source, sink, args, model_factory):
     else:
         parser = xml.parsers.expat.ParserCreate(namespace_separator=NSSEP)
 
-    handler = expat_callbacks(sink, parser, model_factory, lax)
+    handler = expat_callbacks(sink, parser, logger, model_factory, lax)
 
     parser.StartElementHandler = handler.start_element
     parser.EndElementHandler = handler.end_element
