@@ -281,6 +281,43 @@ BFLITE_TRANSFORMS = {
                               }
     ),
 
+    '130': onwork.materialize(BL + 'Collection',
+                              values(
+                                  BL + 'creator',
+                                  relator_property(subfield('e'), prefix=REL),
+                                  relator_property(subfield('4'), prefix=REL)
+                              ),
+                              unique=[
+                                  (BL + 'title', subfield('a')),
+                                  (MARC + 'legalDate', subfield('d')),
+                                  (BL + 'medium', subfield('h')),
+                                  (BL + 'language', subfield('l')),
+                                  (AV + 'musicMedium', subfield('m')),
+                                  (MARC + 'titleNumber', subfield('n')),
+                                  (AV + 'arrangedMusic', subfield('o')),
+                                  (MARC + 'titlePart', subfield('p')),
+                                  (AV + 'musicKey', subfield('r')),
+                                  (MARC + 'form', subfield('k')),
+                                  (BL + 'date', subfield('f')),
+                                  (MARC + 'version', subfield('s')),
+                              ],
+                              links={
+                                  BL + 'title': subfield('a'),
+                                  MARC + 'legalDate': subfield('d'),
+                                  BL + 'medium': subfield('h'),
+                                  BL + 'language': subfield('l'),
+                                  AV + 'musicMedium': subfield('m'),
+                                  MARC + 'titleNumber': subfield('n'),
+                                  AV + 'arrangedMusic': subfield('o'),
+                                  MARC + 'titlePart': subfield('p'),
+                                  AV + 'musicKey': subfield('r'),
+                                  MARC + 'form': subfield('k'),
+                                  BL + 'date': subfield('f'),
+                                  MARC + 'version': subfield('s')
+                              }
+    ),
+
+
     '210$a': oninstance.rename(rel=MARC + 'abbreviatedTitle'),
     '222$a': oninstance.rename(rel=MARC + 'keyTitle'),
 
@@ -1352,7 +1389,7 @@ BFLITE_TRANSFORMS = {
                                                               unique=[
                                                                   (BL + 'name', subfield('a'))
                                                               ],
-                                                              # unique=values(subfield('a')),
+                                                              # unique=values(subfield('a')),more RE
                                                               links={
                                                                   BL + 'name': subfield('a'),
                                                                   BL + 'date': subfield('d')
@@ -1841,23 +1878,34 @@ BFLITE_TRANSFORMS = {
     # Alternative Format (Instance) - define instance to instance relationship and instantiates
 
     '776': ifexists(subfield('s'),
-                    oninstance.materialize(BL + 'Collection',
+    oninstance.materialize(BL + 'Collection',
                                            values(REL + 'hasOtherPhysicalFormat'),
                                            unique=[
                                                (BL + 'title', subfield('s')),
                                                (MARC + 'edition', subfield('b')),
                                                (BL + 'note', subfield('n')),
+                                               (BL + 'note', subfield('c')),
+                                               (BL + 'note', subfield('i')),
                                                (MARC + 'issn', subfield('x')),
                                                (MARC + 'isbn', subfield('z')),
                                            ],
                                            # unique=all_subfields,
                                            links={
                                                BL + 'title': subfield('s'),
-                                               MARC + 'issn': subfield('x'),
+                                               ifexists(subfield('a'), BL + 'creator'):
+                                                   materialize(BL + 'Agent',
+                                                               unique=[
+                                                                   (BL + 'name', subfield('a'))
+                                                               ],
+                                                               links={
+                                                                   BL + 'name': subfield('a')
+                                                               }
+                                                   ),
                                                BL + 'authorityLink': url(
                                                    replace_from(AUTHORITY_CODES, subfield('w'))),
                                                MARC + 'edition': subfield('b'),
-                                               BL + 'note': subfield('n'),
+                                               BL + 'note': values(subfield('n'), subfield('c'), subfield('i')),
+                                               MARC + 'issn': subfield('x'),
                                                MARC + 'isbn': subfield('z')}
                     ),
                     oninstance.materialize(BL + 'Instance',
@@ -1871,11 +1919,20 @@ BFLITE_TRANSFORMS = {
                                            ],
                                            # unique=all_subfields,
                                            links={
-                                               BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
-                                               MARC + 'issn': subfield('x'),
+                                               BL + 'title': subfield('t'),
+                                               ifexists(subfield('a'), BL + 'creator'):
+                                                   materialize(BL + 'Agent',
+                                                               unique=[
+                                                                   (BL + 'name', subfield('a'))
+                                                               ],
+                                                               links={
+                                                                   BL + 'name': subfield('a')
+                                                               }
+                                                   ),
                                                BL + 'authorityLink': url(replace_from(AUTHORITY_CODES, subfield('w'))),
                                                MARC + 'edition': subfield('b'),
-                                               BL + 'note': subfield('n'),
+                                               BL + 'note': values(subfield('n'), subfield('c'), subfield('i')),
+                                               MARC + 'issn': subfield('x'),
                                                MARC + 'isbn': subfield('z'),
                                                BL + 'instantiates': anchor_work()}
                     )
