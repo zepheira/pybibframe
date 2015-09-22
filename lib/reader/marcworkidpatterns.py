@@ -42,9 +42,9 @@ WORK_HASH_TRANSFORMS = {
     '246$b': onwork.rename(rel=MARC + 'titleVariationRemainder'),
     '246$f': onwork.rename(rel=MARC + 'titleVariationDate'),
 
-    # Key edition info
-    '250$a': onwork.rename(rel=MARC + 'edition'),
-    '250$b': onwork.rename(rel=MARC + 'edition'),
+    # # Key edition info
+    # '250$a': onwork.rename(rel=MARC + 'edition'),
+    # '250$b': onwork.rename(rel=MARC + 'edition'),
 
     # Key subject info
     '600$a': onwork.rename(rel=LL + 'subjectName'),
@@ -169,7 +169,7 @@ WORK_HASH_INPUT = [
     MARC + 'titleVariationRemainder',
     MARC + 'titleVariationDate',
 
-    MARC + 'edition',
+    # MARC + 'edition',
 
     LL + 'creatorName',
     LL + 'creatorDate',
