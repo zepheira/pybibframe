@@ -62,9 +62,37 @@ class base_transformer(object):
 
     #Functions that take a prototype link set and generate a transformed link set
 
+    def link(self, rel=None, value=None, res=False):
+        '''
+        Create a link based the context's current link, specifying the output link
+        IRI and a target value to be constructed for the link
+
+        rel - IRI of the output link
+        value - construction of the target value ofthe link. If None, equivalent of
+                using target(), i.e. just reuse the target of the context current link
+        res = if True mark the link target value as an IRI (i.e. not a plain string)
+        '''
+        def _link(ctx):
+            (o, r, t, a) = ctx.current_link
+            _value = value(ctx) if callable(value) else (t if value is None else value)
+            workid, iid = ctx.extras[WORKID], ctx.extras[IID]
+            new_o = {origin_class.work: workid, origin_class.instance: iid}[self._use_origin]
+            #Just work with the first provided statement, for now
+            if res:
+                try:
+                    _value = I(_value)
+                except ValueError:
+                    ctx.extras['logger'].warn('Requirement to convert link target to IRI failed for invalid input, causing the corresponding output link to be omitted entirely: {0}'.format(repr((I(new_o), I(iri.absolutize(rel, ctx.base)), value))))
+                    #XXX How do we really want to handle this error?
+                    return []
+            ctx.output_model.add(I(new_o), I(iri.absolutize(rel, ctx.base)), _value, {})
+            return
+        return _link
+
     def rename(self, rel=None, res=False):
         '''
-        Update the label of the relationship to be added to the link space
+        DEPRECATED! Update the label of the relationship to be added to the link space
+        Please use link() instead
         '''
         def _rename(ctx):
             workid, iid = ctx.extras[WORKID], ctx.extras[IID]

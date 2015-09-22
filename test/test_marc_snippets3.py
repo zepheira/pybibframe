@@ -14,7 +14,7 @@ You must have matched series each with all 3 components matched up, otherwise th
 
 Recipe for regenerating the test case expected outputs:
 
-python -i test/test_marc_snippets.py #Ignore the SystemExit
+python -i test/test_marc_snippets3.py #Ignore the SystemExit
 
 Then:
 
@@ -105,6 +105,12 @@ EXPECTED_21 = '''
         {
             "@target-type": "@iri-ref"
         }
+    ],
+    [
+        "EIUIxVXGSsk",
+        "http://bibfra.me/vocab/lite/note",
+        "Original",
+        {}
     ],
     [
         "EIUIxVXGSsk",

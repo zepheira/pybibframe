@@ -292,7 +292,11 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
             funcs = funcinfo if isinstance(funcinfo, tuple) else (funcinfo,)
 
             for func in funcs:
-                extras = { WORKID: params['workid'], IID: params['instanceids'][0] }
+                extras = {
+                    WORKID: params['workid'],
+                    IID: params['instanceids'][0],
+                    'logger': params['logger'],
+                }
                 #Build Versa processing context
                 #Should we include indicators?
                 #Should we be passing in taglik rather than tag?
