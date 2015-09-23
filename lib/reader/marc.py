@@ -207,6 +207,7 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
         input_model_iter= sorted(list(params['input_model']), key=lambda x: int(x[0]))
     else:
         input_model_iter= params['input_model']
+    params['to_postprocess'] = []
     for lid, marc_link in input_model_iter:
         origin, taglink, val, attribs = marc_link
         if taglink == MARCXML_NS + '/leader':
@@ -287,7 +288,6 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
 
         mat_ent = functools.partial(materialize_entity, ctx_params=params, loop=params['loop'])
 
-        params['to_postprocess'] = []
         #Apply all the handlers that were found
         for funcinfo, val in to_process:
             #Support multiple actions per lookup
