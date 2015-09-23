@@ -441,8 +441,11 @@ BFLITE_TRANSFORMS = {
                                   MARC + 'publication',
                                   unique=[
                                       (BL + 'providerPlace', subfield('a')),
+                                      (BL + 'providerPlace', subfield('e')),
                                       (BL + 'providerAgent', subfield('b')),
-                                      (BL + 'providerDate', subfield('b')),
+                                      (BL + 'providerAgent', subfield('f')),
+                                      (BL + 'providerDate', subfield('c')),
+                                      (BL + 'providerDate', subfield('d')),
                                   ],
                                   # unique=all_subfields,
                                   links={ifexists(subfield('a'), BL + 'providerPlace'):
@@ -453,6 +456,16 @@ BFLITE_TRANSFORMS = {
                                                          # unique=subfield('a'),
                                                          links={
                                                              BL + 'name': subfield('a')
+                                                         }
+                                             ),
+                                         ifexists(subfield('e'), BL + 'providerPlace'):
+                                             materialize(BL + 'Place',
+                                                         unique=[
+                                                             (BL + 'name', subfield('e'))
+                                                         ],
+                                                         # unique=subfield('a'),
+                                                         links={
+                                                             BL + 'name': subfield('e')
                                                          }
                                              ),
                                          foreach(target=subfield('b')):
@@ -468,7 +481,20 @@ BFLITE_TRANSFORMS = {
                                                              BL + 'name': target()
                                                          }
                                              ),
-                                         BL + 'providerDate': subfield('c')
+                                         foreach(target=subfield('f')):
+                                             materialize(BL + 'Agent',
+                                                         values(
+                                                             BL + 'providerAgent'
+                                                         ),
+                                                         unique=[
+                                                             (BL + 'name', target())
+                                                         ],
+                                                         # unique=target(),
+                                                         links={
+                                                             BL + 'name': target()
+                                                         }
+                                             ),
+                                         BL + 'providerDate': values(subfield('c'), subfield('d'))
                                   }
     ),
 
@@ -477,7 +503,7 @@ BFLITE_TRANSFORMS = {
                                      unique=[
                                          (BL + 'copyrightPlace', subfield('a')),
                                          (BL + 'copyrightAgent', subfield('b')),
-                                         (BL + 'copyrightDate', subfield('b')),
+                                         (BL + 'copyrightDate', subfield('c')),
                                      ],
                                      # unique=all_subfields,
                                      links={ifexists(subfield('a'), BL + 'copyrightPlace'):
@@ -500,7 +526,7 @@ BFLITE_TRANSFORMS = {
                                      unique=[
                                          (BL + 'providerPlace', subfield('a')),
                                          (BL + 'providerAgent', subfield('b')),
-                                         (BL + 'providerDate', subfield('b')),
+                                         (BL + 'providerDate', subfield('c')),
                                      ],
                                      # unique=all_subfields,
                                      links={ifexists(subfield('a'), BL + 'providerPlace'):
@@ -531,7 +557,7 @@ BFLITE_TRANSFORMS = {
                                      unique=[
                                          (BL + 'providerPlace', subfield('a')),
                                          (BL + 'providerAgent', subfield('b')),
-                                         (BL + 'providerDate', subfield('b')),
+                                         (BL + 'providerDate', subfield('c')),
                                      ],
                                      # unique=all_subfields,
                                      links={ifexists(subfield('a'), BL + 'providerPlace'):
@@ -562,7 +588,7 @@ BFLITE_TRANSFORMS = {
                                      unique=[
                                          (BL + 'providerPlace', subfield('a')),
                                          (BL + 'providerAgent', subfield('b')),
-                                         (BL + 'providerDate', subfield('b')),
+                                         (BL + 'providerDate', subfield('c')),
                                      ],
                                      # unique=all_subfields,
                                      links={ifexists(subfield('a'), BL + 'providerPlace'):
@@ -593,7 +619,7 @@ BFLITE_TRANSFORMS = {
                                      unique=[
                                          (BL + 'providerPlace', subfield('a')),
                                          (BL + 'providerAgent', subfield('b')),
-                                         (BL + 'providerDate', subfield('b')),
+                                         (BL + 'providerDate', subfield('c')),
                                      ],
                                      # unique=all_subfields,
                                      links={ifexists(subfield('a'), BL + 'providerPlace'):
@@ -626,7 +652,7 @@ BFLITE_TRANSFORMS = {
                                      unique=[
                                          (BL + 'providerPlace', subfield('a')),
                                          (BL + 'providerAgent', subfield('b')),
-                                         (BL + 'providerDate', subfield('b')),
+                                         (BL + 'providerDate', subfield('c')),
                                      ],
                                      # unique=all_subfields,
                                      links={ifexists(subfield('a'), BL + 'providerPlace'):
@@ -778,7 +804,10 @@ BFLITE_TRANSFORMS = {
 
     '600': ifexists(subfield('t'),
                     onwork.materialize(BL + 'Concept',
-                                       BL + 'subject',
+                                       values(
+                                           BL + 'subject',
+                                           relator_property(subfield('e'), prefix=REL),
+                                       ),
                                        unique=[
                                            (BL + 'name', subfield('a')),
                                            (MARC + 'numeration', subfield('b')),
@@ -790,13 +819,6 @@ BFLITE_TRANSFORMS = {
                                            (MARC + 'chronologicalSubdivision', subfield('y')),
                                            (MARC + 'geographicSubdivision', subfield('z')),
                                        ],
-                                       # unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'),
-                                       # subfield('f'), subfield('g'), subfield('h'), subfield('j'),
-                                       # subfield('k'), subfield('l'), subfield('m'), subfield('n'),
-                                       # subfield('o'), subfield('p'), subfield('q'), subfield('r'),
-                                       # subfield('s'), subfield('t'), subfield('u'), subfield('v'),
-                                       # subfield('x'), subfield('y'), subfield('z')
-                                       # ),
                                        links={
                                            BL + 'name': subfield('a'),
                                            MARC + 'numeration': subfield('b'),
@@ -820,13 +842,6 @@ BFLITE_TRANSFORMS = {
                                                                (BL + 'date', subfield('f')),
                                                                (MARC + 'version', subfield('s')),
                                                            ],
-                                                           # unique=values(subfield('a'), subfield('b'), subfield('c'),  # same as 100
-                                                           # subfield('d'), subfield('g'), subfield('j'),
-                                                           # subfield('q'), subfield('u'),
-                                                           # subfield('t'), subfield('n'), subfield('p'),  # and the title (240)
-                                                           # subfield('r'), subfield('k'), subfield('f'),
-                                                           # subfield('s')
-                                                           # ),
                                                            links={
                                                                BL + 'title': subfield('t'),
                                                                MARC + 'titleNumber': subfield('n'),
@@ -840,29 +855,16 @@ BFLITE_TRANSFORMS = {
                                                                    materialize(BL + 'Person',
                                                                                unique=[
                                                                                    (BL + 'name', subfield('a')),
-                                                                                   (MARC + 'numeration',
-                                                                                    subfield('b')),
-                                                                                   (MARC + 'titles',
-                                                                                    subfield('c')),
+                                                                                   (MARC + 'numeration', subfield('b')),
+                                                                                   (MARC + 'titles', subfield('c')),
                                                                                    (BL + 'date', subfield('d')),
                                                                                    (MARC + 'additionalName',
                                                                                     subfield('q')),
                                                                                ],
-                                                                               # unique=values(subfield('a'), # same as 100
-                                                                               # subfield('b'),
-                                                                               # subfield('c'),
-                                                                               # subfield('d'),
-                                                                               # subfield('g'),
-                                                                               # subfield('j'),
-                                                                               # subfield('q'),
-                                                                               # subfield('u')
-                                                                               # ),
                                                                                links={
                                                                                    BL + 'name': subfield('a'),
-                                                                                   MARC + 'numeration': subfield(
-                                                                                       'b'),
-                                                                                   MARC + 'titles': subfield(
-                                                                                       'c'),
+                                                                                   MARC + 'numeration': subfield('b'),
+                                                                                   MARC + 'titles': subfield('c'),
                                                                                    BL + 'date': subfield('d'),
                                                                                    MARC + 'additionalName': subfield(
                                                                                        'q')
@@ -873,7 +875,10 @@ BFLITE_TRANSFORMS = {
                                        }
                     ),
                     onwork.materialize(BL + 'Concept',
-                                       values(BL + 'subject'),
+                                       values(
+                                           BL + 'subject',
+                                           relator_property(subfield('e'), prefix=REL),
+                                       ),
                                        unique=[
                                            (BL + 'name', subfield('a')),
                                            (MARC + 'numeration', subfield('b')),
@@ -885,13 +890,6 @@ BFLITE_TRANSFORMS = {
                                            (MARC + 'chronologicalSubdivision', subfield('y')),
                                            (MARC + 'geographicSubdivision', subfield('z')),
                                        ],
-                                       # unique=values(subfield('a'), subfield('b'), subfield('c'), subfield('d'),
-                                       # subfield('f'), subfield('g'), subfield('h'), subfield('j'),
-                                       # subfield('k'), subfield('l'), subfield('m'), subfield('n'),
-                                       # subfield('o'), subfield('p'), subfield('q'), subfield('r'),
-                                       # subfield('s'), subfield('t'), subfield('u'), subfield('v'),
-                                       # subfield('x'), subfield('y'), subfield('z')
-                                       # ),
                                        links={BL + 'name': subfield('a'),
                                               MARC + 'numeration': subfield('b'),
                                               MARC + 'locationOfEvent': subfield('c'),
@@ -926,7 +924,10 @@ BFLITE_TRANSFORMS = {
     ),
 
     '610': onwork.materialize(BL + 'Concept',
-                              values(BL + 'subject'),
+                              values(
+                                  BL + 'subject',
+                                  relator_property(subfield('e'), prefix=REL),
+                              ),
                               unique=[
                                   (BL + 'name', subfield('a')),
                                   (MARC + 'subordinateUnit', subfield('b')),
@@ -980,7 +981,10 @@ BFLITE_TRANSFORMS = {
     ),
 
     '611': onwork.materialize(BL + 'Concept',
-                              values(BL + 'subject'),
+                              values(
+                                  BL + 'subject',
+                                  relator_property(subfield('e'), prefix=REL),
+                              ),
                               unique=[
                                   (BL + 'name', subfield('a')),
                                   (MARC + 'numeration', subfield('b')),
@@ -1031,9 +1035,13 @@ BFLITE_TRANSFORMS = {
 
 
     '630': onwork.materialize(BL + 'Concept',
-                              BL + 'subject',
+                              values(
+                                  BL + 'subject',
+                                  relator_property(subfield('e'), prefix=REL),
+                              ),
                               unique=[
                                   (BL + 'title', subfield('a')),
+                                  (MARC + 'legalDate', subfield('d')),
                                   (BL + 'medium', subfield('h')),
                                   (BL + 'language', subfield('l')),
                                   (MARC + 'nameOfPart', subfield('p')),
@@ -1042,8 +1050,8 @@ BFLITE_TRANSFORMS = {
                                   (MARC + 'chronologicalSubdivision', subfield('y')),
                                   (MARC + 'geographicSubdivision', subfield('z')),
                               ],
-                              # unique=all_subfields,
                               links={BL + 'title': subfield('a'),
+                                     MARC + 'legalDate': subfield('d'),
                                      BL + 'language': subfield('l'),
                                      BL + 'medium': subfield('h'),
                                      MARC + 'nameOfPart': subfield('p'),
@@ -1068,13 +1076,6 @@ BFLITE_TRANSFORMS = {
                                                          (BL + 'date', subfield('f')),
                                                          (MARC + 'version', subfield('s')),
                                                      ],
-                                                     # unique=values(subfield('a'), subfield('d'),
-                                                     # subfield('f'), subfield('g'),
-                                                     # subfield('h'), subfield('k'),
-                                                     # subfield('l'), subfield('m'),
-                                                     # subfield('n'), subfield('o'),
-                                                     # subfield('p'), subfield('r'),
-                                                     # subfield('s'), subfield('t')),
                                                      links={
                                                          BL + 'title': subfield('a'),
                                                          MARC + 'legalDate': subfield('d'),
@@ -1094,7 +1095,10 @@ BFLITE_TRANSFORMS = {
     ),
 
     '650': onwork.materialize(BL + 'Concept',
-                              BL + 'subject',
+                              values(
+                                  BL + 'subject',
+                                  relator_property(subfield('e'), prefix=REL),
+                              ),
                               unique=[
                                   (BL + 'name', subfield('a')),
                                   (MARC + 'locationOfEvent', subfield('c')),
@@ -1104,15 +1108,6 @@ BFLITE_TRANSFORMS = {
                                   (MARC + 'chronologicalSubdivision', subfield('y')),
                                   (MARC + 'geographicSubdivision', subfield('z')),
                               ],
-                              # unique=values(subfield('a'),
-                              # subfield('b'),
-                              # subfield('c'),
-                              # subfield('d'),
-                              # subfield('g'),
-                              # subfield('v'),
-                              # subfield('x'),
-                              # subfield('y'),
-                              # subfield('z')),
                               links={
                                   BL + 'name': subfield('a'),
                                   MARC + 'locationOfEvent': subfield('c'),
@@ -1135,7 +1130,10 @@ BFLITE_TRANSFORMS = {
     ),
 
     '651': onwork.materialize(BL + 'Concept',
-                              BL + 'subject',
+                              values(
+                                  BL + 'subject',
+                                  relator_property(subfield('e'), prefix=REL),
+                              ),
                               unique=[
                                   (BL + 'name', subfield('a')),
                                   (BL + 'date', subfield('d')),
@@ -1144,12 +1142,6 @@ BFLITE_TRANSFORMS = {
                                   (MARC + 'chronologicalSubdivision', subfield('y')),
                                   (MARC + 'geographicSubdivision', subfield('z')),
                               ],
-                              # unique=values(subfield('a'),
-                              # subfield('g'),
-                              # subfield('v'),
-                              # subfield('x'),
-                              # subfield('y'),
-                              # subfield('z')),
                               links={
                                   BL + 'name': subfield('a'),
                                   BL + 'date': subfield('d'),
@@ -1173,7 +1165,10 @@ BFLITE_TRANSFORMS = {
     ),
 
     '655': onwork.materialize(BL + 'Concept',
-                              BL + 'subject',
+                              values(
+                                  BL + 'subject',
+                                  relator_property(subfield('e'), prefix=REL),
+                              ),
                               unique=[
                                   (BL + 'name', subfield('a')),
                                   (BL + 'title', subfield('t')),
@@ -1182,13 +1177,6 @@ BFLITE_TRANSFORMS = {
                                   (MARC + 'chronologicalSubdivision', subfield('y')),
                                   (MARC + 'geographicSubdivision', subfield('z')),
                               ],
-                              # unique=values(subfield('a'),
-                              # subfield('b'),
-                              # subfield('c'),
-                              # subfield('v'),
-                              # subfield('x'),
-                              # subfield('y'),
-                              # subfield('z')),
                               links={
                                   BL + 'name': subfield('a'),
                                   MARC + 'source': subfield('2'),
@@ -1222,7 +1210,6 @@ BFLITE_TRANSFORMS = {
                                 unique=[
                                     (BL + 'name', subfield('v'))
                                 ],
-                                # unique=values(subfield('v')),
                                 links={
                                     BL + 'name': subfield('v')
                                 }
@@ -1233,7 +1220,6 @@ BFLITE_TRANSFORMS = {
                                 unique=[
                                     (BL + 'name', subfield('v'))
                                 ],
-                                # unique=values(subfield('v')),
                                 links={
                                     BL + 'name': subfield('v')
                                 }
@@ -1244,7 +1230,6 @@ BFLITE_TRANSFORMS = {
                                 unique=[
                                     (BL + 'name', subfield('v'))
                                 ],
-                                # unique=values(subfield('v')),
                                 links={
                                     BL + 'name': subfield('v')
                                 }
@@ -1255,7 +1240,6 @@ BFLITE_TRANSFORMS = {
                                 unique=[
                                     (BL + 'name', subfield('v'))
                                 ],
-                                # unique=values(subfield('v')),
                                 links={
                                     BL + 'name': subfield('v')
                                 }
@@ -1266,7 +1250,6 @@ BFLITE_TRANSFORMS = {
                                 unique=[
                                     (BL + 'name', subfield('v'))
                                 ],
-                                # unique=values(subfield('v')),
                                 links={
                                     BL + 'name': subfield('v')
                                 }
@@ -1277,7 +1260,6 @@ BFLITE_TRANSFORMS = {
                                 unique=[
                                     (BL + 'name', subfield('v'))
                                 ],
-                                # unique=values(subfield('v')),
                                 links={
                                     BL + 'name': subfield('v')
                                 }
@@ -1288,7 +1270,6 @@ BFLITE_TRANSFORMS = {
                                 unique=[
                                     (BL + 'name', subfield('v'))
                                 ],
-                                # unique=values(subfield('a')),
                                 links={
                                     BL + 'name': subfield('a')
                                 }
@@ -1879,7 +1860,7 @@ BFLITE_TRANSFORMS = {
     # Alternative Format (Instance) - define instance to instance relationship and instantiates
 
     '776': ifexists(subfield('s'),
-    oninstance.materialize(BL + 'Collection',
+                    oninstance.materialize(BL + 'Collection',
                                            values(REL + 'hasOtherPhysicalFormat'),
                                            unique=[
                                                (BL + 'title', subfield('s')),
