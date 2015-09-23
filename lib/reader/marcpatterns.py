@@ -1898,6 +1898,7 @@ BFLITE_TRANSFORMS = {
                                                (BL + 'note', subfield('n')),
                                                (MARC + 'issn', subfield('x')),
                                                (MARC + 'isbn', subfield('z')),
+                                               (BL + 'instantiates', anchor_work()),
                                            ],
                                            # unique=all_subfields,
                                            links={
