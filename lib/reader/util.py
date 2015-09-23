@@ -82,7 +82,7 @@ class base_transformer(object):
                 try:
                     _value = I(_value)
                 except ValueError:
-                    ctx.extras['logger'].warn('Requirement to convert link target to IRI failed for invalid input, causing the corresponding output link to be omitted entirely: {0}'.format(repr((I(new_o), I(iri.absolutize(rel, ctx.base)), value))))
+                    ctx.extras['logger'].warn('Requirement to convert link target to IRI failed for invalid input, causing the corresponding output link to be omitted entirely: {0}'.format(repr((I(new_o), I(iri.absolutize(rel, ctx.base)), _value))))
                     #XXX How do we really want to handle this error?
                     return []
             ctx.output_model.add(I(new_o), I(iri.absolutize(rel, ctx.base)), _value, {})
