@@ -108,7 +108,7 @@ class base_transformer(object):
             return
         return _rename
 
-    def materialize(self, typ, rel, unique=None, links=None):
+    def materialize(self, typ, rel, unique=None, links=None, postprocess=None):
         '''
         Create a new resource related to the origin
         '''
@@ -121,7 +121,8 @@ class base_transformer(object):
             workid, iid = ctx.extras[WORKID], ctx.extras[IID]
             return {origin_class.work: workid, origin_class.instance: iid}[self._use_origin]
         #Now delegate to the actual materialize funtion to do the work
-        return materialize(typ, rel, derive_origin=derive_origin, unique=unique, links=links)
+        return materialize(typ, rel, derive_origin=derive_origin, unique=unique,
+                            links=links, postprocess=postprocess)
 
 
 def anchor_work():
@@ -364,7 +365,7 @@ def foreach(origin=None, rel=None, target=None, attributes=None):
     return _foreach
 
 
-def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
+def materialize(typ, rel=None, derive_origin=None, unique=None, links=None, postprocess=None):
     '''
     Create a new resource related to the origin.
 
@@ -393,6 +394,9 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
     links, or a Versa action function returning None, which signals that
     the particular link is skipped entirely.
 
+    :param postprocess: IRI or list of IRI queueing up actiona to be postprocessed
+    for this materialized resource. None, the default, signals no special postprocessing
+
     For examples of all these scenarios see marcpatterns.py
 
     :return: Versa action function to do the actual work
@@ -415,6 +419,7 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
         _typ = typ(ctx) if callable(typ) else typ
         #If need be call the Versa action function to determine the relationship to the materialized resource
         _rel = rel(ctx) if callable(rel) else rel
+        _postprocess = postprocess if isinstance(postprocess, list) else ([postprocess] if postprocess else [])
         #The current link from the passed-in context might be used in several aspects of operation
         (o, r, t, a) = ctx.current_link
         #Some conversions to make sure we end up with a list of relationships
@@ -448,6 +453,8 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None):
                 ctx.output_model.add(I(o), I(iri.absolutize(curr_rel, ctx.base)), I(objid), {})
         folded = objid in ctx.existing_ids
         if not folded:
+            for pp in _postprocess:
+                ctx.extras['postprocessing'].append((pp, I(objid)))
             if _typ: ctx.output_model.add(I(objid), VTYPE_REL, I(iri.absolutize(_typ, ctx.base)), {})
             #FIXME: Should we be using Python Nones to mark blanks, or should Versa define some sort of null resource?
 

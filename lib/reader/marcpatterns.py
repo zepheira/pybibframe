@@ -118,7 +118,8 @@ References.
 # Full MARC field list: http://www.loc.gov/marc/bibliographic/ecbdlist.html
 
 # These two lines are required at the top
-from bibframe import BL, BA, REL, MARC, RBMS, AV
+#from bibframe import BL, BA, REL, MARC, RBMS, AV, POSTPROCESS_AS_INSTANCE
+from bibframe import *
 from bibframe.reader.util import *
 
 # This line only needed if you are using advanced patterns e.g. with the replace_from function
@@ -1934,7 +1935,8 @@ BFLITE_TRANSFORMS = {
                                                BL + 'note': values(subfield('n'), subfield('c'), subfield('i')),
                                                MARC + 'issn': subfield('x'),
                                                MARC + 'isbn': subfield('z'),
-                                               BL + 'instantiates': anchor_work()}
+                                               BL + 'instantiates': anchor_work()},
+                                           postprocess=POSTPROCESS_AS_INSTANCE
                     )
     ),
 

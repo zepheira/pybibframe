@@ -21,7 +21,7 @@ from versa.util import duplicate_statements, OrderedJsonEncoder
 from versa.driver import memory
 #from versa.pipeline import context as versacontext
 
-from bibframe import MARC
+from bibframe import MARC, POSTPROCESS_AS_INSTANCE
 from bibframe.reader.util import WORKID, IID
 from bibframe import BF_INIT_TASK, BF_INPUT_TASK, BF_INPUT_XREF_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
 from bibframe.isbnplus import isbn_list, compute_ean13_check
@@ -286,6 +286,8 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
             params['dropped_codes'][tag] += 1
 
         mat_ent = functools.partial(materialize_entity, ctx_params=params, loop=params['loop'])
+
+        params['to_postprocess'] = []
         #Apply all the handlers that were found
         for funcinfo, val in to_process:
             #Support multiple actions per lookup
@@ -296,6 +298,7 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
                     WORKID: params['workid'],
                     IID: params['instanceids'][0],
                     'logger': params['logger'],
+                    'postprocessing': []
                 }
                 #Build Versa processing context
                 #Should we include indicators?
@@ -305,6 +308,7 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
                                     base=params['vocabbase'], idgen=mat_ent,
                                     existing_ids=params['existing_ids'])
                 func(ctx)
+                params['to_postprocess'].extend(ctx.extras['postprocessing'])
 
         if main_phase and not to_process:
             #Nothing else has handled this data field; go to the fallback
@@ -457,6 +461,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             params['field008'] = leader = None
             params['fields006'] = fields006 = []
             params['fields007'] = fields007 = []
+            params['to_postprocess'] = []
 
             process_marcpatterns(params, WORK_HASH_TRANSFORMS, input_model, main_phase=False)
 
@@ -495,9 +500,16 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             params['field008'] = leader = None
             params['fields006'] = fields006 = []
             params['fields007'] = fields007 = []
+            params['to_postprocess'] = []
 
             process_marcpatterns(params, main_transforms, input_model, main_phase=True)
 
+            for op, rid in params['to_postprocess']:
+                if op == POSTPROCESS_AS_INSTANCE:
+                    if params['instanceids'] == [None]:
+                        params['instanceids'] = [rid]
+                    else:
+                        params['instanceids'].append(rid)
             instance_postprocess(params)
 
             logger.debug('+')

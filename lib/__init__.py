@@ -2,7 +2,7 @@
 
 from versa import I
 
-# use BFZ namespace to scope MARC tags that don't match transformation recipes 
+# use BFZ namespace to scope MARC tags that don't match transformation recipes
 BFZ = I('http://bibfra.me/vocab/marcext/')
 BFLC = I('http://bibframe.org/vocab/')
 
@@ -25,6 +25,7 @@ RBMS = 'http://bibfra.me/vocab/rbms/'
 AV = 'http://bibfra.me/vocab/audiovisual/'
 MARCEXT = I('http://bibfra.me/vocab/marcext/')
 
+POSTPROCESS_AS_INSTANCE = 'http://bibfra.me/tool/pybibframe#marc.postprocess.instance'
 
 #def register_service(coro, iri=None):
 #    iri = iri or coro.iri
@@ -34,4 +35,3 @@ MARCEXT = I('http://bibfra.me/vocab/marcext/')
 def register_service(sinfo):
     g_services.update(sinfo)
     return
-
