@@ -106,7 +106,7 @@ def isbn_instancegen(params, loop, model):
     logger.debug('Normalized ISBN:\t{0}'.format(normalized_isbns))
     if normalized_isbns:
         for inum, itype in normalized_isbns:
-            data = [['instantiates', workid], ['isbn', inum]]
+            data = [['instantiates', workid], [ISBNNS + 'isbn', inum]]
             instanceid = materialize_entity('Instance', ctx_params=params, loop=loop, model_to_update=params['output_model'], data=data)
             if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
 
