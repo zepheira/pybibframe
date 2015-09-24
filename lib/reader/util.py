@@ -441,7 +441,7 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None, post
                         if subval: computed_unique.append([k, subval[0] if isinstance(subval, list) else subval])
                 else:
                     subval = v(ctx)
-                    if subval is not None: computed_unique.append([k, subval[0] if isinstance(subval, list) else subval ]])
+                    if subval: computed_unique.append([k, subval[0] if isinstance(subval, list) else subval ])
 
         #XXX: Relying here on shared existing_ids from the idgen function. Probably need to think through this state coupling
         objid = ctx.idgen(_typ, data=computed_unique)
