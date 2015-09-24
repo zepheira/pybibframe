@@ -421,14 +421,14 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None, post
         _rel = rel(ctx) if callable(rel) else rel
         _postprocess = postprocess if isinstance(postprocess, list) else ([postprocess] if postprocess else [])
         #The current link from the passed-in context might be used in several aspects of operation
-        (o, r, t, a) = ctx.current_link
+        (origin, r, t, a) = ctx.current_link
         #Some conversions to make sure we end up with a list of relationships
         if _rel is None:
             _rel = [r]
         rels = _rel if isinstance(_rel, list) else ([_rel] if rel else [])
         if derive_origin:
             #Have been given enough info to derive the origin from context. Ignore origin in current link
-            o = derive_origin(ctx)
+            origin = derive_origin(ctx)
 
         computed_unique = None
         if unique:
@@ -446,15 +446,14 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None, post
 
         #XXX: Relying here on shared existing_ids from the idgen function. Probably need to think through this state coupling
         objid = ctx.idgen(_typ, data=computed_unique)
+        #FIXME: Fix properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
+        rels = [ ('_' + curr_rel if curr_rel.isdigit() else curr_rel) for curr_rel in rels if curr_rel ]
         for curr_rel in rels:
-            #FIXME: Fix this properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
-            curr_rel = '_' + curr_rel if curr_rel.isdigit() else curr_rel
-            if curr_rel:
-                ctx.output_model.add(I(o), I(iri.absolutize(curr_rel, ctx.base)), I(objid), {})
+            ctx.output_model.add(I(origin), I(iri.absolutize(curr_rel, ctx.base)), I(objid), {})
         folded = objid in ctx.existing_ids
         if not folded:
             for pp in _postprocess:
-                ctx.extras['postprocessing'].append((pp, I(objid)))
+                ctx.extras['postprocessing'].append((pp, rels, I(objid)))
             if _typ: ctx.output_model.add(I(objid), VTYPE_REL, I(iri.absolutize(_typ, ctx.base)), {})
             #FIXME: Should we be using Python Nones to mark blanks, or should Versa define some sort of null resource?
 

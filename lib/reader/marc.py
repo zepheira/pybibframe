@@ -119,7 +119,7 @@ def isbn_instancegen(params, loop, model):
         #If there are no ISBNs, we'll generate a default Instance
         data = [['instantiates', workid]]
         instanceid = materialize_entity('Instance', ctx_params=params, loop=loop, model_to_update=params['output_model'], data=data)
-        if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
+        instanceid = I(iri.absolutize(instanceid, entbase)) if entbase else I(instanceid)
         output_model.add(I(instanceid), INSTANTIATES_REL, I(workid))
         existing_ids.add(instanceid)
         instance_ids.append(instanceid)
@@ -130,14 +130,16 @@ def isbn_instancegen(params, loop, model):
     return instance_ids
 
 
-def instance_postprocess(params):
+def instance_postprocess(params, skip_relationships=None):
+    skip_relationships = list(skip_relationships) or []
     instanceids = params['instanceids']
     model = params['output_model']
     vocabbase = params['vocabbase']
+    skip_relationships.extend([ISBN_REL, ISBN_TYPE_REL, I(iri.absolutize('instantiates', vocabbase))])
     def dupe_filter(o, r, t, a):
         #Filter out ISBN relationships
         return (r, t) != (TYPE_REL, I(iri.absolutize('Instance', vocabbase))) \
-            and r not in (ISBN_REL, ISBN_TYPE_REL, I(iri.absolutize('instantiates', vocabbase)))
+            and r not in skip_relationships
     if len(instanceids) > 1:
         base_instance_id = instanceids[0]
         for instanceid in instanceids[1:]:
@@ -504,13 +506,15 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
 
             process_marcpatterns(params, main_transforms, input_model, main_phase=True)
 
-            for op, rid in params['to_postprocess']:
+            skipped_rels = set()
+            for op, rels, rid in params['to_postprocess']:
+                for rel in rels: skipped_rels.add(rel)
                 if op == POSTPROCESS_AS_INSTANCE:
                     if params['instanceids'] == [None]:
                         params['instanceids'] = [rid]
                     else:
                         params['instanceids'].append(rid)
-            instance_postprocess(params)
+            instance_postprocess(params, skip_relationships=skipped_rels)
 
             logger.debug('+')
 
