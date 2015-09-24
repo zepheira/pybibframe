@@ -430,22 +430,22 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None, post
             #Have been given enough info to derive the origin from context. Ignore origin in current link
             origin = derive_origin(ctx)
 
-        computed_unique = None
+        computed_unique = [] if unique else None
         if unique:
             # strip None values from computed unique list, including pairs where v is None
-            computed_unique = []
             for k, v in unique:
                 if None in (k, v): continue
                 if isinstance(v, list):
                     for subitem in v:
                         subval = subitem(ctx)
-                        if subval is not None: computed_unique.append([k, subval])
+                        if subval: computed_unique.append([k, subval[0] if isinstance(subval, list) else subval])
                 else:
                     subval = v(ctx)
-                    if subval is not None: computed_unique.append([k, subval])
+                    if subval is not None: computed_unique.append([k, subval[0] if isinstance(subval, list) else subval ]])
 
         #XXX: Relying here on shared existing_ids from the idgen function. Probably need to think through this state coupling
         objid = ctx.idgen(_typ, data=computed_unique)
+        print(computed_unique)
         #FIXME: Fix properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
         rels = [ ('_' + curr_rel if curr_rel.isdigit() else curr_rel) for curr_rel in rels if curr_rel ]
         for curr_rel in rels:
