@@ -191,7 +191,6 @@ def all_subfields(ctx):
         #sorted(functools.reduce(lambda a, b: a.extend(b), ))
     #ctx.logger('GRIPPO' + repr(sorted(functools.reduce(lambda a, b: a.extend(b), ctx.linkset[0][ATTRIBUTES].items()))))
 
-
     attrs = ctx.current_link[ATTRIBUTES]
     # If attributes have their own ordering, use it, otherwise sort
     if isinstance(attrs, OrderedDict):
@@ -419,6 +418,7 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None, post
         _typ = typ(ctx) if callable(typ) else typ
         #If need be call the Versa action function to determine the relationship to the materialized resource
         _rel = rel(ctx) if callable(rel) else rel
+        _unique = unique(ctx) if callable(unique) else unique
         _postprocess = postprocess if isinstance(postprocess, list) else ([postprocess] if postprocess else [])
         #The current link from the passed-in context might be used in several aspects of operation
         (origin, r, t, a) = ctx.current_link
@@ -430,18 +430,18 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None, post
             #Have been given enough info to derive the origin from context. Ignore origin in current link
             origin = derive_origin(ctx)
 
-        computed_unique = [] if unique else None
-        if unique:
+        computed_unique = [] if _unique else None
+        if _unique:
             # strip None values from computed unique list, including pairs where v is None
-            for k, v in unique:
+            for k, v in _unique:
                 if None in (k, v): continue
                 if isinstance(v, list):
                     for subitem in v:
-                        subval = subitem(ctx)
-                        if subval: computed_unique.append([k, subval[0] if isinstance(subval, list) else subval])
+                        subval = subitem(ctx) if callable(subitem) else subitem
+                        if subval: computed_unique.append([k, subval[0] if isinstance(subval, list) else subval ])
                 else:
                     subval = v(ctx)
-                    if subval: computed_unique.append([k, subval[0] if isinstance(subval, list) else subval ])
+                    if subval: computed_unique.append([k, subval[0] if isinstance(subval, list) else subval])
 
         #XXX: Relying here on shared existing_ids from the idgen function. Probably need to think through this state coupling
         objid = ctx.idgen(_typ, data=computed_unique)

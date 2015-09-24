@@ -113,8 +113,6 @@ References.
  * Linked Data URIs and Libraries: The Story So Far <http://www.dlib.org/dlib/may15/papadakis/05papadakis.html>
 
 '''
-# all_subfields - All the MARC subfields are used together to determine the uniqueness
-
 # Full MARC field list: http://www.loc.gov/marc/bibliographic/ecbdlist.html
 
 # These two lines are required at the top
@@ -130,7 +128,7 @@ import re
 
 # '100': onwork.materialize('Agent', 'creator', unique=all_subfields, links={'a': 'label'}),
 
-# where do we put LDR info, e.g. LDR 07 / 19 positions = mode of issuance
+# Stuff such as Leader, 006, 007 & 008 are in marcextra.py
 
 AUTHORITY_CODES = [
     (re.compile(r'\(DLC\)\s*(\S+)'), r'http://lccn.loc.gov/\1'),
@@ -439,15 +437,7 @@ BFLITE_TRANSFORMS = {
 
     '260': oninstance.materialize(BL + 'ProviderEvent',
                                   MARC + 'publication',
-                                  unique=[
-                                      (BL + 'providerPlace', subfield('a')),
-                                      (BL + 'providerPlace', subfield('e')),
-                                      (BL + 'providerAgent', subfield('b')),
-                                      (BL + 'providerAgent', subfield('f')),
-                                      (BL + 'providerDate', subfield('c')),
-                                      (BL + 'providerDate', subfield('d')),
-                                  ],
-                                  # unique=all_subfields,
+                                  unique=all_subfields,
                                   links={ifexists(subfield('a'), BL + 'providerPlace'):
                                              materialize(BL + 'Place',
                                                          unique=[
@@ -500,12 +490,7 @@ BFLITE_TRANSFORMS = {
 
     '264-#4': oninstance.materialize(BL + 'CopyrightEvent',
                                      BL + 'copyright',
-                                     unique=[
-                                         (BL + 'copyrightPlace', subfield('a')),
-                                         (BL + 'copyrightAgent', subfield('b')),
-                                         (BL + 'copyrightDate', subfield('c')),
-                                     ],
-                                     # unique=all_subfields,
+                                     unique=all_subfields,
                                      links={ifexists(subfield('a'), BL + 'copyrightPlace'):
                                                 materialize(BL + 'Place',
                                                             unique=[(BL + 'name', subfield('a'))],
@@ -523,12 +508,7 @@ BFLITE_TRANSFORMS = {
 
     '264-#3': oninstance.materialize(BL + 'ProviderEvent',
                                      MARC + 'manufacture',
-                                     unique=[
-                                         (BL + 'providerPlace', subfield('a')),
-                                         (BL + 'providerAgent', subfield('b')),
-                                         (BL + 'providerDate', subfield('c')),
-                                     ],
-                                     # unique=all_subfields,
+                                     unique=all_subfields,
                                      links={ifexists(subfield('a'), BL + 'providerPlace'):
                                                 materialize(BL + 'Place',
                                                             unique=[
@@ -554,12 +534,7 @@ BFLITE_TRANSFORMS = {
 
     '264-#2': oninstance.materialize(BL + 'ProviderEvent',
                                      MARC + 'distribution',
-                                     unique=[
-                                         (BL + 'providerPlace', subfield('a')),
-                                         (BL + 'providerAgent', subfield('b')),
-                                         (BL + 'providerDate', subfield('c')),
-                                     ],
-                                     # unique=all_subfields,
+                                     unique=all_subfields,
                                      links={ifexists(subfield('a'), BL + 'providerPlace'):
                                                 materialize(BL + 'Place',
                                                             unique=[
@@ -585,12 +560,7 @@ BFLITE_TRANSFORMS = {
 
     '264-#1': oninstance.materialize(BL + 'ProviderEvent',
                                      MARC + 'publication',
-                                     unique=[
-                                         (BL + 'providerPlace', subfield('a')),
-                                         (BL + 'providerAgent', subfield('b')),
-                                         (BL + 'providerDate', subfield('c')),
-                                     ],
-                                     # unique=all_subfields,
+                                     unique=all_subfields,
                                      links={ifexists(subfield('a'), BL + 'providerPlace'):
                                                 materialize(BL + 'Place',
                                                             unique=[
@@ -616,12 +586,7 @@ BFLITE_TRANSFORMS = {
 
     '264-#0': oninstance.materialize(BL + 'ProviderEvent',
                                      MARC + 'production',
-                                     unique=[
-                                         (BL + 'providerPlace', subfield('a')),
-                                         (BL + 'providerAgent', subfield('b')),
-                                         (BL + 'providerDate', subfield('c')),
-                                     ],
-                                     # unique=all_subfields,
+                                     unique=all_subfields,
                                      links={ifexists(subfield('a'), BL + 'providerPlace'):
                                                 materialize(BL + 'Place',
                                                             unique=[
@@ -649,12 +614,7 @@ BFLITE_TRANSFORMS = {
 
     '264-##': oninstance.materialize(BL + 'ProviderEvent',
                                      MARC + 'publication',
-                                     unique=[
-                                         (BL + 'providerPlace', subfield('a')),
-                                         (BL + 'providerAgent', subfield('b')),
-                                         (BL + 'providerDate', subfield('c')),
-                                     ],
-                                     # unique=all_subfields,
+                                     unique=all_subfields,
                                      links={ifexists(subfield('a'), BL + 'providerPlace'):
                                                 materialize(BL + 'Place',
                                                             unique=[
@@ -1486,19 +1446,7 @@ BFLITE_TRANSFORMS = {
 
     '730': onwork.materialize(BL + 'Collection',
                               BL + 'related',
-                              unique=[
-                                  (BL + 'title', subfield('a')),
-                                  (BL + 'date', subfield('f')),
-                                  (BL + 'medium', subfield('h')),
-                                  (BL + 'language', subfield('l')),
-                                  (AV + 'musicMedium', subfield('m')),
-                                  (MARC + 'titleNumber', subfield('n')),
-                                  (AV + 'arrangedMusic', subfield('o')),
-                                  (MARC + 'titlePart', subfield('p')),
-                                  (AV + 'musicKey', subfield('r')),
-                                  (MARC + 'version', subfield('s')),
-                              ],
-                              # unique=all_subfields,
+                              unique=all_subfields,
                               links={
                                   BL + 'title': ifexists(subfield('a'), subfield('a'), alt=subfield('t')),
                                   BL + 'language': subfield('l'),
@@ -1538,14 +1486,7 @@ BFLITE_TRANSFORMS = {
 
     '760': onwork.materialize(MARC + 'Series',
                               REL + 'isSubSeriesOf',
-                              unique=[
-                                  (BL + 'title', subfield('t')),
-                                  (MARC + 'edition', subfield('b')),
-                                  (BL + 'note', subfield('n')),
-                                  (MARC + 'issn', subfield('x')),
-                                  (MARC + 'isbn', subfield('z')),
-                              ],
-                              # unique=all_subfields,
+                              unique=all_subfields,
                               links={
                                   BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                   MARC + 'issn': subfield('x'),
@@ -1558,14 +1499,7 @@ BFLITE_TRANSFORMS = {
 
     '762': onwork.materialize(MARC + 'Series',
                               values(REL + 'hasSubSeries'),
-                              unique=[
-                                  (BL + 'title', subfield('t')),
-                                  (MARC + 'edition', subfield('b')),
-                                  (BL + 'note', subfield('n')),
-                                  (MARC + 'issn', subfield('x')),
-                                  (MARC + 'isbn', subfield('z')),
-                              ],
-                              # unique=all_subfields,
+                              unique=all_subfields,
                               links={
                                   BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                   MARC + 'issn': subfield('x'),
@@ -1581,14 +1515,7 @@ BFLITE_TRANSFORMS = {
     '765': ifexists(subfield('s'),
                     onwork.materialize(BL + 'Collection',
                                        values(REL + 'isTranslationOf'),
-                                       unique=[
-                                           (BL + 'title', subfield('s')),
-                                           (MARC + 'edition', subfield('b')),
-                                           (BL + 'note', subfield('n')),
-                                           (MARC + 'issn', subfield('x')),
-                                           (MARC + 'isbn', subfield('z')),
-                                       ],
-                                       # unique=all_subfields,
+                                       unique=all_subfields,
                                        links={
                                            BL + 'title': subfield('s'),
                                            MARC + 'issn': subfield('x'),
@@ -1599,14 +1526,7 @@ BFLITE_TRANSFORMS = {
                     ),
                     onwork.materialize(BL + 'Work',
                                        values(REL + 'isTranslationOf'),
-                                       unique=[
-                                           (BL + 'title', subfield('t')),
-                                           (MARC + 'edition', subfield('b')),
-                                           (BL + 'note', subfield('n')),
-                                           (MARC + 'issn', subfield('x')),
-                                           (MARC + 'isbn', subfield('z')),
-                                       ],
-                                       # unique=all_subfields,
+                                       unique=all_subfields,
                                        links={
                                            BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                            MARC + 'issn': subfield('x'),
@@ -1620,14 +1540,7 @@ BFLITE_TRANSFORMS = {
     '767': ifexists(subfield('s'),
                     onwork.materialize(BL + 'Collection',
                                        values(REL + 'hasTranslation'),
-                                       unique=[
-                                           (BL + 'title', subfield('s')),
-                                           (MARC + 'edition', subfield('b')),
-                                           (BL + 'note', subfield('n')),
-                                           (MARC + 'issn', subfield('x')),
-                                           (MARC + 'isbn', subfield('z')),
-                                       ],
-                                       # unique=all_subfields,
+                                       unique=all_subfields,
                                        links={
                                            BL + 'title': subfield('s'),
                                            MARC + 'issn': subfield('x'),
@@ -1638,14 +1551,7 @@ BFLITE_TRANSFORMS = {
                     ),
                     onwork.materialize(BL + 'Work',
                                        values(REL + 'hasTranslation'),
-                                       unique=[
-                                           (BL + 'title', subfield('t')),
-                                           (MARC + 'edition', subfield('b')),
-                                           (BL + 'note', subfield('n')),
-                                           (MARC + 'issn', subfield('x')),
-                                           (MARC + 'isbn', subfield('z')),
-                                       ],
-                                       # unique=all_subfields,
+                                       unique=all_subfields,
                                        links={
                                            BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                            MARC + 'issn': subfield('x'),
@@ -1661,14 +1567,7 @@ BFLITE_TRANSFORMS = {
     '770': ifexists(subfield('s'),
                     onwork.materialize(BL + 'Collection',
                                        values(REL + 'isSupplementOf'),
-                                       unique=[
-                                           (BL + 'title', subfield('s')),
-                                           (MARC + 'edition', subfield('b')),
-                                           (BL + 'note', subfield('n')),
-                                           (MARC + 'issn', subfield('x')),
-                                           (MARC + 'isbn', subfield('z')),
-                                       ],
-                                       # unique=all_subfields,
+                                       unique=all_subfields,
                                        links={
                                            BL + 'title': subfield('s'),
                                            MARC + 'issn': subfield('x'),
@@ -1679,14 +1578,7 @@ BFLITE_TRANSFORMS = {
                     ),
                     onwork.materialize(BL + 'Work',
                                        values(REL + 'isSupplementOf'),
-                                       unique=[
-                                           (BL + 'title', subfield('t')),
-                                           (MARC + 'edition', subfield('b')),
-                                           (BL + 'note', subfield('n')),
-                                           (MARC + 'issn', subfield('x')),
-                                           (MARC + 'isbn', subfield('z')),
-                                       ],
-                                       # unique=all_subfields,
+                                       unique=all_subfields,
                                        links={
                                            BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                            MARC + 'issn': subfield('x'),
@@ -1700,14 +1592,7 @@ BFLITE_TRANSFORMS = {
     '772': ifexists(subfield('s'),
                     onwork.materialize(BL + 'Collection',
                                        values(REL + 'hasSupplement'),
-                                       unique=[
-                                           (BL + 'title', subfield('s')),
-                                           (MARC + 'edition', subfield('b')),
-                                           (BL + 'note', subfield('n')),
-                                           (MARC + 'issn', subfield('x')),
-                                           (MARC + 'isbn', subfield('z')),
-                                       ],
-                                       # unique=all_subfields,
+                                       unique=all_subfields,
                                        links={
                                            BL + 'title': subfield('s'),
                                            MARC + 'issn': subfield('x'),
@@ -1718,14 +1603,7 @@ BFLITE_TRANSFORMS = {
                     ),
                     onwork.materialize(BL + 'Work',
                                        values(REL + 'hasSupplement'),
-                                       unique=[
-                                           (BL + 'title', subfield('t')),
-                                           (MARC + 'edition', subfield('b')),
-                                           (BL + 'note', subfield('n')),
-                                           (MARC + 'issn', subfield('x')),
-                                           (MARC + 'isbn', subfield('z')),
-                                       ],
-                                       # unique=all_subfields,
+                                       unique=all_subfields,
                                        links={
                                            BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                            MARC + 'issn': subfield('x'),
@@ -1741,14 +1619,7 @@ BFLITE_TRANSFORMS = {
     '773': ifexists(subfield('s'),
                     onwork.materialize(BL + 'Collection',
                                        values(REL + 'isPartOf'),
-                                       unique=[
-                                           (BL + 'title', subfield('s')),
-                                           (MARC + 'edition', subfield('b')),
-                                           (BL + 'note', subfield('n')),
-                                           (MARC + 'issn', subfield('x')),
-                                           (MARC + 'isbn', subfield('z')),
-                                       ],
-                                       # unique=all_subfields,
+                                       unique=all_subfields,
                                        links={
                                            BL + 'title': subfield('s'),
                                            MARC + 'issn': subfield('x'),
@@ -1759,14 +1630,7 @@ BFLITE_TRANSFORMS = {
                     ),
                     onwork.materialize(BL + 'Work',
                                        values(REL + 'isPartOf'),
-                                       unique=[
-                                           (BL + 'title', subfield('t')),
-                                           (MARC + 'edition', subfield('b')),
-                                           (BL + 'note', subfield('n')),
-                                           (MARC + 'issn', subfield('x')),
-                                           (MARC + 'isbn', subfield('z')),
-                                       ],
-                                       # unique=all_subfields,
+                                       unique=all_subfields,
                                        links={
                                            BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                            MARC + 'issn': subfield('x'),
@@ -1780,14 +1644,7 @@ BFLITE_TRANSFORMS = {
     '774': ifexists(subfield('s'),
                     onwork.materialize(BL + 'Collection',
                                        values(REL + 'isPartOf'),
-                                       unique=[
-                                           (BL + 'title', subfield('s')),
-                                           (MARC + 'edition', subfield('b')),
-                                           (BL + 'note', subfield('n')),
-                                           (MARC + 'issn', subfield('x')),
-                                           (MARC + 'isbn', subfield('z')),
-                                       ],
-                                       # unique=all_subfields,
+                                       unique=all_subfields,
                                        links={
                                            BL + 'title': subfield('s'),
                                            MARC + 'issn': subfield('x'),
@@ -1798,14 +1655,7 @@ BFLITE_TRANSFORMS = {
                     ),
                     onwork.materialize(BL + 'Work',
                                        values(REL + 'isPartOf'),
-                                       unique=[
-                                           (BL + 'title', subfield('t')),
-                                           (MARC + 'edition', subfield('b')),
-                                           (BL + 'note', subfield('n')),
-                                           (MARC + 'issn', subfield('x')),
-                                           (MARC + 'isbn', subfield('z')),
-                                       ],
-                                       # unique=all_subfields,
+                                       unique=all_subfields,
                                        links={
                                            BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                            MARC + 'issn': subfield('x'),
@@ -1821,14 +1671,7 @@ BFLITE_TRANSFORMS = {
     '775': ifexists(subfield('s'),
                     onwork.materialize(BL + 'Collection',
                                        values(REL + 'hasEdition'),
-                                       unique=[
-                                           (BL + 'title', subfield('s')),
-                                           (MARC + 'edition', subfield('b')),
-                                           (BL + 'note', subfield('n')),
-                                           (MARC + 'issn', subfield('x')),
-                                           (MARC + 'isbn', subfield('z')),
-                                       ],
-                                       # unique=all_subfields,
+                                       unique=all_subfields,
                                        links={
                                            BL + 'title': subfield('s'),
                                            MARC + 'issn': subfield('x'),
@@ -1839,14 +1682,7 @@ BFLITE_TRANSFORMS = {
                     ),
                     onwork.materialize(BL + 'Work',
                                        values(REL + 'hasEdition'),
-                                       unique=[
-                                           (BL + 'title', subfield('t')),
-                                           (MARC + 'edition', subfield('b')),
-                                           (BL + 'note', subfield('n')),
-                                           (MARC + 'issn', subfield('x')),
-                                           (MARC + 'isbn', subfield('z')),
-                                       ],
-                                       # unique=all_subfields,
+                                       unique=all_subfields,
                                        links={
                                            BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                            MARC + 'issn': subfield('x'),
@@ -1862,16 +1698,7 @@ BFLITE_TRANSFORMS = {
     '776': ifexists(subfield('s'),
                     oninstance.materialize(BL + 'Collection',
                                            values(REL + 'hasOtherPhysicalFormat'),
-                                           unique=[
-                                               (BL + 'title', subfield('s')),
-                                               (MARC + 'edition', subfield('b')),
-                                               (BL + 'note', subfield('n')),
-                                               (BL + 'note', subfield('c')),
-                                               (BL + 'note', subfield('i')),
-                                               (MARC + 'issn', subfield('x')),
-                                               (MARC + 'isbn', subfield('z')),
-                                           ],
-                                           # unique=all_subfields,
+                                           unique=all_subfields,
                                            links={
                                                BL + 'title': subfield('s'),
                                                ifexists(subfield('a'), BL + 'creator'):
@@ -1892,15 +1719,7 @@ BFLITE_TRANSFORMS = {
                     ),
                     oninstance.materialize(BL + 'Instance',
                                            values(REL + 'hasOtherPhysicalFormat'),
-                                           unique=[
-                                               (BL + 'title', subfield('t')),
-                                               (MARC + 'edition', subfield('b')),
-                                               (BL + 'note', subfield('n')),
-                                               (MARC + 'issn', subfield('x')),
-                                               (MARC + 'isbn', subfield('z')),
-                                               (BL + 'instantiates', anchor_work()),
-                                           ],
-                                           # unique=all_subfields,
+                                           unique=all_subfields,
                                            links={
                                                BL + 'title': subfield('t'),
                                                ifexists(subfield('a'), BL + 'creator'):
@@ -1927,14 +1746,7 @@ BFLITE_TRANSFORMS = {
     '777': ifexists(subfield('s'),
                     oninstance.materialize(BL + 'Collection',
                                            values(REL + 'issuedWith'),
-                                           unique=[
-                                               (BL + 'title', subfield('s')),
-                                               (MARC + 'edition', subfield('b')),
-                                               (BL + 'note', subfield('n')),
-                                               (MARC + 'issn', subfield('x')),
-                                               (MARC + 'isbn', subfield('z')),
-                                           ],
-                                           # unique=all_subfields,
+                                           unique=all_subfields,
                                            links={
                                                BL + 'title': subfield('s'),
                                                MARC + 'issn': subfield('x'),
@@ -1946,14 +1758,7 @@ BFLITE_TRANSFORMS = {
                     ),
                     oninstance.materialize(BL + 'Instance',
                                            values(REL + 'issuedWith'),
-                                           unique=[
-                                               (BL + 'title', subfield('t')),
-                                               (MARC + 'edition', subfield('b')),
-                                               (BL + 'note', subfield('n')),
-                                               (MARC + 'issn', subfield('x')),
-                                               (MARC + 'isbn', subfield('z')),
-                                           ],
-                                           # unique=all_subfields,
+                                           unique=all_subfields,
                                            links={
                                                BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                                MARC + 'issn': subfield('x'),
@@ -1969,14 +1774,7 @@ BFLITE_TRANSFORMS = {
     '780-?0': ifexists(subfield('s'),
                        onwork.materialize(BL + 'Collection',
                                           values(REL + 'continues'),
-                                          unique=[
-                                              (BL + 'title', subfield('s')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': subfield('s'),
                                               MARC + 'issn': subfield('x'),
@@ -1988,14 +1786,7 @@ BFLITE_TRANSFORMS = {
                        ),
                        onwork.materialize(BL + 'Work',
                                           values(REL + 'continues'),
-                                          unique=[
-                                              (BL + 'title', subfield('t')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                               MARC + 'issn': subfield('x'),
@@ -2009,14 +1800,7 @@ BFLITE_TRANSFORMS = {
     '780-?1': ifexists(subfield('s'),
                        onwork.materialize(BL + 'Collection',
                                           REL + 'continuesInPart',
-                                          unique=[
-                                              (BL + 'title', subfield('s')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': subfield('s'),
                                               MARC + 'issn': subfield('x'),
@@ -2028,14 +1812,7 @@ BFLITE_TRANSFORMS = {
                        ),
                        onwork.materialize(BL + 'Work',
                                           REL + 'continuesInPart',
-                                          unique=[
-                                              (BL + 'title', subfield('t')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                               MARC + 'issn': subfield('x'),
@@ -2049,14 +1826,7 @@ BFLITE_TRANSFORMS = {
     '780-?2': ifexists(subfield('s'),
                        onwork.materialize(BL + 'Collection',
                                           REL + 'supersedes',
-                                          unique=[
-                                              (BL + 'title', subfield('s')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': subfield('s'),
                                               MARC + 'issn': subfield('x'),
@@ -2068,14 +1838,7 @@ BFLITE_TRANSFORMS = {
                        ),
                        onwork.materialize(BL + 'Work',
                                           REL + 'supersedes',
-                                          unique=[
-                                              (BL + 'title', subfield('t')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                               MARC + 'issn': subfield('x'),
@@ -2089,14 +1852,7 @@ BFLITE_TRANSFORMS = {
     '780-?3': ifexists(subfield('s'),
                        onwork.materialize(BL + 'Collection',
                                           REL + 'supersedesInPart',
-                                          unique=[
-                                              (BL + 'title', subfield('s')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': subfield('s'),
                                               MARC + 'issn': subfield('x'),
@@ -2108,14 +1864,7 @@ BFLITE_TRANSFORMS = {
                        ),
                        onwork.materialize(BL + 'Work',
                                           REL + 'supersedesInPart',
-                                          unique=[
-                                              (BL + 'title', subfield('t')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                               MARC + 'issn': subfield('x'),
@@ -2129,14 +1878,7 @@ BFLITE_TRANSFORMS = {
     '780-?4': ifexists(subfield('s'),
                        onwork.materialize(BL + 'Collection',
                                           REL + 'unionOf',
-                                          # unique=all_subfields,
-                                          unique=[
-                                              (BL + 'title', subfield('s')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': subfield('s'),
                                               MARC + 'issn': subfield('x'),
@@ -2148,14 +1890,7 @@ BFLITE_TRANSFORMS = {
                        ),
                        onwork.materialize(BL + 'Work',
                                           REL + 'unionOf',
-                                          unique=[
-                                              (BL + 'title', subfield('t')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                               MARC + 'issn': subfield('x'),
@@ -2169,14 +1904,7 @@ BFLITE_TRANSFORMS = {
     '780-?5': ifexists(subfield('s'),
                        onwork.materialize(BL + 'Collection',
                                           REL + 'absorbed',
-                                          unique=[
-                                              (BL + 'title', subfield('s')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': subfield('s'),
                                               MARC + 'issn': subfield('x'),
@@ -2188,14 +1916,7 @@ BFLITE_TRANSFORMS = {
                        ),
                        onwork.materialize(BL + 'Work',
                                           REL + 'absorbed',
-                                          unique=[
-                                              (BL + 'title', subfield('t')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                               MARC + 'issn': subfield('x'),
@@ -2209,14 +1930,7 @@ BFLITE_TRANSFORMS = {
     '780-?6': ifexists(subfield('s'),
                        onwork.materialize(BL + 'Collection',
                                           REL + 'absorbedInPart',
-                                          unique=[
-                                              (BL + 'title', subfield('s')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': subfield('s'),
                                               MARC + 'issn': subfield('x'),
@@ -2228,14 +1942,7 @@ BFLITE_TRANSFORMS = {
                        ),
                        onwork.materialize(BL + 'Work',
                                           REL + 'absorbedInPart',
-                                          unique=[
-                                              (BL + 'title', subfield('t')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                               MARC + 'issn': subfield('x'),
@@ -2249,14 +1956,7 @@ BFLITE_TRANSFORMS = {
     '780-?7': ifexists(subfield('s'),
                        onwork.materialize(BL + 'Collection',
                                           REL + 'separatedFrom',
-                                          unique=[
-                                              (BL + 'title', subfield('s')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': subfield('s'),
                                               MARC + 'issn': subfield('x'),
@@ -2268,14 +1968,7 @@ BFLITE_TRANSFORMS = {
                        ),
                        onwork.materialize(BL + 'Work',
                                           REL + 'separatedFrom',
-                                          unique=[
-                                              (BL + 'title', subfield('t')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                               MARC + 'issn': subfield('x'),
@@ -2292,14 +1985,7 @@ BFLITE_TRANSFORMS = {
     '785-?0': ifexists(subfield('s'),
                        onwork.materialize(BL + 'Collection',
                                           REL + 'continuedBy',
-                                          unique=[
-                                              (BL + 'title', subfield('s')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': subfield('s'),
                                               MARC + 'issn': subfield('x'),
@@ -2311,14 +1997,7 @@ BFLITE_TRANSFORMS = {
                        ),
                        onwork.materialize(BL + 'Work',
                                           REL + 'continuedBy',
-                                          unique=[
-                                              (BL + 'title', subfield('t')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                               MARC + 'issn': subfield('x'),
@@ -2332,14 +2011,7 @@ BFLITE_TRANSFORMS = {
     '785-?1': ifexists(subfield('s'),
                        onwork.materialize(BL + 'Collection',
                                           REL + 'continuedInPartBy',
-                                          unique=[
-                                              (BL + 'title', subfield('s')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': subfield('s'),
                                               MARC + 'issn': subfield('x'),
@@ -2351,14 +2023,7 @@ BFLITE_TRANSFORMS = {
                        ),
                        onwork.materialize(BL + 'Work',
                                           REL + 'continuedInPartBy',
-                                          unique=[
-                                              (BL + 'title', subfield('t')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                               MARC + 'issn': subfield('x'),
@@ -2372,14 +2037,7 @@ BFLITE_TRANSFORMS = {
     '785-?2': ifexists(subfield('s'),
                        onwork.materialize(BL + 'Collection',
                                           REL + 'supersededBy',
-                                          unique=[
-                                              (BL + 'title', subfield('s')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': subfield('s'),
                                               MARC + 'issn': subfield('x'),
@@ -2391,14 +2049,7 @@ BFLITE_TRANSFORMS = {
                        ),
                        onwork.materialize(BL + 'Work',
                                           REL + 'supersededBy',
-                                          unique=[
-                                              (BL + 'title', subfield('t')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                               MARC + 'issn': subfield('x'),
@@ -2412,14 +2063,7 @@ BFLITE_TRANSFORMS = {
     '785-?3': ifexists(subfield('s'),
                        onwork.materialize(BL + 'Collection',
                                           REL + 'supersededInPartBy',
-                                          unique=[
-                                              (BL + 'title', subfield('s')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': subfield('s'),
                                               MARC + 'issn': subfield('x'),
@@ -2431,14 +2075,7 @@ BFLITE_TRANSFORMS = {
                        ),
                        onwork.materialize(BL + 'Work',
                                           REL + 'supersededInPartBy',
-                                          unique=[
-                                              (BL + 'title', subfield('t')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                               MARC + 'issn': subfield('x'),
@@ -2452,14 +2089,7 @@ BFLITE_TRANSFORMS = {
     '785-?4': ifexists(subfield('s'),
                        onwork.materialize(BL + 'Collection',
                                           REL + 'absorbedBy',
-                                          unique=[
-                                              (BL + 'title', subfield('s')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': subfield('s'),
                                               MARC + 'issn': subfield('x'),
@@ -2471,14 +2101,7 @@ BFLITE_TRANSFORMS = {
                        ),
                        onwork.materialize(BL + 'Work',
                                           REL + 'absorbedBy',
-                                          unique=[
-                                              (BL + 'title', subfield('t')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                               MARC + 'issn': subfield('x'),
@@ -2492,14 +2115,7 @@ BFLITE_TRANSFORMS = {
     '785-?5': ifexists(subfield('s'),
                        onwork.materialize(BL + 'Collection',
                                           REL + 'absorbedInPartBy',
-                                          unique=[
-                                              (BL + 'title', subfield('s')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': subfield('s'),
                                               MARC + 'issn': subfield('x'),
@@ -2512,14 +2128,7 @@ BFLITE_TRANSFORMS = {
                        ),
                        onwork.materialize(BL + 'Work',
                                           REL + 'absorbedInPartBy',
-                                          unique=[
-                                              (BL + 'title', subfield('t')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                               MARC + 'issn': subfield('x'),
@@ -2533,14 +2142,7 @@ BFLITE_TRANSFORMS = {
     '785-?6': ifexists(subfield('s'),
                        onwork.materialize(BL + 'Collection',
                                           REL + 'splitInto',
-                                          unique=[
-                                              (BL + 'title', subfield('s')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': subfield('s'),
                                               MARC + 'issn': subfield('x'),
@@ -2552,14 +2154,7 @@ BFLITE_TRANSFORMS = {
                        ),
                        onwork.materialize(BL + 'Work',
                                           REL + 'splitInto',
-                                          unique=[
-                                              (BL + 'title', subfield('t')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                               MARC + 'issn': subfield('x'),
@@ -2573,14 +2168,7 @@ BFLITE_TRANSFORMS = {
     '785-?7': ifexists(subfield('s'),
                        onwork.materialize(BL + 'Collection',
                                           REL + 'mergedWith',
-                                          unique=[
-                                              (BL + 'title', subfield('s')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': subfield('s'),
                                               MARC + 'issn': subfield('x'),
@@ -2592,14 +2180,7 @@ BFLITE_TRANSFORMS = {
                        ),
                        onwork.materialize(BL + 'Work',
                                           REL + 'mergedWith',
-                                          unique=[
-                                              (BL + 'title', subfield('t')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                               MARC + 'issn': subfield('x'),
@@ -2613,14 +2194,7 @@ BFLITE_TRANSFORMS = {
     '785-?8': ifexists(subfield('s'),
                        onwork.materialize(BL + 'Collection',
                                           REL + 'changedBackTo',
-                                          unique=[
-                                              (BL + 'title', subfield('s')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': subfield('s'),
                                               MARC + 'issn': subfield('x'),
@@ -2632,14 +2206,7 @@ BFLITE_TRANSFORMS = {
                        ),
                        onwork.materialize(BL + 'Work',
                                           REL + 'changedBackTo',
-                                          unique=[
-                                              (BL + 'title', subfield('t')),
-                                              (MARC + 'edition', subfield('b')),
-                                              (BL + 'note', subfield('n')),
-                                              (MARC + 'issn', subfield('x')),
-                                              (MARC + 'isbn', subfield('z')),
-                                          ],
-                                          # unique=all_subfields,
+                                          unique=all_subfields,
                                           links={
                                               BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                               MARC + 'issn': subfield('x'),
@@ -2655,14 +2222,7 @@ BFLITE_TRANSFORMS = {
     '787': ifexists(subfield('s'),
                     onwork.materialize(BL + 'Collection',
                                        BL + 'related',
-                                       unique=[
-                                           (BL + 'title', subfield('s')),
-                                           (MARC + 'edition', subfield('b')),
-                                           (BL + 'note', subfield('n')),
-                                           (MARC + 'issn', subfield('x')),
-                                           (MARC + 'isbn', subfield('z')),
-                                       ],
-                                       # unique=all_subfields,
+                                       unique=all_subfields,
                                        links={
                                            BL + 'title': subfield('s'),
                                            MARC + 'issn': subfield('x'),
@@ -2673,14 +2233,7 @@ BFLITE_TRANSFORMS = {
                     ),
                     onwork.materialize(BL + 'Work',
                                        BL + 'related',
-                                       unique=[
-                                           (BL + 'title', subfield('t')),
-                                           (MARC + 'edition', subfield('b')),
-                                           (BL + 'note', subfield('n')),
-                                           (MARC + 'issn', subfield('x')),
-                                           (MARC + 'isbn', subfield('z')),
-                                       ],
-                                       # unique=all_subfields,
+                                       unique=all_subfields,
                                        links={
                                            BL + 'title': ifexists(subfield('t'), subfield('t'), alt=subfield('a')),
                                            MARC + 'issn': subfield('x'),
