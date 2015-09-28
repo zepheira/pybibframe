@@ -531,7 +531,8 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None, post
     return _materialize
 
 
-def url(arg, base=iri.absolutize('authrec/',BFZ)):
+#def url(arg, base=iri.absolutize('authrec/', BFZ)):
+def url(arg, base=None):
     '''
     Convert the argument into an IRI ref or list thereof
     '''
@@ -551,7 +552,7 @@ def url(arg, base=iri.absolutize('authrec/',BFZ)):
                     ctx.logger('Unable to convert "{}" to IRI reference:\n{}'.format(u, e))
                     continue
 
-            if not iri.is_absolute(iu) and base is not None:
+            if iu and not iri.is_absolute(iu) and base is not None:
                 iu = I(iri.absolutize(iu, base))
 
             ret.append(iu)

@@ -141,7 +141,7 @@ EXPECTED_21 = '''
     [
         "GxDFRy2DEyA",
         "http://bibfra.me/vocab/lite/authorityLink",
-        "http://bibfra.me/vocab/marcext/authrec/sky235195071",
+        "sky235195071",
         {
             "@target-type": "@iri-ref"
         }
