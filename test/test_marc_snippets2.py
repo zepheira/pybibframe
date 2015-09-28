@@ -549,7 +549,7 @@ EXPECTED_14 = '''
     [
         "JtW53t7PFyA",
         "http://bibfra.me/vocab/lite/authorityLink",
-        "http://bibfra.me/vocab/marcext/authrec/%28ZZZ%29%20%20Ishinp%C5%8D%20%2F",
+        "%28ZZZ%29%20%20Ishinp%C5%8D%20%2F",
         {
             "@target-type": "@iri-ref"
         }
@@ -557,7 +557,7 @@ EXPECTED_14 = '''
     [
         "JtW53t7PFyA",
         "http://bibfra.me/vocab/lite/authorityLink",
-        "http://bibfra.me/vocab/marcext/authrec/%28ZZZ%29%20%20x9898989898",
+        "%28ZZZ%29%20%20x9898989898",
         {
             "@target-type": "@iri-ref"
         }
@@ -565,7 +565,7 @@ EXPECTED_14 = '''
     [
         "JtW53t7PFyA",
         "http://bibfra.me/vocab/lite/authorityLink",
-        "http://bibfra.me/vocab/marcext/authrec/(ZZZ)x9898989898",
+        "(ZZZ)x9898989898",
         {
             "@target-type": "@iri-ref"
         }
