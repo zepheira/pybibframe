@@ -70,29 +70,7 @@ CONFIG_1 = None
 EXPECTED_1 = '''
 [
     [
-        "2ZMF8gz1a-w",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "2ZMF8gz1a-w",
-        "http://bibfra.me/vocab/lite/controlCode",
-        "92005291",
-        {}
-    ],
-    [
-        "2ZMF8gz1a-w",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "hRJrnNcJhd8",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "hRJrnNcJhd8",
+        "JgO7mONXOIs",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
@@ -100,7 +78,7 @@ EXPECTED_1 = '''
         }
     ],
     [
-        "hRJrnNcJhd8",
+        "JgO7mONXOIs",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/Books",
         {
@@ -108,7 +86,7 @@ EXPECTED_1 = '''
         }
     ],
     [
-        "hRJrnNcJhd8",
+        "JgO7mONXOIs",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/LanguageMaterial",
         {
@@ -116,28 +94,50 @@ EXPECTED_1 = '''
         }
     ],
     [
-        "hRJrnNcJhd8",
+        "JgO7mONXOIs",
         "http://bibfra.me/vocab/marc/natureOfContents",
         "encyclopedias",
         {}
     ],
     [
-        "hRJrnNcJhd8",
+        "JgO7mONXOIs",
         "http://bibfra.me/vocab/marc/natureOfContents",
         "legal articles",
         {}
     ],
     [
-        "hRJrnNcJhd8",
+        "JgO7mONXOIs",
         "http://bibfra.me/vocab/marc/natureOfContents",
         "surveys of literature",
         {}
     ],
     [
-        "hRJrnNcJhd8",
+        "JgO7mONXOIs",
         "http://bibfra.me/vocab/marcext/tag-008",
         "920219s1993 caua j 000 0 eng",
         {}
+    ],
+    [
+        "aCj1nz_qgBM",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "aCj1nz_qgBM",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "92005291",
+        {}
+    ],
+    [
+        "aCj1nz_qgBM",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "JgO7mONXOIs",
+        {
+            "@target-type": "@iri-ref"
+        }
     ]
 ]
 '''
@@ -159,35 +159,7 @@ CONFIG_2 = None
 EXPECTED_2 = '''
 [
     [
-        "CNEocDxzpQc",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "CNEocDxzpQc",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "pi_KGv5rOiY",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "CNEocDxzpQc",
-        "http://bibfra.me/vocab/lite/title",
-        "Arithmetic /",
-        {}
-    ],
-    [
-        "CNEocDxzpQc",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "Carl Sandburg ; illustrated as an anamorphic adventure by Ted Rand.",
-        {}
-    ],
-    [
-        "pi_KGv5rOiY",
+        "fhtZM6ptqvk",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
@@ -195,7 +167,7 @@ EXPECTED_2 = '''
         }
     ],
     [
-        "pi_KGv5rOiY",
+        "fhtZM6ptqvk",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/Books",
         {
@@ -203,7 +175,7 @@ EXPECTED_2 = '''
         }
     ],
     [
-        "pi_KGv5rOiY",
+        "fhtZM6ptqvk",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/LanguageMaterial",
         {
@@ -211,39 +183,67 @@ EXPECTED_2 = '''
         }
     ],
     [
-        "pi_KGv5rOiY",
+        "fhtZM6ptqvk",
         "http://bibfra.me/vocab/lite/title",
         "Arithmetic /",
         {}
     ],
     [
-        "pi_KGv5rOiY",
+        "fhtZM6ptqvk",
         "http://bibfra.me/vocab/marc/natureOfContents",
         "encyclopedias",
         {}
     ],
     [
-        "pi_KGv5rOiY",
+        "fhtZM6ptqvk",
         "http://bibfra.me/vocab/marc/natureOfContents",
         "legal articles",
         {}
     ],
     [
-        "pi_KGv5rOiY",
+        "fhtZM6ptqvk",
         "http://bibfra.me/vocab/marc/natureOfContents",
         "surveys of literature",
         {}
     ],
     [
-        "pi_KGv5rOiY",
+        "fhtZM6ptqvk",
         "http://bibfra.me/vocab/marc/titleStatement",
         "Carl Sandburg ; illustrated as an anamorphic adventure by Ted Rand.",
         {}
     ],
     [
-        "pi_KGv5rOiY",
+        "fhtZM6ptqvk",
         "http://bibfra.me/vocab/marcext/tag-008",
         "920219s1993 caua j 000 0 eng",
+        {}
+    ],
+    [
+        "wVOFhn1D5LA",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "wVOFhn1D5LA",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "fhtZM6ptqvk",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "wVOFhn1D5LA",
+        "http://bibfra.me/vocab/lite/title",
+        "Arithmetic /",
+        {}
+    ],
+    [
+        "wVOFhn1D5LA",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "Carl Sandburg ; illustrated as an anamorphic adventure by Ted Rand.",
         {}
     ]
 ]
@@ -267,41 +267,7 @@ CONFIG_3 = None
 EXPECTED_3 = '''
 [
     [
-        "CNEocDxzpQc",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "CNEocDxzpQc",
-        "http://bibfra.me/vocab/lite/controlCode",
-        "92005291",
-        {}
-    ],
-    [
-        "CNEocDxzpQc",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "pi_KGv5rOiY",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "CNEocDxzpQc",
-        "http://bibfra.me/vocab/lite/title",
-        "Arithmetic /",
-        {}
-    ],
-    [
-        "CNEocDxzpQc",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "Carl Sandburg ; illustrated as an anamorphic adventure by Ted Rand.",
-        {}
-    ],
-    [
-        "pi_KGv5rOiY",
+        "fhtZM6ptqvk",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
@@ -309,7 +275,7 @@ EXPECTED_3 = '''
         }
     ],
     [
-        "pi_KGv5rOiY",
+        "fhtZM6ptqvk",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/Books",
         {
@@ -317,7 +283,7 @@ EXPECTED_3 = '''
         }
     ],
     [
-        "pi_KGv5rOiY",
+        "fhtZM6ptqvk",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/LanguageMaterial",
         {
@@ -325,39 +291,73 @@ EXPECTED_3 = '''
         }
     ],
     [
-        "pi_KGv5rOiY",
+        "fhtZM6ptqvk",
         "http://bibfra.me/vocab/lite/title",
         "Arithmetic /",
         {}
     ],
     [
-        "pi_KGv5rOiY",
+        "fhtZM6ptqvk",
         "http://bibfra.me/vocab/marc/natureOfContents",
         "encyclopedias",
         {}
     ],
     [
-        "pi_KGv5rOiY",
+        "fhtZM6ptqvk",
         "http://bibfra.me/vocab/marc/natureOfContents",
         "legal articles",
         {}
     ],
     [
-        "pi_KGv5rOiY",
+        "fhtZM6ptqvk",
         "http://bibfra.me/vocab/marc/natureOfContents",
         "surveys of literature",
         {}
     ],
     [
-        "pi_KGv5rOiY",
+        "fhtZM6ptqvk",
         "http://bibfra.me/vocab/marc/titleStatement",
         "Carl Sandburg ; illustrated as an anamorphic adventure by Ted Rand.",
         {}
     ],
     [
-        "pi_KGv5rOiY",
+        "fhtZM6ptqvk",
         "http://bibfra.me/vocab/marcext/tag-008",
         "920219s1993 caua j 000 0 eng",
+        {}
+    ],
+    [
+        "wVOFhn1D5LA",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "wVOFhn1D5LA",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "92005291",
+        {}
+    ],
+    [
+        "wVOFhn1D5LA",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "fhtZM6ptqvk",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "wVOFhn1D5LA",
+        "http://bibfra.me/vocab/lite/title",
+        "Arithmetic /",
+        {}
+    ],
+    [
+        "wVOFhn1D5LA",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "Carl Sandburg ; illustrated as an anamorphic adventure by Ted Rand.",
         {}
     ]
 ]
@@ -386,29 +386,7 @@ CONFIG_4 = {
 EXPECTED_4 = '''
 [
     [
-        "2ZMF8gz1a-w",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "2ZMF8gz1a-w",
-        "http://bibfra.me/vocab/lite/controlCode",
-        "92005291",
-        {}
-    ],
-    [
-        "2ZMF8gz1a-w",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "hRJrnNcJhd8",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "hRJrnNcJhd8",
+        "JgO7mONXOIs",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
@@ -416,7 +394,7 @@ EXPECTED_4 = '''
         }
     ],
     [
-        "hRJrnNcJhd8",
+        "JgO7mONXOIs",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/Books",
         {
@@ -424,7 +402,7 @@ EXPECTED_4 = '''
         }
     ],
     [
-        "hRJrnNcJhd8",
+        "JgO7mONXOIs",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/LanguageMaterial",
         {
@@ -432,28 +410,50 @@ EXPECTED_4 = '''
         }
     ],
     [
-        "hRJrnNcJhd8",
+        "JgO7mONXOIs",
         "http://bibfra.me/vocab/marc/natureOfContents",
         "encyclopedias",
         {}
     ],
     [
-        "hRJrnNcJhd8",
+        "JgO7mONXOIs",
         "http://bibfra.me/vocab/marc/natureOfContents",
         "legal articles",
         {}
     ],
     [
-        "hRJrnNcJhd8",
+        "JgO7mONXOIs",
         "http://bibfra.me/vocab/marc/natureOfContents",
         "surveys of literature",
         {}
     ],
     [
-        "hRJrnNcJhd8",
+        "JgO7mONXOIs",
         "http://bibfra.me/vocab/marcext/tag-008",
         "920219s1993 caua j 000 0 eng",
         {}
+    ],
+    [
+        "aCj1nz_qgBM",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "aCj1nz_qgBM",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "92005291",
+        {}
+    ],
+    [
+        "aCj1nz_qgBM",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "JgO7mONXOIs",
+        {
+            "@target-type": "@iri-ref"
+        }
     ]
 ]
 '''
@@ -479,47 +479,7 @@ CONFIG_5 = None
 EXPECTED_5 = '''
 [
     [
-        "SHGb6LIXmaM",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "SHGb6LIXmaM",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "kX059RSNnjg",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "SHGb6LIXmaM",
-        "http://bibfra.me/vocab/lite/title",
-        "Ishinp\u014d /",
-        {}
-    ],
-    [
-        "SHGb6LIXmaM",
-        "http://bibfra.me/vocab/lite/title",
-        "\u91ab\u5fc3\u65b9 /",
-        {}
-    ],
-    [
-        "SHGb6LIXmaM",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "Tanba no Sukune Yasuyori sen.",
-        {}
-    ],
-    [
-        "SHGb6LIXmaM",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "\u4e39\u6ce2\u5bbf\u88ae\u5eb7\u983c\u64b0.",
-        {}
-    ],
-    [
-        "kX059RSNnjg",
+        "Y8u4n-XGt6w",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
@@ -527,7 +487,7 @@ EXPECTED_5 = '''
         }
     ],
     [
-        "kX059RSNnjg",
+        "Y8u4n-XGt6w",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/Books",
         {
@@ -535,7 +495,7 @@ EXPECTED_5 = '''
         }
     ],
     [
-        "kX059RSNnjg",
+        "Y8u4n-XGt6w",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/LanguageMaterial",
         {
@@ -543,62 +503,102 @@ EXPECTED_5 = '''
         }
     ],
     [
-        "kX059RSNnjg",
+        "Y8u4n-XGt6w",
         "http://bibfra.me/vocab/lite/title",
         "Ishinp\u014d /",
         {}
     ],
     [
-        "kX059RSNnjg",
+        "Y8u4n-XGt6w",
         "http://bibfra.me/vocab/lite/title",
         "\u91ab\u5fc3\u65b9 /",
         {}
     ],
     [
-        "kX059RSNnjg",
+        "Y8u4n-XGt6w",
         "http://bibfra.me/vocab/marc/natureOfContents",
         "programmed texts",
         {}
     ],
     [
-        "kX059RSNnjg",
+        "Y8u4n-XGt6w",
         "http://bibfra.me/vocab/marc/natureOfContents",
         "surveys of literature",
         {}
     ],
     [
-        "kX059RSNnjg",
+        "Y8u4n-XGt6w",
         "http://bibfra.me/vocab/marc/titleStatement",
         "Tanba no Sukune Yasuyori sen.",
         {}
     ],
     [
-        "kX059RSNnjg",
+        "Y8u4n-XGt6w",
         "http://bibfra.me/vocab/marc/titleStatement",
         "\u4e39\u6ce2\u5bbf\u88ae\u5eb7\u983c\u64b0.",
         {}
     ],
     [
-        "kX059RSNnjg",
+        "Y8u4n-XGt6w",
         "http://bibfra.me/vocab/marcext/tag-008",
         "020613s1860 ja a 000 0 jpn",
         {}
     ],
     [
-        "kX059RSNnjg",
+        "Y8u4n-XGt6w",
         "http://bibfra.me/vocab/marcext/tag-880-10-6",
         "245-02/$1",
         {}
     ],
     [
-        "kX059RSNnjg",
+        "Y8u4n-XGt6w",
         "http://bibfra.me/vocab/marcext/tag-880-10-a",
         "\u91ab\u5fc3\u65b9 /",
         {}
     ],
     [
-        "kX059RSNnjg",
+        "Y8u4n-XGt6w",
         "http://bibfra.me/vocab/marcext/tag-880-10-c",
+        "\u4e39\u6ce2\u5bbf\u88ae\u5eb7\u983c\u64b0.",
+        {}
+    ],
+    [
+        "ggF1ConzjAs",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "ggF1ConzjAs",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "Y8u4n-XGt6w",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "ggF1ConzjAs",
+        "http://bibfra.me/vocab/lite/title",
+        "Ishinp\u014d /",
+        {}
+    ],
+    [
+        "ggF1ConzjAs",
+        "http://bibfra.me/vocab/lite/title",
+        "\u91ab\u5fc3\u65b9 /",
+        {}
+    ],
+    [
+        "ggF1ConzjAs",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "Tanba no Sukune Yasuyori sen.",
+        {}
+    ],
+    [
+        "ggF1ConzjAs",
+        "http://bibfra.me/vocab/marc/titleStatement",
         "\u4e39\u6ce2\u5bbf\u88ae\u5eb7\u983c\u64b0.",
         {}
     ]
@@ -629,7 +629,7 @@ CONFIG_7 = None
 EXPECTED_7 = '''
 [
     [
-        "0ZMTug4XfqI",
+        "9ztEH9SXvXE",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
@@ -637,7 +637,7 @@ EXPECTED_7 = '''
         }
     ],
     [
-        "0ZMTug4XfqI",
+        "9ztEH9SXvXE",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/Books",
         {
@@ -645,7 +645,7 @@ EXPECTED_7 = '''
         }
     ],
     [
-        "0ZMTug4XfqI",
+        "9ztEH9SXvXE",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/LanguageMaterial",
         {
@@ -653,55 +653,39 @@ EXPECTED_7 = '''
         }
     ],
     [
-        "0ZMTug4XfqI",
+        "9ztEH9SXvXE",
         "http://bibfra.me/vocab/lite/creator",
-        "Qj6xo5R7_JQ",
+        "ETQttGxTfLk",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "0ZMTug4XfqI",
+        "9ztEH9SXvXE",
         "http://bibfra.me/vocab/marc/natureOfContents",
         "encyclopedias",
         {}
     ],
     [
-        "0ZMTug4XfqI",
+        "9ztEH9SXvXE",
         "http://bibfra.me/vocab/marc/natureOfContents",
         "legal articles",
         {}
     ],
     [
-        "0ZMTug4XfqI",
+        "9ztEH9SXvXE",
         "http://bibfra.me/vocab/marc/natureOfContents",
         "surveys of literature",
         {}
     ],
     [
-        "0ZMTug4XfqI",
+        "9ztEH9SXvXE",
         "http://bibfra.me/vocab/marcext/tag-008",
         "920219s1993 caua j 000 0 eng",
         {}
     ],
     [
-        "P5wEnlVL0Wc",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "P5wEnlVL0Wc",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "0ZMTug4XfqI",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "Qj6xo5R7_JQ",
+        "ETQttGxTfLk",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Person",
         {
@@ -709,28 +693,44 @@ EXPECTED_7 = '''
         }
     ],
     [
-        "Qj6xo5R7_JQ",
+        "ETQttGxTfLk",
         "http://bibfra.me/vocab/lite/date",
         "1878-1967.",
         {}
     ],
     [
-        "Qj6xo5R7_JQ",
+        "ETQttGxTfLk",
         "http://bibfra.me/vocab/lite/name",
         "Sandburg, Carl,",
         {}
     ],
     [
-        "Qj6xo5R7_JQ",
+        "ETQttGxTfLk",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Sandburg, Carl,",
         {}
     ],
     [
-        "Qj6xo5R7_JQ",
+        "ETQttGxTfLk",
         "http://bibfra.me/vocab/marcext/sf-d",
         "1878-1967.",
         {}
+    ],
+    [
+        "xuQE2x0twvc",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "xuQE2x0twvc",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "9ztEH9SXvXE",
+        {
+            "@target-type": "@iri-ref"
+        }
     ]
 ]
 '''
@@ -754,7 +754,7 @@ CONFIG_8 = None
 EXPECTED_8 = '''
 [
     [
-        "0aj8HN5M9Qg",
+        "7UKKGBFmVgM",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
@@ -762,97 +762,7 @@ EXPECTED_8 = '''
         }
     ],
     [
-        "0aj8HN5M9Qg",
-        "http://bibfra.me/vocab/lite/authorityLink",
-        "http://lccn.loc.gov/96646621",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "0aj8HN5M9Qg",
-        "http://bibfra.me/vocab/lite/authorityLink",
-        "http://www.ncbi.nlm.nih.gov/nlmcatalog?term=7505458",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "0aj8HN5M9Qg",
-        "http://bibfra.me/vocab/lite/authorityLink",
-        "http://www.worldcat.org/oclc/1478787",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "0aj8HN5M9Qg",
-        "http://bibfra.me/vocab/lite/title",
-        "Doklady biochemistry",
-        {}
-    ],
-    [
-        "0aj8HN5M9Qg",
-        "http://bibfra.me/vocab/marc/issn",
-        "0012-4958",
-        {}
-    ],
-    [
-        "0aj8HN5M9Qg",
-        "http://bibfra.me/vocab/marcext/sf-t",
-        "Doklady biochemistry",
-        {}
-    ],
-    [
-        "0aj8HN5M9Qg",
-        "http://bibfra.me/vocab/marcext/sf-w",
-        "(DLC)   96646621",
-        {}
-    ],
-    [
-        "0aj8HN5M9Qg",
-        "http://bibfra.me/vocab/marcext/sf-w",
-        "(DNLM)7505458",
-        {}
-    ],
-    [
-        "0aj8HN5M9Qg",
-        "http://bibfra.me/vocab/marcext/sf-w",
-        "(OCoLC)1478787",
-        {}
-    ],
-    [
-        "0aj8HN5M9Qg",
-        "http://bibfra.me/vocab/marcext/sf-x",
-        "0012-4958",
-        {}
-    ],
-    [
-        "NUutjsyrJY8",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "NUutjsyrJY8",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "cbaidfm9miM",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "cbaidfm9miM",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Work",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "cbaidfm9miM",
+        "7UKKGBFmVgM",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/Collection",
         {
@@ -860,7 +770,7 @@ EXPECTED_8 = '''
         }
     ],
     [
-        "cbaidfm9miM",
+        "7UKKGBFmVgM",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/ContinuingResources",
         {
@@ -868,7 +778,7 @@ EXPECTED_8 = '''
         }
     ],
     [
-        "cbaidfm9miM",
+        "7UKKGBFmVgM",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/LanguageMaterial",
         {
@@ -876,54 +786,144 @@ EXPECTED_8 = '''
         }
     ],
     [
-        "cbaidfm9miM",
+        "7UKKGBFmVgM",
         "http://bibfra.me/vocab/lite/language",
         "eng",
         {}
     ],
     [
-        "cbaidfm9miM",
+        "7UKKGBFmVgM",
         "http://bibfra.me/vocab/marc/characteristic",
         "periodical",
         {}
     ],
     [
-        "cbaidfm9miM",
+        "7UKKGBFmVgM",
         "http://bibfra.me/vocab/marc/entryConvention",
         "successive entry",
         {}
     ],
     [
-        "cbaidfm9miM",
+        "7UKKGBFmVgM",
         "http://bibfra.me/vocab/marc/frequency",
         "bimonthly",
         {}
     ],
     [
-        "cbaidfm9miM",
+        "7UKKGBFmVgM",
         "http://bibfra.me/vocab/marc/originalAlphabetOrScriptOfTitle",
         "basic roman",
         {}
     ],
     [
-        "cbaidfm9miM",
+        "7UKKGBFmVgM",
         "http://bibfra.me/vocab/marc/regularity",
         "regular",
         {}
     ],
     [
-        "cbaidfm9miM",
+        "7UKKGBFmVgM",
         "http://bibfra.me/vocab/marcext/tag-008",
         "010806c20019999ru br p       0   a0eng d",
         {}
     ],
     [
-        "cbaidfm9miM",
+        "7UKKGBFmVgM",
         "http://bibfra.me/vocab/relation/unionOf",
-        "0aj8HN5M9Qg",
+        "uiiA6aAOnI8",
         {
             "@target-type": "@iri-ref"
         }
+    ],
+    [
+        "eQYEQ91FRHA",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "eQYEQ91FRHA",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "7UKKGBFmVgM",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "uiiA6aAOnI8",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "uiiA6aAOnI8",
+        "http://bibfra.me/vocab/lite/authorityLink",
+        "http://lccn.loc.gov/96646621",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "uiiA6aAOnI8",
+        "http://bibfra.me/vocab/lite/authorityLink",
+        "http://www.ncbi.nlm.nih.gov/nlmcatalog?term=7505458",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "uiiA6aAOnI8",
+        "http://bibfra.me/vocab/lite/authorityLink",
+        "http://www.worldcat.org/oclc/1478787",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "uiiA6aAOnI8",
+        "http://bibfra.me/vocab/lite/title",
+        "Doklady biochemistry",
+        {}
+    ],
+    [
+        "uiiA6aAOnI8",
+        "http://bibfra.me/vocab/marc/issn",
+        "0012-4958",
+        {}
+    ],
+    [
+        "uiiA6aAOnI8",
+        "http://bibfra.me/vocab/marcext/sf-t",
+        "Doklady biochemistry",
+        {}
+    ],
+    [
+        "uiiA6aAOnI8",
+        "http://bibfra.me/vocab/marcext/sf-w",
+        "(DLC)   96646621",
+        {}
+    ],
+    [
+        "uiiA6aAOnI8",
+        "http://bibfra.me/vocab/marcext/sf-w",
+        "(DNLM)7505458",
+        {}
+    ],
+    [
+        "uiiA6aAOnI8",
+        "http://bibfra.me/vocab/marcext/sf-w",
+        "(OCoLC)1478787",
+        {}
+    ],
+    [
+        "uiiA6aAOnI8",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "0012-4958",
+        {}
     ]
 ]
 '''
@@ -944,7 +944,7 @@ CONFIG_9 = None
 EXPECTED_9 = '''
 [
     [
-        "6e0KbkfCJtM",
+        "7UKKGBFmVgM",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
@@ -952,7 +952,7 @@ EXPECTED_9 = '''
         }
     ],
     [
-        "6e0KbkfCJtM",
+        "7UKKGBFmVgM",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/Collection",
         {
@@ -960,7 +960,7 @@ EXPECTED_9 = '''
         }
     ],
     [
-        "6e0KbkfCJtM",
+        "7UKKGBFmVgM",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/ContinuingResources",
         {
@@ -968,7 +968,7 @@ EXPECTED_9 = '''
         }
     ],
     [
-        "6e0KbkfCJtM",
+        "7UKKGBFmVgM",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/marc/LanguageMaterial",
         {
@@ -976,87 +976,43 @@ EXPECTED_9 = '''
         }
     ],
     [
-        "6e0KbkfCJtM",
+        "7UKKGBFmVgM",
         "http://bibfra.me/vocab/lite/language",
         "jpn",
         {}
     ],
     [
-        "6e0KbkfCJtM",
+        "7UKKGBFmVgM",
         "http://bibfra.me/vocab/marc/characteristic",
         "periodical",
         {}
     ],
     [
-        "6e0KbkfCJtM",
+        "7UKKGBFmVgM",
         "http://bibfra.me/vocab/marc/entryConvention",
         "successive entry",
         {}
     ],
     [
-        "6e0KbkfCJtM",
+        "7UKKGBFmVgM",
         "http://bibfra.me/vocab/marc/frequency",
         "unknown",
         {}
     ],
     [
-        "6e0KbkfCJtM",
+        "7UKKGBFmVgM",
         "http://bibfra.me/vocab/marc/regularity",
         "unknown",
         {}
     ],
     [
-        "6e0KbkfCJtM",
+        "7UKKGBFmVgM",
         "http://bibfra.me/vocab/marcext/tag-008",
         "821218d18821919ja uu p       0||||0jpn b",
         {}
     ],
     [
-        "A6BjK9W2Mzw",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "A6BjK9W2Mzw",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "6e0KbkfCJtM",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "A6BjK9W2Mzw",
-        "http://bibfra.me/vocab/marc/publication",
-        "nlwwGRX2Tsk",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "g3EHGitm8Gk",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Place",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "g3EHGitm8Gk",
-        "http://bibfra.me/vocab/lite/name",
-        "Tokyo.",
-        {}
-    ],
-    [
-        "g3EHGitm8Gk",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Tokyo.",
-        {}
-    ],
-    [
-        "nlwwGRX2Tsk",
+        "AGYCOxIu6eo",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/ProviderEvent",
         {
@@ -1064,18 +1020,62 @@ EXPECTED_9 = '''
         }
     ],
     [
-        "nlwwGRX2Tsk",
+        "AGYCOxIu6eo",
         "http://bibfra.me/vocab/lite/providerPlace",
-        "g3EHGitm8Gk",
+        "TsgBvyXP6qY",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "nlwwGRX2Tsk",
+        "AGYCOxIu6eo",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Tokyo.",
         {}
+    ],
+    [
+        "TsgBvyXP6qY",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Place",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "TsgBvyXP6qY",
+        "http://bibfra.me/vocab/lite/name",
+        "Tokyo.",
+        {}
+    ],
+    [
+        "TsgBvyXP6qY",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Tokyo.",
+        {}
+    ],
+    [
+        "eQYEQ91FRHA",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "eQYEQ91FRHA",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "7UKKGBFmVgM",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "eQYEQ91FRHA",
+        "http://bibfra.me/vocab/marc/publication",
+        "AGYCOxIu6eo",
+        {
+            "@target-type": "@iri-ref"
+        }
     ]
 ]
 '''

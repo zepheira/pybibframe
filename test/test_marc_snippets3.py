@@ -83,7 +83,7 @@ CONFIG_21 = None
 EXPECTED_21 = '''
 [
     [
-        "EIUIxVXGSsk",
+        "3f9AOY8U7fg",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
         {
@@ -91,7 +91,55 @@ EXPECTED_21 = '''
         }
     ],
     [
-        "EIUIxVXGSsk",
+        "3f9AOY8U7fg",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "tVaxKHAonKQ",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "3f9AOY8U7fg",
+        "http://bibfra.me/vocab/lite/medium",
+        "[downloadable ebook] :",
+        {}
+    ],
+    [
+        "3f9AOY8U7fg",
+        "http://bibfra.me/vocab/marc/isbn",
+        "9781615302550",
+        {}
+    ],
+    [
+        "3f9AOY8U7fg",
+        "http://bibfra.me/vocab/marc/titleRemainder",
+        "the physiology of human perception /",
+        {}
+    ],
+    [
+        "3f9AOY8U7fg",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "edited by Kara Rogers",
+        {}
+    ],
+    [
+        "3f9AOY8U7fg",
+        "http://bibfra.me/vocab/relation/hasOtherPhysicalFormat",
+        "GxDFRy2DEyA",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "GxDFRy2DEyA",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "GxDFRy2DEyA",
         "http://bibfra.me/vocab/lite/authorityLink",
         "http://bibfra.me/vocab/marcext/authrec/sky235195071",
         {
@@ -99,7 +147,7 @@ EXPECTED_21 = '''
         }
     ],
     [
-        "EIUIxVXGSsk",
+        "GxDFRy2DEyA",
         "http://bibfra.me/vocab/lite/instantiates",
         "tVaxKHAonKQ",
         {
@@ -107,82 +155,52 @@ EXPECTED_21 = '''
         }
     ],
     [
-        "EIUIxVXGSsk",
-        "http://bibfra.me/vocab/lite/note",
-        "Original",
-        {}
-    ],
-    [
-        "EIUIxVXGSsk",
-        "http://bibfra.me/vocab/marc/isbn",
-        "9781615301164",
-        {}
-    ],
-    [
-        "EIUIxVXGSsk",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "Original",
-        {}
-    ],
-    [
-        "EIUIxVXGSsk",
-        "http://bibfra.me/vocab/marcext/sf-w",
-        "sky235195071",
-        {}
-    ],
-    [
-        "EIUIxVXGSsk",
-        "http://bibfra.me/vocab/marcext/sf-z",
-        "9781615301164",
-        {}
-    ],
-    [
-        "rt4YI_EnVfI",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "rt4YI_EnVfI",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "tVaxKHAonKQ",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "rt4YI_EnVfI",
+        "GxDFRy2DEyA",
         "http://bibfra.me/vocab/lite/medium",
         "[downloadable ebook] :",
         {}
     ],
     [
-        "rt4YI_EnVfI",
-        "http://bibfra.me/vocab/marc/isbn",
-        "9781615302550",
+        "GxDFRy2DEyA",
+        "http://bibfra.me/vocab/lite/note",
+        "Original",
         {}
     ],
     [
-        "rt4YI_EnVfI",
+        "GxDFRy2DEyA",
+        "http://bibfra.me/vocab/marc/isbn",
+        "9781615301164",
+        {}
+    ],
+    [
+        "GxDFRy2DEyA",
         "http://bibfra.me/vocab/marc/titleRemainder",
         "the physiology of human perception /",
         {}
     ],
     [
-        "rt4YI_EnVfI",
+        "GxDFRy2DEyA",
         "http://bibfra.me/vocab/marc/titleStatement",
         "edited by Kara Rogers",
         {}
     ],
     [
-        "rt4YI_EnVfI",
-        "http://bibfra.me/vocab/relation/hasOtherPhysicalFormat",
-        "EIUIxVXGSsk",
-        {
-            "@target-type": "@iri-ref"
-        }
+        "GxDFRy2DEyA",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "Original",
+        {}
+    ],
+    [
+        "GxDFRy2DEyA",
+        "http://bibfra.me/vocab/marcext/sf-w",
+        "sky235195071",
+        {}
+    ],
+    [
+        "GxDFRy2DEyA",
+        "http://bibfra.me/vocab/marcext/sf-z",
+        "9781615301164",
+        {}
     ],
     [
         "tVaxKHAonKQ",
