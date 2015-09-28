@@ -106,11 +106,12 @@ def isbn_instancegen(params, loop, model):
     logger.debug('Normalized ISBN:\t{0}'.format(normalized_isbns))
     if normalized_isbns:
         for inum, itype in normalized_isbns:
-            data = [['instantiates', workid], [ISBNNS + 'isbn', inum]]
+            ean13 = compute_ean13_check(inum)
+            data = [['instantiates', workid], [ISBNNS + 'isbn', ean13]]
             instanceid = materialize_entity('Instance', ctx_params=params, loop=loop, model_to_update=params['output_model'], data=data)
             if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
 
-            output_model.add(I(instanceid), ISBN_REL, compute_ean13_check(inum))
+            output_model.add(I(instanceid), ISBN_REL, ean13)
             output_model.add(I(instanceid), INSTANTIATES_REL, I(workid))
             if itype: output_model.add(I(instanceid), ISBN_TYPE_REL, itype)
             existing_ids.add(instanceid)
@@ -300,7 +301,8 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
                     WORKID: params['workid'],
                     IID: params['instanceids'][0],
                     'logger': params['logger'],
-                    'postprocessing': []
+                    'postprocessing': [],
+                    'inputns': MARC,
                 }
                 #Build Versa processing context
                 #Should we include indicators?

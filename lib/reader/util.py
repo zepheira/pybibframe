@@ -10,6 +10,7 @@ from bibframe.contrib.datachefids import slugify#, FROM_EMPTY_64BIT_HASH
 from bibframe.contrib.datachefids import idgen as default_idgen
 from bibframe import BFZ
 from bibframe.util import LoggedList, merge_list_logs
+from bibframe.isbnplus import isbn_list, compute_ean13_check
 
 from amara3 import iri
 
@@ -177,6 +178,7 @@ def target():
     return _target
 
 
+NS_PATCH = lambda ns, k, v: (ns+k, v) if not iri.is_absolute(k) else (k, v)
 def all_subfields(ctx):
     '''
     Utility to return a hash key from all subfields mentioned in the MARC prototype link
@@ -194,10 +196,11 @@ def all_subfields(ctx):
     attrs = ctx.current_link[ATTRIBUTES]
     # If attributes have their own ordering, use it, otherwise sort
     if isinstance(attrs, OrderedDict):
-        return attrs.items()
+        stream = attrs.items()
     else:
-        return sorted(attrs.items())
+        stream = sorted(attrs.items())
 
+    return (NS_PATCH(ctx.extras['inputns'], k, v) for k, v in stream)
 
 def subfield(key):
     '''
@@ -445,7 +448,6 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None, post
 
         #XXX: Relying here on shared existing_ids from the idgen function. Probably need to think through this state coupling
         objid = ctx.idgen(_typ, data=computed_unique)
-        print(computed_unique)
         #FIXME: Fix properly, by slugifying & making sure slugify handles all numeric case (prepend '_')
         rels = [ ('_' + curr_rel if curr_rel.isdigit() else curr_rel) for curr_rel in rels if curr_rel ]
         for curr_rel in rels:
@@ -556,6 +558,17 @@ def url(arg, base=iri.absolutize('authrec/',BFZ)):
 
         return ret
     return _res
+
+
+def normalize_isbn(isbn):
+    '''
+    Turn isbnplus into an action function to normalize ISBNs outside of 020, e.g. 776$z
+    '''
+    def _normalize_isbn(ctx):
+        _isbn = isbn(ctx) if callable(isbn) else isbn
+        _isbn = [_isbn] if not isinstance(_isbn, list) else _isbn
+        return [ compute_ean13_check(i) for i, t in isbn_list(_isbn) ]
+    return _normalize_isbn
 
 onwork = base_transformer(origin_class.work)
 oninstance = base_transformer(origin_class.instance)

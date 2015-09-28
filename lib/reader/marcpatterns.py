@@ -1715,7 +1715,7 @@ BFLITE_TRANSFORMS = {
                                                MARC + 'edition': subfield('b'),
                                                BL + 'note': values(subfield('n'), subfield('c'), subfield('i')),
                                                MARC + 'issn': subfield('x'),
-                                               MARC + 'isbn': subfield('z')}
+                                               MARC + 'isbn': normalize_isbn(subfield('z'))}
                     ),
                     oninstance.materialize(BL + 'Instance',
                                            values(REL + 'hasOtherPhysicalFormat'),
@@ -1735,7 +1735,7 @@ BFLITE_TRANSFORMS = {
                                                MARC + 'edition': subfield('b'),
                                                BL + 'note': values(subfield('n'), subfield('c'), subfield('i')),
                                                MARC + 'issn': subfield('x'),
-                                               MARC + 'isbn': subfield('z'),
+                                               MARC + 'isbn': normalize_isbn(subfield('z')),
                                                BL + 'instantiates': anchor_work()},
                                            postprocess=POSTPROCESS_AS_INSTANCE
                     )
