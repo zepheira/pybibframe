@@ -51,6 +51,7 @@ def isbn_list(isbns, logger=logging):
     '''
     isbn_tags = {}
     for isbn in isbns:
+        assert isinstance(isbn, str), "non-string passed to isbn_list: {0}".format(repr(isbn))
         parts = isbn.split(None, 1)
         if not parts:
             logger.debug('Blank ISBN')

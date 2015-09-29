@@ -830,10 +830,84 @@ EXPECTED_8 = '''
     [
         "7UKKGBFmVgM",
         "http://bibfra.me/vocab/relation/unionOf",
-        "uiiA6aAOnI8",
+        "KZdDeHAXqUc",
         {
             "@target-type": "@iri-ref"
         }
+    ],
+    [
+        "KZdDeHAXqUc",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "KZdDeHAXqUc",
+        "http://bibfra.me/vocab/lite/authorityLink",
+        "http://lccn.loc.gov/96646621",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "KZdDeHAXqUc",
+        "http://bibfra.me/vocab/lite/authorityLink",
+        "http://www.ncbi.nlm.nih.gov/nlmcatalog?term=7505458",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "KZdDeHAXqUc",
+        "http://bibfra.me/vocab/lite/authorityLink",
+        "http://www.worldcat.org/oclc/1478787",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "KZdDeHAXqUc",
+        "http://bibfra.me/vocab/lite/title",
+        "Doklady biochemistry",
+        {}
+    ],
+    [
+        "KZdDeHAXqUc",
+        "http://bibfra.me/vocab/marc/issn",
+        "0012-4958",
+        {}
+    ],
+    [
+        "KZdDeHAXqUc",
+        "http://bibfra.me/vocab/marcext/sf-t",
+        "Doklady biochemistry",
+        {}
+    ],
+    [
+        "KZdDeHAXqUc",
+        "http://bibfra.me/vocab/marcext/sf-w",
+        "(DLC)   96646621",
+        {}
+    ],
+    [
+        "KZdDeHAXqUc",
+        "http://bibfra.me/vocab/marcext/sf-w",
+        "(DNLM)7505458",
+        {}
+    ],
+    [
+        "KZdDeHAXqUc",
+        "http://bibfra.me/vocab/marcext/sf-w",
+        "(OCoLC)1478787",
+        {}
+    ],
+    [
+        "KZdDeHAXqUc",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "0012-4958",
+        {}
     ],
     [
         "eQYEQ91FRHA",
@@ -850,80 +924,6 @@ EXPECTED_8 = '''
         {
             "@target-type": "@iri-ref"
         }
-    ],
-    [
-        "uiiA6aAOnI8",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Work",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "uiiA6aAOnI8",
-        "http://bibfra.me/vocab/lite/authorityLink",
-        "http://lccn.loc.gov/96646621",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "uiiA6aAOnI8",
-        "http://bibfra.me/vocab/lite/authorityLink",
-        "http://www.ncbi.nlm.nih.gov/nlmcatalog?term=7505458",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "uiiA6aAOnI8",
-        "http://bibfra.me/vocab/lite/authorityLink",
-        "http://www.worldcat.org/oclc/1478787",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "uiiA6aAOnI8",
-        "http://bibfra.me/vocab/lite/title",
-        "Doklady biochemistry",
-        {}
-    ],
-    [
-        "uiiA6aAOnI8",
-        "http://bibfra.me/vocab/marc/issn",
-        "0012-4958",
-        {}
-    ],
-    [
-        "uiiA6aAOnI8",
-        "http://bibfra.me/vocab/marcext/sf-t",
-        "Doklady biochemistry",
-        {}
-    ],
-    [
-        "uiiA6aAOnI8",
-        "http://bibfra.me/vocab/marcext/sf-w",
-        "(DLC)   96646621",
-        {}
-    ],
-    [
-        "uiiA6aAOnI8",
-        "http://bibfra.me/vocab/marcext/sf-w",
-        "(DNLM)7505458",
-        {}
-    ],
-    [
-        "uiiA6aAOnI8",
-        "http://bibfra.me/vocab/marcext/sf-w",
-        "(OCoLC)1478787",
-        {}
-    ],
-    [
-        "uiiA6aAOnI8",
-        "http://bibfra.me/vocab/marcext/sf-x",
-        "0012-4958",
-        {}
     ]
 ]
 '''
@@ -1012,28 +1012,6 @@ EXPECTED_9 = '''
         {}
     ],
     [
-        "AGYCOxIu6eo",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/ProviderEvent",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "AGYCOxIu6eo",
-        "http://bibfra.me/vocab/lite/providerPlace",
-        "TsgBvyXP6qY",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "AGYCOxIu6eo",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Tokyo.",
-        {}
-    ],
-    [
         "TsgBvyXP6qY",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Place",
@@ -1049,6 +1027,28 @@ EXPECTED_9 = '''
     ],
     [
         "TsgBvyXP6qY",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Tokyo.",
+        {}
+    ],
+    [
+        "eKiws3Es_iQ",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/ProviderEvent",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "eKiws3Es_iQ",
+        "http://bibfra.me/vocab/lite/providerPlace",
+        "TsgBvyXP6qY",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "eKiws3Es_iQ",
         "http://bibfra.me/vocab/marcext/sf-a",
         "Tokyo.",
         {}
@@ -1072,7 +1072,7 @@ EXPECTED_9 = '''
     [
         "eQYEQ91FRHA",
         "http://bibfra.me/vocab/marc/publication",
-        "AGYCOxIu6eo",
+        "eKiws3Es_iQ",
         {
             "@target-type": "@iri-ref"
         }

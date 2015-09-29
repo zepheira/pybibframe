@@ -83,7 +83,7 @@ CONFIG_21 = None
 EXPECTED_21 = '''
 [
     [
-        "3f9AOY8U7fg",
+        "LRxdpzyk-Yk",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
         {
@@ -91,7 +91,7 @@ EXPECTED_21 = '''
         }
     ],
     [
-        "3f9AOY8U7fg",
+        "LRxdpzyk-Yk",
         "http://bibfra.me/vocab/lite/instantiates",
         "tVaxKHAonKQ",
         {
@@ -99,39 +99,39 @@ EXPECTED_21 = '''
         }
     ],
     [
-        "3f9AOY8U7fg",
+        "LRxdpzyk-Yk",
         "http://bibfra.me/vocab/lite/medium",
         "[downloadable ebook] :",
         {}
     ],
     [
-        "3f9AOY8U7fg",
+        "LRxdpzyk-Yk",
         "http://bibfra.me/vocab/marc/isbn",
         "9781615302550",
         {}
     ],
     [
-        "3f9AOY8U7fg",
+        "LRxdpzyk-Yk",
         "http://bibfra.me/vocab/marc/titleRemainder",
         "the physiology of human perception /",
         {}
     ],
     [
-        "3f9AOY8U7fg",
+        "LRxdpzyk-Yk",
         "http://bibfra.me/vocab/marc/titleStatement",
         "edited by Kara Rogers",
         {}
     ],
     [
-        "3f9AOY8U7fg",
+        "LRxdpzyk-Yk",
         "http://bibfra.me/vocab/relation/hasOtherPhysicalFormat",
-        "GxDFRy2DEyA",
+        "SVFGdMyIEpE",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "GxDFRy2DEyA",
+        "SVFGdMyIEpE",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
         {
@@ -139,7 +139,7 @@ EXPECTED_21 = '''
         }
     ],
     [
-        "GxDFRy2DEyA",
+        "SVFGdMyIEpE",
         "http://bibfra.me/vocab/lite/authorityLink",
         "sky235195071",
         {
@@ -147,7 +147,7 @@ EXPECTED_21 = '''
         }
     ],
     [
-        "GxDFRy2DEyA",
+        "SVFGdMyIEpE",
         "http://bibfra.me/vocab/lite/instantiates",
         "tVaxKHAonKQ",
         {
@@ -155,49 +155,49 @@ EXPECTED_21 = '''
         }
     ],
     [
-        "GxDFRy2DEyA",
+        "SVFGdMyIEpE",
         "http://bibfra.me/vocab/lite/medium",
         "[downloadable ebook] :",
         {}
     ],
     [
-        "GxDFRy2DEyA",
+        "SVFGdMyIEpE",
         "http://bibfra.me/vocab/lite/note",
         "Original",
         {}
     ],
     [
-        "GxDFRy2DEyA",
+        "SVFGdMyIEpE",
         "http://bibfra.me/vocab/marc/isbn",
         "9781615301164",
         {}
     ],
     [
-        "GxDFRy2DEyA",
+        "SVFGdMyIEpE",
         "http://bibfra.me/vocab/marc/titleRemainder",
         "the physiology of human perception /",
         {}
     ],
     [
-        "GxDFRy2DEyA",
+        "SVFGdMyIEpE",
         "http://bibfra.me/vocab/marc/titleStatement",
         "edited by Kara Rogers",
         {}
     ],
     [
-        "GxDFRy2DEyA",
+        "SVFGdMyIEpE",
         "http://bibfra.me/vocab/marcext/sf-c",
         "Original",
         {}
     ],
     [
-        "GxDFRy2DEyA",
+        "SVFGdMyIEpE",
         "http://bibfra.me/vocab/marcext/sf-w",
         "sky235195071",
         {}
     ],
     [
-        "GxDFRy2DEyA",
+        "SVFGdMyIEpE",
         "http://bibfra.me/vocab/marcext/sf-z",
         "9781615301164",
         {}

@@ -362,40 +362,6 @@ CONFIG_13 = {}
 EXPECTED_13 = '''
 [
     [
-        "7b57wzJp5JQ",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "7b57wzJp5JQ",
-        "http://bibfra.me/vocab/lite/controlCode",
-        "1247500",
-        {}
-    ],
-    [
-        "7b57wzJp5JQ",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "JgO7mONXOIs",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "7b57wzJp5JQ",
-        "http://bibfra.me/vocab/marc/isbn",
-        "9783136128046",
-        {}
-    ],
-    [
-        "7b57wzJp5JQ",
-        "http://bibfra.me/vocab/marc/isbnType",
-        "(GTV)",
-        {}
-    ],
-    [
         "JgO7mONXOIs",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
@@ -480,7 +446,7 @@ EXPECTED_13 = '''
         {}
     ],
     [
-        "sCHd8LcTJb0",
+        "glnYQ7iQ5pQ",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
         {
@@ -488,13 +454,13 @@ EXPECTED_13 = '''
         }
     ],
     [
-        "sCHd8LcTJb0",
+        "glnYQ7iQ5pQ",
         "http://bibfra.me/vocab/lite/controlCode",
         "1247500",
         {}
     ],
     [
-        "sCHd8LcTJb0",
+        "glnYQ7iQ5pQ",
         "http://bibfra.me/vocab/lite/instantiates",
         "JgO7mONXOIs",
         {
@@ -502,15 +468,49 @@ EXPECTED_13 = '''
         }
     ],
     [
-        "sCHd8LcTJb0",
+        "glnYQ7iQ5pQ",
         "http://bibfra.me/vocab/marc/isbn",
         "9781588902153",
         {}
     ],
     [
-        "sCHd8LcTJb0",
+        "glnYQ7iQ5pQ",
         "http://bibfra.me/vocab/marc/isbnType",
         "(TNY)",
+        {}
+    ],
+    [
+        "xAIwp2JUp5k",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "xAIwp2JUp5k",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "1247500",
+        {}
+    ],
+    [
+        "xAIwp2JUp5k",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "JgO7mONXOIs",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "xAIwp2JUp5k",
+        "http://bibfra.me/vocab/marc/isbn",
+        "9783136128046",
+        {}
+    ],
+    [
+        "xAIwp2JUp5k",
+        "http://bibfra.me/vocab/marc/isbnType",
+        "(GTV)",
         {}
     ]
 ]

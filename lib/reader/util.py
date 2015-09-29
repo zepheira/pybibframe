@@ -568,7 +568,7 @@ def normalize_isbn(isbn):
     def _normalize_isbn(ctx):
         _isbn = isbn(ctx) if callable(isbn) else isbn
         _isbn = [_isbn] if not isinstance(_isbn, list) else _isbn
-        return [ compute_ean13_check(i) for i, t in isbn_list(_isbn) if i ]
+        return [ compute_ean13_check(i) for i, t in isbn_list([i for i in _isbn if i]) ]
     return _normalize_isbn
 
 onwork = base_transformer(origin_class.work)
