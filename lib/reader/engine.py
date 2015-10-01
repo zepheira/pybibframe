@@ -185,13 +185,6 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
                                         canonical=canonical,
                                         model_factory=model_factory)
 
-            def resolve_class(fullname):
-                import importlib
-                modpath, name = fullname.rsplit('.', 1)
-                module = importlib.import_module(modpath)
-                cls = getattr(module, name)
-                return cls
-
             args = dict(lax=lax)
             handle_marc_source(source, sink, args, logger, model_factory)
             sink.close()
