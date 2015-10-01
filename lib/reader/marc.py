@@ -219,10 +219,9 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
         #Sort out attributes
         params['indicators'] = indicators = { k: v for k, v in attribs.items() if k.startswith('ind') }
         params['subfields'] = subfields = attribs.copy() # preserve class
-        #for k in list(subfields.keys()):
-        #    if k[:3] in ('tag', 'ind'):
-        #        del subfields[k]
-        subfields = { k: v for (k, v) in subfields.items() if k[:3] not in ('tag', 'ind') }
+        for k in list(subfields.keys()):
+            if k[:3] in ('tag', 'ind'):
+                del subfields[k]
         params['code'] = tag = attribs['tag']
         if taglink.startswith(MARCXML_NS + '/control'):
             #No indicators on control fields. Turn them off, in effect
