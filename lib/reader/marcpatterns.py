@@ -1228,7 +1228,7 @@ BFLITE_TRANSFORMS = {
     '655$a': onwork.materialize(BL + 'Form',
                                 BL + 'genre',
                                 unique=[
-                                    (BL + 'name', subfield('v'))
+                                    (BL + 'name', subfield('a'))
                                 ],
                                 links={
                                     BL + 'name': subfield('a')
