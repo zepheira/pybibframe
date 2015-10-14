@@ -5,28 +5,52 @@ Sample config JSON stanza:
     "plugins": [
         {"id": "http://bibfra.me/tool/pybibframe#labelizer",
         "lookup": {
-            "http://bibfra.me/vocab/lite/Work": "http://bibfra.me/vocab/lite/title",
-            "http://bibfra.me/vocab/lite/Instance": "http://bibfra.me/vocab/lite/title",
-            "http://bibfra.me/vocab/lite/Agent": "http://bibfra.me/vocab/lite/name",
-            "http://bibfra.me/vocab/lite/Person": "http://bibfra.me/vocab/lite/name",
-            "http://bibfra.me/vocab/lite/Organization": "http://bibfra.me/vocab/lite/name",
-            "http://bibfra.me/vocab/lite/Place": "http://bibfra.me/vocab/lite/name",
-            "http://bibfra.me/vocab/lite/Collection": "http://bibfra.me/vocab/lite/name",
-            "http://bibfra.me/vocab/lite/Meeting": "http://bibfra.me/vocab/lite/name",
-            "http://bibfra.me/vocab/lite/Topic": "http://bibfra.me/vocab/lite/name",
-            "http://bibfra.me/vocab/lite/Form": "http://bibfra.me/vocab/lite/name",
-            "http://bibfra.me/vocab/lite/Foobar": [" $","http://bibfra.me/vocab/lite/title","http://bibfra.me/vocab/lite/name"]
+            "http://bibfra.me/vocab/lite/Foobar": {
+                "separator": " ",
+                "marcOrder": True,
+                "properties": ["http://bibfra.me/vocab/lite/title","http://bibfra.me/vocab/lite/name"]
+                "fallback": {
+                    "properties": "http://bibfra.me/vocab/lite/someotherproperty"
+                }
+            },
+            "http://bibfra.me/vocab/lite/Grobnitz": [ {
+                    "separator": "lambda ctx: '-' if ctx['nextProperty'] == "http://bibfra.me/vocab/lite/name" else ' '"],
+                    "wrapper": "lambda ctx: '[]' if 'medium' in ctx['currentProperty'] else None",
+                    "multivalSeparator": " | ",
+                    "marcOrder": True,
+                    "properties": ["http://bibfra.me/vocab/lite/title","http://bibfra.me/vocab/lite/name"]
+                },
+                {
+                    "separator": ' ',
+                    "marcOrder": True,
+                    "properties": ["http://bibfra.me/vocab/lite/p1", "http://bibfra.me/vocab/lite/p2"]
+                }
             }
         "default-label": "UNKNOWN LABEL"
         },
     ]
 }
 
-Tuple notation in lookup configuration is used to join multiple properties in order, using the
-first item as the separator ('' for no separator). If the separator ends with a "$" then
-then the original ordering present in the MARC record will be used instead of the order of
-the given properties, and the properties will be used purely as a filter. The "$" is ignored
-as part of the separator.
+The configuration is specified using a dictionary with type URIs as keys, and one or more
+rule dictionaries as values (a single rule dict requires no list enclosure).  If the
+first rule dictionary fails to produce a label, the next rule dictionary is used. If at
+the end of this process no label has been produced, the label specified in "default-label"
+will be returned. Each rule dictionary can contain these keys; "separator" which
+specifies the string used to separate property values, "multivalSeparator" which specifies the
+separator used when the property value is multi-valued, "wrapper" which specifies
+a string of length two whose respective characters will be used to wrap the property value,
+"marcOrder" a boolean that indicates whether the properties values should be ordered as
+they were encountered in the MARC if True (otherwise the order in the "properties" key
+will be used), and "properties" containing the list of property URIs.
+
+"separator" and "wrapper" can be callables that return strings when provided a context
+dictionary describing the state of the labelizing process.
+
+Note that as the configuration needs to be represented as JSON, the callables are
+encapsulated as strings. As non-callables are also strings, there's ambiguity there
+that we resolve by asserting that any string longer than 5 characters will be
+treated as a callable. Of course, if this configuration is consumed as a Python
+dictionary, then the values can be actual callables.
 
 Already built into demo config:
 
@@ -53,6 +77,11 @@ RDFS_NAMESPACE = 'http://www.w3.org/2000/01/rdf-schema#'
 
 VTYPE_REL = I(iri.absolutize('type', VERSA_BASEIRI))
 RDFS_LABEL = RDFS_NAMESPACE + 'label'
+
+def pairwise(iterable):
+    a, b = tee(iterable)
+    next(b, None)
+    return zip_longest(a, b)
 
 #A plug-in is a series of callables, each of which handles a phase of
 #Process
@@ -93,37 +122,54 @@ class labelizer(object):
         for obj,_r,typ,_a in model.match(None, VTYPE_REL, None):
             # build labels based on model order, iterating over every property of
             # every resource, and building the label if that property is consulted 
-            prop = self._config['lookup'].get(typ)
-            if prop is None: continue
+            rule = self._config['lookup'].get(typ)
+            if rule is None: continue
 
-            props = prop if isinstance(prop, list) else ['', prop]
-
-            def pairwise(iterable):
-                a, b = tee(iterable)
-                next(b, None)
-                return zip_longest(a, b)
+            rules = rule if isinstance(rule, list) else [rule]
 
             label = ''
-            marc_order = False
-            sep = props[0] # separator
-            if sep.endswith('$'):
-                link_stream = pairwise((l for l in model.match(obj, None, None) if l[1] in props[1:]))
-                sep = sep[:-1]
-            else:
-                link_stream = pairwise((l for p in props[1:] for l in model.match(obj, p, None)))
+            for rule in rules:
 
-            #print("LABELIZING {} of type {}".format(obj, typ))
-            for (link1, link2) in link_stream:
+                def label_eval(s):
+                    if s is None: return
+                    return eval(s, locals()) if len(s) > 5 else s
 
-                _o1,rel1,target1,_a1 = link1
-                _o2,rel2,target2,_a2 = link2 if link2 is not None else (None, None, None, None)
+                marc_order = rule.get('marcOrder', False)
+                separator = label_eval(rule.get('separator', ' '))
+                wrapper = label_eval(rule.get('wrapper', None))
+                multivalsep = label_eval(rule.get('multivalSeparator', ' | '))
+                props = rule.get('properties', [])
 
-                label += target1
-                if rel2 == rel1:
-                    label += ' | '
-                elif rel2 is not None:
-                    label += sep
-                #print("current label", label)
+                if marc_order:
+                    link_stream = pairwise((l for l in model.match(obj, None, None) if l[1] in props))
+                else:
+                    link_stream = pairwise((l for p in props for l in model.match(obj, p, None)))
+
+                #print("LABELIZING {} of type {}".format(obj, typ))
+                for (link1, link2) in link_stream:
+
+                    _o1,rel1,target1,_a1 = link1
+                    _o2,rel2,target2,_a2 = link2 if link2 is not None else (None, None, None, None)
+
+                    ctx = {
+                        'currentProperty': rel1,
+                        'currentValue': target1,
+                        'nextProperty': rel2,
+                        'nextValue': target2,
+                    }
+
+                    wrapper = wrapper(ctx) if callable(wrapper) else wrapper
+                    if wrapper:
+                        target1 = wrapper[0]+target1+wrapper[1]
+
+                    label += target1
+                    if rel2 == rel1:
+                        multivalsep = multivalsep(ctx) if callable(multivalsep) else multivalsep
+                        label += multivalsep
+                    elif rel2 is not None:
+                        separator = separator(ctx) if callable(separator) else separator
+                        label += separator
+                    #print("current label", label)
 
             if len(label) > 0:
                 model.add(obj, I(RDFS_LABEL), label)
