@@ -130,14 +130,15 @@ class labelizer(object):
             label = ''
             for rule in rules:
 
-                def label_eval(s):
-                    if s is None: return
-                    return eval(s, locals()) if len(s) > 5 else s
+                def chunk_eval(s):
+                    if isinstance(s, str) and len(s) > 5:
+                        s = eval(s, locals())
+                    return s
 
                 marc_order = rule.get('marcOrder', False)
-                separator = label_eval(rule.get('separator', ' '))
-                wrapper = label_eval(rule.get('wrapper', None))
-                multivalsep = label_eval(rule.get('multivalSeparator', ' | '))
+                separator = chunk_eval(rule.get('separator', ' '))
+                wrapper = chunk_eval(rule.get('wrapper', None))
+                multivalsep = chunk_eval(rule.get('multivalSeparator', ' | '))
                 props = rule.get('properties', [])
 
                 if marc_order:
@@ -158,17 +159,17 @@ class labelizer(object):
                         'nextValue': target2,
                     }
 
-                    wrapper = wrapper(ctx) if callable(wrapper) else wrapper
-                    if wrapper:
-                        target1 = wrapper[0]+target1+wrapper[1]
+                    _wrapper = wrapper(ctx) if callable(wrapper) else wrapper
+                    if _wrapper:
+                        target1 = _wrapper[0]+target1+_wrapper[1]
 
                     label += target1
                     if rel2 == rel1:
-                        multivalsep = multivalsep(ctx) if callable(multivalsep) else multivalsep
-                        label += multivalsep
+                        _multivalsep = multivalsep(ctx) if callable(multivalsep) else multivalsep
+                        label += _multivalsep
                     elif rel2 is not None:
-                        separator = separator(ctx) if callable(separator) else separator
-                        label += separator
+                        _separator = separator(ctx) if callable(separator) else separator
+                        label += _separator
                     #print("current label", label)
 
             if len(label) > 0:
