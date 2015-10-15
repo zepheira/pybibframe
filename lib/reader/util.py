@@ -367,6 +367,25 @@ def foreach(origin=None, rel=None, target=None, attributes=None):
     return _foreach
 
 
+def indicator(pat):
+    '''
+    Action function generator to determine if the current datafield's indicators match the given pattern
+
+    :param pat: the 2-char pattern against which the indicators will be tested. '#' indicates no
+    indicator value, while '?' indicates any value. Not tested for call-ability.
+    :return: Versa action function to do the actual work
+    '''
+    def _indicator(ctx):
+        inds = '{}{}'.format(ctx.extras['indicators'].get('ind1', '#'),
+                            ctx.extras['indicators'].get('ind2', '#'))
+        for i, p in zip(inds, pat):
+            if p == '?': continue
+            if p != i: return False
+        return True
+
+    return _indicator
+        
+
 def materialize(typ, rel=None, derive_origin=None, unique=None, links=None, postprocess=None):
     '''
     Create a new resource related to the origin.
