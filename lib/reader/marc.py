@@ -329,6 +329,8 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
                     try:
                         params['output_model'].add(I(params['workid']), I(iri.absolutize(fallback_rel, params['vocabbase'])), valitem)
                     except ValueError as e:
+                        control_code = list(marc_lookup(input_model, '001')) or ['NO 001 CONTROL CODE']
+                        dumb_title = list(marc_lookup(input_model, '245$a')) or ['NO 245$a TITLE']
                         logger.warning('{}\nSkipping statement for {}: "{}"'.format(e, control_code[0], dumb_title[0]))
 
     extra_stmts = set() # prevent duplicate statements
@@ -410,6 +412,8 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                 for xref in attribs.get('6', []):
                     xref_parts = xref.split('-')
                     if len(xref_parts) != 2:
+                        control_code = list(marc_lookup(input_model, '001')) or ['NO 001 CONTROL CODE']
+                        dumb_title = list(marc_lookup(input_model, '245$a')) or ['NO 245$a TITLE']
                         logger.warning('Skipping invalid $6: "{}" for {}: "{}"'.format(xref, control_code[0], dumb_title[0]))
                         continue
 
