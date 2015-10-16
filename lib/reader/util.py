@@ -367,21 +367,52 @@ def foreach(origin=None, rel=None, target=None, attributes=None):
     return _foreach
 
 
-def indicator(pat):
+def indicator(pat, mode='and'):
     '''
     Action function generator to determine if the current datafield's indicators match the given pattern
 
     :param pat: the 2-char pattern against which the indicators will be tested. '#' indicates no
-    indicator value, while '?' indicates any value. Not tested for call-ability.
+    indicator value, while '?' indicates the position is ignored. Not tested for call-ability.
+    :param mode: either 'and' or 'or', the former (and default) indicating that both indicators
+    are tested to evaluate as True, while 'or' indicates that both are tested to evaluate as False.
     :return: Versa action function to do the actual work
+
+    Pseudo doc test:
+    #>>> ctx = {'extras':{'ind1':'3','ind2':'4'}}
+    #>>> indicator('?4')
+    #True
+    #>>> indicator('3?')
+    #True
+    #>>> indicator('3#')
+    #False
+    #>>> indicator('##')
+    #False
+    #>>> indicator('??')
+    #True
+    #>>> indicator('?4', mode='or')
+    #True
+    #>>> indicator('#4', mode='or')
+    #True
+    #>>> indicator('3?', mode='or')
+    #True
+    #>>> indicator('3#', mode='or')
+    #True
+    #>>> indicator('##', mode='or')
+    #False
+    #>>> indicator('??', mode='or')
+    #True
     '''
     def _indicator(ctx):
         inds = '{}{}'.format(ctx.extras['indicators'].get('ind1', '#'),
                             ctx.extras['indicators'].get('ind2', '#'))
         for i, p in zip(inds, pat):
-            if p == '?': continue
-            if p != i: return False
-        return True
+            if mode=='and':
+                if p == '?': continue
+                if p != i: return False
+            elif mode=='or':
+                if p == '?': return True
+                if p == i: return True
+        return mode=='and'
 
     return _indicator
         
