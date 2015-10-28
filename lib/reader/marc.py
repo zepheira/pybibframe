@@ -331,7 +331,7 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
                     except ValueError as e:
                         control_code = list(marc_lookup(input_model, '001')) or ['NO 001 CONTROL CODE']
                         dumb_title = list(marc_lookup(input_model, '245$a')) or ['NO 245$a TITLE']
-                        logger.warning('{}\nSkipping statement for {}: "{}"'.format(e, control_code[0], dumb_title[0]))
+                        params['logger'].warning('{}\nSkipping statement for {}: "{}"'.format(e, control_code[0], dumb_title[0]))
 
     extra_stmts = set() # prevent duplicate statements
     extra_transforms = params['extra_transforms']
