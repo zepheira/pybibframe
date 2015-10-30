@@ -299,6 +299,7 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
                 extras = {
                     WORKID: params['workid'],
                     IID: params['instanceids'][0],
+                    'indicators': indicators,
                     'logger': params['logger'],
                     'postprocessing': [],
                     'inputns': MARC,
