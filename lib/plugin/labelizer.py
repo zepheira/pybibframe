@@ -9,9 +9,6 @@ Sample config JSON stanza:
                 "separator": " ",
                 "marcOrder": True,
                 "properties": ["http://bibfra.me/vocab/lite/title","http://bibfra.me/vocab/lite/name"]
-                "fallback": {
-                    "properties": "http://bibfra.me/vocab/lite/someotherproperty"
-                }
             },
             "http://bibfra.me/vocab/lite/Grobnitz": [ {
                     "separator": "lambda ctx: '-' if ctx['nextProperty'] == "http://bibfra.me/vocab/lite/name" else ' '"],
@@ -131,6 +128,7 @@ class labelizer(object):
             for rule in rules:
 
                 def chunk_eval(s):
+                    # used when configuration is stored in JSON
                     if isinstance(s, str) and len(s) > 5:
                         s = eval(s, locals())
                     return s
@@ -172,9 +170,14 @@ class labelizer(object):
                         label += _separator
                     #print("current label", label)
 
-            if len(label) > 0:
-                model.add(obj, I(RDFS_LABEL), label)
-            elif 'default-label' in self._config:
+                if len(label) > 0:
+                    model.add(obj, I(RDFS_LABEL), label)
+                    break # we've found a rule that produces a label, so skip other rules
+
+                label = ''
+
+            if not label and 'default-label' in self._config:
+                # if we've gone through all rules and not produced a label, yield specified default
                 model.add(obj, I(RDFS_LABEL), self._config['default-label'])
 
         return
