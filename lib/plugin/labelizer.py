@@ -41,7 +41,8 @@ they were encountered in the MARC if True (otherwise the order in the "propertie
 will be used), and "properties" containing the list of property URIs.
 
 "separator" and "wrapper" can be callables that return strings when provided a context
-dictionary describing the state of the labelizing process.
+dictionary describing the state of the labelizing process. The four keys in the context
+are currentProperty, currentValue, nextProperty, and nextValue.
 
 Note that as the configuration needs to be represented as JSON, the callables are
 encapsulated as strings. As non-callables are also strings, there's ambiguity there

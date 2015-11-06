@@ -253,6 +253,125 @@ EXPECTED_21 = '''
 ]
 '''
 
+SNIPPET_22 = '''<collection xmlns="http://www.loc.gov/MARC21/slim">
+<record>
+  <datafield ind2="4" ind1="0" tag="245">
+    <subfield code="a">The eye</subfield>
+    <subfield code="h">downloadable ebook</subfield>
+    <subfield code="b">the physiology of human perception</subfield>
+    <subfield code="c">edited by Kara Rogers</subfield>
+  </datafield>
+</record>
+</collection>
+'''
+
+# A perfectly useless configuration just meant to exercise the labelizer
+CONFIG_22 = {
+    "plugins": [ {
+        "id": "http://bibfra.me/tool/pybibframe#labelizer",
+        "lookup": {
+            "http://bibfra.me/vocab/lite/Instance": [ {
+                "properties": [ "http://bibfra.me/vocab/lite/titleStatement" ]
+            },
+            {
+                "separator": lambda ctx: '=' if ctx['currentProperty']=='http://bibfra.me/vocab/lite/title' else '-',
+                "wrapper": lambda ctx: '[]' if ctx['currentProperty']=='http://bibfra.me/vocab/lite/medium' else None,
+                "marcOrder": True,
+                "properties": [ "http://bibfra.me/vocab/lite/title",
+                                "http://bibfra.me/vocab/marc/titleRemainder",
+                                "http://bibfra.me/vocab/lite/medium",
+                                "http://bibfra.me/vocab/marc/titleStatement" ]
+            } ]
+        },
+        "default-label": "!UNKNOWN LABEL"
+    } ],
+    "versa-attr-cls": "collections.OrderedDict",
+    "versa-attr-list-cls": "bibframe.util.LoggedList"
+}
+
+EXPECTED_22 = '''
+[   
+    [
+        "NKUx9o0hy4w",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "NKUx9o0hy4w",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "wBUG8tKcyqU",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "NKUx9o0hy4w",
+        "http://bibfra.me/vocab/lite/medium",
+        "downloadable ebook",
+        {}
+    ],
+    [
+        "NKUx9o0hy4w",
+        "http://bibfra.me/vocab/lite/title",
+        "The eye",
+        {}
+    ],
+    [
+        "NKUx9o0hy4w",
+        "http://bibfra.me/vocab/marc/titleRemainder",
+        "the physiology of human perception",
+        {}
+    ],
+    [
+        "NKUx9o0hy4w",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "edited by Kara Rogers",
+        {}
+    ],
+    [
+        "NKUx9o0hy4w",
+        "http://www.w3.org/2000/01/rdf-schema#label",
+        "The eye=[downloadable ebook]-the physiology of human perception-edited by Kara Rogers",
+        {}
+    ],
+    [
+        "wBUG8tKcyqU",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "wBUG8tKcyqU",
+        "http://bibfra.me/vocab/lite/title",
+        "The eye",
+        {}
+    ],
+    [
+        "wBUG8tKcyqU",
+        "http://bibfra.me/vocab/marc/titleRemainder",
+        "the physiology of human perception",
+        {}
+    ],
+    [
+        "wBUG8tKcyqU",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "edited by Kara Rogers",
+        {}
+    ]
+]
+'''
+
+#TBD
+#SNIPPET_23 = SNIPPET_22
+#CONFIG_23 = CONFIG_22
+#EXPECTED_23 = '''
+#'''
+
 all_snippets = sorted([ sym for sym in globals() if sym.startswith('SNIPPET') ])
 all_config = sorted([ sym for sym in globals() if sym.startswith('CONFIG') ])
 all_expected = sorted([ sym for sym in globals() if sym.startswith('EXPECTED') ])
