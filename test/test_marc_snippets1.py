@@ -368,18 +368,39 @@ SNIPPET_4 = SNIPPET_1
 CONFIG_4 = {
     "plugins": [
         {"id": "http://bibfra.me/tool/pybibframe#labelizer",
-                "lookup": {
-                    "http://bibfra.me/vocab/lite/Work": "http://bibfra.me/vocab/lite/title",
-                    "http://bibfra.me/vocab/lite/Instance": "http://bibfra.me/vocab/lite/title",
-                    "http://bibfra.me/vocab/lite/Agent": "http://bibfra.me/vocab/lite/name",
-                    "http://bibfra.me/vocab/lite/Person": "http://bibfra.me/vocab/lite/name",
-                    "http://bibfra.me/vocab/lite/Organization": "http://bibfra.me/vocab/lite/name",
-                    "http://bibfra.me/vocab/lite/Place": "http://bibfra.me/vocab/lite/name",
-                    "http://bibfra.me/vocab/lite/Collection": "http://bibfra.me/vocab/lite/name",
-                    "http://bibfra.me/vocab/lite/Meeting": "http://bibfra.me/vocab/lite/name",
-                    "http://bibfra.me/vocab/lite/Topic": "http://bibfra.me/vocab/lite/name",
-                    "http://bibfra.me/vocab/lite/Genre": "http://bibfra.me/vocab/lite/name"}
-                }
+         "lookup": {
+           "http://bibfra.me/vocab/lite/Work": {
+               "properties": ["http://bibfra.me/vocab/lite/title"]
+           },
+           "http://bibfra.me/vocab/lite/Instance": {
+               "properties": ["http://bibfra.me/vocab/lite/title"]
+           },
+           "http://bibfra.me/vocab/lite/Agent": {
+               "properties": ["http://bibfra.me/vocab/lite/name"]
+           },
+           "http://bibfra.me/vocab/lite/Person": {
+               "properties": ["http://bibfra.me/vocab/lite/name"]
+           },
+           "http://bibfra.me/vocab/lite/Organization": {
+               "properties": ["http://bibfra.me/vocab/lite/name"]
+           },
+           "http://bibfra.me/vocab/lite/Place": {
+               "properties": ["http://bibfra.me/vocab/lite/name"]
+           },
+           "http://bibfra.me/vocab/lite/Collection": {
+               "properties": ["http://bibfra.me/vocab/lite/name"]
+           },
+           "http://bibfra.me/vocab/lite/Meeting": {
+               "properties": ["http://bibfra.me/vocab/lite/name"]
+           },
+           "http://bibfra.me/vocab/lite/Topic": {
+               "properties": ["http://bibfra.me/vocab/lite/name"]
+           },
+           "http://bibfra.me/vocab/lite/Genre": {
+               "properties": ["http://bibfra.me/vocab/lite/name"]
+           }
+         }
+        }
     ]
 }
 

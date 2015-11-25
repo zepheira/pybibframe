@@ -1426,14 +1426,19 @@ CONFIG_18 = {
     "plugins": [{
       "id": "http://bibfra.me/tool/pybibframe#labelizer",
       "lookup": {
-        "http://bibfra.me/vocab/lite/Concept": [" > $",
-                                            "http://bibfra.me/vocab/lite/name",
-                                            "http://bibfra.me/vocab/marc/formSubdivision",
-                                            "http://bibfra.me/vocab/marc/generalSubdivision",
-                                            "http://bibfra.me/vocab/marc/chronologicalSubdivision",
-                                            "http://bibfra.me/vocab/marc/geographicSubdivision",
-                                            "http://bibfra.me/vocab/lite/title"],
-       "http://bibfra.me/vocab/lite/Topic": "http://bibfra.me/vocab/lite/name"
+        "http://bibfra.me/vocab/lite/Concept": {
+          "separator": " > ",
+          "marcOrder": True,
+          "properties": [ "http://bibfra.me/vocab/lite/name",
+                          "http://bibfra.me/vocab/marc/formSubdivision",
+                          "http://bibfra.me/vocab/marc/generalSubdivision",
+                          "http://bibfra.me/vocab/marc/chronologicalSubdivision",
+                          "http://bibfra.me/vocab/marc/geographicSubdivision",
+                          "http://bibfra.me/vocab/lite/title"],
+        },
+        "http://bibfra.me/vocab/lite/Topic": {
+          "properties": ["http://bibfra.me/vocab/lite/name"]
+        }
       }
     }]
 }
