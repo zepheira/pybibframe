@@ -138,12 +138,13 @@ AUTHORITY_CODES = [
     (re.compile(r'\(DLC\)sh\s*(\S+)'), r'http://lccn.loc.gov/sh\1'),
     (re.compile(r'\(DLC\)sn\s*(\S+)'), r'http://lccn.loc.gov/sn\1'),
     (re.compile(r'\(OCoLC\)fst(\d+)'), r'http://id.worldcat.org/fast/\1'),
-    (re.compile(r'\(OCoLC\)\s*(\d+)'), r'http://www.worldcat.org/oclc/\1'),
-    (re.compile(r'\(0CoLC\)\s*(\d+)'), r'http://www.worldcat.org/oclc/\1'),  # yes, thats 0CoLC not OCoLC
+    (re.compile(r'\([O0]CoLC\)\s*oc?[nm]?(\d+)'), r'http://www.worldcat.org/oclc/\1'),
+    (re.compile(r'\([O0]CoLC\)\s*(\d+)'), r'http://www.worldcat.org/oclc/\1'),
     (re.compile(r'\(viaf\)\s*(\S+)'), r'http://viaf.org/viaf/\1'),
     (re.compile(r'\(DNLM\)\s*(\S+)'), r'http://www.ncbi.nlm.nih.gov/nlmcatalog?term=\1'),
     (re.compile(r'\(DE\-101\)\s*(\S+)'), r'http://d-nb.info/\1'),
-    (re.compile(r'\(LoC\)\s*(\S+)'), r'http://id.loc.gov/authorities/names/\1')
+    (re.compile(r'\(LoC\)\s*(\S+)'), r'http://id.loc.gov/authorities/names/\1'),
+    (re.compile(r'\(CaOONL\)\s*(\S+)'), r'http://www.collectionscanada.gc.ca/lac-bac/results/all?SearchInText_1=\1'),
 ]
 
 BFLITE_TRANSFORMS = {
