@@ -143,6 +143,7 @@ AUTHORITY_CODES = [
     (re.compile(r'\(viaf\)\s*(\S+)'), r'http://viaf.org/viaf/\1'),
     (re.compile(r'\(DNLM\)\s*(\S+)'), r'http://www.ncbi.nlm.nih.gov/nlmcatalog?term=\1'),
     (re.compile(r'\(DE\-101\)\s*(\S+)'), r'http://d-nb.info/\1'),
+    (re.compile(r'\(DE\-588\)\s*(\S+)'), r'http://d-nb.info/gnd/\1'),
     (re.compile(r'\(LoC\)\s*(\S+)'), r'http://id.loc.gov/authorities/names/\1'),
     (re.compile(r'\(CaOONL\)\s*(\S+)'), r'http://www.collectionscanada.gc.ca/lac-bac/results/all?SearchInText_1=\1'),
 ]
