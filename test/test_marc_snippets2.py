@@ -549,26 +549,20 @@ EXPECTED_14 = '''
     [
         "JtW53t7PFyA",
         "http://bibfra.me/vocab/lite/authorityLink",
-        "%28ZZZ%29%20%20Ishinp%C5%8D%20%2F",
-        {
-            "@target-type": "@iri-ref"
-        }
+        "(ZZZ)  Ishinp\u014d /",
+        {}
     ],
     [
         "JtW53t7PFyA",
         "http://bibfra.me/vocab/lite/authorityLink",
-        "%28ZZZ%29%20%20x9898989898",
-        {
-            "@target-type": "@iri-ref"
-        }
+        "(ZZZ)  x9898989898",
+        {}
     ],
     [
         "JtW53t7PFyA",
         "http://bibfra.me/vocab/lite/authorityLink",
         "(ZZZ)x9898989898",
-        {
-            "@target-type": "@iri-ref"
-        }
+        {}
     ],
     [
         "JtW53t7PFyA",

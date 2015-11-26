@@ -142,9 +142,7 @@ EXPECTED_21 = '''
         "SVFGdMyIEpE",
         "http://bibfra.me/vocab/lite/authorityLink",
         "sky235195071",
-        {
-            "@target-type": "@iri-ref"
-        }
+        {}
     ],
     [
         "SVFGdMyIEpE",

@@ -63,7 +63,7 @@ class base_transformer(object):
 
     #Functions that take a prototype link set and generate a transformed link set
 
-    def link(self, rel=None, value=None, res=False):
+    def link(self, rel=None, value=None, res=False, ignore_refs=True):
         '''
         Create a link based the context's current link, specifying the output link
         IRI and a target value to be constructed for the link
@@ -79,7 +79,7 @@ class base_transformer(object):
             workid, iid = ctx.extras[WORKID], ctx.extras[IID]
             new_o = {origin_class.work: workid, origin_class.instance: iid}[self._use_origin]
             #Just work with the first provided statement, for now
-            if res:
+            if res and not (ignore_refs and not iri.is_absolute(_value)):
                 try:
                     _value = I(_value)
                 except ValueError:
@@ -582,28 +582,32 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None, post
 
 
 #def url(arg, base=iri.absolutize('authrec/', BFZ)):
-def url(arg, base=None):
+def url(arg, base=None, ignore_refs=True):
     '''
     Convert the argument into an IRI ref or list thereof
+
+    :param base: base IRI to resolve relative references against
+    :param ignore_refs: if True, make no attempt to convert would-be IRI refs to IRI type
     '''
     def _res(ctx):
         _arg = arg(ctx) if callable(arg) else arg
         _arg = [_arg] if not isinstance(_arg, list) else _arg
         ret = []
         for u in _arg:
-            iu = None
-            try:
-                iu = I(u)
-            except ValueError:
-                # attempt to recover by percent encoding
+            iu = u
+            if not (ignore_refs and not iri.is_absolute(iu)):
+                # coerce into an IRIref, but fallout as untyped text otherwise
                 try:
-                    iu = I(iri.percent_encode(u))
+                    iu = I(iu)
                 except ValueError as e:
-                    ctx.logger('Unable to convert "{}" to IRI reference:\n{}'.format(u, e))
-                    continue
+                    # attempt to recover by percent encoding
+                    try:
+                        iu = I(iri.percent_encode(iu))
+                    except ValueError as e:
+                        ctx.logger('Unable to convert "{}" to IRI reference:\n{}'.format(iu, e))
 
-            if iu and not iri.is_absolute(iu) and base is not None:
-                iu = I(iri.absolutize(iu, base))
+                if base is not None and isinstance(iu, I):
+                    iu = I(iri.absolutize(iu, base))
 
             ret.append(iu)
 
