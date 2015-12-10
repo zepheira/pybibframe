@@ -96,16 +96,20 @@ class base_transformer(object):
         Please use link() instead
         '''
         def _rename(ctx):
+            #If need be call the Versa action function to determine the relationship to the materialized resource
+            rels = rel(ctx) if callable(rel) else rel
+            if not isinstance(rels, list): rels = [rels]
             workid, iid = ctx.extras[WORKID], ctx.extras[IID]
             new_o = {origin_class.work: workid, origin_class.instance: iid}[self._use_origin]
             #Just work with the first provided statement, for now
-            (o, r, t, a) = ctx.current_link
+            (o, _, t, a) = ctx.current_link
             if res:
                 try:
                     t = I(t)
                 except ValueError:
                     return []
-            ctx.output_model.add(I(new_o), I(iri.absolutize(rel, ctx.base)), t, {})
+            for r in rels:
+                ctx.output_model.add(I(new_o), I(iri.absolutize(r, ctx.base)), t, {})
             return
         return _rename
 
@@ -255,7 +259,7 @@ def values(*rels):
     return _values
 
 
-def relator_property(text_in, prefix=None):
+def relator_property(text_in, allowed=None, default=None, prefix=None):
     '''
     Action function generator to take some text and compute a relationship slug therefrom
 
@@ -270,9 +274,13 @@ def relator_property(text_in, prefix=None):
         :return: List of relationships computed from the source text
         '''
         _text_in = text_in(ctx) if callable(text_in) else text_in
+        _prefix = prefix or ''
         if not isinstance(_text_in, list): _text_in = [_text_in]
         #Take into account RDA-isms such as $iContainer of (expression) by stripping the parens https://foundry.zepheira.com/topics/380
-        return [((prefix or '') + iri.percent_encode(slugify(RDA_PARENS_PAT.sub('', ti), False))) if ti else '' for ti in _text_in]
+        properties = [(_prefix + iri.percent_encode(slugify(RDA_PARENS_PAT.sub('', ti), False)))
+                    if ti else '' for ti in _text_in]
+        properties = [ prop if (allowed is None or prop in allowed) else default for prop in properties ]
+        return properties
     return _relator_property
 
 
@@ -415,7 +423,7 @@ def indicator(pat, mode='and'):
         return mode=='and'
 
     return _indicator
-        
+
 
 def materialize(typ, rel=None, derive_origin=None, unique=None, links=None, postprocess=None):
     '''
@@ -604,7 +612,7 @@ def url(arg, base=None, ignore_refs=True):
                     try:
                         iu = I(iri.percent_encode(iu))
                     except ValueError as e:
-                        ctx.logger('Unable to convert "{}" to IRI reference:\n{}'.format(iu, e))
+                        ctx.extras['logger'].warn('Unable to convert "{}" to IRI reference:\n{}'.format(iu, e))
 
                 if base is not None and isinstance(iu, I):
                     iu = I(iri.absolutize(iu, base))
