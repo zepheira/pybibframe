@@ -106,7 +106,7 @@ class labelizer(object):
     @asyncio.coroutine
     def handle_record_links(self, loop, model, params):
         '''
-        Task coroutine of the main event loop for MARC conversion, called with 
+        Task coroutine of the main event loop for MARC conversion, called with
         In this case update a report of links encountered in the MARC/XML
 
         model -- raw Versa model with converted resource information from the MARC details from each MARC/XML record processed
@@ -119,7 +119,7 @@ class labelizer(object):
         vocabbase = params['vocabbase']
         for obj,_r,typ,_a in model.match(None, VTYPE_REL, None):
             # build labels based on model order, iterating over every property of
-            # every resource, and building the label if that property is consulted 
+            # every resource, and building the label if that property is consulted
             rule = self._config['lookup'].get(typ)
             if rule is None: continue
 
@@ -129,9 +129,10 @@ class labelizer(object):
             for rule in rules:
 
                 def chunk_eval(s):
-                    # used when configuration is stored in JSON
+                    # used when configuration is stored in JSON and one of these labelizer instructions is an eval-able string
+                    # a known Python injection attack vector, so mentioned in README
                     if isinstance(s, str) and len(s) > 5:
-                        s = eval(s, locals())
+                        s = eval(s, {'I': I}, locals())
                     return s
 
                 marc_order = rule.get('marcOrder', False)
@@ -188,9 +189,9 @@ class labelizer(object):
         '''
         Task coroutine of the main event loop for MARC conversion, called whenever a new resource is materialized
         In this case generate the report of links encountered in the MARC/XML
-        
+
         loop - async processing loop
-        
+
         You can set the value of params['renamed_materialized_id'] to rename the resource
         '''
         eid = params['materialized_id']
@@ -204,11 +205,10 @@ class labelizer(object):
         '''
         Task coroutine of the main event loop for MARC conversion, called to finalize processing
         In this case generate the report of links encountered in the MARC/XML
-        
+
         loop - async processing loop
         '''
         return
 
 
 PLUGIN_INFO = {labelizer.PLUGIN_ID: {BF_INIT_TASK: labelizer}}
-
