@@ -25,11 +25,11 @@ The Versa representation is the primary format for ongoing, pipeline processing.
 If you want an RDF/Turtle representation of this file you can do:
 
     marc2bf -o resources.versa.json --rdfttl resources.ttl records.mrx
-    
+
 If you want an RDF/XML representation of this file you can do:
 
     marc2bf -o resources.versa.json --rdfxml resources.rdf records.mrx
-	
+
 These options do build the full RDF model in memory, so they can slow things down quite a bit.
 
 You can get the source MARC/XML from standard input:
@@ -100,6 +100,10 @@ MarcEdit - http://marcedit.reeset.net/ - can also convert to MARC/XML. Just inst
  * [MARC 21 Specifications for Record Structure, Character Sets, and Exchange Media: CHARACTER SETS AND ENCODING OPTIONS: Part 4 (Conversion Between Environments)](http://www.loc.gov/marc/specifications/speccharconversion.html)
 
 
+ ## Security
+
+  * Possible Python injection attack via configs (even strictly in JSON). Make sure you check for tainting.
+
 # Acknowledgements
 
 pybibframe developement, led by Zepheira, has been supported in part by the Library of Congress, BIBFLOW (an IMLS project of the UC Davis library), and thanks to contributions and refinements to the default transformation recipes made by librarians participating in Zepheira's Linked Data and BIBFRAME Practical Practitioner Training program
@@ -109,5 +113,3 @@ pybibframe developement, led by Zepheira, has been supported in part by the Libr
 * [Library of Congress](http://loc.gov/)
 * [BIBFLOW](http://www.lib.ucdavis.edu/bibflow/)
 * [Zepheira Linked Data and BIBFRAME Practical Practitioner Training](http://zepheira.com/solutions/library/training/)
-
-
