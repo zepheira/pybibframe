@@ -1440,94 +1440,6 @@ CONFIG_18 = {
 EXPECTED_18 = '''
 [
     [
-        "IEPxl8QnEK8",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Concept",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "IEPxl8QnEK8",
-        "http://bibfra.me/vocab/lite/focus",
-        "nb8GhZoMtiI",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "IEPxl8QnEK8",
-        "http://bibfra.me/vocab/lite/name",
-        "Name goes here",
-        {}
-    ],
-    [
-        "IEPxl8QnEK8",
-        "http://bibfra.me/vocab/marc/generalSubdivision",
-        "General Sub1",
-        {}
-    ],
-    [
-        "IEPxl8QnEK8",
-        "http://bibfra.me/vocab/marc/generalSubdivision",
-        "General Sub2",
-        {}
-    ],
-    [
-        "IEPxl8QnEK8",
-        "http://bibfra.me/vocab/marc/geographicSubdivision",
-        "Region 1",
-        {}
-    ],
-    [
-        "IEPxl8QnEK8",
-        "http://bibfra.me/vocab/marc/geographicSubdivision",
-        "Region 2",
-        {}
-    ],
-    [
-        "IEPxl8QnEK8",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Name goes here",
-        {}
-    ],
-    [
-        "IEPxl8QnEK8",
-        "http://bibfra.me/vocab/marcext/sf-b",
-        "Alt name not used in label",
-        {}
-    ],
-    [
-        "IEPxl8QnEK8",
-        "http://bibfra.me/vocab/marcext/sf-x",
-        "General Sub1",
-        {}
-    ],
-    [
-        "IEPxl8QnEK8",
-        "http://bibfra.me/vocab/marcext/sf-x",
-        "General Sub2",
-        {}
-    ],
-    [
-        "IEPxl8QnEK8",
-        "http://bibfra.me/vocab/marcext/sf-z",
-        "Region 1",
-        {}
-    ],
-    [
-        "IEPxl8QnEK8",
-        "http://bibfra.me/vocab/marcext/sf-z",
-        "Region 2",
-        {}
-    ],
-    [
-        "IEPxl8QnEK8",
-        "http://www.w3.org/2000/01/rdf-schema#label",
-        "Name goes here > Region 1 > General Sub1 | General Sub2 > Region 2",
-        {}
-    ],
-    [
         "bSd-2v0jlqE",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
@@ -1554,10 +1466,98 @@ EXPECTED_18 = '''
     [
         "jNbK8tuuT8M",
         "http://bibfra.me/vocab/lite/subject",
-        "IEPxl8QnEK8",
+        "l6W6Haplw2M",
         {
             "@target-type": "@iri-ref"
         }
+    ],
+    [
+        "l6W6Haplw2M",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Concept",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "l6W6Haplw2M",
+        "http://bibfra.me/vocab/lite/focus",
+        "nb8GhZoMtiI",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "l6W6Haplw2M",
+        "http://bibfra.me/vocab/lite/name",
+        "Name goes here",
+        {}
+    ],
+    [
+        "l6W6Haplw2M",
+        "http://bibfra.me/vocab/marc/generalSubdivision",
+        "General Sub1",
+        {}
+    ],
+    [
+        "l6W6Haplw2M",
+        "http://bibfra.me/vocab/marc/generalSubdivision",
+        "General Sub2",
+        {}
+    ],
+    [
+        "l6W6Haplw2M",
+        "http://bibfra.me/vocab/marc/geographicSubdivision",
+        "Region 1",
+        {}
+    ],
+    [
+        "l6W6Haplw2M",
+        "http://bibfra.me/vocab/marc/geographicSubdivision",
+        "Region 2",
+        {}
+    ],
+    [
+        "l6W6Haplw2M",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Name goes here",
+        {}
+    ],
+    [
+        "l6W6Haplw2M",
+        "http://bibfra.me/vocab/marcext/sf-b",
+        "Alt name not used in label",
+        {}
+    ],
+    [
+        "l6W6Haplw2M",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "General Sub1",
+        {}
+    ],
+    [
+        "l6W6Haplw2M",
+        "http://bibfra.me/vocab/marcext/sf-x",
+        "General Sub2",
+        {}
+    ],
+    [
+        "l6W6Haplw2M",
+        "http://bibfra.me/vocab/marcext/sf-z",
+        "Region 1",
+        {}
+    ],
+    [
+        "l6W6Haplw2M",
+        "http://bibfra.me/vocab/marcext/sf-z",
+        "Region 2",
+        {}
+    ],
+    [
+        "l6W6Haplw2M",
+        "http://www.w3.org/2000/01/rdf-schema#label",
+        "Name goes here > Region 1 > General Sub1 | General Sub2 > Region 2",
+        {}
     ],
     [
         "nb8GhZoMtiI",

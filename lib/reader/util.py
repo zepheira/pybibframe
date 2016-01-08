@@ -496,13 +496,12 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None, post
             # strip None values from computed unique list, including pairs where v is None
             for k, v in _unique:
                 if None in (k, v): continue
-                if isinstance(v, list):
-                    for subitem in v:
-                        subval = subitem(ctx) if callable(subitem) else subitem
-                        if subval: computed_unique.append([k, subval[0] if isinstance(subval, list) else subval ])
-                else:
-                    subval = v(ctx)
-                    if subval: computed_unique.append([k, subval[0] if isinstance(subval, list) else subval])
+                v = v if isinstance(v, list) else [v]
+                for subitem in v:
+                    subval = subitem(ctx) if callable(subitem) else subitem
+                    if subval:
+                        subval = subval if isinstance(subval, list) else [subval]
+                        computed_unique.extend([(k,s) for s in subval])
 
         #XXX: Relying here on shared existing_ids from the idgen function. Probably need to think through this state coupling
         objid = ctx.idgen(_typ, data=computed_unique)
