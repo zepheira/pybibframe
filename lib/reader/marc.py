@@ -21,6 +21,7 @@ from versa.util import duplicate_statements, OrderedJsonEncoder
 from versa.driver import memory
 #from versa.pipeline import context as versacontext
 
+from bibframe.util import materialize_entity
 from bibframe import MARC, POSTPROCESS_AS_INSTANCE
 from bibframe.reader.util import WORKID, IID
 from bibframe import BF_INIT_TASK, BF_INPUT_TASK, BF_INPUT_XREF_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
@@ -28,7 +29,6 @@ from bibframe.isbnplus import isbn_list, compute_ean13_check
 from bibframe.reader.marcpatterns import TRANSFORMS, bfcontext
 from bibframe.reader.marcworkidpatterns import WORK_HASH_TRANSFORMS, WORK_HASH_INPUT
 from bibframe.reader.marcextra import transforms as default_extra_transforms
-
 
 MARCXML_NS = "http://www.loc.gov/MARC21/slim"
 
@@ -160,44 +160,6 @@ def gather_workid_data(model, origin):
     return data
 
 #WORK_HASH_TRANSFORMS, WORK_HASH_INPUT
-
-def materialize_entity(etype, ctx_params=None, loop=None, model_to_update=None, data=None, addtype=True):
-    '''
-    Routine for creating a BIBFRAME resource. Takes the entity (resource) type and a data mapping
-    according to the resource type. Implements the Libhub Resource Hash Convention
-    As a convenience, if a vocabulary base is provided, concatenate it to etype and the data keys
-    '''
-    ctx_params = ctx_params or {}
-    vocabbase = ctx_params.get('vocabbase', BL)
-    existing_ids = ctx_params.get('existing_ids')
-    plugins = ctx_params.get('plugins')
-    logger = ctx_params.get('logger', logging)
-    output_model = ctx_params.get('output_model')
-    ids = ctx_params.get('ids')
-    if vocabbase and not iri.is_absolute(etype):
-        etype = vocabbase + etype
-    params = {'logger': logger}
-
-    data = data or []
-    if addtype: data.insert(0, [TYPE_REL, etype])
-    data_full =  [ ((vocabbase + k if not iri.is_absolute(k) else k), v) for (k, v) in data ]
-    plaintext = json.dumps(data_full, separators=(',', ':'), cls=OrderedJsonEncoder)
-
-    eid = ids.send(plaintext)
-
-    if model_to_update:
-        model_to_update.add(I(eid), TYPE_REL, I(etype))
-
-    params['materialized_id'] = eid
-    params['first_seen'] = eid in existing_ids
-    params['plaintext'] = plaintext
-    for plugin in plugins or ():
-        #Not using yield from
-        if BF_MATRES_TASK in plugin:
-            for p in plugin[BF_MATRES_TASK](loop, output_model, params): pass
-        #logger.debug("Pending tasks: %s" % asyncio.Task.all_tasks(loop))
-    return eid
-
 
 #XXX Generalize by using URIs for phase IDs
 def process_marcpatterns(params, transforms, input_model, main_phase=False):

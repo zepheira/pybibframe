@@ -1,4 +1,17 @@
 import time
+import logging
+import json
+
+from amara3 import iri
+
+from versa.util import duplicate_statements, OrderedJsonEncoder
+from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
+
+from bibframe import BF_INIT_TASK, BF_INPUT_TASK, BF_INPUT_XREF_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
+
+BL = 'http://bibfra.me/vocab/lite/'
+TYPE_REL = I(iri.absolutize('type', VERSA_BASEIRI))
+
 
 class LoggedList(list):
     '''
@@ -95,3 +108,41 @@ def hash_neutral_model(stream):
             hash_neutral_target = hashmap.get(t, t)
         stage3.add(o, r, hash_neutral_target, a)
     return hashmap, stage3
+
+
+def materialize_entity(etype, ctx_params=None, model_to_update=None, data=None, addtype=True, loop=None, logger=logging):
+    '''
+    Routine for creating a BIBFRAME resource. Takes the entity (resource) type and a data mapping
+    according to the resource type. Implements the Libhub Resource Hash Convention
+    As a convenience, if a vocabulary base is provided, concatenate it to etype and the data keys
+    '''
+    ctx_params = ctx_params or {}
+    vocabbase = ctx_params.get('vocabbase', BL)
+    existing_ids = ctx_params.get('existing_ids')
+    plugins = ctx_params.get('plugins')
+    logger = ctx_params.get('logger', logging)
+    output_model = ctx_params.get('output_model')
+    ids = ctx_params.get('ids')
+    if vocabbase and not iri.is_absolute(etype):
+        etype = vocabbase + etype
+    params = {'logger': logger}
+
+    data = data or []
+    if addtype: data.insert(0, [TYPE_REL, etype])
+    data_full =  [ ((vocabbase + k if not iri.is_absolute(k) else k), v) for (k, v) in data ]
+    plaintext = json.dumps(data_full, separators=(',', ':'), cls=OrderedJsonEncoder)
+
+    eid = ids.send(plaintext)
+
+    if model_to_update:
+        model_to_update.add(I(eid), TYPE_REL, I(etype))
+
+    params['materialized_id'] = eid
+    params['first_seen'] = eid in existing_ids
+    params['plaintext'] = plaintext
+    for plugin in plugins or ():
+        #Not using yield from
+        if BF_MATRES_TASK in plugin:
+            for p in plugin[BF_MATRES_TASK](loop, output_model, params): pass
+        #logger.debug("Pending tasks: %s" % asyncio.Task.all_tasks(loop))
+    return eid
