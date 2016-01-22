@@ -8,6 +8,7 @@ from versa.util import duplicate_statements, OrderedJsonEncoder
 from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 
 from bibframe import BF_INIT_TASK, BF_INPUT_TASK, BF_INPUT_XREF_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
+from bibframe.contrib.datachefids import idgen
 
 BL = 'http://bibfra.me/vocab/lite/'
 TYPE_REL = I(iri.absolutize('type', VERSA_BASEIRI))
@@ -115,14 +116,17 @@ def materialize_entity(etype, ctx_params=None, model_to_update=None, data=None, 
     Routine for creating a BIBFRAME resource. Takes the entity (resource) type and a data mapping
     according to the resource type. Implements the Libhub Resource Hash Convention
     As a convenience, if a vocabulary base is provided, concatenate it to etype and the data keys
+
+    data - list of key/value pairs used to compute the hash. If empty the hash will be a default for the entity type
     '''
     ctx_params = ctx_params or {}
     vocabbase = ctx_params.get('vocabbase', BL)
-    existing_ids = ctx_params.get('existing_ids')
+    entbase = ctx_params.get('entbase')
+    existing_ids = ctx_params.get('existing_ids', set())
     plugins = ctx_params.get('plugins')
     logger = ctx_params.get('logger', logging)
     output_model = ctx_params.get('output_model')
-    ids = ctx_params.get('ids')
+    ids = ctx_params.get('ids', idgen(entbase))
     if vocabbase and not iri.is_absolute(etype):
         etype = vocabbase + etype
     params = {'logger': logger}

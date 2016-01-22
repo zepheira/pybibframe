@@ -21,10 +21,10 @@ from versa.util import duplicate_statements, OrderedJsonEncoder
 from versa.driver import memory
 #from versa.pipeline import context as versacontext
 
-from bibframe.util import materialize_entity
 from bibframe import MARC, POSTPROCESS_AS_INSTANCE
-from bibframe.reader.util import WORKID, IID
 from bibframe import BF_INIT_TASK, BF_INPUT_TASK, BF_INPUT_XREF_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
+from bibframe.util import materialize_entity
+from bibframe.reader.util import WORKID, IID
 from bibframe.isbnplus import isbn_list, compute_ean13_check
 from bibframe.reader.marcpatterns import TRANSFORMS, bfcontext
 from bibframe.reader.marcworkidpatterns import WORK_HASH_TRANSFORMS, WORK_HASH_INPUT
@@ -108,7 +108,7 @@ def isbn_instancegen(params, loop, model):
         for inum, itype in normalized_isbns:
             ean13 = compute_ean13_check(inum)
             data = [['instantiates', workid], [ISBNNS + 'isbn', ean13]]
-            instanceid = materialize_entity('Instance', ctx_params=params, loop=loop, model_to_update=params['output_model'], data=data)
+            instanceid = materialize_entity('Instance', ctx_params=params, model_to_update=params['output_model'], data=data, loop=loop)
             if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
 
             output_model.add(I(instanceid), ISBN_REL, ean13)
@@ -119,7 +119,7 @@ def isbn_instancegen(params, loop, model):
     else:
         #If there are no ISBNs, we'll generate a default Instance
         data = [['instantiates', workid]]
-        instanceid = materialize_entity('Instance', ctx_params=params, loop=loop, model_to_update=params['output_model'], data=data)
+        instanceid = materialize_entity('Instance', ctx_params=params, model_to_update=params['output_model'], data=data, loop=loop)
         instanceid = I(iri.absolutize(instanceid, entbase)) if entbase else I(instanceid)
         output_model.add(I(instanceid), INSTANTIATES_REL, I(workid))
         existing_ids.add(instanceid)
@@ -436,7 +436,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             process_marcpatterns(params, WORK_HASH_TRANSFORMS, input_model, main_phase=False)
 
             workid_data = gather_workid_data(params['output_model'], temp_workhash)
-            workid = materialize_entity('Work', ctx_params=params, loop=loop, data=workid_data)
+            workid = materialize_entity('Work', ctx_params=params, data=workid_data, loop=loop)
 
             is_folded = workid in existing_ids
             existing_ids.add(workid)
