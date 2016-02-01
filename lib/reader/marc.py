@@ -169,9 +169,9 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
         # addition of the subfield context (at the end of materialize())
 
         # XXX Is the int() cast necessary? If not we could do key=operator.itemgetter(0)
-        input_model_iter= sorted(list(params['input_model']), key=lambda x: int(x[0]))
+        input_model_iter = sorted(list(params['input_model']), key=lambda x: int(x[0]))
     else:
-        input_model_iter= params['input_model']
+        input_model_iter = params['input_model']
     params['to_postprocess'] = []
     for lid, marc_link in input_model_iter:
         origin, taglink, val, attribs = marc_link
@@ -184,6 +184,7 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
         for k in list(subfields.keys()):
             if k[:3] in ('tag', 'ind'):
                 del subfields[k]
+        if taglink.startswith(MARCXML_NS + '/extra/') or 'tag' not in attribs: continue
         params['code'] = tag = attribs['tag']
         if taglink.startswith(MARCXML_NS + '/control'):
             #No indicators on control fields. Turn them off, in effect
@@ -371,6 +372,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                     #900 fields are local and might not follow the general xref rules
                     params['leader'] = leader = val
                     continue
+                if taglink.startswith(MARCXML_NS + '/extra/') or 'tag' not in attribs: continue
                 tag = attribs['tag']
                 for xref in attribs.get('6', []):
                     xref_parts = xref.split('-')
