@@ -562,8 +562,8 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None, post
             # necessarily be empty after this block runs so we add the remaining
             # statements into the output model too
 
-            clv = next(iter(ctx.current_link[ATTRIBUTES].values())) # just need any one attribute value
-            if isinstance(clv, LoggedList):
+            clv = next(iter(ctx.current_link[ATTRIBUTES].values()), None) # just need any one attribute value
+            if clv and isinstance(clv, LoggedList):
                 rids_to_remove = []
                 mll = list(merge_list_logs(ctx.current_link[ATTRIBUTES]))
                 for sf, v, i in mll:
