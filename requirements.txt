@@ -1,9 +1,9 @@
-amara3-iri==3.0.0b2
+amara3-iri==3.0.0b3
 pymarc
 rdflib
 mmh3
 pytest
-versa>=0.3.2
+versa>=0.3.3
 
 #From Versa pyreqs.txt
 amara3-xml==3.0.0a6
