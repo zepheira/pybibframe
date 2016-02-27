@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#-*- mode: python -*-
 '''
 python -m bibframe.zextra.augment -v -c /tmp/webcache -o /tmp/auglcout.json /tmp/lcout.json
 
@@ -67,4 +68,3 @@ if __name__ == '__main__':
     run(args.inputs, args.out[0], entbase=args.base, verbose=args.verbose)
     for f in args.inputs: f.close()
     args.out[0].close()
-

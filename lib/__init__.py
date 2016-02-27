@@ -17,12 +17,13 @@ BF_MARCREC_TASK = 'http://bibfra.me/tool/pybibframe#task.marcrec'
 BF_MATRES_TASK = 'http://bibfra.me/tool/pybibframe#task.materialize-resource'
 BF_FINAL_TASK = 'http://bibfra.me/tool/pybibframe#task.final'
 
-BL = 'http://bibfra.me/vocab/lite/'
-BA = 'http://bibfra.me/vocab/annotation/'
-REL = 'http://bibfra.me/vocab/relation/'
-MARC = 'http://bibfra.me/vocab/marc/'
-RBMS = 'http://bibfra.me/vocab/rbms/'
-AV = 'http://bibfra.me/vocab/audiovisual/'
+BL = I('http://bibfra.me/vocab/lite/')
+BA = I('http://bibfra.me/vocab/annotation/')
+REL = I('http://bibfra.me/vocab/relation/')
+MARC = I('http://bibfra.me/vocab/marc/')
+RBMS = I('http://bibfra.me/vocab/rbms/')
+AV = I('http://bibfra.me/vocab/audiovisual/')
+ARCHIVE = I('http://bibfra.me/vocab/archive/')
 MARCEXT = I('http://bibfra.me/vocab/marcext/')
 
 POSTPROCESS_AS_INSTANCE = 'http://bibfra.me/tool/pybibframe#marc.postprocess.instance'

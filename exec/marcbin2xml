@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#-*- mode: python -*-
 '''
 Warning: has proven quite unreliable because of limitations of pymarc
 marcbin2xml -o /tmp/foo.marc.xml foo.mrc
@@ -61,4 +62,3 @@ if __name__ == '__main__':
     run(inputs=args.inputs, limit=args.limit, out=args.out, verbose=args.verbose)
     for f in args.inputs: f.close()
     args.out.close()
-
