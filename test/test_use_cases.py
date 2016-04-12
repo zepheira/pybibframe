@@ -86,7 +86,7 @@ def test_model_consumed():
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(None)
     m = memory.connection()
-    fname = os.path.join(RESOURCEPATH, 'multiple-authlinks.xml')
+    fname = os.path.join(RESOURCEPATH, 'multiple-authlinks.mrx')
     #bfconvert([inputsource(open(fname, 'rb'))], entbase='http://example.org/', model=m, config=None, verbose=False, loop=loop)
     bfconvert([open(fname, 'rb')], entbase='http://example.org/', model=m, config=None, verbose=False, loop=loop)
 
