@@ -151,6 +151,10 @@ AUTHORITY_CODES = [
 BFLITE_TRANSFORMS = {
     '001': oninstance.link(rel=BL + 'controlCode'),
 
+    #Explicitly ignore 002, just as an example. If we later on come up with a core rule for 002, just pick another key :)
+    #To exercise, run:  marc2bf -v -o /dev/null test/resource/zweig-tiny.mrx
+    '002': ignore(),
+
     # Link to the 010a value, naming the relationship 'lccn'
     '010$a': oninstance.link(rel=MARC + 'lccn'),
     '017$a': oninstance.link(rel=MARC + 'legalDeposit'),

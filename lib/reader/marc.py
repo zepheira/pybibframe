@@ -223,7 +223,7 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
             for valitems in v:
                 for lookup in lookups:
                     if lookup in transforms:
-                        to_process.append((transforms[lookup], valitems))
+                        to_process.append((transforms[lookup], valitems, lookup))
                     else:
                         # don't report on subfields for which a code-transform exists,
                         # disregard wildcards
@@ -244,7 +244,7 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
         subfields_results_len = len(to_process)
         for lookup in lookups:
             if lookup in transforms:
-                to_process.append((transforms[lookup], val))
+                to_process.append((transforms[lookup], val, lookup))
 
         if main_phase and subfields_results_len == len(to_process) and not subfields:
             # Count as dropped if subfields were not processed and theer were no matches on non-subfield lookups
@@ -254,7 +254,7 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
         mat_ent = functools.partial(materialize_entity, ctx_params=params, loop=params['loop'])
 
         #Apply all the handlers that were found
-        for funcinfo, val in to_process:
+        for funcinfo, val, lookup in to_process:
             #Support multiple actions per lookup
             funcs = funcinfo if isinstance(funcinfo, tuple) else (funcinfo,)
 
@@ -262,6 +262,7 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
                 extras = {
                     WORKID: params['workid'],
                     IID: params['instanceids'][0],
+                    'match-spec': lookup,
                     'indicators': indicators,
                     'logger': params['logger'],
                     'postprocessing': [],

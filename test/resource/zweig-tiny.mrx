@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?><marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim">
 <marc:record><marc:leader>01913cam a22004814a 4500</marc:leader>
+<marc:controlfield tag="002">spam</marc:controlfield>
 <marc:datafield tag="100" ind1="1" ind2=" "><marc:subfield code="a">Zweig, Stefan,</marc:subfield><marc:subfield code="d">1881-1942</marc:subfield></marc:datafield><marc:datafield tag="245" ind1="1" ind2="0"><marc:subfield code="a">Beware of pity /</marc:subfield><marc:subfield code="c">Stefan Zweig ; translated by Phyllis and Trevor Blewitt ; introduction by Joan Acocella.</marc:subfield></marc:datafield></marc:record>
 </marc:collection>

@@ -130,6 +130,20 @@ class base_transformer(object):
                             links=links, postprocess=postprocess)
 
 
+def ignore():
+    '''
+    Action function generator to do nothing, a no-op
+
+    :return: None
+    '''
+    #Action function generator to do nothing
+    def _ignore(ctx):
+        #(o, r, t, a) = ctx.current_link
+        ctx.extras['logger'].debug(' {0} ignored by rule'.format(ctx.extras['match-spec']))
+        return
+    return _ignore
+
+
 def anchor_work():
     '''
     Action function generator to return the anchor work ID from the current context
