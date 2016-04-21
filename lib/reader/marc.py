@@ -24,11 +24,12 @@ from versa.driver import memory
 from bibframe import MARC, POSTPROCESS_AS_INSTANCE
 from bibframe import BF_INIT_TASK, BF_INPUT_TASK, BF_INPUT_XREF_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
 from bibframe.util import materialize_entity
-from bibframe.reader.util import WORKID, IID
 from bibframe.isbnplus import isbn_list, compute_ean13_check
-from bibframe.reader.marcpatterns import TRANSFORMS, bfcontext
-from bibframe.reader.marcworkidpatterns import WORK_HASH_TRANSFORMS, WORK_HASH_INPUT
-from bibframe.reader.marcextra import transforms as default_extra_transforms
+from . import transform_set, BOOTSTRAP_PHASE, BIBLIO_PHASE, PYBF_BOOTSTRAP_TARGET_REL
+from .util import WORKID, IID
+from .marcpatterns import TRANSFORMS, bfcontext
+from .marcworkidpatterns import WORK_HASH_TRANSFORMS, WORK_HASH_INPUT
+from .marcextra import transforms as default_special_transforms
 
 MARCXML_NS = "http://www.loc.gov/MARC21/slim"
 
@@ -299,12 +300,12 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
                         params['logger'].warning('{}\nSkipping statement for {}: "{}"'.format(e, control_code[0], dumb_title[0]))
 
     extra_stmts = set() # prevent duplicate statements
-    extra_transforms = params['extra_transforms']
+    special_transforms = params['transforms'].specials
     for origin, k, v in itertools.chain(
-                extra_transforms.process_leader(params),
-                extra_transforms.process_006(params['fields006'], params),
-                extra_transforms.process_007(params['fields007'], params),
-                extra_transforms.process_008(params['field008'], params)):
+                special_transforms.process_leader(params),
+                special_transforms.process_006(params['fields006'], params),
+                special_transforms.process_007(params['fields007'], params),
+                special_transforms.process_008(params['field008'], params)):
         v = v if isinstance(v, tuple) else (v,)
         for item in v:
             o = origin or I(params['workid'])
@@ -313,21 +314,26 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
                 extra_stmts.add((o, k, item))
     return
 
+unused_flag = object()
 
 @asyncio.coroutine
 def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                     plugins=None, ids=None, postprocess=None, out=None,
                     logger=logging, transforms=TRANSFORMS,
-                    extra_transforms=default_extra_transforms(),
-                    canonical=False, **kwargs):
+                    special_transforms=unused_flag,
+                    canonical=False, model_factory=memory.connection, **kwargs):
     '''
     loop - asyncio event loop
     model - the Versa model for the record
     entbase - base IRI used for IDs of generated entity resources
     limiting - mutable pair of [count, limit] used to control the number of records processed
     '''
-    model_factory = kwargs.get('model_factory', memory.connection)
-    main_transforms = transforms
+    #Deprecated legacy API support
+    if isinstance(transforms, dict) or special_transforms is not unused_flag:
+        warnings.warn('Please switch to using bibframe.transforms_set', PendingDeprecationWarning)
+        special_transforms = special_transforms or default_special_transforms()
+        transforms = transform_set(transforms)
+        transforms.specials = special_transforms
 
     _final_tasks = set() #Tasks for the event loop contributing to the MARC processing
 
@@ -351,9 +357,8 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             params = {
                 'input_model': input_model, 'output_model': model, 'logger': logger,
                 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids,
-                'existing_ids': existing_ids, 'plugins': plugins,
-                'materialize_entity': materialize_entity, 'leader': leader,
-                'loop': loop, 'extra_transforms': extra_transforms
+                'existing_ids': existing_ids, 'plugins': plugins, 'transforms': transforms,
+                'materialize_entity': materialize_entity, 'leader': leader, 'loop': loop
             }
 
             # Earliest plugin stage, with an unadulterated input model
@@ -436,7 +441,9 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             params['fields007'] = fields007 = []
             params['to_postprocess'] = []
 
-            process_marcpatterns(params, WORK_HASH_TRANSFORMS, input_model, main_phase=False)
+            #First apply special patterns for determining the main target resources
+            curr_transforms = transforms.compiled[BOOTSTRAP_PHASE]
+            process_marcpatterns(params, curr_transforms, input_model, main_phase=False)
 
             workid_data = gather_workid_data(params['output_model'], temp_workhash)
             workid = materialize_entity('Work', ctx_params=params, data=workid_data, loop=loop)
@@ -475,7 +482,11 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             params['fields007'] = fields007 = []
             params['to_postprocess'] = []
 
-            process_marcpatterns(params, main_transforms, input_model, main_phase=True)
+            #XXX!!! determine next phase here
+            #curr_transforms = transforms[next_phase]
+            #XXX!!! Temp hardcode
+            curr_transforms = transforms.compiled[BIBLIO_PHASE]
+            process_marcpatterns(params, curr_transforms, input_model, main_phase=True)
 
             skipped_rels = set()
             for op, rels, rid in params['to_postprocess']:

@@ -8,12 +8,6 @@ import warnings
 import zipfile
 import functools
 
-#from amara3 import iri
-
-from bibframe import g_services
-from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_FINAL_TASK
-from bibframe.reader.marcextra import transforms as extra_transforms
-
 import rdflib
 
 from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
@@ -23,17 +17,14 @@ from versa.driver import memory
 from amara3.inputsource import factory, inputsourcetype
 from amara3.uxml import writer
 
+from bibframe import BFZ, BFLC, BL, register_service
 from bibframe import g_services
 from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_FINAL_TASK
-from bibframe.reader.marcextra import transforms as extra_transforms
-
-from bibframe import BFZ, BFLC, BL, register_service
-from bibframe.reader import marc
 from bibframe.writer import rdf, microxml
-from bibframe.reader.marcpatterns import TRANSFORMS
-from bibframe.reader.util import AVAILABLE_TRANSFORMS
 
-from bibframe.reader.marcxml import handle_marcxml_source
+from . import marc
+from . import transform_set
+from .marcxml import handle_marcxml_source
 
 BFNS = rdflib.Namespace(BFZ)
 BFCNS = rdflib.Namespace(BFZ + 'cftag/')
@@ -139,18 +130,9 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
     #XXX: Is this the best way to do this, or rather via a post-processing plug-in
     vb = config.get('vocab-base-uri', BL)
 
-    transform_iris = config.get('transforms', {})
-    if transform_iris:
-        transforms = {}
-        for tiri in transform_iris:
-            try:
-                transforms.update(AVAILABLE_TRANSFORMS[tiri])
-            except KeyError:
-                raise Exception('Unknown transforms set {0}'.format(tiri))
-    else:
-        transforms = TRANSFORMS
-
-    marcextras_vocab = config.get('marcextras-vocab')
+    transform_iris = config.get('transforms', [])
+    marcspecials_vocab = config.get('marcspecials-vocab')
+    transforms = transform_set(transform_iris, marcspecials_vocab)
 
     #Initialize auxiliary services (i.e. plugins)
     plugins = []
@@ -181,7 +163,6 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
                                         out=out,
                                         logger=logger,
                                         transforms=transforms,
-                                        extra_transforms=extra_transforms(marcextras_vocab),
                                         canonical=canonical,
                                         model_factory=model_factory)
 

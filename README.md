@@ -78,6 +78,19 @@ run the conversion.
 	>>> bfconvert(inputs=inputs, entbase='http://example.org', out=out)
 
 
+# Configuration
+
+ * `marcspecials-vocab`—List of vocabulary (base) IRIs to qualify relationships and resource types generated from processing the special MARC fields 006, 007, 008 and the leader.
+ 
+## Transforms
+
+```
+'transforms': {
+    'bib': 'http://example.org/vocab/marc-bib-transforms',
+}
+ ```
+
+
 # See also
 
 Some open-source tools for working with BIBFRAME (see http://bibframe.org)

@@ -66,6 +66,12 @@ WORK_HASH_TRANSFORMS = {
     '730$a': onwork.rename(rel=BL + 'collectionName'),
 }
 
+
+WORK_HASH_TRANSFORMS_ID = 'http://bibfra.me/tool/pybibframe/transforms#workhash'
+
+register_transforms(WORK_HASH_TRANSFORMS_ID, WORK_HASH_TRANSFORMS)
+
+
 # special thanks to UCD, NLM, GW
 WORK_HASH_INPUT = [
     # Stuff derived from leader, 006 & 008
