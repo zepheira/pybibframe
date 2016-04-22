@@ -1,5 +1,10 @@
 # bibframe.reader
 
+from amara3 import iri
+from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
+
+VTYPE_REL = I(iri.absolutize('type', VERSA_BASEIRI))
+
 #Transforms
 CORE_BFLITE_TRANSFORMS = 'http://bibfra.me/tool/pybibframe/transforms#bflite'
 CORE_MARC_TRANSFORMS = 'http://bibfra.me/tool/pybibframe/transforms#marc'
@@ -52,6 +57,8 @@ class transform_set(object):
                     self.compiled[BOOTSTRAP_PHASE] = WORK_HASH_TRANSFORMS
         self.specials=special_transforms(specials_vocab)
 
+
+#XXX: Deferred because of circular imports. True fix is to move above to subordinate module, but shhh! ;)
 from .engine import bfconvert
 from .marcpatterns import TRANSFORMS as DEFAULT_TRANSFORMS
 from .marcworkidpatterns import WORK_HASH_TRANSFORMS, WORK_HASH_TRANSFORMS_ID, WORK_HASH_INPUT

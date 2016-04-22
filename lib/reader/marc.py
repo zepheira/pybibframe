@@ -25,7 +25,7 @@ from bibframe import MARC, POSTPROCESS_AS_INSTANCE
 from bibframe import BF_INIT_TASK, BF_INPUT_TASK, BF_INPUT_XREF_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
 from bibframe.util import materialize_entity
 from bibframe.isbnplus import isbn_list, compute_ean13_check
-from . import transform_set, BOOTSTRAP_PHASE, BIBLIO_PHASE, PYBF_BOOTSTRAP_TARGET_REL
+from . import transform_set, BOOTSTRAP_PHASE, BIBLIO_PHASE, PYBF_BOOTSTRAP_TARGET_REL, VTYPE_REL
 from .util import WORKID, IID
 from .marcpatterns import TRANSFORMS, bfcontext
 from .marcworkidpatterns import WORK_HASH_TRANSFORMS, WORK_HASH_INPUT
@@ -41,8 +41,6 @@ NEW_RECORD = 'http://bibfra.me/purl/versa/' + 'newrecord'
 
 BL = 'http://bibfra.me/vocab/lite/'
 ISBNNS = MARC
-
-TYPE_REL = I(iri.absolutize('type', VERSA_BASEIRI))
 
 def invert_dict(d):
     #http://code.activestate.com/recipes/252143-invert-a-dictionary-one-liner/#c3
@@ -74,7 +72,7 @@ def marc_lookup(model, codes):
 
 
 ISBN_REL = I(iri.absolutize('isbn', ISBNNS))
-ISBN_TYPE_REL = I(iri.absolutize('isbnType', ISBNNS))
+ISBN_VTYPE_REL = I(iri.absolutize('isbnType', ISBNNS))
 
 def isbn_instancegen(params, loop, model):
     '''
@@ -114,7 +112,7 @@ def isbn_instancegen(params, loop, model):
 
             output_model.add(I(instanceid), ISBN_REL, ean13)
             output_model.add(I(instanceid), INSTANTIATES_REL, I(workid))
-            if itype: output_model.add(I(instanceid), ISBN_TYPE_REL, itype)
+            if itype: output_model.add(I(instanceid), ISBN_VTYPE_REL, itype)
             existing_ids.add(instanceid)
             instance_ids.append(instanceid)
     else:
@@ -127,7 +125,7 @@ def isbn_instancegen(params, loop, model):
         instance_ids.append(instanceid)
 
     #output_model.add(instance_ids[0], I(iri.absolutize('instantiates', vocabbase)), I(workid))
-    #output_model.add(I(instance_ids[0]), TYPE_REL, I(iri.absolutize('Instance', vocabbase)))
+    #output_model.add(I(instance_ids[0]), VTYPE_REL, I(iri.absolutize('Instance', vocabbase)))
 
     return instance_ids
 
@@ -137,10 +135,10 @@ def instance_postprocess(params, skip_relationships=None):
     instanceids = params['instanceids']
     model = params['output_model']
     vocabbase = params['vocabbase']
-    skip_relationships.extend([ISBN_REL, ISBN_TYPE_REL, I(iri.absolutize('instantiates', vocabbase))])
+    skip_relationships.extend([ISBN_REL, ISBN_VTYPE_REL, I(iri.absolutize('instantiates', vocabbase))])
     def dupe_filter(o, r, t, a):
         #Filter out ISBN relationships
-        return (r, t) != (TYPE_REL, I(iri.absolutize('Instance', vocabbase))) \
+        return (r, t) != (VTYPE_REL, I(iri.absolutize('Instance', vocabbase))) \
             and r not in skip_relationships
     if len(instanceids) > 1:
         base_instance_id = instanceids[0]
@@ -445,34 +443,51 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             curr_transforms = transforms.compiled[BOOTSTRAP_PHASE]
             process_marcpatterns(params, curr_transforms, input_model, main_phase=False)
 
-            workid_data = gather_workid_data(params['output_model'], temp_workhash)
-            workid = materialize_entity('Work', ctx_params=params, data=workid_data, loop=loop)
-
-            is_folded = workid in existing_ids
-            existing_ids.add(workid)
-
-            control_code = list(marc_lookup(input_model, '001')) or ['NO 001 CONTROL CODE']
-            dumb_title = list(marc_lookup(input_model, '245$a')) or ['NO 245$a TITLE']
-            logger.debug('Work hash data: {0}'.format(repr(workid_data)))
-            logger.debug('Control code: {0}'.format(control_code[0]))
-            logger.debug('Uniform title: {0}'.format(dumb_title[0]))
-            logger.debug('Work ID: {0}'.format(workid))
-
-            workid = I(iri.absolutize(workid, entbase)) if entbase else I(workid)
-            folded = [workid] if is_folded else []
-
-            model.add(workid, TYPE_REL, I(iri.absolutize('Work', vocabbase)))
-
-            params['workid'] = workid
-            params['folded'] = folded
+            bootstrap_output = params['output_model']
+            temp_main_target = main_type = None
+            for o, r, t, a in bootstrap_output.match(None, PYBF_BOOTSTRAP_TARGET_REL):
+                temp_main_target, main_type = o, t
+                raise(Exception(repr((o, r, t, a))))
 
             #Switch to the main output model for processing
             params['output_model'] = model
 
-            #Figure out instances
-            instanceids = instancegen(params, loop, model)
+            if temp_main_target is None:
+                workid_data = gather_workid_data(bootstrap_output, temp_workhash)
+                workid = materialize_entity('Work', ctx_params=params, data=workid_data, loop=loop)
 
-            params['instanceids'] = instanceids or [None]
+                is_folded = workid in existing_ids
+                existing_ids.add(workid)
+
+                control_code = list(marc_lookup(input_model, '001')) or ['NO 001 CONTROL CODE']
+                dumb_title = list(marc_lookup(input_model, '245$a')) or ['NO 245$a TITLE']
+                logger.debug('Work hash data: {0}'.format(repr(workid_data)))
+                logger.debug('Control code: {0}'.format(control_code[0]))
+                logger.debug('Uniform title: {0}'.format(dumb_title[0]))
+                logger.debug('Work ID: {0}'.format(workid))
+
+                workid = I(iri.absolutize(workid, entbase)) if entbase else I(workid)
+                folded = [workid] if is_folded else []
+
+                model.add(workid, VTYPE_REL, I(iri.absolutize('Work', vocabbase)))
+
+                params['workid'] = workid
+                params['folded'] = folded
+
+                #Figure out instances
+                instanceids = instancegen(params, loop, model)
+                params['instanceids'] = instanceids or [None]
+
+                main_transforms = transforms.compiled[BIBLIO_PHASE]
+            else:
+                targetid_data = gather_targetid_data(bootstrap_output, temp_main_target)
+                targetid = materialize_entity(main_type, ctx_params=params, data=targetid_data, loop=loop)
+
+                is_folded = targetid in existing_ids
+                existing_ids.add(targetid)
+                #Determine next transform phase
+                main_transforms = transforms.compiled[main_type]
+
             params['transform_log'] = [] # set()
             params['fields_used'] = []
             params['dropped_codes'] = {}
@@ -482,11 +497,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             params['fields007'] = fields007 = []
             params['to_postprocess'] = []
 
-            #XXX!!! determine next phase here
-            #curr_transforms = transforms[next_phase]
-            #XXX!!! Temp hardcode
-            curr_transforms = transforms.compiled[BIBLIO_PHASE]
-            process_marcpatterns(params, curr_transforms, input_model, main_phase=True)
+            process_marcpatterns(params, main_transforms, input_model, main_phase=True)
 
             skipped_rels = set()
             for op, rels, rid in params['to_postprocess']:

@@ -13,6 +13,8 @@ import asyncio
 import difflib
 from io import StringIO, BytesIO
 
+import pytest
+
 from amara3.inputsource import factory, inputsource
 
 from versa.driver import memory
@@ -21,7 +23,6 @@ from versa.util import jsondump, jsonload
 from bibframe.reader import bfconvert
 from bibframe.util import hash_neutral_model
 
-import pytest
 
 #Move to a test utils module
 import os, inspect
