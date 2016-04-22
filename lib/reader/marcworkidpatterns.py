@@ -9,61 +9,61 @@ LL = 'http://library.link/vocab/'
 
 WORK_HASH_TRANSFORMS = {
     # Key creator info
-    '100$a': onwork.rename(rel=LL + 'creatorName'),
-    '100$d': onwork.rename(rel=LL + 'creatorDate'),
+    '100$a': onwork.link(rel=LL + 'creatorName'),
+    '100$d': onwork.link(rel=LL + 'creatorDate'),
 
-    '110$a': onwork.rename(rel=BL + 'organizationName'),
-    '110$d': onwork.rename(rel=BL + 'organizationDate'),
+    '110$a': onwork.link(rel=BL + 'organizationName'),
+    '110$d': onwork.link(rel=BL + 'organizationDate'),
 
-    '111$a': onwork.rename(rel=BL + 'meetingName'),
-    '111$d': onwork.rename(rel=BL + 'meetingDate'),
+    '111$a': onwork.link(rel=BL + 'meetingName'),
+    '111$d': onwork.link(rel=BL + 'meetingDate'),
 
-    '130$a': onwork.rename(rel=BL + 'collectionName'),
+    '130$a': onwork.link(rel=BL + 'collectionName'),
 
     # key uniform title info
-    '240a': oninstance.rename(rel=LL + 'collectionTitle'),
-    # '240f': oninstance.rename(rel=LL + 'collectionDate'),
-    # '240n': oninstance.rename(rel=LL + 'collectionPartCount'),
-    # '240o': oninstance.rename(rel=LL + 'collectionMusicArrangement'),
-    # '240p': oninstance.rename(rel=LL + 'collectionPartName'),
-    # '240l': oninstance.rename(rel=LL + 'collectionLanguage'),
+    '240a': oninstance.link(rel=LL + 'collectionTitle'),
+    # '240f': oninstance.link(rel=LL + 'collectionDate'),
+    # '240n': oninstance.link(rel=LL + 'collectionPartCount'),
+    # '240o': oninstance.link(rel=LL + 'collectionMusicArrangement'),
+    # '240p': oninstance.link(rel=LL + 'collectionPartName'),
+    # '240l': oninstance.link(rel=LL + 'collectionLanguage'),
 
     # Title info
-    '245$a': onwork.rename(rel=BL + 'title'),
-    '245$b': onwork.rename(rel=MARC + 'titleRemainder'),
-    '245$c': onwork.rename(rel=MARC + 'titleStatement'),
-    '245$n': onwork.rename(rel=MARC + 'titleNumber'),
-    '245$p': onwork.rename(rel=MARC + 'titlePart'),
-    '245$f': onwork.rename(rel=MARC + 'inclusiveDates'),
-    '245$k': onwork.rename(rel=MARC + 'formDesignation'),
+    '245$a': onwork.link(rel=BL + 'title'),
+    '245$b': onwork.link(rel=MARC + 'titleRemainder'),
+    '245$c': onwork.link(rel=MARC + 'titleStatement'),
+    '245$n': onwork.link(rel=MARC + 'titleNumber'),
+    '245$p': onwork.link(rel=MARC + 'titlePart'),
+    '245$f': onwork.link(rel=MARC + 'inclusiveDates'),
+    '245$k': onwork.link(rel=MARC + 'formDesignation'),
 
     # Title variation info
-    '246$a': onwork.rename(rel=MARC + 'titleVariation'),
-    '246$b': onwork.rename(rel=MARC + 'titleVariationRemainder'),
-    '246$f': onwork.rename(rel=MARC + 'titleVariationDate'),
+    '246$a': onwork.link(rel=MARC + 'titleVariation'),
+    '246$b': onwork.link(rel=MARC + 'titleVariationRemainder'),
+    '246$f': onwork.link(rel=MARC + 'titleVariationDate'),
 
     # # Key edition info
-    # '250$a': onwork.rename(rel=MARC + 'edition'),
-    # '250$b': onwork.rename(rel=MARC + 'edition'),
+    # '250$a': onwork.link(rel=MARC + 'edition'),
+    # '250$b': onwork.link(rel=MARC + 'edition'),
 
     # Key subject info
-    '600$a': onwork.rename(rel=LL + 'subjectName'),
-    '610$a': onwork.rename(rel=LL + 'subjectName'),
-    '611$a': onwork.rename(rel=LL + 'subjectName'),
-    '650$a': onwork.rename(rel=LL + 'subjectName'),
-    '651$a': onwork.rename(rel=LL + 'subjectName'),
+    '600$a': onwork.link(rel=LL + 'subjectName'),
+    '610$a': onwork.link(rel=LL + 'subjectName'),
+    '611$a': onwork.link(rel=LL + 'subjectName'),
+    '650$a': onwork.link(rel=LL + 'subjectName'),
+    '651$a': onwork.link(rel=LL + 'subjectName'),
 
     # Key contributor info
-    '700$a': onwork.rename(rel=LL + 'relatedWorkOrContributorName'),
-    '700$d': onwork.rename(rel=LL + 'relatedWorkOrContributorDate'),
+    '700$a': onwork.link(rel=LL + 'relatedWorkOrContributorName'),
+    '700$d': onwork.link(rel=LL + 'relatedWorkOrContributorDate'),
 
-    '710$a': onwork.rename(rel=LL + 'relatedWorkOrContributorName'),
-    '710$d': onwork.rename(rel=LL + 'relatedWorkOrContributorDate'),
+    '710$a': onwork.link(rel=LL + 'relatedWorkOrContributorName'),
+    '710$d': onwork.link(rel=LL + 'relatedWorkOrContributorDate'),
 
-    '711$a': onwork.rename(rel=LL + 'relatedWorkOrContributorName'),
-    '711$d': onwork.rename(rel=LL + 'relatedWorkOrContributorDate'),
+    '711$a': onwork.link(rel=LL + 'relatedWorkOrContributorName'),
+    '711$d': onwork.link(rel=LL + 'relatedWorkOrContributorDate'),
 
-    '730$a': onwork.rename(rel=BL + 'collectionName'),
+    '730$a': onwork.link(rel=BL + 'collectionName'),
 }
 
 

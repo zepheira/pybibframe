@@ -259,11 +259,11 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
 
             for func in funcs:
                 extras = {
-                    WORKID: params['workid'],
-                    IID: params['instanceids'][0],
+                    'origins': {WORKID: params['workid'], IID: params['instanceids'][0]},
                     'match-spec': lookup,
                     'indicators': indicators,
                     'logger': params['logger'],
+                    'lookups': lookups,
                     'postprocessing': [],
                     'inputns': MARC,
                 }
@@ -319,7 +319,8 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                     plugins=None, ids=None, postprocess=None, out=None,
                     logger=logging, transforms=TRANSFORMS,
                     special_transforms=unused_flag,
-                    canonical=False, model_factory=memory.connection, **kwargs):
+                    canonical=False, model_factory=memory.connection,
+                    lookups=None, **kwargs):
     '''
     loop - asyncio event loop
     model - the Versa model for the record
@@ -356,7 +357,8 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                 'input_model': input_model, 'output_model': model, 'logger': logger,
                 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids,
                 'existing_ids': existing_ids, 'plugins': plugins, 'transforms': transforms,
-                'materialize_entity': materialize_entity, 'leader': leader, 'loop': loop
+                'materialize_entity': materialize_entity, 'leader': leader, 'lookups': lookups,
+                'loop': loop
             }
 
             # Earliest plugin stage, with an unadulterated input model

@@ -85,21 +85,25 @@ AUTHOR_IN_MARC = '''
 '''
 
 
-LOOKUP_TABLE = {
+AUTH_IN_MARC_TYPES_LOOKUP = {
     'Author': 'http://example.org/vocab/Author',
     'Series': 'http://example.org/vocab/Series',
 }
 
+#There could be more than one lookup table, so it's actually a global mapping that's passed in
+AUTH_IN_MARC_TYPES = 'http://example.org/vocab/authinmark#types-table'
+LOOKUPS = {AUTH_IN_MARC_TYPES: AUTH_IN_MARC_TYPES_LOOKUP}
+
 
 AUTHOR_IN_MARC_BOOTSTRAP = {
-    '980$a': addrel(rel=PYBF_BOOTSTRAP_TARGET_REL, val=lookup(AUTH_IN_MARC_TYPES, target())),
-    '100$a': addrel(rel=LL + 'name'),
+    '980$a': link(rel=PYBF_BOOTSTRAP_TARGET_REL, value=lookup(AUTH_IN_MARC_TYPES, target())),
+    '100$a': link(rel=LL + 'name'),
 }
 
 
 AUTHOR_IN_MARC_MAIN = {
-    '100$a': addrel(rel=LL + 'name'),
-    '520$a': addrel(rel=LL + 'description'),
+    '100$a': link(rel=LL + 'name'),
+    '520$a': link(rel=LL + 'description'),
 }
 
 
@@ -131,7 +135,7 @@ def test_author_in_marc():
     m_expected = memory.connection()
     s = StringIO(AUTHOR_IN_MARC)
 
-    config = {'transforms': AUTHOR_IN_MARC_TRANSFORMS}
+    config = {'transforms': AUTHOR_IN_MARC_TRANSFORMS, 'lookups': LOOKUPS}
     bfconvert([inputsource(s)], model=m, out=s, config=config, canonical=True, loop=loop)
     s.seek(0)
     hashmap, m = hash_neutral_model(s)
