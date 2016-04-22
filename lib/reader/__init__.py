@@ -42,7 +42,10 @@ class transform_set(object):
             else:
                 #Just need to replace transform IRI list with consolidated  transform dict
                 compiled = {}
+                self.iris = {}
                 for phase, tiris in tspec.items():
+                    if phase in PHASE_NICKNAMES:
+                        phase = PHASE_NICKNAMES[phase]
                     perphase_transforms = {}
                     for tiri in tiris:
                         try:
@@ -50,11 +53,12 @@ class transform_set(object):
                         except KeyError:
                             raise Exception('Unknown transforms set {0}'.format(tiri))
                     compiled[phase] = perphase_transforms
-                self.iris = tspec
+                    self.iris[phase] = tiris
                 self.compiled = compiled
                 if BOOTSTRAP_PHASE not in self.iris:
                     self.iris[BOOTSTRAP_PHASE] = WORK_HASH_TRANSFORMS_ID
                     self.compiled[BOOTSTRAP_PHASE] = WORK_HASH_TRANSFORMS
+        #raise(Exception(repr(self.iris)))
         self.specials=special_transforms(specials_vocab)
 
 

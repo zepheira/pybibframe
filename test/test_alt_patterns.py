@@ -30,13 +30,13 @@ def file_diff(s_orig, s_new):
     diff = difflib.unified_diff(s_orig.split('\n'), s_new.split('\n'))
     return '\n'.join(list(diff))
 
-SERIES_STUB = '''
+SERIES_STUB = b'''
 <datafield tag="980" ind1=" " ind2=" ">
         <subfield code="a">Series</subfield>
 </datafield>
 '''
 
-AUTHOR_IN_MARC = '''
+AUTHOR_IN_MARC = b'''
 <collection xmlns="http://www.loc.gov/MARC21/slim">
 <record>
         <leader>00000nam  2200000   4500</leader>
@@ -97,13 +97,13 @@ LOOKUPS = {AUTH_IN_MARC_TYPES: AUTH_IN_MARC_TYPES_LOOKUP}
 
 AUTHOR_IN_MARC_BOOTSTRAP = {
     '980$a': link(rel=PYBF_BOOTSTRAP_TARGET_REL, value=lookup(AUTH_IN_MARC_TYPES, target())),
-    '100$a': link(rel=LL + 'name'),
+    '100$a': link(rel=BL + 'name'),
 }
 
 
 AUTHOR_IN_MARC_MAIN = {
-    '100$a': link(rel=LL + 'name'),
-    '520$a': link(rel=LL + 'description'),
+    '100$a': link(rel=BL + 'name'),
+    '520$a': link(rel=BL + 'description'),
 }
 
 
@@ -133,10 +133,10 @@ AUTHOR_IN_MARC_EXPECTED = '''[
 def test_author_in_marc():
     m = memory.connection()
     m_expected = memory.connection()
-    s = StringIO(AUTHOR_IN_MARC)
+    s = StringIO()
 
     config = {'transforms': AUTHOR_IN_MARC_TRANSFORMS, 'lookups': LOOKUPS}
-    bfconvert([inputsource(s)], model=m, out=s, config=config, canonical=True, loop=loop)
+    bfconvert([BytesIO(AUTHOR_IN_MARC)], model=m, out=s, config=config, canonical=True)
     s.seek(0)
     hashmap, m = hash_neutral_model(s)
     hashmap = '\n'.join(sorted([ repr((i[1], i[0])) for i in hashmap.items() ]))
@@ -144,8 +144,8 @@ def test_author_in_marc():
     hashmap_expected, m_expected = hash_neutral_model(StringIO(AUTHOR_IN_MARC_EXPECTED))
     hashmap_expected = '\n'.join(sorted([ repr((i[1], i[0])) for i in hashmap_expected.items() ]))
 
-    assert hashmap == hashmap_expected, "Changes to hashes found:\n{1}\n\nActual model structure diff:\n{2}".format(file_diff(hashmap_expected, hashmap), file_diff(repr(m_expected), repr(m)))
-    assert m == m_expected, "Discrepancies found:\n{1}".format(file_diff(repr(m_expected), repr(m)))
+    assert hashmap == hashmap_expected, "Changes to hashes found:\n{0}\n\nActual model structure diff:\n{0}".format(file_diff(hashmap_expected, hashmap), file_diff(repr(m_expected), repr(m)))
+    assert m == m_expected, "Discrepancies found:\n{0}".format(file_diff(repr(m_expected), repr(m)))
 
 
 if __name__ == '__main__':

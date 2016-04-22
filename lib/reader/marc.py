@@ -147,6 +147,7 @@ def instance_postprocess(params, skip_relationships=None):
     return
 
 
+#FIXME: Generalize/merge with gather_targetid_data
 def gather_workid_data(model, origin):
     '''
     Called after a first pass has been made to derive a BIBFRAME model sufficient to
@@ -158,7 +159,17 @@ def gather_workid_data(model, origin):
             data.append([link[RELATIONSHIP], link[TARGET]])
     return data
 
-#WORK_HASH_TRANSFORMS, WORK_HASH_INPUT
+
+def gather_targetid_data(model, origin):
+    '''
+    Gather the identifying info needed to create a hash for the main described resource,
+    based on the minimal BIBFRAME model from the bootstrap phase
+    '''
+    data = []
+    for o, r, t, a in model.match(origin):
+        data.append([r, t])
+    return data
+
 
 #XXX Generalize by using URIs for phase IDs
 def process_marcpatterns(params, transforms, input_model, main_phase=False):
@@ -174,6 +185,8 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
     params['to_postprocess'] = []
     for lid, marc_link in input_model_iter:
         origin, taglink, val, attribs = marc_link
+        if params.get('default-origin'):
+            origin = params['default-origin']
         if taglink == MARCXML_NS + '/leader':
             params['leader'] = leader = val
             continue
@@ -259,11 +272,11 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
 
             for func in funcs:
                 extras = {
-                    'origins': {WORKID: params['workid'], IID: params['instanceids'][0]},
+                    'origins': params['origins'],
                     'match-spec': lookup,
                     'indicators': indicators,
                     'logger': params['logger'],
-                    'lookups': lookups,
+                    'lookups': params['lookups'],
                     'postprocessing': [],
                     'inputns': MARC,
                 }
@@ -357,7 +370,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                 'input_model': input_model, 'output_model': model, 'logger': logger,
                 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids,
                 'existing_ids': existing_ids, 'plugins': plugins, 'transforms': transforms,
-                'materialize_entity': materialize_entity, 'leader': leader, 'lookups': lookups,
+                'materialize_entity': materialize_entity, 'leader': leader, 'lookups': lookups or {},
                 'loop': loop
             }
 
@@ -441,6 +454,8 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             params['fields007'] = fields007 = []
             params['to_postprocess'] = []
 
+            params['origins'] = {WORKID: params['workid'], IID: params['instanceids'][0]}
+
             #First apply special patterns for determining the main target resources
             curr_transforms = transforms.compiled[BOOTSTRAP_PHASE]
             process_marcpatterns(params, curr_transforms, input_model, main_phase=False)
@@ -449,7 +464,6 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             temp_main_target = main_type = None
             for o, r, t, a in bootstrap_output.match(None, PYBF_BOOTSTRAP_TARGET_REL):
                 temp_main_target, main_type = o, t
-                raise(Exception(repr((o, r, t, a))))
 
             #Switch to the main output model for processing
             params['output_model'] = model
@@ -481,6 +495,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                 params['instanceids'] = instanceids or [None]
 
                 main_transforms = transforms.compiled[BIBLIO_PHASE]
+                params['origins'] = {WORKID: params['workid'], IID: params['instanceids'][0]}
             else:
                 targetid_data = gather_targetid_data(bootstrap_output, temp_main_target)
                 targetid = materialize_entity(main_type, ctx_params=params, data=targetid_data, loop=loop)
@@ -489,6 +504,8 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                 existing_ids.add(targetid)
                 #Determine next transform phase
                 main_transforms = transforms.compiled[main_type]
+                params['origins'] = {main_type: targetid}
+                params['default-origin'] = targetid
 
             params['transform_log'] = [] # set()
             params['fields_used'] = []

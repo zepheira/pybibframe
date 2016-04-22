@@ -134,6 +134,8 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
     marcspecials_vocab = config.get('marcspecials-vocab')
     transforms = transform_set(transform_iris, marcspecials_vocab)
 
+    lookups = config.get('lookups', {})
+
     #Initialize auxiliary services (i.e. plugins)
     plugins = []
     for pc in config.get('plugins', []):
@@ -164,6 +166,7 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
                                         logger=logger,
                                         transforms=transforms,
                                         canonical=canonical,
+                                        lookups=lookups,
                                         model_factory=model_factory)
 
             args = dict(lax=lax)
