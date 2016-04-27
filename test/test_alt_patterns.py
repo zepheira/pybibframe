@@ -30,6 +30,8 @@ def file_diff(s_orig, s_new):
     diff = difflib.unified_diff(s_orig.split('\n'), s_new.split('\n'))
     return '\n'.join(list(diff))
 
+logging.getLogger(__name__).setLevel(logging.DEBUG)
+
 #Start here for the example of patterns for non-bibliographic data
 
 AUTHOR_IN_MARC = b'''
@@ -82,8 +84,8 @@ AUTHOR_IN_MARC = b'''
 
 #Utility lookup since the type info is in simple string info within the subfield text
 AUTH_IN_MARC_TYPES_LOOKUP = {
-    'Author': 'http://example.org/vocab/Author',
-    'Series': 'http://example.org/vocab/Series',
+    'Author': BL+'Person',
+    'Series': BL+'Series',
 }
 
 #What's actually passed into config is set of tables, identified (and invoked) by URI keys
@@ -99,6 +101,12 @@ AUTHOR_IN_MARC_BOOTSTRAP = {
     '100$a': link(rel=BL + 'name'),
 }
 
+#Getting reliable hashes requires controlling the order of relationships used to compute the hash
+#Each bootstrap phase transform set is actually a pair witht he transforms and a mapping of target resource types to hash output relationship ordering
+AUTHOR_IN_MARC_HASH_ORDERING = {
+    BL+'Person': [BL + 'name'],
+}
+
 #Main phase describes the resource designated in the bootstrap phase
 AUTHOR_IN_MARC_MAIN = {
     '100$a': link(rel=BL + 'name'),
@@ -106,7 +114,7 @@ AUTHOR_IN_MARC_MAIN = {
 }
 
 #Register these transform sets so they can be invoked by URL in config
-register_transforms("http://example.org/vocab/authinmark#bootstrap", AUTHOR_IN_MARC_BOOTSTRAP)
+register_transforms("http://example.org/vocab/authinmark#bootstrap", AUTHOR_IN_MARC_BOOTSTRAP, AUTHOR_IN_MARC_HASH_ORDERING)
 register_transforms("http://example.org/vocab/authinmark#main", AUTHOR_IN_MARC_MAIN)
 
 #Need to specify both phases in config, in this case
@@ -114,20 +122,20 @@ AUTHOR_IN_MARC_TRANSFORMS = {
     #Start with these transforms to determine the targeted resource of the main phase
     "bootstrap": ["http://example.org/vocab/authinmark#bootstrap"],
     #If the target from the bootstrap is of this author type URL, use this specified set of patterns
-    "http://example.org/vocab/Author": ["http://example.org/vocab/authinmark#main"],
+    BL+'Person': ["http://example.org/vocab/authinmark#main"],
 }
 
 AUTHOR_IN_MARC_CONFIG = {'transforms': AUTHOR_IN_MARC_TRANSFORMS, 'lookups': LOOKUPS}
 
 AUTHOR_IN_MARC_EXPECTED = '''[
     [
-        "3SQJJxJxX58",
+        "djDZl1J0kY8",
         "http://bibfra.me/vocab/lite/description",
         "British author J.K. Rowling is best known for her fantasy series for older kids in which an orphaned boy discovers he's a wizard destined to be a hero. Popular with a wide age-range of readers, they include a large cast of highly developed characters living in a cleverly detailed and often amusing wizarding world, propelled by an engaging, fast-paced plot. Her character-driven adult fiction is equally detailed, and also concerns power struggles. She also writes mysteries under the name Robert Galbraith. Start with: The Casual Vacancy (Adults); Harry Potter and the Sorcerer's Stone (Older Kids).",
         {}
     ],
     [
-        "3SQJJxJxX58",
+        "djDZl1J0kY8",
         "http://bibfra.me/vocab/lite/name",
         "Rowling, J. K.",
         {}

@@ -20,6 +20,8 @@ from bibframe import BFZ
 from bibframe.util import LoggedList, merge_list_logs
 from bibframe.isbnplus import isbn_list, compute_ean13_check
 
+from bibframe.reader import BOOTSTRAP_PHASE
+
 from amara3 import iri
 
 RDA_PARENS_PAT = re.compile('\\(.*\\)')
@@ -679,5 +681,5 @@ oninstance = base_transformer(IID)
 
 AVAILABLE_TRANSFORMS = {}
 
-def register_transforms(iri, tdict):
-    AVAILABLE_TRANSFORMS[iri] = tdict
+def register_transforms(iri, tdict, orderings=None):
+    AVAILABLE_TRANSFORMS[iri] = (tdict, orderings) if orderings else tdict

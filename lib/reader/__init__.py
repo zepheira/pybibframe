@@ -25,6 +25,7 @@ PYBF_BOOTSTRAP_TARGET_REL = 'http://bibfra.me/tool/pybibframe/vocab#bootstrap-ta
 
 class transform_set(object):
     def __init__(self, tspec=None, specials_vocab=None):
+        self.orderings = None
         if not tspec:
             self.iris = {BOOTSTRAP_PHASE: WORK_HASH_TRANSFORMS_ID, BIBLIO_PHASE: DEFAULT_TRANSFORM_IRIS}
             self.compiled = {BOOTSTRAP_PHASE: WORK_HASH_TRANSFORMS, BIBLIO_PHASE: DEFAULT_TRANSFORMS}
@@ -44,12 +45,19 @@ class transform_set(object):
                 compiled = {}
                 self.iris = {}
                 for phase, tiris in tspec.items():
-                    if phase in PHASE_NICKNAMES:
-                        phase = PHASE_NICKNAMES[phase]
+                    if phase in PHASE_NICKNAMES: phase = PHASE_NICKNAMES[phase]
                     perphase_transforms = {}
                     for tiri in tiris:
                         try:
-                            perphase_transforms.update(AVAILABLE_TRANSFORMS[tiri])
+                            new_transforms = AVAILABLE_TRANSFORMS[tiri]
+                            orderings_specified = isinstance(new_transforms, tuple)
+                            if phase == BOOTSTRAP_PHASE and orderings_specified:
+                                new_transforms, self.orderings = new_transforms
+                            elif phase == BOOTSTRAP_PHASE and not orderings_specified:
+                                warnings.warn('A bootstrap transform phase really needs ordering information to ensure reliable output resource hashes.', RuntimeWarning)
+                            elif phase != BOOTSTRAP_PHASE and orderings_specified:
+                                raise RuntimeError('Ordering information is only suported for the bootstrap transform phase.')
+                            perphase_transforms.update(new_transforms)
                         except KeyError:
                             raise Exception('Unknown transforms set {0}'.format(tiri))
                     compiled[phase] = perphase_transforms

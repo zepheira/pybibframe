@@ -160,14 +160,15 @@ def gather_workid_data(model, origin):
     return data
 
 
-def gather_targetid_data(model, origin):
+def gather_targetid_data(model, origin, orderings=None):
     '''
     Gather the identifying info needed to create a hash for the main described resource,
     based on the minimal BIBFRAME model from the bootstrap phase
     '''
     data = []
-    for o, r, t, a in model.match(origin):
-        data.append([r, t])
+    for rel in (orderings or []):
+        for link in model.match(origin, rel):
+            data.append([link[RELATIONSHIP], link[TARGET]])
     return data
 
 
@@ -497,7 +498,8 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                 main_transforms = transforms.compiled[BIBLIO_PHASE]
                 params['origins'] = {WORKID: params['workid'], IID: params['instanceids'][0]}
             else:
-                targetid_data = gather_targetid_data(bootstrap_output, temp_main_target)
+                targetid_data = gather_targetid_data(bootstrap_output, temp_main_target, transforms.orderings[main_type])
+                #params['logger'].debug('Data for resource: {}\n'.format([main_type] + targetid_data))
                 targetid = materialize_entity(main_type, ctx_params=params, data=targetid_data, loop=loop)
 
                 is_folded = targetid in existing_ids
