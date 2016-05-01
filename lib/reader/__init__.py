@@ -12,11 +12,11 @@ DEFAULT_TRANSFORM_IRIS = [CORE_BFLITE_TRANSFORMS, CORE_MARC_TRANSFORMS]
 
 #Processing phases
 BOOTSTRAP_PHASE = 'http://bibfra.me/tool/pybibframe/phase#bootstrap'
-BIBLIO_PHASE = 'http://bibfra.me/tool/pybibframe/phase#biblio'
+DEFAULT_MAIN_PHASE = 'http://bibfra.me/tool/pybibframe/phase#default-main'
 
 PHASE_NICKNAMES = {
     'bootstrap': BOOTSTRAP_PHASE,
-    'biblio': BIBLIO_PHASE,
+    'default-main': DEFAULT_MAIN_PHASE,
 }
 
 #Special relationship identifying the target resource determined during bootstrap phase
@@ -27,8 +27,8 @@ class transform_set(object):
     def __init__(self, tspec=None, specials_vocab=None):
         self.orderings = None
         if not tspec:
-            self.iris = {BOOTSTRAP_PHASE: WORK_HASH_TRANSFORMS_ID, BIBLIO_PHASE: DEFAULT_TRANSFORM_IRIS}
-            self.compiled = {BOOTSTRAP_PHASE: WORK_HASH_TRANSFORMS, BIBLIO_PHASE: DEFAULT_TRANSFORMS}
+            self.iris = {BOOTSTRAP_PHASE: WORK_HASH_TRANSFORMS_ID, DEFAULT_MAIN_PHASE: DEFAULT_TRANSFORM_IRIS}
+            self.compiled = {BOOTSTRAP_PHASE: WORK_HASH_TRANSFORMS, DEFAULT_MAIN_PHASE: DEFAULT_TRANSFORMS}
         else:
             if isinstance(tspec, list):
                 #As a shortcut these are transforms for the biblio phase
@@ -38,8 +38,8 @@ class transform_set(object):
                         transforms.update(AVAILABLE_TRANSFORMS[tiri])
                     except KeyError:
                         raise Exception('Unknown transforms set {0}'.format(tiri))
-                self.iris = {BOOTSTRAP_PHASE: WORK_HASH_TRANSFORMS_ID, BIBLIO_PHASE: tspec}
-                self.compiled = {BOOTSTRAP_PHASE: WORK_HASH_TRANSFORMS, BIBLIO_PHASE: transforms}
+                self.iris = {BOOTSTRAP_PHASE: WORK_HASH_TRANSFORMS_ID, DEFAULT_MAIN_PHASE: tspec}
+                self.compiled = {BOOTSTRAP_PHASE: WORK_HASH_TRANSFORMS, DEFAULT_MAIN_PHASE: transforms}
             else:
                 #Just need to replace transform IRI list with consolidated  transform dict
                 compiled = {}

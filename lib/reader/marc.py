@@ -25,7 +25,7 @@ from bibframe import MARC, POSTPROCESS_AS_INSTANCE
 from bibframe import BF_INIT_TASK, BF_INPUT_TASK, BF_INPUT_XREF_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
 from bibframe.util import materialize_entity
 from bibframe.isbnplus import isbn_list, compute_ean13_check
-from . import transform_set, BOOTSTRAP_PHASE, BIBLIO_PHASE, PYBF_BOOTSTRAP_TARGET_REL, VTYPE_REL
+from . import transform_set, BOOTSTRAP_PHASE, DEFAULT_MAIN_PHASE, PYBF_BOOTSTRAP_TARGET_REL, VTYPE_REL
 from .util import WORKID, IID
 from .marcpatterns import TRANSFORMS, bfcontext
 from .marcworkidpatterns import WORK_HASH_TRANSFORMS, WORK_HASH_INPUT
@@ -470,6 +470,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             params['output_model'] = model
 
             if temp_main_target is None:
+                #If no target was set explicitly fall back to the transforms registered for the biblio phase
                 workid_data = gather_workid_data(bootstrap_output, temp_workhash)
                 workid = materialize_entity('Work', ctx_params=params, data=workid_data, loop=loop)
 
@@ -495,7 +496,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                 instanceids = instancegen(params, loop, model)
                 params['instanceids'] = instanceids or [None]
 
-                main_transforms = transforms.compiled[BIBLIO_PHASE]
+                main_transforms = transforms.compiled[DEFAULT_MAIN_PHASE]
                 params['origins'] = {WORKID: params['workid'], IID: params['instanceids'][0]}
             else:
                 targetid_data = gather_targetid_data(bootstrap_output, temp_main_target, transforms.orderings[main_type])

@@ -2271,7 +2271,8 @@ BFLITE_TRANSFORMS = {
 
 }
 
-register_transforms("http://bibfra.me/tool/pybibframe/transforms#bflite", BFLITE_TRANSFORMS)
+BFLITE_TRANSFORMS_ID = 'http://bibfra.me/tool/pybibframe/transforms#bflite'
+register_transforms(BFLITE_TRANSFORMS_ID, BFLITE_TRANSFORMS)
 
 MARC_TRANSFORMS = {  # #HeldItem is a refinement of Annotation
     # '852': oninstance.materialize(BL+'Annotation',
@@ -2280,7 +2281,8 @@ MARC_TRANSFORMS = {  # #HeldItem is a refinement of Annotation
     # links={BA+'holderType': BA+'Library', BA+'location': subfield('a'), BA+'subLocation': subfield('b'), BA+'callNumber': subfield('h'), BA+'code': subfield('n'), BL+'link': subfield('u'), BA+'streetAddress': subfield('e')}),
 }
 
-register_transforms("http://bibfra.me/tool/pybibframe/transforms#marc", MARC_TRANSFORMS)
+MARC_TRANSFORMS_ID = 'http://bibfra.me/tool/pybibframe/transforms#marc'
+register_transforms(MARC_TRANSFORMS_ID, MARC_TRANSFORMS)
 
 # XXX This might instead be a job for collections.ChainMap
 TRANSFORMS = {}
