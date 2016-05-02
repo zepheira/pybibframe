@@ -173,7 +173,7 @@ def anchor_work():
         :param ctx: Versa context used in processing (e.g. includes the prototype link
         :return: work ID from the current context
         '''
-        return ctx.extras[WORKID]
+        return ctx.extras['origins'][WORKID]
     return _anchor_work
 
 
@@ -190,7 +190,7 @@ def anchor_instance():
         :param ctx: Versa context used in processing (e.g. includes the prototype link
         :return: Instance ID from the current context
         '''
-        return ctx.extras[IID]
+        return ctx.extras['origins'][IID]
     return _anchor_instance
 
 
