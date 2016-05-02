@@ -471,7 +471,8 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             bootstrap_output = params['output_model']
             temp_main_target = main_type = None
             for o, r, t, a in bootstrap_output.match(None, PYBF_BOOTSTRAP_TARGET_REL):
-                temp_main_target, main_type = o, t
+                #FIXME: We need a better designed way of determining fallback to bib
+                if t is not None: temp_main_target, main_type = o, t
 
             #Switch to the main output model for processing
             params['output_model'] = model
