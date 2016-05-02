@@ -141,46 +141,6 @@ AUTHOR_IN_MARC_EXPECTED = '''[
         "http://bibfra.me/vocab/lite/name",
         "Rowling, J. K.",
         {}
-    ],
-    [
-        "record-3:0",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/marc/Books",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "record-3:0",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/marc/LanguageMaterial",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "record-3:0",
-        "http://bibfra.me/vocab/lite/language",
-        "eng",
-        {}
-    ],
-    [
-        "record-3:0",
-        "http://bibfra.me/vocab/marc/index",
-        "no index present",
-        {}
-    ],
-    [
-        "record-3:0",
-        "http://bibfra.me/vocab/marc/literaryForm",
-        "fiction",
-        {}
-    ],
-    [
-        "record-3:0",
-        "http://bibfra.me/vocab/marc/targetAudience",
-        "adolescent",
-        {}
     ]
 ]
 '''
@@ -195,6 +155,12 @@ def test_author_in_marc():
 
     bfconvert([BytesIO(AUTHOR_IN_MARC)], model=m, out=s, config=AUTHOR_IN_MARC_CONFIG, canonical=True, loop=loop)
     s.seek(0)
+
+    #with open('/tmp/foo.versa.json', 'w') as f:
+    #    f.write(s.read())
+    #s.seek(0)
+
+    #import sys; sys.exit(-1)
 
     hashmap, m = hash_neutral_model(s)
     hashmap = '\n'.join(sorted([ repr((i[1], i[0])) for i in hashmap.items() ]))
@@ -595,6 +561,7 @@ def test_work_fallback_author_in_marc():
 
     #with open('/tmp/foo.versa.json', 'w') as f:
     #    f.write(s.read())
+    #s.seek(0)
 
     hashmap, m = hash_neutral_model(s)
     hashmap = '\n'.join(sorted([ repr((i[1], i[0])) for i in hashmap.items() ]))

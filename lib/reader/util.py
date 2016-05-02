@@ -16,7 +16,7 @@ from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 
 from bibframe.contrib.datachefids import slugify#, FROM_EMPTY_64BIT_HASH
 from bibframe.contrib.datachefids import idgen as default_idgen
-from bibframe import BFZ
+from bibframe import BFZ, BL
 from bibframe.util import LoggedList, merge_list_logs
 from bibframe.isbnplus import isbn_list, compute_ean13_check
 
@@ -27,8 +27,8 @@ from amara3 import iri
 RDA_PARENS_PAT = re.compile('\\(.*\\)')
 
 PYBF_BASE = '"http://bibfra.me/tool/pybibframe/transforms#'
-WORKID = PYBF_BASE + 'workid'
-IID = PYBF_BASE + 'iid'
+WORK_TYPE = BL + 'Work'
+INSTANCE_TYPE = BL + 'Instance'
 VTYPE_REL = I(iri.absolutize('type', VERSA_BASEIRI))
 
 #FIXME: Make proper use of subclassing (implementation derivation)
@@ -77,7 +77,7 @@ class base_transformer(object):
         '''
         #Origins are indexed by resource type
         return ctx.extras['origins'][self._origin_type]
-        #workid, iid = ctx.extras[WORKID], ctx.extras[IID]
+        #workid, iid = ctx.extras[WORK_TYPE], ctx.extras[INSTANCE_TYPE]
         #return {origin_class.work: workid, origin_class.instance: iid}[self._use_origin]
 
     def link(self, rel=None, value=None, res=False, ignore_refs=True):
@@ -173,7 +173,7 @@ def anchor_work():
         :param ctx: Versa context used in processing (e.g. includes the prototype link
         :return: work ID from the current context
         '''
-        return ctx.extras['origins'][WORKID]
+        return ctx.extras['origins'][WORK_TYPE]
     return _anchor_work
 
 
@@ -190,7 +190,7 @@ def anchor_instance():
         :param ctx: Versa context used in processing (e.g. includes the prototype link
         :return: Instance ID from the current context
         '''
-        return ctx.extras['origins'][IID]
+        return ctx.extras['origins'][INSTANCE_TYPE]
     return _anchor_instance
 
 
@@ -670,13 +670,13 @@ def lookup(table, key):
     def _lookup(ctx):
         table_mapping = ctx.extras['lookups']
         _key = key(ctx) if callable(key) else key
-        return table_mapping[table][_key]
+        return table_mapping[table].get(_key)
     return _lookup
 
 
 on = base_transformer()
-onwork = base_transformer(WORKID)
-oninstance = base_transformer(IID)
+onwork = base_transformer(WORK_TYPE)
+oninstance = base_transformer(INSTANCE_TYPE)
 
 
 AVAILABLE_TRANSFORMS = {}
