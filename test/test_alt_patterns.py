@@ -169,7 +169,7 @@ def test_author_in_marc():
     #Strip out tag-XXX relationships
     for ix, (o, r, t, a) in m:
         #logging.debug(r)
-        if r.startswith('http://bibfra.me/vocab/marcext/tag-'):
+        if r.startswith('http://bibfra.me/vocab/marcext/tag-') or r.startswith('http://bibfra.me/vocab/marcext/sf-'):
             removals.append(ix)
     m.remove(removals)
 
@@ -194,7 +194,7 @@ REGULAR_MARC_EXAMPLE = b'''<?xml version="1.0" encoding="UTF-8" ?><marc:collecti
 #Need to specify both phases in config
 WORK_FALLBACK_AUTHOR_IN_MARC_TRANSFORMS = {
     #Start with these transforms to determine the targeted resource of the main phase
-    "bootstrap": ["http://example.org/vocab/authinmark#bootstrap"],
+    "bootstrap": ["http://example.org/vocab/authinmark#bootstrap", BFLITE_TRANSFORMS_ID, MARC_TRANSFORMS_ID],
     #If the target from the bootstrap is of this author type URL, use this specified set of patterns
     BL+'Person': ["http://example.org/vocab/authinmark#main"],
     #In the fallback case use only core BF Lite patterns, not the MARC layer as well
@@ -206,66 +206,6 @@ WORK_FALLBACK_AUTHOR_IN_MARC_CONFIG = {'transforms': WORK_FALLBACK_AUTHOR_IN_MAR
 
 
 WORK_FALLBACK_AUTHOR_IN_MARC_EXPECTED = '''[
-    [
-        "5oTRm8YuoLg",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Work",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "5oTRm8YuoLg",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/marc/MovingImage",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "5oTRm8YuoLg",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/marc/VisualMaterials",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "5oTRm8YuoLg",
-        "http://bibfra.me/vocab/lite/genre",
-        "eWVHN_tTY6I",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "5oTRm8YuoLg",
-        "http://bibfra.me/vocab/lite/related",
-        "AEftkgMSspw",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "5oTRm8YuoLg",
-        "http://bibfra.me/vocab/lite/subject",
-        "Gsn6xQ5CxCE",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "5oTRm8YuoLg",
-        "http://bibfra.me/vocab/lite/title",
-        "Letter from an unknown woman",
-        {}
-    ],
-    [
-        "5oTRm8YuoLg",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "Melange Pictures ; written by Howard Koch ; produced by John Houseman ; directed by Max Ophuls.",
-        {}
-    ],
     [
         "AEftkgMSspw",
         "http://bibfra.me/purl/versa/type",
@@ -291,30 +231,6 @@ WORK_FALLBACK_AUTHOR_IN_MARC_EXPECTED = '''[
     [
         "AEftkgMSspw",
         "http://bibfra.me/vocab/lite/title",
-        "Briefe einer Unbekannten.",
-        {}
-    ],
-    [
-        "AEftkgMSspw",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Zweig, Stefan,",
-        {}
-    ],
-    [
-        "AEftkgMSspw",
-        "http://bibfra.me/vocab/marcext/sf-d",
-        "1881-1942",
-        {}
-    ],
-    [
-        "AEftkgMSspw",
-        "http://bibfra.me/vocab/marcext/sf-l",
-        "English.",
-        {}
-    ],
-    [
-        "AEftkgMSspw",
-        "http://bibfra.me/vocab/marcext/sf-t",
         "Briefe einer Unbekannten.",
         {}
     ],
@@ -353,25 +269,7 @@ WORK_FALLBACK_AUTHOR_IN_MARC_EXPECTED = '''[
         {}
     ],
     [
-        "Gsn6xQ5CxCE",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Zweig, Stefan,",
-        {}
-    ],
-    [
-        "Gsn6xQ5CxCE",
-        "http://bibfra.me/vocab/marcext/sf-d",
-        "1881-1942",
-        {}
-    ],
-    [
-        "Gsn6xQ5CxCE",
-        "http://bibfra.me/vocab/marcext/sf-v",
-        "Film adaptations.",
-        {}
-    ],
-    [
-        "JgO7mONXOIs",
+        "YySXWgbJQ8Y",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
@@ -379,67 +277,55 @@ WORK_FALLBACK_AUTHOR_IN_MARC_EXPECTED = '''[
         }
     ],
     [
-        "JgO7mONXOIs",
+        "YySXWgbJQ8Y",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/marc/Books",
+        "http://bibfra.me/vocab/marc/MovingImage",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "JgO7mONXOIs",
+        "YySXWgbJQ8Y",
         "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/marc/LanguageMaterial",
+        "http://bibfra.me/vocab/marc/VisualMaterials",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "JgO7mONXOIs",
-        "http://bibfra.me/vocab/lite/creator",
-        "bviSxLAmzYc",
+        "YySXWgbJQ8Y",
+        "http://bibfra.me/vocab/lite/genre",
+        "eWVHN_tTY6I",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "JgO7mONXOIs",
+        "YySXWgbJQ8Y",
+        "http://bibfra.me/vocab/lite/related",
+        "AEftkgMSspw",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "YySXWgbJQ8Y",
+        "http://bibfra.me/vocab/lite/subject",
+        "Gsn6xQ5CxCE",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "YySXWgbJQ8Y",
         "http://bibfra.me/vocab/lite/title",
-        "Beware of pity /",
+        "Letter from an unknown woman",
         {}
     ],
     [
-        "JgO7mONXOIs",
+        "YySXWgbJQ8Y",
         "http://bibfra.me/vocab/marc/titleStatement",
-        "Stefan Zweig ; translated by Phyllis and Trevor Blewitt ; introduction by Joan Acocella.",
-        {}
-    ],
-    [
-        "aCj1nz_qgBM",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "aCj1nz_qgBM",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "JgO7mONXOIs",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "aCj1nz_qgBM",
-        "http://bibfra.me/vocab/lite/title",
-        "Beware of pity /",
-        {}
-    ],
-    [
-        "aCj1nz_qgBM",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "Stefan Zweig ; translated by Phyllis and Trevor Blewitt ; introduction by Joan Acocella.",
+        "Melange Pictures ; written by Howard Koch ; produced by John Houseman ; directed by Max Ophuls.",
         {}
     ],
     [
@@ -463,24 +349,6 @@ WORK_FALLBACK_AUTHOR_IN_MARC_EXPECTED = '''[
         {}
     ],
     [
-        "bviSxLAmzYc",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Zweig, Stefan,",
-        {}
-    ],
-    [
-        "bviSxLAmzYc",
-        "http://bibfra.me/vocab/marcext/sf-d",
-        "1881-1942",
-        {}
-    ],
-    [
-        "bviSxLAmzYc",
-        "http://bibfra.me/vocab/marcext/sf-v",
-        "Film adaptations.",
-        {}
-    ],
-    [
         "eWVHN_tTY6I",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Form",
@@ -495,25 +363,7 @@ WORK_FALLBACK_AUTHOR_IN_MARC_EXPECTED = '''[
         {}
     ],
     [
-        "eWVHN_tTY6I",
-        "http://bibfra.me/vocab/marcext/sf-a",
-        "Zweig, Stefan,",
-        {}
-    ],
-    [
-        "eWVHN_tTY6I",
-        "http://bibfra.me/vocab/marcext/sf-d",
-        "1881-1942",
-        {}
-    ],
-    [
-        "eWVHN_tTY6I",
-        "http://bibfra.me/vocab/marcext/sf-v",
-        "Film adaptations.",
-        {}
-    ],
-    [
-        "ujFWXv8S6l0",
+        "jgL8vvn9K-g",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
         {
@@ -521,32 +371,105 @@ WORK_FALLBACK_AUTHOR_IN_MARC_EXPECTED = '''[
         }
     ],
     [
-        "ujFWXv8S6l0",
+        "jgL8vvn9K-g",
         "http://bibfra.me/vocab/lite/instantiates",
-        "5oTRm8YuoLg",
+        "YySXWgbJQ8Y",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "ujFWXv8S6l0",
+        "jgL8vvn9K-g",
         "http://bibfra.me/vocab/lite/medium",
         "[videorecording] /",
         {}
     ],
     [
-        "ujFWXv8S6l0",
+        "jgL8vvn9K-g",
         "http://bibfra.me/vocab/lite/title",
         "Letter from an unknown woman",
         {}
     ],
     [
-        "ujFWXv8S6l0",
+        "jgL8vvn9K-g",
         "http://bibfra.me/vocab/marc/titleStatement",
         "Melange Pictures ; written by Howard Koch ; produced by John Houseman ; directed by Max Ophuls.",
         {}
+    ],
+    [
+        "lqZdjJ7Mdcg",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "lqZdjJ7Mdcg",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "uYSoMuClP4k",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "lqZdjJ7Mdcg",
+        "http://bibfra.me/vocab/lite/title",
+        "Beware of pity /",
+        {}
+    ],
+    [
+        "lqZdjJ7Mdcg",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "Stefan Zweig ; translated by Phyllis and Trevor Blewitt ; introduction by Joan Acocella.",
+        {}
+    ],
+    [
+        "uYSoMuClP4k",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "uYSoMuClP4k",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/Books",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "uYSoMuClP4k",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/LanguageMaterial",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "uYSoMuClP4k",
+        "http://bibfra.me/vocab/lite/creator",
+        "bviSxLAmzYc",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "uYSoMuClP4k",
+        "http://bibfra.me/vocab/lite/title",
+        "Beware of pity /",
+        {}
+    ],
+    [
+        "uYSoMuClP4k",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "Stefan Zweig ; translated by Phyllis and Trevor Blewitt ; introduction by Joan Acocella.",
+        {}
     ]
 ]'''
+
 
 def test_work_fallback_author_in_marc():
     loop = asyncio.new_event_loop()
@@ -570,7 +493,7 @@ def test_work_fallback_author_in_marc():
     #Strip out tag-XXX relationships
     for ix, (o, r, t, a) in m:
         #logging.debug(r)
-        if r.startswith('http://bibfra.me/vocab/marcext/tag-'):
+        if r.startswith('http://bibfra.me/vocab/marcext/tag-') or r.startswith('http://bibfra.me/vocab/marcext/sf-'):
             removals.append(ix)
     m.remove(removals)
 

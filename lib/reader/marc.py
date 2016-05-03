@@ -315,7 +315,7 @@ def process_marcpatterns(params, transforms, input_model, phase_target):
     #For now do not run special transforms if in a custom phase
     #XXX: Needs discussion
     if phase_target in (BOOTSTRAP_PHASE, DEFAULT_MAIN_PHASE):
-        params['logger'].debug('PHASE {}\n'.format(phase_target))
+        #params['logger'].debug('PHASE {}\n'.format(phase_target))
         extra_stmts = set() # prevent duplicate statements
         special_transforms = params['transforms'].specials
         for origin, k, v in itertools.chain(
@@ -479,6 +479,8 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
 
             if temp_main_target is None:
                 #If no target was set explicitly fall back to the transforms registered for the biblio phase
+                #params['logger'].debug('WORK HASH ORIGIN {}\n'.format(temp_workhash))
+                #params['logger'].debug('WORK HASH MODEL {}\n'.format(repr(bootstrap_output)))
                 workid_data = gather_workid_data(bootstrap_output, temp_workhash)
                 workid = materialize_entity('Work', ctx_params=params, data=workid_data, loop=loop)
 
