@@ -523,6 +523,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                 params['origins'] = {main_type: targetid}
                 params['default-origin'] = targetid
                 phase_target = main_type
+                model.add(I(targetid), VTYPE_REL, I(main_type))
 
             params['transform_log'] = [] # set()
             params['fields_used'] = []
