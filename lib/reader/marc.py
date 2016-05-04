@@ -449,11 +449,11 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
 
             #Do one pass to establish work hash
             #XXX Should crossrefs precede this?
-            temp_workhash = next(params['input_model'].match())[ORIGIN]
-            logger.debug('Temp work hash: {0}'.format(temp_workhash))
+            bootstrap_dummy_id = next(params['input_model'].match())[ORIGIN]
+            logger.debug('Entering bootstrap phase. Dummy ID: {}'.format(bootstrap_dummy_id))
 
-            params['default-origin'] = temp_workhash
-            params['instanceids'] = [temp_workhash + '-instance']
+            params['default-origin'] = bootstrap_dummy_id
+            params['instanceids'] = [bootstrap_dummy_id + '-instance']
             params['output_model'] = model_factory()
 
             params['field008'] = leader = None
@@ -461,7 +461,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             params['fields007'] = fields007 = []
             params['to_postprocess'] = []
 
-            params['origins'] = {WORK_TYPE: temp_workhash, INSTANCE_TYPE: params['instanceids'][0]}
+            params['origins'] = {WORK_TYPE: bootstrap_dummy_id, INSTANCE_TYPE: params['instanceids'][0]}
 
             #First apply special patterns for determining the main target resources
             curr_transforms = transforms.compiled[BOOTSTRAP_PHASE]
@@ -479,10 +479,11 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
 
             if temp_main_target is None:
                 #If no target was set explicitly fall back to the transforms registered for the biblio phase
-                #params['logger'].debug('WORK HASH ORIGIN {}\n'.format(temp_workhash))
+                #params['logger'].debug('WORK HASH ORIGIN {}\n'.format(bootstrap_dummy_id))
                 #params['logger'].debug('WORK HASH MODEL {}\n'.format(repr(bootstrap_output)))
-                workid_data = gather_workid_data(bootstrap_output, temp_workhash)
+                workid_data = gather_workid_data(bootstrap_output, bootstrap_dummy_id)
                 workid = materialize_entity('Work', ctx_params=params, data=workid_data, loop=loop)
+                logger.debug('Entering default main phase, Work ID: {0}'.format(workid))
 
                 is_folded = workid in existing_ids
                 existing_ids.add(workid)
@@ -513,6 +514,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                 targetid_data = gather_targetid_data(bootstrap_output, temp_main_target, transforms.orderings[main_type])
                 #params['logger'].debug('Data for resource: {}\n'.format([main_type] + targetid_data))
                 targetid = materialize_entity(main_type, ctx_params=params, data=targetid_data, loop=loop)
+                logger.debug('Entering specialized phase, Target resource ID: {}, type: {}'.format(targetid, main_type))
 
                 is_folded = targetid in existing_ids
                 existing_ids.add(targetid)

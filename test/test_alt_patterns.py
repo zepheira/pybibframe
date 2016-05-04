@@ -160,7 +160,7 @@ def test_author_in_marc():
     #    f.write(s.read())
     #s.seek(0)
 
-    #import sys; sys.exit(-1)
+    #sys.exit(-1)
 
     hashmap, m = hash_neutral_model(s)
     hashmap = '\n'.join(sorted([ repr((i[1], i[0])) for i in hashmap.items() ]))
