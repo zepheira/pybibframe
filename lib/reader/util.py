@@ -24,6 +24,8 @@ from bibframe.reader import BOOTSTRAP_PHASE
 
 from amara3 import iri
 
+__all__ = ["bfcontext", "base_transformer", "link", "ignore", "anchor", "target", "all_subfields", "subfield", "values", "relator_property", "replace_from", "ifexists", "foreach", "indicator", "materialize", "url", "normalize_isbn", "onwork", "oninstance", "register_transforms"]
+
 RDA_PARENS_PAT = re.compile('\\(.*\\)')
 
 PYBF_BASE = '"http://bibfra.me/tool/pybibframe/transforms#'
@@ -500,8 +502,8 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None, post
         #The current link from the passed-in context might be used in several aspects of operation
         (origin, r, t, a) = ctx.current_link
         #Some conversions to make sure we end up with a list of relationships
-        if _rel is None:
-            _rel = [r]
+        #if _rel is None:
+        #    _rel = [r]
         rels = _rel if isinstance(_rel, list) else ([_rel] if rel else [])
         if derive_origin:
             #Have been given enough info to derive the origin from context. Ignore origin in current link

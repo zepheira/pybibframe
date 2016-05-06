@@ -4,6 +4,7 @@
 # These two lines are required at the top
 from bibframe import BL, BA, REL, MARC, RBMS, AV
 from bibframe.reader.util import *
+from . import VTYPE_REL
 
 LL = 'http://library.link/vocab/'
 
