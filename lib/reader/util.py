@@ -62,6 +62,7 @@ class bfcontext(versacontext):
 #class action(Enum):
 #    replace = 1
 
+DEFAULT_REL = object()
 
 class base_transformer(object):
     def __init__(self, origin_type=None):
@@ -95,13 +96,13 @@ class base_transformer(object):
         #Delegate the work
         return link(derive_origin=self.derive_origin, rel=rel, value=value, res=res, ignore_refs=ignore_refs)
 
-    def materialize(self, typ, rel, unique=None, links=None, postprocess=None):
+    def materialize(self, typ, rel=DEFAULT_REL, unique=None, links=None, postprocess=None):
         '''
         Create a new resource related to the origin
         '''
         links = links or {}
         #Delegate the work
-        return materialize(typ, rel, derive_origin=self.derive_origin, unique=unique,
+        return materialize(typ, rel=rel, derive_origin=self.derive_origin, unique=unique,
                             links=links, postprocess=postprocess)
 
 
@@ -443,7 +444,7 @@ def indicator(pat, mode='and'):
     return _indicator
 
 
-def materialize(typ, rel=None, derive_origin=None, unique=None, links=None, postprocess=None):
+def materialize(typ, rel=DEFAULT_REL, derive_origin=None, unique=None, links=None, postprocess=None):
     '''
     Create a new resource related to the origin.
 
@@ -502,8 +503,8 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None, post
         #The current link from the passed-in context might be used in several aspects of operation
         (origin, r, t, a) = ctx.current_link
         #Some conversions to make sure we end up with a list of relationships
-        #if _rel is None:
-        #    _rel = [r]
+        if _rel is DEFAULT_REL:
+            _rel = [r]
         rels = _rel if isinstance(_rel, list) else ([_rel] if rel else [])
         if derive_origin:
             #Have been given enough info to derive the origin from context. Ignore origin in current link
