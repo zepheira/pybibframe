@@ -548,6 +548,8 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
 
             logger.debug('+')
 
+            #XXX At this point there must be at least one record with a Versa type
+
             for plugin in plugins:
                 #Each plug-in is a task
                 #task = asyncio.Task(plugin[BF_MARCREC_TASK](loop, relsink, params), loop=loop)

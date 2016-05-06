@@ -1742,7 +1742,7 @@ BFLITE_TRANSFORMS = {
                                                BL + 'note': values(subfield('n'), subfield('c'), subfield('i')),
                                                MARC + 'issn': subfield('x'),
                                                MARC + 'isbn': normalize_isbn(subfield('z')),
-                                               BL + 'instantiates': anchor_work()},
+                                               BL + 'instantiates': anchor(BL+'Work')},
                                            postprocess=POSTPROCESS_AS_INSTANCE
                     )
     ),

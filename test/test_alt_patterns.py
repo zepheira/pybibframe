@@ -138,6 +138,14 @@ AUTHOR_IN_MARC_EXPECTED = '''[
     ],
     [
         "djDZl1J0kY8",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Person",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "djDZl1J0kY8",
         "http://bibfra.me/vocab/lite/name",
         "Rowling, J. K.",
         {}

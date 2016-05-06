@@ -160,38 +160,24 @@ def ignore():
     return _ignore
 
 
-def anchor_work():
+def anchor(rtype=WORK_TYPE):
     '''
-    Action function generator to return the anchor work ID from the current context
+    Action function generator to return a main resource ID from the current context, based on resource type
 
-    :return: work ID from the current context
+    :param rtype: resource type (IRI)
+
+    :return: anchor resource ID from the current context
     '''
-    def _anchor_work(ctx):
+    def _anchor(ctx):
         '''
         Versa action function to return the anchor work ID from the current context
 
-        :param ctx: Versa context used in processing (e.g. includes the prototype link
+        :param ctx: Versa context used in processing (e.g. includes the prototype link)
+
         :return: work ID from the current context
         '''
-        return ctx.extras['origins'][WORK_TYPE]
-    return _anchor_work
-
-
-def anchor_instance():
-    '''
-    Action function generator to return the anchor instance ID from the current context
-
-    :return: Instance ID from the current context
-    '''
-    def _anchor_instance(ctx):
-        '''
-        Versa action function to return the anchor instance ID from the current context
-
-        :param ctx: Versa context used in processing (e.g. includes the prototype link
-        :return: Instance ID from the current context
-        '''
-        return ctx.extras['origins'][INSTANCE_TYPE]
-    return _anchor_instance
+        return ctx.extras['origins'][rtype]
+    return _anchor
 
 
 def target():
