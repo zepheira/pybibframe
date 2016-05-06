@@ -144,6 +144,30 @@ def ignore():
     return _ignore
 
 
+from bibframe import *
+WORK_TYPE = BL+'Work'
+
+def anchor(rtype=WORK_TYPE):
+    '''
+    Action function generator to return a main resource ID from the current context, based on resource type
+
+    :param rtype: resource type (IRI)
+
+    :return: anchor resource ID from the current context
+    '''
+    def _anchor(ctx):
+        '''
+        Versa action function to return the anchor work ID from the current context
+
+        :param ctx: Versa context used in processing (e.g. includes the prototype link)
+
+        :return: work ID from the current context
+        '''
+        return ctx.extras['origins'][rtype]
+    return _anchor
+
+
+#FIXME: DELETE ME
 def anchor_work():
     '''
     Action function generator to return the anchor work ID from the current context
@@ -161,6 +185,7 @@ def anchor_work():
     return _anchor_work
 
 
+#FIXME: DELETE ME
 def anchor_instance():
     '''
     Action function generator to return the anchor instance ID from the current context
