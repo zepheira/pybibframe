@@ -504,6 +504,9 @@ WORK_FALLBACK_AUTHOR_IN_MARC_EXPECTED = '''[
 ]'''
 
 
+#Different initial work hashes because 100$a maps to different rel when merged in from default work hash patterns
+WORK_FALLBACK_AUTHOR_IN_MARC_EXPECTED_PLUS_BIB = WORK_FALLBACK_AUTHOR_IN_MARC_EXPECTED.replace('lqZdjJ7Mdcg', '0GExrYlzZRs').replace('uYSoMuClP4k', '8MAi-oktTck')
+
 def test_work_fallback_author_in_marc_simple():
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(None)
@@ -548,9 +551,9 @@ def test_work_fallback_author_in_marc_with_plusbib():
     bfconvert([BytesIO(REGULAR_MARC_EXAMPLE)], model=m, out=s, config=WORK_FALLBACK_AUTHOR_IN_MARC_CONFIG_PLUS_BIB, canonical=True, loop=loop)
     s.seek(0)
 
-    #with open('/tmp/foo.versa.json', 'w') as f:
-    #    f.write(s.read())
-    #s.seek(0)
+    with open('/tmp/foo.versa.json', 'w') as f:
+        f.write(s.read())
+    s.seek(0)
 
     hashmap, m = hash_neutral_model(s)
     hashmap = '\n'.join(sorted([ repr((i[1], i[0])) for i in hashmap.items() ]))
@@ -563,7 +566,7 @@ def test_work_fallback_author_in_marc_with_plusbib():
             removals.append(ix)
     m.remove(removals)
 
-    hashmap_expected, m_expected = hash_neutral_model(StringIO(WORK_FALLBACK_AUTHOR_IN_MARC_EXPECTED))
+    hashmap_expected, m_expected = hash_neutral_model(StringIO(WORK_FALLBACK_AUTHOR_IN_MARC_EXPECTED_PLUS_BIB))
     hashmap_expected = '\n'.join(sorted([ repr((i[1], i[0])) for i in hashmap_expected.items() ]))
 
     assert hashmap == hashmap_expected, "Changes to hashes found:\n{0}\n\nActual model structure diff:\n{0}".format(file_diff(hashmap_expected, hashmap), file_diff(repr(m_expected), repr(m)))
