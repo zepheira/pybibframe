@@ -71,6 +71,23 @@ class transform_set(object):
         #raise(Exception(repr(self.iris)))
         self.specials=special_transforms(specials_vocab)
 
+def force_tuple(val):
+    return val if isinstance(val, tuple) else (val,)
+
+def merge_transform_lookups(lookups1, lookups2):
+    lookups1 = lookups1 if isinstance(lookups1, dict) else AVAILABLE_TRANSFORMS[lookups1]
+    lookups2 = lookups2 if isinstance(lookups2, dict) else AVAILABLE_TRANSFORMS[lookups2]
+    handled = set()
+    merged = {}
+    for k, v in lookups1.items():
+        if k in lookups2:
+            merged[k] = force_tuple(v) + force_tuple(lookups2[k])
+            handled.add(k)
+    for k, v in lookups2.items():
+        if k not in handled and k in lookups1:
+            merged[k] = force_tuple(v) + force_tuple(lookups1[k])
+    return merged
+
 
 #XXX: Deferred because of circular imports. True fix is to move above to subordinate module, but shhh! ;)
 from .engine import bfconvert

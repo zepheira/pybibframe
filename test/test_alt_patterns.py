@@ -18,12 +18,13 @@ from amara3.inputsource import factory, inputsource
 from versa.driver import memory
 from versa.util import jsondump, jsonload
 
-from bibframe.reader import bfconvert, VTYPE_REL, PYBF_BOOTSTRAP_TARGET_REL, DEFAULT_MAIN_PHASE
+from bibframe.reader import bfconvert, merge_transform_lookups, VTYPE_REL, PYBF_BOOTSTRAP_TARGET_REL, DEFAULT_MAIN_PHASE
 from bibframe.util import hash_neutral_model
 
 from bibframe import *
 from bibframe.reader.util import *
 from bibframe.reader.marcpatterns import BFLITE_TRANSFORMS_ID, MARC_TRANSFORMS_ID
+from bibframe.reader.marcworkidpatterns import WORK_HASH_TRANSFORMS
 
 import pytest
 
@@ -103,6 +104,8 @@ AUTHOR_IN_MARC_BOOTSTRAP = {
     '100$a': link(rel=BL + 'name'),
 }
 
+AUTHOR_IN_MARC_BOOTSTRAP_PLUS_BIB = merge_transform_lookups(WORK_HASH_TRANSFORMS, AUTHOR_IN_MARC_BOOTSTRAP)
+
 #Getting reliable hashes requires controlling the order of relationships used to compute the hash
 #Each bootstrap phase transform set is actually a pair witht he transforms and a mapping of target resource types to hash output relationship ordering
 AUTHOR_IN_MARC_HASH_ORDERING = {
@@ -117,6 +120,7 @@ AUTHOR_IN_MARC_MAIN = {
 
 #Register these transform sets so they can be invoked by URL in config
 register_transforms("http://example.org/vocab/authinmark#bootstrap", AUTHOR_IN_MARC_BOOTSTRAP, AUTHOR_IN_MARC_HASH_ORDERING)
+register_transforms("http://example.org/vocab/authinmark#bootstrap-plus-bib", AUTHOR_IN_MARC_BOOTSTRAP_PLUS_BIB, AUTHOR_IN_MARC_HASH_ORDERING)
 register_transforms("http://example.org/vocab/authinmark#main", AUTHOR_IN_MARC_MAIN)
 
 #Need to specify both phases in config
@@ -126,6 +130,14 @@ AUTHOR_IN_MARC_TRANSFORMS = {
     #If the target from the bootstrap is of this author type URL, use this specified set of patterns
     BL+'Person': ["http://example.org/vocab/authinmark#main"],
 }
+
+AUTHOR_IN_MARC_TRANSFORMS_PLUS_BIB = {
+    #Start with these transforms to determine the targeted resource of the main phase
+    "bootstrap": ["http://example.org/vocab/authinmark#bootstrap-plus-bib"],
+    #If the target from the bootstrap is of this author type URL, use this specified set of patterns
+    BL+'Person': ["http://example.org/vocab/authinmark#main"],
+}
+
 
 AUTHOR_IN_MARC_CONFIG = {'transforms': AUTHOR_IN_MARC_TRANSFORMS, 'lookups': LOOKUPS}
 
@@ -210,7 +222,20 @@ WORK_FALLBACK_AUTHOR_IN_MARC_TRANSFORMS = {
     #DEFAULT_MAIN_PHASE: [BFLITE_TRANSFORMS_ID, MARC_TRANSFORMS_ID],
 }
 
+#Need to specify both phases in config
+WORK_FALLBACK_AUTHOR_IN_MARC_TRANSFORMS_PLUS_BIB = {
+    #Start with these transforms to determine the targeted resource of the main phase
+    "bootstrap": ["http://example.org/vocab/authinmark#bootstrap-plus-bib", BFLITE_TRANSFORMS_ID, MARC_TRANSFORMS_ID],
+    #If the target from the bootstrap is of this author type URL, use this specified set of patterns
+    BL+'Person': ["http://example.org/vocab/authinmark#main"],
+    #In the fallback case use only core BF Lite patterns, not the MARC layer as well
+    DEFAULT_MAIN_PHASE: [BFLITE_TRANSFORMS_ID],
+    #DEFAULT_MAIN_PHASE: [BFLITE_TRANSFORMS_ID, MARC_TRANSFORMS_ID],
+}
+
 WORK_FALLBACK_AUTHOR_IN_MARC_CONFIG = {'transforms': WORK_FALLBACK_AUTHOR_IN_MARC_TRANSFORMS, 'lookups': LOOKUPS}
+
+WORK_FALLBACK_AUTHOR_IN_MARC_CONFIG_PLUS_BIB = {'transforms': WORK_FALLBACK_AUTHOR_IN_MARC_TRANSFORMS_PLUS_BIB, 'lookups': LOOKUPS}
 
 
 WORK_FALLBACK_AUTHOR_IN_MARC_EXPECTED = '''[
@@ -479,7 +504,7 @@ WORK_FALLBACK_AUTHOR_IN_MARC_EXPECTED = '''[
 ]'''
 
 
-def test_work_fallback_author_in_marc():
+def test_work_fallback_author_in_marc_simple():
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(None)
 
@@ -488,6 +513,39 @@ def test_work_fallback_author_in_marc():
     s = StringIO()
 
     bfconvert([BytesIO(REGULAR_MARC_EXAMPLE)], model=m, out=s, config=WORK_FALLBACK_AUTHOR_IN_MARC_CONFIG, canonical=True, loop=loop)
+    s.seek(0)
+
+    #with open('/tmp/foo.versa.json', 'w') as f:
+    #    f.write(s.read())
+    #s.seek(0)
+
+    hashmap, m = hash_neutral_model(s)
+    hashmap = '\n'.join(sorted([ repr((i[1], i[0])) for i in hashmap.items() ]))
+
+    removals = []
+    #Strip out tag-XXX relationships
+    for ix, (o, r, t, a) in m:
+        #logging.debug(r)
+        if r.startswith('http://bibfra.me/vocab/marcext/tag-') or r.startswith('http://bibfra.me/vocab/marcext/sf-'):
+            removals.append(ix)
+    m.remove(removals)
+
+    hashmap_expected, m_expected = hash_neutral_model(StringIO(WORK_FALLBACK_AUTHOR_IN_MARC_EXPECTED))
+    hashmap_expected = '\n'.join(sorted([ repr((i[1], i[0])) for i in hashmap_expected.items() ]))
+
+    assert hashmap == hashmap_expected, "Changes to hashes found:\n{0}\n\nActual model structure diff:\n{0}".format(file_diff(hashmap_expected, hashmap), file_diff(repr(m_expected), repr(m)))
+    assert m == m_expected, "Discrepancies found:\n{0}".format(file_diff(repr(m_expected), repr(m)))
+
+AUTHOR_IN_MARC_TRANSFORMS_PLUS_BIB
+def test_work_fallback_author_in_marc_with_plusbib():
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(None)
+
+    m = memory.connection()
+    m_expected = memory.connection()
+    s = StringIO()
+
+    bfconvert([BytesIO(REGULAR_MARC_EXAMPLE)], model=m, out=s, config=WORK_FALLBACK_AUTHOR_IN_MARC_CONFIG_PLUS_BIB, canonical=True, loop=loop)
     s.seek(0)
 
     #with open('/tmp/foo.versa.json', 'w') as f:
