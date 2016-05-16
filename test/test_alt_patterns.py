@@ -551,9 +551,9 @@ def test_work_fallback_author_in_marc_with_plusbib():
     bfconvert([BytesIO(REGULAR_MARC_EXAMPLE)], model=m, out=s, config=WORK_FALLBACK_AUTHOR_IN_MARC_CONFIG_PLUS_BIB, canonical=True, loop=loop)
     s.seek(0)
 
-    with open('/tmp/foo.versa.json', 'w') as f:
-        f.write(s.read())
-    s.seek(0)
+    #with open('/tmp/foo.versa.json', 'w') as f:
+    #    f.write(s.read())
+    #s.seek(0)
 
     hashmap, m = hash_neutral_model(s)
     hashmap = '\n'.join(sorted([ repr((i[1], i[0])) for i in hashmap.items() ]))
