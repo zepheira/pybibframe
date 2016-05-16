@@ -24,11 +24,12 @@ from versa.driver import memory
 from bibframe import MARC, POSTPROCESS_AS_INSTANCE
 from bibframe import BF_INIT_TASK, BF_INPUT_TASK, BF_INPUT_XREF_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
 from bibframe.util import materialize_entity
-from bibframe.reader.util import WORKID, IID
 from bibframe.isbnplus import isbn_list, compute_ean13_check
-from bibframe.reader.marcpatterns import TRANSFORMS, bfcontext
-from bibframe.reader.marcworkidpatterns import WORK_HASH_TRANSFORMS, WORK_HASH_INPUT
-from bibframe.reader.marcextra import transforms as default_extra_transforms
+from . import transform_set, BOOTSTRAP_PHASE, DEFAULT_MAIN_PHASE, PYBF_BOOTSTRAP_TARGET_REL, VTYPE_REL
+from .util import WORK_TYPE, INSTANCE_TYPE
+from .marcpatterns import TRANSFORMS, bfcontext
+from .marcworkidpatterns import WORK_HASH_TRANSFORMS, WORK_HASH_INPUT
+from .marcextra import transforms as default_special_transforms
 
 MARCXML_NS = "http://www.loc.gov/MARC21/slim"
 
@@ -40,8 +41,6 @@ NEW_RECORD = 'http://bibfra.me/purl/versa/' + 'newrecord'
 
 BL = 'http://bibfra.me/vocab/lite/'
 ISBNNS = MARC
-
-TYPE_REL = I(iri.absolutize('type', VERSA_BASEIRI))
 
 def invert_dict(d):
     #http://code.activestate.com/recipes/252143-invert-a-dictionary-one-liner/#c3
@@ -73,7 +72,7 @@ def marc_lookup(model, codes):
 
 
 ISBN_REL = I(iri.absolutize('isbn', ISBNNS))
-ISBN_TYPE_REL = I(iri.absolutize('isbnType', ISBNNS))
+ISBN_VTYPE_REL = I(iri.absolutize('isbnType', ISBNNS))
 
 def isbn_instancegen(params, loop, model):
     '''
@@ -89,7 +88,7 @@ def isbn_instancegen(params, loop, model):
     logger = params['logger']
     materialize_entity = params['materialize_entity']
     existing_ids = params['existing_ids']
-    workid = params['workid']
+    workid = params['default-origin']
     ids = params['ids']
     plugins = params['plugins']
 
@@ -108,25 +107,25 @@ def isbn_instancegen(params, loop, model):
         for inum, itype in normalized_isbns:
             ean13 = compute_ean13_check(inum)
             data = [['instantiates', workid], [ISBNNS + 'isbn', ean13]]
-            instanceid = materialize_entity('Instance', ctx_params=params, model_to_update=params['output_model'], data=data, loop=loop)
+            instanceid = materialize_entity('Instance', ctx_params=params, model_to_update=output_model, data=data, loop=loop)
             if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
 
             output_model.add(I(instanceid), ISBN_REL, ean13)
             output_model.add(I(instanceid), INSTANTIATES_REL, I(workid))
-            if itype: output_model.add(I(instanceid), ISBN_TYPE_REL, itype)
+            if itype: output_model.add(I(instanceid), ISBN_VTYPE_REL, itype)
             existing_ids.add(instanceid)
             instance_ids.append(instanceid)
     else:
         #If there are no ISBNs, we'll generate a default Instance
         data = [['instantiates', workid]]
-        instanceid = materialize_entity('Instance', ctx_params=params, model_to_update=params['output_model'], data=data, loop=loop)
+        instanceid = materialize_entity('Instance', ctx_params=params, model_to_update=output_model, data=data, loop=loop)
         instanceid = I(iri.absolutize(instanceid, entbase)) if entbase else I(instanceid)
         output_model.add(I(instanceid), INSTANTIATES_REL, I(workid))
         existing_ids.add(instanceid)
         instance_ids.append(instanceid)
 
     #output_model.add(instance_ids[0], I(iri.absolutize('instantiates', vocabbase)), I(workid))
-    #output_model.add(I(instance_ids[0]), TYPE_REL, I(iri.absolutize('Instance', vocabbase)))
+    #output_model.add(I(instance_ids[0]), VTYPE_REL, I(iri.absolutize('Instance', vocabbase)))
 
     return instance_ids
 
@@ -136,10 +135,10 @@ def instance_postprocess(params, skip_relationships=None):
     instanceids = params['instanceids']
     model = params['output_model']
     vocabbase = params['vocabbase']
-    skip_relationships.extend([ISBN_REL, ISBN_TYPE_REL, I(iri.absolutize('instantiates', vocabbase))])
+    skip_relationships.extend([ISBN_REL, ISBN_VTYPE_REL, I(iri.absolutize('instantiates', vocabbase))])
     def dupe_filter(o, r, t, a):
         #Filter out ISBN relationships
-        return (r, t) != (TYPE_REL, I(iri.absolutize('Instance', vocabbase))) \
+        return (r, t) != (VTYPE_REL, I(iri.absolutize('Instance', vocabbase))) \
             and r not in skip_relationships
     if len(instanceids) > 1:
         base_instance_id = instanceids[0]
@@ -148,6 +147,7 @@ def instance_postprocess(params, skip_relationships=None):
     return
 
 
+#FIXME: Generalize/merge with gather_targetid_data
 def gather_workid_data(model, origin):
     '''
     Called after a first pass has been made to derive a BIBFRAME model sufficient to
@@ -159,22 +159,36 @@ def gather_workid_data(model, origin):
             data.append([link[RELATIONSHIP], link[TARGET]])
     return data
 
-#WORK_HASH_TRANSFORMS, WORK_HASH_INPUT
+
+def gather_targetid_data(model, origin, orderings=None):
+    '''
+    Gather the identifying info needed to create a hash for the main described resource,
+    based on the minimal BIBFRAME model from the bootstrap phase
+    '''
+    data = []
+    for rel in (orderings or []):
+        for link in model.match(origin, rel):
+            data.append([link[RELATIONSHIP], link[TARGET]])
+    return data
+
 
 #XXX Generalize by using URIs for phase IDs
-def process_marcpatterns(params, transforms, input_model, main_phase=False):
-    if main_phase:
+def process_marcpatterns(params, transforms, input_model, phase_target):
+    output_model = params['output_model']
+    if phase_target == BOOTSTRAP_PHASE:
+        input_model_iter = params['input_model']
+    else:
         # Need to sort our way through the input model so that the materializations occur
         # at the same place each time, otherwise canonicalization fails due to the
         # addition of the subfield context (at the end of materialize())
 
         # XXX Is the int() cast necessary? If not we could do key=operator.itemgetter(0)
         input_model_iter = sorted(list(params['input_model']), key=lambda x: int(x[0]))
-    else:
-        input_model_iter = params['input_model']
     params['to_postprocess'] = []
     for lid, marc_link in input_model_iter:
         origin, taglink, val, attribs = marc_link
+        origin = params.get('default-origin', origin)
+        #params['logger'].debug('PHASE {} ORIGIN: {}\n'.format(phase_target, origin))
         if taglink == MARCXML_NS + '/leader':
             params['leader'] = leader = val
             continue
@@ -196,7 +210,7 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
                 params['fields007'].append(val)
             if tag == '008':
                 params['field008'] = val
-            if main_phase:
+            if phase_target != BOOTSTRAP_PHASE:
                 params['transform_log'].append((tag, key))
                 params['fields_used'].append((tag,))
         elif taglink.startswith(MARCXML_NS + '/data'):
@@ -204,7 +218,7 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
             key = 'tag-' + tag
             #logger.debug('indicators: ', repr(indicators))
             #indicator_list = (indicators['ind1'], indicators['ind2'])
-            if main_phase: params['fields_used'].append(tuple([tag] + list(subfields.keys())))
+            if phase_target != BOOTSTRAP_PHASE: params['fields_used'].append(tuple([tag] + list(subfields.keys())))
 
         #This is where we check each incoming MARC link to see if it matches a transform into an output link (e.g. renaming 001 to 'controlCode')
         to_process = []
@@ -227,7 +241,7 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
                     else:
                         # don't report on subfields for which a code-transform exists,
                         # disregard wildcards
-                        if main_phase and not tag in transforms and '?' not in lookup:
+                        if phase_target != BOOTSTRAP_PHASE and not tag in transforms and '?' not in lookup:
 
                             params['dropped_codes'].setdefault(lookup,0)
                             params['dropped_codes'][lookup] += 1
@@ -246,7 +260,7 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
             if lookup in transforms:
                 to_process.append((transforms[lookup], val, lookup))
 
-        if main_phase and subfields_results_len == len(to_process) and not subfields:
+        if phase_target != BOOTSTRAP_PHASE and subfields_results_len == len(to_process) and not subfields:
             # Count as dropped if subfields were not processed and theer were no matches on non-subfield lookups
             params['dropped_codes'].setdefault(tag,0)
             params['dropped_codes'][tag] += 1
@@ -260,11 +274,11 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
 
             for func in funcs:
                 extras = {
-                    WORKID: params['workid'],
-                    IID: params['instanceids'][0],
+                    'origins': params['origins'],
                     'match-spec': lookup,
                     'indicators': indicators,
                     'logger': params['logger'],
+                    'lookups': params['lookups'],
                     'postprocessing': [],
                     'inputns': MARC,
                 }
@@ -272,18 +286,18 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
                 #Should we include indicators?
                 #Should we be passing in taglik rather than tag?
                 ctx = bfcontext((origin, tag, val, subfields), input_model,
-                                    params['output_model'], extras=extras,
+                                    output_model, extras=extras,
                                     base=params['vocabbase'], idgen=mat_ent,
                                     existing_ids=params['existing_ids'])
                 func(ctx)
                 params['to_postprocess'].extend(ctx.extras['postprocessing'])
 
-        if main_phase and not to_process:
+        if phase_target != BOOTSTRAP_PHASE and not to_process:
             #Nothing else has handled this data field; go to the fallback
             fallback_rel_base = '../marcext/tag-' + tag
             if not subfields:
                 #Fallback for control field: Captures MARC tag & value
-                params['output_model'].add(I(params['workid']), I(iri.absolutize(fallback_rel_base, params['vocabbase'])), val)
+                output_model.add(I(origin), I(iri.absolutize(fallback_rel_base, params['vocabbase'])), val)
             for k, v in subfields.items():
                 #Fallback for data field: Captures MARC tag, indicators, subfields & value
                 fallback_rel = '../marcext/{0}-{1}{2}-{3}'.format(
@@ -292,42 +306,52 @@ def process_marcpatterns(params, transforms, input_model, main_phase=False):
                 #params['transform_log'].append((code, fallback_rel))
                 for valitem in v:
                     try:
-                        params['output_model'].add(I(params['workid']), I(iri.absolutize(fallback_rel, params['vocabbase'])), valitem)
+                        output_model.add(I(origin), I(iri.absolutize(fallback_rel, params['vocabbase'])), valitem)
                     except ValueError as e:
                         control_code = list(marc_lookup(input_model, '001')) or ['NO 001 CONTROL CODE']
                         dumb_title = list(marc_lookup(input_model, '245$a')) or ['NO 245$a TITLE']
                         params['logger'].warning('{}\nSkipping statement for {}: "{}"'.format(e, control_code[0], dumb_title[0]))
 
-    extra_stmts = set() # prevent duplicate statements
-    extra_transforms = params['extra_transforms']
-    for origin, k, v in itertools.chain(
-                extra_transforms.process_leader(params),
-                extra_transforms.process_006(params['fields006'], params),
-                extra_transforms.process_007(params['fields007'], params),
-                extra_transforms.process_008(params['field008'], params)):
-        v = v if isinstance(v, tuple) else (v,)
-        for item in v:
-            o = origin or I(params['workid'])
-            if o and (o, k, item) not in extra_stmts:
-                params['output_model'].add(o, k, item)
-                extra_stmts.add((o, k, item))
+    #For now do not run special transforms if in a custom phase
+    #XXX: Needs discussion
+    if phase_target in (BOOTSTRAP_PHASE, DEFAULT_MAIN_PHASE):
+        #params['logger'].debug('PHASE {}\n'.format(phase_target))
+        extra_stmts = set() # prevent duplicate statements
+        special_transforms = params['transforms'].specials
+        for origin, k, v in itertools.chain(
+                    special_transforms.process_leader(params),
+                    special_transforms.process_006(params['fields006'], params),
+                    special_transforms.process_007(params['fields007'], params),
+                    special_transforms.process_008(params['field008'], params)):
+            v = v if isinstance(v, tuple) else (v,)
+            for item in v:
+                o = origin or I(params['default-origin'])
+                if o and (o, k, item) not in extra_stmts:
+                    output_model.add(o, k, item)
+                    extra_stmts.add((o, k, item))
     return
 
+unused_flag = object()
 
 @asyncio.coroutine
 def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                     plugins=None, ids=None, postprocess=None, out=None,
                     logger=logging, transforms=TRANSFORMS,
-                    extra_transforms=default_extra_transforms(),
-                    canonical=False, **kwargs):
+                    special_transforms=unused_flag,
+                    canonical=False, model_factory=memory.connection,
+                    lookups=None, **kwargs):
     '''
     loop - asyncio event loop
     model - the Versa model for the record
     entbase - base IRI used for IDs of generated entity resources
     limiting - mutable pair of [count, limit] used to control the number of records processed
     '''
-    model_factory = kwargs.get('model_factory', memory.connection)
-    main_transforms = transforms
+    #Deprecated legacy API support
+    if isinstance(transforms, dict) or special_transforms is not unused_flag:
+        warnings.warn('Please switch to using bibframe.transforms_set', PendingDeprecationWarning)
+        special_transforms = special_transforms or default_special_transforms()
+        transforms = transform_set(transforms)
+        transforms.specials = special_transforms
 
     _final_tasks = set() #Tasks for the event loop contributing to the MARC processing
 
@@ -349,11 +373,12 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             #Add work item record, with actual hash resource IDs based on default or plugged-in algo
             #FIXME: No plug-in support yet
             params = {
-                'input_model': input_model, 'output_model': model, 'logger': logger,
+                'input_model': input_model, 'logger': logger,
+                #'input_model': input_model, 'output_model': model, 'logger': logger,
                 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids,
-                'existing_ids': existing_ids, 'plugins': plugins,
-                'materialize_entity': materialize_entity, 'leader': leader,
-                'loop': loop, 'extra_transforms': extra_transforms
+                'existing_ids': existing_ids, 'plugins': plugins, 'transforms': transforms,
+                'materialize_entity': materialize_entity, 'leader': leader, 'lookups': lookups or {},
+                'loop': loop
             }
 
             # Earliest plugin stage, with an unadulterated input model
@@ -424,11 +449,11 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
 
             #Do one pass to establish work hash
             #XXX Should crossrefs precede this?
-            temp_workhash = next(params['input_model'].match())[ORIGIN]
-            logger.debug('Temp work hash: {0}'.format(temp_workhash))
+            bootstrap_dummy_id = next(params['input_model'].match())[ORIGIN]
+            logger.debug('Entering bootstrap phase. Dummy ID: {}'.format(bootstrap_dummy_id))
 
-            params['workid'] = temp_workhash
-            params['instanceids'] = [temp_workhash + '-instance']
+            params['default-origin'] = bootstrap_dummy_id
+            params['instanceids'] = [bootstrap_dummy_id + '-instance']
             params['output_model'] = model_factory()
 
             params['field008'] = leader = None
@@ -436,36 +461,70 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             params['fields007'] = fields007 = []
             params['to_postprocess'] = []
 
-            process_marcpatterns(params, WORK_HASH_TRANSFORMS, input_model, main_phase=False)
+            params['origins'] = {WORK_TYPE: bootstrap_dummy_id, INSTANCE_TYPE: params['instanceids'][0]}
 
-            workid_data = gather_workid_data(params['output_model'], temp_workhash)
-            workid = materialize_entity('Work', ctx_params=params, data=workid_data, loop=loop)
+            #First apply special patterns for determining the main target resources
+            curr_transforms = transforms.compiled[BOOTSTRAP_PHASE]
 
-            is_folded = workid in existing_ids
-            existing_ids.add(workid)
+            process_marcpatterns(params, curr_transforms, input_model, BOOTSTRAP_PHASE)
 
-            control_code = list(marc_lookup(input_model, '001')) or ['NO 001 CONTROL CODE']
-            dumb_title = list(marc_lookup(input_model, '245$a')) or ['NO 245$a TITLE']
-            logger.debug('Work hash data: {0}'.format(repr(workid_data)))
-            logger.debug('Control code: {0}'.format(control_code[0]))
-            logger.debug('Uniform title: {0}'.format(dumb_title[0]))
-            logger.debug('Work ID: {0}'.format(workid))
-
-            workid = I(iri.absolutize(workid, entbase)) if entbase else I(workid)
-            folded = [workid] if is_folded else []
-
-            model.add(workid, TYPE_REL, I(iri.absolutize('Work', vocabbase)))
-
-            params['workid'] = workid
-            params['folded'] = folded
+            bootstrap_output = params['output_model']
+            temp_main_target = main_type = None
+            for o, r, t, a in bootstrap_output.match(None, PYBF_BOOTSTRAP_TARGET_REL):
+                #FIXME: We need a better designed way of determining fallback to bib
+                if t is not None: temp_main_target, main_type = o, t
 
             #Switch to the main output model for processing
             params['output_model'] = model
 
-            #Figure out instances
-            instanceids = instancegen(params, loop, model)
+            if temp_main_target is None:
+                #If no target was set explicitly fall back to the transforms registered for the biblio phase
+                #params['logger'].debug('WORK HASH ORIGIN {}\n'.format(bootstrap_dummy_id))
+                #params['logger'].debug('WORK HASH MODEL {}\n'.format(repr(bootstrap_output)))
+                workid_data = gather_workid_data(bootstrap_output, bootstrap_dummy_id)
+                workid = materialize_entity('Work', ctx_params=params, data=workid_data, loop=loop)
+                logger.debug('Entering default main phase, Work ID: {0}'.format(workid))
 
-            params['instanceids'] = instanceids or [None]
+                is_folded = workid in existing_ids
+                existing_ids.add(workid)
+
+                control_code = list(marc_lookup(input_model, '001')) or ['NO 001 CONTROL CODE']
+                dumb_title = list(marc_lookup(input_model, '245$a')) or ['NO 245$a TITLE']
+                logger.debug('Work hash data: {0}'.format(repr(workid_data)))
+                logger.debug('Control code: {0}'.format(control_code[0]))
+                logger.debug('Uniform title: {0}'.format(dumb_title[0]))
+                logger.debug('Work ID: {0}'.format(workid))
+
+                workid = I(iri.absolutize(workid, entbase)) if entbase else I(workid)
+                folded = [workid] if is_folded else []
+
+                model.add(workid, VTYPE_REL, I(iri.absolutize('Work', vocabbase)))
+
+                params['default-origin'] = workid
+                params['folded'] = folded
+
+                #Figure out instances
+                instanceids = instancegen(params, loop, model)
+                params['instanceids'] = instanceids or [None]
+
+                main_transforms = transforms.compiled[DEFAULT_MAIN_PHASE]
+                params['origins'] = {WORK_TYPE: workid, INSTANCE_TYPE: params['instanceids'][0]}
+                phase_target = DEFAULT_MAIN_PHASE
+            else:
+                targetid_data = gather_targetid_data(bootstrap_output, temp_main_target, transforms.orderings[main_type])
+                #params['logger'].debug('Data for resource: {}\n'.format([main_type] + targetid_data))
+                targetid = materialize_entity(main_type, ctx_params=params, data=targetid_data, loop=loop)
+                logger.debug('Entering specialized phase, Target resource ID: {}, type: {}'.format(targetid, main_type))
+
+                is_folded = targetid in existing_ids
+                existing_ids.add(targetid)
+                #Determine next transform phase
+                main_transforms = transforms.compiled[main_type]
+                params['origins'] = {main_type: targetid}
+                params['default-origin'] = targetid
+                phase_target = main_type
+                model.add(I(targetid), VTYPE_REL, I(main_type))
+
             params['transform_log'] = [] # set()
             params['fields_used'] = []
             params['dropped_codes'] = {}
@@ -475,7 +534,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             params['fields007'] = fields007 = []
             params['to_postprocess'] = []
 
-            process_marcpatterns(params, main_transforms, input_model, main_phase=True)
+            process_marcpatterns(params, main_transforms, input_model, phase_target)
 
             skipped_rels = set()
             for op, rels, rid in params['to_postprocess']:
@@ -488,6 +547,8 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             instance_postprocess(params, skip_relationships=skipped_rels)
 
             logger.debug('+')
+
+            #XXX At this point there must be at least one record with a Versa type
 
             for plugin in plugins:
                 #Each plug-in is a task

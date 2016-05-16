@@ -1447,7 +1447,7 @@ class transforms(object):
 
         >>> from bibframe.reader.marcextra import transforms
         >>> t = transforms()
-        >>> list(t.process_leader({'leader':'03495cpcaa2200673 a 4500','workid':None,'instanceids':[None]}))
+        >>> list(t.process_leader({'leader':'03495cpcaa2200673 a 4500','default-origin':None,'instanceids':[None]}))
         [(None, I(http://bibfra.me/purl/versa/type), (I(http://bibfra.me/vocab/marc/Collection), I(http://bibfra.me/vocab/marc/Multimedia))), (None, I(http://bibfra.me/purl/versa/type), I(http://bibfra.me/vocab/marc/Collection))]
         """
         if 'leader' not in params: return
@@ -1455,7 +1455,7 @@ class transforms(object):
         leader = params['leader']
         leader = leader.ljust(24) if leader is not None else ' '*24
 
-        work = I(params['workid'])
+        work = I(params['default-origin'])
         instance = params['instanceids'][0]
         instance = I(instance) if instance else None
         work_06 = dict(
@@ -1505,7 +1505,7 @@ class transforms(object):
         """
         if info is None: return
 
-        work = I(params['workid'])
+        work = I(params['default-origin'])
         instance = params['instanceids'][0]
         instance = I(instance) if instance else None
         logger = params['logger']
@@ -1741,13 +1741,13 @@ class transforms(object):
         #>>> import logging
         #>>> t = transforms()
         #>>> ld = '790726||||||||||||                 eng  '
-        #>>> list(t.process_008(ld,{'leader':ld,'workid':None,'instanceids':[None],'logger':logging}))
+        #>>> list(t.process_008(ld,{'leader':ld,'default-origin':None,'instanceids':[None],'logger':logging}))
         #[('date_008', '1979-07-26')]
         '''
         if info is None: return
 
         leader = params['leader']
-        work = I(params['workid'])
+        work = I(params['default-origin'])
         #instance = params['instanceids'][0]
         #instance = I(instance) if instance else None
         logger = params['logger']
@@ -1775,7 +1775,7 @@ class transforms(object):
         '''
 
         leader = params['leader']
-        work = I(params['workid'])
+        work = I(params['default-origin'])
         #instance = params['instanceids'][0]
         #instance = I(instance) if instance else None
         logger = params['logger']

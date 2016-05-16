@@ -111,6 +111,7 @@ def hash_neutral_model(stream):
     return hashmap, stage3
 
 
+#FIXME: Avoid mangling data arg without too much perf hit
 def materialize_entity(etype, ctx_params=None, model_to_update=None, data=None, addtype=True, loop=None, logger=logging):
     '''
     Routine for creating a BIBFRAME resource. Takes the entity (resource) type and a data mapping
@@ -118,6 +119,7 @@ def materialize_entity(etype, ctx_params=None, model_to_update=None, data=None, 
     As a convenience, if a vocabulary base is provided, concatenate it to etype and the data keys
 
     data - list of key/value pairs used to compute the hash. If empty the hash will be a default for the entity type
+            WARNING: THIS FUNCTION MANGLES THE data ARG
     '''
     ctx_params = ctx_params or {}
     vocabbase = ctx_params.get('vocabbase', BL)

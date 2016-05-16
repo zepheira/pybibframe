@@ -1,3 +1,11 @@
+#bibframe.reader.util
+#FIXME: Rename to bibframe.reader.pipeline (cf Versa) post 1.0
+'''
+Library of functions that take a prototype link set and generate a transformed link set
+
+
+'''
+
 import re
 from itertools import product
 from enum import Enum #https://docs.python.org/3.4/library/enum.html
@@ -8,17 +16,21 @@ from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 
 from bibframe.contrib.datachefids import slugify#, FROM_EMPTY_64BIT_HASH
 from bibframe.contrib.datachefids import idgen as default_idgen
-from bibframe import BFZ
+from bibframe import BFZ, BL
 from bibframe.util import LoggedList, merge_list_logs
 from bibframe.isbnplus import isbn_list, compute_ean13_check
 
+from bibframe.reader import BOOTSTRAP_PHASE
+
 from amara3 import iri
+
+__all__ = ["bfcontext", "base_transformer", "link", "ignore", "anchor", "target", "all_subfields", "subfield", "values", "relator_property", "replace_from", "ifexists", "foreach", "indicator", "materialize", "url", "normalize_isbn", "onwork", "oninstance", "lookup", "register_transforms"]
 
 RDA_PARENS_PAT = re.compile('\\(.*\\)')
 
 PYBF_BASE = '"http://bibfra.me/tool/pybibframe/transforms#'
-WORKID = PYBF_BASE + 'workid'
-IID = PYBF_BASE + 'iid'
+WORK_TYPE = BL + 'Work'
+INSTANCE_TYPE = BL + 'Instance'
 VTYPE_REL = I(iri.absolutize('type', VERSA_BASEIRI))
 
 #FIXME: Make proper use of subclassing (implementation derivation)
@@ -47,21 +59,29 @@ class bfcontext(versacontext):
         return bfcontext(current_link, input_model, output_model, base=base, extras=extras, idgen=idgen, existing_ids=existing_ids, logger=logger)
 
 
-class action(Enum):
-    replace = 1
+#class action(Enum):
+#    replace = 1
 
-
-class origin_class(Enum):
-    work = 1
-    instance = 2
-
+DEFAULT_REL = object()
 
 class base_transformer(object):
-    def __init__(self, use_origin):
-        self._use_origin = use_origin
+    def __init__(self, origin_type=None):
+        self._origin_type = origin_type
         return
 
-    #Functions that take a prototype link set and generate a transformed link set
+    def __call__(self, origin_type, *args, **kwargs):
+        self._origin_type = origin_type
+        return
+
+    def derive_origin(self, ctx):
+        '''
+        Given a pipeline transform context, derive an origin for generated Versa links
+        from whether we're meant to deal with work or instance rules
+        '''
+        #Origins are indexed by resource type
+        return ctx.extras['origins'][self._origin_type]
+        #workid, iid = ctx.extras[WORK_TYPE], ctx.extras[INSTANCE_TYPE]
+        #return {origin_class.work: workid, origin_class.instance: iid}[self._use_origin]
 
     def link(self, rel=None, value=None, res=False, ignore_refs=True):
         '''
@@ -73,61 +93,60 @@ class base_transformer(object):
                 using target(), i.e. just reuse the target of the context current link
         res = if True mark the link target value as an IRI (i.e. not a plain string)
         '''
-        def _link(ctx):
-            (o, r, t, a) = ctx.current_link
-            _value = value(ctx) if callable(value) else (t if value is None else value)
-            workid, iid = ctx.extras[WORKID], ctx.extras[IID]
-            new_o = {origin_class.work: workid, origin_class.instance: iid}[self._use_origin]
-            #Just work with the first provided statement, for now
-            if res and not (ignore_refs and not iri.is_absolute(_value)):
-                try:
-                    _value = I(_value)
-                except ValueError:
-                    ctx.extras['logger'].warn('Requirement to convert link target to IRI failed for invalid input, causing the corresponding output link to be omitted entirely: {0}'.format(repr((I(new_o), I(iri.absolutize(rel, ctx.base)), _value))))
-                    #XXX How do we really want to handle this error?
-                    return []
-            ctx.output_model.add(I(new_o), I(iri.absolutize(rel, ctx.base)), _value, {})
-            return
-        return _link
+        #Delegate the work
+        return link(derive_origin=self.derive_origin, rel=rel, value=value, res=res, ignore_refs=ignore_refs)
 
-    def rename(self, rel=None, res=False):
-        '''
-        DEPRECATED! Update the label of the relationship to be added to the link space
-        Please use link() instead
-        '''
-        def _rename(ctx):
-            #If need be call the Versa action function to determine the relationship to the materialized resource
-            rels = rel(ctx) if callable(rel) else rel
-            if not isinstance(rels, list): rels = [rels]
-            workid, iid = ctx.extras[WORKID], ctx.extras[IID]
-            new_o = {origin_class.work: workid, origin_class.instance: iid}[self._use_origin]
-            #Just work with the first provided statement, for now
-            (o, _, t, a) = ctx.current_link
-            if res:
-                try:
-                    t = I(t)
-                except ValueError:
-                    return []
-            for r in rels:
-                ctx.output_model.add(I(new_o), I(iri.absolutize(r, ctx.base)), t, {})
-            return
-        return _rename
-
-    def materialize(self, typ, rel, unique=None, links=None, postprocess=None):
+    def materialize(self, typ, rel=DEFAULT_REL, unique=None, links=None, postprocess=None):
         '''
         Create a new resource related to the origin
         '''
         links = links or {}
-        def derive_origin(ctx):
-            '''
-            Given a pipeline transform context, derive an origin for generated Versa links
-            from whether we're meant to deal with work or instance rules
-            '''
-            workid, iid = ctx.extras[WORKID], ctx.extras[IID]
-            return {origin_class.work: workid, origin_class.instance: iid}[self._use_origin]
-        #Now delegate to the actual materialize funtion to do the work
-        return materialize(typ, rel, derive_origin=derive_origin, unique=unique,
+        #Delegate the work
+        return materialize(typ, rel=rel, derive_origin=self.derive_origin, unique=unique,
                             links=links, postprocess=postprocess)
+
+
+def link(derive_origin=None, rel=None, value=None, res=False, ignore_refs=True):
+    '''
+    Create a new link
+
+    :param derive_origin: Versa action function to be invoked in order to
+    determine the origin of the main generated link. If none the origin is derived
+    from the context given when the materialize action function is called
+
+    :param rel: IRI of the relationship to be created, from the origin,
+    or a list of relationship IRIs, each of which will be used to create
+    a separate link, or a versa action function to derive this relationship or
+    list of relationships at run time, or None. If None, the relationship is derived
+    from the context given when the materialize action function is called
+
+    For examples of all these scenarios see marcpatterns.py
+
+    :return: Versa action function to do the actual work
+    '''
+    def _link(ctx):
+        (origin, _, t, a) = ctx.current_link
+        if derive_origin:
+            #Have enough info to derive the origin from context. Ignore origin in current link
+            origin = derive_origin(ctx)
+
+        #If need be call the Versa action function to determine the relationship to the materialized resource
+        rels = rel(ctx) if callable(rel) else rel
+        if not isinstance(rels, list): rels = [rels]
+
+        _value = value(ctx) if callable(value) else (t if value is None else value)
+        #Just work with the first provided statement, for now
+        if res and not (ignore_refs and not iri.is_absolute(_value)):
+            try:
+                _value = I(_value)
+            except ValueError:
+                ctx.extras['logger'].warn('Requirement to convert link target to IRI failed for invalid input, causing the corresponding output link to be omitted entirely: {0}'.format(repr((I(origin), I(iri.absolutize(rel, ctx.base)), _value))))
+                #XXX How do we really want to handle this error?
+                return []
+        for r in rels:
+            ctx.output_model.add(I(origin), I(iri.absolutize(r, ctx.base)), _value, {})
+        return
+    return _link
 
 
 def ignore():
@@ -154,6 +173,10 @@ def anchor(rtype=WORK_TYPE):
     :param rtype: resource type (IRI)
 
     :return: anchor resource ID from the current context
+
+    Note:
+        * rather than anchor_work() use anchor(BL + 'Work')
+        * rather than anchor_instance() use anchor(BL + 'Instance')
     '''
     def _anchor(ctx):
         '''
@@ -165,42 +188,6 @@ def anchor(rtype=WORK_TYPE):
         '''
         return ctx.extras['origins'][rtype]
     return _anchor
-
-
-#FIXME: DELETE ME
-def anchor_work():
-    '''
-    Action function generator to return the anchor work ID from the current context
-
-    :return: work ID from the current context
-    '''
-    def _anchor_work(ctx):
-        '''
-        Versa action function to return the anchor work ID from the current context
-
-        :param ctx: Versa context used in processing (e.g. includes the prototype link
-        :return: work ID from the current context
-        '''
-        return ctx.extras[WORKID]
-    return _anchor_work
-
-
-#FIXME: DELETE ME
-def anchor_instance():
-    '''
-    Action function generator to return the anchor instance ID from the current context
-
-    :return: Instance ID from the current context
-    '''
-    def _anchor_instance(ctx):
-        '''
-        Versa action function to return the anchor instance ID from the current context
-
-        :param ctx: Versa context used in processing (e.g. includes the prototype link
-        :return: Instance ID from the current context
-        '''
-        return ctx.extras[IID]
-    return _anchor_instance
 
 
 def target():
@@ -464,7 +451,7 @@ def indicator(pat, mode='and'):
     return _indicator
 
 
-def materialize(typ, rel=None, derive_origin=None, unique=None, links=None, postprocess=None):
+def materialize(typ, rel=DEFAULT_REL, derive_origin=None, unique=None, links=None, postprocess=None):
     '''
     Create a new resource related to the origin.
 
@@ -523,7 +510,7 @@ def materialize(typ, rel=None, derive_origin=None, unique=None, links=None, post
         #The current link from the passed-in context might be used in several aspects of operation
         (origin, r, t, a) = ctx.current_link
         #Some conversions to make sure we end up with a list of relationships
-        if _rel is None:
+        if _rel is DEFAULT_REL:
             _rel = [r]
         rels = _rel if isinstance(_rel, list) else ([_rel] if rel else [])
         if derive_origin:
@@ -671,10 +658,24 @@ def normalize_isbn(isbn):
         return [ compute_ean13_check(i) for i, t in isbn_list([i for i in _isbn if i]) ]
     return _normalize_isbn
 
-onwork = base_transformer(origin_class.work)
-oninstance = base_transformer(origin_class.instance)
+
+def lookup(table, key):
+    '''
+    Generic lookup mechanism
+    '''
+    def _lookup(ctx):
+        table_mapping = ctx.extras['lookups']
+        _key = key(ctx) if callable(key) else key
+        return table_mapping[table].get(_key)
+    return _lookup
+
+
+on = base_transformer()
+onwork = base_transformer(WORK_TYPE)
+oninstance = base_transformer(INSTANCE_TYPE)
+
 
 AVAILABLE_TRANSFORMS = {}
 
-def register_transforms(iri, tdict):
-    AVAILABLE_TRANSFORMS[iri] = tdict
+def register_transforms(iri, tdict, orderings=None):
+    AVAILABLE_TRANSFORMS[iri] = (tdict, orderings) if orderings else tdict

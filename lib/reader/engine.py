@@ -8,14 +8,6 @@ import warnings
 import zipfile
 import functools
 
-#from amara3 import iri
-
-from bibframe import g_services
-from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_FINAL_TASK
-from bibframe.reader.marcextra import transforms as extra_transforms
-
-import rdflib
-
 from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 from versa import util
 from versa.driver import memory
@@ -23,23 +15,14 @@ from versa.driver import memory
 from amara3.inputsource import factory, inputsourcetype
 from amara3.uxml import writer
 
+from bibframe import BFZ, BFLC, BL, register_service
 from bibframe import g_services
 from bibframe import BF_INIT_TASK, BF_MARCREC_TASK, BF_FINAL_TASK
-from bibframe.reader.marcextra import transforms as extra_transforms
-
-from bibframe import BFZ, BFLC, BL, register_service
-from bibframe.reader import marc
 from bibframe.writer import rdf, microxml
-from bibframe.reader.marcpatterns import TRANSFORMS
-from bibframe.reader.util import AVAILABLE_TRANSFORMS
 
-from bibframe.reader.marcxml import handle_marcxml_source
-
-BFNS = rdflib.Namespace(BFZ)
-BFCNS = rdflib.Namespace(BFZ + 'cftag/')
-BFDNS = rdflib.Namespace(BFZ + 'dftag/')
-
-#VNS = rdflib.Namespace(VERSA_BASEIRI)
+from . import marc
+from . import transform_set
+from .marcxml import handle_marcxml_source
 
 NSSEP = ' '
 
@@ -111,7 +94,15 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
 
     ids = marc.idgen(entbase)
     if model is None: model = model_factory()
-    g = rdflib.Graph()
+
+    if any((rdfttl, rdfxml)):
+        import rdflib
+
+        BFNS = rdflib.Namespace(BFZ)
+        BFCNS = rdflib.Namespace(BFZ + 'cftag/')
+        BFDNS = rdflib.Namespace(BFZ + 'dftag/')
+
+        g = rdflib.Graph()
     #Intentionally not using either factory
     if canonical: global_model = memory.connection() #logger=logger)
 
@@ -139,18 +130,11 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
     #XXX: Is this the best way to do this, or rather via a post-processing plug-in
     vb = config.get('vocab-base-uri', BL)
 
-    transform_iris = config.get('transforms', {})
-    if transform_iris:
-        transforms = {}
-        for tiri in transform_iris:
-            try:
-                transforms.update(AVAILABLE_TRANSFORMS[tiri])
-            except KeyError:
-                raise Exception('Unknown transforms set {0}'.format(tiri))
-    else:
-        transforms = TRANSFORMS
+    transform_iris = config.get('transforms', [])
+    marcspecials_vocab = config.get('marcspecials-vocab')
+    transforms = transform_set(transform_iris, marcspecials_vocab)
 
-    marcextras_vocab = config.get('marcextras-vocab')
+    lookups = config.get('lookups', {})
 
     #Initialize auxiliary services (i.e. plugins)
     plugins = []
@@ -181,8 +165,8 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
                                         out=out,
                                         logger=logger,
                                         transforms=transforms,
-                                        extra_transforms=extra_transforms(marcextras_vocab),
                                         canonical=canonical,
+                                        lookups=lookups,
                                         model_factory=model_factory)
 
             args = dict(lax=lax)
@@ -201,14 +185,15 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
     if canonical:
         out.write(repr(global_model))
 
-    if vb == BFZ:
-        g.bind('bf', BFNS)
-        g.bind('bfc', BFCNS)
-        g.bind('bfd', BFDNS)
-    else:
-        g.bind('vb', rdflib.Namespace(vb))
-    if entbase:
-        g.bind('ent', entbase)
+    if any((rdfttl, rdfxml)):
+        if vb == BFZ:
+            g.bind('bf', BFNS)
+            g.bind('bfc', BFCNS)
+            g.bind('bfd', BFDNS)
+        else:
+            g.bind('vb', rdflib.Namespace(vb))
+        if entbase:
+            g.bind('ent', entbase)
 
     if rdfttl is not None:
         logger.debug('Converting to RDF (Turtle).')
