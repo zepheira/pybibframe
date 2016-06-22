@@ -24,7 +24,7 @@ from bibframe.reader import BOOTSTRAP_PHASE
 
 from amara3 import iri
 
-__all__ = ["bfcontext", "base_transformer", "link", "ignore", "anchor", "target", "all_subfields", "subfield", "values", "relator_property", "replace_from", "ifexists", "foreach", "indicator", "materialize", "url", "normalize_isbn", "onwork", "oninstance", "lookup", "register_transforms"]
+__all__ = ["bfcontext", "base_transformer", "link", "ignore", "anchor", "target", "all_subfields", "subfield", "values", "relator_property", "replace_from", "ifexists", "foreach", "indicator", "materialize", "url", "normalize_isbn", "onwork", "oninstance", "lookup", "regex_match_modify", "register_transforms"]
 
 RDA_PARENS_PAT = re.compile('\\(.*\\)')
 
@@ -668,6 +668,34 @@ def lookup(table, key):
         _key = key(ctx) if callable(key) else key
         return table_mapping[table].get(_key)
     return _lookup
+
+
+def regex_match_modify(pattern, group_or_func, value=None):
+    '''
+    Action function generator to take some text and modify it either according to a named group or a modification function for the match
+
+    :param pattern: regex string or compiled pattern
+    :param group_or_func: string or function that takes a reegex match. If string, a named group to use for the result. If a function, executed to return the result
+    :return: Versa action function to do the actual work
+    '''
+    def _regex_modify(ctx):
+        '''
+        Versa action function Utility to do the text replacement
+
+        :param ctx: Versa context used in processing (e.g. includes the prototype link)
+        :return: Replacement text
+        '''
+        _pattern = re.compile(pattern) if isinstance(pattern, str) else pattern
+        (origin, _, t, a) = ctx.current_link
+        _value = value(ctx) if callable(value) else (t if value is None else value)
+        print(_value)
+        match = _pattern.match(_value)
+        if not match: return _value
+        if callable(group_or_func):
+            return group_or_func(match)
+        else:
+            return match.groupdict().get(group_or_func, '')
+    return _regex_modify
 
 
 on = base_transformer()
