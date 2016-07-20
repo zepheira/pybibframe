@@ -208,6 +208,24 @@ def target():
     return _target
 
 
+def origin():
+    '''
+    Action function generator to return the origin of the context's current link
+
+    :return: origin of the context's current link
+    '''
+    #Action function generator to multiplex a relationship at processing time
+    def _origin(ctx):
+        '''
+        Versa action function Utility to return the origin of the context's current link
+
+        :param ctx: Versa context used in processing (e.g. includes the prototype link
+        :return: Origin of the context's current link
+        '''
+        return ctx.current_link[ORIGIN]
+    return _origin
+
+
 NS_PATCH = lambda ns, k, v: (ns+k, v) if not iri.is_absolute(k) else (k, v)
 def all_subfields(ctx):
     '''
