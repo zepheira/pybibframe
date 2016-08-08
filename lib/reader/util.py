@@ -24,7 +24,7 @@ from bibframe.reader import BOOTSTRAP_PHASE
 
 from amara3 import iri
 
-__all__ = ["bfcontext", "base_transformer", "link", "ignore", "anchor", "target", "all_subfields", "subfield", "values", "relator_property", "replace_from", "ifexists", "foreach", "indicator", "materialize", "url", "normalize_isbn", "onwork", "oninstance", "lookup", "regex_match_modify", "register_transforms"]
+__all__ = ["bfcontext", "base_transformer", "link", "ignore", "anchor", "target", "origin", "all_subfields", "subfield", "values", "relator_property", "replace_from", "ifexists", "foreach", "indicator", "materialize", "url", "normalize_isbn", "onwork", "oninstance", "lookup", "regex_match_modify", "register_transforms"]
 
 RDA_PARENS_PAT = re.compile('\\(.*\\)')
 
@@ -206,6 +206,24 @@ def target():
         '''
         return ctx.current_link[TARGET]
     return _target
+
+
+def origin():
+    '''
+    Action function generator to return the origin of the context's current link
+
+    :return: origin of the context's current link
+    '''
+    #Action function generator to multiplex a relationship at processing time
+    def _origin(ctx):
+        '''
+        Versa action function Utility to return the origin of the context's current link
+
+        :param ctx: Versa context used in processing (e.g. includes the prototype link
+        :return: Origin of the context's current link
+        '''
+        return ctx.current_link[ORIGIN]
+    return _origin
 
 
 NS_PATCH = lambda ns, k, v: (ns+k, v) if not iri.is_absolute(k) else (k, v)
