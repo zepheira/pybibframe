@@ -706,7 +706,6 @@ def regex_match_modify(pattern, group_or_func, value=None):
         _pattern = re.compile(pattern) if isinstance(pattern, str) else pattern
         (origin, _, t, a) = ctx.current_link
         _value = value(ctx) if callable(value) else (t if value is None else value)
-        print(_value)
         match = _pattern.match(_value)
         if not match: return _value
         if callable(group_or_func):
