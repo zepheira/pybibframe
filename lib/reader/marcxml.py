@@ -5,6 +5,7 @@ Notice however, possible security vulnerabilities:
 https://docs.python.org/3/library/xml.html#xml-vulnerabilities
 '''
 
+import re
 from collections import defaultdict, OrderedDict
 import unicodedata
 import warnings
@@ -19,10 +20,7 @@ from bibframe.reader import marc
 MARCXML_NS = marc.MARCXML_NS
 
 # valid subfield codes
-VALID_SUBFIELDS = set(range(ord('a'), ord('z')+1))
-VALID_SUBFIELDS.update(range(ord('A'), ord('Z')+1))
-VALID_SUBFIELDS.update(range(ord('0'), ord('9')+1))
-VALID_SUBFIELDS.add(ord('-'))
+VALID_SUBFIELD_PAT = re.compile(r'[a-zA-Z0-9\-]$')
 
 # validates tags in URL form
 IS_VALID_TAG = lambda t: len(t.rsplit('/',1)[-1]) == 3
@@ -48,10 +46,10 @@ class expat_callbacks(object):
             ns = MARCXML_NS #Just assume all elements are MARC/XML
         else:
             ns, local = name.split(NSSEP) if NSSEP in name else (None, name)
+        # XXX Do we want to do some basic content model checking? i.e. no subfield as root element?
         if ns == MARCXML_NS:
             #Ignore the 'collection' element
             #What to do with the record/@type
-            if self._record_model: attr_cls = self._record_model._attr_cls
             if local == 'record':
                 self.no_records = False
                 #XXX: Entity base IRI needed?
@@ -62,7 +60,7 @@ class expat_callbacks(object):
             elif local == 'leader':
                 self._chardata_dest = ''
                 self._link_iri = MARCXML_NS + '/leader'
-                self._marc_attributes = attr_cls()
+                self._marc_attributes = {}
                 self._getcontent = True
             elif local == 'controlfield':
                 self._chardata_dest = ''
@@ -72,7 +70,7 @@ class expat_callbacks(object):
                     tag = '000'
                 self._link_iri = MARCXML_NS + '/control/' + tag
                 #Control tags have neither indicators nor subfields
-                self._marc_attributes = attr_cls({'tag': tag})
+                self._marc_attributes = {'tag': tag}
                 self._getcontent = True
             elif local == 'datafield':
                 tag = attributes['tag'].strip()
@@ -80,13 +78,15 @@ class expat_callbacks(object):
                     self._logger.warn('Invalid datafield tag "{0}" in record "{1}"'.format(tag, self._record_id))
                     tag = '000'
                 self._link_iri = MARCXML_NS + '/data/' + tag
-                self._marc_attributes = attr_cls(([k, v.strip()] for (k, v) in attributes.items() if ' ' not in k))
+                self._marc_attributes = dict(([k, v.strip()] for (k, v) in attributes.items() if ' ' not in k))
+                self._subfield_count = 1
             elif local == 'subfield':
                 self._chardata_dest = ''
                 self._subfield = attributes['code'].strip()
-                if len(self._subfield) != 1 or ord(self._subfield) not in VALID_SUBFIELDS:
+                if not VALID_SUBFIELD_PAT.match(self._subfield):
                     self._logger.warn('Invalid subfield code "{0}" in record "{1}", tag "{2}"'.format(self._subfield, self._record_id, self._marc_attributes['tag']))
                     self._subfield = '_'
+                self._subfield_count += 1
                 self._getcontent = True
         return
 
@@ -98,7 +98,6 @@ class expat_callbacks(object):
         else:
             ns, local = name.split(NSSEP) if NSSEP in name else (None, name)
         if ns == MARCXML_NS:
-            attr_list_cls = self._model_factory.attr_list_cls
             if local == 'record':
                 try:
                     self._sink.send(self._record_model)
@@ -115,7 +114,7 @@ class expat_callbacks(object):
                     self._record_model.add(self._record_id, self._link_iri, '', self._marc_attributes)
                 self._getcontent = False
             elif local == 'subfield':
-                self._marc_attributes.setdefault(self._subfield, attr_list_cls()).append(self._chardata_dest)
+                self._marc_attributes['{}.{}'.format(self._subfield_count, self._subfield)] = self._chardata_dest
             elif local == 'leader':
                 if self._record_model: self._record_model.add(self._record_id, self._link_iri, self._chardata_dest, self._marc_attributes)
                 self._getcontent = False

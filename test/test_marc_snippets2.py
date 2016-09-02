@@ -1415,8 +1415,6 @@ SNIPPET_18 = '''
 '''
 
 CONFIG_18 = {
-    "versa-attr-cls": "collections.OrderedDict",
-    "versa-attr-list-cls": "bibframe.util.LoggedList",
     "plugins": [{
       "id": "http://bibfra.me/tool/pybibframe#labelizer",
       "lookup": {

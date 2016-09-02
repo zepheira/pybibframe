@@ -7,6 +7,7 @@ Library of functions that take a prototype link set and generate a transformed l
 '''
 
 import re
+import sys
 from itertools import product
 from enum import Enum #https://docs.python.org/3.4/library/enum.html
 from collections import OrderedDict
@@ -17,14 +18,13 @@ from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 from bibframe.contrib.datachefids import slugify#, FROM_EMPTY_64BIT_HASH
 from bibframe.contrib.datachefids import idgen as default_idgen
 from bibframe import BFZ, BL
-from bibframe.util import LoggedList, merge_list_logs
 from bibframe.isbnplus import isbn_list, compute_ean13_check
 
 from bibframe.reader import BOOTSTRAP_PHASE
 
 from amara3 import iri
 
-__all__ = ["bfcontext", "base_transformer", "link", "ignore", "anchor", "target", "origin", "all_subfields", "subfield", "values", "relator_property", "replace_from", "ifexists", "foreach", "indicator", "materialize", "url", "normalize_isbn", "onwork", "oninstance", "lookup", "regex_match_modify", "register_transforms"]
+__all__ = ["bfcontext", "base_transformer", "link", "ignore", "anchor", "target", "origin", "all_subfields", "subfield", "values", "relator_property", "replace_from", "ifexists", "foreach", "indicator", "materialize", "url", "normalize_isbn", "onwork", "oninstance", "lookup", "regex_match_modify", "register_transforms", "subfields"]
 
 RDA_PARENS_PAT = re.compile('\\(.*\\)')
 
@@ -63,6 +63,24 @@ class bfcontext(versacontext):
 #    replace = 1
 
 DEFAULT_REL = object()
+
+#SUBFIELDS_CACHE = {}
+
+#Can't use functools.lru_cache because of the dict (unhashable) arg
+#@lru_cache()
+def subfields(attrs, code=None, ctx=None):
+    result = []
+    # If the attributes have their own ordering, use it, otherwise sort
+    attrs_in_order = sorted(attrs.items())
+    for ix, (k, v) in enumerate(attrs_in_order):
+        if '.' in k:
+            this_code = k.rsplit('.')[-1]
+            if code is None or this_code == code:
+                result.append((this_code, v))
+                if ctx and 'current-subfield-ix' in ctx.extras:
+                    ctx.extras['current-subfield-ix'].append(ix)
+    return result
+
 
 class base_transformer(object):
     def __init__(self, origin_type=None):
@@ -240,15 +258,8 @@ def all_subfields(ctx):
     #    result.extend(valitem)
         #sorted(functools.reduce(lambda a, b: a.extend(b), ))
     #ctx.logger('GRIPPO' + repr(sorted(functools.reduce(lambda a, b: a.extend(b), ctx.linkset[0][ATTRIBUTES].items()))))
+    return (NS_PATCH(ctx.extras['inputns'], k, v) for k, v in subfields(ctx.current_link[ATTRIBUTES]))
 
-    attrs = ctx.current_link[ATTRIBUTES]
-    # If attributes have their own ordering, use it, otherwise sort
-    if isinstance(attrs, OrderedDict):
-        stream = attrs.items()
-    else:
-        stream = sorted(attrs.items())
-
-    return (NS_PATCH(ctx.extras['inputns'], k, v) for k, v in stream)
 
 def subfield(key):
     '''
@@ -264,11 +275,7 @@ def subfield(key):
         :param ctx: Versa context used in processing (e.g. includes the prototype link
         :return: Tuple of key/value tuples from the attributes; suitable for hashing
         '''
-
-        if 'current-subfield' in ctx.extras:
-            ctx.extras['current-subfield'] = key
-
-        return ctx.current_link[ATTRIBUTES].get(key)
+        return [ tup[1] for tup in subfields(ctx.current_link[ATTRIBUTES], key, ctx=ctx) ]
         #Why the blazes would this ever return [None] rather than None?!
         #return ctx.current_link[ATTRIBUTES].get(key, [None])
     return _subfield
@@ -560,13 +567,15 @@ def materialize(typ, rel=DEFAULT_REL, derive_origin=None, unique=None, links=Non
             if _typ: ctx.output_model.add(I(objid), VTYPE_REL, I(iri.absolutize(_typ, ctx.base)), {})
             #FIXME: Should we be using Python Nones to mark blanks, or should Versa define some sort of null resource?
 
-            # Create a temporary model to capture the result of just these attributes,
-            # so that we can preserve ordering afterwards.
-            tmp_omodel = ctx.output_model.copy(contents=False) # new empty temporary model, preserving model config
+            # Create a temporary model to capture attributes generated from this particular materialization, which will later be copied to the real output model in the order preserved from MARC
+            tmp_omodel = ctx.output_model.copy(contents=False)
 
-            ctx.extras['current-subfield'] = None # start tracking current subfield
+            #Start tracking current subfield
+            #XXX It's probably circumstantially OK that this is a single, replaced  value and not a list. In theory, however, we could lose ordering info if an output relationship was derived from more than one subfield
             subfield_rids = {}
+
             for k, v in links.items():
+                ctx.extras['current-subfield-ix'] = []
                 #Make sure the context used has the right origin
                 new_current_link = (I(objid), ctx.current_link[RELATIONSHIP], ctx.current_link[TARGET], ctx.current_link[ATTRIBUTES])
                 newctx = ctx.copy(current_link=new_current_link, output_model=tmp_omodel)
@@ -593,40 +602,39 @@ def materialize(typ, rel=DEFAULT_REL, derive_origin=None, unique=None, links=Non
                     if v is not None:
                         #FIXME: Fix properly, by slugifying & making sure slugify handles all-numeric case
                         if k.isdigit(): k = '_' + k
-                        if not isinstance(v, list): v = [v]
-                        for valitems in v:
-                            if valitems:
-                                rid = tmp_omodel.add(I(objid), I(iri.absolutize(k, newctx.base)), valitems, {})
-                                # associate the statement with the subfield
-                                subfield_rids.setdefault(ctx.extras['current-subfield'], []).append(rid)
-                                #print("{} subfield {} is responsible for statement {} with rid {}".format(ctx, ctx.extras['current-subfield'], stmt, rid))
+                        v = v if isinstance(v, list) else [v]
+                        subfield_index_index = 0
+                        for valitem in v:
+                            if valitem:
+                                # Associate the statement with the subfield
+                                if subfield_index_index < len(ctx.extras['current-subfield-ix']):
+                                    ix = ctx.extras['current-subfield-ix'][subfield_index_index]
+                                else:
+                                    ix = sys.maxsize
+                                subfield_tracking = {'source-subfield-ix': ix}
+                                tmp_omodel.add(I(objid), I(iri.absolutize(k, newctx.base)), valitem, subfield_tracking)
+                                subfield_index_index += 1
 
             # If we care about MARC order, add the orderable statements from the
             # temporary model into the output model. tmp_omodel will not
             # necessarily be empty after this block runs so we add the remaining
             # statements into the output model too
 
-            clv = next(iter(ctx.current_link[ATTRIBUTES].values()), None) # just need any one attribute value
-            if clv and isinstance(clv, LoggedList):
-                rids_to_remove = []
-                mll = list(merge_list_logs(ctx.current_link[ATTRIBUTES]))
-                for sf, v, i in mll:
-                    if sf in subfield_rids:
-                        rids = subfield_rids[sf]
-                        if i >= len(rids): continue # subfield doesn't always yield a unique statement
+            #rids_to_remove = []
+            for lid, (tmp_o, tmp_r, tmp_t, tmp_a) in sorted(tmp_omodel, key=lambda l: l[1][ATTRIBUTES].get('source-subfield-ix', sys.maxsize)):
+                #ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
+                if 'source-subfield-ix' in tmp_a: del tmp_a['source-subfield-ix']
+                #print("{} moving statement number {} {} to output_model".format(ctx,rids[i], tmp_omodel[rids[i]]))
+                ctx.output_model.add(tmp_o, tmp_r, tmp_t, tmp_a)
+                #rids_to_remove.append(lid)
 
-                        #print("{} moving statement number {} {} to output_model".format(ctx,rids[i], tmp_omodel[rids[i]]))
-                        ctx.output_model.add(*tmp_omodel[rids[i]])
-                        rids_to_remove.append(rids[i])
+            #tmp_omodel.remove(rids_to_remove)
 
-                tmp_omodel.remove(rids_to_remove)
-
-            ctx.output_model.add_many(tmp_omodel)
+            #ctx.output_model.add_many(tmp_omodel)
 
             #To avoid losing info include subfields which come via Versa attributes
-            for k, v in ctx.current_link[ATTRIBUTES].items():
-                for valitems in v:
-                    ctx.output_model.add(I(objid), I(iri.absolutize('../marcext/sf-' + k, ctx.base)), valitems, {})
+            for k, v in subfields(ctx.current_link[ATTRIBUTES]):
+                ctx.output_model.add(I(objid), I(iri.absolutize('../marcext/sf-' + k, ctx.base)), v, {})
             ctx.existing_ids.add(objid)
 
     return _materialize

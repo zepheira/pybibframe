@@ -37,7 +37,7 @@ for s, c, e in zip(all_snippets, all_config, all_expected):
     m = memory.connection()
     instream = BytesIO(sobj.encode('utf-8'))
     outstream = StringIO()
-    bfconvert(factory(instream), model=m, out=outstream, config=cobj, canonical=True, loop=loop)
+    bfconvert(instream, model=m, out=outstream, config=cobj, canonical=True, loop=loop)
     print('EXPECTED from {0}:'.format(s))
     print(outstream.getvalue()) #This output becomes the EXPECTED stanza
 }}}

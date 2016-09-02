@@ -500,91 +500,7 @@ CONFIG_5 = None
 EXPECTED_5 = '''
 [
     [
-        "Y8u4n-XGt6w",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Work",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "Y8u4n-XGt6w",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/marc/Books",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "Y8u4n-XGt6w",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/marc/LanguageMaterial",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "Y8u4n-XGt6w",
-        "http://bibfra.me/vocab/lite/title",
-        "Ishinp\u014d /",
-        {}
-    ],
-    [
-        "Y8u4n-XGt6w",
-        "http://bibfra.me/vocab/lite/title",
-        "\u91ab\u5fc3\u65b9 /",
-        {}
-    ],
-    [
-        "Y8u4n-XGt6w",
-        "http://bibfra.me/vocab/marc/natureOfContents",
-        "programmed texts",
-        {}
-    ],
-    [
-        "Y8u4n-XGt6w",
-        "http://bibfra.me/vocab/marc/natureOfContents",
-        "surveys of literature",
-        {}
-    ],
-    [
-        "Y8u4n-XGt6w",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "Tanba no Sukune Yasuyori sen.",
-        {}
-    ],
-    [
-        "Y8u4n-XGt6w",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "\u4e39\u6ce2\u5bbf\u88ae\u5eb7\u983c\u64b0.",
-        {}
-    ],
-    [
-        "Y8u4n-XGt6w",
-        "http://bibfra.me/vocab/marcext/tag-008",
-        "020613s1860 ja a 000 0 jpn",
-        {}
-    ],
-    [
-        "Y8u4n-XGt6w",
-        "http://bibfra.me/vocab/marcext/tag-880-10-6",
-        "245-02/$1",
-        {}
-    ],
-    [
-        "Y8u4n-XGt6w",
-        "http://bibfra.me/vocab/marcext/tag-880-10-a",
-        "\u91ab\u5fc3\u65b9 /",
-        {}
-    ],
-    [
-        "Y8u4n-XGt6w",
-        "http://bibfra.me/vocab/marcext/tag-880-10-c",
-        "\u4e39\u6ce2\u5bbf\u88ae\u5eb7\u983c\u64b0.",
-        {}
-    ],
-    [
-        "ggF1ConzjAs",
+        "CB1sfI2NODY",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
         {
@@ -592,34 +508,94 @@ EXPECTED_5 = '''
         }
     ],
     [
-        "ggF1ConzjAs",
+        "CB1sfI2NODY",
         "http://bibfra.me/vocab/lite/instantiates",
-        "Y8u4n-XGt6w",
+        "WVM1AxxjkpM",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "ggF1ConzjAs",
+        "CB1sfI2NODY",
         "http://bibfra.me/vocab/lite/title",
         "Ishinp\u014d /",
         {}
     ],
     [
-        "ggF1ConzjAs",
-        "http://bibfra.me/vocab/lite/title",
-        "\u91ab\u5fc3\u65b9 /",
-        {}
-    ],
-    [
-        "ggF1ConzjAs",
+        "CB1sfI2NODY",
         "http://bibfra.me/vocab/marc/titleStatement",
         "Tanba no Sukune Yasuyori sen.",
         {}
     ],
     [
-        "ggF1ConzjAs",
+        "WVM1AxxjkpM",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "WVM1AxxjkpM",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/Books",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "WVM1AxxjkpM",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/LanguageMaterial",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "WVM1AxxjkpM",
+        "http://bibfra.me/vocab/lite/title",
+        "Ishinp\u014d /",
+        {}
+    ],
+    [
+        "WVM1AxxjkpM",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "programmed texts",
+        {}
+    ],
+    [
+        "WVM1AxxjkpM",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "surveys of literature",
+        {}
+    ],
+    [
+        "WVM1AxxjkpM",
         "http://bibfra.me/vocab/marc/titleStatement",
+        "Tanba no Sukune Yasuyori sen.",
+        {}
+    ],
+    [
+        "WVM1AxxjkpM",
+        "http://bibfra.me/vocab/marcext/tag-008",
+        "020613s1860 ja a 000 0 jpn",
+        {}
+    ],
+    [
+        "WVM1AxxjkpM",
+        "http://bibfra.me/vocab/marcext/tag-880-10-6",
+        "245-02/$1",
+        {}
+    ],
+    [
+        "WVM1AxxjkpM",
+        "http://bibfra.me/vocab/marcext/tag-880-10-a",
+        "\u91ab\u5fc3\u65b9 /",
+        {}
+    ],
+    [
+        "WVM1AxxjkpM",
+        "http://bibfra.me/vocab/marcext/tag-880-10-c",
         "\u4e39\u6ce2\u5bbf\u88ae\u5eb7\u983c\u64b0.",
         {}
     ]
@@ -851,13 +827,13 @@ EXPECTED_8 = '''
     [
         "7UKKGBFmVgM",
         "http://bibfra.me/vocab/relation/unionOf",
-        "KZdDeHAXqUc",
+        "H1LEC3o_jXI",
         {
             "@target-type": "@iri-ref"
         }
     ],
     [
-        "KZdDeHAXqUc",
+        "H1LEC3o_jXI",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Work",
         {
@@ -865,7 +841,7 @@ EXPECTED_8 = '''
         }
     ],
     [
-        "KZdDeHAXqUc",
+        "H1LEC3o_jXI",
         "http://bibfra.me/vocab/lite/authorityLink",
         "http://lccn.loc.gov/96646621",
         {
@@ -873,7 +849,7 @@ EXPECTED_8 = '''
         }
     ],
     [
-        "KZdDeHAXqUc",
+        "H1LEC3o_jXI",
         "http://bibfra.me/vocab/lite/authorityLink",
         "http://www.ncbi.nlm.nih.gov/nlmcatalog?term=7505458",
         {
@@ -881,7 +857,7 @@ EXPECTED_8 = '''
         }
     ],
     [
-        "KZdDeHAXqUc",
+        "H1LEC3o_jXI",
         "http://bibfra.me/vocab/lite/authorityLink",
         "http://www.worldcat.org/oclc/1478787",
         {
@@ -889,43 +865,43 @@ EXPECTED_8 = '''
         }
     ],
     [
-        "KZdDeHAXqUc",
+        "H1LEC3o_jXI",
         "http://bibfra.me/vocab/lite/title",
         "Doklady biochemistry",
         {}
     ],
     [
-        "KZdDeHAXqUc",
+        "H1LEC3o_jXI",
         "http://bibfra.me/vocab/marc/issn",
         "0012-4958",
         {}
     ],
     [
-        "KZdDeHAXqUc",
+        "H1LEC3o_jXI",
         "http://bibfra.me/vocab/marcext/sf-t",
         "Doklady biochemistry",
         {}
     ],
     [
-        "KZdDeHAXqUc",
+        "H1LEC3o_jXI",
         "http://bibfra.me/vocab/marcext/sf-w",
         "(DLC)   96646621",
         {}
     ],
     [
-        "KZdDeHAXqUc",
+        "H1LEC3o_jXI",
         "http://bibfra.me/vocab/marcext/sf-w",
         "(DNLM)7505458",
         {}
     ],
     [
-        "KZdDeHAXqUc",
+        "H1LEC3o_jXI",
         "http://bibfra.me/vocab/marcext/sf-w",
         "(OCoLC)1478787",
         {}
     ],
     [
-        "KZdDeHAXqUc",
+        "H1LEC3o_jXI",
         "http://bibfra.me/vocab/marcext/sf-x",
         "0012-4958",
         {}

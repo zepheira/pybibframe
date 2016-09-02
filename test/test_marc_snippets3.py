@@ -83,6 +83,76 @@ CONFIG_21 = None
 EXPECTED_21 = '''
 [
     [
+        "C_YMLbNuSDs",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "C_YMLbNuSDs",
+        "http://bibfra.me/vocab/lite/authorityLink",
+        "sky235195071",
+        {}
+    ],
+    [
+        "C_YMLbNuSDs",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "tVaxKHAonKQ",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "C_YMLbNuSDs",
+        "http://bibfra.me/vocab/lite/medium",
+        "[downloadable ebook] :",
+        {}
+    ],
+    [
+        "C_YMLbNuSDs",
+        "http://bibfra.me/vocab/lite/note",
+        "Original",
+        {}
+    ],
+    [
+        "C_YMLbNuSDs",
+        "http://bibfra.me/vocab/marc/isbn",
+        "9781615301164",
+        {}
+    ],
+    [
+        "C_YMLbNuSDs",
+        "http://bibfra.me/vocab/marc/titleRemainder",
+        "the physiology of human perception /",
+        {}
+    ],
+    [
+        "C_YMLbNuSDs",
+        "http://bibfra.me/vocab/marc/titleStatement",
+        "edited by Kara Rogers",
+        {}
+    ],
+    [
+        "C_YMLbNuSDs",
+        "http://bibfra.me/vocab/marcext/sf-c",
+        "Original",
+        {}
+    ],
+    [
+        "C_YMLbNuSDs",
+        "http://bibfra.me/vocab/marcext/sf-w",
+        "sky235195071",
+        {}
+    ],
+    [
+        "C_YMLbNuSDs",
+        "http://bibfra.me/vocab/marcext/sf-z",
+        "9781615301164",
+        {}
+    ],
+    [
         "LRxdpzyk-Yk",
         "http://bibfra.me/purl/versa/type",
         "http://bibfra.me/vocab/lite/Instance",
@@ -125,80 +195,10 @@ EXPECTED_21 = '''
     [
         "LRxdpzyk-Yk",
         "http://bibfra.me/vocab/relation/hasOtherPhysicalFormat",
-        "SVFGdMyIEpE",
+        "C_YMLbNuSDs",
         {
             "@target-type": "@iri-ref"
         }
-    ],
-    [
-        "SVFGdMyIEpE",
-        "http://bibfra.me/purl/versa/type",
-        "http://bibfra.me/vocab/lite/Instance",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "SVFGdMyIEpE",
-        "http://bibfra.me/vocab/lite/authorityLink",
-        "sky235195071",
-        {}
-    ],
-    [
-        "SVFGdMyIEpE",
-        "http://bibfra.me/vocab/lite/instantiates",
-        "tVaxKHAonKQ",
-        {
-            "@target-type": "@iri-ref"
-        }
-    ],
-    [
-        "SVFGdMyIEpE",
-        "http://bibfra.me/vocab/lite/medium",
-        "[downloadable ebook] :",
-        {}
-    ],
-    [
-        "SVFGdMyIEpE",
-        "http://bibfra.me/vocab/lite/note",
-        "Original",
-        {}
-    ],
-    [
-        "SVFGdMyIEpE",
-        "http://bibfra.me/vocab/marc/isbn",
-        "9781615301164",
-        {}
-    ],
-    [
-        "SVFGdMyIEpE",
-        "http://bibfra.me/vocab/marc/titleRemainder",
-        "the physiology of human perception /",
-        {}
-    ],
-    [
-        "SVFGdMyIEpE",
-        "http://bibfra.me/vocab/marc/titleStatement",
-        "edited by Kara Rogers",
-        {}
-    ],
-    [
-        "SVFGdMyIEpE",
-        "http://bibfra.me/vocab/marcext/sf-c",
-        "Original",
-        {}
-    ],
-    [
-        "SVFGdMyIEpE",
-        "http://bibfra.me/vocab/marcext/sf-w",
-        "sky235195071",
-        {}
-    ],
-    [
-        "SVFGdMyIEpE",
-        "http://bibfra.me/vocab/marcext/sf-z",
-        "9781615301164",
-        {}
     ],
     [
         "tVaxKHAonKQ",
@@ -282,9 +282,7 @@ CONFIG_22 = {
             } ]
         },
         "default-label": "!UNKNOWN LABEL"
-    } ],
-    "versa-attr-cls": "collections.OrderedDict",
-    "versa-attr-list-cls": "bibframe.util.LoggedList"
+    } ]
 }
 
 EXPECTED_22 = '''

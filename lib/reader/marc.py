@@ -26,10 +26,15 @@ from bibframe import BF_INIT_TASK, BF_INPUT_TASK, BF_INPUT_XREF_TASK, BF_MARCREC
 from bibframe.util import materialize_entity
 from bibframe.isbnplus import isbn_list, compute_ean13_check
 from . import transform_set, BOOTSTRAP_PHASE, DEFAULT_MAIN_PHASE, PYBF_BOOTSTRAP_TARGET_REL, VTYPE_REL
-from .util import WORK_TYPE, INSTANCE_TYPE
+from .util import WORK_TYPE, INSTANCE_TYPE, subfields
 from .marcpatterns import TRANSFORMS, bfcontext
 from .marcworkidpatterns import WORK_HASH_TRANSFORMS, WORK_HASH_INPUT
 from .marcextra import transforms as default_special_transforms
+
+#re https://www.loc.gov/marc/bibliographic/ecbdcntf.html
+#$6 [linking tag]-[occurrence number]/[script identification code]/[field orientation code]
+LINKAGE_PAT = re.compile('(\d\d\d)(-\d\d)?(/..)?(/r)?')
+
 
 MARCXML_NS = "http://www.loc.gov/MARC21/slim"
 
@@ -41,6 +46,15 @@ NEW_RECORD = 'http://bibfra.me/purl/versa/' + 'newrecord'
 
 BL = 'http://bibfra.me/vocab/lite/'
 ISBNNS = MARC
+
+MARC_O6_SCRIPT_CODES = {
+    '(3': 'arabic',
+    '(B': 'latin',
+    '$1': 'cjk',
+    '(N': 'cyrillic',
+    '(S': 'greek',
+    '(2': 'hebrew'
+}
 
 def invert_dict(d):
     #http://code.activestate.com/recipes/252143-invert-a-dictionary-one-liner/#c3
@@ -62,8 +76,8 @@ def marc_lookup(model, codes):
         #Check for data field
         links = model.match(None, MARCXML_NS + '/data/' + tag)
         for link in links:
-            for result in link[ATTRIBUTES].get(sf, []):
-                yield (code, result)
+            for k, v in subfields(link[ATTRIBUTES], sf):
+                yield (code, v)
 
         #Check for control field
         links = model.match(None, MARCXML_NS + '/control/' + tag)
@@ -194,10 +208,8 @@ def process_marcpatterns(params, transforms, input_model, phase_target):
             continue
         #Sort out attributes
         params['indicators'] = indicators = { k: v for k, v in attribs.items() if k.startswith('ind') }
-        params['subfields'] = subfields = attribs.copy() # preserve class
-        for k in list(subfields.keys()):
-            if k[:3] in ('tag', 'ind'):
-                del subfields[k]
+        params['subfields'] = curr_subfields = subfields(attribs)
+        curr_subfields_keys = [ tup[0] for tup in curr_subfields ]
         if taglink.startswith(MARCXML_NS + '/extra/') or 'tag' not in attribs: continue
         params['code'] = tag = attribs['tag']
         if taglink.startswith(MARCXML_NS + '/control'):
@@ -218,7 +230,7 @@ def process_marcpatterns(params, transforms, input_model, phase_target):
             key = 'tag-' + tag
             #logger.debug('indicators: ', repr(indicators))
             #indicator_list = (indicators['ind1'], indicators['ind2'])
-            if phase_target != BOOTSTRAP_PHASE: params['fields_used'].append(tuple([tag] + list(subfields.keys())))
+            if phase_target != BOOTSTRAP_PHASE: params['fields_used'].append(tuple([tag] + curr_subfields_keys))
 
         #This is where we check each incoming MARC link to see if it matches a transform into an output link (e.g. renaming 001 to 'controlCode')
         to_process = []
@@ -226,7 +238,7 @@ def process_marcpatterns(params, transforms, input_model, phase_target):
 
         # "?" syntax in lookups is a single char wildcard
         #First with subfields, with & without indicators:
-        for k, v in subfields.items():
+        for k, v in curr_subfields:
             #if indicator_list == ('#', '#'):
             lookups = [
                 '{0}-{1}{2}${3}'.format(tag, indicator_list[0], indicator_list[1], k),
@@ -234,17 +246,16 @@ def process_marcpatterns(params, transforms, input_model, phase_target):
                 '{0}-{1}?${3}'.format(tag, indicator_list[0], indicator_list[1], k),
                 '{0}${1}'.format(tag, k),
             ]
-            for valitems in v:
-                for lookup in lookups:
-                    if lookup in transforms:
-                        to_process.append((transforms[lookup], valitems, lookup))
-                    else:
-                        # don't report on subfields for which a code-transform exists,
-                        # disregard wildcards
-                        if phase_target != BOOTSTRAP_PHASE and not tag in transforms and '?' not in lookup:
+            for lookup in lookups:
+                if lookup in transforms:
+                    to_process.append((transforms[lookup], v, lookup))
+                else:
+                    # don't report on subfields for which a code-transform exists,
+                    # disregard wildcards
+                    if phase_target != BOOTSTRAP_PHASE and not tag in transforms and '?' not in lookup:
 
-                            params['dropped_codes'].setdefault(lookup,0)
-                            params['dropped_codes'][lookup] += 1
+                        params['dropped_codes'].setdefault(lookup,0)
+                        params['dropped_codes'][lookup] += 1
 
         #Now just the tag, with & without indicators
         lookups = [
@@ -260,7 +271,7 @@ def process_marcpatterns(params, transforms, input_model, phase_target):
             if lookup in transforms:
                 to_process.append((transforms[lookup], val, lookup))
 
-        if phase_target != BOOTSTRAP_PHASE and subfields_results_len == len(to_process) and not subfields:
+        if phase_target != BOOTSTRAP_PHASE and subfields_results_len == len(to_process) and not curr_subfields:
             # Count as dropped if subfields were not processed and theer were no matches on non-subfield lookups
             params['dropped_codes'].setdefault(tag,0)
             params['dropped_codes'][tag] += 1
@@ -284,8 +295,8 @@ def process_marcpatterns(params, transforms, input_model, phase_target):
                 }
                 #Build Versa processing context
                 #Should we include indicators?
-                #Should we be passing in taglik rather than tag?
-                ctx = bfcontext((origin, tag, val, subfields), input_model,
+                #Should we be passing in taglink rather than tag?
+                ctx = bfcontext((origin, tag, val, attribs), input_model,
                                     output_model, extras=extras,
                                     base=params['vocabbase'], idgen=mat_ent,
                                     existing_ids=params['existing_ids'])
@@ -295,22 +306,21 @@ def process_marcpatterns(params, transforms, input_model, phase_target):
         if phase_target != BOOTSTRAP_PHASE and not to_process:
             #Nothing else has handled this data field; go to the fallback
             fallback_rel_base = '../marcext/tag-' + tag
-            if not subfields:
+            if not curr_subfields:
                 #Fallback for control field: Captures MARC tag & value
                 output_model.add(I(origin), I(iri.absolutize(fallback_rel_base, params['vocabbase'])), val)
-            for k, v in subfields.items():
+            for k, v in curr_subfields:
                 #Fallback for data field: Captures MARC tag, indicators, subfields & value
                 fallback_rel = '../marcext/{0}-{1}{2}-{3}'.format(
                     fallback_rel_base, indicator_list[0].replace('#', 'X'),
                     indicator_list[1].replace('#', 'X'), k)
                 #params['transform_log'].append((code, fallback_rel))
-                for valitem in v:
-                    try:
-                        output_model.add(I(origin), I(iri.absolutize(fallback_rel, params['vocabbase'])), valitem)
-                    except ValueError as e:
-                        control_code = list(marc_lookup(input_model, '001')) or ['NO 001 CONTROL CODE']
-                        dumb_title = list(marc_lookup(input_model, '245$a')) or ['NO 245$a TITLE']
-                        params['logger'].warning('{}\nSkipping statement for {}: "{}"'.format(e, control_code[0], dumb_title[0]))
+                try:
+                    output_model.add(I(origin), I(iri.absolutize(fallback_rel, params['vocabbase'])), v)
+                except ValueError as e:
+                    control_code = list(marc_lookup(input_model, '001')) or ['NO 001 CONTROL CODE']
+                    dumb_title = list(marc_lookup(input_model, '245$a')) or ['NO 245$a TITLE']
+                    params['logger'].warning('{}\nSkipping statement for {}: "{}"'.format(e, control_code[0], dumb_title[0]))
 
     #For now do not run special transforms if in a custom phase
     #XXX: Needs discussion
@@ -387,57 +397,77 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                     yield from plugin[BF_INPUT_TASK](loop, input_model, params)
 
             #Prepare cross-references (i.e. 880s)
+            #See the "$6 - Linkage" section of https://www.loc.gov/marc/bibliographic/ecbdcntf.html
             #XXX: Figure out a way to declare in TRANSFORMS? We might have to deal with non-standard relationship designators: https://github.com/lcnetdev/marc2bibframe/issues/83
             xrefs = {}
             remove_links = set()
             add_links = []
 
+            xref_link_tag_workaround = {}
             for lid, marc_link in input_model:
                 origin, taglink, val, attribs = marc_link
                 if taglink == MARCXML_NS + '/leader' or taglink.startswith(MARCXML_NS + '/data/9'):
                     #900 fields are local and might not follow the general xref rules
                     params['leader'] = leader = val
                     continue
+                #XXX Do other fields with a 9 digit (not just 9XX) also need to be skipped?
                 if taglink.startswith(MARCXML_NS + '/extra/') or 'tag' not in attribs: continue
-                tag = attribs['tag']
+                this_tag = attribs['tag']
+                #if this_tag == '100': import pdb; pdb.set_trace()
                 for xref in attribs.get('6', []):
-                    xref_parts = xref.split('-')
-                    if len(xref_parts) != 2:
+                    matched = LINKAGE_PAT.match(xref)
+                    this_taglink, this_occ, this_scriptid, this_rtl = matched.groups() if matched else (None, None, None, None)
+                    if not this_taglink and occ:
                         control_code = list(marc_lookup(input_model, '001')) or ['NO 001 CONTROL CODE']
                         dumb_title = list(marc_lookup(input_model, '245$a')) or ['NO 245$a TITLE']
                         logger.warning('Skipping invalid $6: "{}" for {}: "{}"'.format(xref, control_code[0], dumb_title[0]))
                         continue
+                    
+                    if this_tag == this_taglink:
+                        #Pretty sure this is an erroneous self-link, but we've seen this in the wild (e.g. QNL). Issue warning & do the best we can linking via occurrence
+                        #Note: the resulting workround (lookup table from occurence code to the correct tag) will not work in cases of linking from any tag higher in ordinal value than 880 (if such a situation is even possible)
+                        logger.warning('Invalid input: erroneous self-link $6: "{}" from "{}". Trying to work around.'.format(xref, this_tag))
+                        if this_tag != '880':
+                            xref_link_tag_workaround[this_occ] = this_tag
+                    
+                    #FIXME: Remove this debugging if statament at some point
+                    if scriptid or rtl:
+                        logger.debug('Language info specified in subfield 6, {}'.format(xref))
 
-                    xreftag, xrefid = xref_parts
                     #Locate the matching taglink
-                    if tag == '880' and xrefid.startswith('00'):
-                        #Special case, no actual xref, just the non-roman text
-                        #Rule for 880s: merge in & add language indicator
-                        langinfo = xrefid.split('/')[-1]
-                        #Not using langinfo, really, at present because it seems near useless. Eventually we can handle by embedding a lang indicator token into attr values for later postprocessing
-                        attribs['tag'] = xreftag
-                        add_links.append((origin, MARCXML_NS + '/data/' + xreftag, val, attribs))
+                    if this_tag == '880' and this_occ == '00':
+                        #Special case, no actual xref, used to separate scripts in a record (re Multiscript Records)
+                        #FIXME: Not really handled right now. Presume some sort of merge dynamics will need to be implemented
+                        attribs['tag'] = this_taglink
+                        add_links.append((origin, MARCXML_NS + '/data/' + this_taglink, val, attribs))
 
-                    links = input_model.match(None, MARCXML_NS + '/data/' + xreftag)
-                    for link in links:
+                    if xref_link_tag_workaround:
+                        if this_tag == '880':
+                            this_taglink = xref_link_tag_workaround.get(this_occ)
+
+                    links = input_model.match(None, MARCXML_NS + '/data/' + this_taglink)
+                    for that_link in links:
                         #6 is the cross-reference subfield
-                        for dest in link[ATTRIBUTES].get('6', []):
-                            if [tag, xrefid] == dest.split('/')[0].split('-'):
-                                if tag == '880':
-                                    #880s will be handled by merger via xref, so take out for main loop
-                                    #XXX: This does, however, make input_model no longer a true representation of the input XML. Problem?
+                        for that_ref in link[ATTRIBUTES].get('6', []):
+                            matched = LINKAGE_PAT.match(that_ref)
+                            that_taglink, that_occ, that_scriptid, that_rtl = matched.groups() if matched else (None, None, None, None)
+                            #if not that_tag and that_occ:
+                            #    control_code = list(marc_lookup(input_model, '001')) or ['NO 001 CONTROL CODE']
+                            #    dumb_title = list(marc_lookup(input_model, '245$a')) or ['NO 245$a TITLE']
+                            #    logger.warning('Skipping invalid $6: "{}" for {}: "{}"'.format(to_ref, control_code[0], dumb_title[0]))
+                            #    continue
+                            if ([that_taglink, that_occ] == [this_tag, this_occ]) or (xref_link_tag_workaround and that_occ == this_occ):
+                                if this_tag == '880':
+                                    #This is an 880, which we'll handle by integrating back into the input model using the correct tag, flagged to show the relationship
                                     remove_links.add(lid)
 
-                                if xreftag == '880':
-                                    #Rule for 880s: merge in & add language indicator
-                                    langinfo = dest.split('/')[-1]
-                                    #Not using langinfo, really, at present because it seems near useless. Eventually we can handle by embedding a lang indicator token into attr values for later postprocessing
-                                    remove_links.add(lid)
+                                if that_taglink == '880':
+                                    #Rule for 880s: duplicate but link more robustly
                                     copied_attribs = attribs.copy()
-                                    for k, v in link[ATTRIBUTES].items():
+                                    for k, v in that_link[ATTRIBUTES].items():
                                         if k[:3] not in ('tag', 'ind'):
                                             copied_attribs.setdefault(k, []).extend(v)
-                                    add_links.append((origin, taglink, val, copied_attribs))
+                                    add_links.append((origin, MARCXML_NS + '/data/' + this_tag, val, copied_attribs))
 
             input_model.remove(remove_links)
             input_model.add_many(add_links)

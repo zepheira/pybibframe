@@ -172,7 +172,7 @@ class labelizer(object):
                         label += _separator
                     #print("current label", label)
 
-                if len(label) > 0:
+                if label:
                     model.add(obj, I(RDFS_LABEL), label)
                     break # we've found a rule that produces a label, so skip other rules
 
