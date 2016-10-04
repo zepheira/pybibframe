@@ -1104,6 +1104,10 @@ def run_one(snippet, expected, desc, entbase=None, config=None, loop=None, canon
     hashmap, m = hash_neutral_model(outstream)
     hashmap = '\n'.join(sorted([ repr((i[1], i[0])) for i in hashmap.items() ]))
 
+    #with open('/tmp/result{}.versa.json'.format(g_counter), 'w') as fp:
+    #    jsondump(m, fp)
+    #run_one.g_counter += 1
+
     expected_stream = StringIO(expected)
     hashmap_expected, m_expected = hash_neutral_model(expected_stream)
     hashmap_expected = '\n'.join(sorted([ repr((i[1], i[0])) for i in hashmap_expected.items() ]))

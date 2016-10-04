@@ -50,6 +50,8 @@ from versa.util import jsondump, jsonload
 from bibframe.reader import bfconvert
 import bibframe.plugin
 from bibframe.util import hash_neutral_model
+from bibframe.reader.util import *
+
 
 import pytest
 
@@ -286,7 +288,7 @@ CONFIG_22 = {
 }
 
 EXPECTED_22 = '''
-[   
+[
     [
         "NKUx9o0hy4w",
         "http://bibfra.me/purl/versa/type",
@@ -361,6 +363,213 @@ EXPECTED_22 = '''
     ]
 ]
 '''
+
+
+TEST_ABORT_PATTERNS = {
+    '852$b': abort_on('eggs'),
+}
+
+#Register these transform sets so they can be invoked by URL in config
+register_transforms("http://example.org/vocab/test-abort#transforms", TEST_ABORT_PATTERNS)
+
+SNIPPET_23 = '''<collection xmlns="http://www.loc.gov/MARC21/slim">
+<record>
+  <leader>01142cam 2200301 a 4500</leader>
+  <controlfield tag="001">92005291</controlfield>
+  <controlfield tag="008">920219s1993 caua j 000 0 eng</controlfield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">Arithmetic</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="b">spam</subfield>
+  </datafield>
+</record>
+<record>
+  <leader>01142cam 2200301 a 4500</leader>
+  <controlfield tag="001">92005292</controlfield>
+  <controlfield tag="008">920219s1993 caua j 000 0 eng</controlfield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">Geometry</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="b">eggs</subfield>
+  </datafield>
+</record>
+</collection>
+'''
+
+CONFIG_23 = {
+    "transforms": [
+        "http://bibfra.me/tool/pybibframe/transforms#marc",
+        "http://bibfra.me/tool/pybibframe/transforms#bflite",
+        "http://example.org/vocab/test-abort#transforms"
+    ]
+}
+
+EXPECTED_23 = '''
+[
+    [
+        "VsIPn7Vve5E",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "VsIPn7Vve5E",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/Books",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "VsIPn7Vve5E",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/LanguageMaterial",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "VsIPn7Vve5E",
+        "http://bibfra.me/vocab/lite/title",
+        "Arithmetic",
+        {}
+    ],
+    [
+        "VsIPn7Vve5E",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "encyclopedias",
+        {}
+    ],
+    [
+        "VsIPn7Vve5E",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "legal articles",
+        {}
+    ],
+    [
+        "VsIPn7Vve5E",
+        "http://bibfra.me/vocab/marc/natureOfContents",
+        "surveys of literature",
+        {}
+    ],
+    [
+        "VsIPn7Vve5E",
+        "http://bibfra.me/vocab/marcext/tag-008",
+        "920219s1993 caua j 000 0 eng",
+        {}
+    ],
+    [
+        "u6cLqQV23I8",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "u6cLqQV23I8",
+        "http://bibfra.me/vocab/lite/controlCode",
+        "92005291",
+        {}
+    ],
+    [
+        "u6cLqQV23I8",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "VsIPn7Vve5E",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "u6cLqQV23I8",
+        "http://bibfra.me/vocab/lite/title",
+        "Arithmetic",
+        {}
+    ]
+]
+'''
+
+
+HELD_AT = 'http://example.org/vocab/held-at'
+
+TEST_INLINE_LOOKUP_PATTERNS = {
+    '852$b': oninstance.link(rel=HELD_AT, value=lookup_inline({'ein': 'one', 'uno': 'one', 'zwei': 'two'})),
+}
+
+#Register these transform sets so they can be invoked by URL in config
+register_transforms("http://example.org/vocab/lookup-inline#transforms", TEST_INLINE_LOOKUP_PATTERNS)
+
+SNIPPET_24 = '''<collection xmlns="http://www.loc.gov/MARC21/slim">
+<record>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">Arithmetic</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="b">ein</subfield>
+  </datafield>
+</record>
+</collection>
+'''
+
+CONFIG_24 = {
+    "transforms": [
+        "http://bibfra.me/tool/pybibframe/transforms#marc",
+        "http://bibfra.me/tool/pybibframe/transforms#bflite",
+        "http://example.org/vocab/lookup-inline#transforms"
+    ]
+}
+
+EXPECTED_24 = '''
+[
+    [
+        "VpDb1Wlkt_A",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "VpDb1Wlkt_A",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "VuXv7krAijw",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "VpDb1Wlkt_A",
+        "http://bibfra.me/vocab/lite/title",
+        "Arithmetic",
+        {}
+    ],
+    [
+        "VpDb1Wlkt_A",
+        "http://example.org/vocab/held-at",
+        "one",
+        {}
+    ],
+    [
+        "VuXv7krAijw",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "VuXv7krAijw",
+        "http://bibfra.me/vocab/lite/title",
+        "Arithmetic",
+        {}
+    ]
+]
+'''
+
 
 #TBD
 #SNIPPET_23 = SNIPPET_22

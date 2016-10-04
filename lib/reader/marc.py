@@ -292,6 +292,7 @@ def process_marcpatterns(params, transforms, input_model, phase_target):
                     'lookups': params['lookups'],
                     'postprocessing': [],
                     'inputns': MARC,
+                    'abort-signal': False,
                 }
                 #Build Versa processing context
                 #Should we include indicators?
@@ -302,6 +303,8 @@ def process_marcpatterns(params, transforms, input_model, phase_target):
                                     existing_ids=params['existing_ids'])
                 func(ctx)
                 params['to_postprocess'].extend(ctx.extras['postprocessing'])
+                if ctx.extras['abort-signal']:
+                    return False
 
         if phase_target != BOOTSTRAP_PHASE and not to_process:
             #Nothing else has handled this data field; go to the fallback
@@ -339,7 +342,7 @@ def process_marcpatterns(params, transforms, input_model, phase_target):
                 if o and (o, k, item) not in extra_stmts:
                     output_model.add(o, k, item)
                     extra_stmts.add((o, k, item))
-    return
+    return True
 
 unused_flag = object()
 
@@ -422,14 +425,14 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                         dumb_title = list(marc_lookup(input_model, '245$a')) or ['NO 245$a TITLE']
                         logger.warning('Skipping invalid $6: "{}" for {}: "{}"'.format(xref, control_code[0], dumb_title[0]))
                         continue
-                    
+
                     if this_tag == this_taglink:
                         #Pretty sure this is an erroneous self-link, but we've seen this in the wild (e.g. QNL). Issue warning & do the best we can linking via occurrence
                         #Note: the resulting workround (lookup table from occurence code to the correct tag) will not work in cases of linking from any tag higher in ordinal value than 880 (if such a situation is even possible)
                         logger.warning('Invalid input: erroneous self-link $6: "{}" from "{}". Trying to work around.'.format(xref, this_tag))
                         if this_tag != '880':
                             xref_link_tag_workaround[this_occ] = this_tag
-                    
+
                     #FIXME: Remove this debugging if statament at some point
                     if scriptid or rtl:
                         logger.debug('Language info specified in subfield 6, {}'.format(xref))
@@ -496,7 +499,8 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             #First apply special patterns for determining the main target resources
             curr_transforms = transforms.compiled[BOOTSTRAP_PHASE]
 
-            process_marcpatterns(params, curr_transforms, input_model, BOOTSTRAP_PHASE)
+            ok = process_marcpatterns(params, curr_transforms, input_model, BOOTSTRAP_PHASE)
+            if not ok: continue #Abort current record if signalled
 
             bootstrap_output = params['output_model']
             temp_main_target = main_type = None
@@ -564,7 +568,8 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             params['fields007'] = fields007 = []
             params['to_postprocess'] = []
 
-            process_marcpatterns(params, main_transforms, input_model, phase_target)
+            ok = process_marcpatterns(params, main_transforms, input_model, phase_target)
+            if not ok: continue #Abort current record if signalled
 
             skipped_rels = set()
             for op, rels, rid in params['to_postprocess']:

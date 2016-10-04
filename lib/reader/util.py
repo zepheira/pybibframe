@@ -24,7 +24,11 @@ from bibframe.reader import BOOTSTRAP_PHASE
 
 from amara3 import iri
 
-__all__ = ["bfcontext", "base_transformer", "link", "ignore", "anchor", "target", "origin", "all_subfields", "subfield", "values", "relator_property", "replace_from", "ifexists", "foreach", "indicator", "materialize", "url", "normalize_isbn", "onwork", "oninstance", "lookup", "regex_match_modify", "register_transforms", "subfields"]
+__all__ = ["bfcontext", "base_transformer", "link", "ignore", "anchor", "target", "origin",
+            "all_subfields", "subfield", "values", "relator_property", "replace_from",
+            "ifexists", "foreach", "indicator", "materialize", "url", "normalize_isbn",
+            "onwork", "oninstance", "lookup", "regex_match_modify", "register_transforms",
+            "subfields", "abort_on", "lookup_inline"]
 
 RDA_PARENS_PAT = re.compile('\\(.*\\)')
 
@@ -701,7 +705,8 @@ def regex_match_modify(pattern, group_or_func, value=None):
     Action function generator to take some text and modify it either according to a named group or a modification function for the match
 
     :param pattern: regex string or compiled pattern
-    :param group_or_func: string or function that takes a reegex match. If string, a named group to use for the result. If a function, executed to return the result
+    :param group_or_func: string or function that takes a regex match. If string, a named group to use for the result. If a function, executed to return the result
+    :param pattern: value to use instead of the current link target
     :return: Versa action function to do the actual work
     '''
     def _regex_modify(ctx):
@@ -721,6 +726,41 @@ def regex_match_modify(pattern, group_or_func, value=None):
         else:
             return match.groupdict().get(group_or_func, '')
     return _regex_modify
+
+
+def lookup_inline(mapping, value=None):
+    '''
+    Action function generator to look up a value from a provided mapping
+
+    :param mapping: dictionary for the lookup
+    :param pattern: value to use instead of the current link target
+    :return: Versa action function to do the actual work
+    '''
+    def _lookup_inline(ctx):
+        '''
+        Versa action function Utility to do the text replacement
+
+        :param ctx: Versa context used in processing (e.g. includes the prototype link)
+        :return: Replacement text, or input text if not found
+        '''
+        (origin, _, t, a) = ctx.current_link
+        _value = value(ctx) if callable(value) else (t if value is None else value)
+        result = mapping.get(_value, _value)
+        return result
+    return _lookup_inline
+
+
+def abort_on(vals=None, regex=None):
+    '''
+    Send a signal to abort processing current record if condition met
+    '''
+    def _abort_on(ctx):
+        #XXX Perhapos use actual signals for this?
+        _vals = [vals] if not isinstance(vals, list) else vals
+        (origin, _, t, a) = ctx.current_link
+        if _vals and t in _vals:
+            ctx.extras['abort-signal'] = True
+    return _abort_on
 
 
 on = base_transformer()
