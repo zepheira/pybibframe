@@ -28,8 +28,8 @@ Converting MARC/XML to RDF or Versa output (command line)
 ---------------------------------------------------------
 
 Note: Versa is a model for Web resources and relationships. Think of it
-as an evolution of Resource Description Framework (RDF) that’s at once
-simpler and more expressive. It’s the default internal representation
+as an evolution of Resource Description Framework (RDF) that's at once
+simpler and more expressive. It's the default internal representation
 for pybibframe, though regular RDF is an optional output.
 
 ::
@@ -119,15 +119,27 @@ Instances to the output.
 Converting MARC/XML to RDF or Versa output (API)
 ================================================
 
-The ``bibframe.reader.marcxml.bfconvert`` function can be used as an API to
-run the conversion.
+The ``bibframe.reader.bfconvert`` function can be used as an API to run
+the conversion.
 
 ::
 
-    >>> from bibframe.reader.marcxml import bfconvert
+    >>> from bibframe.reader import bfconvert
     >>> inputs = open('records.mrx', 'r')
     >>> out = open('resorces.versa.json', 'w')
     >>> bfconvert(inputs=inputs, entbase='http://example.org', out=out)
+
+Configuration
+=============
+
+-  ``marcspecials-vocab``—List of vocabulary (base) IRIs to qualify
+   relationships and resource types generated from processing the
+   special MARC fields 006, 007, 008 and the leader.
+
+Transforms
+----------
+
+``'transforms': {     'bib': 'http://example.org/vocab/marc-bib-transforms', }``
 
 See also
 ========
@@ -144,6 +156,10 @@ Download from http://ftp.indexdata.com/pub/yaz/ , unpack then do:
 
     $ ./configure --prefix=$HOME/.local
     $ make && make install
+
+If you're on a Debian-based Linux you might find useful `these
+installation
+notes <https://gist.github.com/uogbuji/7cbc5c62f99951999574>`__
 
 MarcEdit - http://marcedit.reeset.net/ - can also convert to MARC/XML.
 Just install, select "MARC Tools" from the menu, choose your input file,

@@ -69,7 +69,7 @@ Which in this case will add RDFS label statements for Works and Instances to the
 
 # Converting MARC/XML to RDF or Versa output (API)
 
-The `bibframe.reader.marcxml.bfconvert` function can be used as an API to
+The `bibframe.reader.bfconvert` function can be used as an API to
 run the conversion.
 
 	>>> from bibframe.reader import bfconvert
@@ -103,7 +103,7 @@ Download from http://ftp.indexdata.com/pub/yaz/ , unpack then do:
     $ ./configure --prefix=$HOME/.local
     $ make && make install
 
-If you're on a Debian-based Linux you might find useful [these indtallation notes](https://gist.github.com/uogbuji/7cbc5c62f99951999574)
+If you're on a Debian-based Linux you might find useful [these installation notes](https://gist.github.com/uogbuji/7cbc5c62f99951999574)
 
 MarcEdit - http://marcedit.reeset.net/ - can also convert to MARC/XML. Just install, select "MARC Tools" from the menu, choose your input file, specify an output file, and specify the conversion you need to perform, e.g. "MARC21->MARC21XML" for MARC to MARC/XML. Note the availability of the UTF-8 output option too.
 
