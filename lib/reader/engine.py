@@ -72,13 +72,8 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
         return cls
 
     attr_cls = resolve_class(config.get('versa-attr-cls', 'builtins.dict'))
-    attr_list_cls = resolve_class(config.get('versa-attr-list-cls', 'builtins.list'))
-    #attr_ordered_cls = resolve_class(config.get('versa-attr-cls', 'collections.OrderedDict'))
 
     model_factory = functools.partial(memory.connection, attr_cls=attr_cls) #,logger=logger)
-    model_factory.attr_list_cls = attr_list_cls
-    #model_odict_factory = functools.partial(memory.connection, attr_cls=attr_ordered_cls) #,logger=logger)
-    #model_odict_factory.attr_list_cls = attr_list_cls
 
     if 'marc_record_handler' in config:
         handle_marc_source = AVAILABLE_MARC_HANDLERS[config['marc_record_handler']]
