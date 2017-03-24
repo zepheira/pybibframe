@@ -10,6 +10,8 @@ import re
 import base64
 import struct
 
+#Note re: https://github.com/PeterScott/murmur3/blob/master/murmur3.c
+#"The x86 and x64 versions do _not_ produce the same results, as the algorithms are optimized for their respective platforms. You can still compile and run any of them on any platform, but your performance with the non-native version will be less than optimal."
 import mmh3
 
 from amara3 import iri

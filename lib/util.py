@@ -8,7 +8,7 @@ from versa.util import duplicate_statements, OrderedJsonEncoder
 from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 
 from bibframe import BF_INIT_TASK, BF_INPUT_TASK, BF_INPUT_XREF_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
-from bibframe.contrib.datachefids import idgen
+from bibframe.contrib.datachefids import idgen as default_idgen
 
 BL = 'http://bibfra.me/vocab/lite/'
 TYPE_REL = I(iri.absolutize('type', VERSA_BASEIRI))
@@ -83,7 +83,7 @@ def materialize_entity(etype, ctx_params=None, model_to_update=None, data=None, 
     plugins = ctx_params.get('plugins')
     logger = ctx_params.get('logger', logging)
     output_model = ctx_params.get('output_model')
-    ids = ctx_params.get('ids', idgen(entbase))
+    ids = ctx_params.get('ids', default_idgen(entbase))
     if vocabbase and not iri.is_absolute(etype):
         etype = vocabbase + etype
     params = {'logger': logger}
@@ -106,4 +106,37 @@ def materialize_entity(etype, ctx_params=None, model_to_update=None, data=None, 
         if BF_MATRES_TASK in plugin:
             for p in plugin[BF_MATRES_TASK](loop, output_model, params): pass
         #logger.debug("Pending tasks: %s" % asyncio.Task.all_tasks(loop))
+    return eid
+
+
+from versa.util import OrderedJsonEncoder
+
+def resource_id(etype, unique=None, idgen=default_idgen(None), vocabbase=None):
+    '''
+    Very low level routine for generating a, ID value using the hash algorithm
+    outlined by the Libhub initiative for for BIBFRAME Lite (Libhub Resource Hash Convention).
+    Takes the entity (resource) type and an ordered data mapping.
+
+    etype - type IRI for th enew entity
+    unique - list of key/value tuples of data to use in generating its unique ID, or None in which case one is just randomly generated
+    defaultvocabbase - for convenience, provided, use to resolve relative etype & data keys
+    '''
+    params = {}
+    #XXX: Use proper URI normalization? Have a philosophical discussion with Mark about this :)
+    if vocabbase: etype = vocabbase + etype
+
+    unique_computed = []
+    for k, v in unique:
+        if vocabbase:
+            #XXX OK absolutize used here. Go figure
+            k = k if iri.is_absolute(k) else iri.absolutize(k, vocabbase)
+        unique_computed.append((k, v))
+
+    if unique_computed:
+        # XXX Is OrderedJsonEncoder neded now that we're using list of tuples rather than ordered dict?
+        plaintext = json.dumps([etype, unique_computed], cls=OrderedJsonEncoder)
+        eid = idgen.send(plaintext)
+    else:
+        #We only have a type; no other distinguishing data. Generate a random hash
+        eid = next(idgen)
     return eid
