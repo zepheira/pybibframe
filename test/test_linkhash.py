@@ -2,7 +2,7 @@ import struct
 import base64
 
 import pytest
-import mmh3
+from versa.contrib.datachefids import mmh3
 
 from bibframe.contrib.datachefids import simple_hashstring
 

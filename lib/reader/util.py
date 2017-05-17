@@ -279,7 +279,7 @@ def subfield(key):
         :param ctx: Versa context used in processing (e.g. includes the prototype link
         :return: Tuple of key/value tuples from the attributes; suitable for hashing
         '''
-        return [ tup[1] for tup in subfields(ctx.current_link[ATTRIBUTES], key, ctx=ctx) ]
+        return [ (tup[1][0] if isinstance(tup[1], list) else tup[1] ) for tup in subfields(ctx.current_link[ATTRIBUTES], key, ctx=ctx) ]
         #Why the blazes would this ever return [None] rather than None?!
         #return ctx.current_link[ATTRIBUTES].get(key, [None])
     return _subfield
