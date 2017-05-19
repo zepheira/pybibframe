@@ -1,6 +1,6 @@
 # pybibframe
 
-Requires Python 3.4 or more recent. To install dependencies:
+Requires Python 3.4 or more recent (also tested with PyPy3.5 v5.7). To install dependencies:
 
     pip install -r requirements.txt
 
@@ -30,15 +30,15 @@ If you want an RDF/XML representation of this file you can do:
 
     marc2bf -o resources.versa.json --rdfxml resources.rdf records.mrx
 
-These options do build the full RDF model in memory, so they can slow things down quite a bit.
+These two options do build the full RDF model in memory, so they can slow things down quite a bit.
 
 You can get the source MARC/XML from standard input:
 
-    curl http://lccn.loc.gov/2006013175/marcxml | marc2bf -c /Users/uche/dev/zepheira/pybibframe-plus/test/resource/config1.json --mod=bibframe.zextra -o /tmp/marc2bf.versa.json
+    curl http://lccn.loc.gov/2006013175/marcxml | marc2bf
 
 In this case a record is pulled from the Web, in particular Library of Congress Online Catalog / LCCN Permalink. Another example, Das Innere des Glaspalastes in London:
 
-    curl http://lccn.loc.gov/2012659481/marcxml | marc2bf -c /Users/uche/dev/zepheira/pybibframe-plus/test/resource/config1.json --mod=bibframe.zextra -o /tmp/marc2bf.versa.json
+    curl http://lccn.loc.gov/2012659481/marcxml | marc2bf
 
 You can process more than one MARC/XML file at a time by listing them on the command line:
 
@@ -81,7 +81,7 @@ run the conversion.
 # Configuration
 
  * `marcspecials-vocab`—List of vocabulary (base) IRIs to qualify relationships and resource types generated from processing the special MARC fields 006, 007, 008 and the leader.
- 
+
 ## Transforms
 
 ```
@@ -113,7 +113,7 @@ MarcEdit - http://marcedit.reeset.net/ - can also convert to MARC/XML. Just inst
  * [MARC 21 Specifications for Record Structure, Character Sets, and Exchange Media: CHARACTER SETS AND ENCODING OPTIONS: Part 4 (Conversion Between Environments)](http://www.loc.gov/marc/specifications/speccharconversion.html)
 
 
- ## Security
+## Security
 
   * Possible Python injection attack via configs (even strictly in JSON). Make sure you check for tainting.
 
