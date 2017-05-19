@@ -571,6 +571,121 @@ EXPECTED_24 = '''
 '''
 
 
+HELD_AT = 'http://example.org/vocab/held-at'
+
+TEST_HOLDINGS_FALLBACK_PATTERNS = {
+    '949': oninstance.link('http://library.link/vocab/branchCode', value=ifexists(subfield('a'), subfield('a'), alt='ALL_BRANCHES'))
+}
+
+#Register these transform sets so they can be invoked by URL in config
+register_transforms("http://example.org/vocab/holdings-fallback#transforms", TEST_HOLDINGS_FALLBACK_PATTERNS)
+
+SNIPPET_25 = '''<collection xmlns="http://www.loc.gov/MARC21/slim">
+<record>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">Holdings test</subfield>
+  </datafield>
+  <datafield ind2=" " ind1=" " tag="949">
+      <subfield code="a">dt</subfield>
+      <subfield code="b">i</subfield>
+      <subfield code="c">prta</subfield>
+      <subfield code="d">DOWNING</subfield>
+      <subfield code="e">fica</subfield>
+      <subfield code="f">37413316147406</subfield>
+      <subfield code="3">0</subfield>
+      <subfield code="i">DOWNING</subfield>
+      <subfield code="0">1368556</subfield>
+  </datafield>
+  <datafield ind2=" " ind1=" " tag="949">
+      <subfield code="a">so</subfield>
+      <subfield code="b">i</subfield>
+      <subfield code="c">prta</subfield>
+      <subfield code="d">DOWNING</subfield>
+      <subfield code="e">fica</subfield>
+      <subfield code="f">37413316147398</subfield>
+      <subfield code="3">0</subfield>
+      <subfield code="i">DOWNING</subfield>
+      <subfield code="0">1368555</subfield>
+  </datafield>
+  <datafield ind2=" " ind1=" " tag="949">
+      <subfield code="b">i</subfield>
+  </datafield>
+</record>
+</collection>
+'''
+
+CONFIG_25 = {
+    "transforms": [
+        "http://bibfra.me/tool/pybibframe/transforms#marc",
+        "http://bibfra.me/tool/pybibframe/transforms#bflite",
+        "http://example.org/vocab/holdings-fallback#transforms"
+    ]
+}
+
+EXPECTED_25 = '''
+[
+    [
+        "AkhksJtiCK4",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "AkhksJtiCK4",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "YrII1AheVtE",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "AkhksJtiCK4",
+        "http://bibfra.me/vocab/lite/title",
+        "Holdings test",
+        {}
+    ],
+    [
+        "AkhksJtiCK4",
+        "http://library.link/vocab/branchCode",
+        "ALL_BRANCHES",
+        {}
+    ],
+    [
+        "AkhksJtiCK4",
+        "http://library.link/vocab/branchCode",
+        [
+            "dt"
+        ],
+        {}
+    ],
+    [
+        "AkhksJtiCK4",
+        "http://library.link/vocab/branchCode",
+        [
+            "so"
+        ],
+        {}
+    ],
+    [
+        "YrII1AheVtE",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "YrII1AheVtE",
+        "http://bibfra.me/vocab/lite/title",
+        "Holdings test",
+        {}
+    ]
+]
+'''
+
+
 #TBD
 #SNIPPET_23 = SNIPPET_22
 #CONFIG_23 = CONFIG_22
