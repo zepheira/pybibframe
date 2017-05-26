@@ -73,6 +73,29 @@ DEFAULT_REL = object()
 #Can't use functools.lru_cache because of the dict (unhashable) arg
 #@lru_cache()
 def subfields(attrs, code=None, ctx=None):
+    '''
+    Compute a given subfield from the full structure of attributes. Return a list of code/value pairs.
+
+    attrs - A dictionary based on the input XML, including items in the form 'i.c': v where i is a numerical index
+    to preserve the ordering from the original MARC, c is the subfield code and v is the value.
+
+    code - optional string subfield code, or None to include all subfields in the result.
+
+    ctx - optional context object to be used if the caller wants to track the total ordering information of the codes included in the result
+
+    >>> subfields({'tag': '245', 'ind1': '1', 'ind2': '0', '2.a': 'Western America in 1846-1847. :', '3.b': 'The original travel diary of Lieutenant J. W. Abert, who mapped New Mexico for the United States Army; with illus. in color from his sketchbook /', '4.c': 'Edited by John Galvin.'}, code='a')
+    [('a', 'Western America in 1846-1847. :')]
+    >>> subfields({'tag': '100', 'ind1': '1', 'ind2': '', '2.a': 'Abert, J. W.', '3.q': '(James William),', '4.d': '1820-1897.'}, 'e')
+    []
+    >>> subfields({'tag': '100', 'ind1': '1', 'ind2': '', '2.a': 'Abert, J. W.', '3.q': '(James William),', '4.d': '1820-1897.'})
+    [('a', 'Abert, J. W.'), ('q', '(James William),'), ('d', '1820-1897.')]
+    >>> subfields({'tag': '040', 'ind1': '', 'ind2': '', '2.a': 'DLC', '3.c': 'DLC', '4.d': 'm.c.', '5.d':
+'WaOLN', '6.d': 'UtOrBLW'})
+    [('a', 'DLC'), ('c', 'DLC'), ('d', 'm.c.'), ('d', 'WaOLN'), ('d', 'UtOrBLW')]
+    >>> subfields({'tag': '650', 'ind1': '', 'ind2': '0', '2.a': 'Tapestry', '3.z': 'Massachusetts', '4.z': 'Boston', '5.v': 'Catalogs.'}, 'z')
+    [('z', 'Massachusetts'), ('z', 'Boston')]
+
+    '''
     result = []
     # If the attributes have their own ordering, use it, otherwise sort
     attrs_in_order = sorted(attrs.items())
@@ -292,6 +315,7 @@ def subfield(key):
         :param ctx: Versa context used in processing (e.g. includes the prototype link
         :return: Tuple of key/value tuples from the attributes; suitable for hashing
         '''
+        #return [ (tup[1][0] if isinstance(tup[1], list) else tup[1] ) for tup in subfields(ctx.current_link[ATTRIBUTES], key, ctx=ctx) ]
         return [ tup[1] for tup in subfields(ctx.current_link[ATTRIBUTES], key, ctx=ctx) ]
         #Why the blazes would this ever return [None] rather than None?!
         #return ctx.current_link[ATTRIBUTES].get(key, [None])

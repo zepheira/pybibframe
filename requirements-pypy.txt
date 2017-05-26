@@ -1,0 +1,9 @@
+amara3-iri==3.0.0b3
+pymarc
+rdflib
+#mmh3 #Will use the included pymmh3
+pytest
+versa>=0.3.3
+
+#From Versa pyreqs.txt
+amara3-xml==3.0.0a6
