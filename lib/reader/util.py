@@ -179,18 +179,31 @@ def link(derive_origin=None, rel=None, value=None, res=False, ignore_refs=True):
         rels = rel(ctx) if callable(rel) else rel
         if not isinstance(rels, list): rels = [rels]
 
-        _value = value(ctx) if callable(value) else (t if value is None else value)
-        #Just work with the first provided statement, for now
-        if res and not (ignore_refs and not iri.is_absolute(_value)):
-            try:
-                _value = I(_value)
-            except ValueError:
-                ctx.extras['logger'].warn('Requirement to convert link target to IRI failed for invalid input, causing the corresponding output link to be omitted entirely: {0}'.format(repr((I(origin), I(iri.absolutize(rel, ctx.base)), _value))))
-                #XXX How do we really want to handle this error?
-                return []
-        for r in rels:
-            ctx.output_model.add(I(origin), I(iri.absolutize(r, ctx.base)), _value, {})
+        values = value(ctx) if callable(value) else (t if value is None else value)
+        if not isinstance(values, list): values = [values]
+
+        def recurse_values(vs):
+            for v in vs:
+                if callable(v):
+                    yield from recurse_values(v(ctx))
+                else:
+                    yield v
+
+        for _value in recurse_values(values):
+            if res and not (ignore_refs and not iri.is_absolute(_value)):
+                try:
+                    _value = I(_value)
+                except ValueError:
+                    ctx.extras['logger'].warn('Requirement to convert link target to IRI failed for invalid input, causing the corresponding output link to be omitted entirely: {0}'.format(repr((I(origin), I(iri.absolutize(rel, ctx.base)), _value))))
+                    #XXX How do we really want to handle this error?
+                    #return []
+                    continue
+
+            for r in rels:
+                ctx.output_model.add(I(origin), I(iri.absolutize(r, ctx.base)), _value, {})
+
         return
+
     return _link
 
 

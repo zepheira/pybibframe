@@ -598,6 +598,7 @@ SNIPPET_25 = '''<collection xmlns="http://www.loc.gov/MARC21/slim">
   </datafield>
   <datafield ind2=" " ind1=" " tag="949">
       <subfield code="a">so</subfield>
+      <subfield code="a">xx</subfield>
       <subfield code="b">i</subfield>
       <subfield code="c">prta</subfield>
       <subfield code="d">DOWNING</subfield>
@@ -655,17 +656,19 @@ EXPECTED_25 = '''
     [
         "AkhksJtiCK4",
         "http://library.link/vocab/branchCode",
-        [
-            "dt"
-        ],
+        "dt",
         {}
     ],
     [
         "AkhksJtiCK4",
         "http://library.link/vocab/branchCode",
-        [
-            "so"
-        ],
+        "so",
+        {}
+    ],
+    [
+        "AkhksJtiCK4",
+        "http://library.link/vocab/branchCode",
+        "xx",
         {}
     ],
     [
