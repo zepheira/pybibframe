@@ -165,6 +165,8 @@ def link(derive_origin=None, rel=None, value=None, res=False, ignore_refs=True):
     list of relationships at run time, or None. If None, the relationship is derived
     from the context given when the materialize action function is called
 
+    :param ignore_refs: if True, make no attempt to convert would-be IRI refs (i.e. relative links) to IRI type, even if asked (via ref)
+
     For examples of all these scenarios see marcpatterns.py
 
     :return: Versa action function to do the actual work
@@ -190,6 +192,7 @@ def link(derive_origin=None, rel=None, value=None, res=False, ignore_refs=True):
                     yield v
 
         for _value in recurse_values(values):
+            #If asked to convert value to resource, do so as long as it is absolute and ignore_refs is false
             if res and not (ignore_refs and not iri.is_absolute(_value)):
                 try:
                     _value = I(_value)
@@ -552,12 +555,11 @@ def materialize(typ, rel=DEFAULT_REL, derive_origin=None, unique=None, links=Non
     For examples of all these scenarios see marcpatterns.py
 
     :return: Versa action function to do the actual work
-
     '''
     links = links or {}
     def _materialize(ctx):
         '''
-        Inserts at least two main link in the context's output_model, one or more for
+        Inserts at least two main links in the context's output_model, one or more for
         the relationship from the origin to the materialized resource, one for the
         type of the materialized resource, and links according to the links parameter
 
@@ -578,7 +580,7 @@ def materialize(typ, rel=DEFAULT_REL, derive_origin=None, unique=None, links=Non
         #Some conversions to make sure we end up with a list of relationships
         if _rel is DEFAULT_REL:
             _rel = [r]
-        rels = _rel if isinstance(_rel, list) else ([_rel] if rel else [])
+        rels = _rel if isinstance(_rel, list) else ([_rel] if _rel else [])
         if derive_origin:
             #Have been given enough info to derive the origin from context. Ignore origin in current link
             origin = derive_origin(ctx)

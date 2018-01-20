@@ -7,11 +7,11 @@ from amara3 import iri
 from versa.util import duplicate_statements, OrderedJsonEncoder
 from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 
-from bibframe import BF_INIT_TASK, BF_INPUT_TASK, BF_INPUT_XREF_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
-from bibframe.contrib.datachefids import idgen as default_idgen
+from . import BL, BF_INIT_TASK, BF_INPUT_TASK, BF_INPUT_XREF_TASK, BF_MARCREC_TASK, BF_MATRES_TASK, BF_FINAL_TASK
+from .contrib.datachefids import idgen as default_idgen
 
 BL = 'http://bibfra.me/vocab/lite/'
-TYPE_REL = I(iri.absolutize('type', VERSA_BASEIRI))
+VTYPE_REL = I(iri.absolutize('type', VERSA_BASEIRI))
 
 # XXX: Possibly move to Versa proper, as well as some of the other canonical / ordered Versa bits
 from versa.driver import memory
@@ -89,14 +89,14 @@ def materialize_entity(etype, ctx_params=None, model_to_update=None, data=None, 
     params = {'logger': logger}
 
     data = data or []
-    if addtype: data.insert(0, [TYPE_REL, etype])
+    if addtype: data.insert(0, [VTYPE_REL, etype])
     data_full =  [ ((vocabbase + k if not iri.is_absolute(k) else k), v) for (k, v) in data ]
     plaintext = json.dumps(data_full, separators=(',', ':'), cls=OrderedJsonEncoder)
 
     eid = ids.send(plaintext)
 
     if model_to_update:
-        model_to_update.add(I(eid), TYPE_REL, I(etype))
+        model_to_update.add(I(eid), VTYPE_REL, I(etype))
 
     params['materialized_id'] = eid
     params['first_seen'] = eid in existing_ids
@@ -109,17 +109,23 @@ def materialize_entity(etype, ctx_params=None, model_to_update=None, data=None, 
     return eid
 
 
-from versa.util import OrderedJsonEncoder
-
+#It could be argued from code modularization that this should go in versa, but the algorithm was really conceived in and for the BIBFRAME world, and one could of course select different strategies for other uses of Versa, so here we have it
 def resource_id(etype, unique=None, idgen=default_idgen(None), vocabbase=None):
     '''
     Very low level routine for generating a, ID value using the hash algorithm
     outlined by the Libhub initiative for for BIBFRAME Lite (Libhub Resource Hash Convention).
+    https://github.com/zepheira/pybibframe/wiki/From-Records-to-Resources:-the-Library.Link-resource-ID-generation-algorithm
     Takes the entity (resource) type and an ordered data mapping.
 
     etype - type IRI for th enew entity
     unique - list of key/value tuples of data to use in generating its unique ID, or None in which case one is just randomly generated
     defaultvocabbase - for convenience, provided, use to resolve relative etype & data keys
+
+    >>> from bibframe.util import resource_id
+    >>> resource_id("http://schema.org/Person", [("http://schema.org/name", "Jonathan Bruce Postel"), ("http://schema.org/birthDate", "1943-08-06")])
+    '-7hP9d_Xo8M'
+    >>> resource_id("http://schema.org/Person", [("http://schema.org/name", "Augusta Ada King")])
+    'xjgOrUFiw_o'
     '''
     params = {}
     #XXX: Use proper URI normalization? Have a philosophical discussion with Mark about this :)
@@ -133,8 +139,8 @@ def resource_id(etype, unique=None, idgen=default_idgen(None), vocabbase=None):
         unique_computed.append((k, v))
 
     if unique_computed:
-        # XXX Is OrderedJsonEncoder neded now that we're using list of tuples rather than ordered dict?
-        plaintext = json.dumps([etype, unique_computed], cls=OrderedJsonEncoder)
+        unique_computed.insert(0, [VTYPE_REL, etype])
+        plaintext = json.dumps(unique_computed, separators=(',', ':'))
         eid = idgen.send(plaintext)
     else:
         #We only have a type; no other distinguishing data. Generate a random hash
