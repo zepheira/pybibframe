@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import sys, os
 from distutils.core import setup
 
 PROJECT_NAME = 'pybibframe'
@@ -41,8 +40,8 @@ CLASSIFIERS = [
     "Topic :: Utilities",
 ]
 
-versionfile = 'lib/version.py'
-exec(compile(open(versionfile, "rb").read(), versionfile, 'exec'), globals(), locals())
+version_file = 'lib/version.py'
+exec(compile(open(version_file, "rb").read(), version_file, 'exec'), globals(), locals())
 __version__ = '.'.join(version_info)
 
 LONGDESC = '''pybibframe
@@ -210,7 +209,7 @@ the UTF-8 output option too.
 setup(
     name=PROJECT_NAME,
     version=__version__,
-    description = PROJECT_DESCRIPTION,
+    description=PROJECT_DESCRIPTION,
     license=PROJECT_LICENSE,
     author=PROJECT_AUTHOR,
     author_email=PROJECT_AUTHOR_EMAIL,
