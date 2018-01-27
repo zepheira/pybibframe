@@ -22,6 +22,10 @@ SCRIPTS = [
     'exec/versa2ttl',
     'exec/marcbin2xml',
 ]
+
+with open('requirements.txt') as req_file:
+    REQUIREMENTS = [r for r in req_file.read().split('\n') if r and not r.startswith('#')]
+
 # From http://pypi.python.org/pypi?%3Aaction=list_classifiers
 CLASSIFIERS = [
     "Programming Language :: Python",
@@ -219,6 +223,7 @@ setup(
     package_dir=PACKAGE_DIR,
     packages=PACKAGES,
     scripts=SCRIPTS,
+    install_requires=REQUIREMENTS,
     classifiers=CLASSIFIERS,
     long_description=LONGDESC,
 )
