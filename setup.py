@@ -2,6 +2,45 @@
 import sys, os
 from distutils.core import setup
 
+PROJECT_NAME = 'pybibframe'
+PROJECT_DESCRIPTION = 'Python tools for BIBFRAME (Bibliographic Framework), a Web-friendly framework for bibliographic descriptions in libraries, for example.',
+PROJECT_LICENSE = 'License :: OSI Approved :: Apache Software License'
+PROJECT_AUTHOR = 'Uche Ogbuji'
+PROJECT_AUTHOR_EMAIL = 'uche@ogbuji.net'
+PROJECT_MAINTAINER = 'Zepheira'
+PROJECT_MAINTAINER_EMAIL = 'uche@zepheira.com'
+PROJECT_URL = 'http://zepheira.com/'
+PACKAGE_DIR = {'bibframe': 'lib'}
+PACKAGES = [
+    'bibframe',
+    'bibframe.reader',
+    'bibframe.writer',
+    'bibframe.contrib',
+    'bibframe.plugin',
+]
+SCRIPTS = [
+    'exec/marc2bf',
+    'exec/versa2ttl',
+    'exec/marcbin2xml',
+]
+# From http://pypi.python.org/pypi?%3Aaction=list_classifiers
+CLASSIFIERS = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Development Status :: 4 - Beta",
+    #"Environment :: Other Environment",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Database",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Text Processing :: Markup :: XML",
+    "Topic :: Text Processing :: Indexing",
+    "Topic :: Utilities",
+]
+
 versionfile = 'lib/version.py'
 exec(compile(open(versionfile, "rb").read(), versionfile, 'exec'), globals(), locals())
 __version__ = '.'.join(version_info)
@@ -169,33 +208,18 @@ the UTF-8 output option too.
 '''
 
 setup(
-    name = 'pybibframe',
+    name=PROJECT_NAME,
     version=__version__,
-    description = 'Python tools for BIBFRAME (Bibliographic Framework), a Web-friendly framework for bibliographic descriptions in libraries, for example.',
-    license = 'License :: OSI Approved :: Apache Software License',
-    author = 'Uche Ogbuji',
-    author_email = 'uche@ogbuji.net',
-    maintainer = 'Zepheira',
-    maintainer_email = 'uche@zepheira.com',
-    url = 'http://zepheira.com/',
-    package_dir={'bibframe': 'lib'},
-    packages = ['bibframe', 'bibframe.reader', 'bibframe.writer', 'bibframe.contrib', 'bibframe.plugin'],
-    scripts=['exec/marc2bf', 'exec/versa2ttl', 'exec/marcbin2xml'],
-    classifiers = [ # From http://pypi.python.org/pypi?%3Aaction=list_classifiers
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 3",
-        "Development Status :: 4 - Beta",
-        #"Environment :: Other Environment",
-        "Intended Audience :: Information Technology",
-        "License :: OSI Approved :: Apache Software License",
-        "Operating System :: OS Independent",
-        "Topic :: Software Development :: Libraries :: Python Modules",
-        "Topic :: Internet :: WWW/HTTP",
-        "Topic :: Database",
-        "Topic :: Scientific/Engineering :: Information Analysis",
-        "Topic :: Text Processing :: Markup :: XML",
-        "Topic :: Text Processing :: Indexing",
-        "Topic :: Utilities",
-    ],
-    long_description = LONGDESC
+    description = PROJECT_DESCRIPTION,
+    license=PROJECT_LICENSE,
+    author=PROJECT_AUTHOR,
+    author_email=PROJECT_AUTHOR_EMAIL,
+    maintainer=PROJECT_MAINTAINER,
+    maintainer_email=PROJECT_MAINTAINER_EMAIL,
+    url=PROJECT_URL,
+    package_dir=PACKAGE_DIR,
+    packages=PACKAGES,
+    scripts=SCRIPTS,
+    classifiers=CLASSIFIERS,
+    long_description=LONGDESC,
 )
