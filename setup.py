@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+
+import re
+import sys
 from distutils.core import setup
 
 PROJECT_NAME = 'pybibframe'
@@ -23,8 +26,27 @@ SCRIPTS = [
     'exec/marcbin2xml',
 ]
 
-with open('requirements.txt') as req_file:
-    REQUIREMENTS = [r for r in req_file.read().split('\n') if r and not r.startswith('#')]
+
+def parse_requirement(r):
+    m = re.search('[<>=][=]', r)
+    if m:
+        package = r[:m.start()]
+        version = r[m.start():]
+        if '-' in package:
+            package = package.split('-')[0]
+        return '{} ({})'.format(package, version)
+    else:
+        return r
+
+
+if hasattr(sys, 'pypy_version_info'):
+    REQ_FILENAME = 'requirements-pypy.txt'
+else:
+    REQ_FILENAME = 'requirements.txt'
+
+with open(REQ_FILENAME) as fin:
+    reqs = [r for r in fin.read().split('\n') if r and not r.startswith('#')]
+    REQUIREMENTS = [parse_requirement(r) for r in reqs]
 
 # From http://pypi.python.org/pypi?%3Aaction=list_classifiers
 CLASSIFIERS = [
@@ -223,7 +245,7 @@ setup(
     package_dir=PACKAGE_DIR,
     packages=PACKAGES,
     scripts=SCRIPTS,
-    install_requires=REQUIREMENTS,
+    requires=REQUIREMENTS,
     classifiers=CLASSIFIERS,
     long_description=LONGDESC,
 )
