@@ -11,7 +11,7 @@ from amara3.inputsource import inputsourcetype
 
 
 def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, xml=None,
-        config=None, verbose=False, mods=None, canonical=False, lax=False):
+        config=None, verbose=False, mods=None, modfiles=None, canonical=False, lax=False):
     '''
     Basically takes parameters typical for command line invocation and adapts them for use in the API
 
@@ -27,6 +27,11 @@ def run(inputs=None, base=None, out=None, limit=None, rdfttl=None, rdfxml=None, 
 
     for mod in mods:
         __import__(mod, globals(), locals(), [])
+
+    for modfile in modfiles:
+        with open(modfile) as f:
+            code = compile(f.read(), modfile, 'exec')
+            exec(code, globals(), locals())
 
     bfconvert(inputs=inputs, entbase=base, out=out, limit=limit, rdfttl=rdfttl, rdfxml=rdfxml,
                 xml=xml, config=config, verbose=verbose, canonical=canonical, logger=logger,
@@ -63,6 +68,8 @@ if __name__ == '__main__':
         help='Base IRI to be used for creating resources.')
     parser.add_argument('--mod', metavar="PYMODULE", nargs="*", action='append',
         help='Python module to be imported in order to register plugins (can be specified multiple times.')
+    parser.add_argument('--modfile', metavar="FILEPATH", nargs="*", action='append',
+        help='Python file to be executed as a module in order to register plugins (can be specified multiple times.')
     parser.add_argument('-v', '--verbose', action='store_true',
         help='Show additional messages and information')
     parser.add_argument('--canonical', action='store_true',
@@ -76,8 +83,11 @@ if __name__ == '__main__':
     #
     args = parser.parse_args()
     args.mod = [i for items in args.mod or [] for i in items]
+    args.modfile = [i for items in args.modfile or [] for i in items]
 
-    run(inputs=args.inputs, base=args.base, out=args.out, limit=args.limit, rdfttl=args.rdfttl, rdfxml=args.rdfxml, xml=args.xml, config=args.config, verbose=args.verbose, mods=args.mod, canonical=args.canonical, lax=args.lax)
+    run(inputs=args.inputs, base=args.base, out=args.out, limit=args.limit, rdfttl=args.rdfttl,
+        rdfxml=args.rdfxml, xml=args.xml, config=args.config, verbose=args.verbose,
+        mods=args.mod, modfiles=args.modfile, canonical=args.canonical, lax=args.lax)
     #for f in args.inputs: f.close()
     if args.rdfttl: args.rdfttl.close()
     if args.rdfxml: args.rdfxml.close()
