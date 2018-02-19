@@ -1,9 +1,73 @@
 # -*- coding: utf-8 -*-
-import sys, os
+
+import re
+import sys
 from distutils.core import setup
 
-versionfile = 'lib/version.py'
-exec(compile(open(versionfile, "rb").read(), versionfile, 'exec'), globals(), locals())
+PROJECT_NAME = 'pybibframe'
+PROJECT_DESCRIPTION = 'Python tools for BIBFRAME (Bibliographic Framework), a Web-friendly framework for bibliographic descriptions in libraries, for example.',
+PROJECT_LICENSE = 'License :: OSI Approved :: Apache Software License'
+PROJECT_AUTHOR = 'Uche Ogbuji'
+PROJECT_AUTHOR_EMAIL = 'uche@ogbuji.net'
+PROJECT_MAINTAINER = 'Zepheira'
+PROJECT_MAINTAINER_EMAIL = 'uche@zepheira.com'
+PROJECT_URL = 'http://zepheira.com/'
+PACKAGE_DIR = {'bibframe': 'lib'}
+PACKAGES = [
+    'bibframe',
+    'bibframe.reader',
+    'bibframe.writer',
+    'bibframe.contrib',
+    'bibframe.plugin',
+]
+SCRIPTS = [
+    'exec/marc2bf',
+    'exec/versa2ttl',
+    'exec/marcbin2xml',
+]
+
+
+def parse_requirement(r):
+    m = re.search('[<>=][=]', r)
+    if m:
+        package = r[:m.start()]
+        version = r[m.start():]
+        if '-' in package:
+            package = package.split('-')[0]
+        return '{} ({})'.format(package, version)
+    else:
+        return r
+
+
+if hasattr(sys, 'pypy_version_info'):
+    REQ_FILENAME = 'requirements-pypy.txt'
+else:
+    REQ_FILENAME = 'requirements.txt'
+
+with open(REQ_FILENAME) as fin:
+    reqs = [r for r in fin.read().split('\n') if r and not r.startswith('#')]
+    REQUIREMENTS = [parse_requirement(r) for r in reqs]
+
+# From http://pypi.python.org/pypi?%3Aaction=list_classifiers
+CLASSIFIERS = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Development Status :: 4 - Beta",
+    #"Environment :: Other Environment",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Database",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Text Processing :: Markup :: XML",
+    "Topic :: Text Processing :: Indexing",
+    "Topic :: Utilities",
+]
+
+version_file = 'lib/version.py'
+exec(compile(open(version_file, "rb").read(), version_file, 'exec'), globals(), locals())
 __version__ = '.'.join(version_info)
 
 LONGDESC = '''pybibframe
@@ -169,33 +233,19 @@ the UTF-8 output option too.
 '''
 
 setup(
-    name = 'pybibframe',
+    name=PROJECT_NAME,
     version=__version__,
-    description = 'Python tools for BIBFRAME (Bibliographic Framework), a Web-friendly framework for bibliographic descriptions in libraries, for example.',
-    license = 'License :: OSI Approved :: Apache Software License',
-    author = 'Uche Ogbuji',
-    author_email = 'uche@ogbuji.net',
-    maintainer = 'Zepheira',
-    maintainer_email = 'uche@zepheira.com',
-    url = 'http://zepheira.com/',
-    package_dir={'bibframe': 'lib'},
-    packages = ['bibframe', 'bibframe.reader', 'bibframe.writer', 'bibframe.contrib', 'bibframe.plugin'],
-    scripts=['exec/marc2bf', 'exec/versa2ttl', 'exec/marcbin2xml'],
-    classifiers = [ # From http://pypi.python.org/pypi?%3Aaction=list_classifiers
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 3",
-        "Development Status :: 4 - Beta",
-        #"Environment :: Other Environment",
-        "Intended Audience :: Information Technology",
-        "License :: OSI Approved :: Apache Software License",
-        "Operating System :: OS Independent",
-        "Topic :: Software Development :: Libraries :: Python Modules",
-        "Topic :: Internet :: WWW/HTTP",
-        "Topic :: Database",
-        "Topic :: Scientific/Engineering :: Information Analysis",
-        "Topic :: Text Processing :: Markup :: XML",
-        "Topic :: Text Processing :: Indexing",
-        "Topic :: Utilities",
-    ],
-    long_description = LONGDESC
+    description=PROJECT_DESCRIPTION,
+    license=PROJECT_LICENSE,
+    author=PROJECT_AUTHOR,
+    author_email=PROJECT_AUTHOR_EMAIL,
+    maintainer=PROJECT_MAINTAINER,
+    maintainer_email=PROJECT_MAINTAINER_EMAIL,
+    url=PROJECT_URL,
+    package_dir=PACKAGE_DIR,
+    packages=PACKAGES,
+    scripts=SCRIPTS,
+    requires=REQUIREMENTS,
+    classifiers=CLASSIFIERS,
+    long_description=LONGDESC,
 )
