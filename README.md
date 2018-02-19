@@ -80,7 +80,7 @@ run the conversion.
 
 # Configuration
 
- * `marcspecials-vocab`—List of vocabulary (base) IRIs to qualify relationships and resource types generated from processing the special MARC fields 006, 007, 008 and the leader.
+ * `marcspecials-vocab`: List of vocabulary (base) IRIs to qualify relationships and resource types generated from processing the special MARC fields 006, 007, 008 and the leader.
 
 ## Transforms
 
