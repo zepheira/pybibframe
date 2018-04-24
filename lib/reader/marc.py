@@ -92,7 +92,7 @@ def isbn_instancegen(params, loop, model):
     '''
     Default handling of the idea of splitting a MARC record with FRBR Work info as well as instances signalled by ISBNs
 
-    According to Vicki Instances can be signalled by 007, 020 or 3XX, but we stick to 020 for now
+    According to Vicki Mueller instances can be signalled by 007, 020 or 3XX, but we stick to 020 for now
     '''
     #Handle ISBNs re: https://foundry.zepheira.com/issues/1976
     entbase = params['entbase']
@@ -503,7 +503,9 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             if not ok: continue #Abort current record if signalled
 
             bootstrap_output = params['output_model']
+            #By default the main target and its type are None, in which case it will fall back to default targets
             temp_main_target = main_type = None
+            #See if the first pass overrode the default target & type
             for o, r, t, a in bootstrap_output.match(None, PYBF_BOOTSTRAP_TARGET_REL):
                 #FIXME: We need a better designed way of determining fallback to bib
                 if t is not None: temp_main_target, main_type = o, t

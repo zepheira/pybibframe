@@ -44,8 +44,8 @@ if hasattr(sys, 'pypy_version_info'):
 else:
     REQ_FILENAME = 'requirements.txt'
 
-with open(REQ_FILENAME) as fin:
-    reqs = [r for r in fin.read().split('\n') if r and not r.startswith('#')]
+with open(REQ_FILENAME) as infp:
+    reqs = [r.split('#', 1)[0].strip() for r in infp.read().split('\n') if r.split('#', 1)[0].strip() ]
     REQUIREMENTS = [parse_requirement(r) for r in reqs]
 
 # From http://pypi.python.org/pypi?%3Aaction=list_classifiers
