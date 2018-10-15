@@ -547,8 +547,8 @@ def indicator(pat, mode='and'):
     #True
     '''
     def _indicator(ctx):
-        inds = '{}{}'.format(ctx.extras['indicators'].get('ind1', '#'),
-                            ctx.extras['indicators'].get('ind2', '#'))
+        inds = '{}{}'.format(ctx.extras['indicators'].get('ind1', '#') or '#',
+                            ctx.extras['indicators'].get('ind2', '#') or '#')
         for i, p in zip(inds, pat):
             if mode=='and':
                 if p == '?': continue
