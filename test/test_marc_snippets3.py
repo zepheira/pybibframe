@@ -51,6 +51,7 @@ from bibframe.reader import bfconvert
 import bibframe.plugin
 from bibframe.util import hash_neutral_model
 from bibframe.reader.util import *
+from bibframe import *
 
 
 import pytest
@@ -689,11 +690,229 @@ EXPECTED_25 = '''
 '''
 
 
-#TBD
-#SNIPPET_23 = SNIPPET_22
-#CONFIG_23 = CONFIG_22
-#EXPECTED_23 = '''
-#'''
+SNIPPET_26 = '''
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <leader>02467cam a2200505 a 4500</leader>
+        <datafield tag="100" ind1="3" ind2="">
+            <subfield code="a">Brown family</subfield>
+        </datafield>
+  </record>
+</collection>
+'''
+
+CONFIG_26 = {
+    "transforms": [
+        "http://example.org/vocab/test-indicator#transforms"
+    ]
+}
+TEST_INDICATOR_SELECTION = {
+    '100': ifexists(indicator('3?'),
+                    onwork.materialize(BL + 'Family',
+                                       values(
+                                           BL + 'creator',
+                                           relator_property(subfield('e'), prefix=REL),
+                                           relator_property(subfield('4'), prefix=REL)
+                                       ),
+                                       unique=[
+                                           (BL + 'name', subfield('a')),
+                                           (MARC + 'numeration', subfield('b')),
+                                           (MARC + 'titles', subfield('c')),
+                                           (BL + 'date', subfield('d')),
+                                           (BL + 'nameAlternative', subfield('q')),
+                                       ],
+                                       links={
+                                           BL + 'name': subfield('a'),
+                                           MARC + 'numeration': subfield('b'),
+                                           MARC + 'titles': subfield('c'),
+                                           BL + 'date': subfield('d'),
+                                           BL + 'nameAlternative': subfield('q')
+                                       }
+                                       ),
+                    onwork.materialize(BL + 'Person',
+                                       values(
+                                           BL + 'creator',
+                                           relator_property(subfield('e'), prefix=REL),
+                                           relator_property(subfield('4'), prefix=REL)
+                                       ),
+                                       unique=[
+                                           (BL + 'name', subfield('a')),
+                                           (MARC + 'numeration', subfield('b')),
+                                           (MARC + 'titles', subfield('c')),
+                                           (BL + 'date', subfield('d')),
+                                           (BL + 'nameAlternative', subfield('q')),
+                                       ],
+                                       links={
+                                           BL + 'name': subfield('a'),
+                                           MARC + 'numeration': subfield('b'),
+                                           MARC + 'titles': subfield('c'),
+                                           BL + 'date': subfield('d'),
+                                           BL + 'nameAlternative': subfield('q')
+                                       }
+                                       )
+                    ),
+}
+
+register_transforms("http://example.org/vocab/test-indicator#transforms", TEST_INDICATOR_SELECTION)
+
+EXPECTED_26 = '''
+[
+    [
+        "O0kRT7RUxLY",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "O0kRT7RUxLY",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/Books",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "O0kRT7RUxLY",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/LanguageMaterial",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "O0kRT7RUxLY",
+        "http://bibfra.me/vocab/lite/creator",
+        "nxaFsx7j5qk",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kG-tDyeLxz4",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "kG-tDyeLxz4",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "O0kRT7RUxLY",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "nxaFsx7j5qk",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Family",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "nxaFsx7j5qk",
+        "http://bibfra.me/vocab/lite/name",
+        "Brown family",
+        {}
+    ],
+    [
+        "nxaFsx7j5qk",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Brown family",
+        {}
+    ]
+]
+'''
+
+SNIPPET_27 = '''
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+  <record>
+    <leader>02467cam a2200505 a 4500</leader>
+        <datafield tag="100" ind1=" " ind2="">
+            <subfield code="a">Not a family</subfield>
+        </datafield>
+  </record>
+</collection>
+'''
+
+CONFIG_27 = CONFIG_26
+
+EXPECTED_27='''
+[
+    [
+        "NJ4ZGjmvWuU",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Person",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "NJ4ZGjmvWuU",
+        "http://bibfra.me/vocab/lite/name",
+        "Not a family",
+        {}
+    ],
+    [
+        "NJ4ZGjmvWuU",
+        "http://bibfra.me/vocab/marcext/sf-a",
+        "Not a family",
+        {}
+    ],
+    [
+        "UmIxAwDwKuc",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Work",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "UmIxAwDwKuc",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/Books",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "UmIxAwDwKuc",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/marc/LanguageMaterial",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "UmIxAwDwKuc",
+        "http://bibfra.me/vocab/lite/creator",
+        "NJ4ZGjmvWuU",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "pESsoh9_INA",
+        "http://bibfra.me/purl/versa/type",
+        "http://bibfra.me/vocab/lite/Instance",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ],
+    [
+        "pESsoh9_INA",
+        "http://bibfra.me/vocab/lite/instantiates",
+        "UmIxAwDwKuc",
+        {
+            "@target-type": "@iri-ref"
+        }
+    ]
+]
+'''
 
 all_snippets = sorted([ sym for sym in globals() if sym.startswith('SNIPPET') ])
 all_config = sorted([ sym for sym in globals() if sym.startswith('CONFIG') ])
