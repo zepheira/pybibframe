@@ -9,7 +9,6 @@ pip install pytest
 
 import sys
 import logging
-import asyncio
 import difflib
 from io import StringIO, BytesIO
 
@@ -75,21 +74,15 @@ NAMES = [ 'gunslinger',
 
 @pytest.mark.parametrize('name', NAMES)
 def DISABLE_test_usecases(name):
-    #Use a new event loop per test instance, and so one call of bfconvert per test
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(None)
-
     config = None
-    run_one(name, config=config, loop=loop)
+    run_one(name, config=config)
 
 
 def test_model_consumed():
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(None)
     m = memory.connection()
     fname = os.path.join(RESOURCEPATH, 'multiple-authlinks.mrx')
     #bfconvert([inputsource(open(fname, 'rb'))], entbase='http://example.org/', model=m, config=None, verbose=False, loop=loop)
-    bfconvert([open(fname, 'rb')], entbase='http://example.org/', model=m, config=None, verbose=False, loop=loop)
+    bfconvert([open(fname, 'rb')], entbase='http://example.org/', model=m, config=None, verbose=False)
 
     assert m.size() == 0, 'Model not consumed:\n'+repr(m)
 

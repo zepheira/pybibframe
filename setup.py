@@ -1,8 +1,15 @@
 # -*- coding: utf-8 -*-
+'''
+Note: careful not to conflate install_requires with requirements.txt
 
-import re
+https://packaging.python.org/discussions/install-requires-vs-requirements/
+
+Reluctantly use setuptools to get install_requires & long_description_content_type
+'''
+
 import sys
-from distutils.core import setup
+from setuptools import setup
+#from distutils.core import setup
 
 PROJECT_NAME = 'pybibframe'
 PROJECT_DESCRIPTION = 'Python tools for BIBFRAME (Bibliographic Framework), a Web-friendly framework for bibliographic descriptions in libraries, for example.',
@@ -26,34 +33,29 @@ SCRIPTS = [
     'exec/marcbin2xml',
 ]
 
+#FIXME: Trim some of these as amara3-xml & versa setup.py files are updated to handle requirements
+#See: requirements.txt
+CORE_REQUIREMENTS = [
+    'amara3.iri',
+    'amara3.xml',
+    'pymarc',
+    'rdflib',
+    'pytest',
+    'versa',
+]
 
-def parse_requirement(r):
-    m = re.search('[<>=][=]', r)
-    if m:
-        package = r[:m.start()]
-        version = r[m.start():]
-        if '-' in package:
-            package = package.split('-')[0]
-        return '{} ({})'.format(package, version)
-    else:
-        return r
 
+if not hasattr(sys, 'pypy_version_info'):
+    #See: requirements-pypy.txt vs requirements.txt
+    #In PyPy case use the included pymmh3
+    CORE_REQUIREMENTS.append('mmh3')
 
-if hasattr(sys, 'pypy_version_info'):
-    REQ_FILENAME = 'requirements-pypy.txt'
-else:
-    REQ_FILENAME = 'requirements.txt'
-
-with open(REQ_FILENAME) as infp:
-    reqs = [r.split('#', 1)[0].strip() for r in infp.read().split('\n') if r.split('#', 1)[0].strip() ]
-    REQUIREMENTS = [parse_requirement(r) for r in reqs]
 
 # From http://pypi.python.org/pypi?%3Aaction=list_classifiers
 CLASSIFIERS = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Development Status :: 4 - Beta",
-    #"Environment :: Other Environment",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Information Technology",
     "License :: OSI Approved :: Apache Software License",
     "Operating System :: OS Independent",
@@ -71,40 +73,25 @@ exec(compile(open(version_file, "rb").read(), version_file, 'exec'), globals(), 
 __version__ = '.'.join(version_info)
 
 LONGDESC = '''pybibframe
-==========
 
-Requires Python 3.4 or more recent. To install dependencies:
-
-::
-
-    pip install -r requirements.txt
-
-Then install pybibframe:
-
-::
+Requires Python 3.5+. To install:
 
     python setup.py install
 
-Usage
-=====
+# Usage
 
-Converting MARC/XML to RDF or Versa output (command line)
----------------------------------------------------------
+## Converting MARC/XML to RDF or Versa output (command line)
 
 Note: Versa is a model for Web resources and relationships. Think of it
 as an evolution of Resource Description Framework (RDF) that's at once
 simpler and more expressive. It's the default internal representation
 for pybibframe, though regular RDF is an optional output.
 
-::
-
     marc2bf records.mrx
 
 Reads MARC/XML from the file records.mrx and outputs a Versa
 representation of the resulting BIBFRAME records in JSON format. You can
 send that output to a file as well:
-
-::
 
     marc2bf -o resources.versa.json records.mrx
 
@@ -113,13 +100,9 @@ processing.
 
 If you want an RDF/Turtle representation of this file you can do:
 
-::
-
     marc2bf -o resources.versa.json --rdfttl resources.ttl records.mrx
 
 If you want an RDF/XML representation of this file you can do:
-
-::
 
     marc2bf -o resources.versa.json --rdfxml resources.rdf records.mrx
 
@@ -128,28 +111,20 @@ things down quite a bit.
 
 You can get the source MARC/XML from standard input:
 
-::
-
     curl http://lccn.loc.gov/2006013175/marcxml | marc2bf -c /Users/uche/dev/zepheira/pybibframe-plus/test/resource/config1.json --mod=bibframe.zextra -o /tmp/marc2bf.versa.json
 
 In this case a record is pulled from the Web, in particular Library of
 Congress Online Catalog / LCCN Permalink. Another example, Das Innere
 des Glaspalastes in London:
 
-::
-
     curl http://lccn.loc.gov/2012659481/marcxml | marc2bf -c /Users/uche/dev/zepheira/pybibframe-plus/test/resource/config1.json --mod=bibframe.zextra -o /tmp/marc2bf.versa.json
 
 You can process more than one MARC/XML file at a time by listing them on
 the command line:
 
-::
-
     marc2bf records1.mrx records2.mrx records3.mrx
 
 Or by using wildcards:
-
-::
 
     marc2bf records?.mrx
 
@@ -159,13 +134,9 @@ from which the plugins can be imported and a configuration file
 specifying how the plugins are to be used. For example, to use the
 ``linkreport`` plugin that comes with PyBibframe you can do:
 
-::
-
     marc2bf -c config1.json --mod=bibframe.plugin records.mrx
 
 Where the contents of config1.json might be:
-
-::
 
     {
         "plugins": [
@@ -180,33 +151,27 @@ Where the contents of config1.json might be:
 Which in this case will add RDFS label statements for Works and
 Instances to the output.
 
-Converting MARC/XML to RDF or Versa output (API)
-================================================
+# Converting MARC/XML to RDF or Versa output (API)
 
 The ``bibframe.reader.bfconvert`` function can be used as an API to run
 the conversion.
-
-::
 
     >>> from bibframe.reader import bfconvert
     >>> inputs = open('records.mrx', 'r')
     >>> out = open('resorces.versa.json', 'w')
     >>> bfconvert(inputs=inputs, entbase='http://example.org', out=out)
 
-Configuration
-=============
+# Configuration
 
--  ``marcspecials-vocab``—List of vocabulary (base) IRIs to qualify
+* ``marcspecials-vocab``—List of vocabulary (base) IRIs to qualify
    relationships and resource types generated from processing the
    special MARC fields 006, 007, 008 and the leader.
 
-Transforms
-----------
+## Transforms
 
-``'transforms': {     'bib': 'http://example.org/vocab/marc-bib-transforms', }``
+    'transforms': {     'bib': 'http://example.org/vocab/marc-bib-transforms', }
 
-See also
-========
+# See also
 
 Some open-source tools for working with BIBFRAME (see
 http://bibframe.org)
@@ -214,23 +179,22 @@ http://bibframe.org)
 Note: very useful to have around yaz-marcdump (which e.g. you can use to
 conver other MARC formats to MARC/XML)
 
-Download from http://ftp.indexdata.com/pub/yaz/ , unpack then do:
-
-::
+Download from http://ftp.indexdata.com/pub/yaz/, unpack then do:
 
     $ ./configure --prefix=$HOME/.local
     $ make && make install
 
-If you're on a Debian-based Linux you might find useful `these
-installation
-notes <https://gist.github.com/uogbuji/7cbc5c62f99951999574>`__
+If you're on a Debian-based Linux you might find useful [these
+installation notes](https://gist.github.com/uogbuji/7cbc5c62f99951999574).
 
-MarcEdit - http://marcedit.reeset.net/ - can also convert to MARC/XML.
+[MarcEdit](http://marcedit.reeset.net/) can also convert to MARC/XML.
 Just install, select "MARC Tools" from the menu, choose your input file,
 specify an output file, and specify the conversion you need to perform,
 e.g. "MARC21->MARC21XML" for MARC to MARC/XML. Note the availability of
 the UTF-8 output option too.
 '''
+
+LONGDESC_CTYPE = 'text/markdown',
 
 setup(
     name=PROJECT_NAME,
@@ -245,7 +209,8 @@ setup(
     package_dir=PACKAGE_DIR,
     packages=PACKAGES,
     scripts=SCRIPTS,
-    requires=REQUIREMENTS,
+    install_requires=CORE_REQUIREMENTS,
     classifiers=CLASSIFIERS,
     long_description=LONGDESC,
+    long_description_content_type=LONGDESC_CTYPE,
 )

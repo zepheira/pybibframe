@@ -24,12 +24,10 @@ all_expected = sorted([ sym for sym in globals() if sym.startswith('EXPECTED') ]
 
 for s, c, e in zip(all_snippets, all_config, all_expected):
     sobj, cobj, eobj = globals()[s], globals()[c], globals()[e]
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(None)
     m = memory.connection()
     instream = BytesIO(sobj.encode('utf-8'))
     outstream = StringIO()
-    bfconvert(instream, model=m, out=outstream, config=cobj, canonical=True, loop=loop)
+    bfconvert(instream, model=m, out=outstream, config=cobj, canonical=True)
     print('EXPECTED from {0}:'.format(s))
     print(outstream.getvalue()) #This output becomes the EXPECTED stanza
 
@@ -37,7 +35,6 @@ for s, c, e in zip(all_snippets, all_config, all_expected):
 
 import sys
 import logging
-import asyncio
 import difflib
 from io import StringIO, BytesIO
 import tempfile
@@ -715,8 +712,8 @@ def run_one(snippet, expected, desc, entbase=None, config=None, loop=None, canon
     infile.write(snippet.encode('utf-8'))
     infile.seek(0)
     outstream = StringIO()
-    bfconvert([infile], model=m, out=outstream, config=config, canonical=canonical, loop=loop)
-    #bfconvert(factory(infile), model=m, out=outstream, config=config, canonical=canonical, loop=loop)
+    bfconvert([infile], model=m, out=outstream, config=config, canonical=canonical)
+    #bfconvert(factory(infile), model=m, out=outstream, config=config, canonical=canonical)
     infile.close()
     outstream.seek(0)
     hashmap, m = hash_neutral_model(outstream)
@@ -735,10 +732,7 @@ def test_snippets(snippet, config, expected):
     #Use a new event loop per test instance, and so one call of bfconvert per test
     desc = '|'.join([ t[0] for t in (snippet, config, expected) ])
     snippet, config, expected = [ t[1] for t in (snippet, config, expected) ]
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(None)
-
-    run_one(snippet, expected, desc, config=config, loop=loop)
+    run_one(snippet, expected, desc, config=config)
 
 
 if __name__ == '__main__':

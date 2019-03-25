@@ -9,7 +9,6 @@ pip install pytest
 
 import sys
 import logging
-import asyncio
 import difflib
 from io import StringIO, BytesIO
 
@@ -166,14 +165,11 @@ AUTHOR_IN_MARC_EXPECTED = '''[
 '''
 
 def test_author_in_marc():
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(None)
-
     m = memory.connection()
     m_expected = memory.connection()
     s = StringIO()
 
-    bfconvert([BytesIO(AUTHOR_IN_MARC)], model=m, out=s, config=AUTHOR_IN_MARC_CONFIG, canonical=True, loop=loop)
+    bfconvert([BytesIO(AUTHOR_IN_MARC)], model=m, out=s, config=AUTHOR_IN_MARC_CONFIG, canonical=True)
     s.seek(0)
 
     #with open('/tmp/foo.versa.json', 'w') as f:
@@ -508,14 +504,11 @@ WORK_FALLBACK_AUTHOR_IN_MARC_EXPECTED = '''[
 WORK_FALLBACK_AUTHOR_IN_MARC_EXPECTED_PLUS_BIB = WORK_FALLBACK_AUTHOR_IN_MARC_EXPECTED.replace('lqZdjJ7Mdcg', '0GExrYlzZRs').replace('uYSoMuClP4k', '8MAi-oktTck')
 
 def test_work_fallback_author_in_marc_simple():
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(None)
-
     m = memory.connection()
     m_expected = memory.connection()
     s = StringIO()
 
-    bfconvert([BytesIO(REGULAR_MARC_EXAMPLE)], model=m, out=s, config=WORK_FALLBACK_AUTHOR_IN_MARC_CONFIG, canonical=True, loop=loop)
+    bfconvert([BytesIO(REGULAR_MARC_EXAMPLE)], model=m, out=s, config=WORK_FALLBACK_AUTHOR_IN_MARC_CONFIG, canonical=True)
     s.seek(0)
 
     #with open('/tmp/foo.versa.json', 'w') as f:
@@ -541,14 +534,11 @@ def test_work_fallback_author_in_marc_simple():
 
 AUTHOR_IN_MARC_TRANSFORMS_PLUS_BIB
 def test_work_fallback_author_in_marc_with_plusbib():
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(None)
-
     m = memory.connection()
     m_expected = memory.connection()
     s = StringIO()
 
-    bfconvert([BytesIO(REGULAR_MARC_EXAMPLE)], model=m, out=s, config=WORK_FALLBACK_AUTHOR_IN_MARC_CONFIG_PLUS_BIB, canonical=True, loop=loop)
+    bfconvert([BytesIO(REGULAR_MARC_EXAMPLE)], model=m, out=s, config=WORK_FALLBACK_AUTHOR_IN_MARC_CONFIG_PLUS_BIB, canonical=True)
     s.seek(0)
 
     #with open('/tmp/foo.versa.json', 'w') as f:
