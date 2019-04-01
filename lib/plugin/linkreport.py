@@ -55,7 +55,7 @@ class linkreport(object):
     #if you don't know what that means you should still be OK just using the sample syntax below as is, and just writign a regular function
     #But you can squeeze out a lot of power by getting to know the wonders of asyncio.Task
     @asyncio.coroutine
-    def handle_record_links(self, loop, model, params):
+    def handle_record_links(self, model, params):
         '''
         Task coroutine of the main event loop for MARC conversion, called with 
         In this case update a report of links encountered in the MARC/XML
@@ -90,12 +90,10 @@ class linkreport(object):
         return
 
     @asyncio.coroutine
-    def finalize(self, loop):
+    def finalize(self):
         '''
         Task coroutine of the main event loop for MARC conversion, called to finalize processing
         In this case generate the report of links encountered in the MARC/XML
-        
-        loop - async processing loop
         '''
         #print ('BF_FINAL_TASK', linkreport.PLUGIN_ID)
         with open(self._config['output-file'], "w") as outf:

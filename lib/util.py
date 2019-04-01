@@ -67,7 +67,7 @@ def hash_neutral_model(stream):
 
 
 #FIXME: Avoid mangling data arg without too much perf hit
-def materialize_entity(etype, ctx_params=None, model_to_update=None, data=None, addtype=True, loop=None, logger=logging):
+def materialize_entity(etype, ctx_params=None, model_to_update=None, data=None, addtype=True, logger=logging):
     '''
     Routine for creating a BIBFRAME resource. Takes the entity (resource) type and a data mapping
     according to the resource type. Implements the Libhub Resource Hash Convention
@@ -104,8 +104,7 @@ def materialize_entity(etype, ctx_params=None, model_to_update=None, data=None, 
     for plugin in plugins or ():
         #Not using yield from
         if BF_MATRES_TASK in plugin:
-            for p in plugin[BF_MATRES_TASK](loop, output_model, params): pass
-        #logger.debug("Pending tasks: %s" % asyncio.Task.all_tasks(loop))
+            for p in plugin[BF_MATRES_TASK](output_model, params): pass
     return eid
 
 

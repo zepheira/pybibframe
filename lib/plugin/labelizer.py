@@ -185,12 +185,10 @@ class labelizer(object):
         return
 
     @asyncio.coroutine
-    def handle_materialized_resource(self, loop, model, params):
+    def handle_materialized_resource(self, model, params):
         '''
         Task coroutine of the main event loop for MARC conversion, called whenever a new resource is materialized
         In this case generate the report of links encountered in the MARC/XML
-
-        loop - async processing loop
 
         You can set the value of params['renamed_materialized_id'] to rename the resource
         '''
@@ -201,12 +199,10 @@ class labelizer(object):
         return
 
     @asyncio.coroutine
-    def finalize(self, loop):
+    def finalize(self):
         '''
         Task coroutine of the main event loop for MARC conversion, called to finalize processing
         In this case generate the report of links encountered in the MARC/XML
-
-        loop - async processing loop
         '''
         return
 
