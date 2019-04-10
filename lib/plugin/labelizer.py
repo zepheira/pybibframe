@@ -87,13 +87,13 @@ def pairwise(iterable):
 #The only phase predefined for all plug-ins is BF_INIT_TASK
 
 #One convenient way to organize the Plug-in is as a class
-#In this case we want to create a separate instance for each full processing event loop
+#In this case we want to create a separate instance for each full processing pass (bfconvert)
 class labelizer(object):
     PLUGIN_ID = 'http://bibfra.me/tool/pybibframe#labelizer'
     def __init__(self, pinfo, config=None):
         #print ('BF_INIT_TASK', linkreport.PLUGIN_ID)
         self._config = config or {}
-        #If you need state maintained throughout a full processing loop, you can use instance attributes
+        #If you need state maintained throughout a full processing pass, you can use instance attributes
         #Now set up the other plug-in phases
         pinfo[BF_MARCREC_TASK] = self.handle_record_links
         pinfo[BF_MATRES_TASK] = self.handle_materialized_resource
@@ -104,12 +104,12 @@ class labelizer(object):
     #if you don't know what that means you should still be OK just using the sample syntax below as is, and just writign a regular function
     #But you can squeeze out a lot of power by getting to know the wonders of asyncio.Task
     @asyncio.coroutine
-    def handle_record_links(self, loop, model, params):
+    def handle_record_links(self, model, params):
         '''
         Task coroutine of the main event loop for MARC conversion, called with
         In this case update a report of links encountered in the MARC/XML
 
-        model -- raw Versa model with converted resource information from the MARC details from each MARC/XML record processed
+        model -- raw Versa model with converted resource information from each MARC/XML record processed
         params -- parameters passed in from processing:
             params['workid']: ID of the work constructed from the MARC record
             params['instanceid']: list of IDs of instances constructed from the MARC record
@@ -185,12 +185,10 @@ class labelizer(object):
         return
 
     @asyncio.coroutine
-    def handle_materialized_resource(self, loop, model, params):
+    def handle_materialized_resource(self, model, params):
         '''
         Task coroutine of the main event loop for MARC conversion, called whenever a new resource is materialized
         In this case generate the report of links encountered in the MARC/XML
-
-        loop - async processing loop
 
         You can set the value of params['renamed_materialized_id'] to rename the resource
         '''
@@ -201,12 +199,10 @@ class labelizer(object):
         return
 
     @asyncio.coroutine
-    def finalize(self, loop):
+    def finalize(self):
         '''
         Task coroutine of the main event loop for MARC conversion, called to finalize processing
         In this case generate the report of links encountered in the MARC/XML
-
-        loop - async processing loop
         '''
         return
 

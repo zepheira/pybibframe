@@ -88,7 +88,7 @@ def marc_lookup(model, codes):
 ISBN_REL = I(iri.absolutize('isbn', ISBNNS))
 ISBN_VTYPE_REL = I(iri.absolutize('isbnType', ISBNNS))
 
-def isbn_instancegen(params, loop, model):
+def isbn_instancegen(params, model):
     '''
     Default handling of the idea of splitting a MARC record with FRBR Work info as well as instances signalled by ISBNs
 
@@ -121,7 +121,7 @@ def isbn_instancegen(params, loop, model):
         for inum, itype in normalized_isbns:
             ean13 = compute_ean13_check(inum)
             data = [['instantiates', workid], [ISBNNS + 'isbn', ean13]]
-            instanceid = materialize_entity('Instance', ctx_params=params, model_to_update=output_model, data=data, loop=loop)
+            instanceid = materialize_entity('Instance', ctx_params=params, model_to_update=output_model, data=data)
             if entbase: instanceid = I(iri.absolutize(instanceid, entbase))
 
             output_model.add(I(instanceid), ISBN_REL, ean13)
@@ -132,7 +132,7 @@ def isbn_instancegen(params, loop, model):
     else:
         #If there are no ISBNs, we'll generate a default Instance
         data = [['instantiates', workid]]
-        instanceid = materialize_entity('Instance', ctx_params=params, model_to_update=output_model, data=data, loop=loop)
+        instanceid = materialize_entity('Instance', ctx_params=params, model_to_update=output_model, data=data)
         instanceid = I(iri.absolutize(instanceid, entbase)) if entbase else I(instanceid)
         output_model.add(I(instanceid), INSTANTIATES_REL, I(workid))
         existing_ids.add(instanceid)
@@ -276,7 +276,7 @@ def process_marcpatterns(params, transforms, input_model, phase_target):
             params['dropped_codes'].setdefault(tag,0)
             params['dropped_codes'][tag] += 1
 
-        mat_ent = functools.partial(materialize_entity, ctx_params=params, loop=params['loop'])
+        mat_ent = functools.partial(materialize_entity, ctx_params=params)
 
         #Apply all the handlers that were found
         for funcinfo, val, lookup in to_process:
@@ -346,15 +346,13 @@ def process_marcpatterns(params, transforms, input_model, phase_target):
 
 unused_flag = object()
 
-@asyncio.coroutine
-def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
+def record_handler( model, entbase=None, vocabbase=BL, limiting=None,
                     plugins=None, ids=None, postprocess=None, out=None,
                     logger=logging, transforms=TRANSFORMS,
                     special_transforms=unused_flag,
                     canonical=False, model_factory=memory.connection,
                     lookups=None, **kwargs):
     '''
-    loop - asyncio event loop
     model - the Versa model for the record
     entbase - base IRI used for IDs of generated entity resources
     limiting - mutable pair of [count, limit] used to control the number of records processed
@@ -365,8 +363,6 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
         special_transforms = special_transforms or default_special_transforms()
         transforms = transform_set(transforms)
         transforms.specials = special_transforms
-
-    _final_tasks = set() #Tasks for the event loop contributing to the MARC processing
 
     plugins = plugins or []
     if ids is None: ids = idgen(entbase)
@@ -390,14 +386,13 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                 #'input_model': input_model, 'output_model': model, 'logger': logger,
                 'entbase': entbase, 'vocabbase': vocabbase, 'ids': ids,
                 'existing_ids': existing_ids, 'plugins': plugins, 'transforms': transforms,
-                'materialize_entity': materialize_entity, 'leader': leader, 'lookups': lookups or {},
-                'loop': loop
+                'materialize_entity': materialize_entity, 'leader': leader, 'lookups': lookups or {}
             }
 
             # Earliest plugin stage, with an unadulterated input model
             for plugin in plugins:
                 if BF_INPUT_TASK in plugin:
-                    yield from plugin[BF_INPUT_TASK](loop, input_model, params)
+                    yield from plugin[BF_INPUT_TASK](input_model, params)
 
             #Prepare cross-references (i.e. 880s)
             #See the "$6 - Linkage" section of https://www.loc.gov/marc/bibliographic/ecbdcntf.html
@@ -478,7 +473,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             # hook for plugins interested in the xref-resolved input model
             for plugin in plugins:
                 if BF_INPUT_XREF_TASK in plugin:
-                    yield from plugin[BF_INPUT_XREF_TASK](loop, input_model, params)
+                    yield from plugin[BF_INPUT_XREF_TASK](input_model, params)
 
             #Do one pass to establish work hash
             #XXX Should crossrefs precede this?
@@ -518,7 +513,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                 #params['logger'].debug('WORK HASH ORIGIN {}\n'.format(bootstrap_dummy_id))
                 #params['logger'].debug('WORK HASH MODEL {}\n'.format(repr(bootstrap_output)))
                 workid_data = gather_workid_data(bootstrap_output, bootstrap_dummy_id)
-                workid = materialize_entity('Work', ctx_params=params, data=workid_data, loop=loop)
+                workid = materialize_entity('Work', ctx_params=params, data=workid_data)
                 logger.debug('Entering default main phase, Work ID: {0}'.format(workid))
 
                 is_folded = workid in existing_ids
@@ -540,7 +535,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
                 params['folded'] = folded
 
                 #Figure out instances
-                instanceids = instancegen(params, loop, model)
+                instanceids = instancegen(params, model)
                 params['instanceids'] = instanceids or [None]
 
                 main_transforms = transforms.compiled[DEFAULT_MAIN_PHASE]
@@ -549,7 +544,7 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
             else:
                 targetid_data = gather_targetid_data(bootstrap_output, temp_main_target, transforms.orderings[main_type])
                 #params['logger'].debug('Data for resource: {}\n'.format([main_type] + targetid_data))
-                targetid = materialize_entity(main_type, ctx_params=params, data=targetid_data, loop=loop)
+                targetid = materialize_entity(main_type, ctx_params=params, data=targetid_data)
                 logger.debug('Entering specialized phase, Target resource ID: {}, type: {}'.format(targetid, main_type))
 
                 is_folded = targetid in existing_ids
@@ -589,15 +584,8 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
 
             for plugin in plugins:
                 #Each plug-in is a task
-                #task = asyncio.Task(plugin[BF_MARCREC_TASK](loop, relsink, params), loop=loop)
                 if BF_MARCREC_TASK in plugin:
-                    yield from plugin[BF_MARCREC_TASK](loop, model, params)
-                logger.debug("Pending tasks: %s" % asyncio.Task.all_tasks(loop))
-                #FIXME: This blocks and thus serializes the plugin operation, rather than the desired coop scheduling approach
-                #For some reason seting to async task then immediately deferring to next task via yield from sleep leads to the "yield from wasn't used with future" error (Not much clue at: https://codereview.appspot.com/7396044/)
-                #yield from asyncio.Task(asyncio.sleep(0.01), loop=loop)
-                #yield from asyncio.async(asyncio.sleep(0.01))
-                #yield from asyncio.sleep(0.01) #Basically yield to next task
+                    yield from plugin[BF_MARCREC_TASK](model, params)
 
             #Can we somehow move this to passed-in postprocessing?
             if out and not canonical and not first_record: out.write(',\n')
@@ -624,24 +612,11 @@ def record_handler( loop, model, entbase=None, vocabbase=BL, limiting=None,
         logger.debug('Completed processing {0} record{1}.'.format(limiting[0], '' if limiting[0] == 1 else 's'))
         if out and not canonical: out.write(']')
 
-        #if not plugins: loop.stop()
         for plugin in plugins:
             #Each plug-in is a task
             func = plugin.get(BF_FINAL_TASK)
             if not func: continue
-            task = asyncio.Task(func(loop), loop=loop)
-            _final_tasks.add(task)
-            def task_done(task):
-                #print('Task done: ', task)
-                _final_tasks.remove(task)
-                #logger.debug((plugins))
-                #if plugins and len(_final_tasks) == 0:
-                    #print("_final_tasks is empty, stopping loop.")
-                    #loop = asyncio.get_event_loop()
-                #    loop.stop()
-            #Once all the plug-in tasks are done, all the work is done
-            task.add_done_callback(task_done)
-        #print('DONE')
+            func()
         #raise
 
     return

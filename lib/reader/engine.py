@@ -1,7 +1,7 @@
 '''
+API entry point for conversion from MARC to Linked Data
 '''
 
-import asyncio
 import logging
 from collections import defaultdict
 import warnings
@@ -12,7 +12,7 @@ from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
 from versa import util
 from versa.driver import memory
 
-from amara3.inputsource import factory, inputsourcetype
+from amara3.inputsource import factory as inputsource_factory, inputsourcetype
 from amara3.uxml import writer
 
 from bibframe import BFZ, BFLC, BL, register_service
@@ -24,13 +24,22 @@ from . import marc
 from . import transform_set
 from .marcxml import handle_marcxml_source
 
-NSSEP = ' '
+def resolve_class(fullname):
+    '''
+    Given a full name for a Python class, return the class object
+    '''
+    import importlib
+    modpath, name = fullname.rsplit('.', 1)
+    module = importlib.import_module(modpath)
+    cls = getattr(module, name)
+    return cls
 
-#PYTHONASYNCIODEBUG = 1
+
+NSSEP = ' '
 
 def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, model=None,
                 out=None, limit=None, rdfttl=None, rdfxml=None, xml=None, config=None,
-                verbose=False, logger=logging, loop=None, canonical=False,
+                verbose=False, logger=logging, canonical=False,
                 lax=False, defaultsourcetype=inputsourcetype.unknown):
     '''
     inputs - One or more open file-like object, string with MARC content, or filename or IRI. If filename or
@@ -45,7 +54,6 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
     config - configuration information
     verbose - If true show additional messages and information (default: False)
     logger - logging object for messages
-    loop - optional asyncio event loop to use
     canonical - output Versa's canonical form?
     lax - If True signal to the handle_marc_source function that relaxed syntax rules should be applied
             (e.g. accept XML with namespace problems)
@@ -61,19 +69,9 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
         except ValueError:
             logger.debug('Limit must be a number, not "{0}". Ignoring.'.format(limit))
 
-    def resolve_class(fullname):
-        '''
-        Given a full name for a Python class, return the class object
-        '''
-        import importlib
-        modpath, name = fullname.rsplit('.', 1)
-        module = importlib.import_module(modpath)
-        cls = getattr(module, name)
-        return cls
-
     attr_cls = resolve_class(config.get('versa-attr-cls', 'builtins.dict'))
 
-    model_factory = functools.partial(memory.connection, attr_cls=attr_cls) #,logger=logger)
+    model_factory = functools.partial(memory.connection, attr_cls=attr_cls)
 
     if 'marc_record_handler' in config:
         handle_marc_source = AVAILABLE_MARC_HANDLERS[config['marc_record_handler']]
@@ -84,7 +82,9 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
     #    inputs = ( inputsource(i, streamopenmode=readmode) for i in inputs )
 
     if handle_marc_source.makeinputsource:
-        inputs = factory(inputs, defaultsourcetype=defaultsourcetype, streamopenmode=readmode)
+        inputs = inputsource_factory(
+            inputs, defaultsourcetype=defaultsourcetype, streamopenmode=readmode
+        )
     #inputs = ( inputsource(i, streamopenmode=readmode) for i in inputs )
 
     ids = marc.idgen(entbase)
@@ -99,7 +99,7 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
 
         g = rdflib.Graph()
     #Intentionally not using either factory
-    if canonical: global_model = memory.connection() #logger=logger)
+    if canonical: global_model = memory.connection()
 
     if xml is not None:
         xmlw = writer.raw(xml, indent='  ')
@@ -116,10 +116,6 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
             microxml.process(model, xmlw, to_ignore=extant_resources, logger=logger)
 
         model.create_space()
-
-    #Set up event loop if not provided
-    if not loop:
-        loop = asyncio.get_event_loop()
 
     #Allow configuration of a separate base URI for vocab items (classes & properties)
     #XXX: Is this the best way to do this, or rather via a post-processing plug-in
@@ -144,38 +140,27 @@ def bfconvert(inputs, handle_marc_source=handle_marcxml_source, entbase=None, mo
     limiting = [0, limit]
     #logger=logger,
 
-    #raise(Exception(repr(inputs)))
+    #Each input can have multiple MARC sources (e.g. MARC/XML files)
+    #Each source can represent multiple MARC records
+    #The record_handler callback receives each record in the form of an input Versa model
     for source in inputs:
-        @asyncio.coroutine
-        #Wrap the parse operation to make it a task in the event loop
-        def wrap_task(): #source=source
-            sink = marc.record_handler( loop,
-                                        model,
-                                        entbase=entbase,
-                                        vocabbase=vb,
-                                        limiting=limiting,
-                                        plugins=plugins,
-                                        ids=ids,
-                                        postprocess=postprocess,
-                                        out=out,
-                                        logger=logger,
-                                        transforms=transforms,
-                                        canonical=canonical,
-                                        lookups=lookups,
-                                        model_factory=model_factory)
+        sink = marc.record_handler( model,
+                                    entbase=entbase,
+                                    vocabbase=vb,
+                                    limiting=limiting,
+                                    plugins=plugins,
+                                    ids=ids,
+                                    postprocess=postprocess,
+                                    out=out,
+                                    logger=logger,
+                                    transforms=transforms,
+                                    canonical=canonical,
+                                    lookups=lookups,
+                                    model_factory=model_factory)
 
-            args = dict(lax=lax)
-            handle_marc_source(source, sink, args, logger, model_factory)
-            sink.close()
-            yield
-        task = asyncio.async(wrap_task(), loop=loop)
-
-        try:
-            loop.run_until_complete(task)
-        except Exception as ex:
-            raise ex
-        finally:
-            loop.close()
+        args = dict(lax=lax)
+        handle_marc_source(source, sink, args, logger, model_factory)
+        sink.close()
 
     if canonical:
         out.write(repr(global_model))
