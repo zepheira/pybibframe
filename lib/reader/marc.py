@@ -616,7 +616,7 @@ def record_handler( model, entbase=None, vocabbase=BL, limiting=None,
             #Each plug-in is a task
             func = plugin.get(BF_FINAL_TASK)
             if not func: continue
-            func()
+            yield from func()
         #raise
 
     return
