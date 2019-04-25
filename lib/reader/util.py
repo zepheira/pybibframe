@@ -14,6 +14,7 @@ from collections import OrderedDict
 
 from versa.pipeline import context as versacontext
 from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
+from versa.pipeline import values, target, origin, rel, ifexists, toiri, res, url, if_, replace_from, lookup, lookup, lookup_inline, regex_match_modify
 
 from bibframe.contrib.datachefids import slugify#, FROM_EMPTY_64BIT_HASH
 from bibframe.contrib.datachefids import idgen as default_idgen
@@ -24,11 +25,11 @@ from bibframe.reader import BOOTSTRAP_PHASE
 
 from amara3 import iri
 
-__all__ = ["bfcontext", "base_transformer", "link", "ignore", "anchor", "target", "origin",
+__all__ = ["bfcontext", "base_transformer", "link", "ignore", "anchor", "target", "rel", "origin",
             "all_subfields", "subfield", "values", "relator_property", "replace_from",
             "if_", "ifexists", "foreach", "indicator", "materialize", "url", "normalize_isbn",
             "onwork", "oninstance", "lookup", "regex_match_modify", "register_transforms",
-            "subfields", "abort_on", "lookup_inline"]
+            "subfields", "abort_on", "lookup_inline", "ifexists", "if_"]
 
 RDA_PARENS_PAT = re.compile('\\(.*\\)')
 
@@ -254,42 +255,6 @@ def anchor(rtype=WORK_TYPE):
     return _anchor
 
 
-def target():
-    '''
-    Action function generator to return the target of the context's current link
-
-    :return: target of the context's current link
-    '''
-    #Action function generator to multiplex a relationship at processing time
-    def _target(ctx):
-        '''
-        Versa action function Utility to return the target of the context's current link
-
-        :param ctx: Versa context used in processing (e.g. includes the prototype link
-        :return: Target of the context's current link
-        '''
-        return ctx.current_link[TARGET]
-    return _target
-
-
-def origin():
-    '''
-    Action function generator to return the origin of the context's current link
-
-    :return: origin of the context's current link
-    '''
-    #Action function generator to multiplex a relationship at processing time
-    def _origin(ctx):
-        '''
-        Versa action function Utility to return the origin of the context's current link
-
-        :param ctx: Versa context used in processing (e.g. includes the prototype link
-        :return: Origin of the context's current link
-        '''
-        return ctx.current_link[ORIGIN]
-    return _origin
-
-
 NS_PATCH = lambda ns, k, v: (ns+k, v) if not iri.is_absolute(k) else (k, v)
 def all_subfields(ctx):
     '''
@@ -328,35 +293,6 @@ def subfield(key):
     return _subfield
 
 
-def values(*rels):
-    '''
-    Action function generator to compute a set of relationships from criteria
-
-    :param rels: List of relationships to compute
-    :return: Versa action function to do the actual work
-    '''
-    #Action function generator to multiplex a relationship at processing time
-    def _values(ctx):
-        '''
-        Versa action function Utility to specify a list of relationships
-
-        :param ctx: Versa context used in processing (e.g. includes the prototype link
-        :return: Tuple of key/value tuples from the attributes; suitable for hashing
-        '''
-        computed_rels = []
-        for rel in rels:
-            if callable(rel):
-                rel = rel(ctx)
-
-            if isinstance(rel, list):
-                computed_rels.extend(rel)
-            else:
-                computed_rels.append(rel)
-
-        return computed_rels
-    return _values
-
-
 def relator_property(text_in, allowed=None, default=None, prefix=None):
     '''
     Action function generator to take some text and compute a relationship slug therefrom
@@ -380,102 +316,6 @@ def relator_property(text_in, allowed=None, default=None, prefix=None):
         properties = [ prop if (allowed is None or prop in allowed) else default for prop in properties ]
         return properties
     return _relator_property
-
-
-def replace_from(patterns, old_text):
-    '''
-    Action function generator to take some text and replace it with another value based on a regular expression pattern
-
-    :param specs: List of replacement specifications to use, each one a (pattern, replacement) tuple
-    :param old_text: Source text for the value to be created. If this is a list, the return value will be a list processed from each item
-    :return: Versa action function to do the actual work
-    '''
-    def _replace_from(ctx):
-        '''
-        Versa action function Utility to do the text replacement
-
-        :param ctx: Versa context used in processing (e.g. includes the prototype link)
-        :return: Replacement text
-        '''
-        #If we get a list arg, take the first
-        _old_text = old_text(ctx) if callable(old_text) else old_text
-        _old_text = [] if _old_text is None else _old_text
-        old_text_list = isinstance(_old_text, list)
-        _old_text = _old_text if old_text_list else [_old_text]
-        #print(old_text_list, _old_text)
-        new_text_list = set()
-        for text in _old_text:
-            new_text = text #So just return the original string, if a replacement is not processed
-            for pat, repl in patterns:
-                m = pat.match(text)
-                if not m: continue
-                new_text = pat.sub(repl, text)
-
-            new_text_list.add(new_text)
-        #print(new_text_list)
-        return list(new_text_list) if old_text_list else list(new_text_list)[0]
-    return _replace_from
-
-
-def ifexists(test, value, alt=None):
-    '''
-    Action function generator providing a limited if/then/else type primitive
-    :param test: Expression to be tested to determine the branch path
-    :param value: Expression providing the result if test is true
-    :param alt: Expression providing the result if test is false
-    :return: Versa action function to do the actual work
-    '''
-    def _ifexists(ctx):
-        '''
-        Versa action function utility to execute a limited if/then/else type primitive
-
-        :param ctx: Versa context used in processing (e.g. includes the prototype link)
-        :return: Value computed according to the test expression result
-        '''
-        _test = test(ctx) if callable(test) else test
-        if _test:
-            return value(ctx) if callable(value) else value
-        else:
-            return alt(ctx) if callable(alt) else alt
-    return _ifexists
-
-
-def if_(test, iftrue, iffalse=None, vars_=None):
-    '''
-    Action function generator providing a fuller if/then/else type primitive
-    :param test: Expression to be tested to determine the branch path
-    :param iftrue: Expression to be executed (perhaps for side effects) if test is true
-    :param iffalse: Expression to be executed (perhaps for side effects) if test is false
-    :param vars: Optional dictionary of variables to be used in computing string test
-    :return: Versa action function to do the actual work. This function returns the value computed from iftrue if the test computes to true, otherwise iffalse
-    '''
-    vars_ = vars_ or {}
-    def _if_(ctx):
-        '''
-        Versa action function utility to execute an if/then/else type primitive
-
-        :param ctx: Versa context used in processing (e.g. includes the prototype link)
-        :return: Value computed according to the test expression result
-        '''
-        out_vars = {'target': ctx.current_link[TARGET]}
-        if isinstance(test, str):
-            for k, v in vars_.items():
-                #FIXME: Less crude test
-                assert isinstance(k, str)
-                _v = v(ctx) if callable(v) else v
-                out_vars[k] = _v
-
-            _test = eval(test, out_vars, out_vars)
-            #Test is an expression to be dynamically computed
-            #for m in ACTION_FUNCTION_PAT.findall(test):
-            #    func_name = m.group(1)
-        else:
-            _test = test(ctx) if callable(test) else test
-        if _test:
-            return iftrue(ctx) if callable(iftrue) else iftrue
-        elif iffalse:
-            return iffalse(ctx) if callable(iffalse) else iffalse
-    return _if_
 
 
 def foreach(origin=None, rel=None, target=None, attributes=None):
@@ -590,7 +430,7 @@ def materialize(typ, rel=DEFAULT_REL, derive_origin=None, unique=None, links=Non
     links, or a Versa action function returning None, which signals that
     the particular link is skipped entirely.
 
-    :param postprocess: IRI or list of IRI queueing up actiona to be postprocessed
+    :param postprocess: IRI or list of IRI queueing up actions to be postprocessed
     for this materialized resource. None, the default, signals no special postprocessing
 
     For examples of all these scenarios see marcpatterns.py
@@ -724,40 +564,6 @@ def materialize(typ, rel=DEFAULT_REL, derive_origin=None, unique=None, links=Non
     return _materialize
 
 
-#def url(arg, base=iri.absolutize('authrec/', BFZ)):
-def url(arg, base=None, ignore_refs=True):
-    '''
-    Convert the argument into an IRI ref or list thereof
-
-    :param base: base IRI to resolve relative references against
-    :param ignore_refs: if True, make no attempt to convert would-be IRI refs to IRI type
-    '''
-    def _res(ctx):
-        _arg = arg(ctx) if callable(arg) else arg
-        _arg = [_arg] if not isinstance(_arg, list) else _arg
-        ret = []
-        for u in _arg:
-            iu = u
-            if not (ignore_refs and not iri.is_absolute(iu)):
-                # coerce into an IRIref, but fallout as untyped text otherwise
-                try:
-                    iu = I(iu)
-                except ValueError as e:
-                    # attempt to recover by percent encoding
-                    try:
-                        iu = I(iri.percent_encode(iu))
-                    except ValueError as e:
-                        ctx.extras['logger'].warn('Unable to convert "{}" to IRI reference:\n{}'.format(iu, e))
-
-                if base is not None and isinstance(iu, I):
-                    iu = I(iri.absolutize(iu, base))
-
-            ret.append(iu)
-
-        return ret
-    return _res
-
-
 def normalize_isbn(isbn):
     '''
     Turn isbnplus into an action function to normalize ISBNs outside of 020, e.g. 776$z
@@ -767,67 +573,6 @@ def normalize_isbn(isbn):
         _isbn = [_isbn] if not isinstance(_isbn, list) else _isbn
         return [ compute_ean13_check(i) for i, t in isbn_list([i for i in _isbn if i]) ]
     return _normalize_isbn
-
-
-def lookup(table, key):
-    '''
-    Generic lookup mechanism
-    '''
-    def _lookup(ctx):
-        table_mapping = ctx.extras['lookups']
-        _key = key(ctx) if callable(key) else key
-        return table_mapping[table].get(_key)
-    return _lookup
-
-
-def regex_match_modify(pattern, group_or_func, value=None):
-    '''
-    Action function generator to take some text and modify it either according to a named group or a modification function for the match
-
-    :param pattern: regex string or compiled pattern
-    :param group_or_func: string or function that takes a regex match. If string, a named group to use for the result. If a function, executed to return the result
-    :param pattern: value to use instead of the current link target
-    :return: Versa action function to do the actual work
-    '''
-    def _regex_modify(ctx):
-        '''
-        Versa action function Utility to do the text replacement
-
-        :param ctx: Versa context used in processing (e.g. includes the prototype link)
-        :return: Replacement text
-        '''
-        _pattern = re.compile(pattern) if isinstance(pattern, str) else pattern
-        (origin, _, t, a) = ctx.current_link
-        _value = value(ctx) if callable(value) else (t if value is None else value)
-        match = _pattern.match(_value)
-        if not match: return _value
-        if callable(group_or_func):
-            return group_or_func(match)
-        else:
-            return match.groupdict().get(group_or_func, '')
-    return _regex_modify
-
-
-def lookup_inline(mapping, value=None):
-    '''
-    Action function generator to look up a value from a provided mapping
-
-    :param mapping: dictionary for the lookup
-    :param pattern: value to use instead of the current link target
-    :return: Versa action function to do the actual work
-    '''
-    def _lookup_inline(ctx):
-        '''
-        Versa action function Utility to do the text replacement
-
-        :param ctx: Versa context used in processing (e.g. includes the prototype link)
-        :return: Replacement text, or input text if not found
-        '''
-        (origin, _, t, a) = ctx.current_link
-        _value = value(ctx) if callable(value) else (t if value is None else value)
-        result = mapping.get(_value, _value)
-        return result
-    return _lookup_inline
 
 
 def abort_on(vals=None, regex=None):
