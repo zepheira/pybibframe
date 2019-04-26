@@ -14,7 +14,7 @@ from collections import OrderedDict
 
 from versa.pipeline import context as versacontext
 from versa import I, VERSA_BASEIRI, ORIGIN, RELATIONSHIP, TARGET, ATTRIBUTES
-from versa.pipeline import values, target, origin, rel, ifexists, toiri, res, url, if_, replace_from, lookup, lookup, lookup_inline, regex_match_modify
+from versa.pipeline import values, target, origin, rel, ifexists, toiri, res, url, if_, replace_from, lookup, SKIP, regex_match_modify
 
 from bibframe.contrib.datachefids import slugify#, FROM_EMPTY_64BIT_HASH
 from bibframe.contrib.datachefids import idgen as default_idgen
@@ -29,7 +29,7 @@ __all__ = ["bfcontext", "base_transformer", "link", "ignore", "anchor", "target"
             "all_subfields", "subfield", "values", "relator_property", "replace_from",
             "if_", "ifexists", "foreach", "indicator", "materialize", "url", "normalize_isbn",
             "onwork", "oninstance", "lookup", "regex_match_modify", "register_transforms",
-            "subfields", "abort_on", "lookup_inline", "ifexists", "if_"]
+            "subfields", "abort_on", "SKIP", "ifexists", "if_"]
 
 RDA_PARENS_PAT = re.compile('\\(.*\\)')
 
