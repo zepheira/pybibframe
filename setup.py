@@ -194,7 +194,7 @@ e.g. "MARC21->MARC21XML" for MARC to MARC/XML. Note the availability of
 the UTF-8 output option too.
 '''
 
-LONGDESC_CTYPE = 'text/markdown',
+LONGDESC_CTYPE = 'text/markdown'
 
 setup(
     name=PROJECT_NAME,
