@@ -189,6 +189,7 @@ def link(derive_origin=None, rel=None, value=None, res=False, ignore_refs=True):
         if not isinstance(values, list): values = [values]
 
         def recurse_values(vs):
+            if not isinstance(vs, list): vs = [vs]
             for v in vs:
                 if callable(v):
                     yield from recurse_values(v(ctx))
